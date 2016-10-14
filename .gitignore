@@ -1,0 +1,8 @@
+target
+build
+bin
+doc
+/classes/
+/test/classes/
+/build/
+.settings
