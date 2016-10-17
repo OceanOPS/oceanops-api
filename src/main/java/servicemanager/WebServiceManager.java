@@ -32,21 +32,23 @@ public class WebServiceManager {
 	}
 	
 	@GET
-	@Path ("xml/platform/{num}")
-	public Platform getPtfbyIdXML(@PathParam("num") long num) {
+	@Path ("xml/platform/{id}")
+	public Platform getPtfbyIdXML(@PathParam("id") long id) {
 		PlatformAccessor  m= new PlatformAccessor ();
-		return m.getPtfbyID(num);
+		Platform p= m.getPtfbyID(id);
+		return p;
+		
 		//exemple http://localhost:8081/rest/API/xml/platform/501356
 		
 	}
 	
 	
 	@GET
-	@Path ("json/platform/{num}")
+	@Path ("json/platform/{id}")
 	@Produces (MediaType.APPLICATION_JSON)
-	public Platform getPtfbyIdJSON(@PathParam("num") long num) {
+	public Platform getPtfbyIdJSON(@PathParam("id") long id) {
 		PlatformAccessor  m= new PlatformAccessor ();
-		return m.getPtfbyID(num);
+		return m.getPtfbyID(id);
 		//exemple http://localhost:8081/rest/API/xml/platform/501356
 		
 	}
