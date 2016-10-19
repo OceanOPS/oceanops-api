@@ -23,11 +23,11 @@ public class MethodAgencyToProg {
 	ServerRuntime runtime = new ServerRuntime("cayenne-project.xml");
 	//Getting Object Context
 	 ObjectContext context = runtime.getContext();
-	public ArrayList<AgencyPrg> FindProgramAgencies (long id) {
+	public ArrayList<AgencyPrg> FindProgramAgencies (long prgm_id) {
 
 
 		
-		SQLTemplate query = new SQLTemplate(AgencyPtf.class, "select DISTINCT AGENCY_ID from Agency_PTF where PTF_ID="+id);
+		SQLTemplate query = new SQLTemplate(AgencyPtf.class, "select DISTINCT AGENCY_ID from Program_Agency where Program_ID="+prgm_id);
 	    SQLResult resultDescriptor = new SQLResult();
 	    resultDescriptor.addColumnResult("P");
 	    query.setResult(resultDescriptor);
