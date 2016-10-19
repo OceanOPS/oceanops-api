@@ -136,12 +136,12 @@ public abstract class _PtfDeployment extends CayenneDataObject {
         return (BigDecimal)readProperty(SCORE_PROPERTY);
     }
 
-    public void setShape($importUtils.formatJavaType(${attr.Type}) shape) {
+    /**public void setShape($importUtils.formatJavaType(${attr.Type}) shape) {
         writeProperty(SHAPE_PROPERTY, shape);
     }
     public $importUtils.formatJavaType(${attr.Type}) getShape() {
         return ($importUtils.formatJavaType(${attr.Type}))readProperty(SHAPE_PROPERTY);
-    }
+    }**/
 
     public void setShipName(String shipName) {
         writeProperty(SHIP_NAME_PROPERTY, shipName);

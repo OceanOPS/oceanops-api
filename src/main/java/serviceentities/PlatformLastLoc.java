@@ -3,9 +3,17 @@ package serviceentities;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement
+@XmlType(propOrder={"lastLocationDate", "lat", "lon"})
 public class PlatformLastLoc {
+	@XmlAttribute
 	private long Id;
-	private Date DateOfLastLocation;
+	
+	private Date LastLocationDate;
 	private BigDecimal Lat;
 	private BigDecimal Lon;
 
@@ -14,28 +22,28 @@ public class PlatformLastLoc {
 	
 
 	public PlatformLastLoc ( long id, Date locdate, BigDecimal lat, BigDecimal lon ){	
-		this.setID(id);
-		this.setDateOfLastLocation(locdate);
+		this.setId(id);
+		this.setLastLocationDate(locdate);
 		this.setLat(lat);
 		this.setLon(lon);
 
 	}
 
-	public long getID() {
-		return Id;
-	}
+//	public long getId() {
+//		return Id;
+//	}
 
-	public void setID(long iD) {
+	public void setId(long iD) {
 		Id = iD;
 	}
 
 
-	public Date getDateOfLastLocation() {
-		return DateOfLastLocation;
+	public Date getLastLocationDate() {
+		return LastLocationDate;
 	}
 
-	public void setDateOfLastLocation(Date dateOfLastLocation) {
-		DateOfLastLocation = dateOfLastLocation;
+	public void setLastLocationDate(Date dateOfLastLocation) {
+		LastLocationDate = dateOfLastLocation;
 	}
 
 	public BigDecimal getLat() {

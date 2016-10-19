@@ -121,13 +121,13 @@ public abstract class _Agency extends CayenneDataObject {
         return (Integer)readProperty(PURCHASER_PROPERTY);
     }
 
-    public void setShape($importUtils.formatJavaType(${attr.Type}) shape) {
+   /** public void setShape($importUtils.formatJavaType(${attr.Type}) shape) {
         writeProperty(SHAPE_PROPERTY, shape);
     }
     public $importUtils.formatJavaType(${attr.Type}) getShape() {
         return ($importUtils.formatJavaType(${attr.Type}))readProperty(SHAPE_PROPERTY);
     }
-
+**/
     public void setTel(String tel) {
         writeProperty(TEL_PROPERTY, tel);
     }
