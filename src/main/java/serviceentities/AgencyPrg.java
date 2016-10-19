@@ -3,10 +3,10 @@ package serviceentities;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-
 @XmlRootElement
 @XmlType(propOrder={ "name", "nameShort","description"})
-public class PlatformModel {
+
+public class AgencyPrg {
 	@XmlAttribute
 	private long Id;
 	
@@ -14,11 +14,10 @@ public class PlatformModel {
 	private String Name;
 	private String description;
 	
-	
-	public PlatformModel (){	
+	public AgencyPrg (){	
 	}
 
-	public PlatformModel ( long id, String nameshort, String name, String description ){	
+	public AgencyPrg ( long id, String nameshort, String name, String description ){	
 		this.setId(id);
 		this.setNameShort(nameshort);
 		this.setName(name);
@@ -59,3 +58,4 @@ public class PlatformModel {
 	
 
 }
+

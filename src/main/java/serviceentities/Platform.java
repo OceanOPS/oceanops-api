@@ -1,42 +1,49 @@
 package serviceentities;
 
+
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
-
-import org.apache.cayenne.Cayenne;
-
-import jcommops.db.orm.rest.Ptf;
-import jcommops.db.orm.rest.PtfStatus;
+import javax.xml.bind.annotation.XmlType;
 
 
 @XmlRootElement
+@XmlType(propOrder={"jcommpsRef", "ptfFamily", "ptfType", "ptfModel", "ptfStatus",  "deployement","lastLocation","program", "country"})
+
 public class Platform {
-	private long Id;
+	@XmlAttribute
+	private long Id;//@XmlAttribute to bring  "id =XXXX" to the beacon
+	
 	private String JcommpsRef;
-	private PlatformStatus Ptfstatus;
-	private PlatformFamily Ptffamily;
-	private PlatformModel Ptfmodel;
-	private PlatformType Ptftype;
-	private PlatformDeploy Ptfdpl;
-	private PlatformLastLoc Ptfll;
+	private PlatformStatus PtfStatus;
+	private PlatformFamily PtfFamily;
+	private PlatformModel PtfModel;
+	private PlatformType PtfType;
+	private PlatformDeploy Deployement;
+	private PlatformLastLoc LastLocation;
+	private ProgramPtf Program;
+	private CountryPtf Country;
 	
 	public Platform (){	
 	}
 
-	public Platform ( long id, String ref, PlatformStatus ptfstatus, PlatformFamily ptffamily, PlatformModel ptfmodel, PlatformType ptftype, PlatformDeploy ptfdpl, PlatformLastLoc ptfll){	
+	public Platform ( long id, String ref, PlatformStatus ptfstatus, PlatformFamily ptffamily, PlatformModel ptfmodel, PlatformType ptftype,
+			PlatformDeploy ptfdpl, PlatformLastLoc ptfll, ProgramPtf prgm, CountryPtf cntr){	
 		this.setId(id);
 		this.setJcommpsRef(ref);
-		this.setPtfstatus (ptfstatus);
-		this.setPtffamily (ptffamily);
-		this.setPtfmodel (ptfmodel);
-		this.setPtftype (ptftype);
-		this.setPtfll (ptfll);
-		this.setPtfdpl(ptfdpl);
+		this.setPtfStatus (ptfstatus);
+		this.setPtfFamily (ptffamily);
+		this.setPtfModel (ptfmodel);
+		this.setPtfType (ptftype);
+		this.setDeployement (ptfdpl);
+		this.setLastLocation(ptfll);
+		this.setProgram(prgm);
+		this.setCountry(cntr);
 		
 	}
-
-	public long getId() {
+//to bring  "id =XXXX" to the beacon
+/**	public long getId() {
 		return Id;
-	}
+	}**/
 
 	public void setId(long id) {
 		Id = id;
@@ -50,53 +57,70 @@ public class Platform {
 		JcommpsRef = jcommpsRef;
 	}
 
-	public PlatformStatus getPtfstatus() {
-		return Ptfstatus;
+	public PlatformStatus getPtfStatus() {
+		return PtfStatus;
 	}
 
-	public void setPtfstatus(PlatformStatus ptfstatus) {
-		Ptfstatus = ptfstatus;
+	public void setPtfStatus(PlatformStatus ptfStatus) {
+		PtfStatus = ptfStatus;
 	}
 
-	public PlatformFamily getPtffamily() {
-		return Ptffamily;
+	public PlatformFamily getPtfFamily() {
+		return PtfFamily;
 	}
 
-	public void setPtffamily(PlatformFamily ptffamily) {
-		Ptffamily = ptffamily;
+	public void setPtfFamily(PlatformFamily ptfFamily) {
+		PtfFamily = ptfFamily;
 	}
 
-	public PlatformModel getPtfmodel() {
-		return Ptfmodel;
+	public PlatformModel getPtfModel() {
+		return PtfModel;
 	}
 
-	public void setPtfmodel(PlatformModel ptfmodel) {
-		Ptfmodel = ptfmodel;
+	public void setPtfModel(PlatformModel ptfModel) {
+		PtfModel = ptfModel;
 	}
 
-	public PlatformType getPtftype() {
-		return Ptftype;
+	public PlatformType getPtfType() {
+		return PtfType;
 	}
 
-	public void setPtftype(PlatformType ptftype) {
-		Ptftype = ptftype;
+	public void setPtfType(PlatformType ptfType) {
+		PtfType = ptfType;
 	}
 
-	public PlatformDeploy getPtfdpl() {
-		return Ptfdpl;
+	public PlatformDeploy getDeployement() {
+		return Deployement;	}
+
+	public void setDeployement(PlatformDeploy deployement) {
+		Deployement = deployement;
 	}
 
-	public void setPtfdpl(PlatformDeploy ptfdpl) {
-		Ptfdpl = ptfdpl;
+	public PlatformLastLoc getLastLocation() {
+		return LastLocation;
 	}
 
-	public PlatformLastLoc getPtfll() {
-		return Ptfll;
+	public void setLastLocation(PlatformLastLoc lastLocation) {
+		LastLocation = lastLocation;
 	}
 
-	public void setPtfll(PlatformLastLoc ptfll) {
-		Ptfll = ptfll;
+	public ProgramPtf getProgram() {
+		return Program;
 	}
+
+	public void setProgram(ProgramPtf program) {
+		Program = program;
+	}
+
+	public CountryPtf getCountry() {
+		return Country;
+	}
+
+	public void setCountry(CountryPtf country) {
+		Country = country;
+	}
+
+	
 
 
 }

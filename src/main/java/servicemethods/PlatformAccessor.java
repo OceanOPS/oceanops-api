@@ -1,34 +1,39 @@
 package servicemethods;
-import java.nio.channels.ShutdownChannelGroupException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import org.apache.cayenne.Cayenne;
 import org.apache.cayenne.ObjectContext;
-import org.apache.cayenne.Persistent;
 import org.apache.cayenne.configuration.server.ServerRuntime;
 import org.apache.cayenne.query.SelectQuery;
 
+import jcommops.db.orm.rest.Country;
 import jcommops.db.orm.rest.Ptf;
+import jcommops.db.orm.rest.PtfDeployment;
 import jcommops.db.orm.rest.PtfFamily;
 import jcommops.db.orm.rest.PtfLoc;
 import jcommops.db.orm.rest.PtfModel;
 import jcommops.db.orm.rest.PtfStatus;
 import jcommops.db.orm.rest.PtfType;
+import serviceentities.AgencyPrg;
+import serviceentities.CountryPtf;
 import serviceentities.Platform;
+import serviceentities.PlatformDeploy;
 import serviceentities.PlatformFamily;
 import serviceentities.PlatformLastLoc;
 import serviceentities.PlatformModel;
 import serviceentities.PlatformStatus;
 import serviceentities.PlatformType;
+import serviceentities.ProgramPtf;
+import serviceutil.MethodAgencyToProg;
 import serviceutil.MethodesUtiles;
 
 public class PlatformAccessor {
 	
 	ServerRuntime runtime = new ServerRuntime("cayenne-project.xml");
 	//Getting Object Context
-	ObjectContext context = runtime.getContext();
+	 ObjectContext context = runtime.getContext();
 	
 	
 	public ArrayList<Platform> getAllPtfs () { //Liste "OFFICIELLE" des Platformes
@@ -68,10 +73,11 @@ public Platform getPtfbyID (long id) {//Détail d'une Platforme à partir de son
     			ptf.setId(id);
     			ptf.setJcommpsRef(id+" IS NOT A VALID JCOMMOPS REFERENCED PLATFORM ID !");
     			}
-
-//			Ajouter des objects imbriqués un par un
+//			Methodes
     		MethodesUtiles mu =new MethodesUtiles();
-    		
+    		MethodAgencyToProg map= new MethodAgencyToProg();
+//			Ajouter des objects imbriqués un par un
+    		    		
     		// 1) l'objet imbriqué "PlatformStatus" 	
     		PlatformStatus ptfs = new PlatformStatus();
     		// 2) l'objet imbriqué "PlatformModel" 
@@ -83,7 +89,14 @@ public Platform getPtfbyID (long id) {//Détail d'une Platforme à partir de son
     		// 5) l'objet imbriqué "PlatformLastLoc" 
     		PlatformLastLoc ptfll = new PlatformLastLoc();
     		// 6) l'objet imbriqué "PlatformDeploy" 
-    		PlatformLastLoc ptfdpl = new PlatformLastLoc();
+    		PlatformDeploy ptfdpl = new PlatformDeploy();
+     		// 7) l'objet imbriqué "Program" 
+    		ProgramPtf prgm = new ProgramPtf();
+    		// 8) l'objet imbriqué "Agency" 
+    		AgencyPrg agency = new AgencyPrg();
+    		// 9) l'objet imbriqué "Country"
+    		CountryPtf country= new CountryPtf();
+    		
     		
     		try {
     			// 1) l'objet imbriqué "PlatformStatus"
@@ -92,55 +105,84 @@ public Platform getPtfbyID (long id) {//Détail d'une Platforme à partir de son
     			ptfs.setId(Cayenne.longPKForObject(platformstatus));
     			ptfs.setStatus(platformstatus.getDescription());
     			//Ajouter à platform
-    			ptf.setPtfstatus(ptfs);
+    			ptf.setPtfStatus(ptfs);
     			
     			// 2) l'objet imbriqué "PlatformModel" 
     			String stringIDptfm= platform.getToPtfModel().getObjectId().toString();
-    			PtfModel platformmodel = Cayenne.objectForPK(context, PtfModel.class, mu.ConvertIDStringtoLong(stringIDptfm));//Get the platform Status by its PK
+    			PtfModel platformmodel = Cayenne.objectForPK(context, PtfModel.class, mu.ConvertIDStringtoLong(stringIDptfm));//Get the platform Model by its PK
     			ptfm.setId(Cayenne.longPKForObject(platformmodel));
     			ptfm.setNameShort(platformmodel.getNameShort());
     			ptfm.setName(platformmodel.getName());
     			ptfm.setDescription(platformmodel.getDescription());
     			//Ajouter à platform
-    			ptf.setPtfmodel(ptfm);
+    			ptf.setPtfModel(ptfm);
     			
     			// 3) l'objet imbriqué "PlatformType" 
-    			PtfModel platformm = Cayenne.objectForPK(context, PtfModel.class, ptfm.getId());
+    			PtfModel platformm = Cayenne.objectForPK(context, PtfModel.class, Cayenne.longPKForObject(platformmodel));
     			String stringIDptft= platformm.getToPtfType().getObjectId().toString();
-    			PtfType platformtype = Cayenne.objectForPK(context, PtfType.class, mu.ConvertIDStringtoLong(stringIDptft));//Get the platform Status by its PK
+    			PtfType platformtype = Cayenne.objectForPK(context, PtfType.class, mu.ConvertIDStringtoLong(stringIDptft));//Get the platform Type by its PK
     			ptft.setId(Cayenne.longPKForObject(platformtype));
     			ptft.setNameShort(platformtype.getNameShort());
     			ptft.setName(platformtype.getName());
     			ptft.setDescription(platformtype.getDescription());
     			//Ajouter à platform
-    			ptf.setPtftype(ptft);
+    			ptf.setPtfType(ptft);
     			
     			// 4) l'objet imbriqué "PlatformFamily"
-    			PtfType platformt = Cayenne.objectForPK(context, PtfType.class, ptft.getId());
+    			PtfType platformt = Cayenne.objectForPK(context, PtfType.class, Cayenne.longPKForObject(platformtype));
     			String stringIDptff= platformt.getToPtfFamily().getObjectId().toString();
-    			PtfFamily platformfamily = Cayenne.objectForPK(context, PtfFamily.class, mu.ConvertIDStringtoLong(stringIDptff));//Get the platform Status by its PK
+    			PtfFamily platformfamily = Cayenne.objectForPK(context, PtfFamily.class, mu.ConvertIDStringtoLong(stringIDptff));//Get the platform Family by its PK
     			ptff.setId(Cayenne.longPKForObject(platformfamily));
     			ptff.setNameShort(platformfamily.getNameShort());
     			ptff.setName(platformfamily.getName());
     			ptff.setDescription(platformfamily.getDescription());
-    			ptf.setPtffamily(ptff);
+    			ptf.setPtfFamily(ptff);
     			
     			// 5) l'objet imbriqué "PlatformLastLoc" 
 //        		PlatformLastLoc ptfll = new PlatformLastLoc();
         		String stringIDptfll= platform.getToPtfLoc().getObjectId().toString();
-        		PtfLoc platformlastloc = Cayenne.objectForPK(context, PtfLoc.class, mu.ConvertIDStringtoLong(stringIDptfll));//Get the platform Status by its PK
-        		ptfll.setID(Cayenne.longPKForObject(platformlastloc));
+        		PtfLoc platformlastloc = Cayenne.objectForPK(context, PtfLoc.class, mu.ConvertIDStringtoLong(stringIDptfll));//Get the platform Last Location by its PK
+        		ptfll.setId(Cayenne.longPKForObject(platformlastloc));
         		ptfll.setLat(platformlastloc.getLat());
         		ptfll.setLon(platformlastloc.getLon());
-        		ptfll.setDateOfLastLocation(platformlastloc.getLocDate());
+        		ptfll.setLastLocationDate(platformlastloc.getLocDate());
     			//Ajouter à platform
-    			ptf.setPtfll(ptfll);
+    			ptf.setLastLocation(ptfll);
         		
         		
         		// 6) l'objet imbriqué "PlatformDeploy" 
-//        		PlatformLastLoc ptfdpl = new PlatformLastLoc();
-    			
-    			
+//        		PlatformDeploy ptfdpl = new PlatformDeploy();
+    			String stringIDptfdpl= platform.getToPtfDeployment().getObjectId().toString();
+        		PtfDeployment platformDeploy = Cayenne.objectForPK(context, PtfDeployment.class, mu.ConvertIDStringtoLong(stringIDptfdpl));//Get the platform Deployment by its PK
+        		ptfdpl.setId(Cayenne.longPKForObject(platformDeploy));
+        		ptfdpl.setDeployementDate(platformDeploy.getDeplDate());
+        		ptf.setDeployement(ptfdpl);
+
+        		
+        		// 7) l'objet imbriqué "Program" 
+//        		Program prgm = new Program();
+        		
+        	    String stringIDprg= platform.getToProgram().getObjectId().toString();
+        	    jcommops.db.orm.rest.Program ptfprogram= Cayenne.objectForPK(context, jcommops.db.orm.rest.Program.class, mu.ConvertIDStringtoLong(stringIDprg));//Get the platform Program by its PK
+        	    prgm.setActive(ptfprogram.getActive());
+          	    prgm.setDescription(ptfprogram.getDescription());
+        	    prgm.setId(Cayenne.longPKForObject(ptfprogram));
+        	    prgm.setName(ptfprogram.getName());	
+        		// 8) l'objet "sous-imbriqué" "Agency" (to program)
+        	    prgm.setAgency(map.FindProgramAgencies(id));// for reminder here id is platform id
+        	    ptf.setProgram(prgm);  
+        		
+        		// 9) l'objet imbriqué "Country" 
+//				CountryPtf country= new CountryPtf();
+        	    String stringIDcountry= platformDeploy.getToCountry().getObjectId().toString();
+        	    Country ptfcountry= Cayenne.objectForPK(context, Country.class, mu.ConvertIDStringtoLong(stringIDcountry));//Get the platform country by its PK
+        	    country.setId(Cayenne.longPKForObject(ptfcountry));
+        	    country.setName(ptfcountry.getName());
+        	    country.setIsoCode2(ptfcountry.getCode2());
+        	    country.setIsoCode3(ptfcountry.getCode3());
+        	    ptf.setCountry(country);  
+        	    System.out.println(ptfcountry.getName());
+        	    			
     			}
     		catch (NullPointerException n) {
 
