@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlType;
 
 
 @XmlRootElement
-@XmlType(propOrder={"jcommpsRef", "ptfFamily", "ptfType", "ptfModel", "ptfStatus",  "deployement","lastLocation","program", "country"})
+@XmlType(propOrder={"jcommpsRef", "ptfFamily", "ptfType", "ptfModel", "ptfStatus",  "deployement","lastLocation","program", "country", "masterProgramme"})
 
 public class Platform {
 	@XmlAttribute
@@ -22,12 +22,13 @@ public class Platform {
 	private PlatformLastLoc LastLocation;
 	private ProgramPtf Program;
 	private CountryPtf Country;
+	private MasterProgram MasterProgramme;
 	
 	public Platform (){	
 	}
 
 	public Platform ( long id, String ref, PlatformStatus ptfstatus, PlatformFamily ptffamily, PlatformModel ptfmodel, PlatformType ptftype,
-			PlatformDeploy ptfdpl, PlatformLastLoc ptfll, ProgramPtf prgm, CountryPtf cntr){	
+			PlatformDeploy ptfdpl, PlatformLastLoc ptfll, ProgramPtf prgm, CountryPtf cntr, MasterProgram mstrprgm){	
 		this.setId(id);
 		this.setJcommpsRef(ref);
 		this.setPtfStatus (ptfstatus);
@@ -38,6 +39,7 @@ public class Platform {
 		this.setLastLocation(ptfll);
 		this.setProgram(prgm);
 		this.setCountry(cntr);
+		this.setMasterProgramme(mstrprgm);
 		
 	}
 //to bring  "id =XXXX" to the beacon
@@ -118,6 +120,14 @@ public class Platform {
 
 	public void setCountry(CountryPtf country) {
 		Country = country;
+	}
+
+	public MasterProgram getMasterProgramme() {
+		return MasterProgramme;
+	}
+
+	public void setMasterProgramme(MasterProgram masterProgramme) {
+		MasterProgramme = masterProgramme;
 	}
 
 	

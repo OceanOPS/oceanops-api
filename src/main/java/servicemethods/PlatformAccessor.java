@@ -9,6 +9,7 @@ import org.apache.cayenne.configuration.server.ServerRuntime;
 import org.apache.cayenne.query.SelectQuery;
 
 import jcommops.db.orm.rest.Country;
+import jcommops.db.orm.rest.MasterProg;
 import jcommops.db.orm.rest.Ptf;
 import jcommops.db.orm.rest.PtfDeployment;
 import jcommops.db.orm.rest.PtfFamily;
@@ -18,6 +19,7 @@ import jcommops.db.orm.rest.PtfStatus;
 import jcommops.db.orm.rest.PtfType;
 import serviceentities.AgencyPrg;
 import serviceentities.CountryPtf;
+import serviceentities.MasterProgram;
 import serviceentities.Platform;
 import serviceentities.PlatformDeploy;
 import serviceentities.PlatformFamily;
@@ -36,7 +38,7 @@ public class PlatformAccessor {
 	 ObjectContext context = runtime.getContext();
 	
 	
-	public ArrayList<Platform> getAllPtfs () { //Liste "OFFICIELLE" des Platformes
+	public ArrayList<Platform> getAllPtfs () { //Liste "OFFICIELLE" des Plateformes
 		
 		SelectQuery query = new SelectQuery(Ptf.class);
     	List<Ptf> platforms = context.performQuery(query);
@@ -169,19 +171,31 @@ public Platform getPtfbyID (long id) {//Détail d'une Platforme à partir de son
         	    prgm.setId(Cayenne.longPKForObject(ptfprogram));
         	    prgm.setName(ptfprogram.getName());	
         		// 8) l'objet "sous-imbriqué" "Agency" (to program)
-        	    prgm.setAgency(map.FindProgramAgencies(id));// for reminder here id is platform id
+        	    prgm.setAgencies(map.FindProgramAgencies(Cayenne.longPKForObject(ptfprogram)));// for reminder here id is program id
         	    ptf.setProgram(prgm);  
         		
         		// 9) l'objet imbriqué "Country" 
 //				CountryPtf country= new CountryPtf();
-        	    String stringIDcountry= platformDeploy.getToCountry().getObjectId().toString();
+        	    String stringIDcountry= ptfprogram.getToCountry().getObjectId().toString();
         	    Country ptfcountry= Cayenne.objectForPK(context, Country.class, mu.ConvertIDStringtoLong(stringIDcountry));//Get the platform country by its PK
         	    country.setId(Cayenne.longPKForObject(ptfcountry));
         	    country.setName(ptfcountry.getName());
         	    country.setIsoCode2(ptfcountry.getCode2());
         	    country.setIsoCode3(ptfcountry.getCode3());
         	    ptf.setCountry(country);  
-        	    System.out.println(ptfcountry.getName());
+//        	    System.out.println(ptfcountry.getName());
+        	    
+        		// 10) l'objet imbriqué "Master Programme" 
+//				CountryPtf country= new CountryPtf();
+        	    MasterProgram masterprg = new MasterProgram();
+        	    
+        	    
+        	    String stringIDmasterprg= ptfprogram.getToMasterProg().getObjectId().toString();
+        	    MasterProg ptfmastprg= Cayenne.objectForPK(context, MasterProg.class, mu.ConvertIDStringtoLong(stringIDmasterprg));//Get the platform country by its PK
+        	    masterprg.setId(Cayenne.longPKForObject(ptfmastprg));
+        	    masterprg.setName(ptfmastprg.getName());
+        	    masterprg.setNameShort(ptfmastprg.getNameShort());
+        	    ptf.setMasterProgramme(masterprg);  
         	    			
     			}
     		catch (NullPointerException n) {
