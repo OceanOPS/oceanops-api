@@ -1,25 +1,24 @@
 package serviceentities;
 
-import java.util.ArrayList;
-
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
 @XmlType(propOrder={ "name", "nameShort"})
-public class MasterProgram {
+public class RoleContact {
 	private long Id;
 	private String Name;
 	private String NameShort;
 
 	
 	
-	public MasterProgram() {
+	public RoleContact() {
 		
 	}
 
-	public MasterProgram ( long id, String name, String nameshort){	
+	public RoleContact ( long id, String name, String nameshort){	
 	this.setId(id);
 	this.setName(name);
 	this.setNameShort(nameshort);
@@ -34,6 +33,7 @@ public class MasterProgram {
 		Id = id;
 	}
 
+	@XmlElement
 	public String getName() {
 		return Name;
 	}
@@ -42,6 +42,7 @@ public class MasterProgram {
 		Name = name;
 	}
 
+	@XmlElement
 	public String getNameShort() {
 		return NameShort;
 	}
@@ -50,10 +51,6 @@ public class MasterProgram {
 		NameShort = nameShort;
 	}
 
-	
 
-
-	
-	
 
 }

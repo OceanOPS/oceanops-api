@@ -5,7 +5,7 @@ import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.configuration.server.ServerRuntime;
 
 import jcommops.db.orm.rest.Ptf;
-import serviceutil.MethodAgencyToProg;
+import serviceutil.MethodsAssociativeTables;
 
 public class TestMethodAgencyPrg {
 	public static void main(String[] args) {
@@ -14,7 +14,7 @@ public class TestMethodAgencyPrg {
     	//Getting Object Context
     	ObjectContext context = runtime.getContext();
     	
-    	MethodAgencyToProg mp = new MethodAgencyToProg();
+    	MethodsAssociativeTables mp = new MethodsAssociativeTables();
     	
 			mp.FindProgramAgencies(488912);
 			

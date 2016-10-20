@@ -5,9 +5,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class PlatformStatus {
-		@XmlAttribute
-		private long Id;
 		
+		private long Id;
 		private String Status;
 		
 		
@@ -18,10 +17,11 @@ public class PlatformStatus {
 			this.setId(id);
 			this.setStatus(status);
 		}
-
-//		public long getId() {
-//			return Id;
-//		}
+		
+		@XmlAttribute
+		public long getId() {
+		 return Id;
+		}
 
 		public void setId(long l) {
 			Id = l;
