@@ -10,9 +10,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement
 @XmlType(propOrder={"name", "isoCode2", "isoCode3"})
 public class CountryPtf {
-	@XmlAttribute
-	private long Id;
 	
+	private long Id;
 	private String Name;
 	private String IsoCode2;
 	private String IsoCode3;
@@ -29,9 +28,10 @@ public class CountryPtf {
 		
 	}
 
-//	public long getId() {
-//		return Id;
-//	}
+	@XmlAttribute
+	public long getId() {
+		return Id;
+	}
 
 	public void setId(long id) {
 		Id = id;

@@ -7,9 +7,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement
 @XmlType(propOrder={ "name", "nameShort","description"})
 public class PlatformType {
-	@XmlAttribute
 	private long Id;
-	
 	private String NameShort;
 	private String Name;
 	private String description;
@@ -25,9 +23,10 @@ public class PlatformType {
 		this.setDescription(description);
 	}
 
-//	public long getId() {
-//		return Id;
-//	}
+	@XmlAttribute
+	public long getId() {
+		return Id;
+	}
 
 	public void setId(long id) {
 		Id = id;

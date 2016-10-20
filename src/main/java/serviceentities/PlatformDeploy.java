@@ -7,7 +7,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class PlatformDeploy {
-	@XmlAttribute
 	private long Id;
 	private Date DeployementDate;
 
@@ -22,9 +21,10 @@ public class PlatformDeploy {
 
 	}
 
-//	public long getId() {
-//		return Id;
-//	}
+	@XmlAttribute
+	public long getId() {
+		return Id;
+	}
 
 	public void setId(long id) {
 		Id = id;
