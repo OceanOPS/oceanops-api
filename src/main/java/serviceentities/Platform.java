@@ -9,7 +9,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -17,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(propOrder={"jcommpsRef", "ptfFamily", "ptfType", "ptfModel", "ptfStatus",  "deployement", "endingDate", "lastLocation","program", "country", "masterProgramme", "contacts", "variables"})
 
 
-public class Platform {
+	public class Platform {
 
 	private long Id;
 	private String JcommpsRef;

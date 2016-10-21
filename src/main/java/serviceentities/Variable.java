@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -28,6 +29,7 @@ public class Variable {
 	this.setDescription(description);
 	}
 
+	@XmlID
 	@XmlAttribute
 	public long getId() {
 		return Id;

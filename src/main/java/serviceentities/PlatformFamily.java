@@ -1,6 +1,8 @@
 package serviceentities;
 
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -24,6 +26,7 @@ public class PlatformFamily {
 		this.setDescription(description);
 	}
 
+	@XmlID
 	@XmlAttribute
 	public long getId() {
 		return Id;
@@ -33,6 +36,7 @@ public class PlatformFamily {
 		Id = id;
 	}
 
+	@XmlElement
 	public String getNameShort() {
 		return NameShort;
 	}
@@ -40,7 +44,7 @@ public class PlatformFamily {
 	public void setNameShort(String nameShort) {
 		NameShort = nameShort;
 	}
-
+	@XmlElement
 	public String getName() {
 		return Name;
 	}
@@ -48,7 +52,7 @@ public class PlatformFamily {
 	public void setName(String name) {
 		Name = name;
 	}
-
+	@XmlElement
 	public String getDescription() {
 		return description;
 	}

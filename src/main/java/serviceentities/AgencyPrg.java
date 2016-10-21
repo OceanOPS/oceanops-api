@@ -1,6 +1,8 @@
 package serviceentities;
 
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -24,6 +26,7 @@ public class AgencyPrg {
 		this.setDescription(description);
 	}
 
+	@XmlID
 	@XmlAttribute
 	public long getId() {
 		return Id;
@@ -32,7 +35,7 @@ public class AgencyPrg {
 	public void setId(long id) {
 		Id = id;
 	}
-
+	@XmlElement
 	public String getNameShort() {
 		return NameShort;
 	}
@@ -41,6 +44,7 @@ public class AgencyPrg {
 		NameShort = nameShort;
 	}
 
+	@XmlElement
 	public String getName() {
 		return Name;
 	}
@@ -48,7 +52,7 @@ public class AgencyPrg {
 	public void setName(String name) {
 		Name = name;
 	}
-
+	@XmlElement
 	public String getDescription() {
 		return description;
 	}
