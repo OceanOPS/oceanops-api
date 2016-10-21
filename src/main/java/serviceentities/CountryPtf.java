@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -27,7 +29,8 @@ public class CountryPtf {
 		this.setIsoCode3(isoCode3);
 		
 	}
-
+	
+	@XmlID
 	@XmlAttribute
 	public long getId() {
 		return Id;
@@ -37,6 +40,7 @@ public class CountryPtf {
 		Id = id;
 	}
 
+	@XmlElement
 	public String getName() {
 		return Name;
 	}
@@ -45,6 +49,7 @@ public class CountryPtf {
 		Name = name;
 	}
 
+	@XmlElement
 	public String getIsoCode2() {
 		return IsoCode2;
 	}
@@ -53,6 +58,7 @@ public class CountryPtf {
 		IsoCode2 = isoCode2;
 	}
 
+	@XmlElement
 	public String getIsoCode3() {
 		return IsoCode3;
 	}

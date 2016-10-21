@@ -7,15 +7,16 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.xml.bind.JAXBException;
 
 import servicemethods.PlatformAccessor;
 import serviceentities.Platform;
 
 @Path ("API")
-public class WebServiceManager {
+public class WebServiceManager  {
 	@GET
 	@Path ("xml/platforms")
-	public ArrayList<Platform> getAllPtfsXML () {
+	public ArrayList<Platform> getAllPtfsXML ()  {
 		PlatformAccessor  m= new PlatformAccessor ();
 		return m.getAllPtfs();
 		//http://localhost:8081/rest/API/xml/platforms
@@ -33,7 +34,7 @@ public class WebServiceManager {
 	
 	@GET
 	@Path ("xml/platform/{id}")
-	public Platform getPtfbyIdXML(@PathParam("id") long id) {
+	public Platform getPtfbyIdXML(@PathParam("id") long id)  {
 		PlatformAccessor  m= new PlatformAccessor ();
 		Platform p= m.getPtfbyID(id);
 		return p;

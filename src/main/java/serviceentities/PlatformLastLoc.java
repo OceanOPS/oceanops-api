@@ -4,20 +4,22 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
 @XmlType(propOrder={"lastLocationDate", "lat", "lon"})
 public class PlatformLastLoc {
-	@XmlAttribute
-	private long Id;
 	
+	private long Id;
 	private Date LastLocationDate;
 	private BigDecimal Lat;
 	private BigDecimal Lon;
 
-	
+	public PlatformLastLoc (){	
+	}
 	
 	
 
@@ -29,15 +31,17 @@ public class PlatformLastLoc {
 
 	}
 
-//	public long getId() {
-//		return Id;
-//	}
+	@XmlID
+	@XmlAttribute
+	public long getId() {
+		return Id;
+	}
 
 	public void setId(long iD) {
 		Id = iD;
 	}
 
-
+	@XmlElement
 	public Date getLastLocationDate() {
 		return LastLocationDate;
 	}
@@ -45,7 +49,7 @@ public class PlatformLastLoc {
 	public void setLastLocationDate(Date dateOfLastLocation) {
 		LastLocationDate = dateOfLastLocation;
 	}
-
+	@XmlElement
 	public BigDecimal getLat() {
 		return Lat;
 	}
@@ -53,7 +57,7 @@ public class PlatformLastLoc {
 	public void setLat(BigDecimal lat) {
 		Lat = lat;
 	}
-
+	@XmlElement
 	public BigDecimal getLon() {
 		return Lon;
 	}
@@ -62,7 +66,6 @@ public class PlatformLastLoc {
 		Lon = lon;
 	}
 
-	public PlatformLastLoc (){	
-	}
+
 
 }

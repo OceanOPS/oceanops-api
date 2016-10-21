@@ -3,6 +3,8 @@ package serviceentities;
 import java.util.Date;
 
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
@@ -21,6 +23,7 @@ public class PlatformDeploy {
 
 	}
 
+	@XmlID
 	@XmlAttribute
 	public long getId() {
 		return Id;
@@ -29,7 +32,8 @@ public class PlatformDeploy {
 	public void setId(long id) {
 		Id = id;
 	}
-
+	
+	@XmlElement
 	public Date getDeployementDate() {
 		return DeployementDate;
 	}

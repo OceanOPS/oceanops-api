@@ -1,6 +1,8 @@
 package serviceentities;
 
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
@@ -18,6 +20,7 @@ public class PlatformStatus {
 			this.setStatus(status);
 		}
 		
+		@XmlID
 		@XmlAttribute
 		public long getId() {
 		 return Id;
@@ -27,6 +30,7 @@ public class PlatformStatus {
 			Id = l;
 		}
 
+		@XmlElement
 		public String getStatus() {
 			return Status;
 		}

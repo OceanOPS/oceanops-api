@@ -3,6 +3,8 @@ package serviceentities;
 import java.util.ArrayList;
 
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -25,6 +27,7 @@ public class MasterProgram {
 	this.setNameShort(nameshort);
 	}
 
+	@XmlID
 	@XmlAttribute
 	public long getId() {
 		return Id;
@@ -34,6 +37,7 @@ public class MasterProgram {
 		Id = id;
 	}
 
+	@XmlElement
 	public String getName() {
 		return Name;
 	}
@@ -42,6 +46,7 @@ public class MasterProgram {
 		Name = name;
 	}
 
+	@XmlElement
 	public String getNameShort() {
 		return NameShort;
 	}

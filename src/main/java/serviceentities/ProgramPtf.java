@@ -6,14 +6,17 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlElements;
+import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+
 
 @XmlRootElement
 @XmlType(propOrder={ "name", "description", "active", "agencies"})
 
-public class ProgramPtf {
-    private long Id;
+public class ProgramPtf  {
+
+	private long Id;
     private String Name;
     private String Description;
     private int Active;
@@ -35,6 +38,7 @@ public class ProgramPtf {
     }
 
 
+    @XmlID
 	@XmlAttribute
     public long getId() {
         return Id;
@@ -68,6 +72,7 @@ public class ProgramPtf {
         Active = active;
     }
 
+    
     @XmlElementWrapper(name="agencies")
     @XmlElements(@XmlElement(name="agency",type=AgencyPrg.class))
     public ArrayList<AgencyPrg> getAgencies() {
