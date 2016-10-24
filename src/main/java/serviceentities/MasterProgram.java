@@ -8,7 +8,6 @@ import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement
 @XmlType(propOrder={ "name", "nameShort"})
 public class MasterProgram {
 	private long Id;
@@ -27,7 +26,7 @@ public class MasterProgram {
 	this.setNameShort(nameshort);
 	}
 
-	@XmlID
+	
 	@XmlAttribute
 	public long getId() {
 		return Id;

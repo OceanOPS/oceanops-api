@@ -9,7 +9,6 @@ import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement
 @XmlType(propOrder={"name", "isoCode2", "isoCode3"})
 public class CountryPtf {
 	
@@ -30,7 +29,7 @@ public class CountryPtf {
 		
 	}
 	
-	@XmlID
+	
 	@XmlAttribute
 	public long getId() {
 		return Id;
