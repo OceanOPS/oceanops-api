@@ -206,13 +206,14 @@ public Platform getPtfbyID (long id) {//Platform's details by ID
         	    masterprg.setNameShort(ptfmastprg.getNameShort());
         	    ptf.setMasterProgramme(masterprg);  
         	    
-        	    
+
         	    //10) embedded object"Contacts"
         	    ArrayList <ContactPrg> contacts= new  ArrayList <ContactPrg>();
         		//10.1) embedded object"Role"
         	    //10.2) embedded object"Agency"
         	    contacts= MAT.FindProgramContacts(Cayenne.longPKForObject(ptfprogram));//
         	    ptf.setContacts(contacts);  
+        	   
         	    
         	    
         	    //11) embedded object"Variables"

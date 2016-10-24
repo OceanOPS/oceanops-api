@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement
+
 @XmlType(propOrder={"lastLocationDate", "lat", "lon"})
 public class PlatformLastLoc {
 	
@@ -31,7 +31,7 @@ public class PlatformLastLoc {
 
 	}
 
-	@XmlID
+	
 	@XmlAttribute
 	public long getId() {
 		return Id;

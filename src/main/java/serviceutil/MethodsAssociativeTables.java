@@ -32,9 +32,9 @@ public class MethodsAssociativeTables {
 	//Getting Object Context
 	 ObjectContext context = runtime.getContext();
 	public ArrayList<AgencyPrg> FindProgramAgencies (long prgm_id) {
-		SQLTemplate query1 = new SQLTemplate(AgencyPtf.class, "select DISTINCT AGENCY_ID from Program_Agency where Program_ID="+prgm_id);
+		SQLTemplate query1 = new SQLTemplate(AgencyPtf.class, "select DISTINCT AGENCY_ID ag_id from Program_Agency where Program_ID="+prgm_id);
 	    SQLResult resultDescriptor = new SQLResult();
-	    resultDescriptor.addColumnResult("P");
+	    resultDescriptor.addColumnResult("ag_id");
 	    query1.setResult(resultDescriptor);
 	    List<Integer> agenciesIdList = context.performQuery(query1); 
 
@@ -61,9 +61,9 @@ public class MethodsAssociativeTables {
 	}
 	
 	public ArrayList<ContactPrg> FindProgramContacts (long prgm_id) {
-		SQLTemplate query2 = new SQLTemplate(ProgramContact.class, "select DISTINCT CONTACT_ID from Program_Contact where Program_ID="+prgm_id);
+		SQLTemplate query2 = new SQLTemplate(ProgramContact.class, "select DISTINCT CONTACT_ID cnt_id from Program_Contact where Program_ID="+prgm_id);
 	    SQLResult resultDescriptor = new SQLResult();
-	    resultDescriptor.addColumnResult("P");
+	    resultDescriptor.addColumnResult("cnt_id");
 	    query2.setResult(resultDescriptor);
 	    List<Integer> contactsIdList = context.performQuery(query2); 
 
@@ -77,12 +77,13 @@ public class MethodsAssociativeTables {
     		ContactPrg cntct= new ContactPrg();
     		SQLTemplate query_2 = new SQLTemplate(Contact.class, "select * from Contact  where ID="+a);
     		List<Contact> result = context.performQuery(query_2);// une liste contenant une seul ligne
-    		cntct.setId(a);
+    		cntct.setId(1);
     		cntct.setFirstName(result.get(0).getFirstName());
     		cntct.setLastName(result.get(0).getLastName());
     		cntct.setEmail(result.get(0).getEmail());
-    		try { cntct.setAgencies(FindContactAgencies(cntct.getId()));} catch (NullPointerException n) { }
-    		try { cntct.setRoles(FindContactRoles(cntct.getId()));} catch (NullPointerException n) { }
+//    		try { cntct.setRoles(FindContactRoles(cntct.getId()));} catch (NullPointerException n) { }
+//    		try { cntct.setAgencies(FindContactAgencies(cntct.getId()));} catch (NullPointerException n) { }
+    		
     	
 
     		Contact_list.add(cntct);
@@ -92,9 +93,9 @@ public class MethodsAssociativeTables {
 	}
 
 	public ArrayList<RoleContact> FindContactRoles (long cntct_id) {
-		SQLTemplate query3 = new SQLTemplate(ProgramContact.class, "select DISTINCT Role_ID from Program_Contact where Contact_ID="+cntct_id);
+		SQLTemplate query3 = new SQLTemplate(ProgramContact.class, "select DISTINCT Role_ID rl_id from Program_Contact where Contact_ID="+cntct_id);
 	    SQLResult resultDescriptor = new SQLResult();
-	    resultDescriptor.addColumnResult("P");
+	    resultDescriptor.addColumnResult("rl_id");
 	    query3.setResult(resultDescriptor);
 	    List<Integer> roleIdList = context.performQuery(query3); 
 
@@ -119,9 +120,9 @@ public class MethodsAssociativeTables {
 	
 
 	public ArrayList<AgencyPrg> FindContactAgencies(long cntct_id) {
-		SQLTemplate query4 = new SQLTemplate(Contact.class, "select DISTINCT AGENCY_ID from contact where ID="+cntct_id);
+		SQLTemplate query4 = new SQLTemplate(Contact.class, "select DISTINCT AGENCY_ID ag_id2 from contact where ID="+cntct_id);
 	    SQLResult resultDescriptor = new SQLResult();
-	    resultDescriptor.addColumnResult("P");
+	    resultDescriptor.addColumnResult("ag_id2");
 	    query4.setResult(resultDescriptor);
 	    List<Integer> agenciesIdList = context.performQuery(query4); 
 
@@ -146,12 +147,14 @@ public class MethodsAssociativeTables {
 		return Agency_list;	
 	}
 	
+	
 	public ArrayList<Variable> FindPtfVariables(long ptf_id) {
 		SQLTemplate query5 = new SQLTemplate(PtfVariable.class, "select variable_ID from ptf_variable where  PTF_ID="+ptf_id);
 	    SQLResult resultDescriptor = new SQLResult();
 	    resultDescriptor.addColumnResult("P");
 	    query5.setResult(resultDescriptor);
 	    List<Integer> variablesIdList = context.performQuery(query5); 
+
 
 	    ArrayList<Variable> Variable_list= new ArrayList<Variable>();
     	

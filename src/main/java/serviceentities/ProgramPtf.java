@@ -10,7 +10,6 @@ import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 @XmlRootElement
 @XmlType(propOrder={ "name", "description", "active", "agencies"})
 
@@ -38,7 +37,6 @@ public class ProgramPtf  {
     }
 
 
-    @XmlID
 	@XmlAttribute
     public long getId() {
         return Id;

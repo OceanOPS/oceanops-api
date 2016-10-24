@@ -10,8 +10,8 @@ import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement
-@XmlType(propOrder={ "name", "firstName", "lastName", "email", "agencies", "roles"})
+
+@XmlType(propOrder={ "firstName", "lastName", "email", "agencies", "roles"})
 
 public class ContactPrg {
     private long Id;
@@ -26,10 +26,10 @@ public class ContactPrg {
 
     }
 
-    public ContactPrg ( long id, String name, String description, String email, ArrayList<AgencyPrg> agencies, ArrayList<RoleContact> roles ){
+    public ContactPrg ( long id, String lastname, String firstname, String email, ArrayList<AgencyPrg> agencies, ArrayList<RoleContact> roles ){
     this.setId(id);
-    this.setLastName(name);
-    this.setFirstName(description);
+    this.setLastName(lastname);
+    this.setFirstName(firstname);
     this.setEmail(email);
     this.setAgencies(agencies);
     this.setRoles(roles);
@@ -37,7 +37,7 @@ public class ContactPrg {
 
     }
 
-    @XmlID
+
 	@XmlAttribute
     public long getId() {
         return Id;

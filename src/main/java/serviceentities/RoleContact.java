@@ -6,7 +6,6 @@ import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement
 @XmlType(propOrder={ "name", "nameShort"})
 public class RoleContact {
 	private long Id;
@@ -25,7 +24,7 @@ public class RoleContact {
 	this.setNameShort(nameshort);
 	}
 
-	@XmlID
+	
 	@XmlAttribute
 	public long getId() {
 		return Id;
