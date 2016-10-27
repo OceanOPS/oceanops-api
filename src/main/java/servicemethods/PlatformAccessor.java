@@ -67,65 +67,80 @@ public class PlatformAccessor {
 	}
 
 	public ArrayList<Platform> getPtfbySelectedParam(String ptf_status, String ptf_family, String ptf_type,
-			String ptf_model, String ptf_masterprg, String variable) {
+			String ptf_model, String program, String network, String ptf_masterprg, String variable) {
 
 		// QUERY PARAMETERS
 		String query_model = "";
 		String query_type = "";
 		String query_family = "";
 		String query_status = "";
+		String query_program = "";
+		String query_network = "";
 		String query_masterprg = "";
 		String query_variable = "";
 
 		int intersect_index = 0;
 		if (ptf_model != null && !ptf_model.isEmpty()) {
 			query_model = "intersect" + " select * from PTF where PTF_MODEL_ID IN "
-					+ "(select ID from PTF_Model where NAME_SHORT ='" + ptf_model + "')";
+					+ "(select ID from PTF_Model where UPPER(NAME_SHORT)='" + ptf_model.toUpperCase() + "')";
 			intersect_index = intersect_index + 1;
 		}
 
 		if (ptf_type != null && !ptf_type.isEmpty()) {
 			query_type = "intersect" + " select * from PTF where PTF_MODEL_ID IN "
-					+ "(select ID from PTF_Model where NAME_SHORT IN "
-					+ "(select NAME_SHORT  from PTF_MODEL where PTF_TYPE_ID IN "
-					+ "(select ID from PTF_TYPE where NAME_SHORT ='" + ptf_type + "')))";
+					+ "(select ID from PTF_Model where PTF_TYPE_ID IN "
+					+ "(select ID from PTF_TYPE where UPPER(NAME_SHORT)='" + ptf_type.toUpperCase() + "'))";
+			
 			intersect_index = intersect_index + 1;
 		}
 
 		if (ptf_family != null && !ptf_family.isEmpty()) {
 			query_family = "intersect" + " select * from PTF where PTF_MODEL_ID IN "
-					+ "(select ID from PTF_Model where NAME_SHORT IN "
-					+ "(select NAME_SHORT  from PTF_MODEL where PTF_TYPE_ID IN "
-					+ "(select ID from PTF_TYPE where NAME_SHORT IN"
-					+ "(select NAME_SHORT  from PTF_TYPE where PTF_FAMILY_ID IN "
-					+ "(select ID from PTF_FAMILY where NAME_SHORT ='" + ptf_family + "'))))  )";
+					+ "(select ID from PTF_Model where PTF_TYPE_ID IN "
+					+ "(select ID from PTF_TYPE  where PTF_FAMILY_ID IN "
+					+ "(select ID from PTF_FAMILY where UPPER(NAME_SHORT)='" + ptf_family.toUpperCase() + "')))";
 			intersect_index = intersect_index + 1;
 		}
 
-		if (ptf_masterprg != null && !ptf_masterprg.isEmpty()) {
-			query_masterprg = "intersect" + " select * from PTF where PTF_MODEL_ID IN "
-					+ "(select ID from PTF_Model where NAME_SHORT IN "
-					+ "(select NAME_SHORT  from PTF_MODEL where MASTER_PROG_ID IN "
-					+ "(select ID from MASTER_PROG where NAME_SHORT ='" + ptf_masterprg + "')))";
+		if (program != null && !program.isEmpty()) {
+			query_program = "intersect" + " select * from PTF where program_ID IN "
+					+ "(select ID from program where UPPER(NAME_SHORT)='" + program.toUpperCase() + "')";
 			intersect_index = intersect_index + 1;
 		}
+		
+		if (network != null && !network.isEmpty()) {
+			query_network = "intersect" + " select * from PTF where ID IN "
+					+ "(select PTF_ID from NETWORK_PTF where NETWORK_ID IN "
+					+ "(select ID from NETWORK where UPPER(NAME_SHORT)='" + network.toUpperCase() + "'))";
+			intersect_index = intersect_index + 1;
+		}
+
+		
+		if (ptf_masterprg != null && !ptf_masterprg.isEmpty()) {
+			query_masterprg = "intersect" + " select * from PTF where Program_ID IN "
+					+ "(select ID from Program where master_prog_id IN "
+					+ "(select ID from MASTER_PROG where UPPER(NAME_SHORT)='" + ptf_masterprg.toUpperCase() + "'))";
+			intersect_index = intersect_index + 1;
+		}
+	
 
 		if (ptf_status != null && !ptf_status.isEmpty()) {
 			query_status = "intersect"
-					+ " select * from PTF where PTF_STATUS_ID IN (select ID from PTF_STATUS where NAME_SHORT ='"
-					+ ptf_status + "')";
+					+ " select * from PTF where PTF_STATUS_ID IN (select ID from PTF_STATUS where UPPER(NAME_SHORT)='"
+					+ ptf_status.toUpperCase() + "')";
 			intersect_index = intersect_index + 1;
 		}
 
 		if (variable != null && !variable.isEmpty()) {
 			query_variable = "intersect" + " select * from PTF where ID IN "
 					+ "(select PTF_ID from PTF_VARIABLE where VARIABLE_ID IN "
-					+ "(select ID from VARIABLE where NAME_SHORT ='" + variable + "'))";
+					+ "(select ID from VARIABLE where UPPER(NAME_SHORT)='" + variable.toUpperCase() + "'))";
 			intersect_index = intersect_index + 1;
 		}
 
-		String overall_query = query_model + query_type + query_family + query_status + query_masterprg
-				+ query_variable;
+		String overall_query = query_model + query_type + query_family + query_status +  query_program +
+		 query_network+ query_masterprg + query_variable;
+		
 		overall_query = overall_query.substring(10);// to omit intersect instruction ->10 characters
 
 		SQLTemplate query_search = new SQLTemplate(Ptf.class, overall_query);
