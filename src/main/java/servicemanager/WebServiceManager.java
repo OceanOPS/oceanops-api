@@ -17,20 +17,20 @@ import serviceentities.Platform;
 @Path("api/rest/1.0")
 public class WebServiceManager {
 	@GET
-	@Path("platforms/xml")
+	@Path("platforms.xml")
 	public ArrayList<Platform> getAllPtfsXML() {
 		PlatformAccessor m = new PlatformAccessor();
 		return m.getAllPtfs();
-		// example http://localhost:8081/rest/api/rest/1.0/platforms/xml
+		// example http://localhost:8081/rest/api/rest/1.0/platforms.xml
 	}
 
 	@GET
-	@Path("platforms/json")
+	@Path("platforms.json")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<Platform> getAllPtfsJSON() {
 		PlatformAccessor m = new PlatformAccessor();
 		return m.getAllPtfs();
-		// example http://localhost:8081/rest/api/rest/1.0/platforms/json
+		// example http://localhost:8081/rest/api/rest/1.0/platforms.json
 
 	}
 
@@ -55,18 +55,18 @@ public class WebServiceManager {
 
 
 	@GET
-	@Path("platforms.xml")
+	@Path("platforms.xml/find")
 	public ArrayList<Platform> getSelectedPlatformsXML(@QueryParam("status") String status,
 			@QueryParam("family") String family, @QueryParam("type") String type, @QueryParam("model") String model, @QueryParam("program") String program, 
 			@QueryParam("network") String network, @QueryParam("masterprg") String masterprg, @QueryParam("variable") String variable) {
 
 		PlatformAccessor m = new PlatformAccessor();
 		return m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable);
-		// example http://localhost:8081/rest/api/rest/1.0/platforms.xml?status=ACTIVE&family=ICE_BUOYS&type=AXIB&model=AXIB&masterprg=DBCP&variable=SST
+		// example http://localhost:8081/rest/api/rest/1.0/platforms.xml/find?status=ACTIVE&family=ICE_BUOYS&type=AXIB&model=AXIB&masterprg=DBCP&variable=SST
 	}
 
 	@GET
-	@Path("platforms.json")
+	@Path("platforms.json/find")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<Platform> getSelectedPlatformsJSON(@QueryParam("status") String status,
 			@QueryParam("family") String family, @QueryParam("type") String type, @QueryParam("model") String model, @QueryParam("program") String program, 
