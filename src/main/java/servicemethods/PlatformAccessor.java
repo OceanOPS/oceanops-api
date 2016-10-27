@@ -168,11 +168,10 @@ public class PlatformAccessor {
 		// Crate and select the attributs and or object to "platform"
 		Platform ptf = new Platform();
 		try {
-			ptf.setId(id);
 			ptf.setJcommpsRef(platform.getRef());
-		} catch (NullPointerException n) {
 			ptf.setId(id);
-			ptf.setJcommpsRef(id + " IS NOT A VALID JCOMMOPS REFERENCED PLATFORM ID !");
+		} catch (NullPointerException n) {
+				ptf.setError_message("Invalid ID. The ID "+id+" doesn't correspond to a registred platform");;
 		}
 		// Methodes
 		MethodesUtiles mu = new MethodesUtiles();

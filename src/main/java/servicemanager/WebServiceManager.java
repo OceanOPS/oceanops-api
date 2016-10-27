@@ -39,7 +39,7 @@ public class WebServiceManager {
 	public Platform getPtfbyIdXML(@PathParam("id") long id) {
 		PlatformAccessor m = new PlatformAccessor();
 		return m.getPtfbyID(id);
-		// example http://localhost:8081/rest/api/rest/1.0/platform/xml/501356
+		// example http://localhost:8081/rest/api/rest/1.0/platform.xml/501356
 
 	}
 
@@ -49,31 +49,73 @@ public class WebServiceManager {
 	public Platform getPtfbyIdJSON(@PathParam("id") long id) {
 		PlatformAccessor m = new PlatformAccessor();
 		return m.getPtfbyID(id);
-		// example http://localhost:8081/rest/api/rest/1.0/platform/json/501356
+		// example http://localhost:8081/rest/api/rest/1.0/platform.json/501356
 
 	}
-
 
 	@GET
 	@Path("platforms.xml/find")
 	public ArrayList<Platform> getSelectedPlatformsXML(@QueryParam("status") String status,
-			@QueryParam("family") String family, @QueryParam("type") String type, @QueryParam("model") String model, @QueryParam("program") String program, 
-			@QueryParam("network") String network, @QueryParam("masterprg") String masterprg, @QueryParam("variable") String variable) {
+			@QueryParam("family") String family, @QueryParam("type") String type, @QueryParam("model") String model,
+			@QueryParam("program") String program, @QueryParam("network") String network,
+			@QueryParam("masterprg") String masterprg, @QueryParam("variable") String variable) {
 
 		PlatformAccessor m = new PlatformAccessor();
-		return m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable);
-		// example http://localhost:8081/rest/api/rest/1.0/platforms.xml/find?status=ACTIVE&family=ICE_BUOYS&type=AXIB&model=AXIB&masterprg=DBCP&variable=SST
+		ArrayList<Platform> foundPlatforms = new ArrayList<Platform>();
+		try {
+			foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg,
+					variable);
+			if (foundPlatforms.size() == 0) {
+				Platform ptf0 = new Platform();
+				ptf0.setId(-99999);
+				ptf0.setError_message("No platform found.");
+				foundPlatforms.add(ptf0);
+			}
+		}
+
+		catch (StringIndexOutOfBoundsException str) {
+			Platform ptf0 = new Platform();
+			ptf0.setError_message("Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterprg'  or 'variable' parameter.");
+			foundPlatforms.add(ptf0);
+
+		}
+
+		return foundPlatforms;
+		// example
+		// http://localhost:8081/rest/api/rest/1.0/platforms.xml/find?status=ACTIVE&family=ICE_BUOYS&type=AXIB&model=AXIB&masterprg=DBCP&variable=SST
 	}
 
 	@GET
 	@Path("platforms.json/find")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<Platform> getSelectedPlatformsJSON(@QueryParam("status") String status,
-			@QueryParam("family") String family, @QueryParam("type") String type, @QueryParam("model") String model, @QueryParam("program") String program, 
-			@QueryParam("network") String network, @QueryParam("masterprg") String masterprg, @QueryParam("variable") String variable) {
+			@QueryParam("family") String family, @QueryParam("type") String type, @QueryParam("model") String model,
+			@QueryParam("program") String program, @QueryParam("network") String network,
+			@QueryParam("masterprg") String masterprg, @QueryParam("variable") String variable) {
 
 		PlatformAccessor m = new PlatformAccessor();
-		return m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable);		// example http://localhost:8081/rest/api/rest/1.0/platforms.json?status=ACTIVE&family=ICE_BUOYS&type=AXIB&model=AXIB&masterprg=DBCP&variable=SST
+		ArrayList<Platform> foundPlatforms = new ArrayList<Platform>();
+		try {
+			foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg,
+					variable);
+			if (foundPlatforms.size() == 0) {
+				Platform ptf0 = new Platform();
+				ptf0.setError_message("No platform found.");
+				foundPlatforms.add(ptf0);
+			}
+		}
+
+		catch (StringIndexOutOfBoundsException str) {
+			Platform ptf0 = new Platform();
+			ptf0.setError_message("Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterprg'  or 'variable' parameter.");
+			foundPlatforms.add(ptf0);
+
+		}
+
+		return foundPlatforms;
+
+		// example
+		// http://localhost:8081/rest/api/rest/1.0/platforms.json/find?status=ACTIVE&family=ICE_BUOYS&type=AXIB&model=AXIB&masterprg=DBCP&variable=SST
 	}
 
 }
