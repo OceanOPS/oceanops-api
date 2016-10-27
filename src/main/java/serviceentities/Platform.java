@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlType;
 
 
 @XmlRootElement
-@XmlType(propOrder={"jcommpsRef", "ptfFamily", "ptfType", "ptfModel", "ptfStatus",  "deployement", "endingDate", "lastLocation","program", "country", "masterProgramme", "contacts", "variables"})
+@XmlType(propOrder={"error_message","jcommpsRef", "ptfFamily", "ptfType", "ptfModel", "ptfStatus",  "deployement", "endingDate", "lastLocation","program", "country", "masterProgramme", "contacts", "variables"})
 
 
 	public class Platform {
@@ -32,12 +32,14 @@ import javax.xml.bind.annotation.XmlType;
 	private MasterProgram MasterProgramme;
 	private ArrayList<ContactPrg> contacts;
 	private ArrayList<Variable> variables;
+	private String error_message;
 
 	public Platform (){	
 	}
 
 	public Platform ( long id, String ref, PlatformStatus ptfstatus, PlatformFamily ptffamily, PlatformModel ptfmodel, PlatformType ptftype,PlatformDeploy ptfdpl, 
-			Date endingdate, PlatformLastLoc ptfll, ProgramPtf prgm, CountryPtf cntr, MasterProgram mstrprgm, ArrayList<ContactPrg> contacts, ArrayList<Variable> variables){	
+			Date endingdate, PlatformLastLoc ptfll, ProgramPtf prgm, CountryPtf cntr, MasterProgram mstrprgm, ArrayList<ContactPrg> contacts, ArrayList<Variable> variables,
+			String error_message){	
 		this.setId(id);
 		this.setJcommpsRef(ref);
 		this.setPtfStatus (ptfstatus);
@@ -52,6 +54,7 @@ import javax.xml.bind.annotation.XmlType;
 		this.setMasterProgramme(mstrprgm);
 		this.setContacts(contacts);
 		this.setVariables(variables);
+		this.setError_message(error_message);
 		
 	}
 
@@ -181,6 +184,15 @@ import javax.xml.bind.annotation.XmlType;
     public void setVariables(ArrayList<Variable> variables) {
         this.variables = variables;
     }
+
+    
+	public String getError_message() {
+		return error_message;
+	}
+
+	public void setError_message(String error_message) {
+		this.error_message = error_message;
+	}
 
 
 
