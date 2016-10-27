@@ -57,11 +57,11 @@ public class WebServiceManager {
 	@GET
 	@Path("platforms.xml")
 	public ArrayList<Platform> getSelectedPlatformsXML(@QueryParam("status") String status,
-			@QueryParam("family") String family, @QueryParam("type") String type, @QueryParam("model") String model,
-			@QueryParam("masterprg") String masterprg, @QueryParam("variable") String variable) {
+			@QueryParam("family") String family, @QueryParam("type") String type, @QueryParam("model") String model, @QueryParam("program") String program, 
+			@QueryParam("network") String network, @QueryParam("masterprg") String masterprg, @QueryParam("variable") String variable) {
 
 		PlatformAccessor m = new PlatformAccessor();
-		return m.getPtfbySelectedParam(status, family, type, model, masterprg, variable);
+		return m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable);
 		// example http://localhost:8081/rest/api/rest/1.0/platforms.xml?status=ACTIVE&family=ICE_BUOYS&type=AXIB&model=AXIB&masterprg=DBCP&variable=SST
 	}
 
@@ -69,12 +69,11 @@ public class WebServiceManager {
 	@Path("platforms.json")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<Platform> getSelectedPlatformsJSON(@QueryParam("status") String status,
-			@QueryParam("family") String family, @QueryParam("type") String type, @QueryParam("model") String model,
-			@QueryParam("masterprg") String masterprg, @QueryParam("variable") String variable) {
+			@QueryParam("family") String family, @QueryParam("type") String type, @QueryParam("model") String model, @QueryParam("program") String program, 
+			@QueryParam("network") String network, @QueryParam("masterprg") String masterprg, @QueryParam("variable") String variable) {
 
 		PlatformAccessor m = new PlatformAccessor();
-		return m.getPtfbySelectedParam(status, family, type, model, masterprg, variable);
-		// example http://localhost:8081/rest/api/rest/1.0/platforms.json?status=ACTIVE&family=ICE_BUOYS&type=AXIB&model=AXIB&masterprg=DBCP&variable=SST
+		return m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable);		// example http://localhost:8081/rest/api/rest/1.0/platforms.json?status=ACTIVE&family=ICE_BUOYS&type=AXIB&model=AXIB&masterprg=DBCP&variable=SST
 	}
 
 }
