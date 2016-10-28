@@ -6,8 +6,7 @@ import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.ObjectId;
 import org.apache.cayenne.configuration.server.ServerRuntime;
 import org.apache.cayenne.query.SelectQuery;
-
-import jcommops.db.orm.rest.Ptf;
+import org.jcommops.api.orm.Ptf;
 
 public class TestGetAllPtfRef {
 

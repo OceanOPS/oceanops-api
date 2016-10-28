@@ -10,9 +10,8 @@ import org.apache.cayenne.map.SQLResult;
 import org.apache.cayenne.query.EJBQLQuery;
 import org.apache.cayenne.query.SQLTemplate;
 import org.apache.cayenne.query.SelectQuery;
-
-import jcommops.db.orm.rest.AgencyPtf;
-import jcommops.db.orm.rest.Ptf;
+import org.jcommops.api.orm.AgencyPtf;
+import org.jcommops.api.orm.Ptf;
 
 
 public class TestSelectQuery {

@@ -2,7 +2,7 @@ package tests;
 
 import java.util.ArrayList;
 
-import serviceentities.Platform;
+import org.jcommops.api.entities.Platform;
 
 public class TestBrouillon {
 

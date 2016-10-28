@@ -6,8 +6,7 @@ import java.util.regex.Pattern;
 import org.apache.cayenne.Cayenne;
 import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.configuration.server.ServerRuntime;
-
-import jcommops.db.orm.rest.Ptf;
+import org.jcommops.api.orm.Ptf;
 
 public class TestGetptfModelID {
 
