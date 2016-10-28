@@ -6,10 +6,9 @@ import java.util.List;
 import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.configuration.server.ServerRuntime;
 import org.apache.cayenne.query.SQLTemplate;
-
-import jcommops.db.orm.rest.Ptf;
-import serviceentities.Platform;
-import servicemethods.PlatformAccessor;
+import org.jcommops.api.accessors.PlatformAccessor;
+import org.jcommops.api.entities.Platform;
+import org.jcommops.api.orm.Ptf;
 
 public class TestSearch {
 

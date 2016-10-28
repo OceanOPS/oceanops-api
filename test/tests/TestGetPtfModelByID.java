@@ -3,9 +3,7 @@ package tests;
 import org.apache.cayenne.Cayenne;
 import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.configuration.server.ServerRuntime;
-
-
-import jcommops.db.orm.rest.PtfModel;
+import org.jcommops.api.orm.PtfModel;
 
 public class TestGetPtfModelByID {
 

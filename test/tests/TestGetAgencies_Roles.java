@@ -3,9 +3,8 @@ package tests;
 import java.util.ArrayList;
 
 import org.apache.cayenne.Cayenne;
-
-import serviceentities.ContactPrg;
-import serviceutil.MethodsAssociativeTables;
+import org.jcommops.api.accessors.MethodsAssociativeTables;
+import org.jcommops.api.entities.ContactPrg;
 
 public class TestGetAgencies_Roles {
 	public static void main(String[] args) {

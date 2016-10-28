@@ -3,12 +3,11 @@ package tests;
 import org.apache.cayenne.Cayenne;
 import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.configuration.server.ServerRuntime;
-
-import jcommops.db.orm.rest.Country;
-import jcommops.db.orm.rest.Program;
-import jcommops.db.orm.rest.PtfDeployment;
-import serviceentities.CountryPtf;
-import serviceutil.MethodesUtiles;
+import org.jcommops.api.Utils;
+import org.jcommops.api.entities.CountryPtf;
+import org.jcommops.api.orm.Country;
+import org.jcommops.api.orm.Program;
+import org.jcommops.api.orm.PtfDeployment;
 
 public class TestCountryAccess {
 
@@ -17,7 +16,7 @@ public class TestCountryAccess {
     	//Getting Object Context
     	ObjectContext context = runtime.getContext();
     	CountryPtf country= new CountryPtf();
-    	MethodesUtiles mu =new MethodesUtiles();
+    	Utils mu =new Utils();
     	
     	Program platformDeploy = Cayenne.objectForPK(context, Program.class, 49);//Get the platform Deployment by its PK
     	 System.out.println(platformDeploy.getToCountry());

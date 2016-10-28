@@ -3,9 +3,8 @@ package tests;
 import org.apache.cayenne.Cayenne;
 import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.configuration.server.ServerRuntime;
-
-import jcommops.db.orm.rest.Ptf;
-import serviceutil.MethodsAssociativeTables;
+import org.jcommops.api.accessors.MethodsAssociativeTables;
+import org.jcommops.api.orm.Ptf;
 
 public class TestMethodAgencyPrg {
 	public static void main(String[] args) {

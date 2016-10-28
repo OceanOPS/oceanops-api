@@ -3,14 +3,14 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>jcommops.db.orm</groupId>
-    <artifactId>rest</artifactId>
+    <groupId>org.jcommops</groupId>
+    <artifactId>api</artifactId>
     <packaging>war</packaging>
     <version>0.0.1-SNAPSHOT</version>
-    <name>rest</name>
+    <name>JCOMMOPS API</name>
 
     <build>
-        <finalName>rest</finalName>
+        <finalName>jcommops-api</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

@@ -6,8 +6,7 @@ import java.text.SimpleDateFormat;
 import org.apache.cayenne.Cayenne;
 import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.configuration.server.ServerRuntime;
-
-import jcommops.db.orm.rest.PtfDeployment;
+import org.jcommops.api.orm.PtfDeployment;
 
 public class TestDateToString {
 
