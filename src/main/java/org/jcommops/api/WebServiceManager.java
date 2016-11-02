@@ -17,7 +17,7 @@ public class WebServiceManager {
 	public ArrayList<Platform> getAllPtfsXML() {
 		PlatformAccessor m = new PlatformAccessor();
 		return m.getAllPtfs();
-		// example http://localhost:8081/rest/api/rest/1.0/platforms.xml
+		// example http://localhost:8081/jcommops-api/api/rest/1.0/platforms.xml
 	}
 
 	@GET
@@ -26,7 +26,7 @@ public class WebServiceManager {
 	public ArrayList<Platform> getAllPtfsJSON() {
 		PlatformAccessor m = new PlatformAccessor();
 		return m.getAllPtfs();
-		// example http://localhost:8081/rest/api/rest/1.0/platforms.json
+		// example http://localhost:8081/jcommops-api/api/rest/1.0/platforms.json
 
 	}
 
@@ -35,7 +35,7 @@ public class WebServiceManager {
 	public Platform getPtfbyIdXML(@PathParam("id") long id) {
 		PlatformAccessor m = new PlatformAccessor();
 		return m.getPtfbyID(id);
-		// example http://localhost:8081/rest/api/rest/1.0/platform.xml/501356
+		// example http://localhost:8081/jcommops-api/api/rest/1.0/platform.xml/501356
 
 	}
 
@@ -45,7 +45,7 @@ public class WebServiceManager {
 	public Platform getPtfbyIdJSON(@PathParam("id") long id) {
 		PlatformAccessor m = new PlatformAccessor();
 		return m.getPtfbyID(id);
-		// example http://localhost:8081/rest/api/rest/1.0/platform.json/501356
+		// example http://localhost:8081/jcommops-api/api/rest/1.0/platform.json/501356
 
 	}
 
@@ -54,13 +54,14 @@ public class WebServiceManager {
 	public ArrayList<Platform> getSelectedPlatformsXML(@QueryParam("status") String status,
 			@QueryParam("family") String family, @QueryParam("type") String type, @QueryParam("model") String model,
 			@QueryParam("program") String program, @QueryParam("network") String network,
-			@QueryParam("masterprg") String masterprg, @QueryParam("variable") String variable) {
+			@QueryParam("masterprg") String masterprg, @QueryParam("variable") String variable,
+			@QueryParam("sensormod") String sensormod, @QueryParam("sensortyp") String sensortyp) {
 
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<Platform> foundPlatforms = new ArrayList<Platform>();
 		try {
 			foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg,
-					variable);
+					variable, sensormod, sensortyp);
 			if (foundPlatforms.size() == 0) {
 				Platform ptf0 = new Platform();
 				ptf0.setId(-1);
@@ -72,14 +73,15 @@ public class WebServiceManager {
 		catch (StringIndexOutOfBoundsException str) {
 			Platform ptf0 = new Platform();
 			ptf0.setId(-1);
-			ptf0.setError_message("Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterprg'  or 'variable' parameter.");
+			ptf0.setError_message("Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterprg', 'variable', 'sensormod' "
+					+ "or 'sensortyp' parameter.");
 			foundPlatforms.add(ptf0);
 
 		}
 
 		return foundPlatforms;
 		// example
-		// http://localhost:8081/rest/api/rest/1.0/platforms.xml/find?status=ACTIVE&family=ICE_BUOYS&type=AXIB&model=AXIB&masterprg=DBCP&variable=SST
+		// http://localhost:8081/jcommops-api/api/rest/1.0/platforms.xml/find?status=ACTIVE&family=ICE_BUOYS&type=AXIB&model=AXIB&masterprg=DBCP&variable=SST
 	}
 
 	@GET
@@ -88,13 +90,14 @@ public class WebServiceManager {
 	public ArrayList<Platform> getSelectedPlatformsJSON(@QueryParam("status") String status,
 			@QueryParam("family") String family, @QueryParam("type") String type, @QueryParam("model") String model,
 			@QueryParam("program") String program, @QueryParam("network") String network,
-			@QueryParam("masterprg") String masterprg, @QueryParam("variable") String variable) {
+			@QueryParam("masterprg") String masterprg, @QueryParam("variable") String variable,
+			@QueryParam("sensormod") String sensormod, @QueryParam("sensortyp") String sensortyp) {
 
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<Platform> foundPlatforms = new ArrayList<Platform>();
 		try {
 			foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg,
-					variable);
+					variable, sensormod, sensortyp);
 			if (foundPlatforms.size() == 0) {
 				Platform ptf0 = new Platform();
 				ptf0.setId(-1);
@@ -106,7 +109,8 @@ public class WebServiceManager {
 		catch (StringIndexOutOfBoundsException str) {
 			Platform ptf0 = new Platform();
 			ptf0.setId(-1);
-			ptf0.setError_message("Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterprg'  or 'variable' parameter.");
+			ptf0.setError_message("Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterprg', 'variable', 'sensormod' "
+					+ "or 'sensortyp' parameter.");			
 			foundPlatforms.add(ptf0);
 
 		}
@@ -114,7 +118,7 @@ public class WebServiceManager {
 		return foundPlatforms;
 
 		// example
-		// http://localhost:8081/rest/api/rest/1.0/platforms.json/find?status=ACTIVE&family=ICE_BUOYS&type=AXIB&model=AXIB&masterprg=DBCP&variable=SST
+		// http://localhost:8081/jcommops-api/api/rest/1.0/platforms.json/find?status=ACTIVE&family=ICE_BUOYS&type=AXIB&model=AXIB&masterprg=DBCP&variable=SST
 	}
 
 }

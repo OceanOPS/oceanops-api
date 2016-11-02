@@ -65,7 +65,7 @@ public class PlatformAccessor {
 	}
 
 	public ArrayList<Platform> getPtfbySelectedParam(String ptf_status, String ptf_family, String ptf_type,
-			String ptf_model, String program, String network, String ptf_masterprg, String variable) {
+			String ptf_model, String program, String network, String ptf_masterprg, String variable, String sensormod, String sensortyp) {
 
 		// QUERY PARAMETERS
 		String query_model = "";
@@ -76,6 +76,8 @@ public class PlatformAccessor {
 		String query_network = "";
 		String query_masterprg = "";
 		String query_variable = "";
+		String query_sensormod = "";
+		String query_sensortyp = "";
 
 		int intersect_index = 0;
 		if (ptf_model != null && !ptf_model.isEmpty()) {
@@ -135,9 +137,24 @@ public class PlatformAccessor {
 					+ "(select ID from VARIABLE where UPPER(NAME_SHORT)='" + variable.toUpperCase() + "'))";
 			intersect_index = intersect_index + 1;
 		}
+		
+		if (sensormod != null && !sensormod.isEmpty()) {
+			query_sensormod = "intersect" + " select * from PTF where ID IN "
+					+ "(select PTF_ID from PTF_SENSOR_MODEL where SENSOR_MODEL_ID IN "
+					+ "(select ID from SENSOR_MODEL where UPPER(NAME_SHORT)='" + sensormod.toUpperCase() + "'))";
+			intersect_index = intersect_index + 1;
+		}
 
+		if (sensortyp != null && !sensortyp.isEmpty()) {
+			query_sensortyp= "intersect" + " select * from PTF where ID IN "
+					+ "(select PTF_ID from PTF_SENSOR_MODEL where SENSOR_MODEL_ID IN "
+					+ "(select SENSOR_MODEL_ID from SENSOR_MODEL_SENSOR_TYPE where SENSOR_TYPE_ID IN "
+					+ "(select ID from SENSOR_TYPE where UPPER(NAME_SHORT)='" + sensortyp.toUpperCase() + "'))";
+			intersect_index = intersect_index + 1;
+		}
+		
 		String overall_query = query_model + query_type + query_family + query_status +  query_program +
-		 query_network+ query_masterprg + query_variable;
+		 query_network+ query_masterprg + query_variable+query_sensormod+query_sensortyp;
 		
 		overall_query = overall_query.substring(10);// to omit intersect instruction ->10 characters
 
