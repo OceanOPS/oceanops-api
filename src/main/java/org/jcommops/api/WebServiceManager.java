@@ -7,6 +7,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+
+import org.apache.cayenne.CayenneRuntimeException;
 import org.jcommops.api.accessors.PlatformAccessor;
 import org.jcommops.api.entities.Platform;
 
@@ -16,7 +18,18 @@ public class WebServiceManager {
 	@Path("platforms.xml")
 	public ArrayList<Platform> getAllPtfsXML() {
 		PlatformAccessor m = new PlatformAccessor();
-		return m.getAllPtfs();
+		ArrayList<Platform> ptfmList = new ArrayList<Platform>();
+		try {
+			ptfmList = m.getAllPtfs();
+		}
+
+		catch (CayenneRuntimeException CRE) {
+			Platform ptf0 = new Platform();
+			ptf0.setId(-1);
+			ptf0.setError_message(" Database temporarily inaccessible.");
+			ptfmList.add(ptf0);
+		}
+		return ptfmList;
 		// example http://localhost:8081/jcommops-api/api/rest/1.0/platforms.xml
 	}
 
@@ -25,17 +38,42 @@ public class WebServiceManager {
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<Platform> getAllPtfsJSON() {
 		PlatformAccessor m = new PlatformAccessor();
-		return m.getAllPtfs();
-		// example http://localhost:8081/jcommops-api/api/rest/1.0/platforms.json
+		ArrayList<Platform> ptfmList = new ArrayList<Platform>();
+		try {
+			ptfmList = m.getAllPtfs();
+		}
+
+		catch (CayenneRuntimeException CRE) {
+			Platform ptf0 = new Platform();
+			ptf0.setId(-1);
+			ptf0.setError_message(" Database temporarily inaccessible.");
+			ptfmList.add(ptf0);
+		}
+		return ptfmList;
+		// example
+		// http://localhost:8081/jcommops-api/api/rest/1.0/platforms.json
 
 	}
 
 	@GET
 	@Path("platform.xml/{id}")
 	public Platform getPtfbyIdXML(@PathParam("id") long id) {
+
 		PlatformAccessor m = new PlatformAccessor();
-		return m.getPtfbyID(id);
-		// example http://localhost:8081/jcommops-api/api/rest/1.0/platform.xml/501356
+		Platform ptfm = new Platform();
+		try {
+			ptfm = m.getPtfbyID(id);
+		}
+
+		catch (CayenneRuntimeException CRE) {
+			ptfm.setId(-1);
+			ptfm.setError_message(" Database temporarily inaccessible.");
+
+		}
+
+		return ptfm;
+		// example
+		// http://localhost:8081/jcommops-api/api/rest/1.0/platform.xml/501356
 
 	}
 
@@ -44,8 +82,20 @@ public class WebServiceManager {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Platform getPtfbyIdJSON(@PathParam("id") long id) {
 		PlatformAccessor m = new PlatformAccessor();
-		return m.getPtfbyID(id);
-		// example http://localhost:8081/jcommops-api/api/rest/1.0/platform.json/501356
+		Platform ptfm = new Platform();
+		try {
+			ptfm = m.getPtfbyID(id);
+		}
+
+		catch (CayenneRuntimeException CRE) {
+			ptfm.setId(-1);
+			ptfm.setError_message(" Database temporarily inaccessible.");
+
+		}
+
+		return ptfm;
+		// example
+		// http://localhost:8081/jcommops-api/api/rest/1.0/platform.json/501356
 
 	}
 
@@ -60,8 +110,8 @@ public class WebServiceManager {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<Platform> foundPlatforms = new ArrayList<Platform>();
 		try {
-			foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg,
-					variable, sensormod, sensortyp);
+			foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable,
+					sensormod, sensortyp);
 			if (foundPlatforms.size() == 0) {
 				Platform ptf0 = new Platform();
 				ptf0.setId(-1);
@@ -73,10 +123,18 @@ public class WebServiceManager {
 		catch (StringIndexOutOfBoundsException str) {
 			Platform ptf0 = new Platform();
 			ptf0.setId(-1);
-			ptf0.setError_message("Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterprg', 'variable', 'sensormod' "
-					+ "or 'sensortyp' parameter.");
+			ptf0.setError_message(
+					"Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterprg', 'variable', 'sensormod' "
+							+ "or 'sensortyp' parameter.");
 			foundPlatforms.add(ptf0);
 
+		}
+		
+		catch (CayenneRuntimeException CRE) {
+			Platform ptf0 = new Platform();
+			ptf0.setId(-1);
+			ptf0.setError_message(" Database temporarily inaccessible.");
+			foundPlatforms.add(ptf0);
 		}
 
 		return foundPlatforms;
@@ -96,8 +154,8 @@ public class WebServiceManager {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<Platform> foundPlatforms = new ArrayList<Platform>();
 		try {
-			foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg,
-					variable, sensormod, sensortyp);
+			foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable,
+					sensormod, sensortyp);
 			if (foundPlatforms.size() == 0) {
 				Platform ptf0 = new Platform();
 				ptf0.setId(-1);
@@ -109,11 +167,20 @@ public class WebServiceManager {
 		catch (StringIndexOutOfBoundsException str) {
 			Platform ptf0 = new Platform();
 			ptf0.setId(-1);
-			ptf0.setError_message("Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterprg', 'variable', 'sensormod' "
-					+ "or 'sensortyp' parameter.");			
+			ptf0.setError_message(
+					"Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterprg', 'variable', 'sensormod' "
+							+ "or 'sensortyp' parameter.");
 			foundPlatforms.add(ptf0);
 
 		}
+		
+		catch (CayenneRuntimeException CRE) {
+			Platform ptf0 = new Platform();
+			ptf0.setId(-1);
+			ptf0.setError_message(" Database temporarily inaccessible.");
+			foundPlatforms.add(ptf0);
+		}
+
 
 		return foundPlatforms;
 

@@ -154,7 +154,8 @@ public class PlatformAccessor {
 		}
 		
 		String overall_query = query_model + query_type + query_family + query_status +  query_program +
-		 query_network+ query_masterprg + query_variable+query_sensormod+query_sensortyp;
+		 query_network+ query_masterprg + query_variable;
+//		+query_sensormod+query_sensortyp;
 		
 		overall_query = overall_query.substring(10);// to omit intersect instruction ->10 characters
 
