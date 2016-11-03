@@ -10,6 +10,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.apache.cayenne.CayenneRuntimeException;
 import org.jcommops.api.accessors.PlatformAccessor;
+import org.jcommops.api.entities.Dictionary;
 import org.jcommops.api.entities.Platform;
 
 @Path("api/rest/1.0")
@@ -187,5 +188,44 @@ public class WebServiceManager {
 		// example
 		// http://localhost:8081/jcommops-api/api/rest/1.0/platforms.json/find?status=ACTIVE&family=ICE_BUOYS&type=AXIB&model=AXIB&masterprg=DBCP&variable=SST
 	}
+	
+	
+	@GET
+	@Path("dictionnary.xml")
+	public Dictionary getDictionaryXML() {
+		PlatformAccessor m = new PlatformAccessor();
+		Dictionary Dico=  new Dictionary();
+		try {
+			Dico = m.getDictionary();
+			System.out.println("number of  ptf statuses= " + Dico.getPtfStatus().size());
+//			System.out.println("number of  ptf families= " + Dico.getPtfFamily().size());
+//			System.out.println("number of  ptf types= " + Dico.getPtfType().size());
+//			System.out.println("number of  ptf models= "+ Dico.getPtfModel().size());
+		}
+
+		catch (CayenneRuntimeException CRE) {
+			Dico.setError_message(" Database temporarily inaccessible.");
+		}
+		return Dico;
+		// example http://localhost:8081/jcommops-api/api/rest/1.0/dictionnary.xml
+	}
+	
+	@GET
+	@Path("dictionnary.json")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Dictionary getDictionaryJSON() {
+		PlatformAccessor m = new PlatformAccessor();
+		Dictionary Dico = new Dictionary();
+		try {
+			Dico = m.getDictionary();
+		}
+
+		catch (CayenneRuntimeException CRE) {
+			Dico.setError_message(" Database temporarily inaccessible.");
+		}
+		return Dico;
+		// example http://localhost:8081/jcommops-api/api/rest/1.0/dictionnary.json
+	}
+	
 
 }

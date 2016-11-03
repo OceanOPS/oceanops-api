@@ -9,19 +9,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
-@XmlType(propOrder = { "status", "family", "type", "model", "program", "masterprg", "network", "variables", "sensormod",
-		"sensortyp" })
+@XmlType(propOrder = { "statuses", "families", "types", "models", "programs", "masterPrograms", "networks", "variables", "sensorModels", "sensorTypes", "error_message" })
 public class Dictionary {
-	private ArrayList<PlatformStatus> ptfstatus;
-	private ArrayList<PlatformFamily> ptffamily;
-	private ArrayList<PlatformType> ptftype;
-	private ArrayList<PlatformModel> ptfmodel;
-	private ArrayList<ProgramPtf> prgm;
-	private ArrayList<MasterProgram> mstrprgm;
-	private ArrayList<Network> network;
-	private ArrayList<Variable> variable;
-	private ArrayList<SensorModel> sensormod;
-	private ArrayList<SensorType> sensortyp;
+	private ArrayList<PlatformStatus> statuses;
+	private ArrayList<PlatformFamily> families;
+	private ArrayList<PlatformType> types;
+	private ArrayList<PlatformModel> models;
+	private ArrayList<ProgramPtf> programs;
+	private ArrayList<MasterProgram> masterPrograms;
+	private ArrayList<Network> networks;
+	private ArrayList<Variable> variables;
+	private ArrayList<SensorModel> sensorModels;
+	private ArrayList<SensorType> sensorTypes;
+	private String error_message;
 
 	public Dictionary() {
 
@@ -30,7 +30,8 @@ public class Dictionary {
 	public Dictionary(ArrayList<PlatformStatus> ptfstatus, ArrayList<PlatformFamily> ptffamily,
 			ArrayList<PlatformModel> ptfmodel, ArrayList<PlatformType> ptftype, ArrayList<ProgramPtf> prgm,
 			ArrayList<MasterProgram> mstrprgm, ArrayList<Network> network, ArrayList<Variable> variable,
-			ArrayList<SensorModel> sensormod, ArrayList<SensorType> sensortyp) {
+			ArrayList<SensorModel> sensormod, ArrayList<SensorType> sensortyp,
+			String error_message) {
 		this.setPtfStatus(ptfstatus);
 		this.setPtfFamily(ptffamily);
 		this.setPtfModel(ptfmodel);
@@ -41,107 +42,117 @@ public class Dictionary {
 		this.setVariable(variable);
 		this.setSensorModel(sensormod);
 		this.setSensorType(sensortyp);
+		this.setError_message(error_message);
 
 	}
 
-	@XmlElementWrapper(name = "Statuses")
+	@XmlElementWrapper(name = "statuses")
 	@XmlElements(@XmlElement(name = "ptfstatus", type = PlatformStatus.class))
 	public ArrayList<PlatformStatus> getPtfStatus() {
-		return ptfstatus;
+		return statuses;
 	}
 
-	public void setPtfStatus(ArrayList<PlatformStatus> ptfstatus) {
-		this.ptfstatus = ptfstatus;
+	public void setPtfStatus(ArrayList<PlatformStatus> statuses) {
+		this.statuses = statuses;
 	}
 
-	@XmlElementWrapper(name = "Families")
+	@XmlElementWrapper(name = "families")
 	@XmlElements(@XmlElement(name = "ptfFamily", type = PlatformFamily.class))
 	public ArrayList<PlatformFamily> getPtfFamily() {
-		return ptffamily;
+		return families;
 	}
 
-	public void setPtfFamily(ArrayList<PlatformFamily> ptffamily) {
-		this.ptffamily = ptffamily;
+	public void setPtfFamily(ArrayList<PlatformFamily> families) {
+		this.families = families;
 	}
 
-	@XmlElementWrapper(name = "Types")
+	@XmlElementWrapper(name = "types")
 	@XmlElements(@XmlElement(name = "ptfType", type = PlatformType.class))
 	public ArrayList<PlatformType> getPtfType() {
-		return ptftype;
+		return types;
 	}
 
-	public void setPtfType(ArrayList<PlatformType> ptftype) {
-		this.ptftype = ptftype;
+	public void setPtfType(ArrayList<PlatformType> types) {
+		this.types = types;
 	}
 
-	@XmlElementWrapper(name = "Models")
+	@XmlElementWrapper(name = "models")
 	@XmlElements(@XmlElement(name = "ptfModel", type = PlatformModel.class))
 	public ArrayList<PlatformModel> getPtfModel() {
-		return ptfmodel;
+		return models;
 	}
 
-	public void setPtfModel(ArrayList<PlatformModel> ptfmodel) {
-		this.ptfmodel = ptfmodel;
+	public void setPtfModel(ArrayList<PlatformModel> models) {
+		this.models = models;
 	}
 
-	@XmlElementWrapper(name = "Programs")
+	@XmlElementWrapper(name = "programs")
 	@XmlElements(@XmlElement(name = "program", type = ProgramPtf.class))
 	public ArrayList<ProgramPtf> getProgram() {
-		return prgm;
+		return programs;
 	}
 
-	public void setProgram(ArrayList<ProgramPtf> prgm) {
-		this.prgm = prgm;
+	public void setProgram(ArrayList<ProgramPtf> programs) {
+		this.programs = programs;
 	}
 
-	@XmlElementWrapper(name = "Networks")
-	@XmlElements(@XmlElement(name = "network", type = Network.class))
-	public ArrayList<Network> getNetwork() {
-		return network;
-	}
-
-	public void setNetwork(ArrayList<Network> network) {
-		this.network = network;
-	}
-
-	@XmlElementWrapper(name = "MasterPrograms")
+	@XmlElementWrapper(name = "masterPrograms")
 	@XmlElements(@XmlElement(name = "masterProgram", type = ProgramPtf.class))
 	public ArrayList<MasterProgram> getMasterProgram() {
-		return mstrprgm;
+		return masterPrograms;
 	}
 
-	public void setMasterProgram(ArrayList<MasterProgram> mstrprgm) {
-		this.mstrprgm = mstrprgm;
+	public void setMasterProgram(ArrayList<MasterProgram> masterPrograms) {
+		this.masterPrograms = masterPrograms;
+	}
+	
+	@XmlElementWrapper(name = "networks")
+	@XmlElements(@XmlElement(name = "network", type = Network.class))
+	public ArrayList<Network> getNetwork() {
+		return networks;
 	}
 
-	@XmlElementWrapper(name = "Variables")
+	public void setNetwork(ArrayList<Network> networks) {
+		this.networks = networks;
+	}
+
+	@XmlElementWrapper(name = "variables")
 	@XmlElements(@XmlElement(name = "variable", type = Variable.class))
 	public ArrayList<Variable> getVariables() {
-		return variable;
+		return variables;
 	}
 
-	public void setVariable(ArrayList<Variable> variable) {
-		this.variable = variable;
+	public void setVariable(ArrayList<Variable> variables) {
+		this.variables = variables;
 	}
 
-	@XmlElementWrapper(name = "SensorModels")
+	@XmlElementWrapper(name = "sensorModels")
 	@XmlElements(@XmlElement(name = "sensorModel", type = SensorModel.class))
 	public ArrayList<SensorModel> getSensorModel() {
-		return sensormod;
+		return sensorModels;
 	}
 
-	public void setSensorModel(ArrayList<SensorModel> sensormod) {
-		this.sensormod = sensormod;
+	public void setSensorModel(ArrayList<SensorModel> sensorModels) {
+		this.sensorModels = sensorModels;
 	}
 
-	@XmlElementWrapper(name = "SensorTypes")
+	@XmlElementWrapper(name = "sensorTypes")
 	@XmlElements(@XmlElement(name = "sensorType", type = SensorType.class))
 	public ArrayList<SensorType> getSensorType() {
-		return sensortyp;
+		return sensorTypes;
 	}
 
-	public void setSensorType(ArrayList<SensorType> sensortyp) {
-		this.sensortyp = sensortyp;
+	public void setSensorType(ArrayList<SensorType> sensorTypes) {
+		this.sensorTypes = sensorTypes;
 	}
+	
+	public String getError_message() {
+		return error_message;
+	}
+
+	public void setError_message(String error_message) {
+		this.error_message = error_message;
+	}
+
 
 }
