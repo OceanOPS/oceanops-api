@@ -11,6 +11,7 @@ import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.configuration.server.ServerRuntime;
 import org.apache.cayenne.query.SQLTemplate;
 import org.apache.cayenne.query.SelectQuery;
+import org.eclipse.persistence.internal.oxm.Context;
 import org.jcommops.api.Utils;
 import org.jcommops.api.entities.AgencyPrg;
 import org.jcommops.api.entities.ContactPrg;
@@ -39,11 +40,12 @@ import org.jcommops.api.orm.PtfType;
 
 public class PlatformAccessor {
 
-	ServerRuntime runtime = new ServerRuntime("cayenne-project.xml");
-	// Getting Object Context
-	ObjectContext context = runtime.getContext();
-
+	
+	
+	 
 	public ArrayList<Platform> getAllPtfs() { // "PRINCIPAL" List of Platforms
+		ServerRuntime runtime = new ServerRuntime("cayenne-project.xml");
+		ObjectContext context = runtime.getContext();
 
 		SelectQuery query = new SelectQuery(Ptf.class);
 		List<Ptf> platforms = context.performQuery(query);
@@ -59,14 +61,17 @@ public class PlatformAccessor {
 			ptf.setJcommpsRef(a.getRef());
 			ptfs_list.add(ptf);
 		}
-		// runtime.shutdown();
+	 runtime.shutdown();
 		return ptfs_list;
 
 	}
+	
 
 	public ArrayList<Platform> getPtfbySelectedParam(String ptf_status, String ptf_family, String ptf_type,
 			String ptf_model, String program, String network, String ptf_masterprg, String variable, String sensormod, String sensortyp) {
 
+		ServerRuntime runtime = new ServerRuntime("cayenne-project.xml");
+		ObjectContext context = runtime.getContext();
 		// QUERY PARAMETERS
 		String query_model = "";
 		String query_type = "";
@@ -154,8 +159,7 @@ public class PlatformAccessor {
 		}
 		
 		String overall_query = query_model + query_type + query_family + query_status +  query_program +
-		 query_network+ query_masterprg + query_variable;
-//		+query_sensormod+query_sensortyp;
+		 query_network+ query_masterprg + query_variable+query_sensormod+query_sensortyp;
 		
 		overall_query = overall_query.substring(10);// to omit intersect instruction ->10 characters
 
@@ -173,11 +177,13 @@ public class PlatformAccessor {
 			ptf.setJcommpsRef(a.getRef());
 			ptfs_list.add(ptf);
 		}
-		// runtime.shutdown();
+		runtime.shutdown();
 		return ptfs_list;
 	}
 
 	public Platform getPtfbyID(long id) {// Platform's details by ID
+		ServerRuntime runtime = new ServerRuntime("cayenne-project.xml");
+		ObjectContext context = runtime.getContext();
 
 		Ptf platform = Cayenne.objectForPK(context, Ptf.class, id); // Get the
 																	// platform
@@ -360,7 +366,7 @@ public class PlatformAccessor {
 
 		}
 
-		// runtime.shutdown();
+		runtime.shutdown();
 		return ptf;
 
 	}
