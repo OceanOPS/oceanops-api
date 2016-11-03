@@ -16,6 +16,7 @@ import org.jcommops.api.Utils;
 import org.jcommops.api.entities.AgencyPrg;
 import org.jcommops.api.entities.ContactPrg;
 import org.jcommops.api.entities.CountryPtf;
+import org.jcommops.api.entities.Dictionary;
 import org.jcommops.api.entities.MasterProgram;
 import org.jcommops.api.entities.Platform;
 import org.jcommops.api.entities.PlatformDeploy;
@@ -233,7 +234,7 @@ public class PlatformAccessor {
 					mu.ConvertIDStringtoLong(stringIDptfs));// Get the platform
 															// Status by its PK
 			ptfs.setId(Cayenne.longPKForObject(platformstatus));
-			ptfs.setStatus(platformstatus.getDescription());
+			ptfs.setNameShort(platformstatus.getDescription());
 			// Ajouter à platform
 			ptf.setPtfStatus(ptfs);
 
@@ -369,6 +370,97 @@ public class PlatformAccessor {
 		runtime.shutdown();
 		return ptf;
 
+	}
+	
+	
+	public Dictionary getDictionary()
+	{
+		//Dictionary gives the definition of parameters'values used in search URI ".../find?parm1=value1&.../"
+		
+		ServerRuntime runtime = new ServerRuntime("cayenne-project.xml");
+		ObjectContext context = runtime.getContext();
+		Dictionary Dico = new Dictionary();
+		
+		//Statuses
+		SelectQuery Status_query = new SelectQuery(PtfStatus.class);
+		List<PtfStatus> statuses = context.performQuery(Status_query);
+
+		ArrayList<PlatformStatus> statuses_list = new ArrayList<PlatformStatus>();
+
+		Iterator<PtfStatus> statuses_itr = statuses.iterator();
+
+		while (statuses_itr.hasNext()) {
+			PtfStatus a = statuses_itr.next();
+			PlatformStatus status = new PlatformStatus();
+			status.setNameShort(a.getNameShort());
+			status.setName(a.getName());
+			status.setDescription(a.getDescription());
+			statuses_list.add(status);
+		}
+		
+		//Families
+		SelectQuery Family_query = new SelectQuery(PtfFamily.class);
+		List<PtfFamily> families = context.performQuery(Family_query);
+
+		ArrayList<PlatformFamily> families_list = new ArrayList<PlatformFamily>();
+
+		Iterator<PtfFamily> families_itr = families.iterator();
+
+		while (families_itr.hasNext()) {
+			PtfFamily a = families_itr.next();
+			PlatformFamily family = new PlatformFamily();
+			family.setNameShort(a.getNameShort());
+			family.setName(a.getName());
+			family.setDescription(a.getDescription());
+			families_list.add(family);
+		}
+		
+		//Types		
+		SelectQuery Type_query = new SelectQuery(PtfType.class);
+		List<PtfType> types = context.performQuery(Type_query);
+
+		ArrayList<PlatformType> types_list = new ArrayList<PlatformType>();
+
+		Iterator<PtfType> types_itr = types.iterator();
+
+		while (types_itr.hasNext()) {
+			PtfType a = types_itr.next();
+			PlatformType type = new PlatformType();
+			type.setNameShort(a.getNameShort());
+			type.setName(a.getName());
+			type.setDescription(a.getDescription());
+			types_list.add(type);
+		}
+		
+		
+		//Model	
+		SelectQuery Model_query = new SelectQuery(PtfModel.class);
+		List<PtfModel> models = context.performQuery(Model_query);
+
+		ArrayList<PlatformModel> models_list = new ArrayList<PlatformModel>();
+
+		Iterator<PtfModel> models_itr = models.iterator();
+
+		while (models_itr.hasNext()) {
+			PtfModel a = models_itr.next();
+			PlatformModel model = new PlatformModel();
+			model.setNameShort(a.getNameShort());
+			model.setName(a.getName());
+			model.setDescription(a.getDescription());
+			models_list.add(model);
+		}
+		
+		
+		
+		Dico.setPtfStatus(statuses_list);
+//		Dico.setPtfFamily(families_list);
+//		Dico.setPtfType(types_list);
+//		Dico.setPtfModel(models_list);
+		
+		
+		runtime.shutdown();
+		return Dico;
+		
 	}
 
 }

@@ -4,42 +4,61 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 
+@XmlType(propOrder={ "name", "nameShort","description"})
 public class PlatformStatus {
-		
-		private long Id;
-		private String Status;
-		
-		
-		public PlatformStatus (){	
-		}
-
-		public PlatformStatus ( long id, String status ){	
-			this.setId(id);
-			this.setStatus(status);
-		}
-		
-		
-		@XmlAttribute
-		public long getId() {
-		 return Id;
-		}
-
-		public void setId(long l) {
-			Id = l;
-		}
-
-		@XmlElement
-		public String getStatus() {
-			return Status;
-		}
-
-		public void setStatus(String status) {
-			Status = status;
-		}
+	private long Id;
+	private String NameShort;
+	private String Name;
+	private String description;
 	
+	
+	public PlatformStatus (){	
 	}
 
+	public PlatformStatus ( long id, String nameshort, String name, String description ){	
+		this.setId(id);
+		this.setNameShort(nameshort);
+		this.setName(name);
+		this.setDescription(description);
+	}
 
+	
+	@XmlAttribute
+	public long getId() {
+		return Id;
+	}
 
+	public void setId(long id) {
+		Id = id;
+	}
+
+	@XmlElement
+	public String getNameShort() {
+		return NameShort;
+	}
+
+	public void setNameShort(String nameShort) {
+		NameShort = nameShort;
+	}
+	@XmlElement
+	public String getName() {
+		return Name;
+	}
+
+	public void setName(String name) {
+		Name = name;
+	}
+	@XmlElement
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+
+}
