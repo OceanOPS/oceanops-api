@@ -16,6 +16,7 @@ import org.jcommops.api.Utils;
 import org.jcommops.api.entities.AgencyPrg;
 import org.jcommops.api.entities.ContactPrg;
 import org.jcommops.api.entities.CountryPtf;
+import org.jcommops.api.entities.Dico;
 import org.jcommops.api.entities.Dictionary;
 import org.jcommops.api.entities.MasterProgram;
 import org.jcommops.api.entities.Platform;
@@ -462,5 +463,61 @@ public class PlatformAccessor {
 		return Dico;
 		
 	}
+	
+	public Dico getDico()
+	{
+		//Dictionary gives the definition of parameters'values used in search URI ".../find?parm1=value1&.../"
+		
+		ServerRuntime runtime = new ServerRuntime("cayenne-project.xml");
+		ObjectContext context = runtime.getContext();
+		Dico Dico = new Dico();
+		
+		//Families
+				SelectQuery Family_query = new SelectQuery(PtfFamily.class);
+				List<PtfFamily> families = context.performQuery(Family_query);
+
+				ArrayList<PlatformFamily> families_list = new ArrayList<PlatformFamily>();
+
+				Iterator<PtfFamily> families_itr = families.iterator();
+
+				while (families_itr.hasNext()) {
+					PtfFamily a = families_itr.next();
+					PlatformFamily family = new PlatformFamily();
+					family.setNameShort(a.getNameShort());
+					family.setName(a.getName());
+					family.setDescription(a.getDescription());
+					families_list.add(family);
+				}
+				
+		
+		//Variables
+		SelectQuery Variable_query = new SelectQuery(org.jcommops.api.orm.Variable.class);
+		List<org.jcommops.api.orm.Variable> variables = context.performQuery(Variable_query);
+
+		ArrayList<Variable> variables_list = new ArrayList<Variable>();
+
+		Iterator<org.jcommops.api.orm.Variable> variables_itr = variables.iterator();
+
+		while (variables_itr.hasNext()) {
+			org.jcommops.api.orm.Variable a = variables_itr.next();
+			Variable variable = new Variable();
+			variable.setNameShort(a.getNameShort());
+			variable.setName(a.getName());
+			variable.setDescription(a.getDescription());
+			variables_list.add(variable);
+		}
+		
+//		Dico.setPtfStatus(statuses_list);
+		Dico.setPtfFamily(families_list);
+//		Dico.setPtfType(types_list);
+//		Dico.setPtfModel(models_list);
+//		Dico.setVariables(variables_list);
+		
+		
+		runtime.shutdown();
+		return Dico;
+		
+	}
+
 
 }

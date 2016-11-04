@@ -1,15 +1,25 @@
 package org.jcommops.api;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+
 
 import org.apache.cayenne.CayenneRuntimeException;
 import org.jcommops.api.accessors.PlatformAccessor;
+import org.jcommops.api.entities.Dico;
 import org.jcommops.api.entities.Dictionary;
 import org.jcommops.api.entities.Platform;
 
@@ -190,42 +200,4 @@ public class WebServiceManager {
 	}
 	
 	
-	@GET
-	@Path("dictionnary.xml")
-	public Dictionary getDictionaryXML() {
-		PlatformAccessor m = new PlatformAccessor();
-		Dictionary Dico=  new Dictionary();
-		try {
-			Dico = m.getDictionary();
-			System.out.println("number of  ptf statuses= " + Dico.getPtfStatus().size());
-//			System.out.println("number of  ptf families= " + Dico.getPtfFamily().size());
-//			System.out.println("number of  ptf types= " + Dico.getPtfType().size());
-//			System.out.println("number of  ptf models= "+ Dico.getPtfModel().size());
-		}
-
-		catch (CayenneRuntimeException CRE) {
-			Dico.setError_message(" Database temporarily inaccessible.");
-		}
-		return Dico;
-		// example http://localhost:8081/jcommops-api/api/rest/1.0/dictionnary.xml
-	}
-	
-	@GET
-	@Path("dictionnary.json")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Dictionary getDictionaryJSON() {
-		PlatformAccessor m = new PlatformAccessor();
-		Dictionary Dico = new Dictionary();
-		try {
-			Dico = m.getDictionary();
-		}
-
-		catch (CayenneRuntimeException CRE) {
-			Dico.setError_message(" Database temporarily inaccessible.");
-		}
-		return Dico;
-		// example http://localhost:8081/jcommops-api/api/rest/1.0/dictionnary.json
-	}
-	
-
 }
