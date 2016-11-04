@@ -41,13 +41,16 @@ import org.jcommops.api.orm.PtfStatus;
 import org.jcommops.api.orm.PtfType;
 
 public class PlatformAccessor {
-
+	private ServerRuntime runtime = Utils.getCayenneRuntime();
+	private ObjectContext context = Utils.getCayenneRuntime().getContext();
 	
+	public PlatformAccessor(){
+		this.runtime = Utils.getCayenneRuntime();
+		this.context = this.runtime.getContext();
+	}
 	
 	 
 	public ArrayList<Platform> getAllPtfs() { // "PRINCIPAL" List of Platforms
-		ServerRuntime runtime = new ServerRuntime("cayenne-project.xml");
-		ObjectContext context = runtime.getContext();
 
 		SelectQuery query = new SelectQuery(Ptf.class);
 		List<Ptf> platforms = context.performQuery(query);
@@ -63,7 +66,7 @@ public class PlatformAccessor {
 			ptf.setJcommpsRef(a.getRef());
 			ptfs_list.add(ptf);
 		}
-	 runtime.shutdown();
+
 		return ptfs_list;
 
 	}
@@ -72,8 +75,6 @@ public class PlatformAccessor {
 	public ArrayList<Platform> getPtfbySelectedParam(String ptf_status, String ptf_family, String ptf_type,
 			String ptf_model, String program, String network, String ptf_masterprg, String variable, String sensormod, String sensortyp) {
 
-		ServerRuntime runtime = new ServerRuntime("cayenne-project.xml");
-		ObjectContext context = runtime.getContext();
 		// QUERY PARAMETERS
 		String query_model = "";
 		String query_type = "";
@@ -179,13 +180,11 @@ public class PlatformAccessor {
 			ptf.setJcommpsRef(a.getRef());
 			ptfs_list.add(ptf);
 		}
-		runtime.shutdown();
+
 		return ptfs_list;
 	}
 
 	public Platform getPtfbyID(long id) {// Platform's details by ID
-		ServerRuntime runtime = new ServerRuntime("cayenne-project.xml");
-		ObjectContext context = runtime.getContext();
 
 		Ptf platform = Cayenne.objectForPK(context, Ptf.class, id); // Get the
 																	// platform
@@ -199,7 +198,6 @@ public class PlatformAccessor {
 			ptf.setError_message("Invalid ID. The ID "+id+" doesn't correspond to a registered platform.");;
 		}
 		// Methodes
-		Utils mu = new Utils();
 		MethodsAssociativeTables MAT = new MethodsAssociativeTables();
 		// Ajouter des objects imbriqués un par un
 
@@ -232,7 +230,7 @@ public class PlatformAccessor {
 			// 1) embedded object"PlatformStatus"
 			String stringIDptfs = platform.getToPtfStatus().getObjectId().toString();
 			PtfStatus platformstatus = Cayenne.objectForPK(context, PtfStatus.class,
-					mu.ConvertIDStringtoLong(stringIDptfs));// Get the platform
+					Utils.ConvertIDStringtoLong(stringIDptfs));// Get the platform
 															// Status by its PK
 			ptfs.setId(Cayenne.longPKForObject(platformstatus));
 			ptfs.setNameShort(platformstatus.getDescription());
@@ -242,7 +240,7 @@ public class PlatformAccessor {
 			// 2) embedded object"PlatformModel"
 			String stringIDptfm = platform.getToPtfModel().getObjectId().toString();
 			PtfModel platformmodel = Cayenne.objectForPK(context, PtfModel.class,
-					mu.ConvertIDStringtoLong(stringIDptfm));// Get the platform
+					Utils.ConvertIDStringtoLong(stringIDptfm));// Get the platform
 															// Model by its PK
 			ptfm.setId(Cayenne.longPKForObject(platformmodel));
 			ptfm.setNameShort(platformmodel.getNameShort());
@@ -254,7 +252,7 @@ public class PlatformAccessor {
 			// 3) embedded object"PlatformType"
 			PtfModel platformm = Cayenne.objectForPK(context, PtfModel.class, Cayenne.longPKForObject(platformmodel));
 			String stringIDptft = platformm.getToPtfType().getObjectId().toString();
-			PtfType platformtype = Cayenne.objectForPK(context, PtfType.class, mu.ConvertIDStringtoLong(stringIDptft));// Get
+			PtfType platformtype = Cayenne.objectForPK(context, PtfType.class, Utils.ConvertIDStringtoLong(stringIDptft));// Get
 																														// the
 																														// platform
 																														// Type
@@ -272,7 +270,7 @@ public class PlatformAccessor {
 			PtfType platformt = Cayenne.objectForPK(context, PtfType.class, Cayenne.longPKForObject(platformtype));
 			String stringIDptff = platformt.getToPtfFamily().getObjectId().toString();
 			PtfFamily platformfamily = Cayenne.objectForPK(context, PtfFamily.class,
-					mu.ConvertIDStringtoLong(stringIDptff));// Get the platform
+					Utils.ConvertIDStringtoLong(stringIDptff));// Get the platform
 															// Family by its PK
 			ptff.setId(Cayenne.longPKForObject(platformfamily));
 			ptff.setNameShort(platformfamily.getNameShort());
@@ -284,7 +282,7 @@ public class PlatformAccessor {
 			// PlatformLastLoc ptfll = new PlatformLastLoc();
 			String stringIDptfll = platform.getToPtfLoc().getObjectId().toString();
 			PtfLoc platformlastloc = Cayenne.objectForPK(context, PtfLoc.class,
-					mu.ConvertIDStringtoLong(stringIDptfll));// Get the platform
+					Utils.ConvertIDStringtoLong(stringIDptfll));// Get the platform
 																// Last Location
 																// by its PK
 			ptfll.setId(Cayenne.longPKForObject(platformlastloc));
@@ -298,7 +296,7 @@ public class PlatformAccessor {
 			// PlatformDeploy ptfdpl = new PlatformDeploy();
 			String stringIDptfdpl = platform.getToPtfDeployment().getObjectId().toString();
 			PtfDeployment platformDeploy = Cayenne.objectForPK(context, PtfDeployment.class,
-					mu.ConvertIDStringtoLong(stringIDptfdpl));// Get the
+					Utils.ConvertIDStringtoLong(stringIDptfdpl));// Get the
 																// platform
 																// Deployment by
 																// its PK
@@ -311,7 +309,7 @@ public class PlatformAccessor {
 
 			String stringIDprg = platform.getToProgram().getObjectId().toString();
 			org.jcommops.api.orm.Program ptfprogram = Cayenne.objectForPK(context, org.jcommops.api.orm.Program.class,
-					mu.ConvertIDStringtoLong(stringIDprg));// Get the platform
+					Utils.ConvertIDStringtoLong(stringIDprg));// Get the platform
 															// Program by its PK
 			prgm.setActive(ptfprogram.getActive());
 			prgm.setDescription(ptfprogram.getDescription());
@@ -324,7 +322,7 @@ public class PlatformAccessor {
 			// 8) embedded object"Country"
 			// CountryPtf country= new CountryPtf();
 			String stringIDcountry = ptfprogram.getToCountry().getObjectId().toString();
-			Country ptfcountry = Cayenne.objectForPK(context, Country.class, mu.ConvertIDStringtoLong(stringIDcountry));// Get
+			Country ptfcountry = Cayenne.objectForPK(context, Country.class, Utils.ConvertIDStringtoLong(stringIDcountry));// Get
 																														// the
 																														// platform
 																														// country
@@ -342,7 +340,7 @@ public class PlatformAccessor {
 			// CountryPtf country= new CountryPtf();
 			String stringIDmasterprg = ptfprogram.getToMasterProg().getObjectId().toString();
 			MasterProg ptfmastprg = Cayenne.objectForPK(context, MasterProg.class,
-					mu.ConvertIDStringtoLong(stringIDmasterprg));// Get the
+					Utils.ConvertIDStringtoLong(stringIDmasterprg));// Get the
 																	// platform
 																	// country
 																	// by its PK
@@ -368,7 +366,7 @@ public class PlatformAccessor {
 
 		}
 
-		runtime.shutdown();
+
 		return ptf;
 
 	}
@@ -378,8 +376,6 @@ public class PlatformAccessor {
 	{
 		//Dictionary gives the definition of parameters'values used in search URI ".../find?parm1=value1&.../"
 		
-		ServerRuntime runtime = new ServerRuntime("cayenne-project.xml");
-		ObjectContext context = runtime.getContext();
 		Dictionary Dico = new Dictionary();
 		
 		//Statuses
@@ -458,8 +454,8 @@ public class PlatformAccessor {
 //		Dico.setPtfType(types_list);
 //		Dico.setPtfModel(models_list);
 		
-		
-		runtime.shutdown();
+
+
 		return Dico;
 		
 	}
@@ -467,9 +463,8 @@ public class PlatformAccessor {
 	public Dico getDico()
 	{
 		//Dictionary gives the definition of parameters'values used in search URI ".../find?parm1=value1&.../"
-		
-		ServerRuntime runtime = new ServerRuntime("cayenne-project.xml");
-		ObjectContext context = runtime.getContext();
+
+
 		Dico Dico = new Dico();
 		
 		//Families
@@ -513,8 +508,8 @@ public class PlatformAccessor {
 //		Dico.setPtfModel(models_list);
 //		Dico.setVariables(variables_list);
 		
-		
-		runtime.shutdown();
+
+
 		return Dico;
 		
 	}

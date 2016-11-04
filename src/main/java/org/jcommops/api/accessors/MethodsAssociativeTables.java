@@ -9,6 +9,7 @@ import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.configuration.server.ServerRuntime;
 import org.apache.cayenne.map.SQLResult;
 import org.apache.cayenne.query.SQLTemplate;
+import org.jcommops.api.Utils;
 import org.jcommops.api.entities.AgencyPrg;
 import org.jcommops.api.entities.ContactPrg;
 import org.jcommops.api.entities.Platform;
@@ -25,11 +26,16 @@ import org.jcommops.api.orm.Role;
 
 public class MethodsAssociativeTables {
 	
+	private ServerRuntime runtime;
+	private ObjectContext context;
+	
+	public MethodsAssociativeTables(){
+		this.runtime = Utils.getCayenneRuntime();
+		this.context = this.runtime.getContext();
+	}
+	
 	public ArrayList<AgencyPrg> FindProgramAgencies (long prgm_id) {
 		
-		ServerRuntime runtime = new ServerRuntime("cayenne-project.xml");
-		//Getting Object Context
-		 ObjectContext context = runtime.getContext();
 		 
 		SQLTemplate query1 = new SQLTemplate(AgencyPtf.class, "select DISTINCT AGENCY_ID ag_id from Program_Agency where Program_ID="+prgm_id);
 	    SQLResult resultDescriptor = new SQLResult();
@@ -55,14 +61,12 @@ public class MethodsAssociativeTables {
     		Agency_list.add(agnc);
 
     	   }
-    	runtime.shutdown();
+
 		return Agency_list;	
 	}
 	
 	public ArrayList<ContactPrg> FindProgramContacts (long prgm_id) {
-		ServerRuntime runtime = new ServerRuntime("cayenne-project.xml");
-		//Getting Object Context
-		 ObjectContext context = runtime.getContext();
+
 		 
 		SQLTemplate query2 = new SQLTemplate(ProgramContact.class, "select DISTINCT CONTACT_ID cnt_id from Program_Contact where Program_ID="+prgm_id);
 	    SQLResult resultDescriptor = new SQLResult();
@@ -91,14 +95,12 @@ public class MethodsAssociativeTables {
 
     		Contact_list.add(cntct);
     	   }
-    	runtime.shutdown();
+
 		return Contact_list;	
 	}
 
 	public ArrayList<RoleContact> FindContactRoles (long cntct_id) {
-		ServerRuntime runtime = new ServerRuntime("cayenne-project.xml");
-		//Getting Object Context
-		 ObjectContext context = runtime.getContext();
+
 		 
 		SQLTemplate query3 = new SQLTemplate(ProgramContact.class, "select DISTINCT Role_ID rl_id from Program_Contact where Contact_ID="+cntct_id);
 	    SQLResult resultDescriptor = new SQLResult();
@@ -121,16 +123,14 @@ public class MethodsAssociativeTables {
     		rle.setNameShort(result.get(0).getNameShort());
     		Role_list.add(rle);
     	   }
-    	runtime.shutdown();
+
 		return Role_list;	
 	}
 	
 
 	public ArrayList<AgencyPrg> FindContactAgencies(long cntct_id) {
 		
-		ServerRuntime runtime = new ServerRuntime("cayenne-project.xml");
-		//Getting Object Context
-		 ObjectContext context = runtime.getContext();
+
 		 
 		SQLTemplate query4 = new SQLTemplate(Contact.class, "select DISTINCT AGENCY_ID ag_id2 from contact where ID="+cntct_id);
 	    SQLResult resultDescriptor = new SQLResult();
@@ -155,15 +155,13 @@ public class MethodsAssociativeTables {
     		Agency_list.add(agnc);
 
     	   }
-    	runtime.shutdown();
+
 		return Agency_list;	
 	}
 	
 	
 	public ArrayList<Variable> FindPtfVariables(long ptf_id) {
-		ServerRuntime runtime = new ServerRuntime("cayenne-project.xml");
-		//Getting Object Context
-		 ObjectContext context = runtime.getContext();
+
 		 
 		SQLTemplate query5 = new SQLTemplate(PtfVariable.class, "select variable_ID from ptf_variable where  PTF_ID="+ptf_id);
 	    SQLResult resultDescriptor = new SQLResult();
@@ -189,7 +187,7 @@ public class MethodsAssociativeTables {
     		Variable_list.add(var);
 
     	   }
-    	runtime.shutdown();
+
 		return Variable_list;	
 	}
 	
