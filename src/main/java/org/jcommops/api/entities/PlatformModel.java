@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-
+@XmlRootElement
 @XmlType(propOrder={ "name", "nameShort","description"})
 public class PlatformModel {
 	private long Id;

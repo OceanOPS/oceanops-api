@@ -2,8 +2,10 @@ package org.jcommops.api.entities;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+@XmlRootElement
 @XmlType(propOrder={ "name", "nameShort","description"})
 public class SensorModel {
 	private long Id;

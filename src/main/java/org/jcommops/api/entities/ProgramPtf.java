@@ -11,12 +11,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
-@XmlType(propOrder={ "name", "description", "active", "agencies"})
+@XmlType(propOrder={ "name", "nameShort", "description", "active", "agencies"})
 
 public class ProgramPtf  {
 
 	private long Id;
     private String Name;
+	private String NameShort;
     private String Description;
     private int Active;
     private ArrayList<AgencyPrg> agencies;
@@ -26,9 +27,10 @@ public class ProgramPtf  {
 
     }
 
-    public ProgramPtf ( long id, String name, String description, int active, ArrayList<AgencyPrg> agencies ){
+    public ProgramPtf ( long id, String name, String nameshort, String description, int active, ArrayList<AgencyPrg> agencies ){
     this.setId(id);
     this.setName(name);
+	this.setNameShort(nameshort);
     this.setDescription(description);
     this.setActive(active);
     this.setAgencies(agencies);
@@ -53,6 +55,16 @@ public class ProgramPtf  {
     public void setName(String name) {
         Name = name;
     }
+    
+	@XmlElement
+	public String getNameShort() {
+		return NameShort;
+	}
+
+	public void setNameShort(String nameShort) {
+		NameShort = nameShort;
+	}
+	
     @XmlElement
     public String getDescription() {
         return Description;

@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlType;
 	private Date EndingDate;
 	private ProgramPtf Program;
 	private CountryPtf Country;
-	private MasterProgram MasterProgramme;
+	private MasterProgramPtf MasterProgramme;
 	private ArrayList<ContactPrg> contacts;
 	private ArrayList<Variable> variables;
 	private String error_message;
@@ -38,7 +38,7 @@ import javax.xml.bind.annotation.XmlType;
 	}
 
 	public Platform ( long id, String ref, PlatformStatus ptfstatus, PlatformFamily ptffamily, PlatformModel ptfmodel, PlatformType ptftype,PlatformDeploy ptfdpl, 
-			Date endingdate, PlatformLastLoc ptfll, ProgramPtf prgm, CountryPtf cntr, MasterProgram mstrprgm, ArrayList<ContactPrg> contacts, ArrayList<Variable> variables,
+			Date endingdate, PlatformLastLoc ptfll, ProgramPtf prgm, CountryPtf cntr, MasterProgramPtf mstrprgm, ArrayList<ContactPrg> contacts, ArrayList<Variable> variables,
 			String error_message){	
 		this.setId(id);
 		this.setJcommpsRef(ref);
@@ -157,11 +157,11 @@ import javax.xml.bind.annotation.XmlType;
 	}
 
 	@XmlElement
-	public MasterProgram getMasterProgramme() {
+	public MasterProgramPtf getMasterProgramme() {
 		return MasterProgramme;
 	}
 
-	public void setMasterProgramme(MasterProgram masterProgramme) {
+	public void setMasterProgramme(MasterProgramPtf masterProgramme) {
 		MasterProgramme = masterProgramme;
 	}
 

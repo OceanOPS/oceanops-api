@@ -2,23 +2,22 @@ package org.jcommops.api.entities;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
 @XmlType(propOrder={ "name", "nameShort","description"})
-public class PlatformStatus {
+public class NetworkPtf {
 	private long Id;
 	private String NameShort;
 	private String Name;
 	private String description;
 	
 	
-	public PlatformStatus (){	
+	public NetworkPtf (){	
 	}
 
-	public PlatformStatus ( long id, String nameshort, String name, String description ){	
+	public NetworkPtf ( long id, String nameshort, String name, String description ){	
 		this.setId(id);
 		this.setNameShort(nameshort);
 		this.setName(name);
