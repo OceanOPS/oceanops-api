@@ -44,6 +44,12 @@
 			<!-- use the following artifactId if you don't need servlet 2.x compatibility -->
 			<!-- artifactId>jersey-container-servlet</artifactId -->
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-server -->
+<dependency>
+    <groupId>org.glassfish.jersey.core</groupId>
+    <artifactId>jersey-server</artifactId>
+</dependency>
+		
 
 		<dependency>
 			<groupId>org.glassfish.jersey.media</groupId>
@@ -73,7 +79,8 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
-		</dependency>
+			<scope>provided</scope>
+		</dependency>	
 
 	</dependencies>
 	<properties>

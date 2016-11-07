@@ -14,9 +14,18 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	<servlet>
+		<servlet-name>APIDoc</servlet-name>
+		<servlet-class>org.jcommops.api.APIDoc</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>APIDoc</servlet-name>
+		<url-pattern>/api/rest/1.0/help</url-pattern>
+		<!-- /api/rest/1.0/help -->
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>Jersey Web Application</servlet-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/api/rest/1.0/*</url-pattern>
 	</servlet-mapping>
 
 	<filter>
@@ -25,6 +34,6 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>CayenneFilter</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/api/rest/1.0/*</url-pattern>
 	</filter-mapping>
 </web-app>

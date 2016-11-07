@@ -1,28 +1,32 @@
 package org.jcommops.api.entities;
 
+import java.util.ArrayList;
+
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlType(propOrder={ "name", "nameShort","description"})
-public class Network {
+@XmlRootElement
+@XmlType(propOrder = { "name", "nameShort", "description" })
+public class MasterProgramPtf {
 	private long Id;
-	private String NameShort;
 	private String Name;
-	private String description;
-	
-	
-	public Network (){	
+	private String NameShort;
+	private String Description;
+
+	public MasterProgramPtf() {
+
 	}
 
-	public Network ( long id, String nameshort, String name, String description ){	
+	public MasterProgramPtf(long id, String name, String nameshort, String description) {
 		this.setId(id);
-		this.setNameShort(nameshort);
 		this.setName(name);
+		this.setNameShort(nameshort);
 		this.setDescription(description);
 	}
 
-	
 	@XmlAttribute
 	public long getId() {
 		return Id;
@@ -33,14 +37,6 @@ public class Network {
 	}
 
 	@XmlElement
-	public String getNameShort() {
-		return NameShort;
-	}
-
-	public void setNameShort(String nameShort) {
-		NameShort = nameShort;
-	}
-	@XmlElement
 	public String getName() {
 		return Name;
 	}
@@ -48,14 +44,23 @@ public class Network {
 	public void setName(String name) {
 		Name = name;
 	}
+
+	@XmlElement
+	public String getNameShort() {
+		return NameShort;
+	}
+
+	public void setNameShort(String nameShort) {
+		NameShort = nameShort;
+	}
+
 	@XmlElement
 	public String getDescription() {
-		return description;
+		return Description;
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		Description = description;
 	}
-	
 
 }
