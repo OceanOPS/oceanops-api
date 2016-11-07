@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class 
  */
-@WebServlet("/")
+@WebServlet("/help")
 public class APIDoc extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 //	private HttpSession session;
