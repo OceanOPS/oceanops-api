@@ -115,8 +115,8 @@ public class WebServiceManager {
 	public ArrayList<Platform> getSelectedPlatformsXML(@QueryParam("status") String status,
 			@QueryParam("family") String family, @QueryParam("type") String type, @QueryParam("model") String model,
 			@QueryParam("program") String program, @QueryParam("network") String network,
-			@QueryParam("masterprg") String masterprg, @QueryParam("variable") String variable,
-			@QueryParam("sensormod") String sensormod, @QueryParam("sensortyp") String sensortyp) {
+			@QueryParam("masterProgram") String masterprg, @QueryParam("variable") String variable,
+			@QueryParam("sensorModel") String sensormod, @QueryParam("sensorType") String sensortyp) {
 
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<Platform> foundPlatforms = new ArrayList<Platform>();
@@ -135,8 +135,8 @@ public class WebServiceManager {
 			Platform ptf0 = new Platform();
 			ptf0.setId(-1);
 			ptf0.setError_message(
-					"Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterprg', 'variable', 'sensormod' "
-							+ "or 'sensortyp' parameter.");
+					"Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterProgram', 'variable', 'sensorModel' "
+							+ "or 'sensorType' parameter.");
 			foundPlatforms.add(ptf0);
 
 		}
@@ -150,7 +150,7 @@ public class WebServiceManager {
 
 		return foundPlatforms;
 		// example
-		// http://localhost:8081/jcommops-api/api/rest/1.0/platforms.xml/find?status=ACTIVE&family=ICE_BUOYS&type=AXIB&model=AXIB&masterprg=DBCP&variable=SST
+		// http://localhost:8081/jcommops-api/api/rest/1.0/platforms.xml/find?status=ACTIVE&family=ICE_BUOYS&type=AXIB&model=AXIB&masterProgram=DBCP&variable=SST
 	}
 
 	@GET
@@ -159,8 +159,8 @@ public class WebServiceManager {
 	public ArrayList<Platform> getSelectedPlatformsJSON(@QueryParam("status") String status,
 			@QueryParam("family") String family, @QueryParam("type") String type, @QueryParam("model") String model,
 			@QueryParam("program") String program, @QueryParam("network") String network,
-			@QueryParam("masterprg") String masterprg, @QueryParam("variable") String variable,
-			@QueryParam("sensormod") String sensormod, @QueryParam("sensortyp") String sensortyp) {
+			@QueryParam("masterProgram") String masterprg, @QueryParam("variable") String variable,
+			@QueryParam("sensorModel") String sensormod, @QueryParam("sensorType") String sensortyp) {
 
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<Platform> foundPlatforms = new ArrayList<Platform>();
@@ -179,8 +179,8 @@ public class WebServiceManager {
 			Platform ptf0 = new Platform();
 			ptf0.setId(-1);
 			ptf0.setError_message(
-					"Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterprg', 'variable', 'sensormod' "
-							+ "or 'sensortyp' parameter.");
+					"Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterProgram', 'variable', 'sensorModel' "
+							+ "or 'sensorType' parameter.");
 			foundPlatforms.add(ptf0);
 
 		}
@@ -195,11 +195,11 @@ public class WebServiceManager {
 		return foundPlatforms;
 
 		// example
-		// http://localhost:8081/jcommops-api/api/rest/1.0/platforms.json/find?status=ACTIVE&family=ICE_BUOYS&type=AXIB&model=AXIB&masterprg=DBCP&variable=SST
+		// http://localhost:8081/jcommops-api/api/rest/1.0/platforms.json/find?status=ACTIVE&family=ICE_BUOYS&type=AXIB&model=AXIB&masterProgram=DBCP&variable=SST
 	}
 
 	@GET
-	@Path("PtfStatuses.xml")
+	@Path("ptfStatuses.xml")
 	public ArrayList<PlatformStatus> getAllPtfStatusesXML() {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<PlatformStatus> List = new ArrayList<PlatformStatus>();
@@ -211,11 +211,11 @@ public class WebServiceManager {
 			List.add(ptf0);
 		}
 		return List;
-		// http://localhost:8081/jcommops-api/api/rest/1.0/PtfStatuses.xml
+		// http://localhost:8081/jcommops-api/api/rest/1.0/ptfStatuses.xml
 	}
 
 	@GET
-	@Path("PtfStatuses.json")
+	@Path("ptfStatuses.json")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<PlatformStatus> getAllPtfStatusesJSON() {
 		PlatformAccessor m = new PlatformAccessor();
@@ -228,11 +228,11 @@ public class WebServiceManager {
 			List.add(ptf0);
 		}
 		return List;
-		// http://localhost:8081/jcommops-api/api/rest/1.0/PtfStatuses.json
+		// http://localhost:8081/jcommops-api/api/rest/1.0/ptfStatuses.json
 	}
 
 	@GET
-	@Path("PtfFamilies.xml")
+	@Path("ptfFamilies.xml")
 	public ArrayList<PlatformFamily> getAllPtfFamiliesXML() {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<PlatformFamily> List = new ArrayList<PlatformFamily>();
@@ -244,11 +244,11 @@ public class WebServiceManager {
 			List.add(ptf0);
 		}
 		return List;
-		// http://localhost:8081/jcommops-api/api/rest/1.0/PtfFamilies.xml
+		// http://localhost:8081/jcommops-api/api/rest/1.0/ptfFamilies.xml
 	}
 
 	@GET
-	@Path("PtfFamilies.json")
+	@Path("ptfFamilies.json")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<PlatformFamily> getAllPtfFamiliesJSON() {
 		PlatformAccessor m = new PlatformAccessor();
@@ -261,12 +261,12 @@ public class WebServiceManager {
 			List.add(ptf0);
 		}
 		return List;
-		// http://localhost:8081/jcommops-api/api/rest/1.0/PtfFamilies.json
+		// http://localhost:8081/jcommops-api/api/rest/1.0/ptfFamilies.json
 
 	}
 
 	@GET
-	@Path("Types.xml")
+	@Path("ptfTypes.xml")
 	public ArrayList<PlatformType> getAllPtfTypesXML() {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<PlatformType> List = new ArrayList<PlatformType>();
@@ -278,11 +278,11 @@ public class WebServiceManager {
 			List.add(ptf0);
 		}
 		return List;
-		// http://localhost:8081/jcommops-api/api/rest/1.0/PtfTypes.xml
+		// http://localhost:8081/jcommops-api/api/rest/1.0/ptfTypes.xml
 	}
 
 	@GET
-	@Path("Types.json")
+	@Path("ptfTypes.json")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<PlatformType> getAllPtfTypesJSON() {
 		PlatformAccessor m = new PlatformAccessor();
@@ -295,12 +295,12 @@ public class WebServiceManager {
 			List.add(ptf0);
 		}
 		return List;
-		// http://localhost:8081/jcommops-api/api/rest/1.0/PtfTypes.json
+		// http://localhost:8081/jcommops-api/api/rest/1.0/ptfTypes.json
 
 	}
 
 	@GET
-	@Path("Models.xml")
+	@Path("ptfModels.xml")
 	public ArrayList<PlatformModel> getAllPtfModelsXML() {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<PlatformModel> List = new ArrayList<PlatformModel>();
@@ -312,11 +312,11 @@ public class WebServiceManager {
 			List.add(ptf0);
 		}
 		return List;
-		// http://localhost:8081/jcommops-api/api/rest/1.0/PtfModels.xml
+		// http://localhost:8081/jcommops-api/api/rest/1.0/ptfModels.xml
 	}
 
 	@GET
-	@Path("Models.json")
+	@Path("ptfModels.json")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<PlatformModel> getAllPtfModelsJSON() {
 		PlatformAccessor m = new PlatformAccessor();
@@ -329,12 +329,12 @@ public class WebServiceManager {
 			List.add(ptf0);
 		}
 		return List;
-		// http://localhost:8081/jcommops-api/api/rest/1.0/PtfModels.json
+		// http://localhost:8081/jcommops-api/api/rest/1.0/ptfModels.json
 
 	}
 
 	@GET
-	@Path("Programs.xml")
+	@Path("programs.xml")
 	public ArrayList<ProgramPtf> getAllPtfProgramsXML() {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<ProgramPtf> List = new ArrayList<ProgramPtf>();
@@ -346,11 +346,11 @@ public class WebServiceManager {
 			List.add(ptf0);
 		}
 		return List;
-		//http://localhost:8081/jcommops-api/api/rest/1.0/PtfPrograms.xml
+		//http://localhost:8081/jcommops-api/api/rest/1.0/programs.xml
 	}
 
 	@GET
-	@Path("Programs.json")
+	@Path("programs.json")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<ProgramPtf> getAllPtfProgramsJSON() {
 		PlatformAccessor m = new PlatformAccessor();
@@ -363,11 +363,11 @@ public class WebServiceManager {
 			List.add(ptf0);
 		}
 		return List;
-		// http://localhost:8081/jcommops-api/api/rest/1.0/PtfPrograms.json
+		// http://localhost:8081/jcommops-api/api/rest/1.0/programs.json
 	}
 	
 	@GET
-	@Path("MasterPrograms.xml")
+	@Path("masterPrograms.xml")
 	public ArrayList<MasterProgramPtf> getAllPtfPtfMasterProgramsXML() {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<MasterProgramPtf> List = new ArrayList<MasterProgramPtf>();
@@ -379,11 +379,11 @@ public class WebServiceManager {
 			List.add(ptf0);
 		}
 		return List;
-		//http://localhost:8081/jcommops-api/api/rest/1.0/PtfMasterPrograms.xml
+		//http://localhost:8081/jcommops-api/api/rest/1.0/masterPrograms.xml
 	}
 
 	@GET
-	@Path("MasterPrograms.json")
+	@Path("masterPrograms.json")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<MasterProgramPtf> getAllPtfMasterProgramsJSON() {
 		PlatformAccessor m = new PlatformAccessor();
@@ -396,11 +396,11 @@ public class WebServiceManager {
 			List.add(ptf0);
 		}
 		return List;
-		// http://localhost:8081/jcommops-api/api/rest/1.0/PtfMasterPrograms.json
+		// http://localhost:8081/jcommops-api/api/rest/1.0/masterPrograms.json
 	}
 	
 	@GET
-	@Path("Networks.xml")
+	@Path("networks.xml")
 	public ArrayList<NetworkPtf> getAllPtfNetworksXML() {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<NetworkPtf> List = new ArrayList<NetworkPtf>();
@@ -416,7 +416,7 @@ public class WebServiceManager {
 	}
 
 	@GET
-	@Path("Networks.json")
+	@Path("networks.json")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<NetworkPtf> getAllPtfNetworksJSON() {
 		PlatformAccessor m = new PlatformAccessor();
@@ -429,12 +429,12 @@ public class WebServiceManager {
 			List.add(ptf0);
 		}
 		return List;
-		//http://localhost:8081/jcommops-api/api/rest/1.0/PtfNetworks.json
+		//http://localhost:8081/jcommops-api/api/rest/1.0/network.json
 	}
 	
 	
 	@GET
-	@Path("SensorModels.xml")
+	@Path("sensorModels.xml")
 	public ArrayList<SensorModel> getAllPtfSensorModelsXML() {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<SensorModel> List = new ArrayList<SensorModel>();
@@ -446,11 +446,11 @@ public class WebServiceManager {
 			List.add(ptf0);
 		}
 		return List;
-		//http://localhost:8081/jcommops-api/api/rest/1.0/PtfSensorModels.xml
+		//http://localhost:8081/jcommops-api/api/rest/1.0/sensorModels.xml
 	}
 
 	@GET
-	@Path("SensorModels.json")
+	@Path("sensorModels.json")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<SensorModel> getAllPtfSensorModelsJSON() {
 		PlatformAccessor m = new PlatformAccessor();
@@ -463,11 +463,11 @@ public class WebServiceManager {
 			List.add(ptf0);
 		}
 		return List;
-		//http://localhost:8081/jcommops-api/api/rest/1.0/PtfSensorModels.json
+		//http://localhost:8081/jcommops-api/api/rest/1.0/sensorModels.json
 	}
 	
 	@GET
-	@Path("SensorTypes.xml")
+	@Path("sensorTypes.xml")
 	public ArrayList<SensorType> getAllPtfSensorTypesXML() {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<SensorType> List = new ArrayList<SensorType>();
@@ -479,11 +479,11 @@ public class WebServiceManager {
 			List.add(ptf0);
 		}
 		return List;
-		//http://localhost:8081/jcommops-api/api/rest/1.0/PtfSensorTypes.xml
+		//http://localhost:8081/jcommops-api/api/rest/1.0/sensorTypes.xml
 	}
 
 	@GET
-	@Path("SensorTypes.json")
+	@Path("sensorTypes.json")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<SensorType> getAllPtfSensorTypesJSON() {
 		PlatformAccessor m = new PlatformAccessor();
@@ -496,11 +496,11 @@ public class WebServiceManager {
 			List.add(ptf0);
 		}
 		return List;
-		//http://localhost:8081/jcommops-api/api/rest/1.0/PtfSensorTypes.json
+		//http://localhost:8081/jcommops-api/api/rest/1.0/sensorTypes.json
 	}
 	
 	@GET
-	@Path("Variables.xml")
+	@Path("variables.xml")
 	public ArrayList<Variable> getAllVariablesXML() {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<Variable> List = new ArrayList<Variable>();
@@ -512,11 +512,11 @@ public class WebServiceManager {
 			List.add(ptf0);
 		}
 		return List;
-		//http://localhost:8081/jcommops-api/api/rest/1.0/Variables.xml
+		//http://localhost:8081/jcommops-api/api/rest/1.0/variables.xml
 	}
 
 	@GET
-	@Path("Variables.json")
+	@Path("variables.json")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<Variable> getAllVariablesJSON() {
 		PlatformAccessor m = new PlatformAccessor();
@@ -529,7 +529,7 @@ public class WebServiceManager {
 			List.add(ptf0);
 		}
 		return List;
-		//http://localhost:8081/jcommops-api/api/rest/1.0/Variables.json
+		//http://localhost:8081/jcommops-api/api/rest/1.0/variables.json
 	}
 
 	

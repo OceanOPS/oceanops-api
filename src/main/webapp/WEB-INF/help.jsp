@@ -18,9 +18,11 @@
 
 <style>
 .jumbotron {
-	background-color: #6096f2;
-	color: white;
-	font-size: 12;
+	background-color: #f2f5f7;
+	padding-bottom: 10px;
+	padding-top: 1px;
+	color: black;
+	font-size: 14;
 }
 /* Adds borders for tabs */
 .tab-content {
@@ -39,88 +41,128 @@
 <body>
 
 	<!-- CONTAINERS -->
-	<!-- container puts padding around itself while container-fluid fills the whole screen. Bootstap grids require a container. -->
 	<div class="container">
 
-		<!-- page-header adds space aroundtext and enlarges it. It also adds an underline at the end -->
 		<div class="page-header">
 			<center>
-				<h1>Documentation: JCOMMOPS RESTful Web Application</h1>
+				<h1>Documentation: JCOMMOPS REST Web Application</h1>
+				<h4>Authors: Mohamed Adjou, Anthonin Lizé, Mathieu Belbéoch</h4>
 			</center>
 
-		<div class=jumbotron>
-			<div class="row">
-				<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
-					<h2>
-						<a href="#AboutTheAPI" data-toggle="collapse">About the API</a>
-					</h2>
-					<div id="AboutTheAPI" class="collapse">JCOMMOPS Web Service
-						API is a REST-like API designed to distribute metadata, in
-						interoperable and ready-to-use formats, to integrate other
-						software (usually under machine to machine schema).</div>
+			<div class=jumbotron>
+				<div class="row">
+					<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
+						<h2>
+							<a href="#AboutTheAPI" data-toggle="collapse">About the API</a>
+						</h2>
+						<div id="AboutTheAPI" class="collapse">JCOMMOPS Web Service
+							API is a REST-like API designed to distribute metadata, in
+							interoperable and ready-to-use formats, to integrate other
+							software (usually under machine to machine schema).</div>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class=jumbotron>
-			<div class="row">
-				<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
-					<h2>
-						<a href="#ListingThePlatforms" data-toggle="collapse">
-							1.Listing the platforms</a>
-					</h2>
-					<div id="ListingThePlatforms" class="collapse">
-						The list of platforms includes platforms’ “ids” and their
-						corresponding “JCOMMOPS-References” <br>
-						<div class=jumbotron>
-							<div class="row">
-								<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
-									<h3>
-										<a href="#ListingAllThePlatforms" data-toggle="collapse">1.1.
-											Listing all the platforms</a>
-									</h3>
-									<div id="ListingAllThePlatforms" class="collapse">
-										The total list of all the inventoried platforms can be
-										obtained with a GET request using this URL pattern:<br>
-										Global platforms list URL-pattern:<br> [ROOT ][/]
-										api[/]rest[/]X.Y[/] platforms.format<br> Where “X.Y”
-										string path is the version of the API (current version is 1.0)
-										and “format” in “platforms.format” string path represents the
-										data output . Current supported formats: . json and .xml<br>
-										Global list URL example: To generate the global platforms list
-										in Json format, here the dedicated URL:<br> “
-										[ROOT]/api/rest/1.0/platforms.json “
+			<!-- 1. Listing the platforms Listing the platforms Listing the platforms -->
+			<div class=jumbotron>
+				<div class="row">
+					<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
+						<h2>
+							<a href="#ListingThePlatforms" data-toggle="collapse">
+								1.Listing the platforms</a>
+						</h2>
+						<div id="ListingThePlatforms" class="collapse">
+							The list of platforms includes platforms’ “IDs” and their
+							corresponding “JCOMMOPS-References” <br>
+							<!-- 1.1. Listing all the platforms  Listing all the platforms  Listing all the platforms -->
+							<div class=jumbotron>
+								<div class="row">
+									<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
+										<h3>
+
+											<a href="#ListingAllThePlatforms" data-toggle="collapse">1.1.
+												Listing all the platforms</a>
+										</h3>
+										<div id="ListingAllThePlatforms" class="collapse">
+											The total list of all the inventoried platforms can be
+											obtained with a GET request using the following URL pattern:<br>
+											<center>
+												<i><b>URL-pattern for global platforms list :
+														[ROOT][/]api[/]rest[/]X.Y[/] platforms.format</i></b>
+											</center>
+											<br> Where “X.Y” string path is the version of the API
+											(current version is 1.0) and “format” in “platforms.format”
+											string path represents the data output . Current supported
+											formats: . json and .xml<br> <b><u>Global
+													platforms list example:</u></b> <br>To generate the global
+											platforms list in Json format, here the dedicated URL: <i><b>[ROOT]/api/rest/1.0/platforms.json</b></i>
+											<div class=jumbotron>
+												<div class="row">
+													<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
+														<h3>
+															<small><a href="#Exemple1" data-toggle="collapse"><font
+																	color="#0000ff">Display the example output</font></a></small>
+														</h3>
+														<div id="Exemple1" class="collapse"
+															style="background-color: #ffffb3;">
+															[<br> {"id":509658,"jcommpsRef":"DB-3200682
+															09072013"},
+															{"id":1004637,"jcommpsRef":"DB-3300573-16022015"},
+															{"id":1004638,"jcommpsRef":"DB-3300575-16032011"},
+															{"id":1004640,"jcommpsRef":"DB-3300581-20082013"},
+															{"id":513831,"jcommpsRef":"DB-4100501-21062014"}, ...
+															Additional results truncated in this example[] ... <br>]
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class=jumbotron>
-							<div class="row">
-								<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
-									<h3>
-										<a href="#ListingFilteredPlatforms" data-toggle="collapse">1.2.
-											Listing a selected list of the platforms using key parameters</a>
-									</h3>
-									<div id="ListingFilteredPlatforms" class="collapse">A
-										select list of platforms can be obtained with a GET request
-										using this URL pattern:<br> Selected platforms list URL-pattern:<br>
-										[ROOT][/] api[/]rest[/]X.Y[/] platforms.format[/]
-										find?parm1=value1&parm2=value2<br> Where parm1, parm2…param(i)
-										respresent the query parameter and value1, value2…value(i)
-										represent the corresponding values respectively. <br>Table 1.
-										Search parameters to specify the URL of a “selected list of
-										platforms”.</div>
+							<!-- 1.2. Listing a selected list of the platforms using key parameters -->
+							<div class=jumbotron>
+								<div class="row">
+									<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
+										<h3>
+											<a href="#ListingFilteredPlatforms" data-toggle="collapse">1.2.
+												Listing a selected list of the platforms using key
+												parameters</a>
+										</h3>
+										<div id="ListingFilteredPlatforms" class="collapse">
+											A filtered list of platforms can be obtained with a GET
+											request using this URL pattern:<br> Selected platforms
+											list URL-pattern:<br> [ROOT][/] api[/]rest[/]X.Y[/]
+											platforms.format[/] find?parm1=value1&parm2=value2<br>
+											Where parm1, parm2…param(i) respresent the query parameter
+											and value1, value2…value(i) represent the corresponding
+											values respectively. <br>Table 1. Search parameters to
+											specify the URL of a “selected list of platforms”.
+										</div>
+									</div>
 								</div>
 							</div>
+
 						</div>
 
 					</div>
-
 				</div>
 			</div>
-		</div>
+			<!-- 1. Listing the platforms Listing the platforms Listing the platforms -->
+			<div class=jumbotron>
+				<div class="row">
+					<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
+						<h2>
+							<a href="#GettingPtfDetails" data-toggle="collapse"> 2.
+								Getting the details of a platform </a>
+						</h2>
+					</div>
+				</div>
+			</div>
 
-		<br>
+			<br>
+		</div>
 	</div>
+
 
 
 
