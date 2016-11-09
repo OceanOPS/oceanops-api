@@ -80,8 +80,7 @@
 									<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
 										<h3>
 
-											<a href="#ListingAllThePlatforms" data-toggle="collapse">1.1.
-												Listing all the platforms</a>
+											<a href="#ListingAllThePlatforms" data-toggle="collapse"><button type="button" class="btn btn-primary btn-lg" >1.1. Listing all the platforms</button></a>
 										</h3>
 										<div id="ListingAllThePlatforms" class="collapse">
 											The total list of all the inventoried platforms can be
@@ -97,8 +96,7 @@
 												<div class="row">
 													<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
 														<h3>
-															<small><a href="#Exemple1" data-toggle="collapse"><font
-																	color="#3366cc">Click here to see an example </font></a></small>
+															<a href="#Exemple1" data-toggle="collapse"><button type="button" class="btn btn-info">Example</button></a>
 														</h3>
 														<div id="Exemple1" class="collapse">
 															To generate the global platforms list in json format,
@@ -131,8 +129,8 @@
 								<div class="row">
 									<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
 										<h3>
-											<a href="#ListingFilteredPlatforms" data-toggle="collapse">1.2.
-												Listing a selected list of platforms using key parameters</a>
+											<a href="#ListingFilteredPlatforms" data-toggle="collapse"><button type="button" class="btn btn-primary btn-lg" >1.2.
+												Listing a selected list of platforms using key parameters</button></a>
 										</h3>
 										<div id="ListingFilteredPlatforms" class="collapse">
 											A filtered list of platforms can be obtained with a GET
@@ -147,87 +145,110 @@
 											values respectively. <br> <br> <b>Table 1.</b>
 											Search parameters to specify the URL of a “selected list of
 											platforms”.
-											<div class="table-responsive">
-												<table class="table">
-													<thead>
-														<tr>
-															<td></td>
-															<td></td>
-														</tr>
-														<tr>
-															<th>Parameter*</th>
-															<th>Description</th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-															<td>status</td>
-															<td>The status of the platform (operability and
-																activity)</td>
-														</tr>
-														<tr>
-															<td>model</td>
-															<td>The model of the platform</td>
-														</tr>
-														<tr>
-															<td>type</td>
-															<td>The type of the platform</td>
-														</tr>
-														<tr>
-															<td>family</td>
-															<td>The family of the platform</td>
-														</tr>
-														<tr>
-															<td>program</td>
-															<td>The affiliation program(s) of the platform</td>
-														</tr>
-														<tr>
-															<td>masterProgram</td>
-															<td>The affiliation master program(s) of the
-																platform</td>
-														</tr>
-														<tr>
-															<td>network</td>
-															<td>The affiliation network of the platform</td>
-														</tr>
-														<tr>
-															<td>variable</td>
-															<td>The variable(s) monitored by the platform’s
-																sensor(s)</td>
-														</tr>
-														<tr>
-															<td>sensorModel</td>
-															<td>The platform’s sensor(s) model(s)</td>
-														</tr>
-														<tr>
-															<td>sensorType</td>
-															<td>The platform’s sensor(s) type(s)</td>
-														</tr>
-														<tr>
-															<td></td>
-															<td><font size="1">(*) by convention all the
-																	parameters’ acronyms are in small caps for single word
-																	parameters, and in lower camel case for acronyms of
-																	compound words.</font></td>
-														</tr>
+											<form name="submitPramValues" method="POST">
+												<div class="table-responsive">
+													<table class="table">
+														<thead>
+															<tr>
+																<td></td>
+																<td></td>
+															</tr>
+															<tr>
+																<th>Parameter*</th>
+																<th>Description</th>
+																<th>Values</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>status</td>
+																<td>The status of the platform</td>
+																<td><button type="submit" name="StatusValues" formtarget="_blank"
+																		class="btn btn-success btn-block">Get statuses</button></td>
+															</tr>
+															<tr>
+																<td>model</td>
+																<td>The model of the platform</td>
+																<td><button type="submit" name="ModelValues"
+																		formtarget="_blank" class="btn btn-success btn-block">Get models</button></td>
+															</tr>
+															<tr>
+																<td>type</td>
+																<td>The type of the platform</td>
+																<td><button type="submit" name="TypeValues"
+																		formtarget="_blank" class="btn btn-success btn-block">Get types</button></td>
+															</tr>
+															<tr>
+																<td>family</td>
+																<td>The family of the platform</td>
+																<td><button type="submit" name="FamilyValues"
+																		formtarget="_blank" class="btn btn-success btn-block">Get families</button></td>
+															</tr>
+															<tr>
+																<td>program</td>
+																<td>The affiliation program(s) of the platform</td>
+																<td><button type="submit" name="ProgramValues"
+																		formtarget="_blank" class="btn btn-success btn-block">Get programs</button></td>
+															</tr>
+															<tr>
+																<td>masterProgram</td>
+																<td>The affiliation master program(s) of the
+																	platform</td>
+																		<td><button type="submit" name="MasterProgramValues"
+																		formtarget="_blank" class="btn btn-success btn-block">Get master programs</button></td>
+															</tr>
+															<tr>
+																<td>network</td>
+																<td>The affiliation network of the platform</td>
+																	<td><button type="submit" name="NetworkValues"
+																		formtarget="_blank" class="btn btn-success btn-block">Get networks</button></td>
+															</tr>
+															<tr>
+																<td>variable</td>
+																<td>The variable(s) monitored by the platform’s
+																	sensor(s)</td>
+																	<td><button type="submit" name="VariableValues"
+																		formtarget="_blank" class="btn btn-success btn-block">Get variables</button></td>
+															</tr>
+															<tr>
+																<td>sensorModel</td>
+																<td>The platform’s sensor(s) model(s)</td>
+																		<td><button type="submit" name="SensorModelValues"
+																		formtarget="_blank" class="btn btn-success btn-block">Get sensor models</button></td>
+															</tr>
+															<tr>
+																<td>sensorType</td>
+																<td>The platform’s sensor(s) type(s)</td>
+																		<td><button type="submit" name="SensorTypeValues"
+																		formtarget="_blank" class="btn btn-success btn-block">Get sensor types</button></td>
+															</tr>
+															<tr>
+																<td></td>
+																<td><font size="1">(*) by convention all the
+																		parameters’ acronyms are in small caps for single word
+																		parameters, and in lower camel case for acronyms of
+																		compound words.</font></td>
+															</tr>
 
-													</tbody>
-												</table>
-												A parameter value corresponds to either an identification number or an abbreviation string (no matter the caps).
-												The values that can each parameter take are listed in the click in the links below to find the correspondence of each parameter.
-											</div>
-
+														</tbody>
+													</table>
+													A search parameter's value corresponds to either an
+													identification number (<b>ID</b>) or a non-sensitive caps
+													string (<b>Short Name</b> ). The values that can each
+													parameter take are listed in the tables you can find
+													through the links below.
+												</div>
+											</form>
 											<div class=jumbotron>
 												<div class="row">
 													<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
 														<h3>
-															<small><a href="#Exemple2" data-toggle="collapse"><font
-																	color="#3366cc">Click here to see an example </font></a></small>
+															<a href="#Exemple2" data-toggle="collapse"><button type="button" class="btn btn-info">Example</button></a>
 														</h3>
 														<div id="Exemple2" class="collapse">
 															To generate the list of <b>active platforms</b>
 															monitoring the <b>dissolved oxygen</b>, here the
-															dedicated URL:<i><b>[ROOT]/api/rest/1.0/platforms.xml/find?status=active&variable=doxy</b></i>
+															dedicated URL:<br> <center><i><b>[ROOT]/api/rest/1.0/platforms.xml/find?status=ACTIVE&variable=DOXY</b></i></center>
 															<br> Below is the output of the example URL:<br>
 															<div id=display_exemple2 " align="justify">
 																<pre>
@@ -250,11 +271,15 @@
 	... Additional results truncated in this example[] ...
 &lt;/platforms&gt;</code>
 																</pre>
-																In the URL of the example above the
-																parameter “<b>status</b>” has the value of “<b>active</b>” standing
-																for “<b>active platform</b>” and the parameter
-																“<b>variable</b>” has the value of “<b>doxy</b>” standing for
-																“<b>dissolved oxygen</b>”.
+																In the URL of the example above the parameter “<b>status</b>”
+																has the value of “<b>ACTIVE</b>” standing for an “<b>active
+																	platform</b>” and the parameter “<b>variable</b>” has the
+																value of “<b>DOXY</b>” standing for “<b>dissolved
+																	oxygen</b>”. The previous URL is equivalent to:
+																[ROOT]/api/rest/1.0/platforms.xml/find?status=3&variable=33
+																in this URL we replaced the short names's values of
+																status and variable ("ACTIVE" and "DOXY") and their
+																corresponding IDs ("3" and "33").
 															</div>
 														</div>
 													</div>
