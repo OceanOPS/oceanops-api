@@ -69,7 +69,7 @@
 					<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
 						<h2>
 							<a href="#ListingThePlatforms" data-toggle="collapse">
-								1.Listing the platforms</a>
+								1.Listing the observation platforms</a>
 						</h2>
 						<div id="ListingThePlatforms" class="collapse">
 							The list of platforms includes platforms’ “IDs” and their
@@ -80,7 +80,9 @@
 									<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
 										<h3>
 
-											<a href="#ListingAllThePlatforms" data-toggle="collapse"><button type="button" class="btn btn-primary btn-lg" >1.1. Listing all the platforms</button></a>
+											<a href="#ListingAllThePlatforms" data-toggle="collapse"><button
+													type="button" class="btn btn-primary btn-lg">1.1.
+													Listing all the platforms</button></a>
 										</h3>
 										<div id="ListingAllThePlatforms" class="collapse">
 											The total list of all the inventoried platforms can be
@@ -96,7 +98,8 @@
 												<div class="row">
 													<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
 														<h3>
-															<a href="#Exemple1" data-toggle="collapse"><button type="button" class="btn btn-info">Example</button></a>
+															<a href="#Exemple1" data-toggle="collapse"><button
+																	type="button" class="btn btn-info">Example</button></a>
 														</h3>
 														<div id="Exemple1" class="collapse">
 															To generate the global platforms list in json format,
@@ -129,8 +132,9 @@
 								<div class="row">
 									<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
 										<h3>
-											<a href="#ListingFilteredPlatforms" data-toggle="collapse"><button type="button" class="btn btn-primary btn-lg" >1.2.
-												Listing a selected list of platforms using key parameters</button></a>
+											<a href="#ListingFilteredPlatforms" data-toggle="collapse"><button
+													type="button" class="btn btn-primary btn-lg">1.2.
+													Listing a selected list of platforms using key parameters</button></a>
 										</h3>
 										<div id="ListingFilteredPlatforms" class="collapse">
 											A filtered list of platforms can be obtained with a GET
@@ -163,64 +167,75 @@
 															<tr>
 																<td>status</td>
 																<td>The status of the platform</td>
-																<td><button type="submit" name="StatusValues" formtarget="_blank"
-																		class="btn btn-success btn-block">Get statuses</button></td>
+																<td><button type="submit" name="StatusValues"
+																		formtarget="_blank" class="btn btn-success btn-block">Get
+																		statuses</button></td>
 															</tr>
 															<tr>
 																<td>model</td>
 																<td>The model of the platform</td>
 																<td><button type="submit" name="ModelValues"
-																		formtarget="_blank" class="btn btn-success btn-block">Get models</button></td>
+																		formtarget="_blank" class="btn btn-success btn-block">Get
+																		models</button></td>
 															</tr>
 															<tr>
 																<td>type</td>
 																<td>The type of the platform</td>
 																<td><button type="submit" name="TypeValues"
-																		formtarget="_blank" class="btn btn-success btn-block">Get types</button></td>
+																		formtarget="_blank" class="btn btn-success btn-block">Get
+																		types</button></td>
 															</tr>
 															<tr>
 																<td>family</td>
 																<td>The family of the platform</td>
 																<td><button type="submit" name="FamilyValues"
-																		formtarget="_blank" class="btn btn-success btn-block">Get families</button></td>
+																		formtarget="_blank" class="btn btn-success btn-block">Get
+																		families</button></td>
 															</tr>
 															<tr>
 																<td>program</td>
 																<td>The affiliation program(s) of the platform</td>
 																<td><button type="submit" name="ProgramValues"
-																		formtarget="_blank" class="btn btn-success btn-block">Get programs</button></td>
+																		formtarget="_blank" class="btn btn-success btn-block">Get
+																		programs</button></td>
 															</tr>
 															<tr>
 																<td>masterProgram</td>
 																<td>The affiliation master program(s) of the
 																	platform</td>
-																		<td><button type="submit" name="MasterProgramValues"
-																		formtarget="_blank" class="btn btn-success btn-block">Get master programs</button></td>
+																<td><button type="submit"
+																		name="MasterProgramValues" formtarget="_blank"
+																		class="btn btn-success btn-block">Get master
+																		programs</button></td>
 															</tr>
 															<tr>
 																<td>network</td>
 																<td>The affiliation network of the platform</td>
-																	<td><button type="submit" name="NetworkValues"
-																		formtarget="_blank" class="btn btn-success btn-block">Get networks</button></td>
+																<td><button type="submit" name="NetworkValues"
+																		formtarget="_blank" class="btn btn-success btn-block">Get
+																		networks</button></td>
 															</tr>
 															<tr>
 																<td>variable</td>
 																<td>The variable(s) monitored by the platform’s
 																	sensor(s)</td>
-																	<td><button type="submit" name="VariableValues"
-																		formtarget="_blank" class="btn btn-success btn-block">Get variables</button></td>
+																<td><button type="submit" name="VariableValues"
+																		formtarget="_blank" class="btn btn-success btn-block">Get
+																		variables</button></td>
 															</tr>
 															<tr>
 																<td>sensorModel</td>
 																<td>The platform’s sensor(s) model(s)</td>
-																		<td><button type="submit" name="SensorModelValues"
-																		formtarget="_blank" class="btn btn-success btn-block">Get sensor models</button></td>
+																<td><button type="submit" name="SensorModelValues"
+																		formtarget="_blank" class="btn btn-success btn-block">Get
+																		sensor models</button></td>
 															</tr>
 															<tr>
 																<td>sensorType</td>
 																<td>The platform’s sensor(s) type(s)</td>
-																		<td><button type="submit" name="SensorTypeValues"
-																		formtarget="_blank" class="btn btn-success btn-block">Get sensor types</button></td>
+																<td><button type="submit" name="SensorTypeValues"
+																		formtarget="_blank" class="btn btn-success btn-block">Get
+																		sensor types</button></td>
 															</tr>
 															<tr>
 																<td></td>
@@ -235,20 +250,24 @@
 													A search parameter's value corresponds to either an
 													identification number (<b>ID</b>) or a non-sensitive caps
 													string (<b>Short Name</b> ). The values that can each
-													parameter take are listed in the tables you can find
-													through the links below.
+													parameter take are listed in the corresponding links in
+													table 1 (Get parameter button).
 												</div>
 											</form>
 											<div class=jumbotron>
 												<div class="row">
 													<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
 														<h3>
-															<a href="#Exemple2" data-toggle="collapse"><button type="button" class="btn btn-info">Example</button></a>
+															<a href="#Exemple2" data-toggle="collapse"><button
+																	type="button" class="btn btn-info">Example</button></a>
 														</h3>
 														<div id="Exemple2" class="collapse">
 															To generate the list of <b>active platforms</b>
 															monitoring the <b>dissolved oxygen</b>, here the
-															dedicated URL:<br> <center><i><b>[ROOT]/api/rest/1.0/platforms.xml/find?status=ACTIVE&variable=DOXY</b></i></center>
+															dedicated URL:<br>
+															<center>
+																<i><b>[ROOT]/api/rest/1.0/platforms.xml/find?status=ACTIVE&variable=DOXY</b></i>
+															</center>
 															<br> Below is the output of the example URL:<br>
 															<div id=display_exemple2 " align="justify">
 																<pre>
@@ -275,11 +294,10 @@
 																has the value of “<b>ACTIVE</b>” standing for an “<b>active
 																	platform</b>” and the parameter “<b>variable</b>” has the
 																value of “<b>DOXY</b>” standing for “<b>dissolved
-																	oxygen</b>”. The previous URL is equivalent to:
-																[ROOT]/api/rest/1.0/platforms.xml/find?status=3&variable=33
-																in this URL we replaced the short names's values of
-																status and variable ("ACTIVE" and "DOXY") and their
-																corresponding IDs ("3" and "33").
+																	oxygen</b>”. The previous URL is equivalent to:<br> <b>[ROOT]/api/rest/1.0/platforms.xml/find?status=3&variable=33</b><br>
+																Where in this URL we replaced the short names's values
+																of status and variable ("ACTIVE" and "DOXY") and
+																assigned their corresponding IDs ("3" and "33").
 															</div>
 														</div>
 													</div>
@@ -293,17 +311,98 @@
 					</div>
 				</div>
 			</div>
-			<!-- 1. Listing the platforms Listing the platforms Listing the platforms -->
+
+
+			<!-- 2. Platform's details -->
 			<div class=jumbotron>
 				<div class="row">
 					<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
 						<h2>
-							<a href="#GettingPtfDetails" data-toggle="collapse"> 2.
-								Getting the details of a platform </a>
+							<a href="#ListingPlatformsDetails" data-toggle="collapse">2.
+								Getting the details of a referenced platform</a>
 						</h2>
+						<div id="ListingPlatformsDetails" class="collapse">
+							The platform details metadata include a number of essential
+							information on a platform (only some of them are listed in table
+							1). A platform details can be obtained with a GET request using
+							the following dedicated URL pattern:<br>
+							<center>
+								<i><b>[ROOT][/]api[/]rest[/]X.Y[/] platform.format[/]ID</b></i>
+							</center>
+							Where "ID" is the identification number of the platform. Beware
+							of the singular form of “platform” in the URL string
+							platform.format compared to the previous examples (platforms
+							listing).
+							<div class=jumbotron>
+								<div class="row">
+									<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
+										<h3>
+											<a href="#Exemple3" data-toggle="collapse"><button
+													type="button" class="btn btn-info">Example</button></a>
+										</h3>
+										<div id="Exemple3" class="collapse">
+											To generate the details information of platform (id=498692)
+											in xml output. This platform was identified in the previous
+											section's example as “<b>active</b>” and including a sensor
+											measuring “<b>dissolved oxygen</b>”. Here the dedicated URL
+											for this example: :<br>
+											<center>
+												<i><b>[ROOT]/api/rest/1.0/platform.xml/498692</b></i>
+											</center>
+											<br> Below is the output of the example URL:<br>
+											<div id=display_exemple2 " align="justify">
+												<pre>
+																	<code>&lt;platform id="498692"&gt;
+	&lt;jcommpsRef&gt;1901467&lt;/jcommpsRef&gt;
+	&lt;ptfFamily id="2"&gt;...&lt;/ptfFamily&gt;
+	&lt;ptfType id="26"&gt;...&lt;/ptfType&gt;
+	&lt;ptfModel id="1222"&gt;...&lt;/ptfModel&gt;
+	&lt;ptfStatus id="3"&gt;...&lt;/ptfStatus&gt;
+	&lt;deployement id="49917"&gt;...&lt;/deployement&gt;
+	&lt;lastLocation id="70653874"&gt;
+		&lt;lastLocationDate&gt;2015-08-13T06:37:32Z&lt;/lastLocationDate&gt;
+		&lt;lat&gt;13.017&lt;/lat&gt;
+		&lt;lon&gt;-64.97&lt;/lon&gt;
+	&lt;/lastLocation&gt;
+	&lt;program id="58"&gt;
+		&lt;name&gt;Argo WHOI&lt;/name&gt;
+		&lt;active&gt;1&lt;/active&gt;
+		&lt;agencies&gt;
+			&lt;agency id="24"&gt;
+				&lt;name&gt;Woods Hole Oceanographic Institution&lt;/name&gt;
+				&lt;nameShort&gt;WHOI&lt;/nameShort&gt;
+			&lt;/agency&gt;
+		&lt;/agencies&gt;
+	&lt;/program&gt;
+	&lt;country id="66"&gt;...&lt;/country&gt;
+	&lt;masterProgramme id="0"&gt;...&lt;/masterProgramme&gt;
+	&lt;contacts&gt;...&lt;/contacts&gt;
+	&lt;variables&gt;
+		&lt;variable id="1"&gt;
+			&lt;name&gt;Sea Water Salinity&lt;/name&gt;
+			&lt;nameShort&gt;SUB_SAL&lt;/nameShort&gt;
+		&lt;/variable&gt;
+		&lt;variable id="31"&gt;
+			&lt;name&gt;Sea Water Temperature&lt;/name&gt;
+			&lt;nameShort&gt;SUB_T&lt;/nameShort&gt;
+		&lt;/variable&gt;
+		&lt;variable id="33"&gt;
+			&lt;name&gt;Dissolved Oxygen&lt;/name&gt;
+			&lt;nameShort&gt;DOXY&lt;/nameShort&gt;
+		&lt;/variable&gt;
+	&lt;/variables&gt;
+&lt;/platform&gt;</code>
+																</pre>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
+
 
 			<br>
 		</div>
