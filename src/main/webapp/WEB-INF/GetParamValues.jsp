@@ -56,10 +56,11 @@
 
 	<!-- CONTAINERS -->
 	<div class="container">
-
+<%String parameter= (String) request.getAttribute("parameter"); %>
+<%String parameter_name= (String) request.getAttribute("parameter_name"); %>
 		<div class="page-header">
 			<center>
-				<h3>Variables</h3>
+				<h3><%= request.getAttribute("parameter_name") %></h3>
 
 			</center>
 
@@ -69,7 +70,7 @@
 				<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
 
 					<div class="table-responsive">
-						<table class="table" id="table">
+						<table class="table" id="table" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
 							<thead>
 								<tr>
 									<td></td>
@@ -99,19 +100,23 @@
 			</div>
 		</div>
 
+
 		<script>
+	
+		var param ="<%=parameter%>";
+		var root= 'http://localhost:8081/jcommops-api/api/rest/1.0/';
 			$
-					.ajax({
-						url : 'http://localhost:8081/jcommops-api/api/rest/1.0/variables.json',
-						type : 'GET',
-				        dataType : 'json',
+			.ajax({
+				url : root.concat(param),
+				type : 'GET',
+		        dataType : 'json',
 						cache : false,
 						success : function(data) {
 					/* 		var tableRef = document.getElementById('table').getElementsByTagName('tbody')[0];
 							var c = document.body.children;
 							console.log(c); */
-							var row;
-						row=$("");
+						
+						
 							$(data).each(
 									function(index, value) {
 										
@@ -121,9 +126,13 @@
 												+ "<td>" + value.name + "</td>"
 												+ "<td>" + value.description
 												+ "</td>" + "</tr>");
-															});		
+															});	
+						
+							
 						}
+		
 					});
+	
 		</script>
 
 	</div>
