@@ -23,7 +23,7 @@
 
 <!-- Set the page to the width of the device and set the zoon level -->
 <meta name="viewport" content="width = device-width, initial-scale = 1">
-<title>JCOMMOPS RESTful Web Application</title>
+<title>JCOMMOPS REST Web Application</title>
 <link rel="stylesheet" type="text/css"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -60,7 +60,7 @@
 <%String parameter_name= (String) request.getAttribute("parameter_name"); %>
 		<div class="page-header">
 			<center>
-				<h3><%= request.getAttribute("parameter_name") %></h3>
+				<h3><%=parameter_name%></h3>
 
 			</center>
 
@@ -70,7 +70,7 @@
 				<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
 
 					<div class="table-responsive">
-						<table class="table" id="table" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+						<table class="table" id="table">
 							<thead>
 								<tr>
 									<td></td>
@@ -84,11 +84,7 @@
 								</tr>
 							</thead>
 
-							<tbody>
-
-							</tbody>
-
-
+					
 
 						</table>
 					</div>
@@ -99,42 +95,39 @@
 				<p style="font-size: 80%;">(*) Parameters used in the search URL</p>
 			</div>
 		</div>
-
-
+</div>
 		<script>
-	
-		var param ="<%=parameter%>";
-		var root= 'http://localhost:8081/jcommops-api/api/rest/1.0/';
-			$
-			.ajax({
-				url : root.concat(param),
-				type : 'GET',
-		        dataType : 'json',
-						cache : false,
-						success : function(data) {
-					/* 		var tableRef = document.getElementById('table').getElementsByTagName('tbody')[0];
-							var c = document.body.children;
-							console.log(c); */
-						
-						
-							$(data).each(
-									function(index, value) {
-										
-										$('table tr:last').after("<tr>" + "<td>"
-												+ value.id + "</td>" + "<td>"
-												+ value.nameShort + "</td>"
-												+ "<td>" + value.name + "</td>"
-												+ "<td>" + value.description
-												+ "</td>" + "</tr>");
-															});	
-						
-							
-						}
+		var $pn="<%=parameter%>";
 		
-					});
+$.ajax({
 	
-		</script>
+	url: 'http://localhost:8081/jcommops-api/api/rest/1.0/'+$pn,
+	dataType: 'json',
+	type: 'get',
+	cache: false,
+	success: function(data) {
+		var tableau;
+		tableau=$("<tbody>");
 
-	</div>
+			$(data).each(function(index, value){
+				/* console.log(value.id); */
+				tableau.append("<tr>"+"<td>"+value.id+"</td>"+"<td>"+value.nameShort+"</td>"+"<td>"+value.name+"</td>"+"<td>"+value.description+"</td>"+"</tr>");
+			/* 	console.log("index= "+ index);
+				console.log("data size= "+ data.length); */
+				/*
+				if (index===(data.length-1)) {
+					tableau.append("</tbody>");
+							}*/
+							
+			$("table").append(tableau); 
+			
+		});
+			 
+/* 			alert($('table').html());
+ */		 	
+	}
+
+});
+</script>
 </body>
 </html>
