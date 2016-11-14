@@ -12,7 +12,7 @@
 
 <!-- Set the page to the width of the device and set the zoon level -->
 <meta name="viewport" content="width = device-width, initial-scale = 1">
-<title>JCOMMOPS RESTful Web Application</title>
+<title>JCOMMOPS REST Web Application</title>
 <link rel="stylesheet" type="text/css"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
