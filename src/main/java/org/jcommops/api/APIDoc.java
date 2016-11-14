@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/help")
 public class APIDoc extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-//	private HttpSession session;
 
 	public APIDoc() {
 		super();
@@ -38,64 +37,86 @@ public class APIDoc extends HttpServlet {
 		
 		if (request.getParameter("StatusValues") != null) {
 
-			getServletContext().getRequestDispatcher("/WEB-INF/StatusValues.jsp").forward(request, response);
+			request.setAttribute("parameter", "ptfStatuses.json");
+			request.setAttribute("parameter_name", "Platform Statuses");
+			getServletContext().getRequestDispatcher("/WEB-INF/GetParamValues.jsp").forward(request, response);
+							
 					
 		}
-			
-		if (request.getParameter("ModelValues") != null) {
-
-			getServletContext().getRequestDispatcher("/WEB-INF/ModelValues.jsp").forward(request, response);
 		
-					
+
+		if (request.getParameter("ModelValues") != null) {
+			request.setAttribute("parameter", "ptfModels.json");
+			request.setAttribute("parameter_name", "Platform Models");
+			getServletContext().getRequestDispatcher("/WEB-INF/GetParamValues.jsp").forward(request, response);
+							
 		}
 		if (request.getParameter("TypeValues") != null) {
 
-			getServletContext().getRequestDispatcher("/WEB-INF/TypeValues.jsp").forward(request, response);
+			request.setAttribute("parameter", "ptfTypes.json");
+			request.setAttribute("parameter_name", "Platform Types");
+			getServletContext().getRequestDispatcher("/WEB-INF/GetParamValues.jsp").forward(request, response);
 		
 					
 		}
 		if (request.getParameter("FamilyValues") != null) {
 
-			getServletContext().getRequestDispatcher("/WEB-INF/FamilyValues.jsp").forward(request, response);
+			request.setAttribute("parameter", "ptfFamilies.json");
+			request.setAttribute("parameter_name", "Platform Families");
+			getServletContext().getRequestDispatcher("/WEB-INF/GetParamValues.jsp").forward(request, response);
 		
 					
 		}
 		
 		if (request.getParameter("NetworkValues") != null) {
 
-			getServletContext().getRequestDispatcher("/WEB-INF/NetworkValues.jsp").forward(request, response);
+			request.setAttribute("parameter", "networks.json");
+			request.setAttribute("parameter_name", "Networks");
+			getServletContext().getRequestDispatcher("/WEB-INF/GetParamValues.jsp").forward(request, response);
 		
 					
 		}
 		if (request.getParameter("ProgramValues") != null) {
 
-			getServletContext().getRequestDispatcher("/WEB-INF/ProgramValues.jsp").forward(request, response);
+			request.setAttribute("parameter", "programs.json");
+			request.setAttribute("parameter_name", "Programes");
+			getServletContext().getRequestDispatcher("/WEB-INF/GetParamValues.jsp").forward(request, response);
 		
 					
 		}
 		if (request.getParameter("MasterProgramValues") != null) {
 
-			getServletContext().getRequestDispatcher("/WEB-INF/MasterProgramValues.jsp").forward(request, response);
+			request.setAttribute("parameter", "masterPrograms.json");
+			request.setAttribute("parameter_name", "Master Programes");
+			getServletContext().getRequestDispatcher("/WEB-INF/GetParamValues.jsp").forward(request, response);
 		
 					
 		}
 		
 		if (request.getParameter("VariableValues") != null) {
 
-			getServletContext().getRequestDispatcher("/WEB-INF/VariableValues.jsp").forward(request, response);
+			request.setAttribute("parameter", "variables.json");
+			request.setAttribute("parameter_name", "Variables");
+			getServletContext().getRequestDispatcher("/WEB-INF/GetParamValues.jsp").forward(request, response);
+		
 		
 					
 		}
 		if (request.getParameter("SensorModelValues") != null) {
 
-			getServletContext().getRequestDispatcher("/WEB-INF/SensorModelValues.jsp").forward(request, response);
+			request.setAttribute("parameter", "sensorModels.json");
+			request.setAttribute("parameter_name", "Sensor Models");
+			getServletContext().getRequestDispatcher("/WEB-INF/GetParamValues.jsp").forward(request, response);
 		
 					
 		}
 		
 		if (request.getParameter("SensorTypeValues") != null) {
 
-			getServletContext().getRequestDispatcher("/WEB-INF/SensorTypeValues.jsp").forward(request, response);
+			request.setAttribute("parameter", "sensorTypes.json");
+			request.setAttribute("parameter_name", "Sensor Types");
+			getServletContext().getRequestDispatcher("/WEB-INF/GetParamValues.jsp").forward(request, response);
+		
 		
 					
 		}
