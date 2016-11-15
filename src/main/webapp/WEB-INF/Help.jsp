@@ -43,7 +43,9 @@
 
 	<!-- CONTAINERS -->
 	<div class="container">
-<%String uri= (String) request.getAttribute("uri"); %>  
+		<%
+			String uri = (String) request.getAttribute("uri");
+		%>
 		<div class="page-header">
 			<center>
 				<h1>Documentation: JCOMMOPS REST Web Application (V 1.0)</h1>
@@ -56,10 +58,11 @@
 						<h2>
 							<a href="#AboutTheAPI" data-toggle="collapse">About the API</a>
 						</h2>
-						<div id="AboutTheAPI" class="collapse">JCOMMOPS Web Service
-							API is a REST-like API designed to distribute metadata, in
-							interoperable and ready-to-use formats, to integrate other
-							software (usually under machine to machine schema).</div>
+						<!-- <div id="AboutTheAPI" class="collapse"> -->
+						<div id="AboutTheAPI">JCOMMOPS Web Service API is a
+							REST-like API designed to distribute metadata, in interoperable
+							and ready-to-use formats, to integrate other software (usually
+							under machine to machine schema).</div>
 					</div>
 				</div>
 			</div>
@@ -68,10 +71,12 @@
 				<div class="row">
 					<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
 						<h2>
-							<a href="#ListingThePlatforms" data-toggle="collapse">
-								1.Listing the observation platforms</a>
+							<a href="#ListingThePlatforms" data-toggle="collapse"> <!-- <a href="#ListingThePlatforms" data-toggle="collapse"> -->
+								1.Listing the observation platforms
+							</a>
 						</h2>
-						<div id="ListingThePlatforms" class="collapse">
+						<div id="ListingThePlatforms">
+							<!-- <div id="ListingThePlatforms" class="collapse"> -->
 							The list of platforms includes platforms’ “IDs” and their
 							corresponding “JCOMMOPS-References” <br>
 							<!-- 1.1. Listing all the platforms  Listing all the platforms  Listing all the platforms -->
@@ -79,16 +84,17 @@
 								<div class="row">
 									<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
 										<h3>
-
-											<a href="#ListingAllThePlatforms" data-toggle="collapse"><button
-													type="button" class="btn btn-primary btn-lg">1.1.
-													Listing all the platforms</button></a>
+											
+												<a href="#ListingAllThePlatforms" data-toggle="collapse"><button
+														type="button" class="btn btn-primary btn-lg">1.1.
+														Listing all the platforms</button></a>
 										</h3>
-										<div id="ListingAllThePlatforms" class="collapse">
+										<!-- <div id="ListingAllThePlatforms" class="collapse"> -->
+										<div id="ListingAllThePlatforms" >
 											The total list of all the inventoried platforms can be
 											obtained with a GET request using the following URL pattern:<br>
 											<center>
-												<i><b>[ROOT][/]api[/]rest[/]X.Y[/] platforms.format</b></i>
+												<i><b>[ROOT][/]X.Y[/] platforms.format</b></i>
 											</center>
 											Where “X.Y” string path is the version of the API (current
 											version is 1.0) and “format” in “platforms.format” string
@@ -103,8 +109,8 @@
 														</h3>
 														<div id="Exemple1" class="collapse">
 															To generate the global platforms list in json format,
-															here the dedicated URL: <i><b>[ROOT]/api/rest/1.0/platforms.json</b></i>
-															<br> Below is the output of the example URL:<br>
+															here the dedicated URL: <center><i><%=uri %>platforms.json</i></center>
+															 Below is a truncated output of the example URL:<br>
 															<div id=display_exemple1 " align="justify">
 
 																<pre>
@@ -132,16 +138,18 @@
 								<div class="row">
 									<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
 										<h3>
+										
 											<a href="#ListingFilteredPlatforms" data-toggle="collapse"><button
 													type="button" class="btn btn-primary btn-lg">1.2.
 													Listing a selected list of platforms using key parameters</button></a>
 										</h3>
-										<div id="ListingFilteredPlatforms" class="collapse">
+										<!-- <div id="ListingFilteredPlatforms" class="collapse"> -->
+										<div id="ListingFilteredPlatforms">
 											A filtered list of platforms can be obtained with a GET
 											request using this URL pattern:<br>
 											<center>
 												<i><b>[ROOT][/]
-														api[/]rest[/]X.Y[/]platforms.format[/]
+														X.Y[/]platforms.format[/]
 														find?parm1=value1&parm2=value2&...</b></i>
 											</center>
 											Where parm1, parm2…param(i) respresent the query parameters
@@ -264,11 +272,11 @@
 														<div id="Exemple2" class="collapse">
 															To generate the list of <b>active platforms</b>
 															monitoring the <b>dissolved oxygen</b>, here the
-															dedicated URL:<br>
+															dedicated URL:
 															<center>
-																<i><b>[ROOT]/api/rest/1.0/platforms.xml/find?status=ACTIVE&variable=DOXY</b></i>
+																<i><%=uri %>platforms.xml/find?status=ACTIVE&variable=DOXY</i>
 															</center>
-															<br> Below is the output of the example URL:<br>
+															Below is a truncated output of the example URL:<br>
 															<div id=display_exemple2 " align="justify">
 																<pre>
 																	<code>&lt;platforms&gt;
@@ -294,7 +302,8 @@
 																has the value of “<b>ACTIVE</b>” standing for an “<b>active
 																	platform</b>” and the parameter “<b>variable</b>” has the
 																value of “<b>DOXY</b>” standing for “<b>dissolved
-																	oxygen</b>”. The previous URL is equivalent to:<br> <b>[ROOT]/api/rest/1.0/platforms.xml/find?status=3&variable=33</b><br>
+																	oxygen</b>”. The previous URL is equivalent to: <center>
+																<i><%=uri %>platforms.xml/find?status=3&variable=33</i></center>
 																Where in this URL we replaced the short names's values
 																of status and variable ("ACTIVE" and "DOXY") and
 																assigned their corresponding IDs ("3" and "33").
@@ -318,15 +327,17 @@
 				<div class="row">
 					<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
 						<h2>
-							<a href="#ListingPlatformsDetails" data-toggle="collapse">2. Getting the details of a referenced platform</a>
+							<a href="#ListingPlatformsDetails" data-toggle="collapse">2.
+								Getting the details of a referenced platform</a>
 						</h2>
-						<div id="ListingPlatformsDetails" class="collapse">
+						<!-- <div id="ListingPlatformsDetails" class="collapse"> -->
+						<div id="ListingPlatformsDetails" >
 							The platform details metadata include a number of essential
 							information on a platform (only some of them are listed in table
 							1). A platform details can be obtained with a GET request using
 							the following dedicated URL pattern:<br>
 							<center>
-								<i><b>[ROOT][/]api[/]rest[/]X.Y[/] platform.format[/]ID</b></i>
+								<i><b>[ROOT][/]X.Y[/] platform.format[/]ID</b></i>
 							</center>
 							Where "ID" is the identification number of the platform. Beware
 							of the singular form of “platform” in the URL string
@@ -344,11 +355,11 @@
 											in xml output. This platform was identified in the previous
 											section's example as “<b>active</b>” and including a sensor
 											measuring “<b>dissolved oxygen</b>”. Here the dedicated URL
-											for this example: :<br>
+											for this example: :
 											<center>
-												<i><b>[ROOT]/api/rest/1.0/platform.xml/498692</b></i>
+												<i><%=uri %>platform.xml/498692</i>
 											</center>
-											<br> Below is the output of the example URL:<br>
+											Below is a truncated output of the example URL:<br>
 											<div id=display_exemple2 " align="justify">
 												<pre>
 																	<code>&lt;platform id="498692"&gt;
