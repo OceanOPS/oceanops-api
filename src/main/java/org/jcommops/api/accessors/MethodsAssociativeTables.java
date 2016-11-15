@@ -67,7 +67,6 @@ public class MethodsAssociativeTables {
 	
 	public ArrayList<ContactPrg> FindProgramContacts (long prgm_id) {
 
-		 
 		SQLTemplate query2 = new SQLTemplate(ProgramContact.class, "select DISTINCT CONTACT_ID cnt_id from Program_Contact where Program_ID="+prgm_id);
 	    SQLResult resultDescriptor = new SQLResult();
 	    resultDescriptor.addColumnResult("cnt_id");

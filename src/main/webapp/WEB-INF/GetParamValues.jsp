@@ -56,7 +56,9 @@
 
 	<!-- CONTAINERS -->
 	<div class="container">
+	<form name="GetParamVal" method="POST">
 <%String parameter= (String) request.getAttribute("parameter"); %>
+<%String uri= (String) request.getAttribute("uri"); %>       
 <%String parameter_name= (String) request.getAttribute("parameter_name"); %>
 		<div class="page-header">
 			<center>
@@ -93,15 +95,19 @@
 
 				</div>
 				<p style="font-size: 80%;">(*) Parameters used in the search URL</p>
+			<%-- 	<br> <p style="font-size: 80%;">"<%=uri%><%=parameter%>"  </p> --%>
 			</div>
 		</div>
+		</form>
 </div>
 		<script>
-		var $pn="<%=parameter%>";
+		
+		var $paramter_uri="<%=parameter%>";
+		var $root_uri="<%=uri%>";
 		
 $.ajax({
 	
-	url: 'http://localhost:8081/jcommops-api/api/rest/1.0/'+$pn,
+	url: $root_uri+$paramter_uri,
 	dataType: 'json',
 	type: 'get',
 	cache: false,
