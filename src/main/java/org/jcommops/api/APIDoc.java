@@ -6,7 +6,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class 
@@ -19,9 +18,13 @@ public class APIDoc extends HttpServlet {
 		super();
 	}
 
+	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		String uri = request.getScheme() + "://" + request.getServerName()+  ":" + request.getServerPort() + request.getRequestURI().replace("/help","/") ;   
+		request.setAttribute("uri", uri);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/Help.jsp").forward(request, response);
 	}
 
@@ -31,12 +34,10 @@ public class APIDoc extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		
-		
-		
+		String uri = request.getScheme() + "://" + request.getServerName()+  ":" + request.getServerPort() + request.getRequestURI().replace("/help","/") ;   
+		request.setAttribute("uri", uri);
+	
 		if (request.getParameter("StatusValues") != null) {
-
 			request.setAttribute("parameter", "ptfStatuses.json");
 			request.setAttribute("parameter_name", "Platform Statuses");
 			getServletContext().getRequestDispatcher("/WEB-INF/GetParamValues.jsp").forward(request, response);

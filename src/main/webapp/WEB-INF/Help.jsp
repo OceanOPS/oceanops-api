@@ -43,7 +43,7 @@
 
 	<!-- CONTAINERS -->
 	<div class="container">
-
+<%String uri= (String) request.getAttribute("uri"); %>  
 		<div class="page-header">
 			<center>
 				<h1>Documentation: JCOMMOPS REST Web Application (V 1.0)</h1>
@@ -318,8 +318,7 @@
 				<div class="row">
 					<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
 						<h2>
-							<a href="#ListingPlatformsDetails" data-toggle="collapse">2.
-								Getting the details of a referenced platform</a>
+							<a href="#ListingPlatformsDetails" data-toggle="collapse">2. Getting the details of a referenced platform</a>
 						</h2>
 						<div id="ListingPlatformsDetails" class="collapse">
 							The platform details metadata include a number of essential
