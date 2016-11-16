@@ -582,7 +582,7 @@ public class PlatformAccessor {
 			if (ptf_status.matches("^-?\\d+$")) {
 				query_status = "intersect select * from PTF where PTF_STATUS_ID=" + Integer.parseInt(ptf_status);
 			} else {
-				query_status = "intersect select * from PTF where PTF_STATUS_ID IN (select ID from PTF_STATUS where UPPER(NAME_SHORT)='"
+				query_status =  "intersect select * from PTF where PTF_STATUS_ID IN (select ID from PTF_STATUS where UPPER(NAME_SHORT)='"
 						+ ptf_status.toUpperCase() + "')";
 			}
 
