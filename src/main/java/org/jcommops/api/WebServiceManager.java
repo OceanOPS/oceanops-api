@@ -1,6 +1,8 @@
 package org.jcommops.api;
 
+import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -67,6 +69,34 @@ public class WebServiceManager {
 	}
 
 	@GET
+	@Path("platforms.csv")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getAllPtfsCSV() {
+		PlatformAccessor m = new PlatformAccessor();
+		ArrayList<Platform> foundPlatforms = new ArrayList<Platform>();
+		StringWriter strW = new StringWriter();
+		strW.write("platformId" + ";" + "jcommpsRef" + "\n");
+		try {
+			foundPlatforms = m.getAllPtfs();
+			Iterator<Platform> ptf_itr = foundPlatforms.iterator();
+
+			while (ptf_itr.hasNext()) {
+				Platform a = ptf_itr.next();
+				strW.write(a.getId() + ";" + a.getJcommpsRef() + "\n");
+			}
+		}
+
+		catch (CayenneRuntimeException CRE) {
+			strW.write(" Error: Database temporarily inaccessible.");
+		}
+		String strFoundPlatforms = strW.toString();
+		return strFoundPlatforms;
+		// example
+		// http://localhost:8081/jcommops-api/api/rest/1.0/platforms.csv
+
+	}
+
+	@GET
 	@Path("platform.xml/{id}")
 	public Platform getPtfbyIdXML(@PathParam("id") long id) {
 
@@ -107,6 +137,40 @@ public class WebServiceManager {
 		return ptfm;
 		// example
 		// http://localhost:8081/jcommops-api/api/rest/1.0/platform.json/501356
+
+	}
+
+	@GET
+	@Path("platform.csv/{id}")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getPtfbyIdCSV(@PathParam("id") long id) {
+
+		PlatformAccessor m = new PlatformAccessor();
+		Platform ptfm = new Platform();
+		StringWriter strW = new StringWriter();
+		strW.write("platformId" + ";" + "jcommpsRef" + ";" + "ptfFamily" + ";" + "ptfType" + ";" + "ptfModel" + ";"
+				+ "deployementDate" + ";" + "lastLocationDate" + ";" + "lastLocationLatitude" + ";"
+				+ "lastLocationLongitude" + ";" + "program" + ";" + "country" + ";" + "masterProgramme" + ";"
+				+ "variables" + "\n");
+
+		try {
+			ptfm = m.getPtfbyID(id);
+
+			strW.write(ptfm.getId() + ";" + ptfm.getJcommpsRef() + ";" + ptfm.getPtfFamily().getNameShort() + ";"
+					+ ptfm.getPtfType().getNameShort() + ";" + ptfm.getPtfModel().getNameShort() + ";"
+					+ ptfm.getDeployement().getDeployementDate() + ";" + ptfm.getLastLocation().getLastLocationDate() + ";" + ptfm.getLastLocation().getLat()
+					+ ";" + ptfm.getLastLocation().getLon() + ";" + ptfm.getProgram().getName()+ ";" + ptfm.getCountry().getName()
+					+ ";" + ptfm.getMasterProgramme().getName() + ";" + Utils.GetVariablesListToString(ptfm.getVariables()) + "\n");
+
+		}
+
+		catch (CayenneRuntimeException CRE) {
+			strW.write("Error: Database temporarily inaccessible.");
+		}
+		String strptfm = strW.toString();
+		return strptfm;
+		// example
+		// http://localhost:8081/jcommops-api/api/rest/1.0/platform.xml/501356
 
 	}
 
@@ -196,6 +260,53 @@ public class WebServiceManager {
 
 		// example
 		// http://localhost:8081/jcommops-api/api/rest/1.0/platforms.json/find?status=ACTIVE&family=ICE_BUOYS&type=AXIB&model=AXIB&masterProgram=DBCP&variable=SST
+	}
+
+	@GET
+	@Path("platforms.csv/find")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getSelectedPlatformsCSV(@QueryParam("status") String status, @QueryParam("family") String family,
+			@QueryParam("type") String type, @QueryParam("model") String model, @QueryParam("program") String program,
+			@QueryParam("network") String network, @QueryParam("masterProgram") String masterprg,
+			@QueryParam("variable") String variable, @QueryParam("sensorModel") String sensormod,
+			@QueryParam("sensorType") String sensortyp) {
+
+		PlatformAccessor m = new PlatformAccessor();
+		ArrayList<Platform> foundPlatforms = new ArrayList<Platform>();
+		StringWriter strW = new StringWriter();
+		strW.write("platformId" + ";" + "jcommpsRef" + "\n");
+		try {
+			foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable,
+					sensormod, sensortyp);
+
+			Iterator<Platform> ptf_itr = foundPlatforms.iterator();
+
+			while (ptf_itr.hasNext()) {
+				Platform a = ptf_itr.next();
+				strW.write(a.getId() + ";" + a.getJcommpsRef() + "\n");
+			}
+
+			if (foundPlatforms.size() == 0) {
+				strW.write("No platform found.");
+
+			}
+		}
+
+		catch (StringIndexOutOfBoundsException str) {
+			strW.write(
+					"Error: Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterProgram', 'variable', 'sensorModel' "
+							+ "or 'sensorType' parameter.");
+
+		}
+
+		catch (CayenneRuntimeException CRE) {
+			strW.write(" Error: Database temporarily inaccessible.");
+		}
+		String strFoundPlatforms = strW.toString();
+		return strFoundPlatforms;
+
+		// example
+		// http://localhost:8081/jcommops-api/api/rest/1.0/platforms.csv/find?status=ACTIVE&family=ICE_BUOYS&type=AXIB&model=AXIB&masterProgram=DBCP&variable=SST
 	}
 
 	@GET
@@ -346,7 +457,7 @@ public class WebServiceManager {
 			List.add(ptf0);
 		}
 		return List;
-		//http://localhost:8081/jcommops-api/api/rest/1.0/programs.xml
+		// http://localhost:8081/jcommops-api/api/rest/1.0/programs.xml
 	}
 
 	@GET
@@ -365,7 +476,7 @@ public class WebServiceManager {
 		return List;
 		// http://localhost:8081/jcommops-api/api/rest/1.0/programs.json
 	}
-	
+
 	@GET
 	@Path("masterPrograms.xml")
 	public ArrayList<MasterProgramPtf> getAllPtfPtfMasterProgramsXML() {
@@ -379,7 +490,7 @@ public class WebServiceManager {
 			List.add(ptf0);
 		}
 		return List;
-		//http://localhost:8081/jcommops-api/api/rest/1.0/masterPrograms.xml
+		// http://localhost:8081/jcommops-api/api/rest/1.0/masterPrograms.xml
 	}
 
 	@GET
@@ -398,7 +509,7 @@ public class WebServiceManager {
 		return List;
 		// http://localhost:8081/jcommops-api/api/rest/1.0/masterPrograms.json
 	}
-	
+
 	@GET
 	@Path("networks.xml")
 	public ArrayList<NetworkPtf> getAllPtfNetworksXML() {
@@ -412,7 +523,7 @@ public class WebServiceManager {
 			List.add(ptf0);
 		}
 		return List;
-		//http://localhost:8081/jcommops-api/api/rest/1.0/PtfNetworks.xml
+		// http://localhost:8081/jcommops-api/api/rest/1.0/PtfNetworks.xml
 	}
 
 	@GET
@@ -429,10 +540,9 @@ public class WebServiceManager {
 			List.add(ptf0);
 		}
 		return List;
-		//http://localhost:8081/jcommops-api/api/rest/1.0/network.json
+		// http://localhost:8081/jcommops-api/api/rest/1.0/network.json
 	}
-	
-	
+
 	@GET
 	@Path("sensorModels.xml")
 	public ArrayList<SensorModel> getAllPtfSensorModelsXML() {
@@ -446,7 +556,7 @@ public class WebServiceManager {
 			List.add(ptf0);
 		}
 		return List;
-		//http://localhost:8081/jcommops-api/api/rest/1.0/sensorModels.xml
+		// http://localhost:8081/jcommops-api/api/rest/1.0/sensorModels.xml
 	}
 
 	@GET
@@ -463,9 +573,9 @@ public class WebServiceManager {
 			List.add(ptf0);
 		}
 		return List;
-		//http://localhost:8081/jcommops-api/api/rest/1.0/sensorModels.json
+		// http://localhost:8081/jcommops-api/api/rest/1.0/sensorModels.json
 	}
-	
+
 	@GET
 	@Path("sensorTypes.xml")
 	public ArrayList<SensorType> getAllPtfSensorTypesXML() {
@@ -479,7 +589,7 @@ public class WebServiceManager {
 			List.add(ptf0);
 		}
 		return List;
-		//http://localhost:8081/jcommops-api/api/rest/1.0/sensorTypes.xml
+		// http://localhost:8081/jcommops-api/api/rest/1.0/sensorTypes.xml
 	}
 
 	@GET
@@ -496,9 +606,9 @@ public class WebServiceManager {
 			List.add(ptf0);
 		}
 		return List;
-		//http://localhost:8081/jcommops-api/api/rest/1.0/sensorTypes.json
+		// http://localhost:8081/jcommops-api/api/rest/1.0/sensorTypes.json
 	}
-	
+
 	@GET
 	@Path("variables.xml")
 	public ArrayList<Variable> getAllVariablesXML() {
@@ -512,7 +622,7 @@ public class WebServiceManager {
 			List.add(ptf0);
 		}
 		return List;
-		//http://localhost:8081/jcommops-api/api/rest/1.0/variables.xml
+		// http://localhost:8081/jcommops-api/api/rest/1.0/variables.xml
 	}
 
 	@GET
@@ -529,8 +639,7 @@ public class WebServiceManager {
 			List.add(ptf0);
 		}
 		return List;
-		//http://localhost:8081/jcommops-api/api/rest/1.0/variables.json
+		// http://localhost:8081/jcommops-api/api/rest/1.0/variables.json
 	}
 
-	
 }
