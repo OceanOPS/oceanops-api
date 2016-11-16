@@ -1,6 +1,9 @@
 package org.jcommops.api;
 
 import java.io.IOException;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -10,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.cayenne.configuration.server.ServerRuntime;
+import org.jcommops.api.entities.AgencyPrg;
+import org.jcommops.api.entities.Platform;
+import org.jcommops.api.entities.Variable;
 
 public class Utils {
 	private static ServerRuntime cayenneRuntime;
@@ -40,6 +46,18 @@ public class Utils {
 
 	}
 	
+	public static String GetVariablesListToString(ArrayList<Variable> Arr) {
+		//method used  to access ArrayList to produce csv (case one to many)
+		StringWriter strW  = new StringWriter() ;
+		 Iterator<Variable> var_itr = Arr.iterator();
+				while (var_itr.hasNext()) {
+				Variable a = var_itr.next();
+								strW.write("{variable (id="+a.getId()+") :"+a.getNameShort()+"} ");				
+				}
+			String str = strW.toString();
+		return str;
+
+	}
 	
 
 }
