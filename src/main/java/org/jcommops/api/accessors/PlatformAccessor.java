@@ -25,6 +25,7 @@ import org.jcommops.api.entities.PlatformType;
 import org.jcommops.api.entities.ProgramPtf;
 import org.jcommops.api.entities.SensorModel;
 import org.jcommops.api.entities.SensorType;
+import org.jcommops.api.entities.Telecom;
 import org.jcommops.api.entities.Variable;
 import org.jcommops.api.orm.Country;
 import org.jcommops.api.orm.MasterProg;
@@ -33,6 +34,8 @@ import org.jcommops.api.orm.Program;
 import org.jcommops.api.orm.Ptf;
 import org.jcommops.api.orm.PtfDeployment;
 import org.jcommops.api.orm.PtfFamily;
+import org.jcommops.api.orm.PtfHardware;
+import org.jcommops.api.orm.PtfIdentifiers;
 import org.jcommops.api.orm.PtfLoc;
 import org.jcommops.api.orm.PtfModel;
 import org.jcommops.api.orm.PtfStatus;
@@ -266,8 +269,9 @@ public class PlatformAccessor {
 
 	}
 
-	public ArrayList<Variable> getPtfVariables() { // List of platforms' variables
-		
+	public ArrayList<Variable> getPtfVariables() { // List of platforms'
+													// variables
+
 		SelectQuery Variable_query = new SelectQuery(org.jcommops.api.orm.Variable.class);
 		List<org.jcommops.api.orm.Variable> Variables = context.performQuery(Variable_query);
 
@@ -305,6 +309,8 @@ public class PlatformAccessor {
 		// Methodes
 		MethodsAssociativeTables MAT = new MethodsAssociativeTables();
 		// Add embedded objects one by one
+		// 0.5) embedded object"Telecom"
+		Telecom telc = new Telecom();
 		// 1) embedded object"PlatformStatus"
 		PlatformStatus ptfs = new PlatformStatus();
 		// 2) embedded object"PlatformModel"
@@ -331,7 +337,26 @@ public class PlatformAccessor {
 
 		try {
 			ptf.getEndingDate();
-			// 1) embedded object"PlatformStatus"
+			// 1.0) embedded object"Telecom"
+			String stringIDptfTelc = platform.getToTelecom1().getObjectId().toString();
+			org.jcommops.api.orm.Telecom telecom = Cayenne.objectForPK(context, org.jcommops.api.orm.Telecom.class,
+					Utils.ConvertIDStringtoLong(stringIDptfTelc));// Get the platform telecom by its PK
+			telc.setId(Cayenne.longPKForObject(telecom));
+			telc.setTelecomType(telecom.getToTelecomType().getName());
+			// Ajouter à platform
+			ptf.setTelecom(telc);
+			 // 1.0.1) embedded attribute InternalRef (from Ptf_Identifiers)
+			String stringIDptfIdent = platform.getToPtfIdentifiers().getObjectId().toString();
+			PtfIdentifiers Identifiers = Cayenne.objectForPK(context, PtfIdentifiers.class,	Utils.ConvertIDStringtoLong(stringIDptfIdent));// Get the platform telecom by its PK
+			// Ajouter à platform
+			ptf.setInternalRef(Identifiers.getInternalRef());
+			// 1.0.2) embedded attribute SerialRef (from Ptf_Hardware)
+			String stringIDptfHard = platform.getToPtfHardware().getObjectId().toString();
+			PtfHardware hardw = Cayenne.objectForPK(context, PtfHardware.class,	Utils.ConvertIDStringtoLong(stringIDptfHard));// Get the platform telecom by its PK
+			// Ajouter à platform
+			ptf.setSerialRef(hardw.getSerialRef());
+			
+			// 1.1) embedded object"PlatformStatus"
 			String stringIDptfs = platform.getToPtfStatus().getObjectId().toString();
 			PtfStatus platformstatus = Cayenne.objectForPK(context, PtfStatus.class,
 					Utils.ConvertIDStringtoLong(stringIDptfs));// Get the
@@ -582,7 +607,7 @@ public class PlatformAccessor {
 			if (ptf_status.matches("^-?\\d+$")) {
 				query_status = "intersect select * from PTF where PTF_STATUS_ID=" + Integer.parseInt(ptf_status);
 			} else {
-				query_status =  "intersect select * from PTF where PTF_STATUS_ID IN (select ID from PTF_STATUS where UPPER(NAME_SHORT)='"
+				query_status = "intersect select * from PTF where PTF_STATUS_ID IN (select ID from PTF_STATUS where UPPER(NAME_SHORT)='"
 						+ ptf_status.toUpperCase() + "')";
 			}
 

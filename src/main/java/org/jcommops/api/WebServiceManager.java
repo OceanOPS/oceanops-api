@@ -148,24 +148,31 @@ public class WebServiceManager {
 		PlatformAccessor m = new PlatformAccessor();
 		Platform ptfm = new Platform();
 		StringWriter strW = new StringWriter();
-		strW.write("platformId" + ";" + "jcommpsRef" + ";" + "ptfFamily" + ";" + "ptfType" + ";" + "ptfModel" + ";"
-				+ "deployementDate" + ";" + "lastLocationDate" + ";" + "lastLocationLatitude" + ";"
-				+ "lastLocationLongitude" + ";" + "program" + ";" + "country" + ";" + "masterProgramme" + ";"
-				+ "variables" + "\n");
+	
 
 		try {
+			strW.write("platformId" + ";" + "jcommpsRef" + ";" + "ptfFamily" + ";" + "ptfType" + ";" + "ptfModel" + ";"
+					+ "deployementDate" + ";" + "lastLocationDate" + ";" + "lastLocationLatitude" + ";"
+					+ "lastLocationLongitude" + ";" + "program" + ";" + "country" + ";" + "masterProgramme" + ";"
+					+ "variables" + "\n");
 			ptfm = m.getPtfbyID(id);
 
 			strW.write(ptfm.getId() + ";" + ptfm.getJcommpsRef() + ";" + ptfm.getPtfFamily().getNameShort() + ";"
 					+ ptfm.getPtfType().getNameShort() + ";" + ptfm.getPtfModel().getNameShort() + ";"
-					+ ptfm.getDeployement().getDeployementDate() + ";" + ptfm.getLastLocation().getLastLocationDate() + ";" + ptfm.getLastLocation().getLat()
-					+ ";" + ptfm.getLastLocation().getLon() + ";" + ptfm.getProgram().getName()+ ";" + ptfm.getCountry().getName()
-					+ ";" + ptfm.getMasterProgramme().getName() + ";" + Utils.GetVariablesListToString(ptfm.getVariables()) + "\n");
+					+ ptfm.getDeployement().getDeployementDate() + ";" + ptfm.getLastLocation().getLastLocationDate()
+					+ ";" + ptfm.getLastLocation().getLat() + ";" + ptfm.getLastLocation().getLon() + ";"
+					+ ptfm.getProgram().getName() + ";" + ptfm.getCountry().getName() + ";"
+					+ ptfm.getMasterProgramme().getName() + ";" + Utils.GetVariablesListToString(ptfm.getVariables())
+					+ "\n");
 
 		}
 
 		catch (CayenneRuntimeException CRE) {
 			strW.write("Error: Database temporarily inaccessible.");
+		} catch (NullPointerException n) {
+
+			strW.write("\n Error: Invalid ID. The ID " + id + " doesn't correspond to a registered platform.");
+			
 		}
 		String strptfm = strW.toString();
 		return strptfm;
