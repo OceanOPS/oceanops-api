@@ -13,13 +13,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 @XmlRootElement
-@XmlType(propOrder={"error_message","jcommpsRef", "ptfFamily", "ptfType", "ptfModel", "ptfStatus",  "deployement", "endingDate", "lastLocation","program", "country", "masterProgramme", "contacts", "variables"})
+@XmlType(propOrder={"error_message","jcommpsRef", "telecom", "internalRef", "serialRef", "ptfFamily", "ptfType", "ptfModel", "ptfStatus",  "deployement", "endingDate", "lastLocation","program", "country", "masterProgramme", "contacts", "variables"})
 
 
 	public class Platform {
 
 	private long Id;
 	private String JcommpsRef;
+	private Telecom Telecom;
+	private String InternalRef;
+	private String SerialRef;
 	private PlatformStatus PtfStatus;
 	private PlatformFamily PtfFamily;
 	private PlatformModel PtfModel;
@@ -37,11 +40,14 @@ import javax.xml.bind.annotation.XmlType;
 	public Platform (){	
 	}
 
-	public Platform ( long id, String ref, PlatformStatus ptfstatus, PlatformFamily ptffamily, PlatformModel ptfmodel, PlatformType ptftype,PlatformDeploy ptfdpl, 
+	public Platform ( long id, String ref, Telecom telc, String internalref, String serialref,  PlatformStatus ptfstatus, PlatformFamily ptffamily, PlatformModel ptfmodel, PlatformType ptftype,PlatformDeploy ptfdpl, 
 			Date endingdate, PlatformLastLoc ptfll, ProgramPtf prgm, CountryPtf cntr, MasterProgramPtf mstrprgm, ArrayList<ContactPrg> contacts, ArrayList<Variable> variables,
 			String error_message){	
 		this.setId(id);
 		this.setJcommpsRef(ref);
+		this.setTelecom(telc);
+		this.setInternalRef(internalref);
+		this.setSerialRef(internalref);
 		this.setPtfStatus (ptfstatus);
 		this.setPtfFamily (ptffamily);
 		this.setPtfModel (ptfmodel);
@@ -74,6 +80,33 @@ import javax.xml.bind.annotation.XmlType;
 
 	public void setJcommpsRef(String jcommpsRef) {
 		JcommpsRef = jcommpsRef;
+	}
+
+	@XmlElement
+	public Telecom getTelecom() {
+		return Telecom;
+	}
+
+	public void setTelecom(Telecom telecom) {
+		Telecom = telecom;
+	}
+	
+	@XmlElement
+	public String getInternalRef() {
+		return InternalRef;
+	}
+
+	public void setInternalRef(String internalRef) {
+		InternalRef = internalRef;
+	}
+
+	@XmlElement
+	public String getSerialRef() {
+		return SerialRef;
+	}
+
+	public void setSerialRef(String serialRef) {
+		SerialRef = serialRef;
 	}
 
 	@XmlElement

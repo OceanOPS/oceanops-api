@@ -6,8 +6,10 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
-
+//@XmlRootElement
+//@XmlType(propOrder={"DeployementDate"})
 public class PlatformDeploy {
 	private long Id;
 	private Date DeployementDate;

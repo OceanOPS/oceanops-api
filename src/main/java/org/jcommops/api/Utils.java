@@ -1,20 +1,15 @@
 package org.jcommops.api;
 
-import java.io.IOException;
 import java.io.StringWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
-import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.cayenne.configuration.server.ServerRuntime;
-import org.jcommops.api.entities.AgencyPrg;
-import org.jcommops.api.entities.Platform;
 import org.jcommops.api.entities.Variable;
 
 public class Utils {
@@ -44,6 +39,20 @@ public class Utils {
 		}
 		return ID;
 
+	}
+	
+	public static String GetIsoDate(Date date){
+		String dateISO= null;
+		DateFormat formatISO = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'"); 
+		 dateISO = formatISO.format(date);
+		return dateISO;
+	}
+	
+	public static String GetYear(Date date){
+		String year= null;
+		DateFormat formatISO = new SimpleDateFormat("yyyy"); 
+		 year = formatISO.format(date);
+		return year;
 	}
 	
 	public static String GetVariablesListToString(ArrayList<Variable> Arr) {
