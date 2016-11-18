@@ -1,6 +1,5 @@
 package org.jcommops.api.entities;
 
-
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -11,22 +10,24 @@ import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 @XmlRootElement
-@XmlType(propOrder={"error_message","jcommpsRef", "telecom", "internalRef", "serialRef", "ptfFamily", "ptfType", "ptfModel", "ptfStatus",  "deployement", "endingDate", "lastLocation","program", "country", "masterProgramme", "contacts", "variables"})
+@XmlType(propOrder = { "error_message", "jcommpsRef", "telecom", "internalRef", "serialRef", "age", "ptfFamily",
+		"ptfType", "ptfModel", "ptfStatus", "notificationDate", "deployement", "lastLocation", "endingDate", "program",
+		"country", "masterProgramme", "contacts", "configuration", "sensorModel" , "variables" })
 
-
-	public class Platform {
+public class Platform {
 
 	private long Id;
 	private String JcommpsRef;
 	private Telecom Telecom;
 	private String InternalRef;
 	private String SerialRef;
+	private int Age;
 	private PlatformStatus PtfStatus;
 	private PlatformFamily PtfFamily;
 	private PlatformModel PtfModel;
 	private PlatformType PtfType;
+	private Date NotificationDate;
 	private PlatformDeploy Deployement;
 	private PlatformLastLoc LastLocation;
 	private Date EndingDate;
@@ -34,37 +35,44 @@ import javax.xml.bind.annotation.XmlType;
 	private CountryPtf Country;
 	private MasterProgramPtf MasterProgramme;
 	private ArrayList<ContactPrg> contacts;
+	private Configuration configuration;
+	private SensorModel SensorModel;
 	private ArrayList<Variable> variables;
 	private String error_message;
 
-	public Platform (){	
+	public Platform() {
 	}
 
-	public Platform ( long id, String ref, Telecom telc, String internalref, String serialref,  PlatformStatus ptfstatus, PlatformFamily ptffamily, PlatformModel ptfmodel, PlatformType ptftype,PlatformDeploy ptfdpl, 
-			Date endingdate, PlatformLastLoc ptfll, ProgramPtf prgm, CountryPtf cntr, MasterProgramPtf mstrprgm, ArrayList<ContactPrg> contacts, ArrayList<Variable> variables,
-			String error_message){	
+	public Platform(long id, String ref, Telecom telc, String internalref, String serialref, int age,
+			PlatformStatus ptfstatus, PlatformFamily ptffamily, PlatformModel ptfmodel, PlatformType ptftype,
+			Date notifdate, PlatformDeploy ptfdpl, Date endingdate, PlatformLastLoc ptfll, ProgramPtf prgm,
+			CountryPtf cntr, MasterProgramPtf mstrprgm, ArrayList<ContactPrg> contacts, Configuration config, SensorModel sensm,  ArrayList<Variable> variables,
+			String error_message) {
 		this.setId(id);
 		this.setJcommpsRef(ref);
 		this.setTelecom(telc);
 		this.setInternalRef(internalref);
 		this.setSerialRef(internalref);
-		this.setPtfStatus (ptfstatus);
-		this.setPtfFamily (ptffamily);
-		this.setPtfModel (ptfmodel);
-		this.setPtfType (ptftype);
-		this.setDeployement (ptfdpl);
+		this.setAge(age);
+		this.setPtfStatus(ptfstatus);
+		this.setPtfFamily(ptffamily);
+		this.setPtfModel(ptfmodel);
+		this.setPtfType(ptftype);
+		this.setDeployement(ptfdpl);
 		this.setEndingDate(endingdate);
 		this.setLastLocation(ptfll);
 		this.setProgram(prgm);
 		this.setCountry(cntr);
 		this.setMasterProgramme(mstrprgm);
 		this.setContacts(contacts);
+		this.setConfiguration(config);
 		this.setVariables(variables);
+		this.setNotificationDate(notifdate);
 		this.setError_message(error_message);
-		
+
 	}
 
-	@XmlAttribute //@XmlAttribute to bring  "id =XXXX" to the beacon
+	@XmlAttribute // @XmlAttribute to bring "id =XXXX" to the beacon
 	public long getId() {
 		return Id;
 	}
@@ -90,7 +98,7 @@ import javax.xml.bind.annotation.XmlType;
 	public void setTelecom(Telecom telecom) {
 		Telecom = telecom;
 	}
-	
+
 	@XmlElement
 	public String getInternalRef() {
 		return InternalRef;
@@ -107,6 +115,15 @@ import javax.xml.bind.annotation.XmlType;
 
 	public void setSerialRef(String serialRef) {
 		SerialRef = serialRef;
+	}
+
+	@XmlElement
+	public int getAge() {
+		return Age;
+	}
+
+	public void setAge(int age) {
+		Age = age;
 	}
 
 	@XmlElement
@@ -146,13 +163,23 @@ import javax.xml.bind.annotation.XmlType;
 	}
 
 	@XmlElement
+	public Date getNotificationDate() {
+		return NotificationDate;
+	}
+
+	public void setNotificationDate(Date notificationDate) {
+		NotificationDate = notificationDate;
+	}
+
+	@XmlElement
 	public PlatformDeploy getDeployement() {
-		return Deployement;	}
+		return Deployement;
+	}
 
 	public void setDeployement(PlatformDeploy deployement) {
 		Deployement = deployement;
 	}
-	
+
 	@XmlElement
 	public Date getEndingDate() {
 		return EndingDate;
@@ -170,7 +197,7 @@ import javax.xml.bind.annotation.XmlType;
 	public void setLastLocation(PlatformLastLoc lastLocation) {
 		LastLocation = lastLocation;
 	}
-	
+
 	@XmlElement
 	public ProgramPtf getProgram() {
 		return Program;
@@ -198,27 +225,46 @@ import javax.xml.bind.annotation.XmlType;
 		MasterProgramme = masterProgramme;
 	}
 
-    @XmlElementWrapper(name="contacts")
-	@XmlElements(@XmlElement(name="contact",type=ContactPrg.class))
-    public ArrayList<ContactPrg> getContacts() {
-        return contacts;
-    }
+	@XmlElementWrapper(name = "contacts")
+	@XmlElements(@XmlElement(name = "contact", type = ContactPrg.class))
+	public ArrayList<ContactPrg> getContacts() {
+		return contacts;
+	}
 
-    public void setContacts(ArrayList<ContactPrg> contacts) {
-        this.contacts = contacts;
-    }
-    
-    @XmlElementWrapper(name="variables")
-	@XmlElements(@XmlElement(name="variable",type=Variable.class))
-    public ArrayList<Variable> getVariables() {
-        return variables;
-    }
+	public void setContacts(ArrayList<ContactPrg> contacts) {
+		this.contacts = contacts;
+	}
 
-    public void setVariables(ArrayList<Variable> variables) {
-        this.variables = variables;
-    }
+	
+	@XmlElement
+	public Configuration getConfiguration() {
+		return configuration;
+	}
 
-    
+	public void setConfiguration(Configuration configuration) {
+		this.configuration = configuration;
+	}
+
+		
+	@XmlElement
+	public SensorModel getSensorModel() {
+		return SensorModel;
+	}
+
+	public void setSensorModel(SensorModel sensorModel) {
+		SensorModel = sensorModel;
+	}
+
+	@XmlElementWrapper(name = "variables")
+	@XmlElements(@XmlElement(name = "variable", type = Variable.class))
+	public ArrayList<Variable> getVariables() {
+		return variables;
+	}
+
+	public void setVariables(ArrayList<Variable> variables) {
+		this.variables = variables;
+	}
+
 	public String getError_message() {
 		return error_message;
 	}
@@ -226,7 +272,5 @@ import javax.xml.bind.annotation.XmlType;
 	public void setError_message(String error_message) {
 		this.error_message = error_message;
 	}
-
-
 
 }
