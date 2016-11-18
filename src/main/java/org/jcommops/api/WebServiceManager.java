@@ -171,7 +171,7 @@ public class WebServiceManager {
 			strW.write("Error: Database temporarily inaccessible.");
 		} catch (NullPointerException n) {
 
-			strW.write("\n Error: Invalid ID. The ID " + id + " doesn't correspond to a registered platform.");
+			strW.write(ptfm.getError_message());
 			
 		}
 		String strptfm = strW.toString();
