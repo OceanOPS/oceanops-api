@@ -187,13 +187,13 @@ public class WebServiceManager {
 			@QueryParam("family") String family, @QueryParam("type") String type, @QueryParam("model") String model,
 			@QueryParam("program") String program, @QueryParam("network") String network,
 			@QueryParam("masterProgram") String masterprg, @QueryParam("variable") String variable,
-			@QueryParam("sensorModel") String sensormod, @QueryParam("sensorType") String sensortyp) {
+			@QueryParam("sensorModel") String sensormod, @QueryParam("sensorType") String sensortyp, @QueryParam("ship") String ship) {
 
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<Platform> foundPlatforms = new ArrayList<Platform>();
 		try {
 			foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable,
-					sensormod, sensortyp);
+					sensormod, sensortyp, ship);
 			if (foundPlatforms.size() == 0) {
 				Platform ptf0 = new Platform();
 				ptf0.setId(-1);
@@ -207,7 +207,7 @@ public class WebServiceManager {
 			ptf0.setId(-1);
 			ptf0.setError_message(
 					"Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterProgram', 'variable', 'sensorModel' "
-							+ "or 'sensorType' parameter.");
+							+ "'sensorType' or 'ship'  parameter.");
 			foundPlatforms.add(ptf0);
 
 		}
@@ -231,13 +231,13 @@ public class WebServiceManager {
 			@QueryParam("family") String family, @QueryParam("type") String type, @QueryParam("model") String model,
 			@QueryParam("program") String program, @QueryParam("network") String network,
 			@QueryParam("masterProgram") String masterprg, @QueryParam("variable") String variable,
-			@QueryParam("sensorModel") String sensormod, @QueryParam("sensorType") String sensortyp) {
+			@QueryParam("sensorModel") String sensormod, @QueryParam("sensorType") String sensortyp, @QueryParam("ship") String ship) {
 
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<Platform> foundPlatforms = new ArrayList<Platform>();
 		try {
 			foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable,
-					sensormod, sensortyp);
+					sensormod, sensortyp, ship);
 			if (foundPlatforms.size() == 0) {
 				Platform ptf0 = new Platform();
 				ptf0.setId(-1);
@@ -251,7 +251,7 @@ public class WebServiceManager {
 			ptf0.setId(-1);
 			ptf0.setError_message(
 					"Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterProgram', 'variable', 'sensorModel' "
-							+ "or 'sensorType' parameter.");
+							+ "'sensorType' or 'ship'  parameter.");
 			foundPlatforms.add(ptf0);
 
 		}
@@ -276,7 +276,7 @@ public class WebServiceManager {
 			@QueryParam("type") String type, @QueryParam("model") String model, @QueryParam("program") String program,
 			@QueryParam("network") String network, @QueryParam("masterProgram") String masterprg,
 			@QueryParam("variable") String variable, @QueryParam("sensorModel") String sensormod,
-			@QueryParam("sensorType") String sensortyp) {
+			@QueryParam("sensorType") String sensortyp, @QueryParam("ship") String ship) {
 
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<Platform> foundPlatforms = new ArrayList<Platform>();
@@ -284,7 +284,7 @@ public class WebServiceManager {
 		strW.write("platformId" + ";" + "jcommpsRef" + "\n");
 		try {
 			foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable,
-					sensormod, sensortyp);
+					sensormod, sensortyp, ship);
 
 			Iterator<Platform> ptf_itr = foundPlatforms.iterator();
 
@@ -301,8 +301,8 @@ public class WebServiceManager {
 
 		catch (StringIndexOutOfBoundsException str) {
 			strW.write(
-					"Error: Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterProgram', 'variable', 'sensorModel' "
-							+ "or 'sensorType' parameter.");
+					"Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterProgram', 'variable', 'sensorModel' "
+							+ "'sensorType' or 'ship'  parameter.");
 
 		}
 
