@@ -586,7 +586,7 @@ public class PlatformAccessor {
 
 	public ArrayList<Platform> getPtfbySelectedParam(String ptf_status, String ptf_family, String ptf_type,
 			String ptf_model, String program, String network, String ptf_masterprg, String variable, String sensormod,
-			String sensortyp) {
+			String sensortyp, String ship) {
 
 		// QUERY PARAMETERS
 		String query_model = "";
@@ -596,138 +596,166 @@ public class PlatformAccessor {
 		String query_program = "";
 		String query_network = "";
 		String query_masterprg = "";
-		String query_variable = "";
+		String query_ship = "";
 		String query_sensormod = "";
 		String query_sensortyp = "";
+		String query_variable = "";
 
 		int intersect_index = 0;
 
 		if (ptf_model != null && !ptf_model.isEmpty()) {
 			intersect_index = intersect_index + 1;
-			if (ptf_model.matches("^-?\\d+$")) {// Check if it is an integer ID
-				query_model = "intersect" + " select * from PTF where PTF_MODEL_ID= " + Integer.parseInt(ptf_model);
+			if (Utils.CheckIntValueForSql(ptf_model) == true) {// Check if it is
+																// an integer ID
+				query_model = "intersect" + " select * from PTF where PTF_MODEL_ID IN "
+						+ "(select ID from PTF_Model where ID  IN  (" + ptf_model + "))";
 			} else {// Else it is a short name
 				query_model = "intersect" + " select * from PTF where PTF_MODEL_ID IN "
-						+ "(select ID from PTF_Model where UPPER(NAME_SHORT)='" + ptf_model.toUpperCase() + "')";
+						+ "(select ID from PTF_Model where UPPER(NAME_SHORT) IN ('"
+						+ Utils.StrValueForSql(ptf_model.toUpperCase()) + "'))";
 			}
 		}
 
 		if (ptf_type != null && !ptf_type.isEmpty()) {
 			intersect_index = intersect_index + 1;
-			if (ptf_type.matches("^-?\\d+$")) {// Check if it is an integer ID
+			if (Utils.CheckIntValueForSql(ptf_type) == true) {// Check if it is
+																// an integer ID
 				query_type = "intersect" + " select * from PTF where PTF_MODEL_ID IN "
-						+ "(select ID from PTF_Model where PTF_TYPE_ID= " + Integer.parseInt(ptf_type) + ")";
+						+ "(select ID from PTF_Model where PTF_TYPE_ID IN  (" + ptf_type + "))";
 			} else {// Else it is a short name
 				query_type = "intersect" + " select * from PTF where PTF_MODEL_ID IN "
 						+ "(select ID from PTF_Model where PTF_TYPE_ID IN "
-						+ "(select ID from PTF_TYPE where UPPER(NAME_SHORT)='" + ptf_type.toUpperCase() + "'))";
+						+ "(select ID from PTF_TYPE where UPPER(NAME_SHORT) IN ('"
+						+ Utils.StrValueForSql(ptf_type.toUpperCase()) + "')))";
 			}
 
 		}
 
 		if (ptf_family != null && !ptf_family.isEmpty()) {
 			intersect_index = intersect_index + 1;
-			if (ptf_family.matches("^-?\\d+$")) {// Check if it is an integer ID
+			if (Utils.CheckIntValueForSql(ptf_family) == true) {// Check if it
+																// is an integer
+																// ID
 				query_family = "intersect" + " select * from PTF where PTF_MODEL_ID IN "
 						+ "(select ID from PTF_Model where PTF_TYPE_ID IN "
-						+ "(select ID from PTF_TYPE  where PTF_FAMILY_ID=" + Integer.parseInt(ptf_family) + "))";
+						+ "(select ID from PTF_TYPE  where PTF_FAMILY_ID IN  (" + ptf_family + ")))";
 			} else {// Else it is a short name
 				query_family = "intersect" + " select * from PTF where PTF_MODEL_ID IN "
 						+ "(select ID from PTF_Model where PTF_TYPE_ID IN "
 						+ "(select ID from PTF_TYPE  where PTF_FAMILY_ID IN "
-						+ "(select ID from PTF_FAMILY where UPPER(NAME_SHORT)='" + ptf_family.toUpperCase() + "')))";
+						+ "(select ID from PTF_FAMILY where UPPER(NAME_SHORT) IN ('"
+						+ Utils.StrValueForSql(ptf_family.toUpperCase()) + "'))))";
 			}
 		}
 
 		if (program != null && !program.isEmpty()) {
 			intersect_index = intersect_index + 1;
-			if (program.matches("^-?\\d+$")) {// Check if it is an integer ID
-				query_program = "intersect" + " select * from PTF where program_ID" + Integer.parseInt(program);
+			if (Utils.CheckIntValueForSql(program) == true) {// Check if it is
+																// an integer ID
+				query_program = "intersect" + " select * from PTF where program_ID IN(" + program + ")";
 			} else {
 				query_program = "intersect" + " select * from PTF where program_ID IN "
-						+ "(select ID from program where UPPER(NAME_SHORT)='" + program.toUpperCase() + "')";
+						+ "(select ID from program where UPPER(NAME_SHORT) IN ('"
+						+ Utils.StrValueForSql(program.toUpperCase()) + "'))";
 			}
 		}
 
 		if (network != null && !network.isEmpty()) {
 			intersect_index = intersect_index + 1;
-			if (network.matches("^-?\\d+$")) {// Check if it is an integer ID
+			if (Utils.CheckIntValueForSql(network) == true) {// Check if it is
+																// an integer ID
 				query_network = "intersect" + " select * from PTF where ID IN "
-						+ "(select PTF_ID from NETWORK_PTF where NETWORK_ID=" + Integer.parseInt(network) + ")";
+						+ "(select PTF_ID from NETWORK_PTF where NETWORK_ID IN (" + network + "))";
 			} else {
 				query_network = "intersect" + " select * from PTF where ID IN "
 						+ "(select PTF_ID from NETWORK_PTF where NETWORK_ID IN "
-						+ "(select ID from NETWORK where UPPER(NAME_SHORT)='" + network.toUpperCase() + "'))";
+						+ "(select ID from NETWORK where UPPER(NAME_SHORT) IN ('"
+						+ Utils.StrValueForSql(network.toUpperCase()) + "')))";
 			}
 		}
 
 		if (ptf_masterprg != null && !ptf_masterprg.isEmpty()) {
 			intersect_index = intersect_index + 1;
-			if (ptf_masterprg.matches("^-?\\d+$")) {// Check if it is an integer
-													// ID
+			if (Utils.CheckIntValueForSql(ptf_masterprg) == true) {// Check if
+																	// it is an
+																	// integer
+				// ID
 				query_masterprg = "intersect"
-						+ " select * from PTF where Program_ID IN (select ID from Program where master_prog_id ="
-						+ Integer.parseInt(ptf_masterprg) + ")";
+						+ " select * from PTF where Program_ID IN (select ID from Program where master_prog_id IN ("
+						+ ptf_masterprg + "))";
 			} else {
 				query_masterprg = "intersect" + " select * from PTF where Program_ID IN "
 						+ "(select ID from Program where master_prog_id IN "
-						+ "(select ID from MASTER_PROG where UPPER(NAME_SHORT)='" + ptf_masterprg.toUpperCase() + "'))";
+						+ "(select ID from MASTER_PROG where UPPER(NAME_SHORT) IN ('"
+						+ Utils.StrValueForSql(ptf_masterprg.toUpperCase()) + "')))";
 			}
 		}
 
 		if (ptf_status != null && !ptf_status.isEmpty()) {
 			intersect_index = intersect_index + 1;
-			if (ptf_status.matches("^-?\\d+$")) {
-				query_status = "intersect select * from PTF where PTF_STATUS_ID=" + Integer.parseInt(ptf_status);
+			if (Utils.CheckIntValueForSql(ptf_status) == true) {
+				query_status = "intersect select * from PTF where PTF_STATUS_ID IN (" + ptf_status + ")";
 			} else {
-				query_status = "intersect select * from PTF where PTF_STATUS_ID IN (select ID from PTF_STATUS where UPPER(NAME_SHORT)='"
-						+ ptf_status.toUpperCase() + "')";
+				query_status = "intersect select * from PTF where PTF_STATUS_ID IN (select ID from PTF_STATUS where UPPER(NAME_SHORT) IN ('"
+						+ Utils.StrValueForSql(ptf_status.toUpperCase()) + "'))";
 			}
 
 		}
 
 		if (variable != null && !variable.isEmpty()) {
 			intersect_index = intersect_index + 1;
-			if (variable.matches("^-?\\d+$")) {
+			if (Utils.CheckIntValueForSql(variable) == true) {
 				query_variable = "intersect" + " select * from PTF where ID IN "
-						+ "(select PTF_ID from PTF_VARIABLE where VARIABLE_ID =" + Integer.parseInt(variable) + ")";
+						+ "(select PTF_ID from PTF_VARIABLE where VARIABLE_ID IN (" + variable + "))";
 			} else {
 				query_variable = "intersect" + " select * from PTF where ID IN "
 						+ "(select PTF_ID from PTF_VARIABLE where VARIABLE_ID IN "
-						+ "(select ID from VARIABLE where UPPER(NAME_SHORT)='" + variable.toUpperCase() + "'))";
+						+ "(select ID from VARIABLE where UPPER(NAME_SHORT) IN ('"
+						+ Utils.StrValueForSql(variable.toUpperCase()) + "')))";
 			}
 
 		}
 
 		if (sensormod != null && !sensormod.isEmpty()) {
-			if (sensormod.matches("^-?\\d+$")) {
-				query_sensormod = "intersect" + " select * from PTF where ID IN "
-						+ "(select PTF_ID from PTF_SENSOR_MODEL where SENSOR_MODEL_ID =" + Integer.parseInt(sensormod)
-						+ ")";
+			if (Utils.CheckIntValueForSql(sensormod) == true) {
+				query_sensormod = "intersect" + " select * from PTF where ID IN (" + sensormod + "))";
 			} else {
 				query_sensormod = "intersect" + " select * from PTF where ID IN "
 						+ "(select PTF_ID from PTF_SENSOR_MODEL where SENSOR_MODEL_ID IN "
-						+ "(select ID from SENSOR_MODEL where UPPER(NAME_SHORT)='" + sensormod.toUpperCase() + "'))";
+						+ "(select ID from SENSOR_MODEL where UPPER(NAME_SHORT) IN ('"
+						+ Utils.StrValueForSql(sensormod.toUpperCase()) + "')))";
 			}
 
 		}
 
 		if (sensortyp != null && !sensortyp.isEmpty()) {
-			if (sensortyp.matches("^-?\\d+$")) {
+			if (Utils.CheckIntValueForSql(sensortyp) == true) {
 				query_sensortyp = "intersect" + " select * from PTF where ID IN "
 						+ "(select PTF_ID from PTF_SENSOR_MODEL where SENSOR_MODEL_ID IN "
-						+ "(select SENSOR_MODEL_ID from SENSOR_MODEL_SENSOR_TYPE where SENSOR_TYPE_ID ="
-						+ Integer.parseInt(sensortyp) + "))";
+						+ "(select SENSOR_MODEL_ID from SENSOR_MODEL_SENSOR_TYPE where SENSOR_TYPE_ID IN(" + sensortyp
+						+ ")))";
 			} else {
 				query_sensortyp = "intersect" + " select * from PTF where ID IN "
 						+ "(select PTF_ID from PTF_SENSOR_MODEL where SENSOR_MODEL_ID IN "
 						+ "(select SENSOR_MODEL_ID from SENSOR_MODEL_SENSOR_TYPE where SENSOR_TYPE_ID IN "
-						+ "(select ID from SENSOR_TYPE where UPPER(NAME_SHORT)='" + sensortyp.toUpperCase() + "'))";
+						+ "(select ID from SENSOR_TYPE where UPPER(NAME_SHORT) IN ('"
+						+ Utils.StrValueForSql(sensortyp.toUpperCase()) + "'))))";
 			}
 		}
 
+		if (ship!= null && !ship.isEmpty()) {// special case "Ship"
+															// both name and ref are
+															// strings
+				query_ship = "intersect"
+						+ " select * from PTF where PTF_DEPL_ID IN (select ID from PTF_DEPLOYMENT where SHIP_NAME IN("
+						+ Utils.StrValueForSql(query_ship) + ")) intersect"
+						+ " select * from PTF where PTF_DEPL_ID IN (select ID from PTF_DEPLOYMENT where SHIP_NAME IN (select name from SHIP where REF IN("
+						+ Utils.StrValueForSql(query_ship) + ")))";
+			
+		}
+
 		String overall_query = query_model + query_type + query_family + query_status + query_program + query_network
-				+ query_masterprg + query_variable + query_sensormod + query_sensortyp;
+				+ query_masterprg + query_variable + query_sensormod + query_sensortyp+query_ship;
 
 		overall_query = overall_query.substring(10);// to omit the first
 													// "intersect"
