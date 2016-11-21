@@ -11,26 +11,26 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
-@XmlType(propOrder = { "error_message", "jcommpsRef", "telecom", "internalRef", "serialRef", "age", "ptfFamily",
+@XmlType(propOrder = { "error_message", "jcommopsRef", "telecom", "internalRef", "serialRef", "age", "ptfFamily",
 		"ptfType", "ptfModel", "ptfStatus", "notificationDate", "deployement", "lastLocation", "endingDate", "program",
 		"country", "masterProgramme", "contacts", "configuration", "sensorModel" , "variables" })
 
 public class Platform {
 
 	private long Id;
-	private String JcommpsRef;
+	private String JcommopsRef;
 	private Telecom Telecom;
 	private String InternalRef;
 	private String SerialRef;
-	private int Age;
+	private String Age;
 	private PlatformStatus PtfStatus;
 	private PlatformFamily PtfFamily;
 	private PlatformModel PtfModel;
 	private PlatformType PtfType;
-	private Date NotificationDate;
+	private String NotificationDate;
 	private PlatformDeploy Deployement;
 	private PlatformLastLoc LastLocation;
-	private Date EndingDate;
+	private String EndingDate;
 	private ProgramPtf Program;
 	private CountryPtf Country;
 	private MasterProgramPtf MasterProgramme;
@@ -43,13 +43,13 @@ public class Platform {
 	public Platform() {
 	}
 
-	public Platform(long id, String ref, Telecom telc, String internalref, String serialref, int age,
+	public Platform(long id, String ref, Telecom telc, String internalref, String serialref, String age,
 			PlatformStatus ptfstatus, PlatformFamily ptffamily, PlatformModel ptfmodel, PlatformType ptftype,
-			Date notifdate, PlatformDeploy ptfdpl, Date endingdate, PlatformLastLoc ptfll, ProgramPtf prgm,
+			String notifdate, PlatformDeploy ptfdpl, String endingdate, PlatformLastLoc ptfll, ProgramPtf prgm,
 			CountryPtf cntr, MasterProgramPtf mstrprgm, ArrayList<ContactPrg> contacts, Configuration config, SensorModel sensm,  ArrayList<Variable> variables,
 			String error_message) {
 		this.setId(id);
-		this.setJcommpsRef(ref);
+		this.setJcommopsRef(ref);
 		this.setTelecom(telc);
 		this.setInternalRef(internalref);
 		this.setSerialRef(internalref);
@@ -82,12 +82,12 @@ public class Platform {
 	}
 
 	@XmlElement
-	public String getJcommpsRef() {
-		return JcommpsRef;
+	public String getJcommopsRef() {
+		return JcommopsRef;
 	}
 
-	public void setJcommpsRef(String jcommpsRef) {
-		JcommpsRef = jcommpsRef;
+	public void setJcommopsRef(String jcommopsRef) {
+		JcommopsRef = jcommopsRef;
 	}
 
 	@XmlElement
@@ -118,11 +118,11 @@ public class Platform {
 	}
 
 	@XmlElement
-	public int getAge() {
+	public String getAge() {
 		return Age;
 	}
 
-	public void setAge(int age) {
+	public void setAge(String age) {
 		Age = age;
 	}
 
@@ -163,11 +163,11 @@ public class Platform {
 	}
 
 	@XmlElement
-	public Date getNotificationDate() {
+	public String getNotificationDate() {
 		return NotificationDate;
 	}
 
-	public void setNotificationDate(Date notificationDate) {
+	public void setNotificationDate(String notificationDate) {
 		NotificationDate = notificationDate;
 	}
 
@@ -181,11 +181,11 @@ public class Platform {
 	}
 
 	@XmlElement
-	public Date getEndingDate() {
+	public String getEndingDate() {
 		return EndingDate;
 	}
 
-	public void setEndingDate(Date endingDate) {
+	public void setEndingDate(String endingDate) {
 		EndingDate = endingDate;
 	}
 

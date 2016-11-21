@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlType;
 public class PlatformLastLoc {
 	
 	private long Id;
-	private Date LastLocationDate;
+	private String LastLocationDate;
 	private BigDecimal Lat;
 	private BigDecimal Lon;
 
@@ -23,7 +23,7 @@ public class PlatformLastLoc {
 	
 	
 
-	public PlatformLastLoc ( long id, Date locdate, BigDecimal lat, BigDecimal lon ){	
+	public PlatformLastLoc ( long id, String locdate, BigDecimal lat, BigDecimal lon ){	
 		this.setId(id);
 		this.setLastLocationDate(locdate);
 		this.setLat(lat);
@@ -42,11 +42,11 @@ public class PlatformLastLoc {
 	}
 
 	@XmlElement
-	public Date getLastLocationDate() {
+	public String getLastLocationDate() {
 		return LastLocationDate;
 	}
 
-	public void setLastLocationDate(Date dateOfLastLocation) {
+	public void setLastLocationDate(String dateOfLastLocation) {
 		LastLocationDate = dateOfLastLocation;
 	}
 	@XmlElement
