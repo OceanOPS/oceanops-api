@@ -82,7 +82,7 @@ public class WebServiceManager {
 
 			while (ptf_itr.hasNext()) {
 				Platform a = ptf_itr.next();
-				strW.write(a.getId() + ";" + a.getJcommpsRef() + "\n");
+				strW.write(a.getId() + ";" + a.getJcommopsRef() + "\n");
 			}
 		}
 
@@ -148,7 +148,6 @@ public class WebServiceManager {
 		PlatformAccessor m = new PlatformAccessor();
 		Platform ptfm = new Platform();
 		StringWriter strW = new StringWriter();
-	
 
 		try {
 			strW.write("platformId" + ";" + "jcommpsRef" + ";" + "ptfFamily" + ";" + "ptfType" + ";" + "ptfModel" + ";"
@@ -157,7 +156,7 @@ public class WebServiceManager {
 					+ "variables" + "\n");
 			ptfm = m.getPtfbyID(id);
 
-			strW.write(ptfm.getId() + ";" + ptfm.getJcommpsRef() + ";" + ptfm.getPtfFamily().getNameShort() + ";"
+			strW.write(ptfm.getId() + ";" + ptfm.getJcommopsRef() + ";" + ptfm.getPtfFamily().getNameShort() + ";"
 					+ ptfm.getPtfType().getNameShort() + ";" + ptfm.getPtfModel().getNameShort() + ";"
 					+ ptfm.getDeployement().getDeployementDate() + ";" + ptfm.getLastLocation().getLastLocationDate()
 					+ ";" + ptfm.getLastLocation().getLat() + ";" + ptfm.getLastLocation().getLon() + ";"
@@ -172,7 +171,7 @@ public class WebServiceManager {
 		} catch (NullPointerException n) {
 
 			strW.write(ptfm.getError_message());
-			
+
 		}
 		String strptfm = strW.toString();
 		return strptfm;
@@ -187,13 +186,14 @@ public class WebServiceManager {
 			@QueryParam("family") String family, @QueryParam("type") String type, @QueryParam("model") String model,
 			@QueryParam("program") String program, @QueryParam("network") String network,
 			@QueryParam("masterProgram") String masterprg, @QueryParam("variable") String variable,
-			@QueryParam("sensorModel") String sensormod, @QueryParam("sensorType") String sensortyp, @QueryParam("ship") String ship) {
+			@QueryParam("sensorModel") String sensormod, @QueryParam("sensorType") String sensortyp,
+			@QueryParam("ship") String ship, @QueryParam("country") String country) {
 
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<Platform> foundPlatforms = new ArrayList<Platform>();
 		try {
 			foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable,
-					sensormod, sensortyp, ship);
+					sensormod, sensortyp, ship, country);
 			if (foundPlatforms.size() == 0) {
 				Platform ptf0 = new Platform();
 				ptf0.setId(-1);
@@ -206,8 +206,8 @@ public class WebServiceManager {
 			Platform ptf0 = new Platform();
 			ptf0.setId(-1);
 			ptf0.setError_message(
-					"Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterProgram', 'variable', 'sensorModel' "
-							+ "'sensorType' or 'ship'  parameter.");
+					"Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterProgram', 'variable', 'sensorModel', "
+							+ "'sensorType', 'country' or 'ship'  parameter.");
 			foundPlatforms.add(ptf0);
 
 		}
@@ -231,13 +231,14 @@ public class WebServiceManager {
 			@QueryParam("family") String family, @QueryParam("type") String type, @QueryParam("model") String model,
 			@QueryParam("program") String program, @QueryParam("network") String network,
 			@QueryParam("masterProgram") String masterprg, @QueryParam("variable") String variable,
-			@QueryParam("sensorModel") String sensormod, @QueryParam("sensorType") String sensortyp, @QueryParam("ship") String ship) {
+			@QueryParam("sensorModel") String sensormod, @QueryParam("sensorType") String sensortyp,
+			@QueryParam("ship") String ship, @QueryParam("country") String country) {
 
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<Platform> foundPlatforms = new ArrayList<Platform>();
 		try {
 			foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable,
-					sensormod, sensortyp, ship);
+					sensormod, sensortyp, ship, country);
 			if (foundPlatforms.size() == 0) {
 				Platform ptf0 = new Platform();
 				ptf0.setId(-1);
@@ -250,8 +251,8 @@ public class WebServiceManager {
 			Platform ptf0 = new Platform();
 			ptf0.setId(-1);
 			ptf0.setError_message(
-					"Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterProgram', 'variable', 'sensorModel' "
-							+ "'sensorType' or 'ship'  parameter.");
+					"Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterProgram', 'variable', 'sensorModel', "
+							+ "'sensorType', 'country' or 'ship'  parameter.");
 			foundPlatforms.add(ptf0);
 
 		}
@@ -276,7 +277,8 @@ public class WebServiceManager {
 			@QueryParam("type") String type, @QueryParam("model") String model, @QueryParam("program") String program,
 			@QueryParam("network") String network, @QueryParam("masterProgram") String masterprg,
 			@QueryParam("variable") String variable, @QueryParam("sensorModel") String sensormod,
-			@QueryParam("sensorType") String sensortyp, @QueryParam("ship") String ship) {
+			@QueryParam("sensorType") String sensortyp, @QueryParam("ship") String ship,
+			@QueryParam("country") String country) {
 
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<Platform> foundPlatforms = new ArrayList<Platform>();
@@ -284,13 +286,13 @@ public class WebServiceManager {
 		strW.write("platformId" + ";" + "jcommpsRef" + "\n");
 		try {
 			foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable,
-					sensormod, sensortyp, ship);
+					sensormod, sensortyp, ship, country);
 
 			Iterator<Platform> ptf_itr = foundPlatforms.iterator();
 
 			while (ptf_itr.hasNext()) {
 				Platform a = ptf_itr.next();
-				strW.write(a.getId() + ";" + a.getJcommpsRef() + "\n");
+				strW.write(a.getId() + ";" + a.getJcommopsRef() + "\n");
 			}
 
 			if (foundPlatforms.size() == 0) {
@@ -301,8 +303,8 @@ public class WebServiceManager {
 
 		catch (StringIndexOutOfBoundsException str) {
 			strW.write(
-					"Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterProgram', 'variable', 'sensorModel' "
-							+ "'sensorType' or 'ship'  parameter.");
+					"Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterProgram', 'variable', 'sensorModel', "
+							+ "'sensorType', 'country' or 'ship'  parameter.");
 
 		}
 

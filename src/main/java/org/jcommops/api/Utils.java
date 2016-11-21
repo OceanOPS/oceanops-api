@@ -2,6 +2,7 @@ package org.jcommops.api;
 
 import java.io.StringWriter;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -47,6 +48,21 @@ public class Utils {
 		dateISO = formatISO.format(date);
 		return dateISO;
 	}
+	
+	public static Date GetIsoDate2(Date date) {
+		String string = date.toString();
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+		Date date2 = null;
+		try {
+			date2 = format.parse(string);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(date2);
+		return date;
+
+	}
 
 	public static String GetYear(Date date) {
 		String year = null;
@@ -75,13 +91,14 @@ public class Utils {
 
 	public static boolean CheckIntValueForSql(String str) {
 		String[] strTab = str.trim().split(",");
-		boolean test = true;
-		int i = strTab.length;
+		boolean test = false;
+		int i = 0;
 		while (i< strTab.length){
 		if (strTab[i].matches("^-?\\d+$")) {
-			test = false;
-			i=strTab.length+1;
+			test = true;
+			
 		}
+		i++;
 		}
 
 		return test;

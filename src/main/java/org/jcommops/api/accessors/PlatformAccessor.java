@@ -67,7 +67,7 @@ public class PlatformAccessor {
 			Ptf a = ptf_itr.next();
 			Platform ptf = new Platform();
 			ptf.setId(Cayenne.longPKForObject(a));
-			ptf.setJcommpsRef(a.getRef());
+			ptf.setJcommopsRef(a.getRef());
 			ptfs_list.add(ptf);
 		}
 
@@ -304,7 +304,7 @@ public class PlatformAccessor {
 		Platform ptf = new Platform();
 		try {
 			ptf.setId(id);
-			ptf.setJcommpsRef(platform.getRef());
+			ptf.setJcommopsRef(platform.getRef());
 		} catch (NullPointerException n) {
 			ptf.setId(-1);
 			ptf.setError_message("Invalid ID. The ID " + id + " doesn't correspond to a registered platform.");
@@ -341,9 +341,9 @@ public class PlatformAccessor {
 
 		try {
 
-			ptf.setNotificationDate(platform.getENotificationDate());
-			ptf.setEndingDate(platform.getEndingDate());
-			ptf.setAge(platform.getAge());
+			ptf.setNotificationDate(Utils.GetIsoDate(platform.getENotificationDate()));
+			ptf.setEndingDate(Utils.GetIsoDate(platform.getEndingDate()));
+			ptf.setAge(platform.getAge().toString());
 			// 1.0) embedded object"Telecom"
 			String stringIDptfTelc = platform.getToTelecom1().getObjectId().toString();
 			org.jcommops.api.orm.Telecom telecom = Cayenne.objectForPK(context, org.jcommops.api.orm.Telecom.class,
@@ -433,7 +433,7 @@ public class PlatformAccessor {
 				ptfll.setId(Cayenne.longPKForObject(platformlastloc));
 				ptfll.setLat(platformlastloc.getLat());
 				ptfll.setLon(platformlastloc.getLon());
-				ptfll.setLastLocationDate(platformlastloc.getLocDate());
+				ptfll.setLastLocationDate(Utils.GetIsoDate(platformlastloc.getLocDate()));
 				// Ajouter à platform
 				ptf.setLastLocation(ptfll);
 			} catch (NullPointerException e) {
@@ -586,7 +586,7 @@ public class PlatformAccessor {
 
 	public ArrayList<Platform> getPtfbySelectedParam(String ptf_status, String ptf_family, String ptf_type,
 			String ptf_model, String program, String network, String ptf_masterprg, String variable, String sensormod,
-			String sensortyp, String ship) {
+			String sensortyp, String ship, String country) {
 
 		// QUERY PARAMETERS
 		String query_model = "";
@@ -597,6 +597,7 @@ public class PlatformAccessor {
 		String query_network = "";
 		String query_masterprg = "";
 		String query_ship = "";
+		String query_country = "";
 		String query_sensormod = "";
 		String query_sensortyp = "";
 		String query_variable = "";
@@ -694,6 +695,7 @@ public class PlatformAccessor {
 		if (ptf_status != null && !ptf_status.isEmpty()) {
 			intersect_index = intersect_index + 1;
 			if (Utils.CheckIntValueForSql(ptf_status) == true) {
+
 				query_status = "intersect select * from PTF where PTF_STATUS_ID IN (" + ptf_status + ")";
 			} else {
 				query_status = "intersect select * from PTF where PTF_STATUS_ID IN (select ID from PTF_STATUS where UPPER(NAME_SHORT) IN ('"
@@ -717,6 +719,7 @@ public class PlatformAccessor {
 		}
 
 		if (sensormod != null && !sensormod.isEmpty()) {
+			intersect_index = intersect_index + 1;
 			if (Utils.CheckIntValueForSql(sensormod) == true) {
 				query_sensormod = "intersect" + " select * from PTF where ID IN (" + sensormod + "))";
 			} else {
@@ -729,6 +732,7 @@ public class PlatformAccessor {
 		}
 
 		if (sensortyp != null && !sensortyp.isEmpty()) {
+			intersect_index = intersect_index + 1;
 			if (Utils.CheckIntValueForSql(sensortyp) == true) {
 				query_sensortyp = "intersect" + " select * from PTF where ID IN "
 						+ "(select PTF_ID from PTF_SENSOR_MODEL where SENSOR_MODEL_ID IN "
@@ -743,19 +747,42 @@ public class PlatformAccessor {
 			}
 		}
 
-		if (ship!= null && !ship.isEmpty()) {// special case "Ship"
-															// both name and ref are
-															// strings
-				query_ship = "intersect"
-						+ " select * from PTF where PTF_DEPL_ID IN (select ID from PTF_DEPLOYMENT where SHIP_NAME IN("
-						+ Utils.StrValueForSql(query_ship) + ")) intersect"
-						+ " select * from PTF where PTF_DEPL_ID IN (select ID from PTF_DEPLOYMENT where SHIP_NAME IN (select name from SHIP where REF IN("
-						+ Utils.StrValueForSql(query_ship) + ")))";
-			
+		if (ship != null && !ship.isEmpty()) {// special case "Ship"
+												// both name and ref are strings
+			intersect_index = intersect_index + 1;
+			/**
+			 * if (Utils.CheckIntValueForSql(ship) == true) { query_ship =
+			 * "intersect" + " select * from PTF where PTF_DEPL_ID IN (select ID
+			 * from PTF_DEPLOYMENT where SHIP_ID IN(" + ship + ")) union" + "
+			 * select * from PTF where PTF_DEPL_ID IN (select ID from
+			 * PTF_DEPLOYMENT where UPPER(SHIP_NAME) IN (select name from SHIP
+			 * where REF IN('" + ship +"')))"; System.out.println("I tested:
+			 * "+ship.toUpperCase()+" value and it is int"); } else {
+			 **/
+			query_ship = "intersect"
+					+ " select * from PTF where PTF_DEPL_ID IN (select ID from PTF_DEPLOYMENT where UPPER(SHIP_NAME) IN('"
+					+ Utils.StrValueForSql(ship.toUpperCase()) + "')) union"
+					+ " select * from PTF where PTF_DEPL_ID IN (select ID from PTF_DEPLOYMENT where UPPER(SHIP_NAME) IN (select name from SHIP where UPPER(REF) IN('"
+					+ Utils.StrValueForSql(ship.toUpperCase()) + "')))";
+		}
+
+		if (country != null && !country.isEmpty()) {
+			intersect_index = intersect_index + 1;
+
+			if (Utils.CheckIntValueForSql(country) == true) {
+				query_country = "intersect"
+						+ " select * from PTF where PROGRAM_ID IN (select ID from PROGRAM where COUNTRY_ID IN('"
+						+ country + "'))";
+			} else {
+				query_country = "intersect select * from PTF where PROGRAM_ID  IN (select ID from PROGRAM where COUNTRY_ID IN (select ID from COUNTRY where UPPER(NAME_SHORT) IN('"
+						+ Utils.StrValueForSql(country.toUpperCase()) + "')))"
+								+ " union select * from PTF where PROGRAM_ID IN (select ID from PROGRAM where COUNTRY_ID IN (select ID from COUNTRY where UPPER(CODE2) IN('"
+						+ Utils.StrValueForSql(country.toUpperCase()) + "')))";
+			}
 		}
 
 		String overall_query = query_model + query_type + query_family + query_status + query_program + query_network
-				+ query_masterprg + query_variable + query_sensormod + query_sensortyp+query_ship;
+				+ query_masterprg + query_variable + query_sensormod + query_sensortyp + query_ship + query_country;
 
 		overall_query = overall_query.substring(10);// to omit the first
 													// "intersect"
@@ -773,7 +800,7 @@ public class PlatformAccessor {
 			Ptf a = ptf_itr.next();
 			Platform ptf = new Platform();
 			ptf.setId(Cayenne.longPKForObject(a));
-			ptf.setJcommpsRef(a.getRef());
+			ptf.setJcommopsRef(a.getRef());
 			ptfs_list.add(ptf);
 		}
 
