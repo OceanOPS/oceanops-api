@@ -8,11 +8,12 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-
-@XmlType(propOrder={"name", "isoCode2", "isoCode3"})
+@XmlRootElement
+@XmlType(propOrder={"nameShort", "name", "isoCode2", "isoCode3"})
 public class CountryPtf {
 	
 	private long Id;
+	private String NameShort;
 	private String Name;
 	private String IsoCode2;
 	private String IsoCode3;
@@ -21,8 +22,9 @@ public class CountryPtf {
 		
 	}
 	
-	public CountryPtf( long id, String name, String isoCode2, String isoCode3) {
+	public CountryPtf( long id, String namesh, String name, String isoCode2, String isoCode3) {
 		this.setId(id);
+		this.setNameShort(namesh);
 		this.setName(name);
 		this.setIsoCode2(isoCode2);
 		this.setIsoCode3(isoCode3);
@@ -39,6 +41,17 @@ public class CountryPtf {
 		Id = id;
 	}
 
+	
+	@XmlElement
+	public String getNameShort() {
+		return NameShort;
+	}
+
+	public void setNameShort(String nameShort) {
+		NameShort = nameShort;
+	}
+	
+	
 	@XmlElement
 	public String getName() {
 		return Name;
@@ -65,7 +78,7 @@ public class CountryPtf {
 	public void setIsoCode3(String isoCode3) {
 		IsoCode3 = isoCode3;
 	}
-	
+
 	
 	
 }

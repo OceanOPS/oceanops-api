@@ -1,10 +1,12 @@
 package org.jcommops.api.accessors;
 
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import org.apache.cayenne.Cayenne;
+import org.apache.cayenne.CayenneRuntimeException;
 import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.configuration.server.ServerRuntime;
 import org.apache.cayenne.query.SQLTemplate;
@@ -44,6 +46,8 @@ import org.jcommops.api.orm.PtfModel;
 import org.jcommops.api.orm.PtfStatus;
 import org.jcommops.api.orm.PtfType;
 import org.jcommops.api.orm.Ship;
+
+import javassist.bytecode.analysis.Util;
 
 public class PlatformAccessor {
 	private ServerRuntime runtime = Utils.getCayenneRuntime();
@@ -230,7 +234,7 @@ public class PlatformAccessor {
 	}
 
 	public ArrayList<SensorModel> getPtfSensorModel() { // List of platforms'
-														// Networks
+														// sensors model
 		SelectQuery SensModel_query = new SelectQuery(org.jcommops.api.orm.SensorModel.class);
 		List<org.jcommops.api.orm.SensorModel> SensModels = context.performQuery(SensModel_query);
 
@@ -252,7 +256,7 @@ public class PlatformAccessor {
 	}
 
 	public ArrayList<SensorType> getPtfSensorType() { // List of platforms'
-														// Networks
+														// sensors type
 		SelectQuery SensType_query = new SelectQuery(org.jcommops.api.orm.SensorType.class);
 		List<org.jcommops.api.orm.SensorType> SensTypes = context.performQuery(SensType_query);
 
@@ -296,6 +300,30 @@ public class PlatformAccessor {
 
 	}
 
+	public ArrayList<CountryPtf>getPtfCountries() { // List of platforms'
+		// variables
+
+		SelectQuery Country_query = new SelectQuery(Country.class);
+		List<Country> countries = context.performQuery(Country_query);
+
+		ArrayList<CountryPtf> countries_list = new ArrayList<CountryPtf>();
+
+		Iterator<Country> countries_itr = countries.iterator();
+
+		while (countries_itr.hasNext()) {
+			Country a = countries_itr.next();
+			CountryPtf c = new CountryPtf();
+			c.setId(Utils.ConvertIDStringtoLong(a.getObjectId().toString()));
+			c.setIsoCode2(a.getCode2());
+			c.setIsoCode3(a.getCode3());
+			c.setNameShort(a.getNameShort());
+			c.setName(a.getName());
+			countries_list.add(c);
+		}
+		return countries_list;
+
+	}
+
 	public Platform getPtfbyID(long id) {// Platform's details by ID
 
 		Ptf platform = Cayenne.objectForPK(context, Ptf.class, id); // Get the
@@ -304,11 +332,15 @@ public class PlatformAccessor {
 		Platform ptf = new Platform();
 		try {
 			ptf.setId(id);
-			ptf.setJcommopsRef(platform.getRef());
 		} catch (NullPointerException n) {
 			ptf.setId(-1);
 			ptf.setError_message("Invalid ID. The ID " + id + " doesn't correspond to a registered platform.");
 
+		}
+		try {
+			ptf.setJcommopsRef(platform.getRef());
+		} catch (Exception e) {
+			ptf.setJcommopsRef("Platform not referenced yet!");
 		}
 		// Methodes
 		MethodsAssociativeTables MAT = new MethodsAssociativeTables();
@@ -335,15 +367,29 @@ public class PlatformAccessor {
 		CountryPtf country = new CountryPtf();
 		// 9) embedded object"Master Programme"
 		MasterProgramPtf masterprg = new MasterProgramPtf();
-		// 10) embedded object"Contact"
+		// 10) embedded object"Contacts"
+		ArrayList<ContactPrg> contacts = new ArrayList<ContactPrg>();
 		// 10.1) embedded object"Role"
 		// 10.2) embedded object"Role"
 
 		try {
 
 			ptf.setNotificationDate(Utils.GetIsoDate(platform.getENotificationDate()));
+		} catch (Exception e) {
+			ptf.setNotificationDate("");
+		}
+		try {
 			ptf.setEndingDate(Utils.GetIsoDate(platform.getEndingDate()));
+		} catch (Exception e) {
+			ptf.setEndingDate("");
+		}
+		try {
 			ptf.setAge(platform.getAge().toString());
+		} catch (Exception e) {
+			ptf.setEndingDate("");
+		}
+
+		try {
 			// 1.0) embedded object"Telecom"
 			String stringIDptfTelc = platform.getToTelecom1().getObjectId().toString();
 			org.jcommops.api.orm.Telecom telecom = Cayenne.objectForPK(context, org.jcommops.api.orm.Telecom.class,
@@ -351,234 +397,293 @@ public class PlatformAccessor {
 
 			telc.setId(Cayenne.longPKForObject(telecom));
 			telc.setTelecomType(telecom.getToTelecomType().getName());
-			// Ajouter à platform
 			ptf.setTelecom(telc);
+		} catch (Exception e) {
+			telc.setTelecomType("");
+			ptf.setTelecom(telc);
+		}
+		// Ajouter à platform
+		try {
+			// 1.0.1) embedded String attribute InternalRef (from
+			// Ptf_Identifiers)
+			String stringIDptfIdent = platform.getToPtfIdentifiers().getObjectId().toString();
+			PtfIdentifiers Identifiers = Cayenne.objectForPK(context, PtfIdentifiers.class,
+					Utils.ConvertIDStringtoLong(stringIDptfIdent));
+			// Ajouter à platform
+			ptf.setInternalRef(Identifiers.getInternalRef());
+		} catch (Exception e) {
+			ptf.setInternalRef("");
+		}
+		try {
+			// 1.0.2) embedded String attribute SerialRef (from
+			// Ptf_Hardware)
+			String stringIDptfHard = platform.getToPtfHardware().getObjectId().toString();
+			PtfHardware hardw = Cayenne.objectForPK(context, PtfHardware.class,
+					Utils.ConvertIDStringtoLong(stringIDptfHard));
+			// Ajouter à platform
+			ptf.setSerialRef(hardw.getSerialRef());
+		} catch (Exception e) {
+			ptf.setSerialRef("");
+		}
+
+		try {
+			// 1.1) embedded object"PlatformStatus"
+			String stringIDptfs = platform.getToPtfStatus().getObjectId().toString();
+			PtfStatus platformstatus = Cayenne.objectForPK(context, PtfStatus.class,
+					Utils.ConvertIDStringtoLong(stringIDptfs));
+			ptfs.setId(Cayenne.longPKForObject(platformstatus));
+			ptfs.setNameShort(platformstatus.getDescription());
+			// Ajouter à platform
+			ptf.setPtfStatus(ptfs);
+		} catch (Exception e) {
+			ptfs.setNameShort("");
+			ptf.setPtfStatus(ptfs);
+
+		}
+		try {
+			// 2) embedded object"PlatformModel"
+			String stringIDptfm = platform.getToPtfModel().getObjectId().toString();
+			PtfModel platformmodel = Cayenne.objectForPK(context, PtfModel.class,
+					Utils.ConvertIDStringtoLong(stringIDptfm));
+
+			ptfm.setId(Cayenne.longPKForObject(platformmodel));
+			ptfm.setNameShort(platformmodel.getNameShort());
+			ptfm.setName(platformmodel.getName());
+			ptfm.setDescription(platformmodel.getDescription());
+			// Ajouter à platform
+			ptf.setPtfModel(ptfm);
+
+			// 3) embedded object"PlatformType"
+			PtfModel platformm = Cayenne.objectForPK(context, PtfModel.class, Cayenne.longPKForObject(platformmodel));
+			String stringIDptft = platformm.getToPtfType().getObjectId().toString();
+			PtfType platformtype = Cayenne.objectForPK(context, PtfType.class,
+					Utils.ConvertIDStringtoLong(stringIDptft));
+			ptft.setId(Cayenne.longPKForObject(platformtype));
+			ptft.setNameShort(platformtype.getNameShort());
+			ptft.setName(platformtype.getName());
+			ptft.setDescription(platformtype.getDescription());
+			// Ajouter à platform
+			ptf.setPtfType(ptft);
+
+			// 4) embedded object"PlatformFamily"
+			PtfType platformt = Cayenne.objectForPK(context, PtfType.class, Cayenne.longPKForObject(platformtype));
+			String stringIDptff = platformt.getToPtfFamily().getObjectId().toString();
+			PtfFamily platformfamily = Cayenne.objectForPK(context, PtfFamily.class,
+					Utils.ConvertIDStringtoLong(stringIDptff));
+			ptff.setId(Cayenne.longPKForObject(platformfamily));
+			ptff.setNameShort(platformfamily.getNameShort());
+			ptff.setName(platformfamily.getName());
+			ptff.setDescription(platformfamily.getDescription());
+			ptf.setPtfFamily(ptff);
+		} catch (Exception e) {
+			ptfm.setNameShort("");
+			ptfm.setName("");
+			ptfm.setDescription("");
+			ptf.setPtfModel(ptfm);
+			// Ajouter à platform
+			ptf.setPtfModel(ptfm);
+
+			ptft.setNameShort("");
+			ptft.setName("");
+			ptft.setDescription("");
+			ptf.setPtfType(ptft);
+			// Ajouter à platform
+			ptf.setPtfType(ptft);
+
+			ptff.setNameShort("");
+			ptff.setName("");
+			ptff.setDescription("");
+			ptf.setPtfFamily(ptff);
+			// Ajouter à platform
+			ptf.setPtfFamily(ptff);
+
+		}
+
+		// 5) embedded object"PlatformLastLoc"
+		// PlatformLastLoc ptfll = new PlatformLastLoc();
+		try {
+			String stringIDptfll = platform.getToPtfLoc().getObjectId().toString();
+			PtfLoc platformlastloc = Cayenne.objectForPK(context, PtfLoc.class,
+					Utils.ConvertIDStringtoLong(stringIDptfll));
+			ptfll.setId(Cayenne.longPKForObject(platformlastloc));
+			ptfll.setLat(platformlastloc.getLat());
+			ptfll.setLon(platformlastloc.getLon());
+			ptfll.setLastLocationDate(Utils.GetIsoDate(platformlastloc.getLocDate()));
+			// Ajouter à platform
+			ptf.setLastLocation(ptfll);
+		} catch (Exception e) {
+			ptfll.setLat(null);
+			ptfll.setLon(null);
+			ptfll.setLastLocationDate("");
+			// Ajouter à platform
+			ptf.setLastLocation(ptfll);
+		}
+		try {
+			// 6) embedded object"PlatformDeploy"
+			// PlatformDeploy ptfdpl = new PlatformDeploy();
+
+			String query_depl = "select * from PTF_DEPLOYMENT where id in(select PTF_DEPL_ID from ptf where id='" + id
+					+ "')";
+			SQLTemplate query_search = new SQLTemplate(PtfDeployment.class, query_depl);
+			List<PtfDeployment> listdepl = context.performQuery(query_search);
+
+			ptfdpl.setId(Cayenne.longPKForObject(listdepl.get(0)));
+			ptfdpl.setDeployementDate(Utils.GetIsoDate(listdepl.get(0).getDeplDate()));
+			ptfdpl.setLat(listdepl.get(0).getLat());
+			ptfdpl.setLon(listdepl.get(0).getLon());
+			ptfdpl.setDeployementDensity(listdepl.get(0).getDensity());
+			ptfdpl.setDeployementScore(listdepl.get(0).getScore());
+			ptfdpl.setShipName(listdepl.get(0).getShipName());
+			ptfdpl.setCruiseName(listdepl.get(0).getCruiseName());
+
 			try {
-				// 1.0.1) embedded String attribute InternalRef (from
-				// Ptf_Identifiers)
-				String stringIDptfIdent = platform.getToPtfIdentifiers().getObjectId().toString();
-				PtfIdentifiers Identifiers = Cayenne.objectForPK(context, PtfIdentifiers.class,
-						Utils.ConvertIDStringtoLong(stringIDptfIdent));
-				// Ajouter à platform
-				ptf.setInternalRef(Identifiers.getInternalRef());
-				// 1.0.2) embedded String attribute SerialRef (from
-				// Ptf_Hardware)
-				String stringIDptfHard = platform.getToPtfHardware().getObjectId().toString();
-				PtfHardware hardw = Cayenne.objectForPK(context, PtfHardware.class,
-						Utils.ConvertIDStringtoLong(stringIDptfHard));
-				// Ajouter à platform
-				ptf.setSerialRef(hardw.getSerialRef());
-			} catch (NullPointerException e) {
-
-			}
-
-			try {
-				// 1.1) embedded object"PlatformStatus"
-				String stringIDptfs = platform.getToPtfStatus().getObjectId().toString();
-				PtfStatus platformstatus = Cayenne.objectForPK(context, PtfStatus.class,
-						Utils.ConvertIDStringtoLong(stringIDptfs));
-				ptfs.setId(Cayenne.longPKForObject(platformstatus));
-				ptfs.setNameShort(platformstatus.getDescription());
-				// Ajouter à platform
-				ptf.setPtfStatus(ptfs);
-			} catch (NullPointerException e) {
-
-			}
-			try {
-				// 2) embedded object"PlatformModel"
-				String stringIDptfm = platform.getToPtfModel().getObjectId().toString();
-				PtfModel platformmodel = Cayenne.objectForPK(context, PtfModel.class,
-						Utils.ConvertIDStringtoLong(stringIDptfm));
-
-				ptfm.setId(Cayenne.longPKForObject(platformmodel));
-				ptfm.setNameShort(platformmodel.getNameShort());
-				ptfm.setName(platformmodel.getName());
-				ptfm.setDescription(platformmodel.getDescription());
-				// Ajouter à platform
-				ptf.setPtfModel(ptfm);
-
-				// 3) embedded object"PlatformType"
-				PtfModel platformm = Cayenne.objectForPK(context, PtfModel.class,
-						Cayenne.longPKForObject(platformmodel));
-				String stringIDptft = platformm.getToPtfType().getObjectId().toString();
-				PtfType platformtype = Cayenne.objectForPK(context, PtfType.class,
-						Utils.ConvertIDStringtoLong(stringIDptft));
-				ptft.setId(Cayenne.longPKForObject(platformtype));
-				ptft.setNameShort(platformtype.getNameShort());
-				ptft.setName(platformtype.getName());
-				ptft.setDescription(platformtype.getDescription());
-				// Ajouter à platform
-				ptf.setPtfType(ptft);
-
-				// 4) embedded object"PlatformFamily"
-				PtfType platformt = Cayenne.objectForPK(context, PtfType.class, Cayenne.longPKForObject(platformtype));
-				String stringIDptff = platformt.getToPtfFamily().getObjectId().toString();
-				PtfFamily platformfamily = Cayenne.objectForPK(context, PtfFamily.class,
-						Utils.ConvertIDStringtoLong(stringIDptff));
-				ptff.setId(Cayenne.longPKForObject(platformfamily));
-				ptff.setNameShort(platformfamily.getNameShort());
-				ptff.setName(platformfamily.getName());
-				ptff.setDescription(platformfamily.getDescription());
-				ptf.setPtfFamily(ptff);
-			} catch (NullPointerException e) {
-
-			}
-
-			// 5) embedded object"PlatformLastLoc"
-			// PlatformLastLoc ptfll = new PlatformLastLoc();
-			try {
-				String stringIDptfll = platform.getToPtfLoc().getObjectId().toString();
-				PtfLoc platformlastloc = Cayenne.objectForPK(context, PtfLoc.class,
-						Utils.ConvertIDStringtoLong(stringIDptfll));
-				ptfll.setId(Cayenne.longPKForObject(platformlastloc));
-				ptfll.setLat(platformlastloc.getLat());
-				ptfll.setLon(platformlastloc.getLon());
-				ptfll.setLastLocationDate(Utils.GetIsoDate(platformlastloc.getLocDate()));
-				// Ajouter à platform
-				ptf.setLastLocation(ptfll);
-			} catch (NullPointerException e) {
-
-			}
-			try {
-				// 6) embedded object"PlatformDeploy"
-				// PlatformDeploy ptfdpl = new PlatformDeploy();
-				String stringIDptfdpl = platform.getToPtfDeployment().getObjectId().toString();
-				PtfDeployment platformDeploy = Cayenne.objectForPK(context, PtfDeployment.class,
-						Utils.ConvertIDStringtoLong(stringIDptfdpl));
-				ptfdpl.setId(Cayenne.longPKForObject(platformDeploy));
-				ptfdpl.setDeployementDate(platformDeploy.getDeplDate());
-				ptfdpl.setLat(platformDeploy.getLat());
-				ptfdpl.setLon(platformDeploy.getLon());
-				ptfdpl.setDeployementDensity(platformDeploy.getDensity());
-				ptfdpl.setDeployementScore(platformDeploy.getScore());
-				ptfdpl.setShipName(platformDeploy.getShipName());
-				ptfdpl.setCruiseName(platformDeploy.getCruiseName());
-				String stringRefShip = platformDeploy.getToShip().getObjectId().toString();
+				String stringRefShip = listdepl.get(0).getToShip().getObjectId().toString();
 				Ship ship = Cayenne.objectForPK(context, Ship.class, Utils.ConvertIDStringtoLong(stringRefShip));
 				ptfdpl.setShipRef(ship.getRef());
-				ptf.setDeployement(ptfdpl);
-			} catch (NullPointerException e) {
 
-			}
-
-			// 7) embedded object"Program"
-			// Program prgm = new Program();
-			try {
-				String stringIDprg = platform.getToProgram().getObjectId().toString();
-				org.jcommops.api.orm.Program ptfprogram = Cayenne.objectForPK(context,
-						org.jcommops.api.orm.Program.class, Utils.ConvertIDStringtoLong(stringIDprg));
-				prgm.setActive(ptfprogram.getActive());
-				prgm.setDescription(ptfprogram.getDescription());
-				prgm.setId(Cayenne.longPKForObject(ptfprogram));
-				prgm.setName(ptfprogram.getName());
-				// 7.1) l'objet "sous-imbriqué" "Agency" (to program)
-				prgm.setAgencies(MAT.FindProgramAgencies(Cayenne.longPKForObject(ptfprogram)));//
-				ptf.setProgram(prgm);
-
-				// 8) embedded object"Country"
-				// CountryPtf country= new CountryPtf();
-				String stringIDcountry = ptfprogram.getToCountry().getObjectId().toString();
-				Country ptfcountry = Cayenne.objectForPK(context, Country.class,
-						Utils.ConvertIDStringtoLong(stringIDcountry));
-				country.setId(Cayenne.longPKForObject(ptfcountry));
-				country.setName(ptfcountry.getName());
-				country.setIsoCode2(ptfcountry.getCode2());
-				country.setIsoCode3(ptfcountry.getCode3());
-				ptf.setCountry(country);
-
-				// System.out.println(ptfcountry.getName());
-
-				// 9) embedded object"Master Programme"
-				// CountryPtf country= new CountryPtf();
-				String stringIDmasterprg = ptfprogram.getToMasterProg().getObjectId().toString();
-				MasterProg ptfmastprg = Cayenne.objectForPK(context, MasterProg.class,
-						Utils.ConvertIDStringtoLong(stringIDmasterprg));
-				masterprg.setId(Cayenne.longPKForObject(ptfmastprg));
-				masterprg.setName(ptfmastprg.getName());
-				masterprg.setNameShort(ptfmastprg.getNameShort());
-				ptf.setMasterProgramme(masterprg);
-
-				// 10) embedded object"Contacts"
-				ArrayList<ContactPrg> contacts = new ArrayList<ContactPrg>();
-				// 10.1) embedded object"Role"
-				// 10.2) embedded object"Agency"
-				contacts = MAT.FindProgramContacts(Cayenne.longPKForObject(ptfprogram));//
-				ptf.setContacts(contacts);
-			} catch (NullPointerException e) {
-
-			}
-
-			// 11) embedded object"Configuration"
-			Configuration config = new Configuration();
-
-			try {
-				String query_config = " select * from CONFIG where ID IN "
-						+ "(select CONFIG_ID from PTF_CONFIG  where PTF_ID='" + id + "')";
-				SQLTemplate query_search = new SQLTemplate(Config.class, query_config);
-				List<Config> listconfig = context.performQuery(query_search);
-				config.setId(Cayenne.longPKForObject(listconfig.get(0)));
-				config.setCycleTime(listconfig.get(0).getCycleTime());
-				config.setDriftPressure(listconfig.get(0).getDriftPress());
-				config.setProfilePressure(listconfig.get(0).getProfilePress());
-				config.setIceDetection(listconfig.get(0).getIceDetection());
 			} catch (Exception e) {
-
+				ptfdpl.setShipRef("");
 			}
+
 			// Ajouter à platform
-			ptf.setConfiguration(config);
 
-			// 12) embedded object"sensorModel"
-			SensorModel sensorm = new SensorModel();
+		} catch (Exception e) {
+			ptfdpl.setDeployementDate("");
+			ptfdpl.setLat(null);
+			ptfdpl.setLon(null);
+			ptfdpl.setDeployementDensity(null);
+			ptfdpl.setDeployementScore(null);
+			ptfdpl.setShipName("");
+			ptfdpl.setCruiseName("");
 
-			try {
-				String query_sensorm = " select * from SENSOR_MODEL where ID IN "
-						+ "(select SENSOR_MODEL_ID from PTF_SENSOR_MODEL where PTF_ID='" + id + "')";
-				SQLTemplate query_search = new SQLTemplate(org.jcommops.api.orm.SensorModel.class, query_sensorm);
-				List<org.jcommops.api.orm.SensorModel> listsensorm = context.performQuery(query_search);
-				sensorm.setId(Cayenne.longPKForObject(listsensorm.get(0)));
-				sensorm.setNameShort(listsensorm.get(0).getNameShort());
-			}
+		}
+		ptf.setDeployement(ptfdpl);
 
-			catch (Exception e) {
+		// 7) embedded object"Program"
+		// Program prgm = new Program();
+		try {
+			String stringIDprg = platform.getToProgram().getObjectId().toString();
+			org.jcommops.api.orm.Program ptfprogram = Cayenne.objectForPK(context, org.jcommops.api.orm.Program.class,
+					Utils.ConvertIDStringtoLong(stringIDprg));
+			prgm.setActive(ptfprogram.getActive());
+			prgm.setDescription(ptfprogram.getDescription());
+			prgm.setId(Cayenne.longPKForObject(ptfprogram));
+			prgm.setName(ptfprogram.getName());
+			prgm.setNameShort(ptfprogram.getNameShort());
+			// 7.1) l'objet "sous-imbriqué" "Agency" (to program)
+			prgm.setAgencies(MAT.FindProgramAgencies(Cayenne.longPKForObject(ptfprogram)));//
+			ptf.setProgram(prgm);
 
-			}
+			// 8) embedded object"Country"
+			// CountryPtf country= new CountryPtf();
+			String stringIDcountry = ptfprogram.getToCountry().getObjectId().toString();
+			Country ptfcountry = Cayenne.objectForPK(context, Country.class,
+					Utils.ConvertIDStringtoLong(stringIDcountry));
+			country.setId(Cayenne.longPKForObject(ptfcountry));
+			country.setName(ptfcountry.getName());
+			country.setIsoCode2(ptfcountry.getCode2());
+			country.setIsoCode3(ptfcountry.getCode3());
+			ptf.setCountry(country);
 
-			// 13) embedded object"sensorType"
-			ArrayList<SensorType> sensort_list = new ArrayList<SensorType>();
+			// System.out.println(ptfcountry.getName());
 
-			try {
-				String query_sensort = " select * from SENSOR_TYPE where ID IN "
-						+ "(select SENSOR_TYPE_ID from SENSOR_MODEL_SENSOR_TYPE where SENSOR_MODEL_ID='"
-						+ sensorm.getId() + "')";
-				SQLTemplate query_searcht = new SQLTemplate(org.jcommops.api.orm.SensorType.class, query_sensort);
-				List<org.jcommops.api.orm.SensorType> listsensort = context.performQuery(query_searcht);
-				int i = 0;
-				while (i < listsensort.size()) {
-					SensorType sensort = new SensorType();
-					sensort.setId(Cayenne.longPKForObject(listsensort.get(i)));
-					sensort.setNameShort(listsensort.get(i).getNameShort());
-					i++;
-					sensort_list.add(sensort);
-				}
+			// 9) embedded object"Master Programme"
+			// CountryPtf country= new CountryPtf();
+			String stringIDmasterprg = ptfprogram.getToMasterProg().getObjectId().toString();
+			MasterProg ptfmastprg = Cayenne.objectForPK(context, MasterProg.class,
+					Utils.ConvertIDStringtoLong(stringIDmasterprg));
+			masterprg.setId(Cayenne.longPKForObject(ptfmastprg));
+			masterprg.setName(ptfmastprg.getName());
+			masterprg.setNameShort(ptfmastprg.getNameShort());
+			ptf.setMasterProgramme(masterprg);
 
-			}
+			// 10) embedded object"Contacts"
 
-			catch (Exception e) {
-
-			}
-			// Ajouter sensor types à sensor model
-			sensorm.setSensorTypes(sensort_list);
-			// Ajouter sensor model à platform
-			ptf.setSensorModel(sensorm);
-
-			// 14) embedded object"Variables"
-			ArrayList<Variable> variables = new ArrayList<Variable>();
-			variables = MAT.FindPtfVariables(id);
-			ptf.setVariables(variables);
-
+			// 10.1) embedded object"Role"
+			// 10.2) embedded object"Agency"
+			contacts = MAT.FindProgramContacts(Cayenne.longPKForObject(ptfprogram));//
+			ptf.setContacts(contacts);
 		} catch (Exception e) {
 
 		}
+		// Ajouter à Platform
+		ptf.setProgram(prgm);
+		ptf.setCountry(country);
+		ptf.setMasterProgramme(masterprg);
+		ptf.setContacts(contacts);
+
+		// 11) embedded object"Configuration"
+		Configuration config = new Configuration();
+
+		try {
+			String query_config = " select * from CONFIG where ID IN "
+					+ "(select CONFIG_ID from PTF_CONFIG  where PTF_ID='" + id + "')";
+			SQLTemplate query_search = new SQLTemplate(Config.class, query_config);
+			List<Config> listconfig = context.performQuery(query_search);
+			config.setId(Cayenne.longPKForObject(listconfig.get(0)));
+			config.setCycleTime(listconfig.get(0).getCycleTime());
+			config.setDriftPressure(listconfig.get(0).getDriftPress());
+			config.setProfilePressure(listconfig.get(0).getProfilePress());
+			config.setIceDetection(listconfig.get(0).getIceDetection());
+		} catch (Exception e) {
+
+		}
+		// Ajouter à platform
+		ptf.setConfiguration(config);
+
+		// 12) embedded object"sensorModel"
+		SensorModel sensorm = new SensorModel();
+
+		try {
+			String query_sensorm = " select * from SENSOR_MODEL where ID IN "
+					+ "(select SENSOR_MODEL_ID from PTF_SENSOR_MODEL where PTF_ID='" + id + "')";
+			SQLTemplate query_search = new SQLTemplate(org.jcommops.api.orm.SensorModel.class, query_sensorm);
+			List<org.jcommops.api.orm.SensorModel> listsensorm = context.performQuery(query_search);
+			sensorm.setId(Cayenne.longPKForObject(listsensorm.get(0)));
+			sensorm.setNameShort(listsensorm.get(0).getNameShort());
+		}
+
+		catch (Exception e) {
+
+		}
+
+		// 13) embedded object"sensorType"
+		ArrayList<SensorType> sensort_list = new ArrayList<SensorType>();
+
+		try {
+			String query_sensort = " select * from SENSOR_TYPE where ID IN "
+					+ "(select SENSOR_TYPE_ID from SENSOR_MODEL_SENSOR_TYPE where SENSOR_MODEL_ID='" + sensorm.getId()
+					+ "')";
+			SQLTemplate query_searcht = new SQLTemplate(org.jcommops.api.orm.SensorType.class, query_sensort);
+			List<org.jcommops.api.orm.SensorType> listsensort = context.performQuery(query_searcht);
+			int i = 0;
+			while (i < listsensort.size()) {
+				SensorType sensort = new SensorType();
+				sensort.setId(Cayenne.longPKForObject(listsensort.get(i)));
+				sensort.setNameShort(listsensort.get(i).getNameShort());
+				i++;
+				sensort_list.add(sensort);
+			}
+
+		}
+
+		catch (Exception e) {
+
+		}
+		// Ajouter sensor types à sensor model
+		sensorm.setSensorTypes(sensort_list);
+		// Ajouter sensor model à platform
+		ptf.setSensorModel(sensorm);
+
+		// 14) embedded object"Variables"
+		ArrayList<Variable> variables = new ArrayList<Variable>();
+		try {
+
+			variables = MAT.FindPtfVariables(id);
+		} catch (Exception e) {
+
+		}
+		ptf.setVariables(variables);
 
 		return ptf;
 
@@ -776,7 +881,7 @@ public class PlatformAccessor {
 			} else {
 				query_country = "intersect select * from PTF where PROGRAM_ID  IN (select ID from PROGRAM where COUNTRY_ID IN (select ID from COUNTRY where UPPER(NAME_SHORT) IN('"
 						+ Utils.StrValueForSql(country.toUpperCase()) + "')))"
-								+ " union select * from PTF where PROGRAM_ID IN (select ID from PROGRAM where COUNTRY_ID IN (select ID from COUNTRY where UPPER(CODE2) IN('"
+						+ " union select * from PTF where PROGRAM_ID IN (select ID from PROGRAM where COUNTRY_ID IN (select ID from COUNTRY where UPPER(CODE2) IN('"
 						+ Utils.StrValueForSql(country.toUpperCase()) + "')))";
 			}
 		}
@@ -805,6 +910,45 @@ public class PlatformAccessor {
 		}
 
 		return ptfs_list;
+	}
+
+	public String WritePtfCSV(long id) throws NullPointerException {
+		String CVS;
+		StringWriter strW = new StringWriter();
+
+		Platform ptfm = getPtfbyID(id);
+		strW.write(ptfm.getId() + ";" + Utils.CheckStringNull(ptfm.getJcommopsRef()) + ";"
+				+ Utils.Checklong(ptfm.getTelecom().getId()) + ";"
+				+ Utils.CheckStringNull(ptfm.getTelecom().getTelecomType()) + ";"
+				+ Utils.CheckStringNull(ptfm.getInternalRef()) + ";" + Utils.CheckStringNull(ptfm.getSerialRef()) + ";"
+				+ Utils.CheckStringNull(ptfm.getPtfFamily().getNameShort()) + ";"
+				+ Utils.CheckStringNull(ptfm.getPtfType().getNameShort()) + ";"
+				+ Utils.CheckStringNull(ptfm.getPtfModel().getNameShort()) + ";"
+				+ Utils.CheckStringNull(ptfm.getProgram().getNameShort()) + ";"
+				+ Utils.CheckStringNull(ptfm.getCountry().getName()) + ";"
+				+ Utils.CheckStringNull((ptfm.getMasterProgramme().getName())) + ";"
+				+ Utils.CheckStringNull(ptfm.getDeployement().getDeployementDate()) + ";"
+				+ Utils.CheckBigDcm((ptfm.getDeployement().getLat())) + ";"
+				+ Utils.CheckBigDcm(ptfm.getDeployement().getLon()) + ";"
+				+ Utils.CheckBigDcm(ptfm.getDeployement().getDeployementScore()) + ";"
+				+ Utils.CheckBigDcm(ptfm.getDeployement().getDeployementDensity()) + ";"
+				+ Utils.CheckStringNull(ptfm.getNotificationDate()) + ";"
+				+ Utils.CheckStringNull(ptfm.getDeployement().getShipName()) + ";"
+				+ Utils.CheckStringNull(ptfm.getDeployement().getShipRef()) + ";"
+				+ Utils.CheckStringNull(ptfm.getLastLocation().getLastLocationDate()) + ";"
+				+ Utils.CheckBigDcm((ptfm.getLastLocation().getLat())) + ";"
+				+ Utils.CheckBigDcm(ptfm.getLastLocation().getLon()) + ";" + Utils.CheckStringNull(ptfm.getAge()) + ";"
+				+ Utils.CheckBigDcm(ptfm.getConfiguration().getCycleTime()) + ";"
+				+ Utils.CheckBigDcm(ptfm.getConfiguration().getProfilePressure()) + ";"
+				+ Utils.CheckBigDcm(ptfm.getConfiguration().getDriftPressure()) + ";"
+				+ Utils.CheckInt(ptfm.getConfiguration().getIceDetection()) + ";"
+				+ Utils.CheckStringNull(ptfm.getSensorModel().getNameShort()) + ";"
+				+ Utils.GetSensorTypesListToString(ptfm.getSensorModel().getSensorTypes()) + ";"
+				+ Utils.CheckStringNull(Utils.GetVariablesListToString(ptfm.getVariables())) + ";" + "\n");
+
+		CVS = strW.toString();
+		return CVS;
+
 	}
 
 }

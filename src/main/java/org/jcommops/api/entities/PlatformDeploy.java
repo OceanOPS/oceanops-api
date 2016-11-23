@@ -5,18 +5,19 @@ import java.util.Date;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-
+@XmlRootElement
 @XmlType(propOrder = { "deployementDate", "lat", "lon", "notificationDate", "deployementDensity", "deployementScore",
 		"shipName", "shipRef", "cruiseName" })
 public class PlatformDeploy {
 	private long Id;
-	private Date DeployementDate;
+	private String DeployementDate;
 	private BigDecimal Lat;
 	private BigDecimal Lon;
 	private BigDecimal DeployementScore;
 	private BigDecimal DeployementDensity;
-	private Date NotificationDate;
+	private String NotificationDate;
 	private String ShipName;
 	private String ShipRef;
 	private String CruiseName;
@@ -24,8 +25,8 @@ public class PlatformDeploy {
 	public PlatformDeploy() {
 	}
 
-	public PlatformDeploy(long id, Date dpldate, BigDecimal lat, BigDecimal lon, BigDecimal deplscore,
-			BigDecimal depldensity, Date notifdate, String shipname, String shipref, String cruisename) {
+	public PlatformDeploy(long id, String dpldate, BigDecimal lat, BigDecimal lon, BigDecimal deplscore,
+			BigDecimal depldensity, String notifdate, String shipname, String shipref, String cruisename) {
 		this.setDeployementDate(dpldate);
 		this.setId(id);
 		this.setLat(lat);
@@ -48,11 +49,11 @@ public class PlatformDeploy {
 	}
 
 	@XmlElement
-	public Date getDeployementDate() {
+	public String getDeployementDate() {
 		return DeployementDate;
 	}
 
-	public void setDeployementDate(Date deployementDate) {
+	public void setDeployementDate(String deployementDate) {
 		DeployementDate = deployementDate;
 	}
 
@@ -93,11 +94,11 @@ public class PlatformDeploy {
 	}
 
 	@XmlElement
-	public Date getNotificationDate() {
+	public String getNotificationDate() {
 		return NotificationDate;
 	}
 
-	public void setNotificationDate(Date notificationDate) {
+	public void setNotificationDate(String notificationDate) {
 		NotificationDate = notificationDate;
 	}
 	@XmlElement

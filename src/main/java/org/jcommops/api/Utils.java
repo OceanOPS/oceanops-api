@@ -1,6 +1,7 @@
 package org.jcommops.api;
 
 import java.io.StringWriter;
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,6 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.cayenne.configuration.server.ServerRuntime;
+import org.jcommops.api.entities.SensorType;
 import org.jcommops.api.entities.Variable;
 
 public class Utils {
@@ -48,21 +50,6 @@ public class Utils {
 		dateISO = formatISO.format(date);
 		return dateISO;
 	}
-	
-	public static Date GetIsoDate2(Date date) {
-		String string = date.toString();
-		DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-		Date date2 = null;
-		try {
-			date2 = format.parse(string);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println(date2);
-		return date;
-
-	}
 
 	public static String GetYear(Date date) {
 		String year = null;
@@ -74,10 +61,31 @@ public class Utils {
 	public static String GetVariablesListToString(ArrayList<Variable> Arr) {
 		// method used to access ArrayList to produce csv (case one to many)
 		StringWriter strW = new StringWriter();
-		Iterator<Variable> var_itr = Arr.iterator();
-		while (var_itr.hasNext()) {
-			Variable a = var_itr.next();
-			strW.write("{variable (id=" + a.getId() + ") :" + a.getNameShort() + "} ");
+		try {
+			Iterator<Variable> var_itr = Arr.iterator();
+			while (var_itr.hasNext()) {
+				Variable a = var_itr.next();
+				strW.write("{" + a.getNameShort() + "}");
+			}
+		} catch (NullPointerException e) {
+			strW.write("");
+		}
+		String str = strW.toString();
+		return str;
+
+	}
+
+	public static String GetSensorTypesListToString(ArrayList<SensorType> Arr) {
+		// method used to access ArrayList to produce csv (case one to many)
+		StringWriter strW = new StringWriter();
+		try {
+			Iterator<SensorType> senstype_itr = Arr.iterator();
+			while (senstype_itr.hasNext()) {
+				SensorType a = senstype_itr.next();
+				strW.write("{" + a.getNameShort() + "}");
+			}
+		} catch (NullPointerException e) {
+			strW.write("");
 		}
 		String str = strW.toString();
 		return str;
@@ -93,18 +101,85 @@ public class Utils {
 		String[] strTab = str.trim().split(",");
 		boolean test = false;
 		int i = 0;
-		while (i< strTab.length){
-		if (strTab[i].matches("^-?\\d+$")) {
-			test = true;
-			
-		}
-		i++;
+		while (i < strTab.length) {
+			if (strTab[i].matches("^-?\\d+$")) {
+				test = true;
+
+			}
+			i++;
 		}
 
 		return test;
 
 	}
+
+	public static String CheckStringNull(String str_) {
+		String str = " ";
+		try {
+			str = str_;
+			if (str_ == null) {
+				str = " ";
+			}
+		} catch (NullPointerException e) {
+			str = " ";
+		}
+		return str;
+	}
+
+	public static String CheckInt(Integer l) {
+		String str = " ";
+
+		if (l == null) {
+
+		} else {
+			try {
+				str =  l.toString();
+			} catch (NullPointerException e) {
+
+			}
+		}
+		return str;
+	}
+
+	public static String Checklong(Long l) {
+		String str = " ";
+
+		if (l == null) {
+
+		} else {
+			try {
+				str = l.toString();
+			} catch (NullPointerException e) {
+
+			}
+		}
+		return str;
+	}
+
+	public static String CheckBigDcm(BigDecimal l) {
+		String str = " ";
+
+		if (l == null) {
+
+		} else {
+			try {
+				str = l.toString();
+			} catch (NullPointerException e) {
+
+			}
+		}
+		return str;
+	}
 	
 	
+	public static String CatchException(Object o){
+		String str="";
+		if (o instanceof NullPointerException){
+			str="catched";
+		}
+		
+		return str;
+		
+	}
 
 }
