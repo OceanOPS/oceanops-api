@@ -1,43 +1,34 @@
 package tests;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.StringWriter;
 import java.util.Date;
 
+import org.apache.cayenne.Cayenne;
+import org.apache.cayenne.ObjectContext;
+import org.apache.cayenne.configuration.server.ServerRuntime;
 import org.jcommops.api.Utils;
+import org.jcommops.api.accessors.PlatformAccessor;
+import org.jcommops.api.entities.Platform;
+import org.jcommops.api.orm.Ptf;
+import org.json.CDL;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class TestBrouillon {
 
-	public static void main(String[] args) {
-		/**
-		 * String sampleString = " a,d"; String[] strTab =
-		 * sampleString.trim().split(","); String strTab2 =
-		 * sampleString.trim().replace(",", "','"); StringWriter wString = new
-		 * StringWriter(); for (String tableString : strTab) {
-		 * wString.write("'"+tableString+"'"+",");
-		 * 
-		 * } String finalString=wString.toString();
-		 * System.out.println(finalString); System.out.println( "new traing=
-		 * "+strTab2);
-		 * 
-		 **/
+	public static void main(String[] args)  {
+    
+    	
+PlatformAccessor m= new PlatformAccessor();
+    	Platform ptfm = m.getPtfbyID(1002922);
+System.out.println(Utils.CatchException(ptfm.getTelecom().getId())+ " yes");
+	
 		
 		
-		String str = "1,2,3,5";
-		String[] strTab = str.trim().split(",");
-		String test = "STRING";
-		int i = 0;
-		while (i < strTab.length) {
-			System.out.println(strTab[i]);
-			if (strTab[i].matches("^-?\\d+$")) {
-				
-				test = "INT";
-				i++;
-				System.out.println("i= "+ i);
-			}
-			
-		}
 		
-		System.out.println("str is " + test);
 
 	}
 

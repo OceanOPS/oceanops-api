@@ -62,7 +62,8 @@
 						<div id="AboutTheAPI">JCOMMOPS Web Service API is a
 							REST-like API designed to distribute metadata, in interoperable
 							and ready-to-use formats, to integrate other software (usually
-							under machine to machine schema).</div>
+							under machine to machine schema). The metadata distributed by this API version (V1.0) are in three common data formats:
+											<b>.json</b>, <b>.xml</b> and <b>.csv</b>.<br> <br></div>
 					</div>
 				</div>
 			</div>
@@ -78,19 +79,19 @@
 						<div id="ListingThePlatforms">
 							<!-- <div id="ListingThePlatforms" class="collapse"> -->
 							The list of platforms includes platforms’ “IDs” and their
-							corresponding “JCOMMOPS-References” <br>
+							corresponding “JCOMMOPS-References”. 
 							<!-- 1.1. Listing all the platforms  Listing all the platforms  Listing all the platforms -->
 							<div class=jumbotron>
 								<div class="row">
 									<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
 										<h3>
-											
-												<a href="#ListingAllThePlatforms" data-toggle="collapse"><button
-														type="button" class="btn btn-primary btn-lg">1.1.
-														Listing all the platforms</button></a>
+
+											<a href="#ListingAllThePlatforms" data-toggle="collapse"><button
+													type="button" class="btn btn-primary btn-lg">1.1.
+													Listing all the platforms</button></a>
 										</h3>
 										<!-- <div id="ListingAllThePlatforms" class="collapse"> -->
-										<div id="ListingAllThePlatforms" >
+										<div id="ListingAllThePlatforms">
 											The total list of all the inventoried platforms can be
 											obtained with a GET request using the following URL pattern:<br>
 											<center>
@@ -98,8 +99,7 @@
 											</center>
 											Where “X.Y” string path is the version of the API (current
 											version is 1.0) and “format” in “platforms.format” string
-											path represents the data output . Current supported formats:
-											<b>.json</b> and <b>.xml</b>.<br>
+											path represents the data output .
 											<div class=jumbotron>
 												<div class="row">
 													<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
@@ -109,8 +109,11 @@
 														</h3>
 														<div id="Exemple1" class="collapse">
 															To generate the global platforms list in json format,
-															here the dedicated URL: <center><i><%=uri %>platforms.json</i></center>
-															 Below is a truncated output of the example URL:<br>
+															here the dedicated URL:
+															<center>
+																<i><%=uri%>platforms.json</i>
+															</center>
+															Below is a truncated output of the example URL:<br>
 															<div id=display_exemple1 " align="justify">
 
 																<pre>
@@ -138,24 +141,25 @@
 								<div class="row">
 									<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
 										<h3>
-										
+
 											<a href="#ListingFilteredPlatforms" data-toggle="collapse"><button
 													type="button" class="btn btn-primary btn-lg">1.2.
-													Listing a selected list of platforms using key parameters</button></a>
+													Listing a filtered list of platforms using key parameters</button></a>
 										</h3>
 										<!-- <div id="ListingFilteredPlatforms" class="collapse"> -->
 										<div id="ListingFilteredPlatforms">
 											A filtered list of platforms can be obtained with a GET
 											request using this URL pattern:<br>
 											<center>
-												<i><b>[ROOT][/]
-														X.Y[/]platforms.format[/]
+												<i><b>[ROOT][/] X.Y[/]platforms.format[/]
 														find?parm1=value1&parm2=value2&...</b></i>
 											</center>
 											Where parm1, parm2…param(i) respresent the query parameters
 											and value1, value2…value(i) represent the corresponding
-											values respectively. <br> <br> <b>Table 1.</b>
-											Search parameters to specify the URL of a “selected list of
+											values respectively. Note also that for multiple values
+											selection, each parameter can assign several values separated
+											by comma "," . <br> <br> <b>Table 1.</b> Search
+											parameters to specify the URL of a “selected list of
 											platforms”.
 											<form name="submitPramValues" method="POST">
 												<div class="table-responsive">
@@ -206,6 +210,13 @@
 																<td><button type="submit" name="ProgramValues"
 																		formtarget="_blank" class="btn btn-success btn-block">Get
 																		programs</button></td>
+															</tr>
+															<tr>
+																<td>country</td>
+																<td>The country involved in the platform-program</td>
+																<td><button type="submit" name="CountryValues"
+																		formtarget="_blank" class="btn btn-success btn-block">Get
+																		countries</button></td>
 															</tr>
 															<tr>
 																<td>masterProgram</td>
@@ -274,7 +285,7 @@
 															monitoring the <b>dissolved oxygen</b>, here the
 															dedicated URL:
 															<center>
-																<i><%=uri %>platforms.xml/find?status=ACTIVE&variable=DOXY</i>
+																<i><%=uri%>platforms.xml/find?status=ACTIVE&variable=DOXY</i>
 															</center>
 															Below is a truncated output of the example URL:<br>
 															<div id=display_exemple2 " align="justify">
@@ -302,8 +313,10 @@
 																has the value of “<b>ACTIVE</b>” standing for an “<b>active
 																	platform</b>” and the parameter “<b>variable</b>” has the
 																value of “<b>DOXY</b>” standing for “<b>dissolved
-																	oxygen</b>”. The previous URL is equivalent to: <center>
-																<i><%=uri %>platforms.xml/find?status=3&variable=33</i></center>
+																	oxygen</b>”. The previous URL is equivalent to:
+																<center>
+																	<i><%=uri%>platforms.xml/find?status=3&variable=33</i>
+																</center>
 																Where in this URL we replaced the short names's values
 																of status and variable ("ACTIVE" and "DOXY") and
 																assigned their corresponding IDs ("3" and "33").
@@ -331,7 +344,7 @@
 								Getting the details of a referenced platform</a>
 						</h2>
 						<!-- <div id="ListingPlatformsDetails" class="collapse"> -->
-						<div id="ListingPlatformsDetails" >
+						<div id="ListingPlatformsDetails">
 							The platform details metadata include a number of essential
 							information on a platform (only some of them are listed in table
 							1). A platform details can be obtained with a GET request using
@@ -357,10 +370,10 @@
 											measuring “<b>dissolved oxygen</b>”. Here the dedicated URL
 											for this example: :
 											<center>
-												<i><%=uri %>platform.xml/498692</i>
+												<i><%=uri%>platform.xml/498692</i>
 											</center>
 											Below is a truncated output of the example URL:<br>
-											<div id=display_exemple2 " align="justify">
+											<div id=display_exemple3 " align="justify">
 												<pre>
 																	<code>&lt;platform id="498692"&gt;
 	&lt;jcommpsRef&gt;1901467&lt;/jcommpsRef&gt;
@@ -414,6 +427,60 @@
 			</div>
 
 
+			<!-- 3. Filtered list of platforms with details -->
+			<div class=jumbotron>
+				<div class="row">
+					<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
+						<h2>
+							<a href="#ListPlatformsDetails" data-toggle="collapse">3.
+								Getting the details of a filtered list of platforms</a>
+						</h2>
+						<!-- <div id="ListingPlatformsDetails" class="collapse"> -->
+						<div id="#ListPlatformsDetails">
+							To filter a list of platforms like it is presented in section <b>1.2.</b>
+							and obtain the detailed metadata (section <b>2.</b>) for each
+							platform listed, here the dedicated URL pattern:<br>
+							<center>
+								<i><b>[ROOT][/]X.Y[/]
+										platforms.format[/]details/find?parm1=value1&parm2=value2&...</b></i>
+							</center>
+							Compared to platforms list search URL, in the URL above includes
+							the string "detail". Also, beware of the plural form of
+							“platforms” in the URL string platforms.format.
+							<div class=jumbotron>
+								<div class="row">
+									<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
+										<h3>
+											<a href="#Exemple4" data-toggle="collapse"><button
+													type="button" class="btn btn-info">Example</button></a>
+										</h3>
+										<div id="Exemple4" class="collapse">
+											Let's take the same example shown in section 1.2. To generate
+											the list of active platforms monitoring the dissolved oxygen
+											in .csv, here the dedicated URL:
+											<center>
+												<i><%=uri%>platforms.csv/details/find?status=ACTIVE&variable=DOXY</i>
+											</center>
+											Below is a truncated output of the example URL:<br>
+											<div id=display_exemple4 " align="justify">
+												<pre>
+																	<code>
+platformId;jcommopsRef;telecomId;telecomType;internalRef;serialRef;ptfFamily;ptfType;ptfModel;program;country;masterProgramme;deployementDate;deployementLatitude;deployementLongitude;deployementScore;deployementDensity;notificationDate;shipName;shipRef;lastLocationDate;lastLocationLatitude;lastLocationLongitude;Age;cycleTime;driftPressure;profilePressure;iceDetection;sensorModel;sensorTypes;variables
+498692;1901467;1781103;IRIDIUM;3404;953;FLOAT;FLOAT;SOLO_W;Argo_WHOI;United States;Argo;2010-05-01T03:10:00Z;0.43;-16.51; ; ;2010-05-14T14:41:09Z; ;33RO;2015-08-13T06:37:32Z;13.017;-64.97;1930;240;1800;1000;0;GEN_CTD;{GEN_CTD_TEMP}{GEN_CTD_PRES}{GEN_CTD_SAL};{SUB_SAL}{SUB_T}{DOXY};
+500471;5903381;1783666;ARGOS;3694;4322;FLOAT;FLOAT;APEX;Argo_UW;United States;Argo;2010-11-25T04:43:00Z;-12.8;165; ; ;2011-01-11T22:42:46Z; ;;2015-08-31T00:25:16Z;-17.938;149.7571;1739;240;2000;1000;0;GEN_CTD;{GEN_CTD_TEMP}{GEN_CTD_PRES}{GEN_CTD_SAL};{SUB_SAL}{SUB_T}{DOXY};
+500505;6900876;1783707;ARGOS;5057;5057;FLOAT;FLOAT;APEX;Argo_BSH;Germany;Argo;2014-06-29T14:56:00Z;56.9983;-21.83; ; ;2014-04-17T08:41:50Z; ;06PO;2015-09-03T10:46:17Z;59.6721;-12.5459;430;120;1200;1000;0;GEN_CTD;{GEN_CTD_TEMP}{GEN_CTD_PRES}{GEN_CTD_SAL};{SUB_SAL}{SUB_T}{DOXY};
+... Additional results truncated in this example...	
+	</code>
+																</pre>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 			<br>
 		</div>
 	</div>

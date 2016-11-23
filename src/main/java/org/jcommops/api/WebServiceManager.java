@@ -3,6 +3,10 @@ package org.jcommops.api;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -13,6 +17,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.apache.cayenne.CayenneRuntimeException;
 import org.jcommops.api.accessors.PlatformAccessor;
+import org.jcommops.api.entities.CountryPtf;
 import org.jcommops.api.entities.MasterProgramPtf;
 import org.jcommops.api.entities.NetworkPtf;
 import org.jcommops.api.entities.Platform;
@@ -99,6 +104,7 @@ public class WebServiceManager {
 	@GET
 	@Path("platform.xml/{id}")
 	public Platform getPtfbyIdXML(@PathParam("id") long id) {
+		
 
 		PlatformAccessor m = new PlatformAccessor();
 		Platform ptfm = new Platform();
@@ -148,25 +154,20 @@ public class WebServiceManager {
 		PlatformAccessor m = new PlatformAccessor();
 		Platform ptfm = new Platform();
 		StringWriter strW = new StringWriter();
+		strW.write("platformId" + ";" + "jcommopsRef" + ";" + "telecomId"+ ";" + "telecomType"+ ";" + "internalRef"+ ";"+ "serialRef"+";"
+				+ "ptfFamily" + ";" + "ptfType" + ";" + "ptfModel" + ";"
+				+ "program" + ";" + "country" + ";" + "masterProgramme" + ";"
+				+ "deployementDate" + ";" + "deployementLatitude" + ";"+ "deployementLongitude" + ";"+ "deployementScore" + ";"+ "deployementDensity" + ";"
+				+"notificationDate"+ ";"+"shipName"+";"+"shipRef"+";"
+				+ "lastLocationDate" + ";" + "lastLocationLatitude" + ";"+ "lastLocationLongitude" + ";" +"Age"+ ";"
+				+ "cycleTime"+ ";"	+ "driftPressure"+";"+"profilePressure"+";"+"iceDetection"+";"
+				+ "sensorModel"+ ";"+ "sensorTypes"+ ";"+"variables" + "\n");
 
 		try {
-			strW.write("platformId" + ";" + "jcommpsRef" + ";" + "ptfFamily" + ";" + "ptfType" + ";" + "ptfModel" + ";"
-					+ "deployementDate" + ";" + "lastLocationDate" + ";" + "lastLocationLatitude" + ";"
-					+ "lastLocationLongitude" + ";" + "program" + ";" + "country" + ";" + "masterProgramme" + ";"
-					+ "variables" + "\n");
-			ptfm = m.getPtfbyID(id);
-
-			strW.write(ptfm.getId() + ";" + ptfm.getJcommopsRef() + ";" + ptfm.getPtfFamily().getNameShort() + ";"
-					+ ptfm.getPtfType().getNameShort() + ";" + ptfm.getPtfModel().getNameShort() + ";"
-					+ ptfm.getDeployement().getDeployementDate() + ";" + ptfm.getLastLocation().getLastLocationDate()
-					+ ";" + ptfm.getLastLocation().getLat() + ";" + ptfm.getLastLocation().getLon() + ";"
-					+ ptfm.getProgram().getName() + ";" + ptfm.getCountry().getName() + ";"
-					+ ptfm.getMasterProgramme().getName() + ";" + Utils.GetVariablesListToString(ptfm.getVariables())
-					+ "\n");
-
-		}
-
-		catch (CayenneRuntimeException CRE) {
+			strW.write(m.WritePtfCSV(id));
+			
+		
+		} catch (CayenneRuntimeException CRE) {
 			strW.write("Error: Database temporarily inaccessible.");
 		} catch (NullPointerException n) {
 
@@ -317,6 +318,177 @@ public class WebServiceManager {
 		// example
 		// http://localhost:8081/jcommops-api/api/rest/1.0/platforms.csv/find?status=ACTIVE&family=ICE_BUOYS&type=AXIB&model=AXIB&masterProgram=DBCP&variable=SST
 	}
+	@GET
+	@Path("platforms.xml/details/find")
+	public ArrayList<Platform> getSelectedPlatformsDetailsXML(@QueryParam("status") String status, @QueryParam("family") String family,
+			@QueryParam("type") String type, @QueryParam("model") String model, @QueryParam("program") String program,
+			@QueryParam("network") String network, @QueryParam("masterProgram") String masterprg,
+			@QueryParam("variable") String variable, @QueryParam("sensorModel") String sensormod,
+			@QueryParam("sensorType") String sensortyp, @QueryParam("ship") String ship,
+			@QueryParam("country") String country) {
+
+		PlatformAccessor m = new PlatformAccessor();
+		ArrayList<Platform> foundPlatforms = new ArrayList<Platform>();
+		ArrayList<Platform> foundPlatformsDisplay = new ArrayList<Platform>();
+		
+		try {
+			foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable,
+					sensormod, sensortyp, ship, country);
+
+			Iterator<Platform> ptf_itr = foundPlatforms.iterator();
+
+			while (ptf_itr.hasNext()) {
+				Platform a = ptf_itr.next();
+				foundPlatformsDisplay.add(m.getPtfbyID(a.getId()));
+			}
+		
+			
+			if (foundPlatforms.size() == 0) {
+				Platform ptf0 = new Platform();
+				ptf0.setId(-1);
+				ptf0.setError_message("No platform found.");
+				foundPlatformsDisplay.add(ptf0);
+
+			}
+		}
+
+		catch (StringIndexOutOfBoundsException str) {
+		
+			Platform ptf0 = new Platform();
+			ptf0.setId(-1);
+			ptf0.setError_message(
+					"Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterProgram', 'variable', 'sensorModel', "
+							+ "'sensorType', 'country' or 'ship'  parameter.");
+			foundPlatformsDisplay.add(ptf0);
+
+		}
+
+		catch (CayenneRuntimeException CRE) {
+			Platform ptf0 = new Platform();
+			ptf0.setId(-1);
+			ptf0.setError_message(" Database temporarily inaccessible.");
+			foundPlatformsDisplay.add(ptf0);
+		}
+		
+		return foundPlatformsDisplay;
+		// example
+				// http://localhost:8081/jcommops-api/api/rest/1.0/platforms.xml/details/find?status=ACTIVE&family=ICE_BUOYS&type=AXIB&model=AXIB&masterProgram=DBCP&variable=SST
+	}
+	
+	@GET
+	@Path("platforms.json/details/find")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<Platform> getSelectedPlatformsDetailsJSON(@QueryParam("status") String status, @QueryParam("family") String family,
+			@QueryParam("type") String type, @QueryParam("model") String model, @QueryParam("program") String program,
+			@QueryParam("network") String network, @QueryParam("masterProgram") String masterprg,
+			@QueryParam("variable") String variable, @QueryParam("sensorModel") String sensormod,
+			@QueryParam("sensorType") String sensortyp, @QueryParam("ship") String ship,
+			@QueryParam("country") String country) {
+
+		PlatformAccessor m = new PlatformAccessor();
+		ArrayList<Platform> foundPlatforms = new ArrayList<Platform>();
+		ArrayList<Platform> foundPlatformsDisplay = new ArrayList<Platform>();
+		
+		try {
+			foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable,
+					sensormod, sensortyp, ship, country);
+
+			Iterator<Platform> ptf_itr = foundPlatforms.iterator();
+
+			while (ptf_itr.hasNext()) {
+				Platform a = ptf_itr.next();
+				foundPlatformsDisplay.add(m.getPtfbyID(a.getId()));
+			}
+		
+			
+			if (foundPlatforms.size() == 0) {
+				Platform ptf0 = new Platform();
+				ptf0.setId(-1);
+				ptf0.setError_message("No platform found.");
+				foundPlatformsDisplay.add(ptf0);
+
+			}
+		}
+
+		catch (StringIndexOutOfBoundsException str) {
+		
+			Platform ptf0 = new Platform();
+			ptf0.setId(-1);
+			ptf0.setError_message(
+					"Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterProgram', 'variable', 'sensorModel', "
+							+ "'sensorType', 'country' or 'ship'  parameter.");
+			foundPlatformsDisplay.add(ptf0);
+
+		}
+
+		catch (CayenneRuntimeException CRE) {
+			Platform ptf0 = new Platform();
+			ptf0.setId(-1);
+			ptf0.setError_message(" Database temporarily inaccessible.");
+			foundPlatformsDisplay.add(ptf0);
+		}
+		
+		return foundPlatformsDisplay;
+		// example
+				// http://localhost:8081/jcommops-api/api/rest/1.0/platforms.json/details/find?status=ACTIVE&family=ICE_BUOYS&type=AXIB&model=AXIB&masterProgram=DBCP&variable=SST
+	}
+	
+	@GET
+	@Path("platforms.csv/details/find")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getSelectedPlatformsDetailsCSV(@QueryParam("status") String status, @QueryParam("family") String family,
+			@QueryParam("type") String type, @QueryParam("model") String model, @QueryParam("program") String program,
+			@QueryParam("network") String network, @QueryParam("masterProgram") String masterprg,
+			@QueryParam("variable") String variable, @QueryParam("sensorModel") String sensormod,
+			@QueryParam("sensorType") String sensortyp, @QueryParam("ship") String ship,
+			@QueryParam("country") String country) {
+
+		PlatformAccessor m = new PlatformAccessor();
+		ArrayList<Platform> foundPlatforms = new ArrayList<Platform>();
+		StringWriter strW = new StringWriter();
+		strW.write("platformId" + ";" + "jcommopsRef" + ";" + "telecomId"+ ";" + "telecomType"+ ";" + "internalRef"+ ";"+ "serialRef"+";"
+				+ "ptfFamily" + ";" + "ptfType" + ";" + "ptfModel" + ";"
+				+ "program" + ";" + "country" + ";" + "masterProgramme" + ";"
+				+ "deployementDate" + ";" + "deployementLatitude" + ";"+ "deployementLongitude" + ";"+ "deployementScore" + ";"+ "deployementDensity" + ";"
+				+"notificationDate"+ ";"+"shipName"+";"+"shipRef"+";"
+				+ "lastLocationDate" + ";" + "lastLocationLatitude" + ";"+ "lastLocationLongitude" + ";" +"Age"+ ";"
+				+ "cycleTime"+ ";"	+ "driftPressure"+";"+"profilePressure"+";"+"iceDetection"+";"
+				+ "sensorModel"+ ";"+ "sensorTypes"+ ";"+"variables" + "\n");
+		try {
+			foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable,
+					sensormod, sensortyp, ship, country);
+
+			Iterator<Platform> ptf_itr = foundPlatforms.iterator();
+
+			while (ptf_itr.hasNext()) {
+				Platform a = ptf_itr.next();
+				strW.write(m.WritePtfCSV(a.getId()));
+			}
+
+			if (foundPlatforms.size() == 0) {
+				strW.write("No platform found.");
+
+			}
+		}
+
+		catch (StringIndexOutOfBoundsException str) {
+			strW.write(
+					"Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterProgram', 'variable', 'sensorModel', "
+							+ "'sensorType', 'country' or 'ship'  parameter.");
+
+		}
+
+		catch (CayenneRuntimeException CRE) {
+			strW.write(" Error: Database temporarily inaccessible.");
+		}
+		String strFoundPlatforms = strW.toString();
+		return strFoundPlatforms;
+		// example
+				// http://localhost:8081/jcommops-api/api/rest/1.0/platforms.csv/details/find?status=ACTIVE&family=ICE_BUOYS&type=AXIB&model=AXIB&masterProgram=DBCP&variable=SST
+	}
+	
+
+		
 
 	@GET
 	@Path("ptfStatuses.xml")
@@ -485,6 +657,41 @@ public class WebServiceManager {
 		return List;
 		// http://localhost:8081/jcommops-api/api/rest/1.0/programs.json
 	}
+	
+	
+	
+	@GET
+	@Path("countries.xml")
+	public ArrayList<CountryPtf> getAllCountriesXML() {
+		PlatformAccessor m = new PlatformAccessor();
+		ArrayList<CountryPtf> List = new ArrayList<CountryPtf>();
+		try {
+			List = m.getPtfCountries();
+		} catch (CayenneRuntimeException CRE) {
+			CountryPtf ptf0 = new CountryPtf();
+			ptf0.setId(-1);
+			List.add(ptf0);
+		}
+		return List;
+		// http://localhost:8081/jcommops-api/api/rest/1.0/countries.xml
+	}
+
+	@GET
+	@Path("countries.json")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<CountryPtf> getAllCountriesJSON() {
+		PlatformAccessor m = new PlatformAccessor();
+		ArrayList<CountryPtf> List = new ArrayList<CountryPtf>();
+		try {
+			List = m.getPtfCountries();
+		} catch (CayenneRuntimeException CRE) {
+			CountryPtf ptf0 = new CountryPtf();
+			ptf0.setId(-1);
+			List.add(ptf0);
+		}
+		return List;
+		// http://localhost:8081/jcommops-api/api/rest/1.0/countries.json
+	}
 
 	@GET
 	@Path("masterPrograms.xml")
@@ -650,5 +857,8 @@ public class WebServiceManager {
 		return List;
 		// http://localhost:8081/jcommops-api/api/rest/1.0/variables.json
 	}
+	
+	
+	
 
 }

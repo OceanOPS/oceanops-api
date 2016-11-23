@@ -124,6 +124,15 @@ public class APIDoc extends HttpServlet {
 					
 		}
 		
+			
+		if (request.getParameter("CountryValues") != null) {
+			request.setAttribute("parameter", "countries.json");
+			request.setAttribute("parameter_name", "Countries");
+			getServletContext().getRequestDispatcher("/WEB-INF/GetCountries.jsp").forward(request, response);
+		
+						
+		}
+		
 		
 
 	}
