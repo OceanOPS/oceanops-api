@@ -865,10 +865,10 @@ public class PlatformAccessor {
 			 * "+ship.toUpperCase()+" value and it is int"); } else {
 			 **/
 			query_ship = "intersect"
-					+ " select * from PTF where PTF_DEPL_ID IN (select ID from PTF_DEPLOYMENT where UPPER(SHIP_NAME) IN('"
+					+ " (select * from PTF where PTF_DEPL_ID IN (select ID from PTF_DEPLOYMENT where UPPER(SHIP_NAME) IN('"
 					+ Utils.StrValueForSql(ship.toUpperCase()) + "')) union"
 					+ " select * from PTF where PTF_DEPL_ID IN (select ID from PTF_DEPLOYMENT where UPPER(SHIP_NAME) IN (select name from SHIP where UPPER(REF) IN('"
-					+ Utils.StrValueForSql(ship.toUpperCase()) + "')))";
+					+ Utils.StrValueForSql(ship.toUpperCase()) + "'))))";
 		}
 
 		if (country != null && !country.isEmpty()) {
@@ -879,10 +879,10 @@ public class PlatformAccessor {
 						+ " select * from PTF where PROGRAM_ID IN (select ID from PROGRAM where COUNTRY_ID IN('"
 						+ country + "'))";
 			} else {
-				query_country = "intersect select * from PTF where PROGRAM_ID  IN (select ID from PROGRAM where COUNTRY_ID IN (select ID from COUNTRY where UPPER(NAME_SHORT) IN('"
+				query_country = "(intersect select * from PTF where PROGRAM_ID  IN (select ID from PROGRAM where COUNTRY_ID IN (select ID from COUNTRY where UPPER(NAME_SHORT) IN('"
 						+ Utils.StrValueForSql(country.toUpperCase()) + "')))"
 						+ " union select * from PTF where PROGRAM_ID IN (select ID from PROGRAM where COUNTRY_ID IN (select ID from COUNTRY where UPPER(CODE2) IN('"
-						+ Utils.StrValueForSql(country.toUpperCase()) + "')))";
+						+ Utils.StrValueForSql(country.toUpperCase()) + "'))))";
 			}
 		}
 

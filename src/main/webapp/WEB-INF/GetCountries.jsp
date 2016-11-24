@@ -79,6 +79,7 @@
 									<td></td>
 								</tr>
 								<tr>
+									<th>ID*</th>
 									<th>Code*</th>
 									<th>Short Name*</th>
 									<th>Name</th>
@@ -116,7 +117,7 @@ $.ajax({
 
 			$(data).each(function(index, value){
 				/* console.log(value.id); */
-				tableau.append("<tr>"+"<td>"+value.isoCode2+"</td>"+"<td>"+value.nameShort+"</td>"+"<td>"+value.name+"</td>"+"</tr>");
+				tableau.append("<tr>"+"<td>"+value.id+"</td>"+"<td>"+value.isoCode2+"</td>"+"<td>"+value.nameShort+"</td>"+"<td>"+value.name+"</td>"+"</tr>");
 			/* 	console.log("index= "+ index);
 				console.log("data size= "+ data.length); */
 				/*
