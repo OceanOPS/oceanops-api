@@ -444,8 +444,8 @@
 								<i><b>[ROOT][/]X.Y[/]
 										platforms.format[/]details/find?parm1=value1&parm2=value2&...</b></i>
 							</center>
-							Compared to platforms list search URL, in the URL above includes
-							the string "detail". Also, beware of the plural form of
+							Compared to platforms list search URL, the URL above includes
+							the string "details". Also, beware of the plural form of
 							“platforms” in the URL string platforms.format.
 							<div class=jumbotron>
 								<div class="row">
