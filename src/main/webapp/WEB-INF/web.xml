@@ -15,11 +15,11 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet>
-		<servlet-name>APIDoc</servlet-name>
-		<servlet-class>org.jcommops.api.APIDoc</servlet-class>
+		<servlet-name>Help</servlet-name>
+		<servlet-class>org.jcommops.api.Help</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>APIDoc</servlet-name>
+		<servlet-name>Help</servlet-name>
 		<url-pattern>/api/rest/1.0/help</url-pattern>
 		<!-- /api/rest/1.0/help -->
 	</servlet-mapping>

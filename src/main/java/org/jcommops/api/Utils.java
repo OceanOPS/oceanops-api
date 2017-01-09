@@ -1,5 +1,6 @@
 package org.jcommops.api;
 
+import java.io.IOException;
 import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.text.DateFormat;
@@ -8,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,10 +19,37 @@ import org.jcommops.api.entities.Variable;
 
 public class Utils {
 	private static ServerRuntime cayenneRuntime;
+	private static Properties properties;
+	private static String projectName, projectVersion;
 
 	private Utils() {
-
 	}
+	
+	public static void init() {
+		if(Utils.properties == null){
+			properties = new Properties();
+			try {
+				properties.load(Utils.class.getClassLoader().getResourceAsStream("properties"));
+				projectVersion = properties.getProperty("PROJECT_VERSION");
+				projectName = properties.getProperty("PROJECT_NAME");
+			} catch (IOException e) {
+				projectVersion = "X.Y";
+				projectName = "ERROR";
+			}
+		}
+	}
+
+	public static String getProjectName() {
+		Utils.init();
+		return projectName;
+	}
+
+
+	public static String getProjectVersion() {
+		Utils.init();
+		return projectVersion;
+	}
+
 
 	public static void initCayenneRuntime() {
 		if (Utils.cayenneRuntime == null) {
