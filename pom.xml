@@ -23,6 +23,12 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 	</build>
 
 	<dependencyManagement>
@@ -45,11 +51,11 @@
 			<!-- artifactId>jersey-container-servlet</artifactId -->
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-server -->
-<dependency>
-    <groupId>org.glassfish.jersey.core</groupId>
-    <artifactId>jersey-server</artifactId>
-</dependency>
-		
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-server</artifactId>
+		</dependency>
+
 
 		<dependency>
 			<groupId>org.glassfish.jersey.media</groupId>
@@ -80,7 +86,7 @@
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
 			<scope>provided</scope>
-		</dependency>	
+		</dependency>
 
 	</dependencies>
 	<properties>
