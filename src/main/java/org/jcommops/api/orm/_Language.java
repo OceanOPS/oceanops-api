@@ -15,6 +15,7 @@ public abstract class _Language extends CayenneDataObject {
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
     public static final String DOC_ARRAY_PROPERTY = "docArray";
+    public static final String DOC_LANGUAGE_ARRAY_PROPERTY = "docLanguageArray";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -41,6 +42,18 @@ public abstract class _Language extends CayenneDataObject {
     @SuppressWarnings("unchecked")
     public List<Doc> getDocArray() {
         return (List<Doc>)readProperty(DOC_ARRAY_PROPERTY);
+    }
+
+
+    public void addToDocLanguageArray(DocLanguage obj) {
+        addToManyTarget(DOC_LANGUAGE_ARRAY_PROPERTY, obj, true);
+    }
+    public void removeFromDocLanguageArray(DocLanguage obj) {
+        removeToManyTarget(DOC_LANGUAGE_ARRAY_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<DocLanguage> getDocLanguageArray() {
+        return (List<DocLanguage>)readProperty(DOC_LANGUAGE_ARRAY_PROPERTY);
     }
 
 

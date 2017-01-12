@@ -20,6 +20,7 @@ public abstract class _Obs extends CayenneDataObject {
     public static final String DELAY_PROPERTY = "delay";
     public static final String DELETED_PROPERTY = "deleted";
     public static final String DEPTH_PROPERTY = "depth";
+    public static final String DEPTH_MAX_PROPERTY = "depthMax";
     public static final String DESCENDING_PROPERTY = "descending";
     public static final String DISTRIBUTION_DATE_PROPERTY = "distributionDate";
     public static final String FILENAME_PROPERTY = "filename";
@@ -28,6 +29,7 @@ public abstract class _Obs extends CayenneDataObject {
     public static final String LATEST_DISTRIBUTION_DATE_PROPERTY = "latestDistributionDate";
     public static final String OBS_DATE_PROPERTY = "obsDate";
     public static final String OBS_END_DATE_PROPERTY = "obsEndDate";
+    public static final String SHAPE_PROPERTY = "shape";
     public static final String UPDATE_DATE_PROPERTY = "updateDate";
     public static final String WMO_PROPERTY = "wmo";
     public static final String OBS_OBS_DATA_STATUS_ARRAY_PROPERTY = "obsObsDataStatusArray";
@@ -89,6 +91,13 @@ public abstract class _Obs extends CayenneDataObject {
         return (BigDecimal)readProperty(DEPTH_PROPERTY);
     }
 
+    public void setDepthMax(BigDecimal depthMax) {
+        writeProperty(DEPTH_MAX_PROPERTY, depthMax);
+    }
+    public BigDecimal getDepthMax() {
+        return (BigDecimal)readProperty(DEPTH_MAX_PROPERTY);
+    }
+
     public void setDescending(Integer descending) {
         writeProperty(DESCENDING_PROPERTY, descending);
     }
@@ -143,6 +152,13 @@ public abstract class _Obs extends CayenneDataObject {
     }
     public Date getObsEndDate() {
         return (Date)readProperty(OBS_END_DATE_PROPERTY);
+    }
+
+    public void setShape(byte[] shape) {
+        writeProperty(SHAPE_PROPERTY, shape);
+    }
+    public byte[] getShape() {
+        return (byte[])readProperty(SHAPE_PROPERTY);
     }
 
     public void setUpdateDate(Date updateDate) {

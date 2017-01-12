@@ -12,7 +12,9 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _Weblink extends CayenneDataObject {
 
+    public static final String DESCRIPTION_PROPERTY = "description";
     public static final String NAME_PROPERTY = "name";
+    public static final String STORY_ID_PROPERTY = "storyId";
     public static final String URL_PROPERTY = "url";
     public static final String AGENCY_ARRAY_PROPERTY = "agencyArray";
     public static final String CONTACT_ARRAY_PROPERTY = "contactArray";
@@ -24,6 +26,7 @@ public abstract class _Weblink extends CayenneDataObject {
     public static final String QC_FEEDBACK_ARRAY_PROPERTY = "qcFeedbackArray";
     public static final String SENSOR_MODEL_ARRAY_PROPERTY = "sensorModelArray";
     public static final String SHIP_ARRAY_PROPERTY = "shipArray";
+    public static final String TO_COUNTRY_PROPERTY = "toCountry";
     public static final String TO_MASTER_PROG_PROPERTY = "toMasterProg";
     public static final String TO_PROGRAM_PROPERTY = "toProgram";
     public static final String TO_PTF_PROPERTY = "toPtf";
@@ -33,11 +36,25 @@ public abstract class _Weblink extends CayenneDataObject {
 
     public static final String ID_PK_COLUMN = "ID";
 
+    public void setDescription(String description) {
+        writeProperty(DESCRIPTION_PROPERTY, description);
+    }
+    public String getDescription() {
+        return (String)readProperty(DESCRIPTION_PROPERTY);
+    }
+
     public void setName(String name) {
         writeProperty(NAME_PROPERTY, name);
     }
     public String getName() {
         return (String)readProperty(NAME_PROPERTY);
+    }
+
+    public void setStoryId(Integer storyId) {
+        writeProperty(STORY_ID_PROPERTY, storyId);
+    }
+    public Integer getStoryId() {
+        return (Integer)readProperty(STORY_ID_PROPERTY);
     }
 
     public void setUrl(String url) {
@@ -164,6 +181,15 @@ public abstract class _Weblink extends CayenneDataObject {
     @SuppressWarnings("unchecked")
     public List<Ship> getShipArray() {
         return (List<Ship>)readProperty(SHIP_ARRAY_PROPERTY);
+    }
+
+
+    public void setToCountry(Country toCountry) {
+        setToOneTarget(TO_COUNTRY_PROPERTY, toCountry, true);
+    }
+
+    public Country getToCountry() {
+        return (Country)readProperty(TO_COUNTRY_PROPERTY);
     }
 
 

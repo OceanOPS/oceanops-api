@@ -13,6 +13,7 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _NcSubscription extends CayenneDataObject {
 
     public static final String EMAILED_PROPERTY = "emailed";
+    public static final String PREFERRED_EMAIL_PROPERTY = "preferredEmail";
     public static final String SUBSCRIPTION_DATE_PROPERTY = "subscriptionDate";
 
     public static final String CONTACT_ID_PK_COLUMN = "CONTACT_ID";
@@ -23,6 +24,13 @@ public abstract class _NcSubscription extends CayenneDataObject {
     }
     public Integer getEmailed() {
         return (Integer)readProperty(EMAILED_PROPERTY);
+    }
+
+    public void setPreferredEmail(String preferredEmail) {
+        writeProperty(PREFERRED_EMAIL_PROPERTY, preferredEmail);
+    }
+    public String getPreferredEmail() {
+        return (String)readProperty(PREFERRED_EMAIL_PROPERTY);
     }
 
     public void setSubscriptionDate(Date subscriptionDate) {

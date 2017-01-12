@@ -11,6 +11,8 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _CruiseProgram extends CayenneDataObject {
 
     public static final String LEAD_PROPERTY = "lead";
+    public static final String TO_CRUISE_PROPERTY = "toCruise";
+    public static final String TO_PROGRAM_PROPERTY = "toProgram";
 
     public static final String CRUISE_ID_PK_COLUMN = "CRUISE_ID";
     public static final String PROGRAM_ID_PK_COLUMN = "PROGRAM_ID";
@@ -21,5 +23,23 @@ public abstract class _CruiseProgram extends CayenneDataObject {
     public Integer getLead() {
         return (Integer)readProperty(LEAD_PROPERTY);
     }
+
+    public void setToCruise(Cruise toCruise) {
+        setToOneTarget(TO_CRUISE_PROPERTY, toCruise, true);
+    }
+
+    public Cruise getToCruise() {
+        return (Cruise)readProperty(TO_CRUISE_PROPERTY);
+    }
+
+
+    public void setToProgram(Program toProgram) {
+        setToOneTarget(TO_PROGRAM_PROPERTY, toProgram, true);
+    }
+
+    public Program getToProgram() {
+        return (Program)readProperty(TO_PROGRAM_PROPERTY);
+    }
+
 
 }

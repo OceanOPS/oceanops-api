@@ -38,9 +38,8 @@ public class WebServiceManager {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<Platform> ptfmList = new ArrayList<Platform>();
 		try {
-			ptfmList = m.getAllPtfs();
+			ptfmList = m.getAllPtfIdsRefs();
 		}
-
 		catch (CayenneRuntimeException CRE) {
 			Platform ptf0 = new Platform();
 			ptf0.setId(-1);
@@ -58,9 +57,8 @@ public class WebServiceManager {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<Platform> ptfmList = new ArrayList<Platform>();
 		try {
-			ptfmList = m.getAllPtfs();
+			ptfmList = m.getAllPtfIdsRefs();
 		}
-
 		catch (CayenneRuntimeException CRE) {
 			Platform ptf0 = new Platform();
 			ptf0.setId(-1);
@@ -80,9 +78,9 @@ public class WebServiceManager {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<Platform> foundPlatforms = new ArrayList<Platform>();
 		StringWriter strW = new StringWriter();
-		strW.write("platformId" + ";" + "jcommpsRef" + "\n");
+		strW.write("id" + ";" + "jcommopsRef" + "\n");
 		try {
-			foundPlatforms = m.getAllPtfs();
+			foundPlatforms = m.getAllPtfIdsRefs();
 			Iterator<Platform> ptf_itr = foundPlatforms.iterator();
 
 			while (ptf_itr.hasNext()) {

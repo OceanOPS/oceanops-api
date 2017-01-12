@@ -14,6 +14,7 @@ public abstract class _DeplType extends CayenneDataObject {
 
     public static final String DESCRIPTION_PROPERTY = "description";
     public static final String NAME_PROPERTY = "name";
+    public static final String NAME_SHORT_PROPERTY = "nameShort";
     public static final String PTF_DEPLOYMENT_ARRAY_PROPERTY = "ptfDeploymentArray";
 
     public static final String ID_PK_COLUMN = "ID";
@@ -30,6 +31,13 @@ public abstract class _DeplType extends CayenneDataObject {
     }
     public String getName() {
         return (String)readProperty(NAME_PROPERTY);
+    }
+
+    public void setNameShort(String nameShort) {
+        writeProperty(NAME_SHORT_PROPERTY, nameShort);
+    }
+    public String getNameShort() {
+        return (String)readProperty(NAME_SHORT_PROPERTY);
     }
 
     public void addToPtfDeploymentArray(PtfDeployment obj) {

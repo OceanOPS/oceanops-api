@@ -14,9 +14,9 @@ public abstract class _Section extends CayenneDataObject {
 
     public static final String DATE_END_PROPERTY = "dateEnd";
     public static final String DATE_START_PROPERTY = "dateStart";
-    public static final String LINE_ID_PROPERTY = "lineId";
     public static final String REF_PROPERTY = "ref";
     public static final String TO_CRUISE_PROPERTY = "toCruise";
+    public static final String TO_LINE_PROPERTY = "toLine";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -34,13 +34,6 @@ public abstract class _Section extends CayenneDataObject {
         return (Date)readProperty(DATE_START_PROPERTY);
     }
 
-    public void setLineId(Integer lineId) {
-        writeProperty(LINE_ID_PROPERTY, lineId);
-    }
-    public Integer getLineId() {
-        return (Integer)readProperty(LINE_ID_PROPERTY);
-    }
-
     public void setRef(String ref) {
         writeProperty(REF_PROPERTY, ref);
     }
@@ -54,6 +47,15 @@ public abstract class _Section extends CayenneDataObject {
 
     public Cruise getToCruise() {
         return (Cruise)readProperty(TO_CRUISE_PROPERTY);
+    }
+
+
+    public void setToLine(Line toLine) {
+        setToOneTarget(TO_LINE_PROPERTY, toLine, true);
+    }
+
+    public Line getToLine() {
+        return (Line)readProperty(TO_LINE_PROPERTY);
     }
 
 

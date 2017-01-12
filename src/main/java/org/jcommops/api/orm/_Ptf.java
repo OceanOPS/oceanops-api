@@ -15,6 +15,7 @@ public abstract class _Ptf extends CayenneDataObject {
 
     public static final String ACTIVITY_CRITERION_PROPERTY = "activityCriterion";
     public static final String AGE_PROPERTY = "age";
+    public static final String AGE_WEIGHT_PROPERTY = "ageWeight";
     public static final String BLACKLISTED_PROPERTY = "blacklisted";
     public static final String CLOSURE_CRITERION_PROPERTY = "closureCriterion";
     public static final String CONFIRM_DATE_PROPERTY = "confirmDate";
@@ -36,14 +37,17 @@ public abstract class _Ptf extends CayenneDataObject {
     public static final String VALIDATED_PROPERTY = "validated";
     public static final String AGENCY_PTF_ARRAY_PROPERTY = "agencyPtfArray";
     public static final String DOC_ARRAY_PROPERTY = "docArray";
+    public static final String MZMS_PTF_COUNTRY_ARRAY_PROPERTY = "mzmsPtfCountryArray";
     public static final String NETWORK_PTF_ARRAY_PROPERTY = "networkPtfArray";
     public static final String OBS_ARRAY_PROPERTY = "obsArray";
     public static final String PTF_CONFIG_ARRAY_PROPERTY = "ptfConfigArray";
     public static final String PTF_CRUISE_ARRAY_PROPERTY = "ptfCruiseArray";
     public static final String PTF_LOC_ARRAY_PROPERTY = "ptfLocArray";
+    public static final String PTF_LOC_STATUS_ARRAY_PROPERTY = "ptfLocStatusArray";
     public static final String PTF_SENSOR_MODEL_ARRAY_PROPERTY = "ptfSensorModelArray";
     public static final String PTF_VARIABLE_ARRAY_PROPERTY = "ptfVariableArray";
     public static final String QC_FEEDBACK_ARRAY_PROPERTY = "qcFeedbackArray";
+    public static final String SERVICE_ARRAY_PROPERTY = "serviceArray";
     public static final String SITE_PTF_ARRAY_PROPERTY = "sitePtfArray";
     public static final String TO_DATA_STATUS_PROPERTY = "toDataStatus";
     public static final String TO_ENDING_CAUSE_PROPERTY = "toEndingCause";
@@ -78,6 +82,13 @@ public abstract class _Ptf extends CayenneDataObject {
     }
     public Integer getAge() {
         return (Integer)readProperty(AGE_PROPERTY);
+    }
+
+    public void setAgeWeight(Integer ageWeight) {
+        writeProperty(AGE_WEIGHT_PROPERTY, ageWeight);
+    }
+    public Integer getAgeWeight() {
+        return (Integer)readProperty(AGE_WEIGHT_PROPERTY);
     }
 
     public void setBlacklisted(Integer blacklisted) {
@@ -237,6 +248,18 @@ public abstract class _Ptf extends CayenneDataObject {
     }
 
 
+    public void addToMzmsPtfCountryArray(MzmsPtfCountry obj) {
+        addToManyTarget(MZMS_PTF_COUNTRY_ARRAY_PROPERTY, obj, true);
+    }
+    public void removeFromMzmsPtfCountryArray(MzmsPtfCountry obj) {
+        removeToManyTarget(MZMS_PTF_COUNTRY_ARRAY_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<MzmsPtfCountry> getMzmsPtfCountryArray() {
+        return (List<MzmsPtfCountry>)readProperty(MZMS_PTF_COUNTRY_ARRAY_PROPERTY);
+    }
+
+
     public void addToNetworkPtfArray(NetworkPtf obj) {
         addToManyTarget(NETWORK_PTF_ARRAY_PROPERTY, obj, true);
     }
@@ -297,6 +320,18 @@ public abstract class _Ptf extends CayenneDataObject {
     }
 
 
+    public void addToPtfLocStatusArray(PtfLocStatus obj) {
+        addToManyTarget(PTF_LOC_STATUS_ARRAY_PROPERTY, obj, true);
+    }
+    public void removeFromPtfLocStatusArray(PtfLocStatus obj) {
+        removeToManyTarget(PTF_LOC_STATUS_ARRAY_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<PtfLocStatus> getPtfLocStatusArray() {
+        return (List<PtfLocStatus>)readProperty(PTF_LOC_STATUS_ARRAY_PROPERTY);
+    }
+
+
     public void addToPtfSensorModelArray(PtfSensorModel obj) {
         addToManyTarget(PTF_SENSOR_MODEL_ARRAY_PROPERTY, obj, true);
     }
@@ -330,6 +365,18 @@ public abstract class _Ptf extends CayenneDataObject {
     @SuppressWarnings("unchecked")
     public List<QcFeedback> getQcFeedbackArray() {
         return (List<QcFeedback>)readProperty(QC_FEEDBACK_ARRAY_PROPERTY);
+    }
+
+
+    public void addToServiceArray(Service obj) {
+        addToManyTarget(SERVICE_ARRAY_PROPERTY, obj, true);
+    }
+    public void removeFromServiceArray(Service obj) {
+        removeToManyTarget(SERVICE_ARRAY_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Service> getServiceArray() {
+        return (List<Service>)readProperty(SERVICE_ARRAY_PROPERTY);
     }
 
 

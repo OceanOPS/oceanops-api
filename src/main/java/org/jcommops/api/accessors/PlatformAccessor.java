@@ -7,8 +7,12 @@ import java.util.List;
 
 import org.apache.cayenne.Cayenne;
 import org.apache.cayenne.CayenneRuntimeException;
+import org.apache.cayenne.DataObjectUtils;
+import org.apache.cayenne.DataRow;
 import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.configuration.server.ServerRuntime;
+import org.apache.cayenne.map.EntityResult;
+import org.apache.cayenne.map.SQLResult;
 import org.apache.cayenne.query.SQLTemplate;
 import org.apache.cayenne.query.SelectQuery;
 import org.jcommops.api.Utils;
@@ -57,8 +61,38 @@ public class PlatformAccessor {
 		this.runtime = Utils.getCayenneRuntime();
 		this.context = this.runtime.getContext();
 	}
+	
+	/**
+	 * Build the list of platform IDs/REFs.
+	 * @return The list of Platform objects, filled with ID and REF only.
+	 */
+	public ArrayList<Platform> getAllPtfIdsRefs() { 
+		// Fetching row data to increase performance/memory consumption
+		SQLTemplate query = new SQLTemplate(Ptf.class, "select id, ref from PTF"); 
+		query.setFetchingDataRows(true);
+		List<DataRow> rows = context.performQuery(query);
 
-	public ArrayList<Platform> getAllPtfs() { // "PRINCIPAL" List of Platforms
+		ArrayList<Platform> ptfs_list = new ArrayList<Platform>();
+
+		Iterator<DataRow> ptf_itr = rows.iterator();
+
+		while (ptf_itr.hasNext()) {
+			DataRow row = ptf_itr.next();
+			Platform ptf = new Platform();
+			ptf.setId((Integer)row.get("ID"));
+			ptf.setJcommopsRef((String)row.get("REF"));
+			ptfs_list.add(ptf);
+		}
+
+		return ptfs_list;
+
+	}
+
+	/**
+	 * Build the list of platforms.
+	 * @return The list of Platform objects.
+	 */
+	public ArrayList<Platform> getAllPtfs() {
 
 		SelectQuery query = new SelectQuery(Ptf.class);
 		List<Ptf> platforms = context.performQuery(query);
@@ -79,6 +113,10 @@ public class PlatformAccessor {
 
 	}
 
+	/**
+	 * Build the reference list of statuses.
+	 * @return The list of PlatformStatus objects.
+	 */
 	public ArrayList<PlatformStatus> getPtfStatuses() {// List of Statuses
 		SelectQuery Status_query = new SelectQuery(PtfStatus.class);
 		List<PtfStatus> statuses = context.performQuery(Status_query);

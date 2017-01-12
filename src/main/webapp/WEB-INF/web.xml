@@ -6,7 +6,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
 	<servlet>
-		<servlet-name>Jersey Web Application</servlet-name>
+		<servlet-name>JerseyWebApplication</servlet-name>
 		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
 		<init-param>
 			<param-name>jersey.config.server.provider.packages</param-name>
@@ -20,12 +20,12 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Help</servlet-name>
-		<url-pattern>/api/rest/1.0/help</url-pattern>
+		<url-pattern>/rest/help</url-pattern>
 		<!-- /api/rest/1.0/help -->
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>Jersey Web Application</servlet-name>
-		<url-pattern>/api/rest/1.0/*</url-pattern>
+		<servlet-name>JerseyWebApplication</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
 
 	<filter>
@@ -34,6 +34,6 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>CayenneFilter</filter-name>
-		<url-pattern>/api/rest/1.0/*</url-pattern>
+		<url-pattern>/rest/*</url-pattern>
 	</filter-mapping>
 </web-app>

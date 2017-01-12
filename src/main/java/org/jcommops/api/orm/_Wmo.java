@@ -13,6 +13,7 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _Wmo extends CayenneDataObject {
 
     public static final String END_DATE_PROPERTY = "endDate";
+    public static final String FIVEDIGIT_DUPL_EXISTS_PROPERTY = "fivedigitDuplExists";
     public static final String MASK_PROPERTY = "mask";
     public static final String START_DATE_PROPERTY = "startDate";
     public static final String WMO_PROPERTY = "wmo";
@@ -25,6 +26,13 @@ public abstract class _Wmo extends CayenneDataObject {
     }
     public Date getEndDate() {
         return (Date)readProperty(END_DATE_PROPERTY);
+    }
+
+    public void setFivedigitDuplExists(Integer fivedigitDuplExists) {
+        writeProperty(FIVEDIGIT_DUPL_EXISTS_PROPERTY, fivedigitDuplExists);
+    }
+    public Integer getFivedigitDuplExists() {
+        return (Integer)readProperty(FIVEDIGIT_DUPL_EXISTS_PROPERTY);
     }
 
     public void setMask(Integer mask) {

@@ -29,12 +29,15 @@ public abstract class _Country extends CayenneDataObject {
     public static final String CRUISE_COUNTRY_ARRAY_PROPERTY = "cruiseCountryArray";
     public static final String GTS_CCCC_ARRAY_PROPERTY = "gtsCcccArray";
     public static final String MEETING_ARRAY_PROPERTY = "meetingArray";
+    public static final String MZMS_PTF_COUNTRY_ARRAY_PROPERTY = "mzmsPtfCountryArray";
     public static final String NETWORK_COUNTRY_ARRAY_PROPERTY = "networkCountryArray";
     public static final String PROGRAM_ARRAY_PROPERTY = "programArray";
     public static final String PTF_DEPLOYMENT_ARRAY_PROPERTY = "ptfDeploymentArray";
+    public static final String PTF_HARDWARE_ARRAY_PROPERTY = "ptfHardwareArray";
     public static final String RETRIEVAL_ARRAY_PROPERTY = "retrievalArray";
     public static final String SHIP_ARRAY_PROPERTY = "shipArray";
     public static final String USER_GROUP_CONTACT_ARRAY_PROPERTY = "userGroupContactArray";
+    public static final String WEBLINK_ARRAY_PROPERTY = "weblinkArray";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -182,6 +185,18 @@ public abstract class _Country extends CayenneDataObject {
     }
 
 
+    public void addToMzmsPtfCountryArray(MzmsPtfCountry obj) {
+        addToManyTarget(MZMS_PTF_COUNTRY_ARRAY_PROPERTY, obj, true);
+    }
+    public void removeFromMzmsPtfCountryArray(MzmsPtfCountry obj) {
+        removeToManyTarget(MZMS_PTF_COUNTRY_ARRAY_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<MzmsPtfCountry> getMzmsPtfCountryArray() {
+        return (List<MzmsPtfCountry>)readProperty(MZMS_PTF_COUNTRY_ARRAY_PROPERTY);
+    }
+
+
     public void addToNetworkCountryArray(NetworkCountry obj) {
         addToManyTarget(NETWORK_COUNTRY_ARRAY_PROPERTY, obj, true);
     }
@@ -218,6 +233,18 @@ public abstract class _Country extends CayenneDataObject {
     }
 
 
+    public void addToPtfHardwareArray(PtfHardware obj) {
+        addToManyTarget(PTF_HARDWARE_ARRAY_PROPERTY, obj, true);
+    }
+    public void removeFromPtfHardwareArray(PtfHardware obj) {
+        removeToManyTarget(PTF_HARDWARE_ARRAY_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<PtfHardware> getPtfHardwareArray() {
+        return (List<PtfHardware>)readProperty(PTF_HARDWARE_ARRAY_PROPERTY);
+    }
+
+
     public void addToRetrievalArray(Retrieval obj) {
         addToManyTarget(RETRIEVAL_ARRAY_PROPERTY, obj, true);
     }
@@ -251,6 +278,18 @@ public abstract class _Country extends CayenneDataObject {
     @SuppressWarnings("unchecked")
     public List<UserGroupContact> getUserGroupContactArray() {
         return (List<UserGroupContact>)readProperty(USER_GROUP_CONTACT_ARRAY_PROPERTY);
+    }
+
+
+    public void addToWeblinkArray(Weblink obj) {
+        addToManyTarget(WEBLINK_ARRAY_PROPERTY, obj, true);
+    }
+    public void removeFromWeblinkArray(Weblink obj) {
+        removeToManyTarget(WEBLINK_ARRAY_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Weblink> getWeblinkArray() {
+        return (List<Weblink>)readProperty(WEBLINK_ARRAY_PROPERTY);
     }
 
 

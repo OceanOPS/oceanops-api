@@ -33,6 +33,7 @@ public abstract class _MasterProg extends CayenneDataObject {
     public static final String PTF_MODEL_ARRAY_PROPERTY = "ptfModelArray";
     public static final String SENSOR_MODEL_ARRAY_PROPERTY = "sensorModelArray";
     public static final String SITE_ARRAY_PROPERTY = "siteArray";
+    public static final String SURVEY_ARRAY_PROPERTY = "surveyArray";
     public static final String TO_MASTER_PROG_PROPERTY = "toMasterProg";
     public static final String USER_GROUP_ARRAY_PROPERTY = "userGroupArray";
     public static final String WEBLINK_ARRAY_PROPERTY = "weblinkArray";
@@ -238,6 +239,18 @@ public abstract class _MasterProg extends CayenneDataObject {
     @SuppressWarnings("unchecked")
     public List<Site> getSiteArray() {
         return (List<Site>)readProperty(SITE_ARRAY_PROPERTY);
+    }
+
+
+    public void addToSurveyArray(Survey obj) {
+        addToManyTarget(SURVEY_ARRAY_PROPERTY, obj, true);
+    }
+    public void removeFromSurveyArray(Survey obj) {
+        removeToManyTarget(SURVEY_ARRAY_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Survey> getSurveyArray() {
+        return (List<Survey>)readProperty(SURVEY_ARRAY_PROPERTY);
     }
 
 

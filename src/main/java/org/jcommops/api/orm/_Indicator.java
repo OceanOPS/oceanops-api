@@ -1,5 +1,7 @@
 package org.jcommops.api.orm;
 
+import java.math.BigDecimal;
+
 import org.apache.cayenne.CayenneDataObject;
 
 /**
@@ -11,6 +13,7 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _Indicator extends CayenneDataObject {
 
     public static final String BASIN_ID_PROPERTY = "basinId";
+    public static final String CORE_PROPERTY = "core";
     public static final String DESCRIPTION_PROPERTY = "description";
     public static final String EXPLANATION_PROPERTY = "explanation";
     public static final String LEGEND_MAX_PROPERTY = "legendMax";
@@ -33,6 +36,13 @@ public abstract class _Indicator extends CayenneDataObject {
         return (Integer)readProperty(BASIN_ID_PROPERTY);
     }
 
+    public void setCore(Integer core) {
+        writeProperty(CORE_PROPERTY, core);
+    }
+    public Integer getCore() {
+        return (Integer)readProperty(CORE_PROPERTY);
+    }
+
     public void setDescription(String description) {
         writeProperty(DESCRIPTION_PROPERTY, description);
     }
@@ -47,18 +57,18 @@ public abstract class _Indicator extends CayenneDataObject {
         return (String)readProperty(EXPLANATION_PROPERTY);
     }
 
-    public void setLegendMax(Integer legendMax) {
+    public void setLegendMax(BigDecimal legendMax) {
         writeProperty(LEGEND_MAX_PROPERTY, legendMax);
     }
-    public Integer getLegendMax() {
-        return (Integer)readProperty(LEGEND_MAX_PROPERTY);
+    public BigDecimal getLegendMax() {
+        return (BigDecimal)readProperty(LEGEND_MAX_PROPERTY);
     }
 
-    public void setLegendMin(Integer legendMin) {
+    public void setLegendMin(BigDecimal legendMin) {
         writeProperty(LEGEND_MIN_PROPERTY, legendMin);
     }
-    public Integer getLegendMin() {
-        return (Integer)readProperty(LEGEND_MIN_PROPERTY);
+    public BigDecimal getLegendMin() {
+        return (BigDecimal)readProperty(LEGEND_MIN_PROPERTY);
     }
 
     public void setName(String name) {
@@ -89,11 +99,11 @@ public abstract class _Indicator extends CayenneDataObject {
         return (String)readProperty(TARGET_TEXT_PROPERTY);
     }
 
-    public void setTargetValue(Integer targetValue) {
+    public void setTargetValue(BigDecimal targetValue) {
         writeProperty(TARGET_VALUE_PROPERTY, targetValue);
     }
-    public Integer getTargetValue() {
-        return (Integer)readProperty(TARGET_VALUE_PROPERTY);
+    public BigDecimal getTargetValue() {
+        return (BigDecimal)readProperty(TARGET_VALUE_PROPERTY);
     }
 
     public void setToIndicatorCategory(IndicatorCategory toIndicatorCategory) {

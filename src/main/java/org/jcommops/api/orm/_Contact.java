@@ -37,6 +37,8 @@ public abstract class _Contact extends CayenneDataObject {
     public static final String PTF_DEPLOYMENT_ARRAY_PROPERTY = "ptfDeploymentArray";
     public static final String PTF_MODEL_ARRAY_PROPERTY = "ptfModelArray";
     public static final String QC_FEEDBACK_ARRAY_PROPERTY = "qcFeedbackArray";
+    public static final String QC_FEEDBACK_ARRAY1_PROPERTY = "qcFeedbackArray1";
+    public static final String SERVICE_ARRAY_PROPERTY = "serviceArray";
     public static final String TELECOM_FORMAT_ARRAY_PROPERTY = "telecomFormatArray";
     public static final String TO_AGENCY_PROPERTY = "toAgency";
     public static final String TO_COUNTRY_PROPERTY = "toCountry";
@@ -259,6 +261,30 @@ public abstract class _Contact extends CayenneDataObject {
     @SuppressWarnings("unchecked")
     public List<QcFeedback> getQcFeedbackArray() {
         return (List<QcFeedback>)readProperty(QC_FEEDBACK_ARRAY_PROPERTY);
+    }
+
+
+    public void addToQcFeedbackArray1(QcFeedback obj) {
+        addToManyTarget(QC_FEEDBACK_ARRAY1_PROPERTY, obj, true);
+    }
+    public void removeFromQcFeedbackArray1(QcFeedback obj) {
+        removeToManyTarget(QC_FEEDBACK_ARRAY1_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<QcFeedback> getQcFeedbackArray1() {
+        return (List<QcFeedback>)readProperty(QC_FEEDBACK_ARRAY1_PROPERTY);
+    }
+
+
+    public void addToServiceArray(Service obj) {
+        addToManyTarget(SERVICE_ARRAY_PROPERTY, obj, true);
+    }
+    public void removeFromServiceArray(Service obj) {
+        removeToManyTarget(SERVICE_ARRAY_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Service> getServiceArray() {
+        return (List<Service>)readProperty(SERVICE_ARRAY_PROPERTY);
     }
 
 

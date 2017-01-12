@@ -16,11 +16,11 @@ public abstract class _Program extends CayenneDataObject {
     public static final String DESCRIPTION_PROPERTY = "description";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
-    public static final String CRUISE_ARRAY_PROPERTY = "cruiseArray";
-    public static final String LINE_ARRAY_PROPERTY = "lineArray";
+    public static final String CRUISE_PROGRAM_ARRAY_PROPERTY = "cruiseProgramArray";
+    public static final String IMAGE_ARRAY_PROPERTY = "imageArray";
+    public static final String LINE_PROGRAM_ARRAY_PROPERTY = "lineProgramArray";
     public static final String PROGRAM_AGENCY_ARRAY_PROPERTY = "programAgencyArray";
     public static final String PROGRAM_CONTACT_ARRAY_PROPERTY = "programContactArray";
-    public static final String PROGRAM_EXT_ARRAY_PROPERTY = "programExtArray";
     public static final String PTF_ARRAY_PROPERTY = "ptfArray";
     public static final String TO_COUNTRY_PROPERTY = "toCountry";
     public static final String TO_MASTER_PROG_PROPERTY = "toMasterProg";
@@ -56,27 +56,39 @@ public abstract class _Program extends CayenneDataObject {
         return (String)readProperty(NAME_SHORT_PROPERTY);
     }
 
-    public void addToCruiseArray(Cruise obj) {
-        addToManyTarget(CRUISE_ARRAY_PROPERTY, obj, true);
+    public void addToCruiseProgramArray(CruiseProgram obj) {
+        addToManyTarget(CRUISE_PROGRAM_ARRAY_PROPERTY, obj, true);
     }
-    public void removeFromCruiseArray(Cruise obj) {
-        removeToManyTarget(CRUISE_ARRAY_PROPERTY, obj, true);
+    public void removeFromCruiseProgramArray(CruiseProgram obj) {
+        removeToManyTarget(CRUISE_PROGRAM_ARRAY_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Cruise> getCruiseArray() {
-        return (List<Cruise>)readProperty(CRUISE_ARRAY_PROPERTY);
+    public List<CruiseProgram> getCruiseProgramArray() {
+        return (List<CruiseProgram>)readProperty(CRUISE_PROGRAM_ARRAY_PROPERTY);
     }
 
 
-    public void addToLineArray(Line obj) {
-        addToManyTarget(LINE_ARRAY_PROPERTY, obj, true);
+    public void addToImageArray(Image obj) {
+        addToManyTarget(IMAGE_ARRAY_PROPERTY, obj, true);
     }
-    public void removeFromLineArray(Line obj) {
-        removeToManyTarget(LINE_ARRAY_PROPERTY, obj, true);
+    public void removeFromImageArray(Image obj) {
+        removeToManyTarget(IMAGE_ARRAY_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Line> getLineArray() {
-        return (List<Line>)readProperty(LINE_ARRAY_PROPERTY);
+    public List<Image> getImageArray() {
+        return (List<Image>)readProperty(IMAGE_ARRAY_PROPERTY);
+    }
+
+
+    public void addToLineProgramArray(LineProgram obj) {
+        addToManyTarget(LINE_PROGRAM_ARRAY_PROPERTY, obj, true);
+    }
+    public void removeFromLineProgramArray(LineProgram obj) {
+        removeToManyTarget(LINE_PROGRAM_ARRAY_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<LineProgram> getLineProgramArray() {
+        return (List<LineProgram>)readProperty(LINE_PROGRAM_ARRAY_PROPERTY);
     }
 
 
@@ -101,18 +113,6 @@ public abstract class _Program extends CayenneDataObject {
     @SuppressWarnings("unchecked")
     public List<ProgramContact> getProgramContactArray() {
         return (List<ProgramContact>)readProperty(PROGRAM_CONTACT_ARRAY_PROPERTY);
-    }
-
-
-    public void addToProgramExtArray(ProgramExt obj) {
-        addToManyTarget(PROGRAM_EXT_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromProgramExtArray(ProgramExt obj) {
-        removeToManyTarget(PROGRAM_EXT_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<ProgramExt> getProgramExtArray() {
-        return (List<ProgramExt>)readProperty(PROGRAM_EXT_ARRAY_PROPERTY);
     }
 
 

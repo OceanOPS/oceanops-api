@@ -59,14 +59,14 @@ public abstract class _PtfLoc extends CayenneDataObject {
     public BigDecimal getImgLon() {
         return (BigDecimal)readProperty(IMG_LON_PROPERTY);
     }
-/**
-    public void setImgShape($importUtils.formatJavaType(${attr.Type}) imgShape) {
+
+    public void setImgShape(byte[] imgShape) {
         writeProperty(IMG_SHAPE_PROPERTY, imgShape);
     }
-    public $importUtils.formatJavaType(${attr.Type}) getImgShape() {
-        return ($importUtils.formatJavaType(${attr.Type}))readProperty(IMG_SHAPE_PROPERTY);
+    public byte[] getImgShape() {
+        return (byte[])readProperty(IMG_SHAPE_PROPERTY);
     }
-**/
+
     public void setLat(BigDecimal lat) {
         writeProperty(LAT_PROPERTY, lat);
     }
@@ -94,14 +94,14 @@ public abstract class _PtfLoc extends CayenneDataObject {
     public Integer getQuality() {
         return (Integer)readProperty(QUALITY_PROPERTY);
     }
-/**
-    public void setShape($importUtils.formatJavaType(${attr.Type}) shape) {
+
+    public void setShape(byte[] shape) {
         writeProperty(SHAPE_PROPERTY, shape);
     }
-    public $importUtils.formatJavaType(${attr.Type}) getShape() {
-        return ($importUtils.formatJavaType(${attr.Type}))readProperty(SHAPE_PROPERTY);
+    public byte[] getShape() {
+        return (byte[])readProperty(SHAPE_PROPERTY);
     }
-**/
+
     public void addToDocArray(Doc obj) {
         addToManyTarget(DOC_ARRAY_PROPERTY, obj, true);
     }

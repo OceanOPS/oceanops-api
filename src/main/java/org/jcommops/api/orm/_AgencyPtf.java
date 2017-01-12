@@ -17,6 +17,7 @@ public abstract class _AgencyPtf extends CayenneDataObject {
 
     public static final String AGENCY_ID_PK_COLUMN = "AGENCY_ID";
     public static final String ASSEMBLY_TYPE_ID_PK_COLUMN = "ASSEMBLY_TYPE_ID";
+    public static final String DAC_TYPE_ID_PK_COLUMN = "DAC_TYPE_ID";
     public static final String PTF_ID_PK_COLUMN = "PTF_ID";
 
     public void setToAgency(Agency toAgency) {

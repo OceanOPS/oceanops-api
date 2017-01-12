@@ -16,6 +16,7 @@ public abstract class _NcNotification extends CayenneDataObject {
     public static final String IS_PRIVATE_PROPERTY = "isPrivate";
     public static final String NAME_PROPERTY = "name";
     public static final String NOTIFICATION_DATE_PROPERTY = "notificationDate";
+    public static final String SENT_PROPERTY = "sent";
     public static final String TO_CONTACT_PROPERTY = "toContact";
     public static final String TO_NC_LEVEL_PROPERTY = "toNcLevel";
     public static final String TO_NC_TOPIC_PROPERTY = "toNcTopic";
@@ -48,6 +49,13 @@ public abstract class _NcNotification extends CayenneDataObject {
     }
     public Date getNotificationDate() {
         return (Date)readProperty(NOTIFICATION_DATE_PROPERTY);
+    }
+
+    public void setSent(Integer sent) {
+        writeProperty(SENT_PROPERTY, sent);
+    }
+    public Integer getSent() {
+        return (Integer)readProperty(SENT_PROPERTY);
     }
 
     public void setToContact(Contact toContact) {

@@ -13,6 +13,9 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _PtfLocStatus extends CayenneDataObject {
 
     public static final String END_DATE_PROPERTY = "endDate";
+    public static final String SOURCE_PROPERTY = "source";
+    public static final String TO_LOC_STATUS_PROPERTY = "toLocStatus";
+    public static final String TO_PTF_PROPERTY = "toPtf";
 
     public static final String LOC_STATUS_ID_PK_COLUMN = "LOC_STATUS_ID";
     public static final String PTF_ID_PK_COLUMN = "PTF_ID";
@@ -24,5 +27,30 @@ public abstract class _PtfLocStatus extends CayenneDataObject {
     public Date getEndDate() {
         return (Date)readProperty(END_DATE_PROPERTY);
     }
+
+    public void setSource(String source) {
+        writeProperty(SOURCE_PROPERTY, source);
+    }
+    public String getSource() {
+        return (String)readProperty(SOURCE_PROPERTY);
+    }
+
+    public void setToLocStatus(LocStatus toLocStatus) {
+        setToOneTarget(TO_LOC_STATUS_PROPERTY, toLocStatus, true);
+    }
+
+    public LocStatus getToLocStatus() {
+        return (LocStatus)readProperty(TO_LOC_STATUS_PROPERTY);
+    }
+
+
+    public void setToPtf(Ptf toPtf) {
+        setToOneTarget(TO_PTF_PROPERTY, toPtf, true);
+    }
+
+    public Ptf getToPtf() {
+        return (Ptf)readProperty(TO_PTF_PROPERTY);
+    }
+
 
 }

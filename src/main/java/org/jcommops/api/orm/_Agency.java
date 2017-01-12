@@ -21,12 +21,15 @@ public abstract class _Agency extends CayenneDataObject {
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
     public static final String PURCHASER_PROPERTY = "purchaser";
+    public static final String REF_PROPERTY = "ref";
     public static final String SHAPE_PROPERTY = "shape";
     public static final String TEL_PROPERTY = "tel";
     public static final String AGENCY_DAC_TYPE_ARRAY_PROPERTY = "agencyDacTypeArray";
     public static final String AGENCY_PTF_ARRAY_PROPERTY = "agencyPtfArray";
     public static final String CONTACT_ARRAY_PROPERTY = "contactArray";
     public static final String CRUISE_ARRAY_PROPERTY = "cruiseArray";
+    public static final String GTS_CCCC_ARRAY_PROPERTY = "gtsCcccArray";
+    public static final String IMAGE_ARRAY_PROPERTY = "imageArray";
     public static final String OBS_ARRAY_PROPERTY = "obsArray";
     public static final String OBS_ARRAY1_PROPERTY = "obsArray1";
     public static final String PROGRAM_AGENCY_ARRAY_PROPERTY = "programAgencyArray";
@@ -35,6 +38,7 @@ public abstract class _Agency extends CayenneDataObject {
     public static final String PTF_MODEL_ARRAY_PROPERTY = "ptfModelArray";
     public static final String QC_FEEDBACK_ARRAY_PROPERTY = "qcFeedbackArray";
     public static final String SENSOR_MODEL_ARRAY_PROPERTY = "sensorModelArray";
+    public static final String SERVICE_ARRAY_PROPERTY = "serviceArray";
     public static final String TO_COUNTRY_PROPERTY = "toCountry";
     public static final String TO_IMAGE_PROPERTY = "toImage";
     public static final String TO_WEBLINK_PROPERTY = "toWeblink";
@@ -105,13 +109,20 @@ public abstract class _Agency extends CayenneDataObject {
         return (Integer)readProperty(PURCHASER_PROPERTY);
     }
 
-   /** public void setShape($importUtils.formatJavaType(${attr.Type}) shape) {
+    public void setRef(String ref) {
+        writeProperty(REF_PROPERTY, ref);
+    }
+    public String getRef() {
+        return (String)readProperty(REF_PROPERTY);
+    }
+
+    public void setShape(Byte[] shape) {
         writeProperty(SHAPE_PROPERTY, shape);
     }
-    public $importUtils.formatJavaType(${attr.Type}) getShape() {
-        return ($importUtils.formatJavaType(${attr.Type}))readProperty(SHAPE_PROPERTY);
+    public Byte[] getShape() {
+        return (Byte[])readProperty(SHAPE_PROPERTY);
     }
-**/
+
     public void setTel(String tel) {
         writeProperty(TEL_PROPERTY, tel);
     }
@@ -164,6 +175,30 @@ public abstract class _Agency extends CayenneDataObject {
     @SuppressWarnings("unchecked")
     public List<Cruise> getCruiseArray() {
         return (List<Cruise>)readProperty(CRUISE_ARRAY_PROPERTY);
+    }
+
+
+    public void addToGtsCcccArray(GtsCccc obj) {
+        addToManyTarget(GTS_CCCC_ARRAY_PROPERTY, obj, true);
+    }
+    public void removeFromGtsCcccArray(GtsCccc obj) {
+        removeToManyTarget(GTS_CCCC_ARRAY_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<GtsCccc> getGtsCcccArray() {
+        return (List<GtsCccc>)readProperty(GTS_CCCC_ARRAY_PROPERTY);
+    }
+
+
+    public void addToImageArray(Image obj) {
+        addToManyTarget(IMAGE_ARRAY_PROPERTY, obj, true);
+    }
+    public void removeFromImageArray(Image obj) {
+        removeToManyTarget(IMAGE_ARRAY_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Image> getImageArray() {
+        return (List<Image>)readProperty(IMAGE_ARRAY_PROPERTY);
     }
 
 
@@ -260,6 +295,18 @@ public abstract class _Agency extends CayenneDataObject {
     @SuppressWarnings("unchecked")
     public List<SensorModel> getSensorModelArray() {
         return (List<SensorModel>)readProperty(SENSOR_MODEL_ARRAY_PROPERTY);
+    }
+
+
+    public void addToServiceArray(Service obj) {
+        addToManyTarget(SERVICE_ARRAY_PROPERTY, obj, true);
+    }
+    public void removeFromServiceArray(Service obj) {
+        removeToManyTarget(SERVICE_ARRAY_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Service> getServiceArray() {
+        return (List<Service>)readProperty(SERVICE_ARRAY_PROPERTY);
     }
 
 

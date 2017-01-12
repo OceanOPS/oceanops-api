@@ -15,11 +15,11 @@ public abstract class _Survey extends CayenneDataObject {
 
     public static final String DESCRIPTION_PROPERTY = "description";
     public static final String END_DATE_PROPERTY = "endDate";
-    public static final String MASTER_PROG_ID_PROPERTY = "masterProgId";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
     public static final String START_DATE_PROPERTY = "startDate";
     public static final String LINE_SURVEY_ARRAY_PROPERTY = "lineSurveyArray";
+    public static final String TO_MASTER_PROG_PROPERTY = "toMasterProg";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -35,13 +35,6 @@ public abstract class _Survey extends CayenneDataObject {
     }
     public Date getEndDate() {
         return (Date)readProperty(END_DATE_PROPERTY);
-    }
-
-    public void setMasterProgId(Integer masterProgId) {
-        writeProperty(MASTER_PROG_ID_PROPERTY, masterProgId);
-    }
-    public Integer getMasterProgId() {
-        return (Integer)readProperty(MASTER_PROG_ID_PROPERTY);
     }
 
     public void setName(String name) {
@@ -74,6 +67,15 @@ public abstract class _Survey extends CayenneDataObject {
     @SuppressWarnings("unchecked")
     public List<LineSurvey> getLineSurveyArray() {
         return (List<LineSurvey>)readProperty(LINE_SURVEY_ARRAY_PROPERTY);
+    }
+
+
+    public void setToMasterProg(MasterProg toMasterProg) {
+        setToOneTarget(TO_MASTER_PROG_PROPERTY, toMasterProg, true);
+    }
+
+    public MasterProg getToMasterProg() {
+        return (MasterProg)readProperty(TO_MASTER_PROG_PROPERTY);
     }
 
 

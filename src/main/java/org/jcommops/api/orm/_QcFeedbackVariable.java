@@ -10,8 +10,28 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _QcFeedbackVariable extends CayenneDataObject {
 
+    public static final String TO_QC_FEEDBACK_PROPERTY = "toQcFeedback";
+    public static final String TO_VARIABLE_PROPERTY = "toVariable";
 
     public static final String QC_FEEDBACK_ID_PK_COLUMN = "QC_FEEDBACK_ID";
     public static final String VARIABLE_ID_PK_COLUMN = "VARIABLE_ID";
+
+    public void setToQcFeedback(QcFeedback toQcFeedback) {
+        setToOneTarget(TO_QC_FEEDBACK_PROPERTY, toQcFeedback, true);
+    }
+
+    public QcFeedback getToQcFeedback() {
+        return (QcFeedback)readProperty(TO_QC_FEEDBACK_PROPERTY);
+    }
+
+
+    public void setToVariable(Variable toVariable) {
+        setToOneTarget(TO_VARIABLE_PROPERTY, toVariable, true);
+    }
+
+    public Variable getToVariable() {
+        return (Variable)readProperty(TO_VARIABLE_PROPERTY);
+    }
+
 
 }

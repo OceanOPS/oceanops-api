@@ -14,24 +14,17 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _IndicatorValue extends CayenneDataObject {
 
     public static final String END_DATE_PROPERTY = "endDate";
-    public static final String ID_PROPERTY = "id";
     public static final String INDICATOR_ID_PROPERTY = "indicatorId";
     public static final String START_DATE_PROPERTY = "startDate";
     public static final String VALUE_PROPERTY = "value";
 
+    public static final String ID_PK_COLUMN = "ID";
 
     public void setEndDate(Date endDate) {
         writeProperty(END_DATE_PROPERTY, endDate);
     }
     public Date getEndDate() {
         return (Date)readProperty(END_DATE_PROPERTY);
-    }
-
-    public void setId(Integer id) {
-        writeProperty(ID_PROPERTY, id);
-    }
-    public Integer getId() {
-        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setIndicatorId(Integer indicatorId) {

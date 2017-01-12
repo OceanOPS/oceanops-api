@@ -20,6 +20,7 @@ public abstract class _Image extends CayenneDataObject {
     public static final String FILENAME_PROPERTY = "filename";
     public static final String HTML_ALT_PROPERTY = "htmlAlt";
     public static final String NAME_PROPERTY = "name";
+    public static final String STORY_ID_PROPERTY = "storyId";
     public static final String TAGS_PROPERTY = "tags";
     public static final String URL_PROPERTY = "url";
     public static final String AGENCY_ARRAY_PROPERTY = "agencyArray";
@@ -28,8 +29,10 @@ public abstract class _Image extends CayenneDataObject {
     public static final String PTF_MODEL_ARRAY_PROPERTY = "ptfModelArray";
     public static final String PTF_TYPE_ARRAY_PROPERTY = "ptfTypeArray";
     public static final String SENSOR_MODEL_ARRAY_PROPERTY = "sensorModelArray";
+    public static final String TO_AGENCY_PROPERTY = "toAgency";
     public static final String TO_IMAGE_TYPE_PROPERTY = "toImageType";
     public static final String TO_MASTER_PROG_PROPERTY = "toMasterProg";
+    public static final String TO_PROGRAM_PROPERTY = "toProgram";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -80,6 +83,13 @@ public abstract class _Image extends CayenneDataObject {
     }
     public String getName() {
         return (String)readProperty(NAME_PROPERTY);
+    }
+
+    public void setStoryId(Integer storyId) {
+        writeProperty(STORY_ID_PROPERTY, storyId);
+    }
+    public Integer getStoryId() {
+        return (Integer)readProperty(STORY_ID_PROPERTY);
     }
 
     public void setTags(String tags) {
@@ -168,6 +178,15 @@ public abstract class _Image extends CayenneDataObject {
     }
 
 
+    public void setToAgency(Agency toAgency) {
+        setToOneTarget(TO_AGENCY_PROPERTY, toAgency, true);
+    }
+
+    public Agency getToAgency() {
+        return (Agency)readProperty(TO_AGENCY_PROPERTY);
+    }
+
+
     public void setToImageType(ImageType toImageType) {
         setToOneTarget(TO_IMAGE_TYPE_PROPERTY, toImageType, true);
     }
@@ -183,6 +202,15 @@ public abstract class _Image extends CayenneDataObject {
 
     public MasterProg getToMasterProg() {
         return (MasterProg)readProperty(TO_MASTER_PROG_PROPERTY);
+    }
+
+
+    public void setToProgram(Program toProgram) {
+        setToOneTarget(TO_PROGRAM_PROPERTY, toProgram, true);
+    }
+
+    public Program getToProgram() {
+        return (Program)readProperty(TO_PROGRAM_PROPERTY);
     }
 
 

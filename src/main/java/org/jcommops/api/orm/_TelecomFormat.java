@@ -22,10 +22,10 @@ public abstract class _TelecomFormat extends CayenneDataObject {
     public static final String NB_BITS_PROPERTY = "nbBits";
     public static final String START_DATE_PROPERTY = "startDate";
     public static final String VERSION_PROPERTY = "version";
+    public static final String TELECOM_ARRAY_PROPERTY = "telecomArray";
     public static final String TELECOM_FORMAT_DOC_ARRAY_PROPERTY = "telecomFormatDocArray";
     public static final String TO_CONTACT_PROPERTY = "toContact";
     public static final String TO_PTF_MODEL_PROPERTY = "toPtfModel";
-    public static final String TO_TELECOM_FORMAT_PROPERTY = "toTelecomFormat";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -92,6 +92,18 @@ public abstract class _TelecomFormat extends CayenneDataObject {
         return (String)readProperty(VERSION_PROPERTY);
     }
 
+    public void addToTelecomArray(Telecom obj) {
+        addToManyTarget(TELECOM_ARRAY_PROPERTY, obj, true);
+    }
+    public void removeFromTelecomArray(Telecom obj) {
+        removeToManyTarget(TELECOM_ARRAY_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Telecom> getTelecomArray() {
+        return (List<Telecom>)readProperty(TELECOM_ARRAY_PROPERTY);
+    }
+
+
     public void addToTelecomFormatDocArray(TelecomFormatDoc obj) {
         addToManyTarget(TELECOM_FORMAT_DOC_ARRAY_PROPERTY, obj, true);
     }
@@ -119,15 +131,6 @@ public abstract class _TelecomFormat extends CayenneDataObject {
 
     public PtfModel getToPtfModel() {
         return (PtfModel)readProperty(TO_PTF_MODEL_PROPERTY);
-    }
-
-
-    public void setToTelecomFormat(Telecom toTelecomFormat) {
-        setToOneTarget(TO_TELECOM_FORMAT_PROPERTY, toTelecomFormat, true);
-    }
-
-    public Telecom getToTelecomFormat() {
-        return (Telecom)readProperty(TO_TELECOM_FORMAT_PROPERTY);
     }
 
 

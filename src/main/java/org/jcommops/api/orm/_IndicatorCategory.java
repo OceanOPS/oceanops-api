@@ -14,6 +14,7 @@ public abstract class _IndicatorCategory extends CayenneDataObject {
 
     public static final String DESCRIPTION_PROPERTY = "description";
     public static final String NAME_PROPERTY = "name";
+    public static final String RANK_PROPERTY = "rank";
     public static final String INDICATOR_ARRAY_PROPERTY = "indicatorArray";
 
     public static final String ID_PK_COLUMN = "ID";
@@ -30,6 +31,13 @@ public abstract class _IndicatorCategory extends CayenneDataObject {
     }
     public String getName() {
         return (String)readProperty(NAME_PROPERTY);
+    }
+
+    public void setRank(Integer rank) {
+        writeProperty(RANK_PROPERTY, rank);
+    }
+    public Integer getRank() {
+        return (Integer)readProperty(RANK_PROPERTY);
     }
 
     public void addToIndicatorArray(Indicator obj) {

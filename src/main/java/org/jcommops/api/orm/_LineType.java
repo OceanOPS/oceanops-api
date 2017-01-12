@@ -36,8 +36,6 @@ public abstract class _LineType extends CayenneDataObject {
     public static final String PERCENT_GOOD_TR_PROPERTY = "percentGoodTr";
     public static final String PERIOD_TOLERANCE_PROPERTY = "periodTolerance";
     public static final String TRANSECTS_PROPERTY = "transects";
-    public static final String LINE_ARRAY_PROPERTY = "lineArray";
-    public static final String LINE_ARRAY1_PROPERTY = "lineArray1";
     public static final String LINE_SURVEY_ARRAY_PROPERTY = "lineSurveyArray";
 
     public static final String ID_PK_COLUMN = "ID";
@@ -202,30 +200,6 @@ public abstract class _LineType extends CayenneDataObject {
     public Integer getTransects() {
         return (Integer)readProperty(TRANSECTS_PROPERTY);
     }
-
-    public void addToLineArray(Line obj) {
-        addToManyTarget(LINE_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromLineArray(Line obj) {
-        removeToManyTarget(LINE_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<Line> getLineArray() {
-        return (List<Line>)readProperty(LINE_ARRAY_PROPERTY);
-    }
-
-
-    public void addToLineArray1(Line obj) {
-        addToManyTarget(LINE_ARRAY1_PROPERTY, obj, true);
-    }
-    public void removeFromLineArray1(Line obj) {
-        removeToManyTarget(LINE_ARRAY1_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<Line> getLineArray1() {
-        return (List<Line>)readProperty(LINE_ARRAY1_PROPERTY);
-    }
-
 
     public void addToLineSurveyArray(LineSurvey obj) {
         addToManyTarget(LINE_SURVEY_ARRAY_PROPERTY, obj, true);

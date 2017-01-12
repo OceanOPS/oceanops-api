@@ -18,6 +18,7 @@ public abstract class _SensorModel extends CayenneDataObject {
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_LONG_PROPERTY = "nameLong";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
+    public static final String ORIGINAL_DATASET_PROPERTY = "originalDataset";
     public static final String RESOLUTION_PROPERTY = "resolution";
     public static final String SPEC_PROPERTY = "spec";
     public static final String YEARLY_DRIFT_PROPERTY = "yearlyDrift";
@@ -71,6 +72,13 @@ public abstract class _SensorModel extends CayenneDataObject {
     }
     public String getNameShort() {
         return (String)readProperty(NAME_SHORT_PROPERTY);
+    }
+
+    public void setOriginalDataset(String originalDataset) {
+        writeProperty(ORIGINAL_DATASET_PROPERTY, originalDataset);
+    }
+    public String getOriginalDataset() {
+        return (String)readProperty(ORIGINAL_DATASET_PROPERTY);
     }
 
     public void setResolution(Integer resolution) {
