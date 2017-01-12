@@ -15,6 +15,7 @@ public abstract class _Basin extends CayenneDataObject {
     public static final String NAME_SHORT_PROPERTY = "nameShort";
     public static final String OCEAN_PROPERTY = "ocean";
     public static final String RANK_PROPERTY = "rank";
+    public static final String SHAPE_PROPERTY = "shape";
     public static final String SUBOCEAN_PROPERTY = "subocean";
     public static final String TO_BASIN_TYPE_PROPERTY = "toBasinType";
 
@@ -53,6 +54,13 @@ public abstract class _Basin extends CayenneDataObject {
     }
     public Integer getRank() {
         return (Integer)readProperty(RANK_PROPERTY);
+    }
+
+    public void setShape(byte[] shape) {
+        writeProperty(SHAPE_PROPERTY, shape);
+    }
+    public byte[] getShape() {
+        return (byte[])readProperty(SHAPE_PROPERTY);
     }
 
     public void setSubocean(String subocean) {

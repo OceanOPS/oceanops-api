@@ -15,37 +15,28 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _QcFeedback extends CayenneDataObject {
 
     public static final String ANSWER_PROPERTY = "answer";
-    public static final String ANSWER_CONTACT_ID_PROPERTY = "answerContactId";
-    public static final String CORR_TYPE_PROPERTY = "corrType";
-    public static final String CORRECTION_PROPERTY = "correction";
     public static final String CORRECTION_TYPE_PROPERTY = "correctionType";
     public static final String CORRECTION_VALUE_PROPERTY = "correctionValue";
     public static final String DONE_PROPERTY = "done";
     public static final String EMAIL_PROPERTY = "email";
     public static final String END_DATE_PROPERTY = "endDate";
-    public static final String GTS_CCCC_ID_PROPERTY = "gtsCcccId";
-    public static final String GTS_HEADER_ID_PROPERTY = "gtsHeaderId";
-    public static final String IMPLEM_DATE_PROPERTY = "implemDate";
     public static final String MESSAGE_PROPERTY = "message";
-    public static final String MESSAGE_DATE_PROPERTY = "messageDate";
-    public static final String MSG_TYPE_PROPERTY = "msgType";
     public static final String ORIGIN_PROPERTY = "origin";
-    public static final String PGC_INFORMED_PROPERTY = "pgcInformed";
-    public static final String QC_FEEDBACK_ACTION_ID_PROPERTY = "qcFeedbackActionId";
-    public static final String QC_FEEDBACK_ERROR_TYPE_ID_PROPERTY = "qcFeedbackErrorTypeId";
-    public static final String RANK_PROPERTY = "rank";
     public static final String RECIPIENTS_PROPERTY = "recipients";
-    public static final String REQUEST_ORDER_PROPERTY = "requestOrder";
+    public static final String SENT_PROPERTY = "sent";
     public static final String START_DATE_PROPERTY = "startDate";
     public static final String SUBJECT_PROPERTY = "subject";
-    public static final String TITLE_PROPERTY = "title";
-    public static final String TTAAII_PROPERTY = "ttaaii";
-    public static final String TYPE_IMPLEM_PROPERTY = "typeImplem";
     public static final String WMO_PROPERTY = "wmo";
     public static final String QC_FEEDBACK_OBS_ARRAY_PROPERTY = "qcFeedbackObsArray";
+    public static final String QC_FEEDBACK_VARIABLE_ARRAY_PROPERTY = "qcFeedbackVariableArray";
     public static final String TO_AGENCY_PROPERTY = "toAgency";
     public static final String TO_CONTACT_PROPERTY = "toContact";
+    public static final String TO_CONTACT1_PROPERTY = "toContact1";
+    public static final String TO_GTS_CCCC_PROPERTY = "toGtsCccc";
+    public static final String TO_GTS_HEADER_PROPERTY = "toGtsHeader";
     public static final String TO_PTF_PROPERTY = "toPtf";
+    public static final String TO_QC_FEEDBACK_ACTION_PROPERTY = "toQcFeedbackAction";
+    public static final String TO_QC_FEEDBACK_ERROR_TYPE_PROPERTY = "toQcFeedbackErrorType";
     public static final String TO_QC_FEEDBACK_TYPE_PROPERTY = "toQcFeedbackType";
     public static final String TO_TOPIC_PROPERTY = "toTopic";
     public static final String TO_VARIABLE_PROPERTY = "toVariable";
@@ -58,27 +49,6 @@ public abstract class _QcFeedback extends CayenneDataObject {
     }
     public String getAnswer() {
         return (String)readProperty(ANSWER_PROPERTY);
-    }
-
-    public void setAnswerContactId(Integer answerContactId) {
-        writeProperty(ANSWER_CONTACT_ID_PROPERTY, answerContactId);
-    }
-    public Integer getAnswerContactId() {
-        return (Integer)readProperty(ANSWER_CONTACT_ID_PROPERTY);
-    }
-
-    public void setCorrType(String corrType) {
-        writeProperty(CORR_TYPE_PROPERTY, corrType);
-    }
-    public String getCorrType() {
-        return (String)readProperty(CORR_TYPE_PROPERTY);
-    }
-
-    public void setCorrection(BigDecimal correction) {
-        writeProperty(CORRECTION_PROPERTY, correction);
-    }
-    public BigDecimal getCorrection() {
-        return (BigDecimal)readProperty(CORRECTION_PROPERTY);
     }
 
     public void setCorrectionType(String correctionType) {
@@ -116,46 +86,11 @@ public abstract class _QcFeedback extends CayenneDataObject {
         return (Date)readProperty(END_DATE_PROPERTY);
     }
 
-    public void setGtsCcccId(Integer gtsCcccId) {
-        writeProperty(GTS_CCCC_ID_PROPERTY, gtsCcccId);
-    }
-    public Integer getGtsCcccId() {
-        return (Integer)readProperty(GTS_CCCC_ID_PROPERTY);
-    }
-
-    public void setGtsHeaderId(Integer gtsHeaderId) {
-        writeProperty(GTS_HEADER_ID_PROPERTY, gtsHeaderId);
-    }
-    public Integer getGtsHeaderId() {
-        return (Integer)readProperty(GTS_HEADER_ID_PROPERTY);
-    }
-
-    public void setImplemDate(Date implemDate) {
-        writeProperty(IMPLEM_DATE_PROPERTY, implemDate);
-    }
-    public Date getImplemDate() {
-        return (Date)readProperty(IMPLEM_DATE_PROPERTY);
-    }
-
     public void setMessage(String message) {
         writeProperty(MESSAGE_PROPERTY, message);
     }
     public String getMessage() {
         return (String)readProperty(MESSAGE_PROPERTY);
-    }
-
-    public void setMessageDate(Date messageDate) {
-        writeProperty(MESSAGE_DATE_PROPERTY, messageDate);
-    }
-    public Date getMessageDate() {
-        return (Date)readProperty(MESSAGE_DATE_PROPERTY);
-    }
-
-    public void setMsgType(String msgType) {
-        writeProperty(MSG_TYPE_PROPERTY, msgType);
-    }
-    public String getMsgType() {
-        return (String)readProperty(MSG_TYPE_PROPERTY);
     }
 
     public void setOrigin(String origin) {
@@ -165,34 +100,6 @@ public abstract class _QcFeedback extends CayenneDataObject {
         return (String)readProperty(ORIGIN_PROPERTY);
     }
 
-    public void setPgcInformed(Integer pgcInformed) {
-        writeProperty(PGC_INFORMED_PROPERTY, pgcInformed);
-    }
-    public Integer getPgcInformed() {
-        return (Integer)readProperty(PGC_INFORMED_PROPERTY);
-    }
-
-    public void setQcFeedbackActionId(Integer qcFeedbackActionId) {
-        writeProperty(QC_FEEDBACK_ACTION_ID_PROPERTY, qcFeedbackActionId);
-    }
-    public Integer getQcFeedbackActionId() {
-        return (Integer)readProperty(QC_FEEDBACK_ACTION_ID_PROPERTY);
-    }
-
-    public void setQcFeedbackErrorTypeId(Integer qcFeedbackErrorTypeId) {
-        writeProperty(QC_FEEDBACK_ERROR_TYPE_ID_PROPERTY, qcFeedbackErrorTypeId);
-    }
-    public Integer getQcFeedbackErrorTypeId() {
-        return (Integer)readProperty(QC_FEEDBACK_ERROR_TYPE_ID_PROPERTY);
-    }
-
-    public void setRank(String rank) {
-        writeProperty(RANK_PROPERTY, rank);
-    }
-    public String getRank() {
-        return (String)readProperty(RANK_PROPERTY);
-    }
-
     public void setRecipients(String recipients) {
         writeProperty(RECIPIENTS_PROPERTY, recipients);
     }
@@ -200,11 +107,11 @@ public abstract class _QcFeedback extends CayenneDataObject {
         return (String)readProperty(RECIPIENTS_PROPERTY);
     }
 
-    public void setRequestOrder(Integer requestOrder) {
-        writeProperty(REQUEST_ORDER_PROPERTY, requestOrder);
+    public void setSent(Integer sent) {
+        writeProperty(SENT_PROPERTY, sent);
     }
-    public Integer getRequestOrder() {
-        return (Integer)readProperty(REQUEST_ORDER_PROPERTY);
+    public Integer getSent() {
+        return (Integer)readProperty(SENT_PROPERTY);
     }
 
     public void setStartDate(Date startDate) {
@@ -219,27 +126,6 @@ public abstract class _QcFeedback extends CayenneDataObject {
     }
     public String getSubject() {
         return (String)readProperty(SUBJECT_PROPERTY);
-    }
-
-    public void setTitle(String title) {
-        writeProperty(TITLE_PROPERTY, title);
-    }
-    public String getTitle() {
-        return (String)readProperty(TITLE_PROPERTY);
-    }
-
-    public void setTtaaii(String ttaaii) {
-        writeProperty(TTAAII_PROPERTY, ttaaii);
-    }
-    public String getTtaaii() {
-        return (String)readProperty(TTAAII_PROPERTY);
-    }
-
-    public void setTypeImplem(String typeImplem) {
-        writeProperty(TYPE_IMPLEM_PROPERTY, typeImplem);
-    }
-    public String getTypeImplem() {
-        return (String)readProperty(TYPE_IMPLEM_PROPERTY);
     }
 
     public void setWmo(String wmo) {
@@ -261,6 +147,18 @@ public abstract class _QcFeedback extends CayenneDataObject {
     }
 
 
+    public void addToQcFeedbackVariableArray(QcFeedbackVariable obj) {
+        addToManyTarget(QC_FEEDBACK_VARIABLE_ARRAY_PROPERTY, obj, true);
+    }
+    public void removeFromQcFeedbackVariableArray(QcFeedbackVariable obj) {
+        removeToManyTarget(QC_FEEDBACK_VARIABLE_ARRAY_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<QcFeedbackVariable> getQcFeedbackVariableArray() {
+        return (List<QcFeedbackVariable>)readProperty(QC_FEEDBACK_VARIABLE_ARRAY_PROPERTY);
+    }
+
+
     public void setToAgency(Agency toAgency) {
         setToOneTarget(TO_AGENCY_PROPERTY, toAgency, true);
     }
@@ -279,12 +177,57 @@ public abstract class _QcFeedback extends CayenneDataObject {
     }
 
 
+    public void setToContact1(Contact toContact1) {
+        setToOneTarget(TO_CONTACT1_PROPERTY, toContact1, true);
+    }
+
+    public Contact getToContact1() {
+        return (Contact)readProperty(TO_CONTACT1_PROPERTY);
+    }
+
+
+    public void setToGtsCccc(GtsCccc toGtsCccc) {
+        setToOneTarget(TO_GTS_CCCC_PROPERTY, toGtsCccc, true);
+    }
+
+    public GtsCccc getToGtsCccc() {
+        return (GtsCccc)readProperty(TO_GTS_CCCC_PROPERTY);
+    }
+
+
+    public void setToGtsHeader(GtsHeader toGtsHeader) {
+        setToOneTarget(TO_GTS_HEADER_PROPERTY, toGtsHeader, true);
+    }
+
+    public GtsHeader getToGtsHeader() {
+        return (GtsHeader)readProperty(TO_GTS_HEADER_PROPERTY);
+    }
+
+
     public void setToPtf(Ptf toPtf) {
         setToOneTarget(TO_PTF_PROPERTY, toPtf, true);
     }
 
     public Ptf getToPtf() {
         return (Ptf)readProperty(TO_PTF_PROPERTY);
+    }
+
+
+    public void setToQcFeedbackAction(QcFeedbackAction toQcFeedbackAction) {
+        setToOneTarget(TO_QC_FEEDBACK_ACTION_PROPERTY, toQcFeedbackAction, true);
+    }
+
+    public QcFeedbackAction getToQcFeedbackAction() {
+        return (QcFeedbackAction)readProperty(TO_QC_FEEDBACK_ACTION_PROPERTY);
+    }
+
+
+    public void setToQcFeedbackErrorType(QcFeedbackErrorType toQcFeedbackErrorType) {
+        setToOneTarget(TO_QC_FEEDBACK_ERROR_TYPE_PROPERTY, toQcFeedbackErrorType, true);
+    }
+
+    public QcFeedbackErrorType getToQcFeedbackErrorType() {
+        return (QcFeedbackErrorType)readProperty(TO_QC_FEEDBACK_ERROR_TYPE_PROPERTY);
     }
 
 

@@ -21,6 +21,8 @@ public abstract class _GtsCccc extends CayenneDataObject {
     public static final String TMP_PROPERTY = "tmp";
     public static final String GTS_CCCC_HEADER_ARRAY_PROPERTY = "gtsCcccHeaderArray";
     public static final String OBS_ARRAY_PROPERTY = "obsArray";
+    public static final String QC_FEEDBACK_ARRAY_PROPERTY = "qcFeedbackArray";
+    public static final String TO_AGENCY_PROPERTY = "toAgency";
     public static final String TO_COUNTRY_PROPERTY = "toCountry";
 
     public static final String ID_PK_COLUMN = "ID";
@@ -95,6 +97,27 @@ public abstract class _GtsCccc extends CayenneDataObject {
     @SuppressWarnings("unchecked")
     public List<Obs> getObsArray() {
         return (List<Obs>)readProperty(OBS_ARRAY_PROPERTY);
+    }
+
+
+    public void addToQcFeedbackArray(QcFeedback obj) {
+        addToManyTarget(QC_FEEDBACK_ARRAY_PROPERTY, obj, true);
+    }
+    public void removeFromQcFeedbackArray(QcFeedback obj) {
+        removeToManyTarget(QC_FEEDBACK_ARRAY_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<QcFeedback> getQcFeedbackArray() {
+        return (List<QcFeedback>)readProperty(QC_FEEDBACK_ARRAY_PROPERTY);
+    }
+
+
+    public void setToAgency(Agency toAgency) {
+        setToOneTarget(TO_AGENCY_PROPERTY, toAgency, true);
+    }
+
+    public Agency getToAgency() {
+        return (Agency)readProperty(TO_AGENCY_PROPERTY);
     }
 
 

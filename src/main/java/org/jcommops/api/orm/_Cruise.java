@@ -25,7 +25,6 @@ public abstract class _Cruise extends CayenneDataObject {
     public static final String EMBARK_CAPACITY_PROPERTY = "embarkCapacity";
     public static final String FLEXIBLE_ROUTE_PROPERTY = "flexibleRoute";
     public static final String INSERT_DATE_PROPERTY = "insertDate";
-    public static final String LINE_ID_PROPERTY = "lineId";
     public static final String MOB_DATE_PROPERTY = "mobDate";
     public static final String MODIF_DATE_PROPERTY = "modifDate";
     public static final String NAME_LONG_PROPERTY = "nameLong";
@@ -44,11 +43,13 @@ public abstract class _Cruise extends CayenneDataObject {
     public static final String WKT_PROPERTY = "wkt";
     public static final String CRUISE_CONTACT_ARRAY_PROPERTY = "cruiseContactArray";
     public static final String CRUISE_COUNTRY_ARRAY_PROPERTY = "cruiseCountryArray";
+    public static final String CRUISE_PROGRAM_ARRAY_PROPERTY = "cruiseProgramArray";
     public static final String CRUISE_SENSOR_MODEL_ARRAY_PROPERTY = "cruiseSensorModelArray";
     public static final String CRUISE_VARIABLE_ARRAY_PROPERTY = "cruiseVariableArray";
     public static final String PTF_CRUISE_ARRAY_PROPERTY = "ptfCruiseArray";
     public static final String PTF_DEPLOYMENT_ARRAY_PROPERTY = "ptfDeploymentArray";
     public static final String SECTION_ARRAY_PROPERTY = "sectionArray";
+    public static final String SERVICE_ARRAY_PROPERTY = "serviceArray";
     public static final String TO_AGENCY_PROPERTY = "toAgency";
     public static final String TO_AVAILABILITY_PROPERTY = "toAvailability";
     public static final String TO_CRUISE_CLASS_PROPERTY = "toCruiseClass";
@@ -56,7 +57,7 @@ public abstract class _Cruise extends CayenneDataObject {
     public static final String TO_CRUISE_TYPE_PROPERTY = "toCruiseType";
     public static final String TO_FREQUENCY_PROPERTY = "toFrequency";
     public static final String TO_IMAGE_PROPERTY = "toImage";
-    public static final String TO_PROGRAM_PROPERTY = "toProgram";
+    public static final String TO_LINE_PROPERTY = "toLine";
     public static final String TO_SHIP_PROPERTY = "toShip";
     public static final String TO_WEBLINK_PROPERTY = "toWeblink";
 
@@ -146,13 +147,6 @@ public abstract class _Cruise extends CayenneDataObject {
         return (Date)readProperty(INSERT_DATE_PROPERTY);
     }
 
-    public void setLineId(Integer lineId) {
-        writeProperty(LINE_ID_PROPERTY, lineId);
-    }
-    public Integer getLineId() {
-        return (Integer)readProperty(LINE_ID_PROPERTY);
-    }
-
     public void setMobDate(Date mobDate) {
         writeProperty(MOB_DATE_PROPERTY, mobDate);
     }
@@ -216,11 +210,11 @@ public abstract class _Cruise extends CayenneDataObject {
         return (Integer)readProperty(ROUTE_PRIVATE_PROPERTY);
     }
 
-    public void setShape($importUtils.formatJavaType(${attr.Type}) shape) {
+    public void setShape(byte[] shape) {
         writeProperty(SHAPE_PROPERTY, shape);
     }
-    public $importUtils.formatJavaType(${attr.Type}) getShape() {
-        return ($importUtils.formatJavaType(${attr.Type}))readProperty(SHAPE_PROPERTY);
+    public byte[] getShape() {
+        return (byte[])readProperty(SHAPE_PROPERTY);
     }
 
     public void setShipStop(Integer shipStop) {
@@ -289,6 +283,18 @@ public abstract class _Cruise extends CayenneDataObject {
     }
 
 
+    public void addToCruiseProgramArray(CruiseProgram obj) {
+        addToManyTarget(CRUISE_PROGRAM_ARRAY_PROPERTY, obj, true);
+    }
+    public void removeFromCruiseProgramArray(CruiseProgram obj) {
+        removeToManyTarget(CRUISE_PROGRAM_ARRAY_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<CruiseProgram> getCruiseProgramArray() {
+        return (List<CruiseProgram>)readProperty(CRUISE_PROGRAM_ARRAY_PROPERTY);
+    }
+
+
     public void addToCruiseSensorModelArray(CruiseSensorModel obj) {
         addToManyTarget(CRUISE_SENSOR_MODEL_ARRAY_PROPERTY, obj, true);
     }
@@ -346,6 +352,18 @@ public abstract class _Cruise extends CayenneDataObject {
     @SuppressWarnings("unchecked")
     public List<Section> getSectionArray() {
         return (List<Section>)readProperty(SECTION_ARRAY_PROPERTY);
+    }
+
+
+    public void addToServiceArray(Service obj) {
+        addToManyTarget(SERVICE_ARRAY_PROPERTY, obj, true);
+    }
+    public void removeFromServiceArray(Service obj) {
+        removeToManyTarget(SERVICE_ARRAY_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Service> getServiceArray() {
+        return (List<Service>)readProperty(SERVICE_ARRAY_PROPERTY);
     }
 
 
@@ -412,12 +430,12 @@ public abstract class _Cruise extends CayenneDataObject {
     }
 
 
-    public void setToProgram(Program toProgram) {
-        setToOneTarget(TO_PROGRAM_PROPERTY, toProgram, true);
+    public void setToLine(Line toLine) {
+        setToOneTarget(TO_LINE_PROPERTY, toLine, true);
     }
 
-    public Program getToProgram() {
-        return (Program)readProperty(TO_PROGRAM_PROPERTY);
+    public Line getToLine() {
+        return (Line)readProperty(TO_LINE_PROPERTY);
     }
 
 

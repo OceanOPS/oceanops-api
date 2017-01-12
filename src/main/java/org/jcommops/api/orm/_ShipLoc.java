@@ -15,11 +15,11 @@ public abstract class _ShipLoc extends CayenneDataObject {
 
     public static final String ID_PK_COLUMN = "ID";
 
-    public void setShape($importUtils.formatJavaType(${attr.Type}) shape) {
+    public void setShape(byte[] shape) {
         writeProperty(SHAPE_PROPERTY, shape);
     }
-    public $importUtils.formatJavaType(${attr.Type}) getShape() {
-        return ($importUtils.formatJavaType(${attr.Type}))readProperty(SHAPE_PROPERTY);
+    public byte[] getShape() {
+        return (byte[])readProperty(SHAPE_PROPERTY);
     }
 
     public void setToShip(Ship toShip) {

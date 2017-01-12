@@ -1,5 +1,7 @@
 package org.jcommops.api.orm;
 
+import java.util.List;
+
 import org.apache.cayenne.CayenneDataObject;
 
 /**
@@ -13,6 +15,7 @@ public abstract class _QcFeedbackErrorType extends CayenneDataObject {
     public static final String DESCRIPTION_PROPERTY = "description";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
+    public static final String QC_FEEDBACK_ARRAY_PROPERTY = "qcFeedbackArray";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -36,5 +39,17 @@ public abstract class _QcFeedbackErrorType extends CayenneDataObject {
     public String getNameShort() {
         return (String)readProperty(NAME_SHORT_PROPERTY);
     }
+
+    public void addToQcFeedbackArray(QcFeedback obj) {
+        addToManyTarget(QC_FEEDBACK_ARRAY_PROPERTY, obj, true);
+    }
+    public void removeFromQcFeedbackArray(QcFeedback obj) {
+        removeToManyTarget(QC_FEEDBACK_ARRAY_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<QcFeedback> getQcFeedbackArray() {
+        return (List<QcFeedback>)readProperty(QC_FEEDBACK_ARRAY_PROPERTY);
+    }
+
 
 }

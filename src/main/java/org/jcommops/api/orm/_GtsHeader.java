@@ -19,6 +19,7 @@ public abstract class _GtsHeader extends CayenneDataObject {
     public static final String TEXT_PROPERTY = "text";
     public static final String GTS_CCCC_HEADER_ARRAY_PROPERTY = "gtsCcccHeaderArray";
     public static final String OBS_ARRAY_PROPERTY = "obsArray";
+    public static final String QC_FEEDBACK_ARRAY_PROPERTY = "qcFeedbackArray";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -71,6 +72,18 @@ public abstract class _GtsHeader extends CayenneDataObject {
     @SuppressWarnings("unchecked")
     public List<Obs> getObsArray() {
         return (List<Obs>)readProperty(OBS_ARRAY_PROPERTY);
+    }
+
+
+    public void addToQcFeedbackArray(QcFeedback obj) {
+        addToManyTarget(QC_FEEDBACK_ARRAY_PROPERTY, obj, true);
+    }
+    public void removeFromQcFeedbackArray(QcFeedback obj) {
+        removeToManyTarget(QC_FEEDBACK_ARRAY_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<QcFeedback> getQcFeedbackArray() {
+        return (List<QcFeedback>)readProperty(QC_FEEDBACK_ARRAY_PROPERTY);
     }
 
 

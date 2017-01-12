@@ -17,6 +17,8 @@ public abstract class _MzmsPtfCountry extends CayenneDataObject {
     public static final String FORMAL_NOTIFICATION_DATE_PROPERTY = "formalNotificationDate";
     public static final String LATEST_REPORT_DATE_PROPERTY = "latestReportDate";
     public static final String WARNING_DATE_PROPERTY = "warningDate";
+    public static final String TO_COUNTRY_PROPERTY = "toCountry";
+    public static final String TO_PTF_PROPERTY = "toPtf";
 
     public static final String COUNTRY_ID_PK_COLUMN = "COUNTRY_ID";
     public static final String PTF_ID_PK_COLUMN = "PTF_ID";
@@ -55,5 +57,23 @@ public abstract class _MzmsPtfCountry extends CayenneDataObject {
     public Date getWarningDate() {
         return (Date)readProperty(WARNING_DATE_PROPERTY);
     }
+
+    public void setToCountry(Country toCountry) {
+        setToOneTarget(TO_COUNTRY_PROPERTY, toCountry, true);
+    }
+
+    public Country getToCountry() {
+        return (Country)readProperty(TO_COUNTRY_PROPERTY);
+    }
+
+
+    public void setToPtf(Ptf toPtf) {
+        setToOneTarget(TO_PTF_PROPERTY, toPtf, true);
+    }
+
+    public Ptf getToPtf() {
+        return (Ptf)readProperty(TO_PTF_PROPERTY);
+    }
+
 
 }

@@ -17,11 +17,13 @@ public abstract class _Retrieval extends CayenneDataObject {
     public static final String DESCRIPTION_PROPERTY = "description";
     public static final String EMAIL_PROPERTY = "email";
     public static final String END_DATE_PROPERTY = "endDate";
+    public static final String LOCAL_CONTACT_INFO_PROPERTY = "localContactInfo";
     public static final String REGION_PROPERTY = "region";
     public static final String START_DATE_PROPERTY = "startDate";
     public static final String TEL_PROPERTY = "tel";
     public static final String PTF_ARRAY_PROPERTY = "ptfArray";
     public static final String TO_COUNTRY_PROPERTY = "toCountry";
+    public static final String TO_POST_RETRIEVAL_STATUS_PROPERTY = "toPostRetrievalStatus";
     public static final String TO_RETRIEVAL_STATUS_PROPERTY = "toRetrievalStatus";
 
     public static final String ID_PK_COLUMN = "ID";
@@ -52,6 +54,13 @@ public abstract class _Retrieval extends CayenneDataObject {
     }
     public Date getEndDate() {
         return (Date)readProperty(END_DATE_PROPERTY);
+    }
+
+    public void setLocalContactInfo(String localContactInfo) {
+        writeProperty(LOCAL_CONTACT_INFO_PROPERTY, localContactInfo);
+    }
+    public String getLocalContactInfo() {
+        return (String)readProperty(LOCAL_CONTACT_INFO_PROPERTY);
     }
 
     public void setRegion(String region) {
@@ -93,6 +102,15 @@ public abstract class _Retrieval extends CayenneDataObject {
 
     public Country getToCountry() {
         return (Country)readProperty(TO_COUNTRY_PROPERTY);
+    }
+
+
+    public void setToPostRetrievalStatus(PostRetrievalStatus toPostRetrievalStatus) {
+        setToOneTarget(TO_POST_RETRIEVAL_STATUS_PROPERTY, toPostRetrievalStatus, true);
+    }
+
+    public PostRetrievalStatus getToPostRetrievalStatus() {
+        return (PostRetrievalStatus)readProperty(TO_POST_RETRIEVAL_STATUS_PROPERTY);
     }
 
 

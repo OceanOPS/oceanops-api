@@ -26,11 +26,11 @@ public abstract class _Leg extends CayenneDataObject {
         return (Date)readProperty(END_DATE_PROPERTY);
     }
 
-    public void setEndPoint($importUtils.formatJavaType(${attr.Type}) endPoint) {
+    public void setEndPoint(byte[] endPoint) {
         writeProperty(END_POINT_PROPERTY, endPoint);
     }
-    public $importUtils.formatJavaType(${attr.Type}) getEndPoint() {
-        return ($importUtils.formatJavaType(${attr.Type}))readProperty(END_POINT_PROPERTY);
+    public byte[] getEndPoint() {
+        return (byte[])readProperty(END_POINT_PROPERTY);
     }
 
     public void setStartDate(Date startDate) {
@@ -40,11 +40,11 @@ public abstract class _Leg extends CayenneDataObject {
         return (Date)readProperty(START_DATE_PROPERTY);
     }
 
-    public void setStartPoint($importUtils.formatJavaType(${attr.Type}) startPoint) {
+    public void setStartPoint(byte[] startPoint) {
         writeProperty(START_POINT_PROPERTY, startPoint);
     }
-    public $importUtils.formatJavaType(${attr.Type}) getStartPoint() {
-        return ($importUtils.formatJavaType(${attr.Type}))readProperty(START_POINT_PROPERTY);
+    public byte[] getStartPoint() {
+        return (byte[])readProperty(START_POINT_PROPERTY);
     }
 
 }

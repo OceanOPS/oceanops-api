@@ -17,28 +17,28 @@ import javax.xml.bind.annotation.XmlType;
 
 public class Platform {
 
-	private long Id;
-	private String JcommopsRef;
-	private Telecom Telecom;
-	private String InternalRef;
-	private String SerialRef;
-	private String Age;
-	private PlatformStatus PtfStatus;
-	private PlatformFamily PtfFamily;
-	private PlatformModel PtfModel;
-	private PlatformType PtfType;
-	private String NotificationDate;
-	private PlatformDeploy Deployement;
-	private PlatformLastLoc LastLocation;
-	private String EndingDate;
-	private ProgramPtf Program;
-	private CountryPtf Country;
-	private MasterProgramPtf MasterProgramme;
+	private long id;
+	private String jcommopsRef;
+	private Telecom telecom;
+	private String internalRef;
+	private String serialRef;
+	private String age;
+	private PlatformStatus ptfStatus;
+	private PlatformFamily ptfFamily;
+	private PlatformModel ptfModel;
+	private PlatformType ptfType;
+	private String notificationDate;
+	private PlatformDeploy deployement;
+	private PlatformLastLoc lastLocation;
+	private String endingDate;
+	private ProgramPtf program;
+	private CountryPtf country;
+	private MasterProgramPtf masterProgramme;
 	private ArrayList<ContactPrg> contacts;
 	private Configuration configuration;
-	private SensorModel SensorModel;
+	private SensorModel sensorModel;
 	private ArrayList<Variable> variables;
-	private String error_message;
+	private String errorMessage;
 
 	public Platform() {
 	}
@@ -74,155 +74,155 @@ public class Platform {
 
 	@XmlAttribute // @XmlAttribute to bring "id =XXXX" to the beacon
 	public long getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(long id) {
-		Id = id;
+		this.id = id;
 	}
 
 	@XmlElement
 	public String getJcommopsRef() {
-		return JcommopsRef;
+		return jcommopsRef;
 	}
 
 	public void setJcommopsRef(String jcommopsRef) {
-		JcommopsRef = jcommopsRef;
+		this.jcommopsRef = jcommopsRef;
 	}
 
 	@XmlElement
 	public Telecom getTelecom() {
-		return Telecom;
+		return telecom;
 	}
 
 	public void setTelecom(Telecom telecom) {
-		Telecom = telecom;
+		this.telecom = telecom;
 	}
 
 	@XmlElement
 	public String getInternalRef() {
-		return InternalRef;
+		return internalRef;
 	}
 
 	public void setInternalRef(String internalRef) {
-		InternalRef = internalRef;
+		this.internalRef = internalRef;
 	}
 
 	@XmlElement
 	public String getSerialRef() {
-		return SerialRef;
+		return serialRef;
 	}
 
 	public void setSerialRef(String serialRef) {
-		SerialRef = serialRef;
+		this.serialRef = serialRef;
 	}
 
 	@XmlElement
 	public String getAge() {
-		return Age;
+		return age;
 	}
 
 	public void setAge(String age) {
-		Age = age;
+		this.age = age;
 	}
 
 	@XmlElement
 	public PlatformStatus getPtfStatus() {
-		return PtfStatus;
+		return ptfStatus;
 	}
 
 	public void setPtfStatus(PlatformStatus ptfStatus) {
-		PtfStatus = ptfStatus;
+		this.ptfStatus = ptfStatus;
 	}
 
 	@XmlElement
 	public PlatformFamily getPtfFamily() {
-		return PtfFamily;
+		return ptfFamily;
 	}
 
 	public void setPtfFamily(PlatformFamily ptfFamily) {
-		PtfFamily = ptfFamily;
+		this.ptfFamily = ptfFamily;
 	}
 
 	@XmlElement
 	public PlatformModel getPtfModel() {
-		return PtfModel;
+		return ptfModel;
 	}
 
 	public void setPtfModel(PlatformModel ptfModel) {
-		PtfModel = ptfModel;
+		this.ptfModel = ptfModel;
 	}
 
 	@XmlElement
 	public PlatformType getPtfType() {
-		return PtfType;
+		return ptfType;
 	}
 
 	public void setPtfType(PlatformType ptfType) {
-		PtfType = ptfType;
+		this.ptfType = ptfType;
 	}
 
 	@XmlElement
 	public String getNotificationDate() {
-		return NotificationDate;
+		return notificationDate;
 	}
 
 	public void setNotificationDate(String notificationDate) {
-		NotificationDate = notificationDate;
+		this.notificationDate = notificationDate;
 	}
 
 	@XmlElement
 	public PlatformDeploy getDeployement() {
-		return Deployement;
+		return deployement;
 	}
 
 	public void setDeployement(PlatformDeploy deployement) {
-		Deployement = deployement;
+		this.deployement = deployement;
 	}
 
 	@XmlElement
 	public String getEndingDate() {
-		return EndingDate;
+		return endingDate;
 	}
 
 	public void setEndingDate(String endingDate) {
-		EndingDate = endingDate;
+		this.endingDate = endingDate;
 	}
 
 	@XmlElement
 	public PlatformLastLoc getLastLocation() {
-		return LastLocation;
+		return lastLocation;
 	}
 
 	public void setLastLocation(PlatformLastLoc lastLocation) {
-		LastLocation = lastLocation;
+		this.lastLocation = lastLocation;
 	}
 
 	@XmlElement
 	public ProgramPtf getProgram() {
-		return Program;
+		return program;
 	}
 
 	public void setProgram(ProgramPtf program) {
-		Program = program;
+		this.program = program;
 	}
 
 	@XmlElement
 	public CountryPtf getCountry() {
-		return Country;
+		return country;
 	}
 
 	public void setCountry(CountryPtf country) {
-		Country = country;
+		this.country = country;
 	}
 
 	@XmlElement
 	public MasterProgramPtf getMasterProgramme() {
-		return MasterProgramme;
+		return masterProgramme;
 	}
 
 	public void setMasterProgramme(MasterProgramPtf masterProgramme) {
-		MasterProgramme = masterProgramme;
+		this.masterProgramme = masterProgramme;
 	}
 
 	@XmlElementWrapper(name = "contacts")
@@ -248,11 +248,11 @@ public class Platform {
 		
 	@XmlElement
 	public SensorModel getSensorModel() {
-		return SensorModel;
+		return sensorModel;
 	}
 
 	public void setSensorModel(SensorModel sensorModel) {
-		SensorModel = sensorModel;
+		this.sensorModel = sensorModel;
 	}
 
 	@XmlElementWrapper(name = "variables")
@@ -266,11 +266,11 @@ public class Platform {
 	}
 
 	public String getError_message() {
-		return error_message;
+		return errorMessage;
 	}
 
 	public void setError_message(String error_message) {
-		this.error_message = error_message;
+		this.errorMessage = error_message;
 	}
 
 }

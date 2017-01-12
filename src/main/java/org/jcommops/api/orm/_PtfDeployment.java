@@ -126,12 +126,12 @@ public abstract class _PtfDeployment extends CayenneDataObject {
         return (BigDecimal)readProperty(SCORE_PROPERTY);
     }
 
-    /**public void setShape($importUtils.formatJavaType(${attr.Type}) shape) {
+    public void setShape(byte[] shape) {
         writeProperty(SHAPE_PROPERTY, shape);
     }
-    public $importUtils.formatJavaType(${attr.Type}) getShape() {
-        return ($importUtils.formatJavaType(${attr.Type}))readProperty(SHAPE_PROPERTY);
-    }**/
+    public byte[] getShape() {
+        return (byte[])readProperty(SHAPE_PROPERTY);
+    }
 
     public void setShipName(String shipName) {
         writeProperty(SHIP_NAME_PROPERTY, shipName);
@@ -140,11 +140,11 @@ public abstract class _PtfDeployment extends CayenneDataObject {
         return (String)readProperty(SHIP_NAME_PROPERTY);
     }
 
-    public void setWindSpeed(Integer windSpeed) {
+    public void setWindSpeed(BigDecimal windSpeed) {
         writeProperty(WIND_SPEED_PROPERTY, windSpeed);
     }
-    public Integer getWindSpeed() {
-        return (Integer)readProperty(WIND_SPEED_PROPERTY);
+    public BigDecimal getWindSpeed() {
+        return (BigDecimal)readProperty(WIND_SPEED_PROPERTY);
     }
 
     public void addToPtfArray(Ptf obj) {

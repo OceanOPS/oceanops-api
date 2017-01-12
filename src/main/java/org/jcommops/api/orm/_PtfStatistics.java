@@ -1,5 +1,7 @@
 package org.jcommops.api.orm;
 
+import java.math.BigDecimal;
+
 import org.apache.cayenne.CayenneDataObject;
 
 /**
@@ -10,67 +12,65 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _PtfStatistics extends CayenneDataObject {
 
-    public static final String AVG_DELAY_PROPERTY = "avgDelay";
-    public static final String LAST_OBS_ID_PROPERTY = "lastObsId";
-    public static final String NB_AIRTEMP_PROPERTY = "nbAirtemp";
-    public static final String NB_ATMPRESS_PROPERTY = "nbAtmpress";
-    public static final String NB_CURRENTS_PROPERTY = "nbCurrents";
-    public static final String NB_HUM_PROPERTY = "nbHum";
+    public static final String DELAY_AVG_PROPERTY = "delayAvg";
+    public static final String DELAY_AVG_GDAC1_PROPERTY = "delayAvgGdac1";
+    public static final String DELAY_AVG_GDAC2_PROPERTY = "delayAvgGdac2";
+    public static final String DELAY_MEDIAN_PROPERTY = "delayMedian";
+    public static final String DELAY_MEDIAN_GDAC1_PROPERTY = "delayMedianGdac1";
+    public static final String DELAY_MEDIAN_GDAC2_PROPERTY = "delayMedianGdac2";
     public static final String NB_OBS_PROPERTY = "nbObs";
-    public static final String NB_SSS_PROPERTY = "nbSss";
-    public static final String NB_SST_PROPERTY = "nbSst";
-    public static final String NB_SUB_CUR_PROPERTY = "nbSubCur";
-    public static final String NB_SUB_SAL_PROPERTY = "nbSubSal";
-    public static final String NB_SUB_T_PROPERTY = "nbSubT";
-    public static final String NB_TEND_PROPERTY = "nbTend";
-    public static final String NB_WAVES_PROPERTY = "nbWaves";
-    public static final String NB_WD_PROPERTY = "nbWd";
-    public static final String NB_WS_PROPERTY = "nbWs";
+    public static final String NB_OBS_DM_PROPERTY = "nbObsDm";
+    public static final String NB_OBS_DM_ELIGIBLE_PROPERTY = "nbObsDmEligible";
+    public static final String NB_OBS_DM_ELIGIBLE_GDAC1_PROPERTY = "nbObsDmEligibleGdac1";
+    public static final String NB_OBS_DM_ELIGIBLE_GDAC2_PROPERTY = "nbObsDmEligibleGdac2";
+    public static final String NB_OBS_DM_GDAC1_PROPERTY = "nbObsDmGdac1";
+    public static final String NB_OBS_DM_GDAC2_PROPERTY = "nbObsDmGdac2";
+    public static final String NB_OBS_GDAC1_PROPERTY = "nbObsGdac1";
+    public static final String NB_OBS_GDAC2_PROPERTY = "nbObsGdac2";
+    public static final String NB_OBS_GTS_PROPERTY = "nbObsGts";
 
-    public static final String END_DATE_PK_COLUMN = "END_DATE";
     public static final String PTF_ID_PK_COLUMN = "PTF_ID";
-    public static final String START_DATE_PK_COLUMN = "START_DATE";
 
-    public void setAvgDelay(Integer avgDelay) {
-        writeProperty(AVG_DELAY_PROPERTY, avgDelay);
+    public void setDelayAvg(BigDecimal delayAvg) {
+        writeProperty(DELAY_AVG_PROPERTY, delayAvg);
     }
-    public Integer getAvgDelay() {
-        return (Integer)readProperty(AVG_DELAY_PROPERTY);
-    }
-
-    public void setLastObsId(Integer lastObsId) {
-        writeProperty(LAST_OBS_ID_PROPERTY, lastObsId);
-    }
-    public Integer getLastObsId() {
-        return (Integer)readProperty(LAST_OBS_ID_PROPERTY);
+    public BigDecimal getDelayAvg() {
+        return (BigDecimal)readProperty(DELAY_AVG_PROPERTY);
     }
 
-    public void setNbAirtemp(Integer nbAirtemp) {
-        writeProperty(NB_AIRTEMP_PROPERTY, nbAirtemp);
+    public void setDelayAvgGdac1(BigDecimal delayAvgGdac1) {
+        writeProperty(DELAY_AVG_GDAC1_PROPERTY, delayAvgGdac1);
     }
-    public Integer getNbAirtemp() {
-        return (Integer)readProperty(NB_AIRTEMP_PROPERTY);
-    }
-
-    public void setNbAtmpress(Integer nbAtmpress) {
-        writeProperty(NB_ATMPRESS_PROPERTY, nbAtmpress);
-    }
-    public Integer getNbAtmpress() {
-        return (Integer)readProperty(NB_ATMPRESS_PROPERTY);
+    public BigDecimal getDelayAvgGdac1() {
+        return (BigDecimal)readProperty(DELAY_AVG_GDAC1_PROPERTY);
     }
 
-    public void setNbCurrents(Integer nbCurrents) {
-        writeProperty(NB_CURRENTS_PROPERTY, nbCurrents);
+    public void setDelayAvgGdac2(BigDecimal delayAvgGdac2) {
+        writeProperty(DELAY_AVG_GDAC2_PROPERTY, delayAvgGdac2);
     }
-    public Integer getNbCurrents() {
-        return (Integer)readProperty(NB_CURRENTS_PROPERTY);
+    public BigDecimal getDelayAvgGdac2() {
+        return (BigDecimal)readProperty(DELAY_AVG_GDAC2_PROPERTY);
     }
 
-    public void setNbHum(Integer nbHum) {
-        writeProperty(NB_HUM_PROPERTY, nbHum);
+    public void setDelayMedian(BigDecimal delayMedian) {
+        writeProperty(DELAY_MEDIAN_PROPERTY, delayMedian);
     }
-    public Integer getNbHum() {
-        return (Integer)readProperty(NB_HUM_PROPERTY);
+    public BigDecimal getDelayMedian() {
+        return (BigDecimal)readProperty(DELAY_MEDIAN_PROPERTY);
+    }
+
+    public void setDelayMedianGdac1(BigDecimal delayMedianGdac1) {
+        writeProperty(DELAY_MEDIAN_GDAC1_PROPERTY, delayMedianGdac1);
+    }
+    public BigDecimal getDelayMedianGdac1() {
+        return (BigDecimal)readProperty(DELAY_MEDIAN_GDAC1_PROPERTY);
+    }
+
+    public void setDelayMedianGdac2(BigDecimal delayMedianGdac2) {
+        writeProperty(DELAY_MEDIAN_GDAC2_PROPERTY, delayMedianGdac2);
+    }
+    public BigDecimal getDelayMedianGdac2() {
+        return (BigDecimal)readProperty(DELAY_MEDIAN_GDAC2_PROPERTY);
     }
 
     public void setNbObs(Integer nbObs) {
@@ -80,67 +80,67 @@ public abstract class _PtfStatistics extends CayenneDataObject {
         return (Integer)readProperty(NB_OBS_PROPERTY);
     }
 
-    public void setNbSss(Integer nbSss) {
-        writeProperty(NB_SSS_PROPERTY, nbSss);
+    public void setNbObsDm(Integer nbObsDm) {
+        writeProperty(NB_OBS_DM_PROPERTY, nbObsDm);
     }
-    public Integer getNbSss() {
-        return (Integer)readProperty(NB_SSS_PROPERTY);
-    }
-
-    public void setNbSst(Integer nbSst) {
-        writeProperty(NB_SST_PROPERTY, nbSst);
-    }
-    public Integer getNbSst() {
-        return (Integer)readProperty(NB_SST_PROPERTY);
+    public Integer getNbObsDm() {
+        return (Integer)readProperty(NB_OBS_DM_PROPERTY);
     }
 
-    public void setNbSubCur(Integer nbSubCur) {
-        writeProperty(NB_SUB_CUR_PROPERTY, nbSubCur);
+    public void setNbObsDmEligible(Integer nbObsDmEligible) {
+        writeProperty(NB_OBS_DM_ELIGIBLE_PROPERTY, nbObsDmEligible);
     }
-    public Integer getNbSubCur() {
-        return (Integer)readProperty(NB_SUB_CUR_PROPERTY);
-    }
-
-    public void setNbSubSal(Integer nbSubSal) {
-        writeProperty(NB_SUB_SAL_PROPERTY, nbSubSal);
-    }
-    public Integer getNbSubSal() {
-        return (Integer)readProperty(NB_SUB_SAL_PROPERTY);
+    public Integer getNbObsDmEligible() {
+        return (Integer)readProperty(NB_OBS_DM_ELIGIBLE_PROPERTY);
     }
 
-    public void setNbSubT(Integer nbSubT) {
-        writeProperty(NB_SUB_T_PROPERTY, nbSubT);
+    public void setNbObsDmEligibleGdac1(Integer nbObsDmEligibleGdac1) {
+        writeProperty(NB_OBS_DM_ELIGIBLE_GDAC1_PROPERTY, nbObsDmEligibleGdac1);
     }
-    public Integer getNbSubT() {
-        return (Integer)readProperty(NB_SUB_T_PROPERTY);
-    }
-
-    public void setNbTend(Integer nbTend) {
-        writeProperty(NB_TEND_PROPERTY, nbTend);
-    }
-    public Integer getNbTend() {
-        return (Integer)readProperty(NB_TEND_PROPERTY);
+    public Integer getNbObsDmEligibleGdac1() {
+        return (Integer)readProperty(NB_OBS_DM_ELIGIBLE_GDAC1_PROPERTY);
     }
 
-    public void setNbWaves(Integer nbWaves) {
-        writeProperty(NB_WAVES_PROPERTY, nbWaves);
+    public void setNbObsDmEligibleGdac2(Integer nbObsDmEligibleGdac2) {
+        writeProperty(NB_OBS_DM_ELIGIBLE_GDAC2_PROPERTY, nbObsDmEligibleGdac2);
     }
-    public Integer getNbWaves() {
-        return (Integer)readProperty(NB_WAVES_PROPERTY);
-    }
-
-    public void setNbWd(Integer nbWd) {
-        writeProperty(NB_WD_PROPERTY, nbWd);
-    }
-    public Integer getNbWd() {
-        return (Integer)readProperty(NB_WD_PROPERTY);
+    public Integer getNbObsDmEligibleGdac2() {
+        return (Integer)readProperty(NB_OBS_DM_ELIGIBLE_GDAC2_PROPERTY);
     }
 
-    public void setNbWs(Integer nbWs) {
-        writeProperty(NB_WS_PROPERTY, nbWs);
+    public void setNbObsDmGdac1(Integer nbObsDmGdac1) {
+        writeProperty(NB_OBS_DM_GDAC1_PROPERTY, nbObsDmGdac1);
     }
-    public Integer getNbWs() {
-        return (Integer)readProperty(NB_WS_PROPERTY);
+    public Integer getNbObsDmGdac1() {
+        return (Integer)readProperty(NB_OBS_DM_GDAC1_PROPERTY);
+    }
+
+    public void setNbObsDmGdac2(Integer nbObsDmGdac2) {
+        writeProperty(NB_OBS_DM_GDAC2_PROPERTY, nbObsDmGdac2);
+    }
+    public Integer getNbObsDmGdac2() {
+        return (Integer)readProperty(NB_OBS_DM_GDAC2_PROPERTY);
+    }
+
+    public void setNbObsGdac1(Integer nbObsGdac1) {
+        writeProperty(NB_OBS_GDAC1_PROPERTY, nbObsGdac1);
+    }
+    public Integer getNbObsGdac1() {
+        return (Integer)readProperty(NB_OBS_GDAC1_PROPERTY);
+    }
+
+    public void setNbObsGdac2(Integer nbObsGdac2) {
+        writeProperty(NB_OBS_GDAC2_PROPERTY, nbObsGdac2);
+    }
+    public Integer getNbObsGdac2() {
+        return (Integer)readProperty(NB_OBS_GDAC2_PROPERTY);
+    }
+
+    public void setNbObsGts(Integer nbObsGts) {
+        writeProperty(NB_OBS_GTS_PROPERTY, nbObsGts);
+    }
+    public Integer getNbObsGts() {
+        return (Integer)readProperty(NB_OBS_GTS_PROPERTY);
     }
 
 }

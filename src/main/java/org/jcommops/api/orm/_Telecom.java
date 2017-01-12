@@ -17,9 +17,9 @@ public abstract class _Telecom extends CayenneDataObject {
     public static final String FREQUENCY_PROPERTY = "frequency";
     public static final String IMEI_PROPERTY = "imei";
     public static final String NUM_PROPERTY = "num";
+    public static final String PTF_ID_PROPERTY = "ptfId";
     public static final String REF_PROG_PROPERTY = "refProg";
     public static final String START_DATE_PROPERTY = "startDate";
-    public static final String TELECOM_FORMAT_ID_PROPERTY = "telecomFormatId";
     public static final String PTF_ARRAY_PROPERTY = "ptfArray";
     public static final String PTF_ARRAY1_PROPERTY = "ptfArray1";
     public static final String TO_TELECOM_FORMAT_PROPERTY = "toTelecomFormat";
@@ -55,6 +55,13 @@ public abstract class _Telecom extends CayenneDataObject {
         return (String)readProperty(NUM_PROPERTY);
     }
 
+    public void setPtfId(Integer ptfId) {
+        writeProperty(PTF_ID_PROPERTY, ptfId);
+    }
+    public Integer getPtfId() {
+        return (Integer)readProperty(PTF_ID_PROPERTY);
+    }
+
     public void setRefProg(String refProg) {
         writeProperty(REF_PROG_PROPERTY, refProg);
     }
@@ -67,13 +74,6 @@ public abstract class _Telecom extends CayenneDataObject {
     }
     public Date getStartDate() {
         return (Date)readProperty(START_DATE_PROPERTY);
-    }
-
-    public void setTelecomFormatId(Integer telecomFormatId) {
-        writeProperty(TELECOM_FORMAT_ID_PROPERTY, telecomFormatId);
-    }
-    public Integer getTelecomFormatId() {
-        return (Integer)readProperty(TELECOM_FORMAT_ID_PROPERTY);
     }
 
     public void addToPtfArray(Ptf obj) {

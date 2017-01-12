@@ -14,7 +14,6 @@ public abstract class _LineStatus extends CayenneDataObject {
 
     public static final String DESCRIPTION_PROPERTY = "description";
     public static final String NAME_PROPERTY = "name";
-    public static final String LINE_ARRAY_PROPERTY = "lineArray";
     public static final String LINE_SURVEY_ARRAY_PROPERTY = "lineSurveyArray";
 
     public static final String ID_PK_COLUMN = "ID";
@@ -32,18 +31,6 @@ public abstract class _LineStatus extends CayenneDataObject {
     public String getName() {
         return (String)readProperty(NAME_PROPERTY);
     }
-
-    public void addToLineArray(Line obj) {
-        addToManyTarget(LINE_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromLineArray(Line obj) {
-        removeToManyTarget(LINE_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<Line> getLineArray() {
-        return (List<Line>)readProperty(LINE_ARRAY_PROPERTY);
-    }
-
 
     public void addToLineSurveyArray(LineSurvey obj) {
         addToManyTarget(LINE_SURVEY_ARRAY_PROPERTY, obj, true);

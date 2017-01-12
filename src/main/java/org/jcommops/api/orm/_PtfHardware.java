@@ -25,6 +25,7 @@ public abstract class _PtfHardware extends CayenneDataObject {
     public static final String SPEC_PROPERTY = "spec";
     public static final String WATCH_CIRCLE_PROPERTY = "watchCircle";
     public static final String PTF_ARRAY_PROPERTY = "ptfArray";
+    public static final String TO_COUNTRY_PROPERTY = "toCountry";
     public static final String TO_PTF_BATTERY_PROPERTY = "toPtfBattery";
     public static final String TO_PTF_FIRMWARE_PROPERTY = "toPtfFirmware";
     public static final String TO_PTF_FIRMWARE1_PROPERTY = "toPtfFirmware1";
@@ -112,6 +113,15 @@ public abstract class _PtfHardware extends CayenneDataObject {
     @SuppressWarnings("unchecked")
     public List<Ptf> getPtfArray() {
         return (List<Ptf>)readProperty(PTF_ARRAY_PROPERTY);
+    }
+
+
+    public void setToCountry(Country toCountry) {
+        setToOneTarget(TO_COUNTRY_PROPERTY, toCountry, true);
+    }
+
+    public Country getToCountry() {
+        return (Country)readProperty(TO_COUNTRY_PROPERTY);
     }
 
 

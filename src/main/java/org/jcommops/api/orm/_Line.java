@@ -12,17 +12,25 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _Line extends CayenneDataObject {
 
+    public static final String FROM_TO_PROPERTY = "fromTo";
     public static final String NAME_PROPERTY = "name";
     public static final String SHAPE_PROPERTY = "shape";
+    public static final String CRUISE_ARRAY_PROPERTY = "cruiseArray";
+    public static final String LINE_PROGRAM_ARRAY_PROPERTY = "lineProgramArray";
     public static final String LINE_SURVEY_ARRAY_PROPERTY = "lineSurveyArray";
+    public static final String SECTION_ARRAY_PROPERTY = "sectionArray";
+    public static final String TO_LINE_DECADAL_STATUS_PROPERTY = "toLineDecadalStatus";
     public static final String TO_LINE_FAMILY_PROPERTY = "toLineFamily";
-    public static final String TO_LINE_STATUS_PROPERTY = "toLineStatus";
-    public static final String TO_LINE_TYPE_PROPERTY = "toLineType";
-    public static final String TO_LINE_TYPE1_PROPERTY = "toLineType1";
-    public static final String TO_PROGRAM_PROPERTY = "toProgram";
     public static final String TO_WEBLINK_PROPERTY = "toWeblink";
 
     public static final String ID_PK_COLUMN = "ID";
+
+    public void setFromTo(String fromTo) {
+        writeProperty(FROM_TO_PROPERTY, fromTo);
+    }
+    public String getFromTo() {
+        return (String)readProperty(FROM_TO_PROPERTY);
+    }
 
     public void setName(String name) {
         writeProperty(NAME_PROPERTY, name);
@@ -31,12 +39,36 @@ public abstract class _Line extends CayenneDataObject {
         return (String)readProperty(NAME_PROPERTY);
     }
 
-    public void setShape($importUtils.formatJavaType(${attr.Type}) shape) {
+    public void setShape(byte[] shape) {
         writeProperty(SHAPE_PROPERTY, shape);
     }
-    public $importUtils.formatJavaType(${attr.Type}) getShape() {
-        return ($importUtils.formatJavaType(${attr.Type}))readProperty(SHAPE_PROPERTY);
+    public byte[] getShape() {
+        return (byte[])readProperty(SHAPE_PROPERTY);
     }
+
+    public void addToCruiseArray(Cruise obj) {
+        addToManyTarget(CRUISE_ARRAY_PROPERTY, obj, true);
+    }
+    public void removeFromCruiseArray(Cruise obj) {
+        removeToManyTarget(CRUISE_ARRAY_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Cruise> getCruiseArray() {
+        return (List<Cruise>)readProperty(CRUISE_ARRAY_PROPERTY);
+    }
+
+
+    public void addToLineProgramArray(LineProgram obj) {
+        addToManyTarget(LINE_PROGRAM_ARRAY_PROPERTY, obj, true);
+    }
+    public void removeFromLineProgramArray(LineProgram obj) {
+        removeToManyTarget(LINE_PROGRAM_ARRAY_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<LineProgram> getLineProgramArray() {
+        return (List<LineProgram>)readProperty(LINE_PROGRAM_ARRAY_PROPERTY);
+    }
+
 
     public void addToLineSurveyArray(LineSurvey obj) {
         addToManyTarget(LINE_SURVEY_ARRAY_PROPERTY, obj, true);
@@ -50,48 +82,33 @@ public abstract class _Line extends CayenneDataObject {
     }
 
 
+    public void addToSectionArray(Section obj) {
+        addToManyTarget(SECTION_ARRAY_PROPERTY, obj, true);
+    }
+    public void removeFromSectionArray(Section obj) {
+        removeToManyTarget(SECTION_ARRAY_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Section> getSectionArray() {
+        return (List<Section>)readProperty(SECTION_ARRAY_PROPERTY);
+    }
+
+
+    public void setToLineDecadalStatus(LineDecadalStatus toLineDecadalStatus) {
+        setToOneTarget(TO_LINE_DECADAL_STATUS_PROPERTY, toLineDecadalStatus, true);
+    }
+
+    public LineDecadalStatus getToLineDecadalStatus() {
+        return (LineDecadalStatus)readProperty(TO_LINE_DECADAL_STATUS_PROPERTY);
+    }
+
+
     public void setToLineFamily(LineFamily toLineFamily) {
         setToOneTarget(TO_LINE_FAMILY_PROPERTY, toLineFamily, true);
     }
 
     public LineFamily getToLineFamily() {
         return (LineFamily)readProperty(TO_LINE_FAMILY_PROPERTY);
-    }
-
-
-    public void setToLineStatus(LineStatus toLineStatus) {
-        setToOneTarget(TO_LINE_STATUS_PROPERTY, toLineStatus, true);
-    }
-
-    public LineStatus getToLineStatus() {
-        return (LineStatus)readProperty(TO_LINE_STATUS_PROPERTY);
-    }
-
-
-    public void setToLineType(LineType toLineType) {
-        setToOneTarget(TO_LINE_TYPE_PROPERTY, toLineType, true);
-    }
-
-    public LineType getToLineType() {
-        return (LineType)readProperty(TO_LINE_TYPE_PROPERTY);
-    }
-
-
-    public void setToLineType1(LineType toLineType1) {
-        setToOneTarget(TO_LINE_TYPE1_PROPERTY, toLineType1, true);
-    }
-
-    public LineType getToLineType1() {
-        return (LineType)readProperty(TO_LINE_TYPE1_PROPERTY);
-    }
-
-
-    public void setToProgram(Program toProgram) {
-        setToOneTarget(TO_PROGRAM_PROPERTY, toProgram, true);
-    }
-
-    public Program getToProgram() {
-        return (Program)readProperty(TO_PROGRAM_PROPERTY);
     }
 
 

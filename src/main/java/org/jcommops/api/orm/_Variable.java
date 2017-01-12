@@ -20,11 +20,14 @@ public abstract class _Variable extends CayenneDataObject {
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_ALTER_PROPERTY = "nameAlter";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
+    public static final String P01REF_PROPERTY = "p01Ref";
+    public static final String QC_REF_PROPERTY = "qcRef";
     public static final String WIGOS_REF_PROPERTY = "wigosRef";
     public static final String CRUISE_VARIABLE_ARRAY_PROPERTY = "cruiseVariableArray";
     public static final String OBS_VARIABLE_ARRAY_PROPERTY = "obsVariableArray";
     public static final String PTF_VARIABLE_ARRAY_PROPERTY = "ptfVariableArray";
     public static final String QC_FEEDBACK_ARRAY_PROPERTY = "qcFeedbackArray";
+    public static final String QC_FEEDBACK_VARIABLE_ARRAY_PROPERTY = "qcFeedbackVariableArray";
     public static final String SENSOR_TYPE_ARRAY_PROPERTY = "sensorTypeArray";
     public static final String TO_VARIABLE_FAMILY_PROPERTY = "toVariableFamily";
 
@@ -86,6 +89,20 @@ public abstract class _Variable extends CayenneDataObject {
         return (String)readProperty(NAME_SHORT_PROPERTY);
     }
 
+    public void setP01Ref(String p01Ref) {
+        writeProperty(P01REF_PROPERTY, p01Ref);
+    }
+    public String getP01Ref() {
+        return (String)readProperty(P01REF_PROPERTY);
+    }
+
+    public void setQcRef(String qcRef) {
+        writeProperty(QC_REF_PROPERTY, qcRef);
+    }
+    public String getQcRef() {
+        return (String)readProperty(QC_REF_PROPERTY);
+    }
+
     public void setWigosRef(Integer wigosRef) {
         writeProperty(WIGOS_REF_PROPERTY, wigosRef);
     }
@@ -138,6 +155,18 @@ public abstract class _Variable extends CayenneDataObject {
     @SuppressWarnings("unchecked")
     public List<QcFeedback> getQcFeedbackArray() {
         return (List<QcFeedback>)readProperty(QC_FEEDBACK_ARRAY_PROPERTY);
+    }
+
+
+    public void addToQcFeedbackVariableArray(QcFeedbackVariable obj) {
+        addToManyTarget(QC_FEEDBACK_VARIABLE_ARRAY_PROPERTY, obj, true);
+    }
+    public void removeFromQcFeedbackVariableArray(QcFeedbackVariable obj) {
+        removeToManyTarget(QC_FEEDBACK_VARIABLE_ARRAY_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<QcFeedbackVariable> getQcFeedbackVariableArray() {
+        return (List<QcFeedbackVariable>)readProperty(QC_FEEDBACK_VARIABLE_ARRAY_PROPERTY);
     }
 
 

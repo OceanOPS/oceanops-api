@@ -12,9 +12,17 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _UpdateTimestamp extends CayenneDataObject {
 
+    public static final String COMPLETED_PROPERTY = "completed";
     public static final String LAST_UPDATE_PROPERTY = "lastUpdate";
 
     public static final String NAME_PK_COLUMN = "NAME";
+
+    public void setCompleted(Integer completed) {
+        writeProperty(COMPLETED_PROPERTY, completed);
+    }
+    public Integer getCompleted() {
+        return (Integer)readProperty(COMPLETED_PROPERTY);
+    }
 
     public void setLastUpdate(Date lastUpdate) {
         writeProperty(LAST_UPDATE_PROPERTY, lastUpdate);
