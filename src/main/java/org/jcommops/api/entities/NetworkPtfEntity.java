@@ -1,55 +1,62 @@
 package org.jcommops.api.entities;
 
+import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.jcommops.api.orm.Network;
+
 @XmlRootElement
 @XmlType(propOrder={ "name", "nameShort","description"})
-public class PlatformStatus {
-	private long Id;
-	private String NameShort;
-	private String Name;
+public class NetworkPtfEntity implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3997127540846173151L;
+	private long id;
+	private String nameShort;
+	private String name;
 	private String description;
 	
 	
-	public PlatformStatus (){	
+	public NetworkPtfEntity (){	
 	}
 
-	public PlatformStatus ( long id, String nameshort, String name, String description ){	
-		this.setId(id);
-		this.setNameShort(nameshort);
-		this.setName(name);
-		this.setDescription(description);
+	public NetworkPtfEntity (Network network){	
+		this.setId(Integer.parseInt(network.getObjectId().toString()));
+		this.setDescription(network.getDescription());
+		this.setName(network.getName());
+		this.setNameShort(network.getNameShort());
 	}
 
 	
 	@XmlAttribute
 	public long getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(long id) {
-		Id = id;
+		this.id = id;
 	}
 
 	@XmlElement
 	public String getNameShort() {
-		return NameShort;
+		return nameShort;
 	}
 
 	public void setNameShort(String nameShort) {
-		NameShort = nameShort;
+		this.nameShort = nameShort;
 	}
 	@XmlElement
 	public String getName() {
-		return Name;
+		return name;
 	}
 
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 	@XmlElement
 	public String getDescription() {

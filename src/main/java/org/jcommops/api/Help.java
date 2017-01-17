@@ -73,7 +73,7 @@ public class Help extends HttpServlet {
 			case "country":
 				request.setAttribute("parameter", "countries.json");
 				request.setAttribute("parameter_name", "Countries");
-				jspName = "GetCountries.jsp";
+				jspName = "GetCountryValues.jsp";
 				break;
 			default:
 				break;

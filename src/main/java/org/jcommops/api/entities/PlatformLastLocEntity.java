@@ -11,19 +11,19 @@ import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
 @XmlType(propOrder={"lastLocationDate", "lat", "lon"})
-public class PlatformLastLoc {
+public class PlatformLastLocEntity {
 	
 	private long Id;
 	private String LastLocationDate;
 	private BigDecimal Lat;
 	private BigDecimal Lon;
 
-	public PlatformLastLoc (){	
+	public PlatformLastLocEntity (){	
 	}
 	
 	
 
-	public PlatformLastLoc ( long id, String locdate, BigDecimal lat, BigDecimal lon ){	
+	public PlatformLastLocEntity ( long id, String locdate, BigDecimal lat, BigDecimal lon ){	
 		this.setId(id);
 		this.setLastLocationDate(locdate);
 		this.setLat(lat);

@@ -1,45 +1,39 @@
 package org.jcommops.api.entities;
 
 import java.math.BigDecimal;
+import java.io.Serializable;
 
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+
+import org.jcommops.api.orm.Config;
 
 @XmlRootElement
 @XmlType(propOrder={ "cycleTime", "driftPressure", "profilePressure", "iceDetection"})
 
 
-public class Configuration  {
+public class ConfigurationEntity implements Serializable {
 
-	private long Id;
-    private BigDecimal CycleTime;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -6959682108023745029L;
+	private BigDecimal CycleTime;
     private BigDecimal DriftPressure;
     private BigDecimal ProfilePressure;
     private int IceDetection;
 
 
-    public Configuration() {
+    public ConfigurationEntity() {
 
     }
-
-    public Configuration ( long id, BigDecimal ctime, BigDecimal driftp, BigDecimal profilep, int icedetec ){
-        this.setId(id);
-        this.setCycleTime(ctime);
-        this.setDriftPressure(driftp);
-        this.setProfilePressure(profilep);
-        this.setIceDetection(icedetec);
-        }
-
-
-	@XmlAttribute
-    public long getId() {
-        return Id;
-   }
-
-    public void setId(long id) {
-        Id = id;
+    
+    public ConfigurationEntity(Config config) {
+    	this.setCycleTime(config.getCycleTime());
+    	this.setDriftPressure(config.getDriftPress());
+    	this.setIceDetection(config.getIceDetection());
+    	this.setProfilePressure(config.getProfilePress());
     }
 
     @XmlElement

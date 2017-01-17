@@ -19,7 +19,7 @@ public abstract class _Program extends CayenneDataObject {
     public static final String CRUISE_PROGRAM_ARRAY_PROPERTY = "cruiseProgramArray";
     public static final String IMAGE_ARRAY_PROPERTY = "imageArray";
     public static final String LINE_PROGRAM_ARRAY_PROPERTY = "lineProgramArray";
-    public static final String PROGRAM_AGENCY_ARRAY_PROPERTY = "programAgencyArray";
+    public static final String TO_AGENCIES_PROPERTY = "toAgencies";
     public static final String PROGRAM_CONTACT_ARRAY_PROPERTY = "programContactArray";
     public static final String PTF_ARRAY_PROPERTY = "ptfArray";
     public static final String TO_COUNTRY_PROPERTY = "toCountry";
@@ -92,15 +92,15 @@ public abstract class _Program extends CayenneDataObject {
     }
 
 
-    public void addToProgramAgencyArray(ProgramAgency obj) {
-        addToManyTarget(PROGRAM_AGENCY_ARRAY_PROPERTY, obj, true);
+    public void addToToAgencies(Agency obj) {
+        addToManyTarget(TO_AGENCIES_PROPERTY, obj, true);
     }
-    public void removeFromProgramAgencyArray(ProgramAgency obj) {
-        removeToManyTarget(PROGRAM_AGENCY_ARRAY_PROPERTY, obj, true);
+    public void removeFromToAgencies(Agency obj) {
+        removeToManyTarget(TO_AGENCIES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<ProgramAgency> getProgramAgencyArray() {
-        return (List<ProgramAgency>)readProperty(PROGRAM_AGENCY_ARRAY_PROPERTY);
+    public List<Agency> getToAgencies() {
+        return (List<Agency>)readProperty(TO_AGENCIES_PROPERTY);
     }
 
 

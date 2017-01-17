@@ -14,8 +14,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.cayenne.configuration.server.ServerRuntime;
-import org.jcommops.api.entities.SensorType;
-import org.jcommops.api.entities.Variable;
+import org.jcommops.api.entities.SensorTypeEntity;
+import org.jcommops.api.entities.VariableEntity;
 
 public class Utils {
 	private static ServerRuntime cayenneRuntime;
@@ -87,13 +87,13 @@ public class Utils {
 		return year;
 	}
 
-	public static String GetVariablesListToString(ArrayList<Variable> Arr) {
+	public static String GetVariablesListToString(ArrayList<VariableEntity> Arr) {
 		// method used to access ArrayList to produce csv (case one to many)
 		StringWriter strW = new StringWriter();
 		try {
-			Iterator<Variable> var_itr = Arr.iterator();
+			Iterator<VariableEntity> var_itr = Arr.iterator();
 			while (var_itr.hasNext()) {
-				Variable a = var_itr.next();
+				VariableEntity a = var_itr.next();
 				strW.write("{" + a.getNameShort() + "}");
 			}
 		} catch (NullPointerException e) {
@@ -104,13 +104,13 @@ public class Utils {
 
 	}
 
-	public static String GetSensorTypesListToString(ArrayList<SensorType> Arr) {
+	public static String GetSensorTypesListToString(ArrayList<SensorTypeEntity> Arr) {
 		// method used to access ArrayList to produce csv (case one to many)
 		StringWriter strW = new StringWriter();
 		try {
-			Iterator<SensorType> senstype_itr = Arr.iterator();
+			Iterator<SensorTypeEntity> senstype_itr = Arr.iterator();
 			while (senstype_itr.hasNext()) {
-				SensorType a = senstype_itr.next();
+				SensorTypeEntity a = senstype_itr.next();
 				strW.write("{" + a.getNameShort() + "}");
 			}
 		} catch (NullPointerException e) {
