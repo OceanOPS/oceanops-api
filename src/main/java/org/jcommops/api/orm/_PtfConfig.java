@@ -10,11 +10,19 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _PtfConfig extends CayenneDataObject {
 
+    public static final String CYCLE_PROPERTY = "cycle";
     public static final String TO_CONFIG_PROPERTY = "toConfig";
     public static final String TO_PTF_PROPERTY = "toPtf";
 
     public static final String CYCLE_PK_COLUMN = "CYCLE";
     public static final String PTF_ID_PK_COLUMN = "PTF_ID";
+
+    public void setCycle(Integer cycle) {
+        writeProperty(CYCLE_PROPERTY, cycle);
+    }
+    public Integer getCycle() {
+        return (Integer)readProperty(CYCLE_PROPERTY);
+    }
 
     public void setToConfig(Config toConfig) {
         setToOneTarget(TO_CONFIG_PROPERTY, toConfig, true);

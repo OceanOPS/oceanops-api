@@ -1,47 +1,33 @@
 package org.jcommops.api.entities;
 
-import java.math.BigDecimal;
-import java.util.Date;
-
-import javax.xml.bind.annotation.XmlAttribute;
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 @XmlRootElement
 @XmlType(propOrder={"nameShort", "name", "isoCode2", "isoCode3"})
-public class CountryPtf {
+public class CountryEntity implements Serializable{
 	
-	private long Id;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3442124618719919778L;
 	private String NameShort;
 	private String Name;
 	private String IsoCode2;
 	private String IsoCode3;
 	
-	public CountryPtf() {
+	public CountryEntity() {
 		
 	}
 	
-	public CountryPtf( long id, String namesh, String name, String isoCode2, String isoCode3) {
-		this.setId(id);
-		this.setNameShort(namesh);
-		this.setName(name);
-		this.setIsoCode2(isoCode2);
-		this.setIsoCode3(isoCode3);
+	public CountryEntity(org.jcommops.api.orm.Country country) {
+		this.setIsoCode2(country.getCode2());
+		this.setIsoCode3(country.getCode3());
+		this.setName(country.getName());
+		this.setNameShort(country.getNameShort());
+	}
 		
-	}
-	
-	
-	@XmlAttribute
-	public long getId() {
-		return Id;
-	}
-
-	public void setId(long id) {
-		Id = id;
-	}
-
-	
 	@XmlElement
 	public String getNameShort() {
 		return NameShort;

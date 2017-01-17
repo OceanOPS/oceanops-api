@@ -10,7 +10,7 @@ import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.configuration.server.ServerRuntime;
 import org.jcommops.api.Utils;
 import org.jcommops.api.accessors.PlatformAccessor;
-import org.jcommops.api.entities.Platform;
+import org.jcommops.api.entities.PlatformEntity;
 import org.jcommops.api.orm.Ptf;
 import org.json.CDL;
 import org.json.JSONArray;
@@ -23,7 +23,7 @@ public class TestBrouillon {
     
     	
 PlatformAccessor m= new PlatformAccessor();
-    	Platform ptfm = m.getPtfbyID(1002922);
+    	PlatformEntity ptfm = m.getPtfbyID(1002922);
 System.out.println(Utils.CatchException(ptfm.getTelecom().getId())+ " yes");
 	
 		

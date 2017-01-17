@@ -7,7 +7,7 @@ import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.configuration.server.ServerRuntime;
 import org.apache.cayenne.query.SQLTemplate;
 import org.jcommops.api.accessors.PlatformAccessor;
-import org.jcommops.api.entities.Platform;
+import org.jcommops.api.entities.PlatformEntity;
 import org.jcommops.api.orm.Ptf;
 
 public class TestSearch {

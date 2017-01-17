@@ -2,54 +2,53 @@ package org.jcommops.api.entities;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlID;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.jcommops.api.orm.Role;
+
 @XmlType(propOrder={ "name", "nameShort"})
-public class RoleContact {
-	private long Id;
-	private String Name;
-	private String NameShort;
+public class RoleEntity {
+	private long id;
+	private String name;
+	private String nameShort;
 
 	
 	
-	public RoleContact() {
+	public RoleEntity() {
 		
 	}
-
-	public RoleContact ( long id, String name, String nameshort){	
-	this.setId(id);
-	this.setName(name);
-	this.setNameShort(nameshort);
+	
+	public RoleEntity (Role role){	
+		this.setId(Integer.parseInt(role.getObjectId().toString()));
+		this.setName(role.getName());
+		this.setNameShort(role.getNameShort());
 	}
-
 	
 	@XmlAttribute
 	public long getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(long id) {
-		Id = id;
+		this.id = id;
 	}
 
 	@XmlElement
 	public String getName() {
-		return Name;
+		return name;
 	}
 
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 
 	@XmlElement
 	public String getNameShort() {
-		return NameShort;
+		return nameShort;
 	}
 
 	public void setNameShort(String nameShort) {
-		NameShort = nameShort;
+		this.nameShort = nameShort;
 	}
 
 

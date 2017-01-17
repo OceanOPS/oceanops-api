@@ -24,7 +24,7 @@ public abstract class _SensorModel extends CayenneDataObject {
     public static final String YEARLY_DRIFT_PROPERTY = "yearlyDrift";
     public static final String CRUISE_SENSOR_MODEL_ARRAY_PROPERTY = "cruiseSensorModelArray";
     public static final String PTF_SENSOR_MODEL_ARRAY_PROPERTY = "ptfSensorModelArray";
-    public static final String SENSOR_MODEL_SENSOR_TYPE_ARRAY_PROPERTY = "sensorModelSensorTypeArray";
+    public static final String TO_SENSOR_TYPES_PROPERTY = "toSensorTypes";
     public static final String TO_AGENCY_PROPERTY = "toAgency";
     public static final String TO_IMAGE_PROPERTY = "toImage";
     public static final String TO_MASTER_PROG_PROPERTY = "toMasterProg";
@@ -126,15 +126,15 @@ public abstract class _SensorModel extends CayenneDataObject {
     }
 
 
-    public void addToSensorModelSensorTypeArray(SensorModelSensorType obj) {
-        addToManyTarget(SENSOR_MODEL_SENSOR_TYPE_ARRAY_PROPERTY, obj, true);
+    public void addToToSensorTypes(SensorType obj) {
+        addToManyTarget(TO_SENSOR_TYPES_PROPERTY, obj, true);
     }
-    public void removeFromSensorModelSensorTypeArray(SensorModelSensorType obj) {
-        removeToManyTarget(SENSOR_MODEL_SENSOR_TYPE_ARRAY_PROPERTY, obj, true);
+    public void removeFromToSensorTypes(SensorType obj) {
+        removeToManyTarget(TO_SENSOR_TYPES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<SensorModelSensorType> getSensorModelSensorTypeArray() {
-        return (List<SensorModelSensorType>)readProperty(SENSOR_MODEL_SENSOR_TYPE_ARRAY_PROPERTY);
+    public List<SensorType> getToSensorTypes() {
+        return (List<SensorType>)readProperty(TO_SENSOR_TYPES_PROPERTY);
     }
 
 

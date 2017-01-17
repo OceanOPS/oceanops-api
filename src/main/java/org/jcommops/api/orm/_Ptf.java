@@ -38,14 +38,14 @@ public abstract class _Ptf extends CayenneDataObject {
     public static final String AGENCY_PTF_ARRAY_PROPERTY = "agencyPtfArray";
     public static final String DOC_ARRAY_PROPERTY = "docArray";
     public static final String MZMS_PTF_COUNTRY_ARRAY_PROPERTY = "mzmsPtfCountryArray";
-    public static final String NETWORK_PTF_ARRAY_PROPERTY = "networkPtfArray";
+    public static final String TO_NETWORKS_PROPERTY = "toNetworks";
     public static final String OBS_ARRAY_PROPERTY = "obsArray";
     public static final String PTF_CONFIG_ARRAY_PROPERTY = "ptfConfigArray";
     public static final String PTF_CRUISE_ARRAY_PROPERTY = "ptfCruiseArray";
     public static final String PTF_LOC_ARRAY_PROPERTY = "ptfLocArray";
     public static final String PTF_LOC_STATUS_ARRAY_PROPERTY = "ptfLocStatusArray";
     public static final String PTF_SENSOR_MODEL_ARRAY_PROPERTY = "ptfSensorModelArray";
-    public static final String PTF_VARIABLE_ARRAY_PROPERTY = "ptfVariableArray";
+    public static final String TO_VARIABLES_PROPERTY = "toVariables";
     public static final String QC_FEEDBACK_ARRAY_PROPERTY = "qcFeedbackArray";
     public static final String SERVICE_ARRAY_PROPERTY = "serviceArray";
     public static final String SITE_PTF_ARRAY_PROPERTY = "sitePtfArray";
@@ -65,7 +65,7 @@ public abstract class _Ptf extends CayenneDataObject {
     public static final String TO_TELECOM1_PROPERTY = "toTelecom1";
     public static final String TO_TRACKING_SYSTEM_PROPERTY = "toTrackingSystem";
     public static final String WEBLINK_ARRAY_PROPERTY = "weblinkArray";
-    public static final String WEBLINK_PTF_ARRAY_PROPERTY = "weblinkPtfArray";
+    public static final String TO_WEBLINKS_PROPERTY = "toWeblinks";
     public static final String WMO_ARRAY_PROPERTY = "wmoArray";
 
     public static final String ID_PK_COLUMN = "ID";
@@ -260,15 +260,15 @@ public abstract class _Ptf extends CayenneDataObject {
     }
 
 
-    public void addToNetworkPtfArray(NetworkPtf obj) {
-        addToManyTarget(NETWORK_PTF_ARRAY_PROPERTY, obj, true);
+    public void addToToNetworks(Network obj) {
+        addToManyTarget(TO_NETWORKS_PROPERTY, obj, true);
     }
-    public void removeFromNetworkPtfArray(NetworkPtf obj) {
-        removeToManyTarget(NETWORK_PTF_ARRAY_PROPERTY, obj, true);
+    public void removeFromToNetworks(Network obj) {
+        removeToManyTarget(TO_NETWORKS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<NetworkPtf> getNetworkPtfArray() {
-        return (List<NetworkPtf>)readProperty(NETWORK_PTF_ARRAY_PROPERTY);
+    public List<Network> getToNetworks() {
+        return (List<Network>)readProperty(TO_NETWORKS_PROPERTY);
     }
 
 
@@ -344,15 +344,15 @@ public abstract class _Ptf extends CayenneDataObject {
     }
 
 
-    public void addToPtfVariableArray(PtfVariable obj) {
-        addToManyTarget(PTF_VARIABLE_ARRAY_PROPERTY, obj, true);
+    public void addToToVariables(Variable obj) {
+        addToManyTarget(TO_VARIABLES_PROPERTY, obj, true);
     }
-    public void removeFromPtfVariableArray(PtfVariable obj) {
-        removeToManyTarget(PTF_VARIABLE_ARRAY_PROPERTY, obj, true);
+    public void removeFromToVariables(Variable obj) {
+        removeToManyTarget(TO_VARIABLES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<PtfVariable> getPtfVariableArray() {
-        return (List<PtfVariable>)readProperty(PTF_VARIABLE_ARRAY_PROPERTY);
+    public List<Variable> getToVariables() {
+        return (List<Variable>)readProperty(TO_VARIABLES_PROPERTY);
     }
 
 
@@ -539,15 +539,15 @@ public abstract class _Ptf extends CayenneDataObject {
     }
 
 
-    public void addToWeblinkPtfArray(WeblinkPtf obj) {
-        addToManyTarget(WEBLINK_PTF_ARRAY_PROPERTY, obj, true);
+    public void addToToWeblinks(Weblink obj) {
+        addToManyTarget(TO_WEBLINKS_PROPERTY, obj, true);
     }
-    public void removeFromWeblinkPtfArray(WeblinkPtf obj) {
-        removeToManyTarget(WEBLINK_PTF_ARRAY_PROPERTY, obj, true);
+    public void removeFromToWeblinks(Weblink obj) {
+        removeToManyTarget(TO_WEBLINKS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<WeblinkPtf> getWeblinkPtfArray() {
-        return (List<WeblinkPtf>)readProperty(WEBLINK_PTF_ARRAY_PROPERTY);
+    public List<Weblink> getToWeblinks() {
+        return (List<Weblink>)readProperty(TO_WEBLINKS_PROPERTY);
     }
 
 
