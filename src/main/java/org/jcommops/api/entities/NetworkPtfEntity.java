@@ -10,7 +10,6 @@ import javax.xml.bind.annotation.XmlType;
 import org.jcommops.api.orm.Network;
 
 @XmlRootElement
-@XmlType(propOrder={ "name", "nameShort","description"})
 public class NetworkPtfEntity implements Serializable{
 	/**
 	 * 
@@ -26,7 +25,7 @@ public class NetworkPtfEntity implements Serializable{
 	}
 
 	public NetworkPtfEntity (Network network){	
-		this.setId(Integer.parseInt(network.getObjectId().toString()));
+		this.setId(Integer.parseInt(network.getObjectId().getIdSnapshot().get("ID").toString()));
 		this.setDescription(network.getDescription());
 		this.setName(network.getName());
 		this.setNameShort(network.getNameShort());

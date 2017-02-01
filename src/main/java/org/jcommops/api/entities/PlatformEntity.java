@@ -1,5 +1,6 @@
 package org.jcommops.api.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,103 +10,78 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 
 import org.jcommops.api.Utils;
 import org.jcommops.api.orm.Ptf;
 import org.jcommops.api.orm.PtfConfig;
 
 @XmlRootElement
-@XmlType(propOrder = { "error_message", "jcommopsRef", "telecom", "internalRef", "serialRef", "age", "ptfFamily",
-		"ptfType", "ptfModel", "ptfStatus", "notificationDate", "deployement", "lastLocation", "endingDate", "program",
-		"country", "masterProgramme", "contacts", "configuration", "sensorModel" , "variables" })
-
-public class PlatformEntity {
-	
-
-	private long id;
+public class PlatformEntity implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -754408337242938591L;
+	private Integer id;
 	private String jcommopsRef;
 	private TelecomEntity telecom;
 	private String internalRef;
 	private String serialRef;
 	private Integer age;
 	private PlatformStatusEntity ptfStatus;
-	private PlatformFamilyEntity ptfFamily;
 	private PlatformModelEntity ptfModel;
-	private PlatformTypeEntity ptfType;
 	private String notificationDate;
-	private PlatformDeployment deployement;
+	private PlatformDeploymentEntity deployment;
 	private PlatformLocEntity latestLocation;
 	private String endingDate;
 	private ProgramEntity program;
 	private ConfigurationEntity configuration;
-	private SensorModelEntity sensorModel;
+	private ArrayList<SensorModelEntity> sensorModels;
 	private ArrayList<VariableEntity> variables;
-	private String errorMessage;
 
 	public PlatformEntity() {
 	}
 
 	public PlatformEntity(Ptf ptf) {
-		this.setId(Integer.parseInt(ptf.getObjectId().toString()));
+		this.setId(Integer.parseInt(ptf.getObjectId().getIdSnapshot().get("ID").toString()));
 		
 		this.setJcommopsRef(ptf.getRef());
-		this.setTelecom(new TelecomEntity(ptf.getToTelecom()));
-		this.setInternalRef(ptf.getToPtfIdentifiers().getInternalRef());
-		this.setSerialRef(ptf.getToPtfHardware().getSerialRef());
+		if(ptf.getToTelecom() != null)
+			this.setTelecom(new TelecomEntity(ptf.getToTelecom()));
+		if(ptf.getToPtfIdentifiers() != null)
+			this.setInternalRef(ptf.getToPtfIdentifiers().getInternalRef());
+		if(ptf.getToPtfHardware() != null)
+			this.setSerialRef(ptf.getToPtfHardware().getSerialRef());
 		this.setAge(ptf.getAge());
 		this.setPtfStatus(new PlatformStatusEntity(ptf.getToPtfStatus()));
 		this.setPtfModel(new PlatformModelEntity(ptf.getToPtfModel()));
-		this.setDeployement(new PlatformDeployment(ptf.getToPtfDeployment()));
+		this.setDeployment(new PlatformDeploymentEntity(ptf.getToPtfDeployment()));
 		this.setEndingDate(Utils.GetIsoDate(ptf.getEndingDate()));
-		this.setLatestLocation(new PlatformLocEntity(ptf.getToPtfLoc()));
+		if(ptf.getToPtfLoc() != null)
+			this.setLatestLocation(new PlatformLocEntity(ptf.getToPtfLoc()));
 		this.setProgram(new ProgramEntity(ptf.getToProgram()));
 		this.setNotificationDate(Utils.GetIsoDate(ptf.getENotificationDate()));
 		
 		List<PtfConfig> ptfConfigs = ptf.getPtfConfigArray().stream().filter(ptfConfig -> ptfConfig.getCycle() == -1).collect(Collectors.toList());
-		this.setConfiguration(new ConfigurationEntity(ptfConfigs.get(0).getToConfig()));
-		
+		if(ptfConfigs != null && ptfConfigs.size() > 0)
+			this.setConfiguration(new ConfigurationEntity(ptfConfigs.get(0).getToConfig()));
+
+		this.sensorModels = new ArrayList<SensorModelEntity>();
+    	for(int i = 0; i<ptf.getPtfSensorModelArray().size();i++){
+    		this.sensorModels.add(new SensorModelEntity(ptf.getPtfSensorModelArray().get(i).getToSensorModel()));
+    	}
+    	
 		this.variables = new ArrayList<VariableEntity>();
     	for(int i = 0; i<ptf.getToVariables().size();i++){
     		this.variables.add(new VariableEntity(ptf.getToVariables().get(i)));
     	}
-		
-		/*this.setVariables(variables);
-		this.setErrorMessage(error_message);*/
 	}
 
-	public PlatformEntity(long id, String ref, TelecomEntity telc, String internalref, String serialref, Integer age,
-			PlatformStatusEntity ptfstatus, PlatformFamilyEntity ptffamily, PlatformModelEntity ptfmodel, PlatformTypeEntity ptftype,
-			String notifdate, PlatformDeployment ptfdpl, String endingdate, PlatformLocEntity ptfll, ProgramEntity prgm,
-			CountryEntity cntr, MasterProgramEntity mstrprgm, ArrayList<ContactEntity> contacts, ConfigurationEntity config, SensorModelEntity sensm,  ArrayList<VariableEntity> variables,
-			String error_message) {
-		this.setId(id);
-		this.setJcommopsRef(ref);
-		this.setTelecom(telc);
-		this.setInternalRef(internalref);
-		this.setSerialRef(internalref);
-		this.setAge(age);
-		this.setPtfStatus(ptfstatus);
-		this.setPtfFamily(ptffamily);
-		this.setPtfModel(ptfmodel);
-		this.setPtfType(ptftype);
-		this.setDeployement(ptfdpl);
-		this.setEndingDate(endingdate);
-		this.setLatestLocation(ptfll);
-		this.setProgram(prgm);
-		this.setConfiguration(config);
-		this.setVariables(variables);
-		this.setNotificationDate(notifdate);
-		this.setErrorMessage(error_message);
-
-	}
-
-	@XmlAttribute // @XmlAttribute to bring "id =XXXX" to the beacon
-	public long getId() {
+	@XmlAttribute
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -164,30 +140,12 @@ public class PlatformEntity {
 	}
 
 	@XmlElement
-	public PlatformFamilyEntity getPtfFamily() {
-		return ptfFamily;
-	}
-
-	public void setPtfFamily(PlatformFamilyEntity ptfFamily) {
-		this.ptfFamily = ptfFamily;
-	}
-
-	@XmlElement
 	public PlatformModelEntity getPtfModel() {
 		return ptfModel;
 	}
 
 	public void setPtfModel(PlatformModelEntity ptfModel) {
 		this.ptfModel = ptfModel;
-	}
-
-	@XmlElement
-	public PlatformTypeEntity getPtfType() {
-		return ptfType;
-	}
-
-	public void setPtfType(PlatformTypeEntity ptfType) {
-		this.ptfType = ptfType;
 	}
 
 	@XmlElement
@@ -200,12 +158,12 @@ public class PlatformEntity {
 	}
 
 	@XmlElement
-	public PlatformDeployment getDeployement() {
-		return deployement;
+	public PlatformDeploymentEntity getDeployment() {
+		return deployment;
 	}
 
-	public void setDeployement(PlatformDeployment deployement) {
-		this.deployement = deployement;
+	public void setDeployment(PlatformDeploymentEntity deployement) {
+		this.deployment = deployement;
 	}
 
 	@XmlElement
@@ -246,12 +204,12 @@ public class PlatformEntity {
 
 		
 	@XmlElement
-	public SensorModelEntity getSensorModel() {
-		return sensorModel;
+	public ArrayList<SensorModelEntity> getSensorModel() {
+		return sensorModels;
 	}
 
-	public void setSensorModel(SensorModelEntity sensorModel) {
-		this.sensorModel = sensorModel;
+	public void setSensorModel(ArrayList<SensorModelEntity> sensorModels) {
+		this.sensorModels = sensorModels;
 	}
 
 	@XmlElementWrapper(name = "variables")
@@ -263,13 +221,149 @@ public class PlatformEntity {
 	public void setVariables(ArrayList<VariableEntity> variables) {
 		this.variables = variables;
 	}
-
-	public String getErrorMessage() {
-		return errorMessage;
+	
+	/**
+	 * Returns the CSV header used in the CSV serialization of a platform object. 
+	 * @return
+	 */
+	public static String getCSVHeader(){
+		String header = "id" + Utils.CSV_SEPARATOR + "ref" + Utils.CSV_SEPARATOR + "telecomId" + Utils.CSV_SEPARATOR
+				+ "telecomType" + Utils.CSV_SEPARATOR + "internalRef" + Utils.CSV_SEPARATOR + "serialRef"
+				+ Utils.CSV_SEPARATOR + "ptfFamily" + Utils.CSV_SEPARATOR + "ptfType" + Utils.CSV_SEPARATOR + "ptfModel"
+				+ Utils.CSV_SEPARATOR + "program" + Utils.CSV_SEPARATOR + "country" + Utils.CSV_SEPARATOR
+				+ "masterProgramme" + Utils.CSV_SEPARATOR + "deploymentDate" + Utils.CSV_SEPARATOR
+				+ "deploymentLatitude" + Utils.CSV_SEPARATOR + "deploymentLongitude" + Utils.CSV_SEPARATOR
+				+ "deploymentScore" + Utils.CSV_SEPARATOR + "deploymentDensity" + Utils.CSV_SEPARATOR
+				+ "shipName" + Utils.CSV_SEPARATOR + "shipRef" + Utils.CSV_SEPARATOR + "notificationDate" 
+				+ Utils.CSV_SEPARATOR + "lastLocationDate" + Utils.CSV_SEPARATOR + "lastLocationLatitude"
+				+ Utils.CSV_SEPARATOR + "lastLocationLongitude" + Utils.CSV_SEPARATOR + "age" + Utils.CSV_SEPARATOR
+				+ "cycleTime" + Utils.CSV_SEPARATOR + "driftPressure" + Utils.CSV_SEPARATOR + "profilePressure"
+				+ Utils.CSV_SEPARATOR + "iceDetection" + Utils.CSV_SEPARATOR + "sensorModel" + Utils.CSV_SEPARATOR
+				+ "sensorTypes" + Utils.CSV_SEPARATOR + "variables";
+		
+		return header;
 	}
-
-	public void setErrorMessage(String errorMessage) {
-		this.errorMessage = errorMessage;
+	
+	/**
+	 * Writes a CSV row for this instance of a platform. 
+	 * @return A String object representing this platform.
+	 */
+	public String toCSV(){
+		StringBuilder csv = new StringBuilder();
+		
+		csv.append(this.getId() + Utils.CSV_SEPARATOR + this.getJcommopsRef() + Utils.CSV_SEPARATOR);
+		
+		if(this.getTelecom() != null){
+			csv.append((this.getTelecom().getTelecomNum() != null ? this.getTelecom().getTelecomNum() : "") + Utils.CSV_SEPARATOR);
+			csv.append((this.getTelecom().getTelecomType() != null ? this.getTelecom().getTelecomType() : "") + Utils.CSV_SEPARATOR);
+		}
+		else{
+			csv.append(Utils.CSV_SEPARATOR + Utils.CSV_SEPARATOR);
+		}
+		
+		csv.append((this.getInternalRef() != null ? this.getInternalRef() : "") + Utils.CSV_SEPARATOR);
+		csv.append((this.getSerialRef() != null ? this.getSerialRef() : "") + Utils.CSV_SEPARATOR);
+		
+		if(this.getPtfModel().getPlatformType() != null){
+			if(this.getPtfModel().getPlatformType().getPlatformFamily() != null)
+				csv.append(this.getPtfModel().getPlatformType().getPlatformFamily().getNameShort() + Utils.CSV_SEPARATOR);
+			else
+				csv.append(Utils.CSV_SEPARATOR);
+			
+			csv.append(this.getPtfModel().getPlatformType().getNameShort() + Utils.CSV_SEPARATOR);
+		}
+		else
+			csv.append(Utils.CSV_SEPARATOR + Utils.CSV_SEPARATOR);
+		
+		csv.append((this.getPtfModel() != null ? this.getPtfModel().getNameShort() : "") + Utils.CSV_SEPARATOR);
+		
+		csv.append((this.getProgram().getName() != null ? this.getProgram().getName() : "") + Utils.CSV_SEPARATOR);
+		if(this.getProgram().getCountry() != null)
+			csv.append((this.getProgram().getCountry().getIsoCode2() != null ? this.getProgram().getCountry().getIsoCode2() : "") + Utils.CSV_SEPARATOR);
+		else
+			csv.append(Utils.CSV_SEPARATOR);
+		
+		csv.append((this.getProgram().getMasterProgram().getNameShort() != null ? this.getProgram().getMasterProgram().getNameShort() : "") + Utils.CSV_SEPARATOR);
+		
+		if(this.getDeployment() != null){
+			csv.append((this.getDeployment().getDeploymentDate() != null ? this.getDeployment().getDeploymentDate() : "") + Utils.CSV_SEPARATOR);
+			csv.append((this.getDeployment().getLat() != null ? this.getDeployment().getLat() : "") + Utils.CSV_SEPARATOR);
+			csv.append((this.getDeployment().getLon() != null ? this.getDeployment().getLon() : "") + Utils.CSV_SEPARATOR);
+			csv.append((this.getDeployment().getDeploymentScore() != null ? this.getDeployment().getDeploymentScore() : "") + Utils.CSV_SEPARATOR);
+			csv.append((this.getDeployment().getDeploymentDensity() != null ? this.getDeployment().getDeploymentDensity() : "") + Utils.CSV_SEPARATOR);
+			if(this.getDeployment().getShip() != null){
+				csv.append((this.getDeployment().getShip().getName() != null ? this.getDeployment().getShip().getName() : "") + Utils.CSV_SEPARATOR);
+				csv.append((this.getDeployment().getShip().getRef() != null ? this.getDeployment().getShip().getRef() : "") + Utils.CSV_SEPARATOR);
+			}
+			else
+				csv.append(Utils.CSV_SEPARATOR + Utils.CSV_SEPARATOR);
+		}
+		else
+			csv.append(Utils.CSV_SEPARATOR + Utils.CSV_SEPARATOR + Utils.CSV_SEPARATOR + Utils.CSV_SEPARATOR + Utils.CSV_SEPARATOR + Utils.CSV_SEPARATOR + Utils.CSV_SEPARATOR);
+		
+		csv.append((this.getNotificationDate() != null ? this.getNotificationDate() : "") + Utils.CSV_SEPARATOR);
+		
+		if(this.getLatestLocation() != null){
+			csv.append((this.getLatestLocation().getDate() != null ? this.getLatestLocation().getDate() : "") + Utils.CSV_SEPARATOR);
+			csv.append((this.getLatestLocation().getLat() != null ? this.getLatestLocation().getLat() : "") + Utils.CSV_SEPARATOR);
+			csv.append((this.getLatestLocation().getLon() != null ? this.getLatestLocation().getLon() : "") + Utils.CSV_SEPARATOR);
+		}
+		else
+			csv.append(Utils.CSV_SEPARATOR + Utils.CSV_SEPARATOR + Utils.CSV_SEPARATOR);
+		
+		csv.append((this.getAge() != null ? this.getAge() : "") + Utils.CSV_SEPARATOR);
+		
+		if(this.getConfiguration() != null){
+			csv.append((this.getConfiguration().getCycleTime() != null ? this.getConfiguration().getCycleTime() : "") + Utils.CSV_SEPARATOR);
+			csv.append((this.getConfiguration().getProfilePressure() != null ? this.getConfiguration().getProfilePressure() : "") + Utils.CSV_SEPARATOR);
+			csv.append((this.getConfiguration().getDriftPressure() != null ? this.getConfiguration().getDriftPressure() : "") + Utils.CSV_SEPARATOR);
+			csv.append(this.getConfiguration().getIceDetection() + Utils.CSV_SEPARATOR);
+		}
+		else
+			csv.append(Utils.CSV_SEPARATOR + Utils.CSV_SEPARATOR + Utils.CSV_SEPARATOR + Utils.CSV_SEPARATOR);
+		
+		if(this.getSensorModel() != null && this.getSensorModel().size() > 0){
+			csv.append("\"");
+			for(int i = 0; i < this.getSensorModel().size(); i++){
+				if(i > 0)
+					csv.append(Utils.CSV_SEPARATOR);
+				csv.append(this.getSensorModel().get(i).getNameShort() != null ? this.getSensorModel().get(i).getNameShort() : "");
+			}
+			csv.append("\"" + Utils.CSV_SEPARATOR);
+			
+			StringBuilder st = new StringBuilder();
+			for(int i = 0; i < this.getSensorModel().size(); i++){
+				SensorModelEntity sm = this.getSensorModel().get(i);
+				
+				for(int j= 0; j<sm.getSensorTypes().size();j++){
+					if(i > 0 || j > 0)
+						st.append(Utils.CSV_SEPARATOR);
+					st.append(sm.getSensorTypes().get(j).getNameShort() != null ? sm.getSensorTypes().get(j).getNameShort() : "");
+				}
+			}
+			
+			if(st.length() > 0)
+				csv.append("\"" + st.toString() + "\"" + Utils.CSV_SEPARATOR);
+			else
+				csv.append(Utils.CSV_SEPARATOR);
+			
+		}
+		else
+			csv.append(Utils.CSV_SEPARATOR + Utils.CSV_SEPARATOR);
+		
+		if(this.getVariables() != null && this.getVariables().size() > 0){
+			csv.append("\"");
+			for(int i = 0; i < this.getVariables().size(); i++){
+				if(i > 0)
+					csv.append(Utils.CSV_SEPARATOR);
+				csv.append(this.getVariables().get(i).getNameShort() != null ? this.getVariables().get(i).getNameShort() : "");
+			}
+			csv.append("\"" + Utils.CSV_SEPARATOR);
+		}
+		
+		
+		
+		return csv.toString();
 	}
 
 }

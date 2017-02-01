@@ -13,8 +13,6 @@ import javax.xml.bind.annotation.XmlType;
 
 
 @XmlRootElement
-@XmlType(propOrder={ "name", "nameShort", "description", "active", "agencies"})
-
 public class ProgramEntity implements Serializable{
 
     /**
@@ -35,7 +33,7 @@ public class ProgramEntity implements Serializable{
     }
     
     public ProgramEntity(org.jcommops.api.orm.Program program) {
-    	this.setId(Integer.parseInt(program.getObjectId().toString()));
+    	this.setId(Integer.parseInt(program.getObjectId().getIdSnapshot().get("ID").toString()));
     	this.setName(program.getName());
     	this.setNameShort(program.getNameShort());
     	this.setDescription(program.getDescription());
@@ -100,7 +98,7 @@ public class ProgramEntity implements Serializable{
 
 
 	@XmlElementWrapper(name="contacts")
-    @XmlElements(value={@XmlElement(name="role",type=String.class), @XmlElement(name="contact",type=ContactEntity.class)})
+    @XmlElements({@XmlElement(name="role",type=String.class), @XmlElement(name="contact",type=ContactEntity.class)})
     public HashMap<String, ContactEntity> getContactsRoles() {
 		return contactsRoles;
 	}

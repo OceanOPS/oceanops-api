@@ -9,7 +9,6 @@ import javax.xml.bind.annotation.XmlType;
 
 import org.jcommops.api.orm.PtfFamily;
 @XmlRootElement
-@XmlType(propOrder={ "name", "nameShort","description"})
 public class PlatformFamilyEntity  implements Serializable{
 	
 	/**
@@ -26,7 +25,7 @@ public class PlatformFamilyEntity  implements Serializable{
 	}
 	
 	public PlatformFamilyEntity (PtfFamily ptfFamily){
-		this.setId(Integer.parseInt(ptfFamily.getObjectId().toString()));
+		this.setId(Integer.parseInt(ptfFamily.getObjectId().getIdSnapshot().get("ID").toString()));
 		this.setName(ptfFamily.getName());
 		this.setNameShort(ptfFamily.getNameShort());
 		this.setDescription(ptfFamily.getDescription());

@@ -4,10 +4,12 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.jcommops.api.Utils;
 import org.jcommops.api.orm.PtfLoc;
 
+@XmlRootElement
 public class PlatformLocEntity implements Serializable{
 	/**
 	 * 

@@ -2,6 +2,7 @@ package org.jcommops.api.accessors;
 
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -11,6 +12,8 @@ import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.configuration.server.ServerRuntime;
 import org.apache.cayenne.query.SQLTemplate;
 import org.apache.cayenne.query.SelectQuery;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.jcommops.api.Utils;
 import org.jcommops.api.entities.CountryEntity;
 import org.jcommops.api.entities.MasterProgramEntity;
@@ -38,6 +41,7 @@ import org.jcommops.api.orm.SensorType;
 import org.jcommops.api.orm.Variable;
 
 public class PlatformAccessor {
+	private Log log = LogFactory.getLog(PlatformAccessor.class);
 	private ServerRuntime runtime = Utils.getCayenneRuntime();
 	private ObjectContext context = Utils.getCayenneRuntime().getContext();
 
@@ -45,14 +49,15 @@ public class PlatformAccessor {
 		this.runtime = Utils.getCayenneRuntime();
 		this.context = this.runtime.getContext();
 	}
-	
+
 	/**
 	 * Build the list of platform IDs/REFs.
+	 * 
 	 * @return The list of Platform objects, filled with ID and REF only.
 	 */
-	public ArrayList<PlatformEntity> getAllPtfIdsRefs() { 
+	public ArrayList<PlatformEntity> getAllPtfIdsRefs() {
 		// Fetching row data to increase performance/memory consumption
-		SQLTemplate query = new SQLTemplate(Ptf.class, "select id, ref from PTF"); 
+		SQLTemplate query = new SQLTemplate(Ptf.class, "select id, ref from PTF");
 		query.setFetchingDataRows(true);
 		List<DataRow> rows = context.performQuery(query);
 
@@ -63,33 +68,8 @@ public class PlatformAccessor {
 		while (ptf_itr.hasNext()) {
 			DataRow row = ptf_itr.next();
 			PlatformEntity ptf = new PlatformEntity();
-			ptf.setId((Integer)row.get("ID"));
-			ptf.setJcommopsRef((String)row.get("REF"));
-			ptfs_list.add(ptf);
-		}
-
-		return ptfs_list;
-
-	}
-
-	/**
-	 * Build the list of platforms.
-	 * @return The list of Platform objects.
-	 */
-	public ArrayList<PlatformEntity> getAllPtfs() {
-
-		SelectQuery query = new SelectQuery(Ptf.class);
-		List<Ptf> platforms = context.performQuery(query);
-
-		ArrayList<PlatformEntity> ptfs_list = new ArrayList<PlatformEntity>();
-
-		Iterator<Ptf> ptf_itr = platforms.iterator();
-
-		while (ptf_itr.hasNext()) {
-			Ptf a = ptf_itr.next();
-			PlatformEntity ptf = new PlatformEntity();
-			ptf.setId(Cayenne.longPKForObject(a));
-			ptf.setJcommopsRef(a.getRef());
+			ptf.setId((Integer) row.get("ID"));
+			ptf.setJcommopsRef((String) row.get("REF"));
 			ptfs_list.add(ptf);
 		}
 
@@ -99,6 +79,7 @@ public class PlatformAccessor {
 
 	/**
 	 * Build the reference list of statuses.
+	 * 
 	 * @return The list of PlatformStatus objects.
 	 */
 	public ArrayList<PlatformStatusEntity> getPtfStatuses() {// List of Statuses
@@ -111,19 +92,16 @@ public class PlatformAccessor {
 
 		while (statuses_itr.hasNext()) {
 			PtfStatus a = statuses_itr.next();
-			PlatformStatusEntity status = new PlatformStatusEntity();
-			status.setId(Utils.ConvertIDStringtoLong(a.getObjectId().toString()));
-			status.setNameShort(a.getNameShort());
-			status.setName(a.getName());
-			status.setDescription(a.getDescription());
+			PlatformStatusEntity status = new PlatformStatusEntity(a);
 			statuses_list.add(status);
 		}
 		return statuses_list;
 
 	}
 
-	public ArrayList<PlatformFamilyEntity> getPtfFamilies() { // List of platforms'
-														// families
+	public ArrayList<PlatformFamilyEntity> getPtfFamilies() { // List of
+																// platforms'
+		// families
 		SelectQuery Family_query = new SelectQuery(PtfFamily.class);
 		List<PtfFamily> families = context.performQuery(Family_query);
 
@@ -141,7 +119,8 @@ public class PlatformAccessor {
 
 	}
 
-	public ArrayList<PlatformTypeEntity> getPtfTypes() { // List of platforms' types
+	public ArrayList<PlatformTypeEntity> getPtfTypes() { // List of platforms'
+															// types
 		SelectQuery Type_query = new SelectQuery(PtfType.class);
 		List<PtfType> types = context.performQuery(Type_query);
 
@@ -159,7 +138,7 @@ public class PlatformAccessor {
 	}
 
 	public ArrayList<PlatformModelEntity> getPtfModels() { // List of platforms'
-														// models
+															// models
 		SelectQuery Model_query = new SelectQuery(PtfModel.class);
 		List<PtfModel> models = context.performQuery(Model_query);
 
@@ -195,8 +174,9 @@ public class PlatformAccessor {
 	}
 
 	public ArrayList<MasterProgramEntity> getMasterProgram() { // List of
-															// platforms' master
-															// programs
+																// platforms'
+																// master
+																// programs
 		SelectQuery MasterProgram_query = new SelectQuery(MasterProg.class);
 		List<MasterProg> mprograms = context.performQuery(MasterProgram_query);
 
@@ -214,7 +194,7 @@ public class PlatformAccessor {
 	}
 
 	public ArrayList<NetworkPtfEntity> getPtfNetworks() { // List of platforms'
-													// Networks
+		// Networks
 		SelectQuery Network_query = new SelectQuery(Network.class);
 		List<Network> networks = context.performQuery(Network_query);
 
@@ -224,19 +204,16 @@ public class PlatformAccessor {
 
 		while (networks_itr.hasNext()) {
 			Network a = networks_itr.next();
-			NetworkPtfEntity network = new NetworkPtfEntity();
-			network.setId(Utils.ConvertIDStringtoLong(a.getObjectId().toString()));
-			network.setNameShort(a.getNameShort());
-			network.setName(a.getName());
-			network.setDescription(a.getDescription());
+			NetworkPtfEntity network = new NetworkPtfEntity(a);
 			networks_list.add(network);
 		}
 		return networks_list;
 
 	}
 
-	public ArrayList<SensorModelEntity> getPtfSensorModel() { // List of platforms'
-														// sensors model
+	public ArrayList<SensorModelEntity> getPtfSensorModel() { // List of
+																// platforms'
+		// sensors model
 		SelectQuery SensModel_query = new SelectQuery(SensorModel.class);
 		List<SensorModel> SensModels = context.performQuery(SensModel_query);
 
@@ -246,19 +223,16 @@ public class PlatformAccessor {
 
 		while (SensModels_itr.hasNext()) {
 			SensorModel a = SensModels_itr.next();
-			SensorModelEntity SensModel = new SensorModelEntity();
-			SensModel.setId(Utils.ConvertIDStringtoLong(a.getObjectId().toString()));
-			SensModel.setNameShort(a.getNameShort());
-			SensModel.setName(a.getName());
-			SensModel.setDescription(a.getDescription());
+			SensorModelEntity SensModel = new SensorModelEntity(a);
 			SensModels_list.add(SensModel);
 		}
 		return SensModels_list;
 
 	}
 
-	public ArrayList<SensorTypeEntity> getPtfSensorType() { // List of platforms'
-														// sensors type
+	public ArrayList<SensorTypeEntity> getPtfSensorType() { // List of
+															// platforms'
+		// sensors type
 		SelectQuery SensType_query = new SelectQuery(SensorType.class);
 		List<SensorType> SensTypes = context.performQuery(SensType_query);
 
@@ -268,11 +242,7 @@ public class PlatformAccessor {
 
 		while (SensTypes_itr.hasNext()) {
 			SensorType a = SensTypes_itr.next();
-			SensorTypeEntity SensType = new SensorTypeEntity();
-			SensType.setId(Utils.ConvertIDStringtoLong(a.getObjectId().toString()));
-			SensType.setNameShort(a.getNameShort());
-			SensType.setName(a.getName());
-			SensType.setDescription(a.getDescription());
+			SensorTypeEntity SensType = new SensorTypeEntity(a);
 			SensTypes_list.add(SensType);
 		}
 		return SensTypes_list;
@@ -280,7 +250,7 @@ public class PlatformAccessor {
 	}
 
 	public ArrayList<VariableEntity> getPtfVariables() { // List of platforms'
-													// variables
+		// variables
 
 		SelectQuery Variable_query = new SelectQuery(Variable.class);
 		List<Variable> Variables = context.performQuery(Variable_query);
@@ -291,18 +261,14 @@ public class PlatformAccessor {
 
 		while (Variables_itr.hasNext()) {
 			Variable a = Variables_itr.next();
-			VariableEntity var = new VariableEntity();
-			var.setId(Utils.ConvertIDStringtoLong(a.getObjectId().toString()));
-			var.setNameShort(a.getNameShort());
-			var.setName(a.getName());
-			var.setDescription(a.getDescription());
+			VariableEntity var = new VariableEntity(a);
 			Variables_list.add(var);
 		}
 		return Variables_list;
 
 	}
 
-	public ArrayList<CountryEntity>getPtfCountries() { // List of platforms'
+	public ArrayList<CountryEntity> getPtfCountries() { // List of platforms'
 		// variables
 
 		SelectQuery Country_query = new SelectQuery(Country.class);
@@ -314,7 +280,7 @@ public class PlatformAccessor {
 
 		while (countries_itr.hasNext()) {
 			Country a = countries_itr.next();
-			CountryEntity c = new CountryEntity(a);			
+			CountryEntity c = new CountryEntity(a);
 			countries_list.add(c);
 		}
 		return countries_list;
@@ -322,83 +288,450 @@ public class PlatformAccessor {
 	}
 
 	public PlatformEntity getPtfbyID(long id) {// Platform's details by ID
-
-		Ptf platform = Cayenne.objectForPK(context, Ptf.class, id); // Get the
-																	// platform
-		// Create and select the attributs and or object to "platform"
-		PlatformEntity ptf = new PlatformEntity(platform);
+		// Find the platform
+		Ptf platform = Cayenne.objectForPK(context, Ptf.class, id); 
+		
+		PlatformEntity ptf = null;
+		// Create and select the attributes and or object to "platform"
+		if(platform != null)
+			ptf = new PlatformEntity(platform);
 
 		return ptf;
 
 	}
 
-	public ArrayList<PlatformEntity> getPtfbySelectedParam(String ptfStatus, String ptfFamily, String ptfType,
+	/**
+	 * Filters and returns a subset of platform based on the given parameters.
+	 * Parameters can be multi-valued. For and intersection, "." symbol will be
+	 * used. For an union, "," symbol will be used (where applicable)
+	 * 
+	 * @param ptfStatus
+	 * @param ptfFamily
+	 * @param ptfType
+	 * @param ptfModel
+	 * @param program
+	 * @param network
+	 * @param masterProg
+	 * @param variable
+	 * @param sensorModel
+	 * @param sensorType
+	 * @param ship
+	 * @param country
+	 * @return
+	 */
+	public HashMap<Integer, String> getPtfbySelectedParam(String ptfStatus, String ptfFamily, String ptfType,
 			String ptfModel, String program, String network, String masterProg, String variable, String sensorModel,
 			String sensorType, String ship, String country) {
 
 		// QUERY PARAMETERS
-		StringBuilder query = new StringBuilder("select ptf.id from ptf where 1=1");
-		
-		if(ptfStatus != null && !ptfStatus.isEmpty()){
-			// Adding status clause
-			
+		String intersectionSymbol = ".", unionSymbol = ",";
+		StringBuilder query = new StringBuilder("select ptf.id, ptf.ref from ptf where 1=1");
+		StringBuilder whereClause = new StringBuilder();
+		boolean usingID = false;
+
+		// Platform status
+		if (ptfStatus != null && !ptfStatus.isEmpty()) {
+			String[] parts = ptfStatus.split(unionSymbol);
+			// Testing if name or ID are used
+			usingID = Utils.isInt(parts[0]);
+			if (usingID) {
+				whereClause.append(" and (ptf.ptf_status_id in (");
+			} else {
+				whereClause.append(" and (ptf.ptf_status_id in (select id from ptf_status where lower(name_short) in (");
+			}
+
+			for (int i = 0; i < parts.length; i++) {
+				if (i > 0) {
+					whereClause.append(",");
+				}
+				if (!usingID)
+					whereClause.append("'");
+				whereClause.append(parts[i].toLowerCase());
+				if (!usingID)
+					whereClause.append("'");
+			}
+			whereClause.append("))");
+			if (!usingID)
+				whereClause.append(")");
 		}
 
+		// Platform family
+		if (ptfFamily != null && !ptfFamily.isEmpty()) {
+			String[] parts = ptfFamily.split(unionSymbol);
+			// Testing if name or ID are used
+			usingID = Utils.isInt(parts[0]);
+			if (usingID) {
+				whereClause.append(" and (ptf.ptf_model_id in (select id from ptf_model where ptf_type_id in (select id from ptf_type where ptf_family_id in (");
+			} else {
+				whereClause.append(" and (ptf.ptf_model_id in (select id from ptf_model where ptf_type_id in (select id from ptf_type where ptf_family_id in (select id from ptf_family where lower(name_short) in (");
+			}
+
+			for (int i = 0; i < parts.length; i++) {
+				if (i > 0) {
+					whereClause.append(",");
+				}
+				if (!usingID)
+					whereClause.append("'");
+				whereClause.append(parts[i].toLowerCase());
+				if (!usingID)
+					whereClause.append("'");
+			}
+			whereClause.append("))))");
+			if (!usingID)
+				whereClause.append(")");
+		}
+
+		// Platform Type
+		if (ptfType != null && !ptfType.isEmpty()) {
+			String[] parts = ptfType.split(unionSymbol);
+			// Testing if name or ID are used
+			usingID = Utils.isInt(parts[0]);
+			if (usingID) {
+				whereClause.append(" and (ptf.ptf_model_id in (select id from ptf_model where ptf_type_id in (");
+			} else {
+				whereClause.append(" and (ptf.ptf_model_id in (select id from ptf_model where ptf_type_id in (select id from ptf_type where lower(name_short) in (");
+			}
+
+			for (int i = 0; i < parts.length; i++) {
+				if (i > 0) {
+					whereClause.append(",");
+				}
+				if (!usingID)
+					whereClause.append("'");
+				whereClause.append(parts[i].toLowerCase());
+				if (!usingID)
+					whereClause.append("'");
+			}
+			whereClause.append(")))");
+			if (!usingID)
+				whereClause.append(")");
+		}
+
+		// Platform Model
+		if (ptfModel != null && !ptfModel.isEmpty()) {
+			String[] parts = ptfModel.split(unionSymbol);
+			// Testing if name or ID are used
+			usingID = Utils.isInt(parts[0]);
+			if (usingID) {
+				whereClause.append(" and (ptf.ptf_model_id in (");
+			} else {
+				whereClause.append(" and (ptf.ptf_model_id in (select id from ptf_model where lower(name_short) in (");
+			}
+
+			for (int i = 0; i < parts.length; i++) {
+				if (i > 0) {
+					whereClause.append(",");
+				}
+				if (!usingID)
+					whereClause.append("'");
+				whereClause.append(parts[i].toLowerCase());
+				if (!usingID)
+					whereClause.append("'");
+			}
+			whereClause.append("))");
+			if (!usingID)
+				whereClause.append(")");
+		}
+
+		// Program
+		if (program != null && !program.isEmpty()) {
+			String[] parts = program.split(unionSymbol);
+			// Testing if name or ID are used
+			usingID = Utils.isInt(parts[0]);
+			if (usingID) {
+				whereClause.append(" and (ptf.program_id in (");
+			} else {
+				whereClause.append(" and (ptf.program_id in (select id from program where lower(name_short) in (");
+			}
+
+			for (int i = 0; i < parts.length; i++) {
+				if (i > 0) {
+					whereClause.append(",");
+				}
+				if (!usingID)
+					whereClause.append("'");
+				whereClause.append(parts[i].toLowerCase());
+				if (!usingID)
+					whereClause.append("'");
+			}
+			whereClause.append("))");
+			if (!usingID)
+				whereClause.append(")");
+		}
+
+		// Network
+		if (network != null && !network.isEmpty()) {
+			// Intersection
+			if (network.contains(intersectionSymbol)) {
+				String[] parts = network.split("\\" + intersectionSymbol);
+				// Testing if name or ID are used
+				usingID = Utils.isInt(parts[0]);
+
+				for (int i = 0; i < parts.length; i++) {
+					whereClause.append(" and exists (select null from network_ptf np where np.ptf_id = ptf.id and np.network_id =");
+					if (!usingID) {
+						whereClause.append("(select id from network where lower(name_short) = '");
+					}
+
+					whereClause.append(parts[i].toLowerCase());
+					if (!usingID)
+						whereClause.append("')");
+
+					whereClause.append(")");
+				}
+
+			}
+			// Union
+			else {
+				String[] parts = network.split(unionSymbol);
+				// Testing if name or ID are used
+				usingID = Utils.isInt(parts[0]);
+				whereClause.append(" and exists (select null from network_ptf np where np.ptf_id = ptf.id and np.network_id in (");
+				if (!usingID) {
+					whereClause.append("select id from network where lower(name_short) in (");
+				}
+
+				for (int i = 0; i < parts.length; i++) {
+					if (i > 0) {
+						whereClause.append(",");
+					}
+					if (!usingID)
+						whereClause.append("'");
+					whereClause.append(parts[i].toLowerCase());
+					if (!usingID)
+						whereClause.append("'");
+				}
+				whereClause.append("))");
+				if (!usingID)
+					whereClause.append(")");
+			}
+		}
+
+		// Master Program
+		if (masterProg != null && !masterProg.isEmpty()) {
+			String[] parts = masterProg.split(unionSymbol);
+			// Testing if name or ID are used
+			usingID = Utils.isInt(parts[0]);
+			whereClause.append(" and (ptf.program_id in (select id from program where master_prog_id in (");
+			if (!usingID) {
+				whereClause.append("select id from master_prog where lower(name_short) in (");
+			}
+
+			for (int i = 0; i < parts.length; i++) {
+				if (i > 0) {
+					whereClause.append(",");
+				}
+				if (!usingID)
+					whereClause.append("'");
+				whereClause.append(parts[i].toLowerCase());
+				if (!usingID)
+					whereClause.append("'");
+			}
+			whereClause.append(")))");
+			if (!usingID)
+				whereClause.append(")");
+		}
+
+		// Variable
+		if (variable != null && !variable.isEmpty()) {
+			// Intersection
+			if (variable.contains(intersectionSymbol)) {
+				String[] parts = variable.split("\\" + intersectionSymbol);
+
+				for (int i = 0; i < parts.length; i++) {
+					whereClause.append(" and exists (select null from ptf_variable pv where pv.ptf_id = ptf.id and pv.variable_id =");
+					whereClause.append(parts[i].toLowerCase());
+					whereClause.append(")");
+				}
+
+			}
+			// Union
+			else {
+				String[] parts = variable.split(unionSymbol);
+
+				whereClause.append(" and exists (select null from ptf_variable pv where pv.ptf_id = ptf.id and pv.variable_id in (");
+
+				for (int i = 0; i < parts.length; i++) {
+					if (i > 0) {
+						whereClause.append(",");
+					}
+					whereClause.append(parts[i].toLowerCase());
+				}
+				whereClause.append("))");
+			}
+		}
+
+		// Sensor Model
+		if (sensorModel != null && !sensorModel.isEmpty()) {
+			// Intersection
+			if (sensorModel.contains(intersectionSymbol)) {
+				String[] parts = sensorModel.split("\\" + intersectionSymbol);
+				// Testing if name or ID are used
+				usingID = Utils.isInt(parts[0]);
+
+				for (int i = 0; i < parts.length; i++) {
+					whereClause.append(" and exists (select null from ptf_sensor_model psm where psm.ptf_id = ptf.id and psm.sensor_model_id =");
+					if (!usingID) {
+						whereClause.append("(select id from sensor_model where lower(name_short) = '");
+					}
+
+					whereClause.append(parts[i].toLowerCase());
+					if (!usingID)
+						whereClause.append("')");
+
+					whereClause.append(")");
+				}
+
+			}
+			// Union
+			else {
+				String[] parts = sensorModel.split(unionSymbol);
+				// Testing if name or ID are used
+				usingID = Utils.isInt(parts[0]);
+				whereClause.append(" and exists (select null from ptf_sensor_model psm where psm.ptf_id = ptf.id and psm.sensor_model_id in (");
+				if (!usingID) {
+					whereClause.append("select id from sensor_model where lower(name_short) in (");
+				}
+
+				for (int i = 0; i < parts.length; i++) {
+					if (i > 0) {
+						whereClause.append(",");
+					}
+					if (!usingID)
+						whereClause.append("'");
+					whereClause.append(parts[i].toLowerCase());
+					if (!usingID)
+						whereClause.append("'");
+				}
+				whereClause.append("))");
+				if (!usingID)
+					whereClause.append(")");
+			}
+		}
+
+		// Sensor Type
+		if (sensorType != null && !sensorType.isEmpty()) {
+			// Intersection
+			if (sensorType.contains(intersectionSymbol)) {
+				String[] parts = sensorType.split("\\" + intersectionSymbol);
+				// Testing if name or ID are used
+				usingID = Utils.isInt(parts[0]);
+
+				for (int i = 0; i < parts.length; i++) {
+					whereClause.append(" and exists (select null from ptf_sensor_model psm where psm.ptf_id = ptf.id and psm.sensor_model_id = (select sensor_model_id from sensor_model_sensor_type smst where smst.sensor_model_id = psm.sensor_model_id and smst.sensot_type_id = ");
+					if (!usingID) {
+						whereClause.append("(select id from sensor_type where lower(name_short) = '");
+					}
+
+					whereClause.append(parts[i].toLowerCase());
+					if (!usingID)
+						whereClause.append("')");
+
+					whereClause.append("))");
+				}
+
+			}
+			// Union
+			else {
+				String[] parts = sensorType.split(unionSymbol);
+				// Testing if name or ID are used
+				usingID = Utils.isInt(parts[0]);
+				whereClause.append(" and exists (select null from ptf_sensor_model psm where psm.ptf_id = ptf.id and psm.sensor_model_id = (select sensor_model_id from sensor_model_sensor_type smst where smst.sensor_model_id = psm.sensor_model_id and smst.sensot_type_id in (");
+				if (!usingID) {
+					whereClause.append("select id from sensor_type where lower(name_short) in (");
+				}
+
+				for (int i = 0; i < parts.length; i++) {
+					if (i > 0) {
+						whereClause.append(",");
+					}
+					if (!usingID)
+						whereClause.append("'");
+					whereClause.append(parts[i].toLowerCase());
+					if (!usingID)
+						whereClause.append("'");
+				}
+				if (!usingID)
+					whereClause.append(")");
+				whereClause.append(")))");
+			}
+		}
+
+		// Ship
+		if (ship != null && !ship.isEmpty()) {
+			String[] parts = ship.split(unionSymbol);
+			// Testing if name or ID are used
+			usingID = Utils.isInt(parts[0]);
+			whereClause.append(" and ((select d.ship_id from ptf_deployment d where d.id = ptf.ptf_depl_id) in (");
+			if (!usingID) {
+				whereClause.append("select id from ship where ref in (");
+			}
+
+			for (int i = 0; i < parts.length; i++) {
+				if (i > 0) {
+					whereClause.append(",");
+				}
+				if (!usingID)
+					whereClause.append("'");
+				whereClause.append(parts[i]);
+				if (!usingID)
+					whereClause.append("'");
+			}
+			if (!usingID)
+				whereClause.append(")");
+			whereClause.append("))");
+		}
+
+		// Ship
+		if (country != null && !country.isEmpty()) {
+			String[] parts = country.split(unionSymbol);
+			// Testing if name or ID are used
+			usingID = Utils.isInt(parts[0]);
+			whereClause.append(" and ((select pr.country_id from program pr where pr.id = ptf.program_id) in (");
+			if (!usingID) {
+				whereClause.append("select id from country where code2 in (");
+			}
+
+			for (int i = 0; i < parts.length; i++) {
+				if (i > 0) {
+					whereClause.append(",");
+				}
+				if (!usingID)
+					whereClause.append("'");
+				whereClause.append(parts[i]);
+				if (!usingID)
+					whereClause.append("'");
+			}
+			if (!usingID)
+				whereClause.append(")");
+			whereClause.append("))");
+		}
+
+		query.append(whereClause);
 		
 		SQLTemplate query_search = new SQLTemplate(Ptf.class, query.toString());
-		List<Ptf> platforms = context.performQuery(query_search);
+		query_search.setFetchingDataRows(true);
+		List<DataRow> rows = context.performQuery(query_search);
 
-		ArrayList<PlatformEntity> ptfs_list = new ArrayList<PlatformEntity>();
+		HashMap<Integer, String> ptfList = new HashMap<Integer, String>();
 
-		Iterator<Ptf> ptf_itr = platforms.iterator();
+		Iterator<DataRow> ptf_itr = rows.iterator();
 
 		while (ptf_itr.hasNext()) {
-			Ptf a = ptf_itr.next();
-			PlatformEntity ptf = new PlatformEntity();
-			ptf.setId(Cayenne.longPKForObject(a));
-			ptf.setJcommopsRef(a.getRef());
-			ptfs_list.add(ptf);
+			DataRow row = ptf_itr.next();
+			ptfList.put((Integer) row.get("ID"), (String) row.get("REF"));
 		}
 
-		return ptfs_list;
+		return ptfList;
 	}
 
 	public String WritePtfCSV(long id) throws NullPointerException {
-		String CVS;
-		StringWriter strW = new StringWriter();
-
+		String csv = null;
+		
 		PlatformEntity ptfm = getPtfbyID(id);
-		strW.write(ptfm.getId() + ";" + Utils.CheckStringNull(ptfm.getJcommopsRef()) + ";"
-				+ Utils.CheckStringNull(ptfm.getTelecom().getTelecomNum()) + ";"
-				+ Utils.CheckStringNull(ptfm.getTelecom().getTelecomType()) + ";"
-				+ Utils.CheckStringNull(ptfm.getInternalRef()) + ";" + Utils.CheckStringNull(ptfm.getSerialRef()) + ";"
-				+ Utils.CheckStringNull(ptfm.getPtfFamily().getNameShort()) + ";"
-				+ Utils.CheckStringNull(ptfm.getPtfType().getNameShort()) + ";"
-				+ Utils.CheckStringNull(ptfm.getPtfModel().getNameShort()) + ";"
-				+ Utils.CheckStringNull(ptfm.getProgram().getNameShort()) + ";"
-				+ Utils.CheckStringNull(ptfm.getProgram().getCountry().getName()) + ";"
-				+ Utils.CheckStringNull((ptfm.getProgram().getMasterProgram().getNameShort()) + ";"
-				+ Utils.CheckStringNull(ptfm.getDeployement().getDeployementDate()) + ";"
-				+ Utils.CheckBigDcm((ptfm.getDeployement().getLat())) + ";"
-				+ Utils.CheckBigDcm(ptfm.getDeployement().getLon()) + ";"
-				+ Utils.CheckBigDcm(ptfm.getDeployement().getDeployementScore()) + ";"
-				+ Utils.CheckBigDcm(ptfm.getDeployement().getDeployementDensity()) + ";"
-				+ Utils.CheckStringNull(ptfm.getNotificationDate()) + ";"
-				+ Utils.CheckStringNull(ptfm.getDeployement().getShip().getName()) + ";"
-				+ Utils.CheckStringNull(ptfm.getDeployement().getShip().getRef()) + ";"
-				+ Utils.CheckStringNull(ptfm.getLatestLocation().getDate())) + ";"
-				+ Utils.CheckBigDcm((ptfm.getLatestLocation().getLat())) + ";"
-				+ Utils.CheckBigDcm(ptfm.getLatestLocation().getLon()) + ";" + Utils.CheckInt(ptfm.getAge()) + ";"
-				+ Utils.CheckBigDcm(ptfm.getConfiguration().getCycleTime()) + ";"
-				+ Utils.CheckBigDcm(ptfm.getConfiguration().getProfilePressure()) + ";"
-				+ Utils.CheckBigDcm(ptfm.getConfiguration().getDriftPressure()) + ";"
-				+ Utils.CheckInt(ptfm.getConfiguration().getIceDetection()) + ";"
-				+ Utils.CheckStringNull(ptfm.getSensorModel().getNameShort()) + ";"
-				+ Utils.GetSensorTypesListToString(ptfm.getSensorModel().getSensorTypes()) + ";"
-				+ Utils.CheckStringNull(Utils.GetVariablesListToString(ptfm.getVariables())) + ";" + "\n");
-
-		CVS = strW.toString();
-		return CVS;
+		csv = ptfm.toCSV();
+		
+		return csv;
 
 	}
 

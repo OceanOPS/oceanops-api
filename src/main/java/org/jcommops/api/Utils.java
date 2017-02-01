@@ -21,6 +21,7 @@ public class Utils {
 	private static ServerRuntime cayenneRuntime;
 	private static Properties properties;
 	private static String projectName, projectVersion;
+	public static final String CSV_SEPARATOR = ";";
 
 	private Utils() {
 	}
@@ -76,7 +77,8 @@ public class Utils {
 	public static String GetIsoDate(Date date) {
 		String dateISO = null;
 		DateFormat formatISO = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-		dateISO = formatISO.format(date);
+		if(date != null)
+			dateISO = formatISO.format(date);
 		return dateISO;
 	}
 
@@ -125,6 +127,16 @@ public class Utils {
 		String SqlValueString = str.trim().replace(",", "','");
 		return SqlValueString;
 	}
+	
+	public static boolean isNumeric(String str)
+	{
+	  return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
+	}
+	
+	public static boolean isInt(String str)
+	{
+	  return str.matches("-?\\d+");  //match a number with optional '-'.
+	}
 
 	public static boolean CheckIntValueForSql(String str) {
 		String[] strTab = str.trim().split(",");
@@ -142,17 +154,8 @@ public class Utils {
 
 	}
 
-	public static String CheckStringNull(String str_) {
-		String str = " ";
-		try {
-			str = str_;
-			if (str_ == null) {
-				str = " ";
-			}
-		} catch (NullPointerException e) {
-			str = " ";
-		}
-		return str;
+	public static String checkStringNull(String str) {
+		return str == null ? "" : str;
 	}
 
 	public static String CheckInt(Integer l) {

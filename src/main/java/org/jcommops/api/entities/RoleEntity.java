@@ -2,11 +2,12 @@ package org.jcommops.api.entities;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 import org.jcommops.api.orm.Role;
 
-@XmlType(propOrder={ "name", "nameShort"})
+@XmlRootElement
 public class RoleEntity {
 	private long id;
 	private String name;
@@ -19,7 +20,7 @@ public class RoleEntity {
 	}
 	
 	public RoleEntity (Role role){	
-		this.setId(Integer.parseInt(role.getObjectId().toString()));
+		this.setId(Integer.parseInt(role.getObjectId().getIdSnapshot().get("ID").toString()));
 		this.setName(role.getName());
 		this.setNameShort(role.getNameShort());
 	}
