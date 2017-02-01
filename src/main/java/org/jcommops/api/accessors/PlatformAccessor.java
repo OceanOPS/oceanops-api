@@ -17,7 +17,7 @@ import org.apache.commons.logging.LogFactory;
 import org.jcommops.api.Utils;
 import org.jcommops.api.entities.CountryEntity;
 import org.jcommops.api.entities.MasterProgramEntity;
-import org.jcommops.api.entities.NetworkPtfEntity;
+import org.jcommops.api.entities.NetworkEntity;
 import org.jcommops.api.entities.PlatformEntity;
 import org.jcommops.api.entities.PlatformFamilyEntity;
 import org.jcommops.api.entities.PlatformModelEntity;
@@ -193,18 +193,18 @@ public class PlatformAccessor {
 
 	}
 
-	public ArrayList<NetworkPtfEntity> getPtfNetworks() { // List of platforms'
+	public ArrayList<NetworkEntity> getPtfNetworks() { // List of platforms'
 		// Networks
 		SelectQuery Network_query = new SelectQuery(Network.class);
 		List<Network> networks = context.performQuery(Network_query);
 
-		ArrayList<NetworkPtfEntity> networks_list = new ArrayList<NetworkPtfEntity>();
+		ArrayList<NetworkEntity> networks_list = new ArrayList<NetworkEntity>();
 
 		Iterator<Network> networks_itr = networks.iterator();
 
 		while (networks_itr.hasNext()) {
 			Network a = networks_itr.next();
-			NetworkPtfEntity network = new NetworkPtfEntity(a);
+			NetworkEntity network = new NetworkEntity(a);
 			networks_list.add(network);
 		}
 		return networks_list;
@@ -322,6 +322,19 @@ public class PlatformAccessor {
 	public HashMap<Integer, String> getPtfbySelectedParam(String ptfStatus, String ptfFamily, String ptfType,
 			String ptfModel, String program, String network, String masterProg, String variable, String sensorModel,
 			String sensorType, String ship, String country) {
+		// Sanitize all parameters
+		ptfStatus = Utils.basicSanitize(ptfStatus);
+		ptfFamily = Utils.basicSanitize(ptfFamily);
+		ptfType = Utils.basicSanitize(ptfType);
+		ptfModel = Utils.basicSanitize(ptfModel);
+		program = Utils.basicSanitize(program);
+		network = Utils.basicSanitize(network);
+		masterProg = Utils.basicSanitize(masterProg);
+		variable = Utils.basicSanitize(variable);
+		sensorModel = Utils.basicSanitize(sensorModel);
+		sensorType = Utils.basicSanitize(sensorType);
+		ship = Utils.basicSanitize(ship);
+		country = Utils.basicSanitize(country);
 
 		// QUERY PARAMETERS
 		String intersectionSymbol = ".", unionSymbol = ",";

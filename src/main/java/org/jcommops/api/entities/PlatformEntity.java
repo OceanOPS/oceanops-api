@@ -35,8 +35,8 @@ public class PlatformEntity implements Serializable{
 	private String endingDate;
 	private ProgramEntity program;
 	private ConfigurationEntity configuration;
-	private ArrayList<SensorModelEntity> sensorModels;
-	private ArrayList<VariableEntity> variables;
+	private List<SensorModelEntity> sensorModels;
+	private List<VariableEntity> variables;
 
 	public PlatformEntity() {
 	}
@@ -204,21 +204,21 @@ public class PlatformEntity implements Serializable{
 
 		
 	@XmlElement
-	public ArrayList<SensorModelEntity> getSensorModel() {
+	public List<SensorModelEntity> getSensorModel() {
 		return sensorModels;
 	}
 
-	public void setSensorModel(ArrayList<SensorModelEntity> sensorModels) {
+	public void setSensorModel(List<SensorModelEntity> sensorModels) {
 		this.sensorModels = sensorModels;
 	}
 
 	@XmlElementWrapper(name = "variables")
 	@XmlElements(@XmlElement(name = "variable", type = VariableEntity.class))
-	public ArrayList<VariableEntity> getVariables() {
+	public List<VariableEntity> getVariables() {
 		return variables;
 	}
 
-	public void setVariables(ArrayList<VariableEntity> variables) {
+	public void setVariables(List<VariableEntity> variables) {
 		this.variables = variables;
 	}
 	
@@ -317,7 +317,7 @@ public class PlatformEntity implements Serializable{
 			csv.append((this.getConfiguration().getCycleTime() != null ? this.getConfiguration().getCycleTime() : "") + Utils.CSV_SEPARATOR);
 			csv.append((this.getConfiguration().getProfilePressure() != null ? this.getConfiguration().getProfilePressure() : "") + Utils.CSV_SEPARATOR);
 			csv.append((this.getConfiguration().getDriftPressure() != null ? this.getConfiguration().getDriftPressure() : "") + Utils.CSV_SEPARATOR);
-			csv.append(this.getConfiguration().getIceDetection() + Utils.CSV_SEPARATOR);
+			csv.append((this.getConfiguration().getIceDetection() != null ? this.getConfiguration().getIceDetection() : "") + Utils.CSV_SEPARATOR);
 		}
 		else
 			csv.append(Utils.CSV_SEPARATOR + Utils.CSV_SEPARATOR + Utils.CSV_SEPARATOR + Utils.CSV_SEPARATOR);

@@ -24,7 +24,7 @@ import org.apache.commons.logging.LogFactory;
 import org.jcommops.api.accessors.PlatformAccessor;
 import org.jcommops.api.entities.CountryEntity;
 import org.jcommops.api.entities.MasterProgramEntity;
-import org.jcommops.api.entities.NetworkPtfEntity;
+import org.jcommops.api.entities.NetworkEntity;
 import org.jcommops.api.entities.PlatformEntity;
 import org.jcommops.api.entities.PlatformFamilyEntity;
 import org.jcommops.api.entities.PlatformModelEntity;
@@ -50,7 +50,7 @@ public class WebServiceManager {
 
 	@GET
 	@Path("platforms.json")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	public ArrayList<PlatformEntity> getAllPtfsJSON() {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<PlatformEntity> ptfmList = m.getAllPtfIdsRefs();
@@ -94,7 +94,7 @@ public class WebServiceManager {
 
 	@GET
 	@Path("platform.json/{id}")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	public PlatformEntity getPtfbyIdJSON(@PathParam("id") long id) {
 		PlatformAccessor m = new PlatformAccessor();
 		PlatformEntity ptfm = m.getPtfbyID(id);
@@ -149,7 +149,7 @@ public class WebServiceManager {
 
 	@GET
 	@Path("platforms.json/find")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	public ArrayList<PlatformEntity> getSelectedPlatformsJSON(@QueryParam("status") String status,
 			@QueryParam("family") String family, @QueryParam("type") String type, @QueryParam("model") String model,
 			@QueryParam("program") String program, @QueryParam("network") String network,
@@ -222,7 +222,7 @@ public class WebServiceManager {
 
 	@GET
 	@Path("platforms.json/details/find")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	public ArrayList<PlatformEntity> getSelectedPlatformsDetailsJSON(@QueryParam("status") String status,
 			@QueryParam("family") String family, @QueryParam("type") String type, @QueryParam("model") String model,
 			@QueryParam("program") String program, @QueryParam("network") String network,
@@ -288,7 +288,7 @@ public class WebServiceManager {
 
 	@GET
 	@Path("ptfStatuses.json")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	public ArrayList<PlatformStatusEntity> getAllPtfStatusesJSON() {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<PlatformStatusEntity> List = new ArrayList<PlatformStatusEntity>();
@@ -322,7 +322,7 @@ public class WebServiceManager {
 
 	@GET
 	@Path("ptfFamilies.json")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	public ArrayList<PlatformFamilyEntity> getAllPtfFamiliesJSON() {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<PlatformFamilyEntity> List = new ArrayList<PlatformFamilyEntity>();
@@ -358,7 +358,7 @@ public class WebServiceManager {
 
 	@GET
 	@Path("ptfTypes.json")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	public ArrayList<PlatformTypeEntity> getAllPtfTypesJSON() {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<PlatformTypeEntity> List = new ArrayList<PlatformTypeEntity>();
@@ -394,7 +394,7 @@ public class WebServiceManager {
 
 	@GET
 	@Path("ptfModels.json")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	public ArrayList<PlatformModelEntity> getAllPtfModelsJSON() {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<PlatformModelEntity> List = new ArrayList<PlatformModelEntity>();
@@ -429,7 +429,7 @@ public class WebServiceManager {
 
 	@GET
 	@Path("programs.json")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	public ArrayList<ProgramEntity> getAllPtfProgramsJSON() {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<ProgramEntity> List = new ArrayList<ProgramEntity>();
@@ -462,7 +462,7 @@ public class WebServiceManager {
 
 	@GET
 	@Path("countries.json")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	public ArrayList<CountryEntity> getAllCountriesJSON() {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<CountryEntity> List = new ArrayList<CountryEntity>();
@@ -496,7 +496,7 @@ public class WebServiceManager {
 
 	@GET
 	@Path("masterPrograms.json")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	public ArrayList<MasterProgramEntity> getAllPtfMasterProgramsJSON() {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<MasterProgramEntity> List = new ArrayList<MasterProgramEntity>();
@@ -514,9 +514,9 @@ public class WebServiceManager {
 
 	@GET
 	@Path("networks.xml")
-	public ArrayList<NetworkPtfEntity> getAllPtfNetworksXML() {
+	public ArrayList<NetworkEntity> getAllPtfNetworksXML() {
 		PlatformAccessor m = new PlatformAccessor();
-		ArrayList<NetworkPtfEntity> List = new ArrayList<NetworkPtfEntity>();
+		ArrayList<NetworkEntity> List = new ArrayList<NetworkEntity>();
 		try {
 			List = m.getPtfNetworks();
 		} catch (CayenneRuntimeException CRE) {
@@ -531,10 +531,10 @@ public class WebServiceManager {
 
 	@GET
 	@Path("networks.json")
-	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<NetworkPtfEntity> getAllPtfNetworksJSON() {
+	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
+	public ArrayList<NetworkEntity> getAllPtfNetworksJSON() {
 		PlatformAccessor m = new PlatformAccessor();
-		ArrayList<NetworkPtfEntity> List = new ArrayList<NetworkPtfEntity>();
+		ArrayList<NetworkEntity> List = new ArrayList<NetworkEntity>();
 		try {
 			List = m.getPtfNetworks();
 		} catch (CayenneRuntimeException CRE) {
@@ -565,7 +565,7 @@ public class WebServiceManager {
 
 	@GET
 	@Path("sensorModels.json")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	public ArrayList<SensorModelEntity> getAllPtfSensorModelsJSON() {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<SensorModelEntity> List = new ArrayList<SensorModelEntity>();
@@ -598,7 +598,7 @@ public class WebServiceManager {
 
 	@GET
 	@Path("sensorTypes.json")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	public ArrayList<SensorTypeEntity> getAllPtfSensorTypesJSON() {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<SensorTypeEntity> List = new ArrayList<SensorTypeEntity>();
@@ -631,7 +631,7 @@ public class WebServiceManager {
 
 	@GET
 	@Path("variables.json")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	public ArrayList<VariableEntity> getAllVariablesJSON() {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<VariableEntity> List = new ArrayList<VariableEntity>();

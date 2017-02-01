@@ -10,8 +10,11 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _ProgramContact extends CayenneDataObject {
 
+    public static final String CONTACT_ID_PROPERTY = "contactId";
     public static final String MZMS_AUTO_CHECK_PROPERTY = "mzmsAutoCheck";
     public static final String MZMS_WARNING_ENABLED_PROPERTY = "mzmsWarningEnabled";
+    public static final String PROGRAM_ID_PROPERTY = "programId";
+    public static final String ROLE_ID_PROPERTY = "roleId";
     public static final String TO_CONTACT_PROPERTY = "toContact";
     public static final String TO_PROGRAM_PROPERTY = "toProgram";
     public static final String TO_ROLE_PROPERTY = "toRole";
@@ -19,6 +22,13 @@ public abstract class _ProgramContact extends CayenneDataObject {
     public static final String CONTACT_ID_PK_COLUMN = "CONTACT_ID";
     public static final String PROGRAM_ID_PK_COLUMN = "PROGRAM_ID";
     public static final String ROLE_ID_PK_COLUMN = "ROLE_ID";
+
+    public void setContactId(Integer contactId) {
+        writeProperty(CONTACT_ID_PROPERTY, contactId);
+    }
+    public Integer getContactId() {
+        return (Integer)readProperty(CONTACT_ID_PROPERTY);
+    }
 
     public void setMzmsAutoCheck(Integer mzmsAutoCheck) {
         writeProperty(MZMS_AUTO_CHECK_PROPERTY, mzmsAutoCheck);
@@ -32,6 +42,20 @@ public abstract class _ProgramContact extends CayenneDataObject {
     }
     public Integer getMzmsWarningEnabled() {
         return (Integer)readProperty(MZMS_WARNING_ENABLED_PROPERTY);
+    }
+
+    public void setProgramId(Integer programId) {
+        writeProperty(PROGRAM_ID_PROPERTY, programId);
+    }
+    public Integer getProgramId() {
+        return (Integer)readProperty(PROGRAM_ID_PROPERTY);
+    }
+
+    public void setRoleId(Integer roleId) {
+        writeProperty(ROLE_ID_PROPERTY, roleId);
+    }
+    public Integer getRoleId() {
+        return (Integer)readProperty(ROLE_ID_PROPERTY);
     }
 
     public void setToContact(Contact toContact) {

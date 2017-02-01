@@ -2,13 +2,13 @@ package org.jcommops.api.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 
 import org.jcommops.api.orm.SensorModel;
 
@@ -18,11 +18,11 @@ public class SensorModelEntity implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 3478136978018082393L;
-	private long id;
+	private Integer id;
 	private String nameShort;
 	private String name;
 	private String description;
-	private ArrayList<SensorTypeEntity> sensorTypes;
+	private List<SensorTypeEntity> sensorTypes;
 	
 	
 	public SensorModelEntity (){	
@@ -39,21 +39,12 @@ public class SensorModelEntity implements Serializable{
     	}
 	}
 	
-	public SensorModelEntity ( long id, String nameshort, String name, String description, ArrayList<SensorTypeEntity> sensortypes ){	
-		this.setId(id);
-		this.setNameShort(nameshort);
-		this.setName(name);
-		this.setDescription(description);
-		this.setSensorTypes(sensortypes);
-	}
-
-	
 	@XmlAttribute
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -84,11 +75,11 @@ public class SensorModelEntity implements Serializable{
 	
 	@XmlElementWrapper(name = "sensorTypes")
 	@XmlElements(@XmlElement(name = "sensorType", type = SensorTypeEntity.class))
-	public ArrayList<SensorTypeEntity> getSensorTypes() {
+	public List<SensorTypeEntity> getSensorTypes() {
 		return sensorTypes;
 	}
 
-	public void setSensorTypes(ArrayList<SensorTypeEntity> sensortypes) {
+	public void setSensorTypes(List<SensorTypeEntity> sensortypes) {
 		this.sensorTypes = sensortypes;
 	}
 

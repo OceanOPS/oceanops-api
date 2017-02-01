@@ -5,7 +5,6 @@ import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 
 import org.jcommops.api.orm.SensorType;
 
@@ -15,7 +14,7 @@ public class SensorTypeEntity implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 6709670090803296386L;
-	private long id;
+	private Integer id;
 	private String nameShort;
 	private String name;
 	private String description;
@@ -31,11 +30,11 @@ public class SensorTypeEntity implements Serializable{
 	}
 
 	@XmlAttribute
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

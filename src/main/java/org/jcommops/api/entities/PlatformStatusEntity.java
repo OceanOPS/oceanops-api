@@ -14,7 +14,7 @@ public class PlatformStatusEntity implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 7369996670935372181L;
-	private long id;
+	private Integer id;
 	private String nameShort;
 	private String name;
 	private String description;
@@ -30,20 +30,13 @@ public class PlatformStatusEntity implements Serializable{
 		this.setDescription(ptfStatus.getDescription());
 	}
 
-	public PlatformStatusEntity ( long id, String nameshort, String name, String description ){	
-		this.setId(id);
-		this.setNameShort(nameshort);
-		this.setName(name);
-		this.setDescription(description);
-	}
-
 	
 	@XmlAttribute
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
