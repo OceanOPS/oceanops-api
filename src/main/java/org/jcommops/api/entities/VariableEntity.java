@@ -10,7 +10,6 @@ import javax.xml.bind.annotation.XmlType;
 import org.jcommops.api.orm.Variable;
 
 @XmlRootElement
-@XmlType(propOrder={ "name", "nameShort", "description"})
 public class VariableEntity implements Serializable{
 	/**
 	 * 
@@ -33,7 +32,7 @@ public class VariableEntity implements Serializable{
 	
 
 	public VariableEntity(Variable var) {
-		this.setId(Integer.parseInt(var.getObjectId().toString()));
+		this.setId(Integer.parseInt(var.getObjectId().getIdSnapshot().get("ID").toString()));
 		this.setArgoRef(var.getArgoRef());
 		this.setCfRef(var.getCfRef());
 		this.setDescription(var.getDescription());

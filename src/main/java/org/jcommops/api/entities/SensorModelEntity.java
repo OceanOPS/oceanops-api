@@ -13,7 +13,6 @@ import javax.xml.bind.annotation.XmlType;
 import org.jcommops.api.orm.SensorModel;
 
 @XmlRootElement
-@XmlType(propOrder={ "name", "nameShort","description", "sensorTypes"})
 public class SensorModelEntity implements Serializable{
 	/**
 	 * 
@@ -30,7 +29,7 @@ public class SensorModelEntity implements Serializable{
 	}
 
 	public SensorModelEntity ( SensorModel sensorModel ){	
-		this.setId(Integer.parseInt(sensorModel.getObjectId().toString()));
+		this.setId(Integer.parseInt(sensorModel.getObjectId().getIdSnapshot().get("ID").toString()));
 		this.setNameShort(sensorModel.getNameShort());
 		this.setName(sensorModel.getName());
 		this.setDescription(sensorModel.getDescription());

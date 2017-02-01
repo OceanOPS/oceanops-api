@@ -61,6 +61,7 @@ public class Help extends HttpServlet {
 			case "variable":
 				request.setAttribute("parameter", "variables.json");
 				request.setAttribute("parameter_name", "Variables");
+				jspName = "GetVariableValues.jsp";
 				break;
 			case "sensorModel":
 				request.setAttribute("parameter", "sensorModels.json");

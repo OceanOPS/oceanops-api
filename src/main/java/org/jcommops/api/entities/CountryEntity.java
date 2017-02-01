@@ -5,17 +5,16 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 @XmlRootElement
-@XmlType(propOrder={"nameShort", "name", "isoCode2", "isoCode3"})
 public class CountryEntity implements Serializable{
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 3442124618719919778L;
-	private String NameShort;
-	private String Name;
-	private String IsoCode2;
-	private String IsoCode3;
+	private String nameShort;
+	private String name;
+	private String isoCode2;
+	private String isoCode3;
 	
 	public CountryEntity() {
 		
@@ -30,39 +29,39 @@ public class CountryEntity implements Serializable{
 		
 	@XmlElement
 	public String getNameShort() {
-		return NameShort;
+		return nameShort;
 	}
 
 	public void setNameShort(String nameShort) {
-		NameShort = nameShort;
+		this.nameShort = nameShort;
 	}
 	
 	
 	@XmlElement
 	public String getName() {
-		return Name;
+		return name;
 	}
 
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 
 	@XmlElement
 	public String getIsoCode2() {
-		return IsoCode2;
+		return isoCode2;
 	}
 
 	public void setIsoCode2(String isoCode2) {
-		IsoCode2 = isoCode2;
+		this.isoCode2 = isoCode2;
 	}
 
 	@XmlElement
 	public String getIsoCode3() {
-		return IsoCode3;
+		return isoCode3;
 	}
 
 	public void setIsoCode3(String isoCode3) {
-		IsoCode3 = isoCode3;
+		this.isoCode3 = isoCode3;
 	}
 
 	

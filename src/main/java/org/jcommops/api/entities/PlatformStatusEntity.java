@@ -5,20 +5,18 @@ import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 
 import org.jcommops.api.orm.PtfStatus;
 
 @XmlRootElement
-@XmlType(propOrder={ "name", "nameShort","description"})
 public class PlatformStatusEntity implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 7369996670935372181L;
-	private long Id;
-	private String NameShort;
-	private String Name;
+	private long id;
+	private String nameShort;
+	private String name;
 	private String description;
 	
 	
@@ -26,7 +24,7 @@ public class PlatformStatusEntity implements Serializable{
 	}
 	
 	public PlatformStatusEntity (PtfStatus ptfStatus){	
-		this.setId(Integer.parseInt(ptfStatus.getObjectId().toString()));
+		this.setId(Integer.parseInt(ptfStatus.getObjectId().getIdSnapshot().get("ID").toString()));
 		this.setNameShort(ptfStatus.getNameShort());
 		this.setName(ptfStatus.getName());
 		this.setDescription(ptfStatus.getDescription());
@@ -42,28 +40,28 @@ public class PlatformStatusEntity implements Serializable{
 	
 	@XmlAttribute
 	public long getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(long id) {
-		Id = id;
+		this.id = id;
 	}
 
 	@XmlElement
 	public String getNameShort() {
-		return NameShort;
+		return nameShort;
 	}
 
 	public void setNameShort(String nameShort) {
-		NameShort = nameShort;
+		this.nameShort = nameShort;
 	}
 	@XmlElement
 	public String getName() {
-		return Name;
+		return name;
 	}
 
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 	@XmlElement
 	public String getDescription() {

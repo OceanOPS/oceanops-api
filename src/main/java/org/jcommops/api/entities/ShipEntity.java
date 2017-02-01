@@ -2,9 +2,12 @@ package org.jcommops.api.entities;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import org.jcommops.api.Utils;
 import org.jcommops.api.orm.Ship;
 
+@XmlRootElement
 public class ShipEntity implements Serializable {
 	/**
 	 * 

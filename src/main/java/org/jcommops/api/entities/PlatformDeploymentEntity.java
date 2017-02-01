@@ -10,45 +10,44 @@ import javax.xml.bind.annotation.XmlType;
 import org.jcommops.api.Utils;
 import org.jcommops.api.orm.PtfDeployment;
 @XmlRootElement
-@XmlType(propOrder = { "deployementDate", "lat", "lon", "deployementDensity", "deployementScore",
-		"ship","cruiseName" })
-public class PlatformDeployment implements Serializable{
+public class PlatformDeploymentEntity implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 137840533989152311L;
-	private String deployementDate;
+	private String deploymentDate;
 	private BigDecimal lat;
 	private BigDecimal lon;
-	private BigDecimal deployementScore;
-	private BigDecimal deployementDensity;
+	private BigDecimal deploymentScore;
+	private BigDecimal deploymentDensity;
 	private ShipEntity ship;
 	private String cruiseName;
 
-	public PlatformDeployment() {
+	public PlatformDeploymentEntity() {
 	}
 	
 
-	public PlatformDeployment(PtfDeployment depl) {
-		this.setDeployementDate(Utils.GetIsoDate(depl.getDeplDate()));
+	public PlatformDeploymentEntity(PtfDeployment depl) {
+		this.setDeploymentDate(Utils.GetIsoDate(depl.getDeplDate()));
 		if(depl.getToCruise() != null && depl.getToCruise().getNameLong() != null)
 			this.setCruiseName(depl.getToCruise().getNameLong());
 		else
 			this.setCruiseName(depl.getCruiseName());
-		this.setDeployementDensity(depl.getDensity());
-		this.setDeployementScore(depl.getScore());
+		this.setDeploymentDensity(depl.getDensity());
+		this.setDeploymentScore(depl.getScore());
 		this.setLat(depl.getLat());
 		this.setLon(depl.getLon());
-		this.setShip(new ShipEntity(depl.getToShip()));
+		if(depl.getToShip() != null)
+			this.setShip(new ShipEntity(depl.getToShip()));
 	}
 
 	@XmlElement
-	public String getDeployementDate() {
-		return deployementDate;
+	public String getDeploymentDate() {
+		return deploymentDate;
 	}
 
-	public void setDeployementDate(String deployementDate) {
-		this.deployementDate = deployementDate;
+	public void setDeploymentDate(String deployementDate) {
+		this.deploymentDate = deployementDate;
 	}
 
 	@XmlElement
@@ -69,22 +68,22 @@ public class PlatformDeployment implements Serializable{
 		this.lon = lon;
 	}
 
-	public BigDecimal getDeployementScore() {
-		return deployementScore;
+	public BigDecimal getDeploymentScore() {
+		return deploymentScore;
 	}
 
 	@XmlElement
-	public void setDeployementScore(BigDecimal deployementScore) {
-		this.deployementScore = deployementScore;
+	public void setDeploymentScore(BigDecimal deployementScore) {
+		this.deploymentScore = deployementScore;
 	}
 
-	public BigDecimal getDeployementDensity() {
-		return deployementDensity;
+	public BigDecimal getDeploymentDensity() {
+		return deploymentDensity;
 	}
 
 	@XmlElement
-	public void setDeployementDensity(BigDecimal deployementDensity) {
-		this.deployementDensity = deployementDensity;
+	public void setDeploymentDensity(BigDecimal deployementDensity) {
+		this.deploymentDensity = deployementDensity;
 	}
 
 	@XmlElement

@@ -11,7 +11,6 @@ import javax.xml.bind.annotation.XmlType;
 import org.jcommops.api.orm.MasterProg;
 
 @XmlRootElement
-@XmlType(propOrder = { "name", "nameShort", "description" })
 public class MasterProgramEntity implements Serializable{
 	/**
 	 * 
@@ -28,7 +27,7 @@ public class MasterProgramEntity implements Serializable{
 	
 
 	public MasterProgramEntity(MasterProg masterProg) {
-		this.setId(Integer.parseInt(masterProg.getObjectId().toString()));
+		this.setId(Integer.parseInt(masterProg.getObjectId().getIdSnapshot().get("ID").toString()));
 		this.setName(masterProg.getName());
 		this.setNameShort(masterProg.getNameShort());
 		this.setDescription(masterProg.getDescription());

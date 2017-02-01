@@ -2,6 +2,7 @@ package org.jcommops.api;
 
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
@@ -9,6 +10,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.InternalServerErrorException;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -16,6 +19,8 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.apache.cayenne.CayenneRuntimeException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.jcommops.api.accessors.PlatformAccessor;
 import org.jcommops.api.entities.CountryEntity;
 import org.jcommops.api.entities.MasterProgramEntity;
@@ -32,20 +37,14 @@ import org.jcommops.api.entities.VariableEntity;
 
 @Path("/")
 public class WebServiceManager {
+	private Log log = LogFactory.getLog(WebServiceManager.class);
+
 	@GET
 	@Path("platforms.xml")
 	public ArrayList<PlatformEntity> getAllPtfsXML() {
 		PlatformAccessor m = new PlatformAccessor();
-		ArrayList<PlatformEntity> ptfmList = new ArrayList<PlatformEntity>();
-		try {
-			ptfmList = m.getAllPtfIdsRefs();
-		}
-		catch (CayenneRuntimeException CRE) {
-			PlatformEntity ptf0 = new PlatformEntity();
-			ptf0.setId(-1);
-			ptf0.setErrorMessage(" Database temporarily inaccessible.");
-			ptfmList.add(ptf0);
-		}
+		ArrayList<PlatformEntity> ptfmList = m.getAllPtfIdsRefs();
+
 		return ptfmList;
 	}
 
@@ -54,18 +53,9 @@ public class WebServiceManager {
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<PlatformEntity> getAllPtfsJSON() {
 		PlatformAccessor m = new PlatformAccessor();
-		ArrayList<PlatformEntity> ptfmList = new ArrayList<PlatformEntity>();
-		try {
-			ptfmList = m.getAllPtfIdsRefs();
-		}
-		catch (CayenneRuntimeException CRE) {
-			PlatformEntity ptf0 = new PlatformEntity();
-			ptf0.setId(-1);
-			ptf0.setErrorMessage(" Database temporarily inaccessible.");
-			ptfmList.add(ptf0);
-		}
-		return ptfmList;
+		ArrayList<PlatformEntity> ptfmList = m.getAllPtfIdsRefs();
 
+		return ptfmList;
 	}
 
 	@GET
@@ -73,48 +63,33 @@ public class WebServiceManager {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getAllPtfsCSV() {
 		PlatformAccessor m = new PlatformAccessor();
-		ArrayList<PlatformEntity> foundPlatforms = new ArrayList<PlatformEntity>();
-		StringWriter strW = new StringWriter();
-		strW.write("id" + ";" + "jcommopsRef" + "\n");
-		try {
-			foundPlatforms = m.getAllPtfIdsRefs();
-			Iterator<PlatformEntity> ptf_itr = foundPlatforms.iterator();
+		ArrayList<PlatformEntity> foundPlatforms = m.getAllPtfIdsRefs();
+		StringBuilder csv = new StringBuilder();
 
-			while (ptf_itr.hasNext()) {
-				PlatformEntity a = ptf_itr.next();
-				strW.write(a.getId() + ";" + a.getJcommopsRef() + "\n");
+		if (foundPlatforms.size() > 0) {
+			csv.append("id" + Utils.CSV_SEPARATOR + "ref");
+			for (int i = 0; i < foundPlatforms.size(); i++) {
+				csv.append("\n" + foundPlatforms.get(i).getId() + Utils.CSV_SEPARATOR
+						+ foundPlatforms.get(i).getJcommopsRef());
 			}
+		} else {
+			throw new NotFoundException();
 		}
 
-		catch (CayenneRuntimeException CRE) {
-			strW.write(" Error: Database temporarily inaccessible.");
-		}
-		String strFoundPlatforms = strW.toString();
-		return strFoundPlatforms;
-
+		return csv.toString();
 	}
 
 	@GET
 	@Path("platform.xml/{id}")
 	public PlatformEntity getPtfbyIdXML(@PathParam("id") long id) {
-		
-
 		PlatformAccessor m = new PlatformAccessor();
-		PlatformEntity ptfm = new PlatformEntity();
-		try {
-			ptfm = m.getPtfbyID(id);
-		}
+		PlatformEntity ptfm = m.getPtfbyID(id);
 
-		catch (CayenneRuntimeException CRE) {
-			ptfm.setId(-1);
-			ptfm.setErrorMessage(" Database temporarily inaccessible.");
-
+		if (ptfm == null) {
+			throw new NotFoundException("No platform found for ID = " + id);
 		}
 
 		return ptfm;
-		// example
-		// http://localhost:8081/jcommops-api/api/rest/1.0/platform.xml/501356
-
 	}
 
 	@GET
@@ -122,56 +97,31 @@ public class WebServiceManager {
 	@Produces(MediaType.APPLICATION_JSON)
 	public PlatformEntity getPtfbyIdJSON(@PathParam("id") long id) {
 		PlatformAccessor m = new PlatformAccessor();
-		PlatformEntity ptfm = new PlatformEntity();
-		try {
-			ptfm = m.getPtfbyID(id);
-		}
+		PlatformEntity ptfm = m.getPtfbyID(id);
 
-		catch (CayenneRuntimeException CRE) {
-			ptfm.setId(-1);
-			ptfm.setErrorMessage(" Database temporarily inaccessible.");
-
+		if (ptfm == null) {
+			throw new NotFoundException("No platform found for ID = " + id);
 		}
 
 		return ptfm;
-		// example
-		// http://localhost:8081/jcommops-api/api/rest/1.0/platform.json/501356
-
 	}
 
 	@GET
 	@Path("platform.csv/{id}")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getPtfbyIdCSV(@PathParam("id") long id) {
-
 		PlatformAccessor m = new PlatformAccessor();
-		PlatformEntity ptfm = new PlatformEntity();
-		StringWriter strW = new StringWriter();
-		strW.write("platformId" + ";" + "jcommopsRef" + ";" + "telecomId"+ ";" + "telecomType"+ ";" + "internalRef"+ ";"+ "serialRef"+";"
-				+ "ptfFamily" + ";" + "ptfType" + ";" + "ptfModel" + ";"
-				+ "program" + ";" + "country" + ";" + "masterProgramme" + ";"
-				+ "deployementDate" + ";" + "deployementLatitude" + ";"+ "deployementLongitude" + ";"+ "deployementScore" + ";"+ "deployementDensity" + ";"
-				+"notificationDate"+ ";"+"shipName"+";"+"shipRef"+";"
-				+ "lastLocationDate" + ";" + "lastLocationLatitude" + ";"+ "lastLocationLongitude" + ";" +"Age"+ ";"
-				+ "cycleTime"+ ";"	+ "driftPressure"+";"+"profilePressure"+";"+"iceDetection"+";"
-				+ "sensorModel"+ ";"+ "sensorTypes"+ ";"+"variables" + "\n");
+		PlatformEntity ptfm = m.getPtfbyID(id);
+		StringBuilder csv = new StringBuilder();
 
-		try {
-			strW.write(m.WritePtfCSV(id));
-			
-		
-		} catch (CayenneRuntimeException CRE) {
-			strW.write("Error: Database temporarily inaccessible.");
-		} catch (NullPointerException n) {
-
-			strW.write(ptfm.getErrorMessage());
-
+		if (ptfm == null) {
+			throw new NotFoundException("No platform found for ID = " + id);
+		} else {
+			csv.append(PlatformEntity.getCSVHeader());
+			csv.append("\n" + ptfm.toCSV());
 		}
-		String strptfm = strW.toString();
-		return strptfm;
-		// example
-		// http://localhost:8081/jcommops-api/api/rest/1.0/platform.xml/501356
 
+		return csv.toString();
 	}
 
 	@GET
@@ -184,38 +134,17 @@ public class WebServiceManager {
 			@QueryParam("ship") String ship, @QueryParam("country") String country) {
 
 		PlatformAccessor m = new PlatformAccessor();
-		ArrayList<PlatformEntity> foundPlatforms = new ArrayList<PlatformEntity>();
-		try {
-			foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable,
-					sensormod, sensortyp, ship, country);
-			if (foundPlatforms.size() == 0) {
-				PlatformEntity ptf0 = new PlatformEntity();
-				ptf0.setId(-1);
-				ptf0.setErrorMessage("No platform found.");
-				foundPlatforms.add(ptf0);
-			}
+		HashMap<Integer, String> foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program,
+				network, masterprg, variable, sensormod, sensortyp, ship, country);
+		
+		ArrayList<PlatformEntity> result = new ArrayList<PlatformEntity>();
+		for (Integer id : foundPlatforms.keySet()) {
+			PlatformEntity ptf = new PlatformEntity();
+			ptf.setId(id);
+			ptf.setJcommopsRef(foundPlatforms.get(id));
+			result.add(ptf);
 		}
-
-		catch (StringIndexOutOfBoundsException str) {
-			PlatformEntity ptf0 = new PlatformEntity();
-			ptf0.setId(-1);
-			ptf0.setErrorMessage(
-					"Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterProgram', 'variable', 'sensorModel', "
-							+ "'sensorType', 'country' or 'ship'  parameter.");
-			foundPlatforms.add(ptf0);
-
-		}
-
-		catch (CayenneRuntimeException CRE) {
-			PlatformEntity ptf0 = new PlatformEntity();
-			ptf0.setId(-1);
-			ptf0.setErrorMessage(" Database temporarily inaccessible.");
-			foundPlatforms.add(ptf0);
-		}
-
-		return foundPlatforms;
-		// example
-		// http://localhost:8081/jcommops-api/api/rest/1.0/platforms.xml/find?status=ACTIVE&family=ICE_BUOYS&type=AXIB&model=AXIB&masterProgram=DBCP&variable=SST
+		return result;
 	}
 
 	@GET
@@ -229,39 +158,17 @@ public class WebServiceManager {
 			@QueryParam("ship") String ship, @QueryParam("country") String country) {
 
 		PlatformAccessor m = new PlatformAccessor();
-		ArrayList<PlatformEntity> foundPlatforms = new ArrayList<PlatformEntity>();
-		try {
-			foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable,
-					sensormod, sensortyp, ship, country);
-			if (foundPlatforms.size() == 0) {
-				PlatformEntity ptf0 = new PlatformEntity();
-				ptf0.setId(-1);
-				ptf0.setErrorMessage("No platform found.");
-				foundPlatforms.add(ptf0);
-			}
+		HashMap<Integer, String> foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program,
+				network, masterprg, variable, sensormod, sensortyp, ship, country);
+		
+		ArrayList<PlatformEntity> result = new ArrayList<PlatformEntity>();
+		for (Integer id : foundPlatforms.keySet()) {
+			PlatformEntity ptf = new PlatformEntity();
+			ptf.setId(id);
+			ptf.setJcommopsRef(foundPlatforms.get(id));
+			result.add(ptf);
 		}
-
-		catch (StringIndexOutOfBoundsException str) {
-			PlatformEntity ptf0 = new PlatformEntity();
-			ptf0.setId(-1);
-			ptf0.setErrorMessage(
-					"Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterProgram', 'variable', 'sensorModel', "
-							+ "'sensorType', 'country' or 'ship'  parameter.");
-			foundPlatforms.add(ptf0);
-
-		}
-
-		catch (CayenneRuntimeException CRE) {
-			PlatformEntity ptf0 = new PlatformEntity();
-			ptf0.setId(-1);
-			ptf0.setErrorMessage(" Database temporarily inaccessible.");
-			foundPlatforms.add(ptf0);
-		}
-
-		return foundPlatforms;
-
-		// example
-		// http://localhost:8081/jcommops-api/api/rest/1.0/platforms.json/find?status=ACTIVE&family=ICE_BUOYS&type=AXIB&model=AXIB&masterProgram=DBCP&variable=SST
+		return result;
 	}
 
 	@GET
@@ -275,215 +182,93 @@ public class WebServiceManager {
 			@QueryParam("country") String country) {
 
 		PlatformAccessor m = new PlatformAccessor();
-		ArrayList<PlatformEntity> foundPlatforms = new ArrayList<PlatformEntity>();
-		StringWriter strW = new StringWriter();
-		strW.write("platformId" + ";" + "jcommpsRef" + "\n");
-		try {
-			foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable,
-					sensormod, sensortyp, ship, country);
+		HashMap<Integer, String> foundPlatforms = null;
 
-			Iterator<PlatformEntity> ptf_itr = foundPlatforms.iterator();
+		StringBuilder csv = new StringBuilder();
 
-			while (ptf_itr.hasNext()) {
-				PlatformEntity a = ptf_itr.next();
-				strW.write(a.getId() + ";" + a.getJcommopsRef() + "\n");
-			}
+		foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable,
+				sensormod, sensortyp, ship, country);
 
-			if (foundPlatforms.size() == 0) {
-				strW.write("No platform found.");
-
-			}
+		csv.append("id" + Utils.CSV_SEPARATOR + "ref");
+		for (Integer id : foundPlatforms.keySet()) {
+			csv.append("\n" + id + Utils.CSV_SEPARATOR + foundPlatforms.get(id));
 		}
-
-		catch (StringIndexOutOfBoundsException str) {
-			strW.write(
-					"Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterProgram', 'variable', 'sensorModel', "
-							+ "'sensorType', 'country' or 'ship'  parameter.");
-
-		}
-
-		catch (CayenneRuntimeException CRE) {
-			strW.write(" Error: Database temporarily inaccessible.");
-		}
-		String strFoundPlatforms = strW.toString();
-		return strFoundPlatforms;
-
-		// example
-		// http://localhost:8081/jcommops-api/api/rest/1.0/platforms.csv/find?status=ACTIVE&family=ICE_BUOYS&type=AXIB&model=AXIB&masterProgram=DBCP&variable=SST
+		return csv.toString();
 	}
-	
+
 	@GET
 	@Path("platforms.xml/details/find")
-	public ArrayList<PlatformEntity> getSelectedPlatformsDetailsXML(@QueryParam("status") String status, @QueryParam("family") String family,
-			@QueryParam("type") String type, @QueryParam("model") String model, @QueryParam("program") String program,
-			@QueryParam("network") String network, @QueryParam("masterProgram") String masterprg,
-			@QueryParam("variable") String variable, @QueryParam("sensorModel") String sensormod,
-			@QueryParam("sensorType") String sensortyp, @QueryParam("ship") String ship,
-			@QueryParam("country") String country) {
+	public ArrayList<PlatformEntity> getSelectedPlatformsDetailsXML(@QueryParam("status") String status,
+			@QueryParam("family") String family, @QueryParam("type") String type, @QueryParam("model") String model,
+			@QueryParam("program") String program, @QueryParam("network") String network,
+			@QueryParam("masterProgram") String masterprg, @QueryParam("variable") String variable,
+			@QueryParam("sensorModel") String sensormod, @QueryParam("sensorType") String sensortyp,
+			@QueryParam("ship") String ship, @QueryParam("country") String country) {
 
 		PlatformAccessor m = new PlatformAccessor();
-		ArrayList<PlatformEntity> foundPlatforms = new ArrayList<PlatformEntity>();
+		HashMap<Integer, String> foundPlatforms = null;
 		ArrayList<PlatformEntity> foundPlatformsDisplay = new ArrayList<PlatformEntity>();
-		
-		try {
-			foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable,
-					sensormod, sensortyp, ship, country);
 
-			Iterator<PlatformEntity> ptf_itr = foundPlatforms.iterator();
-			foundPlatformsDisplay = foundPlatforms;
+		foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable,
+				sensormod, sensortyp, ship, country);
 
-			/*while (ptf_itr.hasNext()) {
-				Platform a = ptf_itr.next();
-				foundPlatformsDisplay.add(m.getPtfbyID(a.getId()));
-			}*/
-		
-			
-			if (foundPlatforms.size() == 0) {
-				PlatformEntity ptf0 = new PlatformEntity();
-				ptf0.setId(-1);
-				ptf0.setErrorMessage("No platform found.");
-				foundPlatformsDisplay.add(ptf0);
-
-			}
+		for (Integer id: foundPlatforms.keySet()) {
+			PlatformEntity a = m.getPtfbyID(id);
+			foundPlatformsDisplay.add(a);
 		}
 
-		catch (StringIndexOutOfBoundsException str) {
-		
-			PlatformEntity ptf0 = new PlatformEntity();
-			ptf0.setId(-1);
-			ptf0.setErrorMessage(
-					"Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterProgram', 'variable', 'sensorModel', "
-							+ "'sensorType', 'country' or 'ship'  parameter.");
-			foundPlatformsDisplay.add(ptf0);
-
-		}
-
-		catch (CayenneRuntimeException CRE) {
-			PlatformEntity ptf0 = new PlatformEntity();
-			ptf0.setId(-1);
-			ptf0.setErrorMessage(" Database temporarily inaccessible.");
-			foundPlatformsDisplay.add(ptf0);
-		}
-		
 		return foundPlatformsDisplay;
-		// example
-				// http://localhost:8081/jcommops-api/api/rest/1.0/platforms.xml/details/find?status=ACTIVE&family=ICE_BUOYS&type=AXIB&model=AXIB&masterProgram=DBCP&variable=SST
 	}
-	
+
 	@GET
 	@Path("platforms.json/details/find")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<PlatformEntity> getSelectedPlatformsDetailsJSON(@QueryParam("status") String status, @QueryParam("family") String family,
-			@QueryParam("type") String type, @QueryParam("model") String model, @QueryParam("program") String program,
-			@QueryParam("network") String network, @QueryParam("masterProgram") String masterprg,
-			@QueryParam("variable") String variable, @QueryParam("sensorModel") String sensormod,
-			@QueryParam("sensorType") String sensortyp, @QueryParam("ship") String ship,
-			@QueryParam("country") String country) {
+	public ArrayList<PlatformEntity> getSelectedPlatformsDetailsJSON(@QueryParam("status") String status,
+			@QueryParam("family") String family, @QueryParam("type") String type, @QueryParam("model") String model,
+			@QueryParam("program") String program, @QueryParam("network") String network,
+			@QueryParam("masterProgram") String masterprg, @QueryParam("variable") String variable,
+			@QueryParam("sensorModel") String sensormod, @QueryParam("sensorType") String sensortyp,
+			@QueryParam("ship") String ship, @QueryParam("country") String country) {
 
 		PlatformAccessor m = new PlatformAccessor();
-		ArrayList<PlatformEntity> foundPlatforms = new ArrayList<PlatformEntity>();
+		HashMap<Integer, String> foundPlatforms = null;
 		ArrayList<PlatformEntity> foundPlatformsDisplay = new ArrayList<PlatformEntity>();
-		
-		try {
-			foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable,
-					sensormod, sensortyp, ship, country);
 
-			Iterator<PlatformEntity> ptf_itr = foundPlatforms.iterator();
+		foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable,
+				sensormod, sensortyp, ship, country);
 
-			while (ptf_itr.hasNext()) {
-				PlatformEntity a = ptf_itr.next();
-				foundPlatformsDisplay.add(m.getPtfbyID(a.getId()));
-			}
-		
-			
-			if (foundPlatforms.size() == 0) {
-				PlatformEntity ptf0 = new PlatformEntity();
-				ptf0.setId(-1);
-				ptf0.setErrorMessage("No platform found.");
-				foundPlatformsDisplay.add(ptf0);
 
-			}
+		for(Integer id: foundPlatforms.keySet()) {
+			foundPlatformsDisplay.add(m.getPtfbyID(id));
 		}
 
-		catch (StringIndexOutOfBoundsException str) {
-		
-			PlatformEntity ptf0 = new PlatformEntity();
-			ptf0.setId(-1);
-			ptf0.setErrorMessage(
-					"Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterProgram', 'variable', 'sensorModel', "
-							+ "'sensorType', 'country' or 'ship'  parameter.");
-			foundPlatformsDisplay.add(ptf0);
-
-		}
-
-		catch (CayenneRuntimeException CRE) {
-			PlatformEntity ptf0 = new PlatformEntity();
-			ptf0.setId(-1);
-			ptf0.setErrorMessage(" Database temporarily inaccessible.");
-			foundPlatformsDisplay.add(ptf0);
-		}
-		
 		return foundPlatformsDisplay;
-		// example
-				// http://localhost:8081/jcommops-api/api/rest/1.0/platforms.json/details/find?status=ACTIVE&family=ICE_BUOYS&type=AXIB&model=AXIB&masterProgram=DBCP&variable=SST
 	}
-	
+
 	@GET
 	@Path("platforms.csv/details/find")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String getSelectedPlatformsDetailsCSV(@QueryParam("status") String status, @QueryParam("family") String family,
-			@QueryParam("type") String type, @QueryParam("model") String model, @QueryParam("program") String program,
-			@QueryParam("network") String network, @QueryParam("masterProgram") String masterprg,
-			@QueryParam("variable") String variable, @QueryParam("sensorModel") String sensormod,
-			@QueryParam("sensorType") String sensortyp, @QueryParam("ship") String ship,
-			@QueryParam("country") String country) {
+	public String getSelectedPlatformsDetailsCSV(@QueryParam("status") String status,
+			@QueryParam("family") String family, @QueryParam("type") String type, @QueryParam("model") String model,
+			@QueryParam("program") String program, @QueryParam("network") String network,
+			@QueryParam("masterProgram") String masterprg, @QueryParam("variable") String variable,
+			@QueryParam("sensorModel") String sensormod, @QueryParam("sensorType") String sensortyp,
+			@QueryParam("ship") String ship, @QueryParam("country") String country) {
 
 		PlatformAccessor m = new PlatformAccessor();
-		ArrayList<PlatformEntity> foundPlatforms = new ArrayList<PlatformEntity>();
-		StringWriter strW = new StringWriter();
-		strW.write("platformId" + ";" + "jcommopsRef" + ";" + "telecomId"+ ";" + "telecomType"+ ";" + "internalRef"+ ";"+ "serialRef"+";"
-				+ "ptfFamily" + ";" + "ptfType" + ";" + "ptfModel" + ";"
-				+ "program" + ";" + "country" + ";" + "masterProgramme" + ";"
-				+ "deployementDate" + ";" + "deployementLatitude" + ";"+ "deployementLongitude" + ";"+ "deployementScore" + ";"+ "deployementDensity" + ";"
-				+"notificationDate"+ ";"+"shipName"+";"+"shipRef"+";"
-				+ "lastLocationDate" + ";" + "lastLocationLatitude" + ";"+ "lastLocationLongitude" + ";" +"Age"+ ";"
-				+ "cycleTime"+ ";"	+ "driftPressure"+";"+"profilePressure"+";"+"iceDetection"+";"
-				+ "sensorModel"+ ";"+ "sensorTypes"+ ";"+"variables" + "\n");
-		try {
-			foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable,
-					sensormod, sensortyp, ship, country);
+		HashMap<Integer, String> foundPlatforms = null;
+		StringBuilder csv = new StringBuilder();
+		csv.append(PlatformEntity.getCSVHeader());
 
-			Iterator<PlatformEntity> ptf_itr = foundPlatforms.iterator();
-
-			while (ptf_itr.hasNext()) {
-				PlatformEntity a = ptf_itr.next();
-				strW.write(m.WritePtfCSV(a.getId()));
-			}
-
-			if (foundPlatforms.size() == 0) {
-				strW.write("No platform found.");
-
-			}
+		foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable,
+				sensormod, sensortyp, ship, country);
+		for (Integer id : foundPlatforms.keySet()) {
+			PlatformEntity a = m.getPtfbyID(id);
+			csv.append("\n" + a.toCSV());
 		}
 
-		catch (StringIndexOutOfBoundsException str) {
-			strW.write(
-					"Invalid request. Missing the 'status', 'family', 'type', 'model', 'program', 'network', 'masterProgram', 'variable', 'sensorModel', "
-							+ "'sensorType', 'country' or 'ship'  parameter.");
-
-		}
-
-		catch (CayenneRuntimeException CRE) {
-			strW.write(" Error: Database temporarily inaccessible.");
-		}
-		String strFoundPlatforms = strW.toString();
-		return strFoundPlatforms;
-		// example
-				// http://localhost:8081/jcommops-api/api/rest/1.0/platforms.csv/details/find?status=ACTIVE&family=ICE_BUOYS&type=AXIB&model=AXIB&masterProgram=DBCP&variable=SST
+		return csv.toString();
 	}
-	
-
-		
 
 	@GET
 	@Path("ptfStatuses.xml")
@@ -526,9 +311,10 @@ public class WebServiceManager {
 		try {
 			List = m.getPtfFamilies();
 		} catch (CayenneRuntimeException CRE) {
-			/*PlatformFamily ptf0 = new PlatformFamily();
-			ptf0.setId(-1);
-			List.add(ptf0);*/
+			/*
+			 * PlatformFamily ptf0 = new PlatformFamily(); ptf0.setId(-1);
+			 * List.add(ptf0);
+			 */
 		}
 		return List;
 		// http://localhost:8081/jcommops-api/api/rest/1.0/ptfFamilies.xml
@@ -543,9 +329,10 @@ public class WebServiceManager {
 		try {
 			List = m.getPtfFamilies();
 		} catch (CayenneRuntimeException CRE) {
-			/*PlatformFamily ptf0 = new PlatformFamily();
-			ptf0.setId(-1);
-			List.add(ptf0);*/
+			/*
+			 * PlatformFamily ptf0 = new PlatformFamily(); ptf0.setId(-1);
+			 * List.add(ptf0);
+			 */
 		}
 		return List;
 		// http://localhost:8081/jcommops-api/api/rest/1.0/ptfFamilies.json
@@ -560,9 +347,10 @@ public class WebServiceManager {
 		try {
 			List = m.getPtfTypes();
 		} catch (CayenneRuntimeException CRE) {
-			/*PlatformType ptf0 = new PlatformType();
-			ptf0.setId(-1);
-			List.add(ptf0);*/
+			/*
+			 * PlatformType ptf0 = new PlatformType(); ptf0.setId(-1);
+			 * List.add(ptf0);
+			 */
 		}
 		return List;
 		// http://localhost:8081/jcommops-api/api/rest/1.0/ptfTypes.xml
@@ -577,9 +365,10 @@ public class WebServiceManager {
 		try {
 			List = m.getPtfTypes();
 		} catch (CayenneRuntimeException CRE) {
-			/*PlatformType ptf0 = new PlatformType();
-			ptf0.setId(-1);
-			List.add(ptf0);*/
+			/*
+			 * PlatformType ptf0 = new PlatformType(); ptf0.setId(-1);
+			 * List.add(ptf0);
+			 */
 		}
 		return List;
 		// http://localhost:8081/jcommops-api/api/rest/1.0/ptfTypes.json
@@ -594,9 +383,10 @@ public class WebServiceManager {
 		try {
 			List = m.getPtfModels();
 		} catch (CayenneRuntimeException CRE) {
-			/*PlatformModel ptf0 = new PlatformModel();
-			ptf0.setId(-1);
-			List.add(ptf0);*/
+			/*
+			 * PlatformModel ptf0 = new PlatformModel(); ptf0.setId(-1);
+			 * List.add(ptf0);
+			 */
 		}
 		return List;
 		// http://localhost:8081/jcommops-api/api/rest/1.0/ptfModels.xml
@@ -611,9 +401,10 @@ public class WebServiceManager {
 		try {
 			List = m.getPtfModels();
 		} catch (CayenneRuntimeException CRE) {
-			/*PlatformModel ptf0 = new PlatformModel();
-			ptf0.setId(-1);
-			List.add(ptf0);*/
+			/*
+			 * PlatformModel ptf0 = new PlatformModel(); ptf0.setId(-1);
+			 * List.add(ptf0);
+			 */
 		}
 		return List;
 		// http://localhost:8081/jcommops-api/api/rest/1.0/ptfModels.json
@@ -628,9 +419,9 @@ public class WebServiceManager {
 		try {
 			List = m.getProgram();
 		} catch (CayenneRuntimeException CRE) {
-			/*Program ptf0 = new Program();
-			ptf0.setId(-1);
-			List.add(ptf0);*/
+			/*
+			 * Program ptf0 = new Program(); ptf0.setId(-1); List.add(ptf0);
+			 */
 		}
 		return List;
 		// http://localhost:8081/jcommops-api/api/rest/1.0/programs.xml
@@ -645,16 +436,14 @@ public class WebServiceManager {
 		try {
 			List = m.getProgram();
 		} catch (CayenneRuntimeException CRE) {
-			/*Program ptf0 = new Program();
-			ptf0.setId(-1);
-			List.add(ptf0);*/
+			/*
+			 * Program ptf0 = new Program(); ptf0.setId(-1); List.add(ptf0);
+			 */
 		}
 		return List;
 		// http://localhost:8081/jcommops-api/api/rest/1.0/programs.json
 	}
-	
-	
-	
+
 	@GET
 	@Path("countries.xml")
 	public ArrayList<CountryEntity> getAllCountriesXML() {
@@ -663,9 +452,9 @@ public class WebServiceManager {
 		try {
 			List = m.getPtfCountries();
 		} catch (CayenneRuntimeException CRE) {
-			/*Country ptf0 = new Country();
-			ptf0.setId(-1);
-			List.add(ptf0);*/
+			/*
+			 * Country ptf0 = new Country(); ptf0.setId(-1); List.add(ptf0);
+			 */
 		}
 		return List;
 		// http://localhost:8081/jcommops-api/api/rest/1.0/countries.xml
@@ -680,9 +469,9 @@ public class WebServiceManager {
 		try {
 			List = m.getPtfCountries();
 		} catch (CayenneRuntimeException CRE) {
-			/*Country ptf0 = new Country();
-			ptf0.setId(-1);
-			List.add(ptf0);*/
+			/*
+			 * Country ptf0 = new Country(); ptf0.setId(-1); List.add(ptf0);
+			 */
 		}
 		return List;
 		// http://localhost:8081/jcommops-api/api/rest/1.0/countries.json
@@ -696,9 +485,10 @@ public class WebServiceManager {
 		try {
 			List = m.getMasterProgram();
 		} catch (CayenneRuntimeException CRE) {
-			/*MasterProgram ptf0 = new MasterProgram();
-			ptf0.setId(-1);
-			List.add(ptf0);*/
+			/*
+			 * MasterProgram ptf0 = new MasterProgram(); ptf0.setId(-1);
+			 * List.add(ptf0);
+			 */
 		}
 		return List;
 		// http://localhost:8081/jcommops-api/api/rest/1.0/masterPrograms.xml
@@ -713,9 +503,10 @@ public class WebServiceManager {
 		try {
 			List = m.getMasterProgram();
 		} catch (CayenneRuntimeException CRE) {
-			/*MasterProgram ptf0 = new MasterProgram();
-			ptf0.setId(-1);
-			List.add(ptf0);*/
+			/*
+			 * MasterProgram ptf0 = new MasterProgram(); ptf0.setId(-1);
+			 * List.add(ptf0);
+			 */
 		}
 		return List;
 		// http://localhost:8081/jcommops-api/api/rest/1.0/masterPrograms.json
@@ -729,9 +520,10 @@ public class WebServiceManager {
 		try {
 			List = m.getPtfNetworks();
 		} catch (CayenneRuntimeException CRE) {
-			/*NetworkPtf ptf0 = new NetworkPtf();
-			ptf0.setId(-1);
-			List.add(ptf0);*/
+			/*
+			 * NetworkPtf ptf0 = new NetworkPtf(); ptf0.setId(-1);
+			 * List.add(ptf0);
+			 */
 		}
 		return List;
 		// http://localhost:8081/jcommops-api/api/rest/1.0/PtfNetworks.xml
@@ -746,9 +538,10 @@ public class WebServiceManager {
 		try {
 			List = m.getPtfNetworks();
 		} catch (CayenneRuntimeException CRE) {
-			/*NetworkPtf ptf0 = new NetworkPtf();
-			ptf0.setId(-1);
-			List.add(ptf0);*/
+			/*
+			 * NetworkPtf ptf0 = new NetworkPtf(); ptf0.setId(-1);
+			 * List.add(ptf0);
+			 */
 		}
 		return List;
 		// http://localhost:8081/jcommops-api/api/rest/1.0/network.json
@@ -852,8 +645,5 @@ public class WebServiceManager {
 		return List;
 		// http://localhost:8081/jcommops-api/api/rest/1.0/variables.json
 	}
-	
-	
-	
 
 }
