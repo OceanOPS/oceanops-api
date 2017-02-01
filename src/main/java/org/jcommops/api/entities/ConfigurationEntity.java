@@ -19,7 +19,7 @@ public class ConfigurationEntity implements Serializable {
 	private BigDecimal cycleTime;
     private BigDecimal driftPressure;
     private BigDecimal profilePressure;
-    private int iceDetection;
+    private Integer iceDetection;
 
 
     public ConfigurationEntity() {
@@ -61,11 +61,11 @@ public class ConfigurationEntity implements Serializable {
 	}
 	
 	@XmlElement
-	public int getIceDetection() {
+	public Integer getIceDetection() {
 		return iceDetection;
 	}
 
-	public void setIceDetection(int iceDetection) {
+	public void setIceDetection(Integer iceDetection) {
 		this.iceDetection = iceDetection;
 	}
    

@@ -5,7 +5,6 @@ import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 
 import org.jcommops.api.orm.Variable;
 
@@ -15,7 +14,7 @@ public class VariableEntity implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -8922662622540263102L;
-	private long id;
+	private Integer id;
 	private String name;
 	private String nameShort;
 	private String description;
@@ -84,11 +83,11 @@ public class VariableEntity implements Serializable{
 
 	
 	@XmlAttribute
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

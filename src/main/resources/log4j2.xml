@@ -7,7 +7,7 @@
   </Appenders>
   <Loggers>
   
-  	<Logger name="org.apache.cayenne.log.CommonsJdbcEventLogger" level="info">
+  	<Logger name="org.apache.cayenne.log.CommonsJdbcEventLogger" level="warn">
       <AppenderRef ref="Console"/>
   	</Logger>
     <Root level="warn">

@@ -1,15 +1,20 @@
 package org.jcommops.api.entities;
 
+import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 
 import org.jcommops.api.orm.Role;
 
 @XmlRootElement
-public class RoleEntity {
-	private long id;
+public class RoleEntity implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7794466759753703046L;
+	private Integer id;
 	private String name;
 	private String nameShort;
 
@@ -26,11 +31,11 @@ public class RoleEntity {
 	}
 	
 	@XmlAttribute
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

@@ -10,21 +10,21 @@ import javax.xml.bind.annotation.XmlType;
 import org.jcommops.api.orm.Network;
 
 @XmlRootElement
-public class NetworkPtfEntity implements Serializable{
+public class NetworkEntity implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 3997127540846173151L;
-	private long id;
+	private Integer id;
 	private String nameShort;
 	private String name;
 	private String description;
 	
 	
-	public NetworkPtfEntity (){	
+	public NetworkEntity (){	
 	}
 
-	public NetworkPtfEntity (Network network){	
+	public NetworkEntity (Network network){	
 		this.setId(Integer.parseInt(network.getObjectId().getIdSnapshot().get("ID").toString()));
 		this.setDescription(network.getDescription());
 		this.setName(network.getName());
@@ -33,11 +33,11 @@ public class NetworkPtfEntity implements Serializable{
 
 	
 	@XmlAttribute
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

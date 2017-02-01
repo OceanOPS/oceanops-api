@@ -3,6 +3,7 @@ package org.jcommops.api.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
@@ -10,6 +11,8 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+
+import org.jcommops.api.orm.Role;
 
 
 @XmlRootElement
@@ -24,8 +27,8 @@ public class ProgramEntity implements Serializable{
 	private String nameShort;
     private String description;
     private MasterProgramEntity masterProgram;
-    private ArrayList<AgencyEntity> agencies;
-    private HashMap<String, ContactEntity> contactsRoles;
+    private List<AgencyEntity> agencies;
+    private List<ContactEntity> contacts;
     private CountryEntity country;
 
 	public ProgramEntity() {
@@ -42,11 +45,24 @@ public class ProgramEntity implements Serializable{
     	for(int i = 0; i<program.getToAgencies().size();i++){
     		this.agencies.add(new AgencyEntity(program.getToAgencies().get(i)));
     	}
-    	this.contactsRoles = new HashMap<String, ContactEntity>();
+    	this.contacts = new ArrayList<ContactEntity>();
+    	
+    	ArrayList<Integer> alreadyAddedContacts = new ArrayList<Integer>();
     	for(int i = 0; i<program.getProgramContactArray().size();i++){
-    		this.contactsRoles.put(program.getProgramContactArray().get(i).getToRole().getName(), new ContactEntity(program.getProgramContactArray().get(i).getToContact()));
+    		if(!alreadyAddedContacts.contains(program.getProgramContactArray().get(i).getContactId())){
+    			alreadyAddedContacts.add(program.getProgramContactArray().get(i).getContactId());
+    			
+    			ArrayList<Role> roles = new ArrayList<>();
+    			for(int j = 0; j<program.getProgramContactArray().size();j++){
+    				if(program.getProgramContactArray().get(i).getContactId() == program.getProgramContactArray().get(j).getContactId()){
+    					roles.add(program.getProgramContactArray().get(j).getToRole());
+    				}
+    			}
+        		this.contacts.add(new ContactEntity(program.getProgramContactArray().get(i).getToContact(), roles));
+    		}
     	}
-    	this.setCountry(new CountryEntity(program.getToCountry()));
+    	if(program.getToCountry() != null)
+    		this.setCountry(new CountryEntity(program.getToCountry()));
     }
 
 
@@ -79,7 +95,7 @@ public class ProgramEntity implements Serializable{
     
     @XmlElementWrapper(name="agencies")
     @XmlElements(@XmlElement(name="agency",type=AgencyEntity.class))
-    public ArrayList<AgencyEntity> getAgencies() {
+    public List<AgencyEntity> getAgencies() {
         return agencies;
     }
 
@@ -94,17 +110,6 @@ public class ProgramEntity implements Serializable{
 
 	public void setMasterProgram(MasterProgramEntity masterProgram) {
 		this.masterProgram = masterProgram;
-	}
-
-
-	@XmlElementWrapper(name="contacts")
-    @XmlElements({@XmlElement(name="role",type=String.class), @XmlElement(name="contact",type=ContactEntity.class)})
-    public HashMap<String, ContactEntity> getContactsRoles() {
-		return contactsRoles;
-	}
-
-	public void setContactsRoles(HashMap<String, ContactEntity> contactsRoles) {
-		this.contactsRoles = contactsRoles;
 	}
 
 	public CountryEntity getCountry() {
@@ -122,6 +127,16 @@ public class ProgramEntity implements Serializable{
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	@XmlElementWrapper(name = "contacts")
+	@XmlElements(@XmlElement(name = "contact", type = ContactEntity.class))
+	public List<ContactEntity> getContacts() {
+		return contacts;
+	}
+
+	public void setContacts(List<ContactEntity> contacts) {
+		this.contacts = contacts;
 	}
 
 } 

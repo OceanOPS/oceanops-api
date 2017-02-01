@@ -213,5 +213,17 @@ public class Utils {
 		return str;
 		
 	}
+	
+	public static String basicSanitize(String value) {
+		String tempValue = null;
+		if(value != null){
+			tempValue = value.toUpperCase();
+			if ((tempValue.contains("INSERT ") || tempValue.contains("DELETE ") || tempValue.contains("UPDATE ")
+					|| tempValue.contains("DROP ") || tempValue.contains("DEFINE ") || tempValue.contains("ALTER ") || tempValue.contains(";") || tempValue.contains("COMMIT"))) {
+				tempValue = null;
+			}
+		}
+		return tempValue;
+	}
 
 }
