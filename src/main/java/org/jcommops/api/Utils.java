@@ -20,7 +20,7 @@ import org.jcommops.api.entities.VariableEntity;
 public class Utils {
 	private static ServerRuntime cayenneRuntime;
 	private static Properties properties;
-	private static String projectName, projectVersion;
+	private static String projectName, projectVersion, rootUrl;
 	public static final String CSV_SEPARATOR = ";";
 
 	private Utils() {
@@ -33,6 +33,7 @@ public class Utils {
 				properties.load(Utils.class.getClassLoader().getResourceAsStream("properties"));
 				projectVersion = properties.getProperty("PROJECT_VERSION");
 				projectName = properties.getProperty("PROJECT_NAME");
+				rootUrl = properties.getProperty("ROOT_URL_INT");
 			} catch (IOException e) {
 				projectVersion = "X.Y";
 				projectName = "ERROR";
@@ -224,6 +225,14 @@ public class Utils {
 			}
 		}
 		return tempValue;
+	}
+
+	public static String getRootUrl() {
+		return rootUrl;
+	}
+
+	public static void setRootUrl(String rootUrl) {
+		Utils.rootUrl = rootUrl;
 	}
 
 }
