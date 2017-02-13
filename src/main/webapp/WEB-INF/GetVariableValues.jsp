@@ -32,7 +32,13 @@
 					var table = $("#parameterTableBody");
 					content = "";
 					$(data).each(function(index, value){
-						content += "<tr>"+"<td>"+value.id+"</td>"+"<td>"+value.nameShort+"</td>"+"<td>"+value.name+"</td>"+"<td>"+value.description+"</td>"+"</tr>";	
+						content += "<tr>" 
+							+ "<td>" + value.id + "</td>" 
+							+ "<td>" + (value.cfRef ? value.cfRef : "") + "</td>"
+							+ "<td>" + (value.p01Ref ? value.p01Ref : "") + "</td>"
+							+ "<td>" + (value.argoRef ? value.argoRef : "") + "</td>"
+							+ "<td>" + (value.name ? value.name : "") + "</td>" 
+							+ "</tr>";	
 					}); 	
 					table.html(content);
 					$("#loader").hide();
@@ -249,9 +255,10 @@
 								</tr>
 								<tr>
 									<th>ID*</th>
-									<th>Short Name</th>
+									<th>CF Ref</th>
+									<th>P01 Ref</th>
+									<th>Argo Ref</th>
 									<th>Name</th>
-									<th>Description</th>
 								</tr>
 							</thead>
 							<tbody id="parameterTableBody">
