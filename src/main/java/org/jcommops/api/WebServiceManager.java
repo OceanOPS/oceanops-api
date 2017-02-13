@@ -41,41 +41,72 @@ public class WebServiceManager {
 
 	@GET
 	@Path("platforms.xml")
-	public ArrayList<PlatformEntity> getAllPtfsXML() {
+	public ArrayList<PlatformEntity> getAllPtfsXML(@QueryParam("status") String status,
+			@QueryParam("family") String family, @QueryParam("type") String type, @QueryParam("model") String model,
+			@QueryParam("program") String program, @QueryParam("network") String network,
+			@QueryParam("masterProgram") String masterprg, @QueryParam("variable") String variable,
+			@QueryParam("sensorModel") String sensormod, @QueryParam("sensorType") String sensortyp,
+			@QueryParam("ship") String ship, @QueryParam("country") String country) {
+
 		PlatformAccessor m = new PlatformAccessor();
-		ArrayList<PlatformEntity> ptfmList = m.getAllPtfIdsRefs();
-
-		return ptfmList;
+		HashMap<Integer, String> foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program,
+				network, masterprg, variable, sensormod, sensortyp, ship, country);
+		
+		ArrayList<PlatformEntity> result = new ArrayList<PlatformEntity>();
+		for (Integer id : foundPlatforms.keySet()) {
+			PlatformEntity ptf = new PlatformEntity();
+			ptf.setId(id);
+			ptf.setJcommopsRef(foundPlatforms.get(id));
+			result.add(ptf);
+		}
+		return result;
 	}
-
 	@GET
 	@Path("platforms.json")
 	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
-	public ArrayList<PlatformEntity> getAllPtfsJSON() {
-		PlatformAccessor m = new PlatformAccessor();
-		ArrayList<PlatformEntity> ptfmList = m.getAllPtfIdsRefs();
+	public ArrayList<PlatformEntity> getAllPtfsJSON(@QueryParam("status") String status,
+			@QueryParam("family") String family, @QueryParam("type") String type, @QueryParam("model") String model,
+			@QueryParam("program") String program, @QueryParam("network") String network,
+			@QueryParam("masterProgram") String masterprg, @QueryParam("variable") String variable,
+			@QueryParam("sensorModel") String sensormod, @QueryParam("sensorType") String sensortyp,
+			@QueryParam("ship") String ship, @QueryParam("country") String country) {
 
-		return ptfmList;
+		PlatformAccessor m = new PlatformAccessor();
+		HashMap<Integer, String> foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program,
+				network, masterprg, variable, sensormod, sensortyp, ship, country);
+		
+		ArrayList<PlatformEntity> result = new ArrayList<PlatformEntity>();
+		for (Integer id : foundPlatforms.keySet()) {
+			PlatformEntity ptf = new PlatformEntity();
+			ptf.setId(id);
+			ptf.setJcommopsRef(foundPlatforms.get(id));
+			result.add(ptf);
+		}
+		return result;
 	}
 
 	@GET
 	@Path("platforms.csv")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String getAllPtfsCSV() {
+	public String getSelectedPlatformsCSV(@QueryParam("status") String status, @QueryParam("family") String family,
+			@QueryParam("type") String type, @QueryParam("model") String model, @QueryParam("program") String program,
+			@QueryParam("network") String network, @QueryParam("masterProgram") String masterprg,
+			@QueryParam("variable") String variable, @QueryParam("sensorModel") String sensormod,
+			@QueryParam("sensorType") String sensortyp, @QueryParam("ship") String ship,
+			@QueryParam("country") String country) {
+
 		PlatformAccessor m = new PlatformAccessor();
-		ArrayList<PlatformEntity> foundPlatforms = m.getAllPtfIdsRefs();
+		HashMap<Integer, String> foundPlatforms = null;
+
 		StringBuilder csv = new StringBuilder();
 
-		if (foundPlatforms.size() > 0) {
-			csv.append("id" + Utils.CSV_SEPARATOR + "ref");
-			for (int i = 0; i < foundPlatforms.size(); i++) {
-				csv.append("\n" + foundPlatforms.get(i).getId() + Utils.CSV_SEPARATOR
-						+ foundPlatforms.get(i).getJcommopsRef());
-			}
-		} else {
-			throw new NotFoundException();
-		}
+		foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable,
+				sensormod, sensortyp, ship, country);
 
+		csv.append("id" + Utils.CSV_SEPARATOR + "ref");
+		for (Integer id : foundPlatforms.keySet()) {
+			csv.append("\n" + id + Utils.CSV_SEPARATOR + foundPlatforms.get(id));
+		}
 		return csv.toString();
 	}
 
@@ -121,78 +152,6 @@ public class WebServiceManager {
 			csv.append("\n" + ptfm.toCSV());
 		}
 
-		return csv.toString();
-	}
-
-	@GET
-	@Path("platforms.xml/find")
-	public ArrayList<PlatformEntity> getSelectedPlatformsXML(@QueryParam("status") String status,
-			@QueryParam("family") String family, @QueryParam("type") String type, @QueryParam("model") String model,
-			@QueryParam("program") String program, @QueryParam("network") String network,
-			@QueryParam("masterProgram") String masterprg, @QueryParam("variable") String variable,
-			@QueryParam("sensorModel") String sensormod, @QueryParam("sensorType") String sensortyp,
-			@QueryParam("ship") String ship, @QueryParam("country") String country) {
-
-		PlatformAccessor m = new PlatformAccessor();
-		HashMap<Integer, String> foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program,
-				network, masterprg, variable, sensormod, sensortyp, ship, country);
-		
-		ArrayList<PlatformEntity> result = new ArrayList<PlatformEntity>();
-		for (Integer id : foundPlatforms.keySet()) {
-			PlatformEntity ptf = new PlatformEntity();
-			ptf.setId(id);
-			ptf.setJcommopsRef(foundPlatforms.get(id));
-			result.add(ptf);
-		}
-		return result;
-	}
-
-	@GET
-	@Path("platforms.json/find")
-	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
-	public ArrayList<PlatformEntity> getSelectedPlatformsJSON(@QueryParam("status") String status,
-			@QueryParam("family") String family, @QueryParam("type") String type, @QueryParam("model") String model,
-			@QueryParam("program") String program, @QueryParam("network") String network,
-			@QueryParam("masterProgram") String masterprg, @QueryParam("variable") String variable,
-			@QueryParam("sensorModel") String sensormod, @QueryParam("sensorType") String sensortyp,
-			@QueryParam("ship") String ship, @QueryParam("country") String country) {
-
-		PlatformAccessor m = new PlatformAccessor();
-		HashMap<Integer, String> foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program,
-				network, masterprg, variable, sensormod, sensortyp, ship, country);
-		
-		ArrayList<PlatformEntity> result = new ArrayList<PlatformEntity>();
-		for (Integer id : foundPlatforms.keySet()) {
-			PlatformEntity ptf = new PlatformEntity();
-			ptf.setId(id);
-			ptf.setJcommopsRef(foundPlatforms.get(id));
-			result.add(ptf);
-		}
-		return result;
-	}
-
-	@GET
-	@Path("platforms.csv/find")
-	@Produces(MediaType.TEXT_PLAIN)
-	public String getSelectedPlatformsCSV(@QueryParam("status") String status, @QueryParam("family") String family,
-			@QueryParam("type") String type, @QueryParam("model") String model, @QueryParam("program") String program,
-			@QueryParam("network") String network, @QueryParam("masterProgram") String masterprg,
-			@QueryParam("variable") String variable, @QueryParam("sensorModel") String sensormod,
-			@QueryParam("sensorType") String sensortyp, @QueryParam("ship") String ship,
-			@QueryParam("country") String country) {
-
-		PlatformAccessor m = new PlatformAccessor();
-		HashMap<Integer, String> foundPlatforms = null;
-
-		StringBuilder csv = new StringBuilder();
-
-		foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable,
-				sensormod, sensortyp, ship, country);
-
-		csv.append("id" + Utils.CSV_SEPARATOR + "ref");
-		for (Integer id : foundPlatforms.keySet()) {
-			csv.append("\n" + id + Utils.CSV_SEPARATOR + foundPlatforms.get(id));
-		}
 		return csv.toString();
 	}
 
