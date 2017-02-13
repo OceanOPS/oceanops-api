@@ -28,12 +28,14 @@ public class ShipEntity implements Serializable {
 	public ShipEntity(Ship ship) {
 		this.setCallSign(ship.getCallSign());
 		this.setCommissionedDate(Utils.GetIsoDate(ship.getCommissionedDate()));
-		this.setCountry(new CountryEntity(ship.getToCountry()));
+		if(ship.getToCountry() != null)
+			this.setCountry(new CountryEntity(ship.getToCountry()));
 		this.setDecommissionedDate(Utils.GetIsoDate(ship.getDecommissionedDate()));
 		this.setImo(ship.getImo());
 		this.setName(ship.getName());
 		this.setRef(ship.getRef());
-		this.setShipType(ship.getToShipType().getName());
+		if(ship.getToShipType() != null)
+			this.setShipType(ship.getToShipType().getName());
 	}
 	
 	public String getRef() {
