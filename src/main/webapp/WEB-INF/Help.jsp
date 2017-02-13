@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <%
-	String uri = (String) request.getAttribute("uri");
+	String rootUrl = (String) request.getAttribute("rootUrl");
 	String version = (String) request.getAttribute("projectVersion");
 	String name = (String) request.getAttribute("projectName");
 %>
@@ -54,11 +54,9 @@
 				<p>The total list of all the referenced platforms can be
 					obtained with a GET request using the following URL pattern:
 				<div class="text-center">
-					<i><b>[ROOT][/]X.Y[/] platforms.format</b></i>
+					<i><b><%=rootUrl%>platforms.[format]</b></i>
 				</div>
-				<br> Where "X.Y" string path is the version of the API (current
-				version is
-				<%=version%>) and "format" in "platforms.format" string path
+				<br> Where "format" in "platforms.[format]" string path
 				represents the data output.
 				</p>
 
@@ -68,7 +66,7 @@
 				<div class="collapse" id="listAllPtfExample">
 					<div class="well">
 						To generate the global platforms list in json format, here the
-						dedicated URL:<br> <i><%=uri%>platforms.json</i> <br>
+						dedicated URL:<br> <i><%=rootUrl%>platforms.json</i> <br>
 						Below is a truncated output of the example URL:
 						<pre>
 						<code>
@@ -94,8 +92,7 @@
 				<p>A filtered list of platforms can be obtained with a GET
 					request using this URL pattern:
 				<div class="text-center">
-					<i><b>[ROOT][/]
-							X.Y[/]platforms.format[/]find?parm1=value1&parm2=value2&...</b></i>
+					<i><b><%=rootUrl%>platforms.[format]?parm1=value1&parm2=value2&...</b></i>
 				</div>
 				<br> Where parm1, parm2…param(i) respresent the query
 				parameters and value1, value2…value(i) represent the corresponding
@@ -188,7 +185,7 @@
 						for single word parameters, and in lower camel case for acronyms
 						of compound words.<br> <br> A search parameter's value
 						corresponds to either an identification number (<b>ID</b>) or a
-						non-sensitive caps string (<b>Short Name</b> ). The values that
+						string (such as <b>Short Name</b>). The values that
 						can each parameter take are listed in the corresponding links in
 						table 1 (Get parameter button).
 					</div>
@@ -204,7 +201,7 @@
 							To generate the list of <b>active platforms</b> monitoring the <b>dissolved
 								oxygen (ID = 33)</b>, here the dedicated URL:
 						<div class="text-center">
-							<i><%=uri%>platforms.xml/find?status=ACTIVE&variable=33</i>
+							<i><%=rootUrl%>platforms.xml/find?status=ACTIVE&variable=33</i>
 						</div>
 						<br> <br> Below is a truncated output of the example
 						URL:<br>
@@ -239,7 +236,7 @@
 							standing for "<b>dissolved oxygen</b>". The previous URL is
 							equivalent to:
 						<div class="text-center">
-							<i><%=uri%>platforms.xml/find?status=3&variable=33</i>
+							<i><%=rootUrl%>platforms.xml/find?status=3&variable=33</i>
 						</div>
 						Where in this URL we replaced the short name value of the status ("ACTIVE") by its corresponding ID ("3").
 						</p>
@@ -255,9 +252,9 @@
 				A platform details can be obtained with a GET request using the
 				following dedicated URL pattern:
 			<div class="text-center">
-				<i><b>[ROOT][/]X.Y[/] platform.format[/]ID</b></i><br>
+				<i><b><%=rootUrl%>platform.format/[ID]</b></i><br>
 			</div>
-			<br> Where "ID" is the identification number of the platform.
+			<br> Where "[ID]" is the identification number of the platform.
 			Beware of the singular form of “platform” in the URL string
 			platform.format compared to the previous examples (platforms
 			listing).
@@ -273,7 +270,7 @@
 					example as "<b>active</b>" and including a sensor measuring "<b>dissolved
 						oxygen</b>". Here the dedicated URL for this example:
 					<div class="text-center">
-						<i><%=uri%>platform.xml/498692</i><br>
+						<i><%=rootUrl%>platform.xml/498692</i><br>
 					</div>
 					Below is a truncated output of the example URL:<br>
 					<pre>

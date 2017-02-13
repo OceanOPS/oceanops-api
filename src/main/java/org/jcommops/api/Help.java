@@ -20,9 +20,7 @@ public class Help extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		String uri = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getRequestURI().replace("/help", "/");
-		request.setAttribute("uri", uri);
+		request.setAttribute("rootUrl", Utils.getRootUrl());
 		request.setAttribute("projectVersion", Utils.getProjectVersion());
 		request.setAttribute("projectName", Utils.getProjectName());
 		String jspName = "";
