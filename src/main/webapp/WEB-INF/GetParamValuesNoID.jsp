@@ -21,10 +21,9 @@
 	<script>
 		$(document).ready(function(){
 			var parameter_uri="<%=parameter%>";
-			var root_uri="<%=uri%>";
 			
 			$.ajax({
-				url: root_uri + parameter_uri,
+				url: parameter_uri,
 				dataType: 'json',
 				type: 'get',
 				cache: false,
