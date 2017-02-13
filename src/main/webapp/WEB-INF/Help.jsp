@@ -201,7 +201,7 @@
 							To generate the list of <b>active platforms</b> monitoring the <b>dissolved
 								oxygen (ID = 33)</b>, here the dedicated URL:
 						<div class="text-center">
-							<i><%=rootUrl%>platforms.xml/find?status=ACTIVE&variable=33</i>
+							<i><%=rootUrl%>platforms.xml?status=ACTIVE&variable=33</i>
 						</div>
 						<br> <br> Below is a truncated output of the example
 						URL:<br>
@@ -236,7 +236,7 @@
 							standing for "<b>dissolved oxygen</b>". The previous URL is
 							equivalent to:
 						<div class="text-center">
-							<i><%=rootUrl%>platforms.xml/find?status=3&variable=33</i>
+							<i><%=rootUrl%>platforms.xml?status=3&variable=33</i>
 						</div>
 						Where in this URL we replaced the short name value of the status ("ACTIVE") by its corresponding ID ("3").
 						</p>
