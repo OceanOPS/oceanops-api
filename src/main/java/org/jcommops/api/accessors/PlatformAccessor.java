@@ -251,9 +251,9 @@ public class PlatformAccessor {
 
 	public ArrayList<VariableEntity> getPtfVariables() { // List of platforms'
 		// variables
-
-		SelectQuery Variable_query = new SelectQuery(Variable.class);
-		List<Variable> Variables = context.performQuery(Variable_query);
+		
+		SQLTemplate select = new SQLTemplate(Variable.class, "select * from variable where exists (select null from ptf_variable where variable_id = variable.id) and name_short not like 'GEN%'"); 
+		List<Variable> Variables = context.performQuery(select);
 
 		ArrayList<VariableEntity> Variables_list = new ArrayList<VariableEntity>();
 

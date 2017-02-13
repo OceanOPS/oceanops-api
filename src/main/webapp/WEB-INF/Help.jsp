@@ -202,9 +202,9 @@
 					<div class="well">
 						<p>
 							To generate the list of <b>active platforms</b> monitoring the <b>dissolved
-								oxygen</b>, here the dedicated URL:
+								oxygen (ID = 33)</b>, here the dedicated URL:
 						<div class="text-center">
-							<i><%=uri%>platforms.xml/find?status=ACTIVE&variable=DOXY</i>
+							<i><%=uri%>platforms.xml/find?status=ACTIVE&variable=33</i>
 						</div>
 						<br> <br> Below is a truncated output of the example
 						URL:<br>
@@ -241,9 +241,7 @@
 						<div class="text-center">
 							<i><%=uri%>platforms.xml/find?status=3&variable=33</i>
 						</div>
-						Where in this URL we replaced the short names's values of status
-						and variable ("ACTIVE" and "DOXY") and assigned their
-						corresponding IDs ("3" and "33").
+						Where in this URL we replaced the short name value of the status ("ACTIVE") by its corresponding ID ("3").
 						</p>
 					</div>
 				</div>
