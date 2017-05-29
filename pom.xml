@@ -103,7 +103,11 @@
 			<scope>provided</scope>
 		</dependency>
 
-
+		<dependency>
+			<groupId>org.jvnet.ogc</groupId>
+			<artifactId>samplingSpatial-v_2_0</artifactId>
+			<version>2.6.1</version>
+		</dependency>
 	</dependencies>
 	<properties>
 		<jersey.version>2.16</jersey.version>

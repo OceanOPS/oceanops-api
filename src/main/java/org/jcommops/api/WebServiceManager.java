@@ -17,6 +17,11 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.datatype.DatatypeConfigurationException;
 
 import org.apache.cayenne.CayenneRuntimeException;
 import org.apache.commons.logging.Log;
@@ -34,6 +39,12 @@ import org.jcommops.api.entities.ProgramEntity;
 import org.jcommops.api.entities.SensorModelEntity;
 import org.jcommops.api.entities.SensorTypeEntity;
 import org.jcommops.api.entities.VariableEntity;
+import org.jcommops.api.entities.wmdr.WIGOSMetadataRecord;
+
+import _int.wmo.def.wmdr._2017.ObjectFactory;
+import _int.wmo.def.wmdr._2017.WIGOSMetadataRecordType;
+import net.opengis.gml.v_3_2_1.BoundingShapeType;
+import net.opengis.gml.v_3_2_1.StringOrRefType;
 
 @Path("/")
 public class WebServiceManager {
@@ -111,7 +122,7 @@ public class WebServiceManager {
 	}
 
 	@GET
-	@Path("platform.xml/{id}")
+	@Path("platforms.xml/{id}")
 	public PlatformEntity getPtfbyIdXML(@PathParam("id") long id) {
 		PlatformAccessor m = new PlatformAccessor();
 		PlatformEntity ptfm = m.getPtfbyID(id);
@@ -122,9 +133,18 @@ public class WebServiceManager {
 
 		return ptfm;
 	}
+	
+	@GET
+	@Path("platforms.xml/wmdr/{id}")
+	@Produces(MediaType.APPLICATION_XML)
+	public String getWmdrById(@PathParam("id") String id) throws JAXBException, NumberFormatException, DatatypeConfigurationException {
+		WIGOSMetadataRecord wmdr = new WIGOSMetadataRecord(Integer.parseInt(id));
+		
+		return wmdr.toString();
+	}
 
 	@GET
-	@Path("platform.json/{id}")
+	@Path("platforms.json/{id}")
 	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	public PlatformEntity getPtfbyIdJSON(@PathParam("id") long id) {
 		PlatformAccessor m = new PlatformAccessor();
@@ -138,7 +158,7 @@ public class WebServiceManager {
 	}
 
 	@GET
-	@Path("platform.csv/{id}")
+	@Path("platforms.csv/{id}")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getPtfbyIdCSV(@PathParam("id") long id) {
 		PlatformAccessor m = new PlatformAccessor();
@@ -157,7 +177,7 @@ public class WebServiceManager {
 
 
 	@GET
-	@Path("ptfStatuses.xml")
+	@Path("ptf_statuses.xml")
 	public ArrayList<PlatformStatusEntity> getAllPtfStatusesXML() {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<PlatformStatusEntity> List = new ArrayList<PlatformStatusEntity>();
@@ -173,7 +193,7 @@ public class WebServiceManager {
 	}
 
 	@GET
-	@Path("ptfStatuses.json")
+	@Path("ptf_statuses.json")
 	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	public ArrayList<PlatformStatusEntity> getAllPtfStatusesJSON() {
 		PlatformAccessor m = new PlatformAccessor();
@@ -190,7 +210,7 @@ public class WebServiceManager {
 	}
 
 	@GET
-	@Path("ptfFamilies.xml")
+	@Path("ptf_families.xml")
 	public ArrayList<PlatformFamilyEntity> getAllPtfFamiliesXML() {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<PlatformFamilyEntity> List = new ArrayList<PlatformFamilyEntity>();
@@ -207,7 +227,7 @@ public class WebServiceManager {
 	}
 
 	@GET
-	@Path("ptfFamilies.json")
+	@Path("ptf_families.json")
 	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	public ArrayList<PlatformFamilyEntity> getAllPtfFamiliesJSON() {
 		PlatformAccessor m = new PlatformAccessor();
@@ -226,7 +246,7 @@ public class WebServiceManager {
 	}
 
 	@GET
-	@Path("ptfTypes.xml")
+	@Path("ptf_types.xml")
 	public ArrayList<PlatformTypeEntity> getAllPtfTypesXML() {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<PlatformTypeEntity> List = new ArrayList<PlatformTypeEntity>();
@@ -243,7 +263,7 @@ public class WebServiceManager {
 	}
 
 	@GET
-	@Path("ptfTypes.json")
+	@Path("ptf_types.json")
 	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	public ArrayList<PlatformTypeEntity> getAllPtfTypesJSON() {
 		PlatformAccessor m = new PlatformAccessor();
@@ -262,7 +282,7 @@ public class WebServiceManager {
 	}
 
 	@GET
-	@Path("ptfModels.xml")
+	@Path("ptf_models.xml")
 	public ArrayList<PlatformModelEntity> getAllPtfModelsXML() {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<PlatformModelEntity> List = new ArrayList<PlatformModelEntity>();
@@ -279,7 +299,7 @@ public class WebServiceManager {
 	}
 
 	@GET
-	@Path("ptfModels.json")
+	@Path("ptf_models.json")
 	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	public ArrayList<PlatformModelEntity> getAllPtfModelsJSON() {
 		PlatformAccessor m = new PlatformAccessor();
@@ -364,7 +384,7 @@ public class WebServiceManager {
 	}
 
 	@GET
-	@Path("masterPrograms.xml")
+	@Path("master_programs.xml")
 	public ArrayList<MasterProgramEntity> getAllPtfPtfMasterProgramsXML() {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<MasterProgramEntity> List = new ArrayList<MasterProgramEntity>();
@@ -381,7 +401,7 @@ public class WebServiceManager {
 	}
 
 	@GET
-	@Path("masterPrograms.json")
+	@Path("master_programs.json")
 	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	public ArrayList<MasterProgramEntity> getAllPtfMasterProgramsJSON() {
 		PlatformAccessor m = new PlatformAccessor();
@@ -434,7 +454,7 @@ public class WebServiceManager {
 	}
 
 	@GET
-	@Path("sensorModels.xml")
+	@Path("sensor_models.xml")
 	public ArrayList<SensorModelEntity> getAllPtfSensorModelsXML() {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<SensorModelEntity> List = new ArrayList<SensorModelEntity>();
@@ -450,7 +470,7 @@ public class WebServiceManager {
 	}
 
 	@GET
-	@Path("sensorModels.json")
+	@Path("sensor_models.json")
 	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	public ArrayList<SensorModelEntity> getAllPtfSensorModelsJSON() {
 		PlatformAccessor m = new PlatformAccessor();
@@ -467,7 +487,7 @@ public class WebServiceManager {
 	}
 
 	@GET
-	@Path("sensorTypes.xml")
+	@Path("sensor_types.xml")
 	public ArrayList<SensorTypeEntity> getAllPtfSensorTypesXML() {
 		PlatformAccessor m = new PlatformAccessor();
 		ArrayList<SensorTypeEntity> List = new ArrayList<SensorTypeEntity>();
@@ -483,7 +503,7 @@ public class WebServiceManager {
 	}
 
 	@GET
-	@Path("sensorTypes.json")
+	@Path("sensor_types.json")
 	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	public ArrayList<SensorTypeEntity> getAllPtfSensorTypesJSON() {
 		PlatformAccessor m = new PlatformAccessor();
