@@ -120,22 +120,9 @@ public class WebServiceManager {
 		}
 		return csv.toString();
 	}
-
-	@GET
-	@Path("platforms.xml/{id}")
-	public PlatformEntity getPtfbyIdXML(@PathParam("id") long id) {
-		PlatformAccessor m = new PlatformAccessor();
-		PlatformEntity ptfm = m.getPtfbyID(id);
-
-		if (ptfm == null) {
-			throw new NotFoundException("No platform found for ID = " + id);
-		}
-
-		return ptfm;
-	}
 	
 	@GET
-	@Path("platforms.xml/wmdr/{id}")
+	@Path("platforms.xml/{id}")
 	@Produces(MediaType.APPLICATION_XML)
 	public String getWmdrById(@PathParam("id") String id) throws JAXBException, NumberFormatException, DatatypeConfigurationException {
 		WIGOSMetadataRecord wmdr = new WIGOSMetadataRecord(Integer.parseInt(id));
