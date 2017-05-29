@@ -29,19 +29,19 @@ public class Help extends HttpServlet {
 			jspName = "GetParamValues.jsp";
 			switch (request.getParameter("param")) {
 			case "status":
-				request.setAttribute("parameter", "ptfStatuses.json");
+				request.setAttribute("parameter", "ptf_statuses.json");
 				request.setAttribute("parameter_name", "Platform Statuses");
 				break;
 			case "model":
-				request.setAttribute("parameter", "ptfModels.json");
+				request.setAttribute("parameter", "ptf_models.json");
 				request.setAttribute("parameter_name", "Platform Models");
 				break;
 			case "type":
-				request.setAttribute("parameter", "ptfTypes.json");
+				request.setAttribute("parameter", "ptf_types.json");
 				request.setAttribute("parameter_name", "Platform Types");
 				break;
 			case "family":
-				request.setAttribute("parameter", "ptfFamilies.json");
+				request.setAttribute("parameter", "ptf_families.json");
 				request.setAttribute("parameter_name", "Platform Families");
 				break;
 			case "network":
@@ -53,7 +53,7 @@ public class Help extends HttpServlet {
 				request.setAttribute("parameter_name", "Programs");
 				break;
 			case "masterProgram":
-				request.setAttribute("parameter", "masterPrograms.json");
+				request.setAttribute("parameter", "master_programs.json");
 				request.setAttribute("parameter_name", "Master Programs");
 				break;
 			case "variable":
@@ -62,11 +62,11 @@ public class Help extends HttpServlet {
 				jspName = "GetVariableValues.jsp";
 				break;
 			case "sensorModel":
-				request.setAttribute("parameter", "sensorModels.json");
+				request.setAttribute("parameter", "sensor_models.json");
 				request.setAttribute("parameter_name", "Sensor Models");
 				break;
 			case "sensorType":
-				request.setAttribute("parameter", "sensorTypes.json");
+				request.setAttribute("parameter", "sensor_types.json");
 				request.setAttribute("parameter_name", "Sensor Types");
 				break;
 			case "country":

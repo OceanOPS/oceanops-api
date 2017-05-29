@@ -22,6 +22,8 @@ public class Utils {
 	private static Properties properties;
 	private static String projectName, projectVersion, rootUrl;
 	public static final String CSV_SEPARATOR = ";";
+	public static final SimpleDateFormat ISO_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+	public static final Integer JCOMMOPS_AGENCY_ID = 61;
 
 	private Utils() {
 	}
