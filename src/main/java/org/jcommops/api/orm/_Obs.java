@@ -29,6 +29,7 @@ public abstract class _Obs extends CayenneDataObject {
     public static final String LATEST_DISTRIBUTION_DATE_PROPERTY = "latestDistributionDate";
     public static final String OBS_DATE_PROPERTY = "obsDate";
     public static final String OBS_END_DATE_PROPERTY = "obsEndDate";
+    public static final String PTF_ID_PROPERTY = "ptfId";
     public static final String SHAPE_PROPERTY = "shape";
     public static final String UPDATE_DATE_PROPERTY = "updateDate";
     public static final String WMO_PROPERTY = "wmo";
@@ -152,6 +153,13 @@ public abstract class _Obs extends CayenneDataObject {
     }
     public Date getObsEndDate() {
         return (Date)readProperty(OBS_END_DATE_PROPERTY);
+    }
+
+    public void setPtfId(Integer ptfId) {
+        writeProperty(PTF_ID_PROPERTY, ptfId);
+    }
+    public Integer getPtfId() {
+        return (Integer)readProperty(PTF_ID_PROPERTY);
     }
 
     public void setShape(byte[] shape) {
