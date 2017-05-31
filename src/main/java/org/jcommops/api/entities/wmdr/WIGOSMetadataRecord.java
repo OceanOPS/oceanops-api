@@ -22,11 +22,16 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import org.apache.cayenne.Cayenne;
 import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.configuration.server.ServerRuntime;
+import org.apache.cayenne.exp.Expression;
+import org.apache.cayenne.exp.ExpressionFactory;
+import org.apache.cayenne.exp.ExpressionParameter;
+import org.apache.cayenne.query.SelectQuery;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jcommops.api.Utils;
 import org.jcommops.api.accessors.PlatformAccessor;
 import org.jcommops.api.orm.Agency;
+import org.jcommops.api.orm.Obs;
 import org.jcommops.api.orm.Ptf;
 import org.jcommops.api.orm.PtfDeployment;
 import org.jcommops.api.orm.PtfSensorModel;
@@ -43,17 +48,21 @@ import _int.wmo.def.wmdr._2017.FacilityLogType;
 import _int.wmo.def.wmdr._2017.HeaderType;
 import _int.wmo.def.wmdr._2017.ObjectFactory;
 import _int.wmo.def.wmdr._2017.ObservingFacilityType;
+import _int.wmo.def.wmdr._2017.ResultSetType;
 import _int.wmo.def.wmdr._2017.TimestampedLocationPropertyType;
 import _int.wmo.def.wmdr._2017.TimestampedLocationType;
 import _int.wmo.def.wmdr._2017.WIGOSMetadataRecordType;
 import _int.wmo.def.wmdr._2017.WIGOSMetadataRecordType.Equipment;
 import _int.wmo.def.wmdr._2017.WIGOSMetadataRecordType.Facility;
 import net.opengis.gml.v_3_2_1.AbstractGeometryType;
+import net.opengis.gml.v_3_2_1.AbstractTimeObjectType;
 import net.opengis.gml.v_3_2_1.BoundingShapeType;
 import net.opengis.gml.v_3_2_1.CodeType;
 import net.opengis.gml.v_3_2_1.CodeWithAuthorityType;
 import net.opengis.gml.v_3_2_1.DirectPositionType;
+import net.opengis.gml.v_3_2_1.FeaturePropertyType;
 import net.opengis.gml.v_3_2_1.GeometryPropertyType;
+import net.opengis.gml.v_3_2_1.LocationPropertyType;
 import net.opengis.gml.v_3_2_1.PointType;
 import net.opengis.gml.v_3_2_1.ReferenceType;
 import net.opengis.gml.v_3_2_1.StringOrRefType;
@@ -74,6 +83,11 @@ import net.opengis.iso19139.gmd.v_20070417.CITelephonePropertyType;
 import net.opengis.iso19139.gmd.v_20070417.CITelephoneType;
 import net.opengis.iso19139.gmd.v_20070417.URLPropertyType;
 import net.opengis.iso19139.gts.v_20070417.TMPeriodDurationPropertyType;
+import net.opengis.om.v_2_0.OMObservationPropertyType;
+import net.opengis.om.v_2_0.OMObservationType;
+import net.opengis.om.v_2_0.TimeObjectPropertyType;
+import net.opengis.samplingspatial.v_2_0.SFSpatialSamplingFeatureType;
+import net.opengis.samplingspatial.v_2_0.ShapeType;
 
 /**
  * @author alize
@@ -85,6 +99,11 @@ public class WIGOSMetadataRecord {
 	private ObjectContext cayenneContext = Utils.getCayenneRuntime().getContext();
 	private JAXBContext jaxbContext;
 	private _int.wmo.def.wmdr._2017.ObjectFactory wmdrOF;
+	private _int.wmo.def.opm._2013.ObjectFactory opmOF;
+	private _int.wmo.def.metce._2013.ObjectFactory metceOF;
+	private net.opengis.sampling.v_2_0.ObjectFactory samOF;
+	private net.opengis.samplingspatial.v_2_0.ObjectFactory samsOF;
+	private net.opengis.om.v_2_0.ObjectFactory omOF;
 	private net.opengis.gml.v_3_2_1.ObjectFactory gmlOF;
 	private WIGOSMetadataRecordType rootElementType;
 	private JAXBElement<WIGOSMetadataRecordType> rootElement;
@@ -94,8 +113,13 @@ public class WIGOSMetadataRecord {
 	public WIGOSMetadataRecord() throws JAXBException{
 		this.cayenneRuntime = Utils.getCayenneRuntime();
 		this.cayenneContext = this.cayenneRuntime.getContext();
-		this.jaxbContext = JAXBContext.newInstance( "_int.wmo.def.wmdr._2017:_int.wmo.def.metce._2013:_int.wmo.def.opm._2013:net.opengis.gml.v_3_2_1" );
+		this.jaxbContext = JAXBContext.newInstance( "_int.wmo.def.wmdr._2017:_int.wmo.def.metce._2013:_int.wmo.def.opm._2013:net.opengis.gml.v_3_2_1:net.opengis.om.v_2_0:net.opengis.sampling.v_2_0:net.opengis.samplingspatial.v_2_0" );
 		this.wmdrOF = new _int.wmo.def.wmdr._2017.ObjectFactory();
+		this.opmOF = new _int.wmo.def.opm._2013.ObjectFactory();
+		this.metceOF = new _int.wmo.def.metce._2013.ObjectFactory();
+		this.samOF = new net.opengis.sampling.v_2_0.ObjectFactory();
+		this.samsOF = new net.opengis.samplingspatial.v_2_0.ObjectFactory();
+		this.omOF = new net.opengis.om.v_2_0.ObjectFactory();
 		this.gmlOF = new net.opengis.gml.v_3_2_1.ObjectFactory();
 		this.gmdOF = new net.opengis.iso19139.gmd.v_20070417.ObjectFactory();
 		this.gcoOF = new net.opengis.iso19139.gco.v_20070417.ObjectFactory();
@@ -130,6 +154,10 @@ public class WIGOSMetadataRecord {
 		List<WIGOSMetadataRecordType.Equipment> equipments = this.rootElementType.getEquipment();
 		List<WIGOSMetadataRecordType.Equipment> equipmentList = this.getEquipements(ptf);
 		equipments.addAll(equipmentList);
+		
+		List<OMObservationPropertyType> obss = this.rootElementType.getObservation();
+		List<OMObservationPropertyType> observations = this.getObservations(ptf);
+		obss.addAll(observations);
 	}
 
 	private CIResponsiblePartyType getCIResponsibleParty(Integer agencyId, String ciRoleCode){
@@ -139,39 +167,48 @@ public class WIGOSMetadataRecord {
 			agency = Cayenne.objectForPK(this.cayenneContext, Agency.class, agencyId); 
 		}
 		else{
+			agencyId = Utils.JCOMMOPS_AGENCY_ID;
 			agency = Cayenne.objectForPK(this.cayenneContext, Agency.class, Utils.JCOMMOPS_AGENCY_ID); 
 		}
 		
-		responsibleParty.setId(agency.getRef());
+		responsibleParty.setId("responsibleparty-" + agencyId.toString());
 		
 		CharacterStringPropertyType organisationName = this.gcoOF.createCharacterStringPropertyType();
 		organisationName.setCharacterString(this.gcoOF.createCharacterString(agency.getName()));
 		CIContactPropertyType contactInfo = this.gmdOF.createCIContactPropertyType();
 		CIContactType contact = this.gmdOF.createCIContactType();
+		ArrayList<CharacterStringPropertyType> list = new ArrayList<CharacterStringPropertyType>();;
+		CharacterStringPropertyType value;
 		CITelephonePropertyType phoneProperty = this.gmdOF.createCITelephonePropertyType();
 		CITelephoneType phone = this.gmdOF.createCITelephoneType();
-		ArrayList<CharacterStringPropertyType> list = new ArrayList<CharacterStringPropertyType>();
-		CharacterStringPropertyType value = this.gcoOF.createCharacterStringPropertyType();
-		value.setCharacterString(this.gcoOF.createCharacterString(agency.getTel()));;
-		list.add(value);
-		phone.setVoice(list);
-		phoneProperty.setCITelephone(phone);
-		
 		CIAddressPropertyType addressProperty = this.gmdOF.createCIAddressPropertyType();
 		CIAddressType address = this.gmdOF.createCIAddressType();
-		list.clear();
-		value = this.gcoOF.createCharacterStringPropertyType();
-		value.setCharacterString(this.gcoOF.createCharacterString(agency.getAddress()));
-		list.add(value);
-		address.setDeliveryPoint(list);
-		list.clear();
-		value = this.gcoOF.createCharacterStringPropertyType();
-		value.setCharacterString(this.gcoOF.createCharacterString(agency.getEmail()));
-		list.add(value);
-		address.setElectronicMailAddress(list);
-		value = this.gcoOF.createCharacterStringPropertyType();
-		value.setCharacterString(this.gcoOF.createCharacterString(agency.getToCountry().getNameLong()));
-		address.setCountry(value);
+		if(agency.getTel() != null){
+			value = this.gcoOF.createCharacterStringPropertyType();
+			value.setCharacterString(this.gcoOF.createCharacterString(agency.getTel()));
+			list.add(value);
+			phone.setVoice(list);
+			phoneProperty.setCITelephone(phone);
+		}
+		if(agency.getAddress() != null){
+			list.clear();
+			value = this.gcoOF.createCharacterStringPropertyType();
+			value.setCharacterString(this.gcoOF.createCharacterString(agency.getAddress()));
+			list.add(value);
+			address.setDeliveryPoint(list);
+		}
+		if(agency.getEmail() != null){
+			list.clear();
+			value = this.gcoOF.createCharacterStringPropertyType();
+			value.setCharacterString(this.gcoOF.createCharacterString(agency.getEmail()));
+			list.add(value);
+			address.setElectronicMailAddress(list);
+		}
+		if(agency.getToCountry() != null){
+			value = this.gcoOF.createCharacterStringPropertyType();
+			value.setCharacterString(this.gcoOF.createCharacterString(agency.getToCountry().getNameLong()));
+			address.setCountry(value);
+		}
 		
 		addressProperty.setCIAddress(address);	
 		
@@ -431,6 +468,76 @@ public class WIGOSMetadataRecord {
 		o.setFacilityLog(facilityLogProperty);*/
 				
 		return o;
+	}
+	
+	private List<OMObservationPropertyType> getObservations(Ptf ptf){
+		List<OMObservationPropertyType> result = new ArrayList();
+		
+		Expression qual = ExpressionFactory.matchExp("ptfId", Integer.parseInt(ptf.getObjectId().getIdSnapshot().get("ID").toString()));
+		SelectQuery query = new SelectQuery(Obs.class, qual);
+		List<Obs> observations = cayenneContext.performQuery(query);
+		
+		OMObservationPropertyType currentObsType;
+		OMObservationType currentObs;
+		for(Obs obs: observations){
+			currentObsType = this.omOF.createOMObservationPropertyType();
+			currentObs = this.omOF.createOMObservationType();
+			
+			currentObs.setId("obs-" + obs.getObjectId().getIdSnapshot().get("ID").toString());
+			
+			TimeObjectPropertyType timeObj = this.omOF.createTimeObjectPropertyType();
+			TimePeriodType timePeriod = this.gmlOF.createTimePeriodType();
+			TimePositionType timePosition = this.gmlOF.createTimePositionType();
+			timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(obs.getObsDate())));
+			timePeriod.setId("obs-" + obs.getObjectId().getIdSnapshot().get("ID").toString() + "-date");
+			timePeriod.setBeginPosition(timePosition);
+			timePeriod.setEndPosition(this.gmlOF.createTimePositionType());
+			timeObj.setAbstractTimeObject(this.gmlOF.createAbstractTimeObject(timePeriod));
+			currentObs.setPhenomenonTime(timeObj);
+			
+			currentObs.setResultTime(this.gmlOF.createTimeInstantPropertyType());
+			currentObs.setValidTime(this.gmlOF.createTimePeriodPropertyType());
+			
+			PointType geom = this.gmlOF.createPointType();
+			DirectPositionType pos = this.gmlOF.createDirectPositionType();
+			pos.setValue(Arrays.asList(obs.getToPtfLoc().getLat().doubleValue(), obs.getToPtfLoc().getLon().doubleValue(), obs.getToPtfLoc().getElevation() == null ? 0: obs.getToPtfLoc().getElevation().doubleValue()));
+			geom.setId("obs-" + obs.getObjectId().getIdSnapshot().get("ID").toString() + "-geometry");
+			geom.setPos(pos);
+			geom.setSrsName("http://www.opengis.net/def/crs/EPSG/0/4979");
+			ShapeType shape = this.samsOF.createShapeType();
+			shape.setAbstractGeometry(this.gmlOF.createAbstractGeometry(geom));
+			SFSpatialSamplingFeatureType samplFeature = this.samsOF.createSFSpatialSamplingFeatureType();
+			samplFeature.setId("obs-" + obs.getObjectId().getIdSnapshot().get("ID").toString() + "-samplingfeature");
+			LocationPropertyType loc = this.gmlOF.createLocationPropertyType();
+			loc.setAbstractGeometry(this.gmlOF.createPoint(geom));
+			samplFeature.setLocation(this.gmlOF.createLocation(loc));
+			List<FeaturePropertyType> sampledFeatures = samplFeature.getSampledFeature();
+			sampledFeatures.add(this.gmlOF.createFeaturePropertyType());
+			samplFeature.setSampledFeature(sampledFeatures);
+			samplFeature.setShape(shape);
+			FeaturePropertyType featureProp = this.gmlOF.createFeaturePropertyType();
+			featureProp.setAbstractFeature(this.samsOF.createSFSpatialSamplingFeature(samplFeature));
+			currentObs.setFeatureOfInterest(featureProp);
+			
+			ArrayList<ResultSetType> results = new ArrayList<>();
+			Marshaller m;
+			StringWriter sw = new StringWriter();
+			
+			try {
+				m = this.jaxbContext.createMarshaller();
+				m.marshal(results, sw);
+			} catch (JAXBException e) {
+				sw.write(e.getMessage());
+			}
+			
+			currentObs.setResult("");
+			
+			currentObsType.setOMObservation(currentObs);
+			
+			result.add(currentObsType);
+		}
+		
+		return result;
 	}
 	
 	public String toString(){
