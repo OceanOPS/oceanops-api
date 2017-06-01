@@ -91,8 +91,9 @@ import net.opengis.samplingspatial.v_2_0.SFSpatialSamplingFeatureType;
 import net.opengis.samplingspatial.v_2_0.ShapeType;
 
 /**
- * @author alize
+ * @author Anthonin Lizé
  *
+ * Main class respresenting a XML WIGOS Metadata Record.
  */
 public class WIGOSMetadataRecord {
 	private Log log = LogFactory.getLog(WIGOSMetadataRecord.class);
@@ -113,6 +114,10 @@ public class WIGOSMetadataRecord {
 	
 	private Integer ciResponsiblePartyCounter = 0;
 	
+	/**
+	 * Constructor of this class. Initializes all the context variables. Should not be used directly.
+	 * @throws JAXBException
+	 */
 	public WIGOSMetadataRecord() throws JAXBException{
 		this.cayenneRuntime = Utils.getCayenneRuntime();
 		this.cayenneContext = this.cayenneRuntime.getContext();
@@ -131,6 +136,14 @@ public class WIGOSMetadataRecord {
 		this.rootElement = wmdrOF.createWIGOSMetadataRecord(this.rootElementType);
 	}
 	
+	/**
+	 * Main constructor of this class. It will instanciate the WMDR for the given platform ID.
+	 * 
+	 * @param ptfId  The platform database identifier from which data will be retrieved
+	 * 
+	 * @throws JAXBException
+	 * @throws DatatypeConfigurationException
+	 */
 	public WIGOSMetadataRecord(Integer ptfId) throws JAXBException, DatatypeConfigurationException{
 		this();
 		Ptf ptf = Cayenne.objectForPK(this.cayenneContext, Ptf.class, (long)ptfId); 
@@ -156,10 +169,17 @@ public class WIGOSMetadataRecord {
 		
 		
 		List<OMObservationPropertyType> obss = this.rootElementType.getObservation();
-		//List<OMObservationPropertyType> observations = this.getObservations(ptf);
-		//obss.addAll(observations);
+		List<OMObservationPropertyType> observations = this.getObservations(ptf);
+		obss.addAll(observations);
 	}
 
+	/**
+	 * Builds a CIResponsiblePartyType object from an agency database identifier and a given role.
+	 * 
+	 * @param agencyId  The agency database identifier
+	 * @param ciRoleCode  The role of this responsible party
+	 * @return the CIResponsiblePartyType representation of this agency
+	 */
 	private CIResponsiblePartyType getCIResponsibleParty(Integer agencyId, String ciRoleCode){
 		ciResponsiblePartyCounter++;
 		CIResponsiblePartyType responsibleParty = this.gmdOF.createCIResponsiblePartyType();
@@ -239,6 +259,13 @@ public class WIGOSMetadataRecord {
 		return responsibleParty;
 	}
 	
+	/**
+	 * Builds the HeaderInformation object for the given platform.
+	 * 
+	 * @param ptf  The Ptf entity object from which data should be extracted
+	 * @return the header information
+	 * @throws DatatypeConfigurationException
+	 */
 	private WIGOSMetadataRecordType.HeaderInformation getHeaderInformation(Ptf ptf) throws DatatypeConfigurationException{
 		WIGOSMetadataRecordType.HeaderInformation headerInfo = new WIGOSMetadataRecordType.HeaderInformation();
 		HeaderType headerType = new HeaderType();
@@ -257,6 +284,11 @@ public class WIGOSMetadataRecord {
 		return headerInfo;
 	}
 	
+	/**
+	 * Builds the deployments list for the given platform.
+	 * @param ptf  The Ptf entity object from which data should be extracted
+	 * @return the deployment list
+	 */
 	private List<WIGOSMetadataRecordType.Deployment> getDeployments(Ptf ptf){
 		PtfDeployment depl = ptf.getToPtfDeployment();
 		ArrayList<WIGOSMetadataRecordType.Deployment> depls =  new ArrayList<>();
@@ -265,6 +297,11 @@ public class WIGOSMetadataRecord {
 		return null;
 	}
 	
+	/**
+	 * Builds the Equipement list for the given platform. This correspond to the SensorModel database entity.
+	 * @param ptf  The Ptf entity object from which data should be extracted
+	 * @return the Equipement list
+	 */
 	private List<EquipmentPropertyType> getEquipements(Ptf ptf){
 		List<PtfSensorModel> ptfSensorModels = ptf.getPtfSensorModelArray();
 		ArrayList<EquipmentPropertyType> equipements = new ArrayList<>();
@@ -298,35 +335,7 @@ public class WIGOSMetadataRecord {
 				or.setCIOnlineResource(onlineRsrc);
 				currentEquipmentType.getOnlineResource().add(or);
 			}
-			
-			List<GeospatialLocation> geospatialLocs = currentEquipmentType.getGeospatialLocation();
-			GeospatialLocation gsLoc = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeGeospatialLocation();
-			TimestampedLocationType tsLoc = this.wmdrOF.createTimestampedLocationType();
-			TimePeriodPropertyType timePeriodProperty = this.gmlOF.createTimePeriodPropertyType();
-			TimePeriodType timePeriod = this.gmlOF.createTimePeriodType();
-			TimePositionType timePosition = this.gmlOF.createTimePositionType();
-			
-			timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(ptf.getToPtfLoc().getLocDate())));
-			timePeriod.setId("equipment-" + sm.getObjectId().getIdSnapshot().get("ID").toString() + "-LatestLocationTimePeriod");
-			timePeriod.setBeginPosition(timePosition);
-			timePeriod.setEndPosition(this.gmlOF.createTimePositionType());
-			timePeriodProperty.setTimePeriod(timePeriod);
-			
-			GeometryPropertyType geomProperty = this.gmlOF.createGeometryPropertyType();
-			PointType geom = this.gmlOF.createPointType();
-			DirectPositionType pos = this.gmlOF.createDirectPositionType();
-			pos.setValue(Arrays.asList(ptf.getToPtfLoc().getLat().doubleValue(), ptf.getToPtfLoc().getLon().doubleValue(), ptf.getToPtfLoc().getElevation() == null ? 0: ptf.getToPtfLoc().getElevation().doubleValue()));
-			geom.setId("equipment-" + sm.getObjectId().getIdSnapshot().get("ID").toString() + "-LatestLocationGeometry");
-			geom.setPos(pos);
-			geom.setSrsName("http://www.opengis.net/def/crs/EPSG/0/4979");
-			geomProperty.setAbstractGeometry(this.gmlOF.createPoint(geom));
-			
-			tsLoc.setValidTimePeriod(timePeriodProperty);
-			tsLoc.setLocation(geomProperty);
-			
-			gsLoc.setTimestampedLocation(tsLoc);
-			geospatialLocs.add(gsLoc);
-			
+						
 			ReferenceType refType = this.gmlOF.createReferenceType();
 			refType.setHref("http://codes.wmo.int/common/wmdr/GeopositioningMethod/VOCABULARYTERM");
 			currentEquipmentType.setGeopositioningMethod(refType);
@@ -354,6 +363,11 @@ public class WIGOSMetadataRecord {
 		return equipements;
 	}
 	
+	/**
+	 * Builds the ObservingFacilityType object for the given platform.
+	 * @param ptf  The Ptf entity object from which data should be extracted
+	 * @return the ObervingFacilityType representation of the platform
+	 */
 	private ObservingFacilityType getObservingFacilityType(Ptf ptf) {
 		ObservingFacilityType o = this.wmdrOF.createObservingFacilityType();
 		
@@ -494,8 +508,13 @@ public class WIGOSMetadataRecord {
 		return o;
 	}
 	
+	/**
+	 * Builds the OMObservationPropertyType list for the given platform.
+	 * @param ptf  The Ptf entity object from which data should be extracted
+	 * @return the OMObservationPropertyType of the platform
+	 */
 	private List<OMObservationPropertyType> getObservations(Ptf ptf){
-		List<OMObservationPropertyType> result = new ArrayList();
+		List<OMObservationPropertyType> result = new ArrayList<OMObservationPropertyType>();
 		
 		Expression qual = ExpressionFactory.matchExp("ptfId", Integer.parseInt(ptf.getObjectId().getIdSnapshot().get("ID").toString()));
 		SelectQuery query = new SelectQuery(Obs.class, qual);
@@ -562,6 +581,9 @@ public class WIGOSMetadataRecord {
 		return result;
 	}
 	
+	/**
+	 * Marshaller method of this class. Converts a WIGOSMetadataRecord object to its String XML representation.
+	 */
 	public String toString(){
 		Marshaller m;
 		StringWriter sw = new StringWriter();
