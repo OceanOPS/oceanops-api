@@ -110,6 +110,8 @@ public class WIGOSMetadataRecord {
 	private net.opengis.iso19139.gmd.v_20070417.ObjectFactory gmdOF;
 	private net.opengis.iso19139.gco.v_20070417.ObjectFactory gcoOF;
 	
+	private Integer ciResponsiblePartyCounter = 0;
+	
 	public WIGOSMetadataRecord() throws JAXBException{
 		this.cayenneRuntime = Utils.getCayenneRuntime();
 		this.cayenneContext = this.cayenneRuntime.getContext();
@@ -156,11 +158,12 @@ public class WIGOSMetadataRecord {
 		equipments.addAll(equipmentList);
 		
 		List<OMObservationPropertyType> obss = this.rootElementType.getObservation();
-		List<OMObservationPropertyType> observations = this.getObservations(ptf);
-		obss.addAll(observations);
+		//List<OMObservationPropertyType> observations = this.getObservations(ptf);
+		//obss.addAll(observations);
 	}
 
 	private CIResponsiblePartyType getCIResponsibleParty(Integer agencyId, String ciRoleCode){
+		ciResponsiblePartyCounter++;
 		CIResponsiblePartyType responsibleParty = this.gmdOF.createCIResponsiblePartyType();
 		Agency agency;
 		if(agencyId != null){
@@ -171,7 +174,9 @@ public class WIGOSMetadataRecord {
 			agency = Cayenne.objectForPK(this.cayenneContext, Agency.class, Utils.JCOMMOPS_AGENCY_ID); 
 		}
 		
-		responsibleParty.setId("responsibleparty-" + agencyId.toString());
+		responsibleParty.setId("responsibleparty-" + agencyId.toString() + "-" + ciResponsiblePartyCounter.toString());
+		if(agency.getRef() != null)
+			responsibleParty.setUuid(agency.getRef());
 		
 		CharacterStringPropertyType organisationName = this.gcoOF.createCharacterStringPropertyType();
 		organisationName.setCharacterString(this.gcoOF.createCharacterString(agency.getName()));
@@ -360,20 +365,29 @@ public class WIGOSMetadataRecord {
 		value.setCodeSpace("http://wigos.wmo.int");
 		o.setIdentifier(value);
 		StringOrRefType value1 = this.gmlOF.createStringOrRefType();
-		value1.setValue(ptf.getRef());
+		value1.setValue(ptf.getDescription());
 		o.setDescription(value1);
 		
 		List<OnlineResource> onlineResources = o.getOnlineResource();
+		OnlineResource or = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeOnlineResource();
+		CIOnlineResourceType onlineRsrc = this.gmdOF.createCIOnlineResourceType();
+		URLPropertyType urlProperty = this.gmdOF.createURLPropertyType();
+		urlProperty.setURL(Utils.getInspectPtfUrl() + ptf.getRef());
+		onlineRsrc.setLinkage(urlProperty);
+		or.setCIOnlineResource(onlineRsrc);
+		onlineResources.add(or);
+		
 		for(Weblink w : ptf.getToWeblinks()){
-			OnlineResource or = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeOnlineResource();
-			CIOnlineResourceType onlineRsrc = this.gmdOF.createCIOnlineResourceType();
-			URLPropertyType urlProperty = this.gmdOF.createURLPropertyType();
+			or = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeOnlineResource();
+			onlineRsrc = this.gmdOF.createCIOnlineResourceType();
+			urlProperty = this.gmdOF.createURLPropertyType();
 			urlProperty.setURL(w.getUrl());
 			onlineRsrc.setLinkage(urlProperty);
 			or.setCIOnlineResource(onlineRsrc);
 			onlineResources.add(or);
 		}
 		
+		// TODO Check we can add all ptf locations
 		List<GeospatialLocation> geospatialLocs = o.getGeospatialLocation();
 		GeospatialLocation gsLoc = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeGeospatialLocation();
 		TimestampedLocationType tsLoc = this.wmdrOF.createTimestampedLocationType();
@@ -404,6 +418,8 @@ public class WIGOSMetadataRecord {
 		
 		ReferenceType refType = this.gmlOF.createReferenceType();
 		refType.setHref("http://codes.wmo.int/common/wmdr/GeopositioningMethod/VOCABULARYTERM");
+		if(ptf.getToTelecom() != null && ptf.getToTelecom().getToTelecomType() != null)
+			refType.setTitle(ptf.getToTelecom().getToTelecomType().getName());
 		o.setGeopositioningMethod(refType);
 		
 		AbstractEnvironmentalMonitoringFacilityType.ResponsibleParty responsibleParty = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeResponsibleParty();
@@ -422,6 +438,10 @@ public class WIGOSMetadataRecord {
 		refType.setHref("http://codes.wmo.int/common/wmdr/TerritoryName/VOCABULARYTERM");
 		o.setTerritoryName(refType);
 
+		refType = this.gmlOF.createReferenceType();
+		refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/VOCABULARYTERM");
+		refType.setTitle(ptf.getToProgram().getToMasterProg().getName());
+		o.getProgramAffiliation().add(refType);
 		refType = this.gmlOF.createReferenceType();
 		refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/VOCABULARYTERM");
 		refType.setTitle(ptf.getToProgram().getName());
@@ -492,7 +512,7 @@ public class WIGOSMetadataRecord {
 			timePeriod.setId("obs-" + obs.getObjectId().getIdSnapshot().get("ID").toString() + "-date");
 			timePeriod.setBeginPosition(timePosition);
 			timePeriod.setEndPosition(this.gmlOF.createTimePositionType());
-			timeObj.setAbstractTimeObject(this.gmlOF.createAbstractTimeObject(timePeriod));
+			timeObj.setAbstractTimeObject(this.gmlOF.createTimePeriod(timePeriod));
 			currentObs.setPhenomenonTime(timeObj);
 			
 			currentObs.setResultTime(this.gmlOF.createTimeInstantPropertyType());
@@ -501,16 +521,14 @@ public class WIGOSMetadataRecord {
 			PointType geom = this.gmlOF.createPointType();
 			DirectPositionType pos = this.gmlOF.createDirectPositionType();
 			pos.setValue(Arrays.asList(obs.getToPtfLoc().getLat().doubleValue(), obs.getToPtfLoc().getLon().doubleValue(), obs.getToPtfLoc().getElevation() == null ? 0: obs.getToPtfLoc().getElevation().doubleValue()));
-			geom.setId("obs-" + obs.getObjectId().getIdSnapshot().get("ID").toString() + "-geometry");
+			geom.setId("obs-" + obs.getObjectId().getIdSnapshot().get("ID").toString() + "-geometry-" + obs.getToPtfLoc().getObjectId().getIdSnapshot().get("ID").toString());
 			geom.setPos(pos);
 			geom.setSrsName("http://www.opengis.net/def/crs/EPSG/0/4979");
 			ShapeType shape = this.samsOF.createShapeType();
-			shape.setAbstractGeometry(this.gmlOF.createAbstractGeometry(geom));
+			shape.setAbstractGeometry(this.gmlOF.createPoint(geom));
 			SFSpatialSamplingFeatureType samplFeature = this.samsOF.createSFSpatialSamplingFeatureType();
 			samplFeature.setId("obs-" + obs.getObjectId().getIdSnapshot().get("ID").toString() + "-samplingfeature");
-			LocationPropertyType loc = this.gmlOF.createLocationPropertyType();
-			loc.setAbstractGeometry(this.gmlOF.createPoint(geom));
-			samplFeature.setLocation(this.gmlOF.createLocation(loc));
+			
 			List<FeaturePropertyType> sampledFeatures = samplFeature.getSampledFeature();
 			sampledFeatures.add(this.gmlOF.createFeaturePropertyType());
 			samplFeature.setSampledFeature(sampledFeatures);
