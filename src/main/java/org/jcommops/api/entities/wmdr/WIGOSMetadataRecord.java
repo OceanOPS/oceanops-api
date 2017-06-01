@@ -42,6 +42,7 @@ import _int.wmo.def.wmdr._2017.AbstractEnvironmentalMonitoringFacilityType;
 import _int.wmo.def.wmdr._2017.AbstractEnvironmentalMonitoringFacilityType.GeospatialLocation;
 import _int.wmo.def.wmdr._2017.AbstractEnvironmentalMonitoringFacilityType.OnlineResource;
 import _int.wmo.def.wmdr._2017.AbstractEnvironmentalMonitoringFacilityType.ResponsibleParty;
+import _int.wmo.def.wmdr._2017.EquipmentPropertyType;
 import _int.wmo.def.wmdr._2017.EquipmentType;
 import _int.wmo.def.wmdr._2017.FacilityLogPropertyType;
 import _int.wmo.def.wmdr._2017.FacilityLogType;
@@ -153,9 +154,6 @@ public class WIGOSMetadataRecord {
 		facility.setObservingFacility(observingFacilityType);
 		facilities.add(facility);
 		
-		List<WIGOSMetadataRecordType.Equipment> equipments = this.rootElementType.getEquipment();
-		List<WIGOSMetadataRecordType.Equipment> equipmentList = this.getEquipements(ptf);
-		equipments.addAll(equipmentList);
 		
 		List<OMObservationPropertyType> obss = this.rootElementType.getObservation();
 		//List<OMObservationPropertyType> observations = this.getObservations(ptf);
@@ -267,15 +265,15 @@ public class WIGOSMetadataRecord {
 		return null;
 	}
 	
-	private List<WIGOSMetadataRecordType.Equipment> getEquipements(Ptf ptf){
+	private List<EquipmentPropertyType> getEquipements(Ptf ptf){
 		List<PtfSensorModel> ptfSensorModels = ptf.getPtfSensorModelArray();
-		ArrayList<WIGOSMetadataRecordType.Equipment> equipements = new ArrayList<>();
+		ArrayList<EquipmentPropertyType> equipements = new ArrayList<>();
 		
-		WIGOSMetadataRecordType.Equipment currentEquipment;
+		EquipmentPropertyType currentEquipment;
 		EquipmentType currentEquipmentType;
 		for(PtfSensorModel ptfSM: ptfSensorModels){
 			SensorModel sm = ptfSM.getToSensorModel();
-			currentEquipment = this.wmdrOF.createWIGOSMetadataRecordTypeEquipment();
+			currentEquipment = this.wmdrOF.createEquipmentPropertyType();
 			currentEquipmentType = this.wmdrOF.createEquipmentType();
 			
 			currentEquipmentType.setId("equipment-" + sm.getObjectId().getIdSnapshot().get("ID").toString());
@@ -452,10 +450,11 @@ public class WIGOSMetadataRecord {
 		refType.setTitle(ptf.getToPtfStatus().getName());
 		o.setReportingStatus(refType);
 		
-		o.setBelongsToSet("");
+		o.setBelongsToSet(ptf.getToProgram().getToMasterProg().getName());
 
 		refType = this.gmlOF.createReferenceType();
 		refType.setHref("http://codes.wmo.int/common/wmdr/FacilityType/VOCABULARYTERM");
+		refType.setTitle(ptf.getToPtfModel().getName());
 		o.setFacilityType(refType);
 		
 		refType = this.gmlOF.createReferenceType();
@@ -481,6 +480,11 @@ public class WIGOSMetadataRecord {
 		refType = this.gmlOF.createReferenceType();
 		refType.setHref("http://codes.wmo.int/common/wmdr/TopographicContext/VOCABULARYTERM");
 		o.setTopographicContext(refType);
+		
+
+		List<EquipmentPropertyType> equipments = o.getHostedEquipment();
+		List<EquipmentPropertyType> equipmentList = this.getEquipements(ptf);
+		equipments.addAll(equipmentList);
 		
 		/*FacilityLogPropertyType facilityLogProperty = this.wmdrOF.createFacilityLogPropertyType();
 		FacilityLogType facilityLog = this.wmdrOF.createFacilityLogType();
