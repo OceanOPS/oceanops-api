@@ -40,6 +40,7 @@ import org.jcommops.api.entities.SensorModelEntity;
 import org.jcommops.api.entities.SensorTypeEntity;
 import org.jcommops.api.entities.VariableEntity;
 import org.jcommops.api.entities.wmdr.Platform;
+import org.jcommops.api.entities.wmdr.PlatformObservations;
 
 import _int.wmo.def.wmdr._2017.ObjectFactory;
 import _int.wmo.def.wmdr._2017.WIGOSMetadataRecordType;
@@ -124,11 +125,21 @@ public class WebServiceManager {
 	@GET
 	@Path("platforms.xml/{id}")
 	@Produces(MediaType.APPLICATION_XML)
-	public String getWmdrById(@PathParam("id") String id) throws JAXBException, NumberFormatException, DatatypeConfigurationException {
+	public String getPlatformWmdrById(@PathParam("id") String id) throws JAXBException, NumberFormatException, DatatypeConfigurationException {
 		Platform wmdr = new Platform(Integer.parseInt(id));
 		
 		return wmdr.toString();
 	}
+	
+	@GET
+	@Path("platforms/{id}/observations.xml")
+	@Produces(MediaType.APPLICATION_XML)
+	public String getPlatformObservationsWmdrById(@PathParam("id") String id) throws JAXBException, NumberFormatException, DatatypeConfigurationException {
+		PlatformObservations wmdr = new PlatformObservations(Integer.parseInt(id));
+		
+		return wmdr.toString();
+	}
+
 
 	@GET
 	@Path("platforms.json/{id}")
