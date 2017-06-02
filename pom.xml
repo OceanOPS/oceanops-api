@@ -8,6 +8,10 @@
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>JCOMMOPS API</name>
+	
+	<scm>
+		<developerConnection>scm:git:http://srv-front-jcomm.vlandata.cls.fr/git/jcommops/jcommops-api.git</developerConnection>
+	</scm>
 
 	<build>
 		<finalName>jcommops-api</finalName>
@@ -21,6 +25,11 @@
 					<source>1.8</source>
 					<target>1.8</target>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.3</version>
 			</plugin>
 		</plugins>
 		<resources>
