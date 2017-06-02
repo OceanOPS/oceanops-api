@@ -95,8 +95,8 @@ import net.opengis.samplingspatial.v_2_0.ShapeType;
  *
  * Main class respresenting a XML WIGOS Metadata Record.
  */
-public class WIGOSMetadataRecord {
-	private Log log = LogFactory.getLog(WIGOSMetadataRecord.class);
+public class Platform {
+	private Log log = LogFactory.getLog(Platform.class);
 	private ServerRuntime cayenneRuntime = Utils.getCayenneRuntime();
 	private ObjectContext cayenneContext = Utils.getCayenneRuntime().getContext();
 	private JAXBContext jaxbContext;
@@ -118,7 +118,7 @@ public class WIGOSMetadataRecord {
 	 * Constructor of this class. Initializes all the context variables. Should not be used directly.
 	 * @throws JAXBException
 	 */
-	public WIGOSMetadataRecord() throws JAXBException{
+	public Platform() throws JAXBException{
 		this.cayenneRuntime = Utils.getCayenneRuntime();
 		this.cayenneContext = this.cayenneRuntime.getContext();
 		this.jaxbContext = JAXBContext.newInstance( "_int.wmo.def.wmdr._2017:_int.wmo.def.metce._2013:_int.wmo.def.opm._2013:net.opengis.gml.v_3_2_1:net.opengis.om.v_2_0:net.opengis.sampling.v_2_0:net.opengis.samplingspatial.v_2_0" );
@@ -144,7 +144,7 @@ public class WIGOSMetadataRecord {
 	 * @throws JAXBException
 	 * @throws DatatypeConfigurationException
 	 */
-	public WIGOSMetadataRecord(Integer ptfId) throws JAXBException, DatatypeConfigurationException{
+	public Platform(Integer ptfId) throws JAXBException, DatatypeConfigurationException{
 		this();
 		Ptf ptf = Cayenne.objectForPK(this.cayenneContext, Ptf.class, (long)ptfId); 
 		
