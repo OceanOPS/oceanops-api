@@ -252,12 +252,9 @@
 				A platform details can be obtained with a GET request using the
 				following dedicated URL pattern:
 			<div class="text-center">
-				<i><b><%=rootUrl%>platform.format/[ID]</b></i><br>
+				<i><b><%=rootUrl%>platforms.format/[ID]</b></i><br>
 			</div>
 			<br> Where "[ID]" is the identification number of the platform.
-			Beware of the singular form of “platform” in the URL string
-			platform.format compared to the previous examples (platforms
-			listing).
 			</p>
 
 			<button class="btn btn-primary" type="button" data-toggle="collapse"

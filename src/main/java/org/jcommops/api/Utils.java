@@ -35,7 +35,7 @@ public class Utils {
 				properties.load(Utils.class.getClassLoader().getResourceAsStream("properties"));
 				projectVersion = properties.getProperty("PROJECT_VERSION");
 				projectName = properties.getProperty("PROJECT_NAME");
-				rootUrl = properties.getProperty("ROOT_URL_INT");
+				rootUrl = properties.getProperty("ROOT_URL");
 				programUrl = properties.getProperty("PROGRAM_URL");
 				inspectPtfUrl = properties.getProperty("INSPECT_PTF_URL");
 			} catch (IOException e) {
