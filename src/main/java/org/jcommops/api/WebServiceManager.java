@@ -39,7 +39,7 @@ import org.jcommops.api.entities.ProgramEntity;
 import org.jcommops.api.entities.SensorModelEntity;
 import org.jcommops.api.entities.SensorTypeEntity;
 import org.jcommops.api.entities.VariableEntity;
-import org.jcommops.api.entities.wmdr.WIGOSMetadataRecord;
+import org.jcommops.api.entities.wmdr.Platform;
 
 import _int.wmo.def.wmdr._2017.ObjectFactory;
 import _int.wmo.def.wmdr._2017.WIGOSMetadataRecordType;
@@ -125,7 +125,7 @@ public class WebServiceManager {
 	@Path("platforms.xml/{id}")
 	@Produces(MediaType.APPLICATION_XML)
 	public String getWmdrById(@PathParam("id") String id) throws JAXBException, NumberFormatException, DatatypeConfigurationException {
-		WIGOSMetadataRecord wmdr = new WIGOSMetadataRecord(Integer.parseInt(id));
+		Platform wmdr = new Platform(Integer.parseInt(id));
 		
 		return wmdr.toString();
 	}
