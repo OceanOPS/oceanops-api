@@ -344,7 +344,7 @@ public class Platform {
 			else
 				responsibleParty.setCIResponsibleParty(this.getCIResponsibleParty(null, null));
 			
-			currentEquipmentType.setResponsibleParty(responsibleParty);
+			currentEquipmentType.getResponsibleParty().add(responsibleParty);
 			
 
 			refType = this.gmlOF.createReferenceType();
@@ -435,7 +435,8 @@ public class Platform {
 		}
 		else
 			responsibleParty.setCIResponsibleParty(this.getCIResponsibleParty(null, null));
-		o.setResponsibleParty(responsibleParty);
+
+		o.getResponsibleParty().add(responsibleParty);
 
 		refType = this.gmlOF.createReferenceType();
 		refType.setHref("http://codes.wmo.int/common/wmdr/WMORegion/VOCABULARYTERM");
@@ -445,19 +446,22 @@ public class Platform {
 		refType.setHref("http://codes.wmo.int/common/wmdr/TerritoryName/VOCABULARYTERM");
 		o.setTerritoryName(refType);
 
+		// TODO : check to fit these field
 		refType = this.gmlOF.createReferenceType();
 		refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/VOCABULARYTERM");
 		refType.setTitle(ptf.getProgram().getMasterProg().getName());
-		o.getProgramAffiliation().add(refType);
+		// TODO : check to fit these field
+		//o.getProgramAffiliation().add(refType);
 		refType = this.gmlOF.createReferenceType();
 		refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/VOCABULARYTERM");
 		refType.setTitle(ptf.getProgram().getName());
-		o.getProgramAffiliation().add(refType);
+		// TODO : check to fit these field
+		//o.getProgramAffiliation().add(refType);
 		
 		refType = this.gmlOF.createReferenceType();
 		refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/VOCABULARYTERM");
 		refType.setTitle(ptf.getPtfStatus().getName());
-		o.setReportingStatus(refType);
+		//o.setReportingStatus(refType);
 		
 		o.setBelongsToSet(ptf.getProgram().getMasterProg().getName());
 
@@ -489,9 +493,9 @@ public class Platform {
 		refType = this.gmlOF.createReferenceType();
 		refType.setHref("http://codes.wmo.int/common/wmdr/TopographicContext/VOCABULARYTERM");
 		o.setTopographicContext(refType);
-		
 
-		List<EquipmentPropertyType> equipments = o.getHostedEquipment();
+
+		List<EquipmentPropertyType> equipments = o.getEquipment();
 		List<EquipmentPropertyType> equipmentList = this.getEquipements(ptf);
 		equipments.addAll(equipmentList);
 		

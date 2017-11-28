@@ -16,16 +16,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for HeaderPropertyType complex type.
+ * <p>Java class for ProgramAffiliationPropertyType complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="HeaderPropertyType">
+ * &lt;complexType name="ProgramAffiliationPropertyType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://def.wmo.int/wmdr/2017}Header"/>
+ *         &lt;element ref="{http://def.wmo.int/wmdr/2017}ProgramAffiliation"/>
  *       &lt;/sequence>
  *       &lt;attGroup ref="{http://www.opengis.net/gml/3.2}OwnershipAttributeGroup"/>
  *     &lt;/restriction>
@@ -36,38 +36,38 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "HeaderPropertyType", propOrder = {
-    "header"
+@XmlType(name = "ProgramAffiliationPropertyType", propOrder = {
+    "programAffiliation"
 })
-public class HeaderPropertyType {
+public class ProgramAffiliationPropertyType {
 
-    @XmlElement(name = "Header", required = true)
-    protected HeaderType header;
+    @XmlElement(name = "ProgramAffiliation", required = true)
+    protected ProgramAffiliationType programAffiliation;
     @XmlAttribute(name = "owns")
     protected Boolean owns;
 
     /**
-     * Gets the value of the header property.
+     * Gets the value of the programAffiliation property.
      * 
      * @return
      *     possible object is
-     *     {@link HeaderType }
+     *     {@link ProgramAffiliationType }
      *     
      */
-    public HeaderType getHeader() {
-        return header;
+    public ProgramAffiliationType getProgramAffiliation() {
+        return programAffiliation;
     }
 
     /**
-     * Sets the value of the header property.
+     * Sets the value of the programAffiliation property.
      * 
      * @param value
      *     allowed object is
-     *     {@link HeaderType }
+     *     {@link ProgramAffiliationType }
      *     
      */
-    public void setHeader(HeaderType value) {
-        this.header = value;
+    public void setProgramAffiliation(ProgramAffiliationType value) {
+        this.programAffiliation = value;
     }
 
     /**

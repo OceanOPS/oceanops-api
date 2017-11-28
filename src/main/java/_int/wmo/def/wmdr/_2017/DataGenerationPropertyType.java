@@ -16,16 +16,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for HeaderPropertyType complex type.
+ * <p>Java class for DataGenerationPropertyType complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="HeaderPropertyType">
+ * &lt;complexType name="DataGenerationPropertyType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://def.wmo.int/wmdr/2017}Header"/>
+ *         &lt;element ref="{http://def.wmo.int/wmdr/2017}DataGeneration"/>
  *       &lt;/sequence>
  *       &lt;attGroup ref="{http://www.opengis.net/gml/3.2}OwnershipAttributeGroup"/>
  *     &lt;/restriction>
@@ -36,38 +36,38 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "HeaderPropertyType", propOrder = {
-    "header"
+@XmlType(name = "DataGenerationPropertyType", propOrder = {
+    "dataGeneration"
 })
-public class HeaderPropertyType {
+public class DataGenerationPropertyType {
 
-    @XmlElement(name = "Header", required = true)
-    protected HeaderType header;
+    @XmlElement(name = "DataGeneration", required = true)
+    protected DataGenerationType dataGeneration;
     @XmlAttribute(name = "owns")
     protected Boolean owns;
 
     /**
-     * Gets the value of the header property.
+     * Gets the value of the dataGeneration property.
      * 
      * @return
      *     possible object is
-     *     {@link HeaderType }
+     *     {@link DataGenerationType }
      *     
      */
-    public HeaderType getHeader() {
-        return header;
+    public DataGenerationType getDataGeneration() {
+        return dataGeneration;
     }
 
     /**
-     * Sets the value of the header property.
+     * Sets the value of the dataGeneration property.
      * 
      * @param value
      *     allowed object is
-     *     {@link HeaderType }
+     *     {@link DataGenerationType }
      *     
      */
-    public void setHeader(HeaderType value) {
-        this.header = value;
+    public void setDataGeneration(DataGenerationType value) {
+        this.dataGeneration = value;
     }
 
     /**
