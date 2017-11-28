@@ -10,11 +10,10 @@ package _int.wmo.def.wmdr._2017;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElementRef;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import org.hisrc.w3c.xlink.v_1_0.ActuateType;
@@ -23,19 +22,19 @@ import org.hisrc.w3c.xlink.v_1_0.TypeType;
 
 
 /**
- * <p>Java class for AbstractEnvironmentalMonitoringFacilityPropertyType complex type.
+ * <p>Java class for ObservingCapabilityPropertyType complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="AbstractEnvironmentalMonitoringFacilityPropertyType">
+ * &lt;complexType name="ObservingCapabilityPropertyType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence minOccurs="0">
- *         &lt;element ref="{http://def.wmo.int/wmdr/2017}AbstractEnvironmentalMonitoringFacility"/>
+ *         &lt;element ref="{http://def.wmo.int/wmdr/2017}ObservingCapability"/>
  *       &lt;/sequence>
- *       &lt;attGroup ref="{http://www.opengis.net/gml/3.2}AssociationAttributeGroup"/>
  *       &lt;attGroup ref="{http://www.opengis.net/gml/3.2}OwnershipAttributeGroup"/>
+ *       &lt;attGroup ref="{http://www.opengis.net/gml/3.2}AssociationAttributeGroup"/>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -44,13 +43,15 @@ import org.hisrc.w3c.xlink.v_1_0.TypeType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "AbstractEnvironmentalMonitoringFacilityPropertyType", propOrder = {
-    "abstractEnvironmentalMonitoringFacility"
+@XmlType(name = "ObservingCapabilityPropertyType", propOrder = {
+    "observingCapability"
 })
-public class AbstractEnvironmentalMonitoringFacilityPropertyType {
+public class ObservingCapabilityPropertyType {
 
-    @XmlElementRef(name = "AbstractEnvironmentalMonitoringFacility", namespace = "http://def.wmo.int/wmdr/2017", type = JAXBElement.class, required = false)
-    protected JAXBElement<? extends AbstractEnvironmentalMonitoringFacilityType> abstractEnvironmentalMonitoringFacility;
+    @XmlElement(name = "ObservingCapability")
+    protected ObservingCapabilityType observingCapability;
+    @XmlAttribute(name = "owns")
+    protected Boolean owns;
     @XmlAttribute(name = "nilReason")
     protected List<String> nilReason;
     @XmlAttribute(name = "remoteSchema", namespace = "http://www.opengis.net/gml/3.2")
@@ -70,35 +71,57 @@ public class AbstractEnvironmentalMonitoringFacilityPropertyType {
     protected ShowType show;
     @XmlAttribute(name = "actuate", namespace = "http://www.w3.org/1999/xlink")
     protected ActuateType actuate;
-    @XmlAttribute(name = "owns")
-    protected Boolean owns;
 
     /**
-     * Gets the value of the abstractEnvironmentalMonitoringFacility property.
+     * Gets the value of the observingCapability property.
      * 
      * @return
      *     possible object is
-     *     {@link JAXBElement }{@code <}{@link ObservingFacilityType }{@code >}
-     *     {@link JAXBElement }{@code <}{@link EquipmentType }{@code >}
-     *     {@link JAXBElement }{@code <}{@link AbstractEnvironmentalMonitoringFacilityType }{@code >}
+     *     {@link ObservingCapabilityType }
      *     
      */
-    public JAXBElement<? extends AbstractEnvironmentalMonitoringFacilityType> getAbstractEnvironmentalMonitoringFacility() {
-        return abstractEnvironmentalMonitoringFacility;
+    public ObservingCapabilityType getObservingCapability() {
+        return observingCapability;
     }
 
     /**
-     * Sets the value of the abstractEnvironmentalMonitoringFacility property.
+     * Sets the value of the observingCapability property.
      * 
      * @param value
      *     allowed object is
-     *     {@link JAXBElement }{@code <}{@link ObservingFacilityType }{@code >}
-     *     {@link JAXBElement }{@code <}{@link EquipmentType }{@code >}
-     *     {@link JAXBElement }{@code <}{@link AbstractEnvironmentalMonitoringFacilityType }{@code >}
+     *     {@link ObservingCapabilityType }
      *     
      */
-    public void setAbstractEnvironmentalMonitoringFacility(JAXBElement<? extends AbstractEnvironmentalMonitoringFacilityType> value) {
-        this.abstractEnvironmentalMonitoringFacility = value;
+    public void setObservingCapability(ObservingCapabilityType value) {
+        this.observingCapability = value;
+    }
+
+    /**
+     * Gets the value of the owns property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public boolean isOwns() {
+        if (owns == null) {
+            return false;
+        } else {
+            return owns;
+        }
+    }
+
+    /**
+     * Sets the value of the owns property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setOwns(Boolean value) {
+        this.owns = value;
     }
 
     /**
@@ -320,34 +343,6 @@ public class AbstractEnvironmentalMonitoringFacilityPropertyType {
      */
     public void setActuate(ActuateType value) {
         this.actuate = value;
-    }
-
-    /**
-     * Gets the value of the owns property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
-     */
-    public boolean isOwns() {
-        if (owns == null) {
-            return false;
-        } else {
-            return owns;
-        }
-    }
-
-    /**
-     * Sets the value of the owns property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
-     */
-    public void setOwns(Boolean value) {
-        this.owns = value;
     }
 
 }

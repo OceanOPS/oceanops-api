@@ -12,22 +12,22 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import net.opengis.gml.v_3_2_1.GeometryPropertyType;
+import net.opengis.gml.v_3_2_1.ReferenceType;
 import net.opengis.gml.v_3_2_1.TimePeriodPropertyType;
 
 
 /**
- * <p>Java class for TimestampedLocationType complex type.
+ * <p>Java class for InstrumentOperatingStatusType complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="TimestampedLocationType">
+ * &lt;complexType name="InstrumentOperatingStatusType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="validTimePeriod" type="{http://www.opengis.net/gml/3.2}TimePeriodPropertyType"/>
- *         &lt;element name="location" type="{http://www.opengis.net/gml/3.2}GeometryPropertyType"/>
+ *         &lt;element name="validPeriod" type="{http://www.opengis.net/gml/3.2}TimePeriodPropertyType"/>
+ *         &lt;element name="instrumentOperatingStatus" type="{http://www.opengis.net/gml/3.2}ReferenceType"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,63 +37,63 @@ import net.opengis.gml.v_3_2_1.TimePeriodPropertyType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TimestampedLocationType", propOrder = {
-    "validTimePeriod",
-    "location"
+@XmlType(name = "InstrumentOperatingStatusType", propOrder = {
+    "validPeriod",
+    "instrumentOperatingStatus"
 })
-public class TimestampedLocationType {
+public class InstrumentOperatingStatusType {
 
     @XmlElement(required = true)
-    protected TimePeriodPropertyType validTimePeriod;
+    protected TimePeriodPropertyType validPeriod;
     @XmlElement(required = true)
-    protected GeometryPropertyType location;
+    protected ReferenceType instrumentOperatingStatus;
 
     /**
-     * Gets the value of the validTimePeriod property.
+     * Gets the value of the validPeriod property.
      * 
      * @return
      *     possible object is
      *     {@link TimePeriodPropertyType }
      *     
      */
-    public TimePeriodPropertyType getValidTimePeriod() {
-        return validTimePeriod;
+    public TimePeriodPropertyType getValidPeriod() {
+        return validPeriod;
     }
 
     /**
-     * Sets the value of the validTimePeriod property.
+     * Sets the value of the validPeriod property.
      * 
      * @param value
      *     allowed object is
      *     {@link TimePeriodPropertyType }
      *     
      */
-    public void setValidTimePeriod(TimePeriodPropertyType value) {
-        this.validTimePeriod = value;
+    public void setValidPeriod(TimePeriodPropertyType value) {
+        this.validPeriod = value;
     }
 
     /**
-     * Gets the value of the location property.
+     * Gets the value of the instrumentOperatingStatus property.
      * 
      * @return
      *     possible object is
-     *     {@link GeometryPropertyType }
+     *     {@link ReferenceType }
      *     
      */
-    public GeometryPropertyType getLocation() {
-        return location;
+    public ReferenceType getInstrumentOperatingStatus() {
+        return instrumentOperatingStatus;
     }
 
     /**
-     * Sets the value of the location property.
+     * Sets the value of the instrumentOperatingStatus property.
      * 
      * @param value
      *     allowed object is
-     *     {@link GeometryPropertyType }
+     *     {@link ReferenceType }
      *     
      */
-    public void setLocation(GeometryPropertyType value) {
-        this.location = value;
+    public void setInstrumentOperatingStatus(ReferenceType value) {
+        this.instrumentOperatingStatus = value;
     }
 
 }
