@@ -14,10 +14,11 @@ public abstract class _Wmo extends CayenneDataObject {
 
     public static final String END_DATE_PROPERTY = "endDate";
     public static final String FIVEDIGIT_DUPL_EXISTS_PROPERTY = "fivedigitDuplExists";
+    public static final String ID_PROPERTY = "id";
     public static final String MASK_PROPERTY = "mask";
     public static final String START_DATE_PROPERTY = "startDate";
     public static final String WMO_PROPERTY = "wmo";
-    public static final String TO_PTF_PROPERTY = "toPtf";
+    public static final String PTF_PROPERTY = "ptf";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -33,6 +34,13 @@ public abstract class _Wmo extends CayenneDataObject {
     }
     public Integer getFivedigitDuplExists() {
         return (Integer)readProperty(FIVEDIGIT_DUPL_EXISTS_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setMask(Integer mask) {
@@ -56,12 +64,12 @@ public abstract class _Wmo extends CayenneDataObject {
         return (String)readProperty(WMO_PROPERTY);
     }
 
-    public void setToPtf(Ptf toPtf) {
-        setToOneTarget(TO_PTF_PROPERTY, toPtf, true);
+    public void setPtf(Ptf ptf) {
+        setToOneTarget(PTF_PROPERTY, ptf, true);
     }
 
-    public Ptf getToPtf() {
-        return (Ptf)readProperty(TO_PTF_PROPERTY);
+    public Ptf getPtf() {
+        return (Ptf)readProperty(PTF_PROPERTY);
     }
 
 

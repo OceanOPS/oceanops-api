@@ -10,27 +10,43 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _SitePtf extends CayenneDataObject {
 
-    public static final String TO_PTF_PROPERTY = "toPtf";
-    public static final String TO_SITE_PROPERTY = "toSite";
+    public static final String PTF_ID_PROPERTY = "ptfId";
+    public static final String SITE_ID_PROPERTY = "siteId";
+    public static final String PTF_PROPERTY = "ptf";
+    public static final String SITE_PROPERTY = "site";
 
     public static final String PTF_ID_PK_COLUMN = "PTF_ID";
     public static final String SITE_ID_PK_COLUMN = "SITE_ID";
 
-    public void setToPtf(Ptf toPtf) {
-        setToOneTarget(TO_PTF_PROPERTY, toPtf, true);
+    public void setPtfId(Integer ptfId) {
+        writeProperty(PTF_ID_PROPERTY, ptfId);
+    }
+    public Integer getPtfId() {
+        return (Integer)readProperty(PTF_ID_PROPERTY);
     }
 
-    public Ptf getToPtf() {
-        return (Ptf)readProperty(TO_PTF_PROPERTY);
+    public void setSiteId(Integer siteId) {
+        writeProperty(SITE_ID_PROPERTY, siteId);
+    }
+    public Integer getSiteId() {
+        return (Integer)readProperty(SITE_ID_PROPERTY);
+    }
+
+    public void setPtf(Ptf ptf) {
+        setToOneTarget(PTF_PROPERTY, ptf, true);
+    }
+
+    public Ptf getPtf() {
+        return (Ptf)readProperty(PTF_PROPERTY);
     }
 
 
-    public void setToSite(Site toSite) {
-        setToOneTarget(TO_SITE_PROPERTY, toSite, true);
+    public void setSite(Site site) {
+        setToOneTarget(SITE_PROPERTY, site, true);
     }
 
-    public Site getToSite() {
-        return (Site)readProperty(TO_SITE_PROPERTY);
+    public Site getSite() {
+        return (Site)readProperty(SITE_PROPERTY);
     }
 
 

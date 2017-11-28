@@ -17,6 +17,7 @@ public abstract class _Agency extends CayenneDataObject {
     public static final String DESCRIPTION_PROPERTY = "description";
     public static final String EMAIL_PROPERTY = "email";
     public static final String FAX_PROPERTY = "fax";
+    public static final String ID_PROPERTY = "id";
     public static final String MANUF_PROPERTY = "manuf";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
@@ -24,25 +25,25 @@ public abstract class _Agency extends CayenneDataObject {
     public static final String REF_PROPERTY = "ref";
     public static final String SHAPE_PROPERTY = "shape";
     public static final String TEL_PROPERTY = "tel";
-    public static final String AGENCY_DAC_TYPE_ARRAY_PROPERTY = "agencyDacTypeArray";
-    public static final String AGENCY_PTF_ARRAY_PROPERTY = "agencyPtfArray";
-    public static final String CONTACT_ARRAY_PROPERTY = "contactArray";
-    public static final String CRUISE_ARRAY_PROPERTY = "cruiseArray";
-    public static final String GTS_CCCC_ARRAY_PROPERTY = "gtsCcccArray";
-    public static final String IMAGE_ARRAY_PROPERTY = "imageArray";
-    public static final String OBS_ARRAY_PROPERTY = "obsArray";
-    public static final String OBS_ARRAY1_PROPERTY = "obsArray1";
-    public static final String PROGRAM_AGENCY_ARRAY_PROPERTY = "programAgencyArray";
-    public static final String PTF_FIRMWARE_ARRAY_PROPERTY = "ptfFirmwareArray";
-    public static final String PTF_HULL_TYPE_ARRAY_PROPERTY = "ptfHullTypeArray";
-    public static final String PTF_MODEL_ARRAY_PROPERTY = "ptfModelArray";
-    public static final String QC_FEEDBACK_ARRAY_PROPERTY = "qcFeedbackArray";
-    public static final String SENSOR_MODEL_ARRAY_PROPERTY = "sensorModelArray";
-    public static final String SERVICE_ARRAY_PROPERTY = "serviceArray";
-    public static final String TO_COUNTRY_PROPERTY = "toCountry";
-    public static final String TO_IMAGE_PROPERTY = "toImage";
-    public static final String TO_WEBLINK_PROPERTY = "toWeblink";
-    public static final String USER_GROUP_AGENCY_ARRAY_PROPERTY = "userGroupAgencyArray";
+    public static final String AGENCY_DAC_TYPES_PROPERTY = "agencyDacTypes";
+    public static final String AGENCY_PTFS_PROPERTY = "agencyPtfs";
+    public static final String CONTACTS_PROPERTY = "contacts";
+    public static final String COUNTRY_PROPERTY = "country";
+    public static final String CRUISES_PROPERTY = "cruises";
+    public static final String GTS_CCCCS_PROPERTY = "gtsCcccs";
+    public static final String IMAGE_PROPERTY = "image";
+    public static final String IMAGES_PROPERTY = "images";
+    public static final String OBSS_PROPERTY = "obss";
+    public static final String OBSS1_PROPERTY = "obss1";
+    public static final String PROGRAM_AGENCIES_PROPERTY = "programAgencies";
+    public static final String PTF_FIRMWARES_PROPERTY = "ptfFirmwares";
+    public static final String PTF_HULL_TYPES_PROPERTY = "ptfHullTypes";
+    public static final String PTF_MODELS_PROPERTY = "ptfModels";
+    public static final String QC_FEEDBACKS_PROPERTY = "qcFeedbacks";
+    public static final String SENSOR_MODELS_PROPERTY = "sensorModels";
+    public static final String SERVICES_PROPERTY = "services";
+    public static final String USER_GROUP_AGENCIES_PROPERTY = "userGroupAgencies";
+    public static final String WEBLINK_PROPERTY = "weblink";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -81,6 +82,13 @@ public abstract class _Agency extends CayenneDataObject {
         return (String)readProperty(FAX_PROPERTY);
     }
 
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
+
     public void setManuf(Integer manuf) {
         writeProperty(MANUF_PROPERTY, manuf);
     }
@@ -116,11 +124,11 @@ public abstract class _Agency extends CayenneDataObject {
         return (String)readProperty(REF_PROPERTY);
     }
 
-    public void setShape(Byte[] shape) {
+    public void setShape(byte[] shape) {
         writeProperty(SHAPE_PROPERTY, shape);
     }
-    public Byte[] getShape() {
-        return (Byte[])readProperty(SHAPE_PROPERTY);
+    public byte[] getShape() {
+        return (byte[])readProperty(SHAPE_PROPERTY);
     }
 
     public void setTel(String tel) {
@@ -130,222 +138,222 @@ public abstract class _Agency extends CayenneDataObject {
         return (String)readProperty(TEL_PROPERTY);
     }
 
-    public void addToAgencyDacTypeArray(AgencyDacType obj) {
-        addToManyTarget(AGENCY_DAC_TYPE_ARRAY_PROPERTY, obj, true);
+    public void addToAgencyDacTypes(AgencyDacType obj) {
+        addToManyTarget(AGENCY_DAC_TYPES_PROPERTY, obj, true);
     }
-    public void removeFromAgencyDacTypeArray(AgencyDacType obj) {
-        removeToManyTarget(AGENCY_DAC_TYPE_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<AgencyDacType> getAgencyDacTypeArray() {
-        return (List<AgencyDacType>)readProperty(AGENCY_DAC_TYPE_ARRAY_PROPERTY);
-    }
-
-
-    public void addToAgencyPtfArray(AgencyPtf obj) {
-        addToManyTarget(AGENCY_PTF_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromAgencyPtfArray(AgencyPtf obj) {
-        removeToManyTarget(AGENCY_PTF_ARRAY_PROPERTY, obj, true);
+    public void removeFromAgencyDacTypes(AgencyDacType obj) {
+        removeToManyTarget(AGENCY_DAC_TYPES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<AgencyPtf> getAgencyPtfArray() {
-        return (List<AgencyPtf>)readProperty(AGENCY_PTF_ARRAY_PROPERTY);
+    public List<AgencyDacType> getAgencyDacTypes() {
+        return (List<AgencyDacType>)readProperty(AGENCY_DAC_TYPES_PROPERTY);
     }
 
 
-    public void addToContactArray(Contact obj) {
-        addToManyTarget(CONTACT_ARRAY_PROPERTY, obj, true);
+    public void addToAgencyPtfs(AgencyPtf obj) {
+        addToManyTarget(AGENCY_PTFS_PROPERTY, obj, true);
     }
-    public void removeFromContactArray(Contact obj) {
-        removeToManyTarget(CONTACT_ARRAY_PROPERTY, obj, true);
+    public void removeFromAgencyPtfs(AgencyPtf obj) {
+        removeToManyTarget(AGENCY_PTFS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Contact> getContactArray() {
-        return (List<Contact>)readProperty(CONTACT_ARRAY_PROPERTY);
+    public List<AgencyPtf> getAgencyPtfs() {
+        return (List<AgencyPtf>)readProperty(AGENCY_PTFS_PROPERTY);
     }
 
 
-    public void addToCruiseArray(Cruise obj) {
-        addToManyTarget(CRUISE_ARRAY_PROPERTY, obj, true);
+    public void addToContacts(Contact obj) {
+        addToManyTarget(CONTACTS_PROPERTY, obj, true);
     }
-    public void removeFromCruiseArray(Cruise obj) {
-        removeToManyTarget(CRUISE_ARRAY_PROPERTY, obj, true);
+    public void removeFromContacts(Contact obj) {
+        removeToManyTarget(CONTACTS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Cruise> getCruiseArray() {
-        return (List<Cruise>)readProperty(CRUISE_ARRAY_PROPERTY);
+    public List<Contact> getContacts() {
+        return (List<Contact>)readProperty(CONTACTS_PROPERTY);
     }
 
 
-    public void addToGtsCcccArray(GtsCccc obj) {
-        addToManyTarget(GTS_CCCC_ARRAY_PROPERTY, obj, true);
+    public void setCountry(Country country) {
+        setToOneTarget(COUNTRY_PROPERTY, country, true);
     }
-    public void removeFromGtsCcccArray(GtsCccc obj) {
-        removeToManyTarget(GTS_CCCC_ARRAY_PROPERTY, obj, true);
+
+    public Country getCountry() {
+        return (Country)readProperty(COUNTRY_PROPERTY);
+    }
+
+
+    public void addToCruises(Cruise obj) {
+        addToManyTarget(CRUISES_PROPERTY, obj, true);
+    }
+    public void removeFromCruises(Cruise obj) {
+        removeToManyTarget(CRUISES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<GtsCccc> getGtsCcccArray() {
-        return (List<GtsCccc>)readProperty(GTS_CCCC_ARRAY_PROPERTY);
+    public List<Cruise> getCruises() {
+        return (List<Cruise>)readProperty(CRUISES_PROPERTY);
     }
 
 
-    public void addToImageArray(Image obj) {
-        addToManyTarget(IMAGE_ARRAY_PROPERTY, obj, true);
+    public void addToGtsCcccs(GtsCccc obj) {
+        addToManyTarget(GTS_CCCCS_PROPERTY, obj, true);
     }
-    public void removeFromImageArray(Image obj) {
-        removeToManyTarget(IMAGE_ARRAY_PROPERTY, obj, true);
+    public void removeFromGtsCcccs(GtsCccc obj) {
+        removeToManyTarget(GTS_CCCCS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Image> getImageArray() {
-        return (List<Image>)readProperty(IMAGE_ARRAY_PROPERTY);
+    public List<GtsCccc> getGtsCcccs() {
+        return (List<GtsCccc>)readProperty(GTS_CCCCS_PROPERTY);
     }
 
 
-    public void addToObsArray(Obs obj) {
-        addToManyTarget(OBS_ARRAY_PROPERTY, obj, true);
+    public void setImage(Image image) {
+        setToOneTarget(IMAGE_PROPERTY, image, true);
     }
-    public void removeFromObsArray(Obs obj) {
-        removeToManyTarget(OBS_ARRAY_PROPERTY, obj, true);
+
+    public Image getImage() {
+        return (Image)readProperty(IMAGE_PROPERTY);
+    }
+
+
+    public void addToImages(Image obj) {
+        addToManyTarget(IMAGES_PROPERTY, obj, true);
+    }
+    public void removeFromImages(Image obj) {
+        removeToManyTarget(IMAGES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Obs> getObsArray() {
-        return (List<Obs>)readProperty(OBS_ARRAY_PROPERTY);
+    public List<Image> getImages() {
+        return (List<Image>)readProperty(IMAGES_PROPERTY);
     }
 
 
-    public void addToObsArray1(Obs obj) {
-        addToManyTarget(OBS_ARRAY1_PROPERTY, obj, true);
+    public void addToObss(Obs obj) {
+        addToManyTarget(OBSS_PROPERTY, obj, true);
     }
-    public void removeFromObsArray1(Obs obj) {
-        removeToManyTarget(OBS_ARRAY1_PROPERTY, obj, true);
+    public void removeFromObss(Obs obj) {
+        removeToManyTarget(OBSS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Obs> getObsArray1() {
-        return (List<Obs>)readProperty(OBS_ARRAY1_PROPERTY);
+    public List<Obs> getObss() {
+        return (List<Obs>)readProperty(OBSS_PROPERTY);
     }
 
 
-    public void addToProgramAgencyArray(ProgramAgency obj) {
-        addToManyTarget(PROGRAM_AGENCY_ARRAY_PROPERTY, obj, true);
+    public void addToObss1(Obs obj) {
+        addToManyTarget(OBSS1_PROPERTY, obj, true);
     }
-    public void removeFromProgramAgencyArray(ProgramAgency obj) {
-        removeToManyTarget(PROGRAM_AGENCY_ARRAY_PROPERTY, obj, true);
+    public void removeFromObss1(Obs obj) {
+        removeToManyTarget(OBSS1_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<ProgramAgency> getProgramAgencyArray() {
-        return (List<ProgramAgency>)readProperty(PROGRAM_AGENCY_ARRAY_PROPERTY);
+    public List<Obs> getObss1() {
+        return (List<Obs>)readProperty(OBSS1_PROPERTY);
     }
 
 
-    public void addToPtfFirmwareArray(PtfFirmware obj) {
-        addToManyTarget(PTF_FIRMWARE_ARRAY_PROPERTY, obj, true);
+    public void addToProgramAgencies(ProgramAgency obj) {
+        addToManyTarget(PROGRAM_AGENCIES_PROPERTY, obj, true);
     }
-    public void removeFromPtfFirmwareArray(PtfFirmware obj) {
-        removeToManyTarget(PTF_FIRMWARE_ARRAY_PROPERTY, obj, true);
+    public void removeFromProgramAgencies(ProgramAgency obj) {
+        removeToManyTarget(PROGRAM_AGENCIES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<PtfFirmware> getPtfFirmwareArray() {
-        return (List<PtfFirmware>)readProperty(PTF_FIRMWARE_ARRAY_PROPERTY);
+    public List<ProgramAgency> getProgramAgencies() {
+        return (List<ProgramAgency>)readProperty(PROGRAM_AGENCIES_PROPERTY);
     }
 
 
-    public void addToPtfHullTypeArray(PtfHullType obj) {
-        addToManyTarget(PTF_HULL_TYPE_ARRAY_PROPERTY, obj, true);
+    public void addToPtfFirmwares(PtfFirmware obj) {
+        addToManyTarget(PTF_FIRMWARES_PROPERTY, obj, true);
     }
-    public void removeFromPtfHullTypeArray(PtfHullType obj) {
-        removeToManyTarget(PTF_HULL_TYPE_ARRAY_PROPERTY, obj, true);
+    public void removeFromPtfFirmwares(PtfFirmware obj) {
+        removeToManyTarget(PTF_FIRMWARES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<PtfHullType> getPtfHullTypeArray() {
-        return (List<PtfHullType>)readProperty(PTF_HULL_TYPE_ARRAY_PROPERTY);
+    public List<PtfFirmware> getPtfFirmwares() {
+        return (List<PtfFirmware>)readProperty(PTF_FIRMWARES_PROPERTY);
     }
 
 
-    public void addToPtfModelArray(PtfModel obj) {
-        addToManyTarget(PTF_MODEL_ARRAY_PROPERTY, obj, true);
+    public void addToPtfHullTypes(PtfHullType obj) {
+        addToManyTarget(PTF_HULL_TYPES_PROPERTY, obj, true);
     }
-    public void removeFromPtfModelArray(PtfModel obj) {
-        removeToManyTarget(PTF_MODEL_ARRAY_PROPERTY, obj, true);
+    public void removeFromPtfHullTypes(PtfHullType obj) {
+        removeToManyTarget(PTF_HULL_TYPES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<PtfModel> getPtfModelArray() {
-        return (List<PtfModel>)readProperty(PTF_MODEL_ARRAY_PROPERTY);
+    public List<PtfHullType> getPtfHullTypes() {
+        return (List<PtfHullType>)readProperty(PTF_HULL_TYPES_PROPERTY);
     }
 
 
-    public void addToQcFeedbackArray(QcFeedback obj) {
-        addToManyTarget(QC_FEEDBACK_ARRAY_PROPERTY, obj, true);
+    public void addToPtfModels(PtfModel obj) {
+        addToManyTarget(PTF_MODELS_PROPERTY, obj, true);
     }
-    public void removeFromQcFeedbackArray(QcFeedback obj) {
-        removeToManyTarget(QC_FEEDBACK_ARRAY_PROPERTY, obj, true);
+    public void removeFromPtfModels(PtfModel obj) {
+        removeToManyTarget(PTF_MODELS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<QcFeedback> getQcFeedbackArray() {
-        return (List<QcFeedback>)readProperty(QC_FEEDBACK_ARRAY_PROPERTY);
+    public List<PtfModel> getPtfModels() {
+        return (List<PtfModel>)readProperty(PTF_MODELS_PROPERTY);
     }
 
 
-    public void addToSensorModelArray(SensorModel obj) {
-        addToManyTarget(SENSOR_MODEL_ARRAY_PROPERTY, obj, true);
+    public void addToQcFeedbacks(QcFeedback obj) {
+        addToManyTarget(QC_FEEDBACKS_PROPERTY, obj, true);
     }
-    public void removeFromSensorModelArray(SensorModel obj) {
-        removeToManyTarget(SENSOR_MODEL_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<SensorModel> getSensorModelArray() {
-        return (List<SensorModel>)readProperty(SENSOR_MODEL_ARRAY_PROPERTY);
-    }
-
-
-    public void addToServiceArray(Service obj) {
-        addToManyTarget(SERVICE_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromServiceArray(Service obj) {
-        removeToManyTarget(SERVICE_ARRAY_PROPERTY, obj, true);
+    public void removeFromQcFeedbacks(QcFeedback obj) {
+        removeToManyTarget(QC_FEEDBACKS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Service> getServiceArray() {
-        return (List<Service>)readProperty(SERVICE_ARRAY_PROPERTY);
+    public List<QcFeedback> getQcFeedbacks() {
+        return (List<QcFeedback>)readProperty(QC_FEEDBACKS_PROPERTY);
     }
 
 
-    public void setToCountry(Country toCountry) {
-        setToOneTarget(TO_COUNTRY_PROPERTY, toCountry, true);
+    public void addToSensorModels(SensorModel obj) {
+        addToManyTarget(SENSOR_MODELS_PROPERTY, obj, true);
     }
-
-    public Country getToCountry() {
-        return (Country)readProperty(TO_COUNTRY_PROPERTY);
-    }
-
-
-    public void setToImage(Image toImage) {
-        setToOneTarget(TO_IMAGE_PROPERTY, toImage, true);
-    }
-
-    public Image getToImage() {
-        return (Image)readProperty(TO_IMAGE_PROPERTY);
-    }
-
-
-    public void setToWeblink(Weblink toWeblink) {
-        setToOneTarget(TO_WEBLINK_PROPERTY, toWeblink, true);
-    }
-
-    public Weblink getToWeblink() {
-        return (Weblink)readProperty(TO_WEBLINK_PROPERTY);
-    }
-
-
-    public void addToUserGroupAgencyArray(UserGroupAgency obj) {
-        addToManyTarget(USER_GROUP_AGENCY_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromUserGroupAgencyArray(UserGroupAgency obj) {
-        removeToManyTarget(USER_GROUP_AGENCY_ARRAY_PROPERTY, obj, true);
+    public void removeFromSensorModels(SensorModel obj) {
+        removeToManyTarget(SENSOR_MODELS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<UserGroupAgency> getUserGroupAgencyArray() {
-        return (List<UserGroupAgency>)readProperty(USER_GROUP_AGENCY_ARRAY_PROPERTY);
+    public List<SensorModel> getSensorModels() {
+        return (List<SensorModel>)readProperty(SENSOR_MODELS_PROPERTY);
+    }
+
+
+    public void addToServices(Service obj) {
+        addToManyTarget(SERVICES_PROPERTY, obj, true);
+    }
+    public void removeFromServices(Service obj) {
+        removeToManyTarget(SERVICES_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Service> getServices() {
+        return (List<Service>)readProperty(SERVICES_PROPERTY);
+    }
+
+
+    public void addToUserGroupAgencies(UserGroupAgency obj) {
+        addToManyTarget(USER_GROUP_AGENCIES_PROPERTY, obj, true);
+    }
+    public void removeFromUserGroupAgencies(UserGroupAgency obj) {
+        removeToManyTarget(USER_GROUP_AGENCIES_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<UserGroupAgency> getUserGroupAgencies() {
+        return (List<UserGroupAgency>)readProperty(USER_GROUP_AGENCIES_PROPERTY);
+    }
+
+
+    public void setWeblink(Weblink weblink) {
+        setToOneTarget(WEBLINK_PROPERTY, weblink, true);
+    }
+
+    public Weblink getWeblink() {
+        return (Weblink)readProperty(WEBLINK_PROPERTY);
     }
 
 

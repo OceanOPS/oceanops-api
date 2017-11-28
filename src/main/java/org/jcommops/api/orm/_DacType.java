@@ -13,10 +13,11 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _DacType extends CayenneDataObject {
 
     public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
-    public static final String AGENCY_DAC_TYPE_ARRAY_PROPERTY = "agencyDacTypeArray";
-    public static final String AGENCY_PTF_ARRAY_PROPERTY = "agencyPtfArray";
+    public static final String AGENCY_DAC_TYPES_PROPERTY = "agencyDacTypes";
+    public static final String AGENCY_PTFS_PROPERTY = "agencyPtfs";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -25,6 +26,13 @@ public abstract class _DacType extends CayenneDataObject {
     }
     public String getDescription() {
         return (String)readProperty(DESCRIPTION_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setName(String name) {
@@ -41,27 +49,27 @@ public abstract class _DacType extends CayenneDataObject {
         return (String)readProperty(NAME_SHORT_PROPERTY);
     }
 
-    public void addToAgencyDacTypeArray(AgencyDacType obj) {
-        addToManyTarget(AGENCY_DAC_TYPE_ARRAY_PROPERTY, obj, true);
+    public void addToAgencyDacTypes(AgencyDacType obj) {
+        addToManyTarget(AGENCY_DAC_TYPES_PROPERTY, obj, true);
     }
-    public void removeFromAgencyDacTypeArray(AgencyDacType obj) {
-        removeToManyTarget(AGENCY_DAC_TYPE_ARRAY_PROPERTY, obj, true);
+    public void removeFromAgencyDacTypes(AgencyDacType obj) {
+        removeToManyTarget(AGENCY_DAC_TYPES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<AgencyDacType> getAgencyDacTypeArray() {
-        return (List<AgencyDacType>)readProperty(AGENCY_DAC_TYPE_ARRAY_PROPERTY);
+    public List<AgencyDacType> getAgencyDacTypes() {
+        return (List<AgencyDacType>)readProperty(AGENCY_DAC_TYPES_PROPERTY);
     }
 
 
-    public void addToAgencyPtfArray(AgencyPtf obj) {
-        addToManyTarget(AGENCY_PTF_ARRAY_PROPERTY, obj, true);
+    public void addToAgencyPtfs(AgencyPtf obj) {
+        addToManyTarget(AGENCY_PTFS_PROPERTY, obj, true);
     }
-    public void removeFromAgencyPtfArray(AgencyPtf obj) {
-        removeToManyTarget(AGENCY_PTF_ARRAY_PROPERTY, obj, true);
+    public void removeFromAgencyPtfs(AgencyPtf obj) {
+        removeToManyTarget(AGENCY_PTFS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<AgencyPtf> getAgencyPtfArray() {
-        return (List<AgencyPtf>)readProperty(AGENCY_PTF_ARRAY_PROPERTY);
+    public List<AgencyPtf> getAgencyPtfs() {
+        return (List<AgencyPtf>)readProperty(AGENCY_PTFS_PROPERTY);
     }
 
 

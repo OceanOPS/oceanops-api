@@ -14,13 +14,14 @@ public abstract class _UserGroup extends CayenneDataObject {
 
     public static final String DESCRIPTION_PROPERTY = "description";
     public static final String EMAIL_PROPERTY = "email";
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
-    public static final String DOC_ARRAY_PROPERTY = "docArray";
-    public static final String TO_MASTER_PROG_PROPERTY = "toMasterProg";
-    public static final String USER_GROUP_AGENCY_ARRAY_PROPERTY = "userGroupAgencyArray";
-    public static final String USER_GROUP_CONTACT_ARRAY_PROPERTY = "userGroupContactArray";
-    public static final String WEBLINK_ARRAY_PROPERTY = "weblinkArray";
+    public static final String DOCS_PROPERTY = "docs";
+    public static final String MASTER_PROG_PROPERTY = "masterProg";
+    public static final String USER_GROUP_AGENCIES_PROPERTY = "userGroupAgencies";
+    public static final String USER_GROUP_CONTACTS_PROPERTY = "userGroupContacts";
+    public static final String WEBLINKS_PROPERTY = "weblinks";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -38,6 +39,13 @@ public abstract class _UserGroup extends CayenneDataObject {
         return (String)readProperty(EMAIL_PROPERTY);
     }
 
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
+
     public void setName(String name) {
         writeProperty(NAME_PROPERTY, name);
     }
@@ -52,60 +60,60 @@ public abstract class _UserGroup extends CayenneDataObject {
         return (String)readProperty(NAME_SHORT_PROPERTY);
     }
 
-    public void addToDocArray(Doc obj) {
-        addToManyTarget(DOC_ARRAY_PROPERTY, obj, true);
+    public void addToDocs(Doc obj) {
+        addToManyTarget(DOCS_PROPERTY, obj, true);
     }
-    public void removeFromDocArray(Doc obj) {
-        removeToManyTarget(DOC_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<Doc> getDocArray() {
-        return (List<Doc>)readProperty(DOC_ARRAY_PROPERTY);
-    }
-
-
-    public void setToMasterProg(MasterProg toMasterProg) {
-        setToOneTarget(TO_MASTER_PROG_PROPERTY, toMasterProg, true);
-    }
-
-    public MasterProg getToMasterProg() {
-        return (MasterProg)readProperty(TO_MASTER_PROG_PROPERTY);
-    }
-
-
-    public void addToUserGroupAgencyArray(UserGroupAgency obj) {
-        addToManyTarget(USER_GROUP_AGENCY_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromUserGroupAgencyArray(UserGroupAgency obj) {
-        removeToManyTarget(USER_GROUP_AGENCY_ARRAY_PROPERTY, obj, true);
+    public void removeFromDocs(Doc obj) {
+        removeToManyTarget(DOCS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<UserGroupAgency> getUserGroupAgencyArray() {
-        return (List<UserGroupAgency>)readProperty(USER_GROUP_AGENCY_ARRAY_PROPERTY);
+    public List<Doc> getDocs() {
+        return (List<Doc>)readProperty(DOCS_PROPERTY);
     }
 
 
-    public void addToUserGroupContactArray(UserGroupContact obj) {
-        addToManyTarget(USER_GROUP_CONTACT_ARRAY_PROPERTY, obj, true);
+    public void setMasterProg(MasterProg masterProg) {
+        setToOneTarget(MASTER_PROG_PROPERTY, masterProg, true);
     }
-    public void removeFromUserGroupContactArray(UserGroupContact obj) {
-        removeToManyTarget(USER_GROUP_CONTACT_ARRAY_PROPERTY, obj, true);
+
+    public MasterProg getMasterProg() {
+        return (MasterProg)readProperty(MASTER_PROG_PROPERTY);
+    }
+
+
+    public void addToUserGroupAgencies(UserGroupAgency obj) {
+        addToManyTarget(USER_GROUP_AGENCIES_PROPERTY, obj, true);
+    }
+    public void removeFromUserGroupAgencies(UserGroupAgency obj) {
+        removeToManyTarget(USER_GROUP_AGENCIES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<UserGroupContact> getUserGroupContactArray() {
-        return (List<UserGroupContact>)readProperty(USER_GROUP_CONTACT_ARRAY_PROPERTY);
+    public List<UserGroupAgency> getUserGroupAgencies() {
+        return (List<UserGroupAgency>)readProperty(USER_GROUP_AGENCIES_PROPERTY);
     }
 
 
-    public void addToWeblinkArray(Weblink obj) {
-        addToManyTarget(WEBLINK_ARRAY_PROPERTY, obj, true);
+    public void addToUserGroupContacts(UserGroupContact obj) {
+        addToManyTarget(USER_GROUP_CONTACTS_PROPERTY, obj, true);
     }
-    public void removeFromWeblinkArray(Weblink obj) {
-        removeToManyTarget(WEBLINK_ARRAY_PROPERTY, obj, true);
+    public void removeFromUserGroupContacts(UserGroupContact obj) {
+        removeToManyTarget(USER_GROUP_CONTACTS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Weblink> getWeblinkArray() {
-        return (List<Weblink>)readProperty(WEBLINK_ARRAY_PROPERTY);
+    public List<UserGroupContact> getUserGroupContacts() {
+        return (List<UserGroupContact>)readProperty(USER_GROUP_CONTACTS_PROPERTY);
+    }
+
+
+    public void addToWeblinks(Weblink obj) {
+        addToManyTarget(WEBLINKS_PROPERTY, obj, true);
+    }
+    public void removeFromWeblinks(Weblink obj) {
+        removeToManyTarget(WEBLINKS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Weblink> getWeblinks() {
+        return (List<Weblink>)readProperty(WEBLINKS_PROPERTY);
     }
 
 

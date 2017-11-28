@@ -12,18 +12,34 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _NcSubscription extends CayenneDataObject {
 
+    public static final String CONTACT_ID_PROPERTY = "contactId";
     public static final String EMAILED_PROPERTY = "emailed";
+    public static final String NC_TOPIC_ID_PROPERTY = "ncTopicId";
     public static final String PREFERRED_EMAIL_PROPERTY = "preferredEmail";
     public static final String SUBSCRIPTION_DATE_PROPERTY = "subscriptionDate";
 
     public static final String CONTACT_ID_PK_COLUMN = "CONTACT_ID";
     public static final String NC_TOPIC_ID_PK_COLUMN = "NC_TOPIC_ID";
 
+    public void setContactId(Integer contactId) {
+        writeProperty(CONTACT_ID_PROPERTY, contactId);
+    }
+    public Integer getContactId() {
+        return (Integer)readProperty(CONTACT_ID_PROPERTY);
+    }
+
     public void setEmailed(Integer emailed) {
         writeProperty(EMAILED_PROPERTY, emailed);
     }
     public Integer getEmailed() {
         return (Integer)readProperty(EMAILED_PROPERTY);
+    }
+
+    public void setNcTopicId(Integer ncTopicId) {
+        writeProperty(NC_TOPIC_ID_PROPERTY, ncTopicId);
+    }
+    public Integer getNcTopicId() {
+        return (Integer)readProperty(NC_TOPIC_ID_PROPERTY);
     }
 
     public void setPreferredEmail(String preferredEmail) {

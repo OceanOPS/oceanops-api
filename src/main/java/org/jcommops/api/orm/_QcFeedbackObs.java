@@ -10,17 +10,33 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _QcFeedbackObs extends CayenneDataObject {
 
-    public static final String TO_QC_FEEDBACK_PROPERTY = "toQcFeedback";
+    public static final String OBS_ID_PROPERTY = "obsId";
+    public static final String QC_FEEDBACK_ID_PROPERTY = "qcFeedbackId";
+    public static final String QC_FEEDBACK_PROPERTY = "qcFeedback";
 
     public static final String OBS_ID_PK_COLUMN = "OBS_ID";
     public static final String QC_FEEDBACK_ID_PK_COLUMN = "QC_FEEDBACK_ID";
 
-    public void setToQcFeedback(QcFeedback toQcFeedback) {
-        setToOneTarget(TO_QC_FEEDBACK_PROPERTY, toQcFeedback, true);
+    public void setObsId(Integer obsId) {
+        writeProperty(OBS_ID_PROPERTY, obsId);
+    }
+    public Integer getObsId() {
+        return (Integer)readProperty(OBS_ID_PROPERTY);
     }
 
-    public QcFeedback getToQcFeedback() {
-        return (QcFeedback)readProperty(TO_QC_FEEDBACK_PROPERTY);
+    public void setQcFeedbackId(Integer qcFeedbackId) {
+        writeProperty(QC_FEEDBACK_ID_PROPERTY, qcFeedbackId);
+    }
+    public Integer getQcFeedbackId() {
+        return (Integer)readProperty(QC_FEEDBACK_ID_PROPERTY);
+    }
+
+    public void setQcFeedback(QcFeedback qcFeedback) {
+        setToOneTarget(QC_FEEDBACK_PROPERTY, qcFeedback, true);
+    }
+
+    public QcFeedback getQcFeedback() {
+        return (QcFeedback)readProperty(QC_FEEDBACK_PROPERTY);
     }
 
 

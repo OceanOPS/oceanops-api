@@ -13,8 +13,9 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _PumpType extends CayenneDataObject {
 
     public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
-    public static final String PTF_HARDWARE_ARRAY_PROPERTY = "ptfHardwareArray";
+    public static final String PTF_HARDWARES_PROPERTY = "ptfHardwares";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -25,6 +26,13 @@ public abstract class _PumpType extends CayenneDataObject {
         return (String)readProperty(DESCRIPTION_PROPERTY);
     }
 
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
+
     public void setName(String name) {
         writeProperty(NAME_PROPERTY, name);
     }
@@ -32,15 +40,15 @@ public abstract class _PumpType extends CayenneDataObject {
         return (String)readProperty(NAME_PROPERTY);
     }
 
-    public void addToPtfHardwareArray(PtfHardware obj) {
-        addToManyTarget(PTF_HARDWARE_ARRAY_PROPERTY, obj, true);
+    public void addToPtfHardwares(PtfHardware obj) {
+        addToManyTarget(PTF_HARDWARES_PROPERTY, obj, true);
     }
-    public void removeFromPtfHardwareArray(PtfHardware obj) {
-        removeToManyTarget(PTF_HARDWARE_ARRAY_PROPERTY, obj, true);
+    public void removeFromPtfHardwares(PtfHardware obj) {
+        removeToManyTarget(PTF_HARDWARES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<PtfHardware> getPtfHardwareArray() {
-        return (List<PtfHardware>)readProperty(PTF_HARDWARE_ARRAY_PROPERTY);
+    public List<PtfHardware> getPtfHardwares() {
+        return (List<PtfHardware>)readProperty(PTF_HARDWARES_PROPERTY);
     }
 
 

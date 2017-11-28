@@ -13,10 +13,11 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _NcTopic extends CayenneDataObject {
 
     public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String ID_PROPERTY = "id";
     public static final String IS_PRIVATE_PROPERTY = "isPrivate";
     public static final String NAME_PROPERTY = "name";
     public static final String PARENT_TOPIC_ID_PROPERTY = "parentTopicId";
-    public static final String NC_NOTIFICATION_ARRAY_PROPERTY = "ncNotificationArray";
+    public static final String NC_NOTIFICATIONS_PROPERTY = "ncNotifications";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -25,6 +26,13 @@ public abstract class _NcTopic extends CayenneDataObject {
     }
     public String getDescription() {
         return (String)readProperty(DESCRIPTION_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setIsPrivate(Integer isPrivate) {
@@ -48,15 +56,15 @@ public abstract class _NcTopic extends CayenneDataObject {
         return (Integer)readProperty(PARENT_TOPIC_ID_PROPERTY);
     }
 
-    public void addToNcNotificationArray(NcNotification obj) {
-        addToManyTarget(NC_NOTIFICATION_ARRAY_PROPERTY, obj, true);
+    public void addToNcNotifications(NcNotification obj) {
+        addToManyTarget(NC_NOTIFICATIONS_PROPERTY, obj, true);
     }
-    public void removeFromNcNotificationArray(NcNotification obj) {
-        removeToManyTarget(NC_NOTIFICATION_ARRAY_PROPERTY, obj, true);
+    public void removeFromNcNotifications(NcNotification obj) {
+        removeToManyTarget(NC_NOTIFICATIONS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<NcNotification> getNcNotificationArray() {
-        return (List<NcNotification>)readProperty(NC_NOTIFICATION_ARRAY_PROPERTY);
+    public List<NcNotification> getNcNotifications() {
+        return (List<NcNotification>)readProperty(NC_NOTIFICATIONS_PROPERTY);
     }
 
 

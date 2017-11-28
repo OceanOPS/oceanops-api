@@ -13,6 +13,7 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _WebQuery extends CayenneDataObject {
 
     public static final String DATE_CREATION_PROPERTY = "dateCreation";
+    public static final String ID_PROPERTY = "id";
     public static final String IS_DEFAULT_PROPERTY = "isDefault";
     public static final String IS_OCEANSITES_DEFAULT_PROPERTY = "isOceansitesDefault";
     public static final String JSON_FORM_VALUES_PROPERTY = "jsonFormValues";
@@ -23,7 +24,7 @@ public abstract class _WebQuery extends CayenneDataObject {
     public static final String OBS_SQL_B_PROPERTY = "obsSqlB";
     public static final String PREFERENCE_PROPERTY = "preference";
     public static final String SQL_PROPERTY = "sql";
-    public static final String TO_CONTACT_PROPERTY = "toContact";
+    public static final String CONTACT_PROPERTY = "contact";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -32,6 +33,13 @@ public abstract class _WebQuery extends CayenneDataObject {
     }
     public Date getDateCreation() {
         return (Date)readProperty(DATE_CREATION_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setIsDefault(Integer isDefault) {
@@ -104,12 +112,12 @@ public abstract class _WebQuery extends CayenneDataObject {
         return (String)readProperty(SQL_PROPERTY);
     }
 
-    public void setToContact(Contact toContact) {
-        setToOneTarget(TO_CONTACT_PROPERTY, toContact, true);
+    public void setContact(Contact contact) {
+        setToOneTarget(CONTACT_PROPERTY, contact, true);
     }
 
-    public Contact getToContact() {
-        return (Contact)readProperty(TO_CONTACT_PROPERTY);
+    public Contact getContact() {
+        return (Contact)readProperty(CONTACT_PROPERTY);
     }
 
 

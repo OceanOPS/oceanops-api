@@ -14,6 +14,7 @@ public abstract class _MasterProg extends CayenneDataObject {
 
     public static final String DATA_PROPERTY = "data";
     public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
     public static final String OBJECTIVES_PROPERTY = "objectives";
@@ -22,21 +23,21 @@ public abstract class _MasterProg extends CayenneDataObject {
     public static final String OVERVIEW_PROPERTY = "overview";
     public static final String PEOPLE_PROPERTY = "people";
     public static final String TECH_PROPERTY = "tech";
-    public static final String AGENCY_DAC_TYPE_ARRAY_PROPERTY = "agencyDacTypeArray";
-    public static final String DOC_ARRAY_PROPERTY = "docArray";
-    public static final String IMAGE_ARRAY_PROPERTY = "imageArray";
-    public static final String INDICATOR_ARRAY_PROPERTY = "indicatorArray";
-    public static final String MAP_TYPE_MASTER_PROG_ARRAY_PROPERTY = "mapTypeMasterProgArray";
-    public static final String MASTER_PROG_CONTACT_ARRAY_PROPERTY = "masterProgContactArray";
-    public static final String NETWORK_ARRAY_PROPERTY = "networkArray";
-    public static final String PROGRAM_ARRAY_PROPERTY = "programArray";
-    public static final String PTF_MODEL_ARRAY_PROPERTY = "ptfModelArray";
-    public static final String SENSOR_MODEL_ARRAY_PROPERTY = "sensorModelArray";
-    public static final String SITE_ARRAY_PROPERTY = "siteArray";
-    public static final String SURVEY_ARRAY_PROPERTY = "surveyArray";
-    public static final String TO_MASTER_PROG_PROPERTY = "toMasterProg";
-    public static final String USER_GROUP_ARRAY_PROPERTY = "userGroupArray";
-    public static final String WEBLINK_ARRAY_PROPERTY = "weblinkArray";
+    public static final String AGENCY_DAC_TYPES_PROPERTY = "agencyDacTypes";
+    public static final String DOCS_PROPERTY = "docs";
+    public static final String IMAGES_PROPERTY = "images";
+    public static final String INDICATORS_PROPERTY = "indicators";
+    public static final String MAP_TYPE_MASTER_PROGS_PROPERTY = "mapTypeMasterProgs";
+    public static final String MASTER_PROG_PROPERTY = "masterProg";
+    public static final String MASTER_PROG_CONTACTS_PROPERTY = "masterProgContacts";
+    public static final String NETWORKS_PROPERTY = "networks";
+    public static final String PROGRAMS_PROPERTY = "programs";
+    public static final String PTF_MODELS_PROPERTY = "ptfModels";
+    public static final String SENSOR_MODELS_PROPERTY = "sensorModels";
+    public static final String SITES_PROPERTY = "sites";
+    public static final String SURVEYS_PROPERTY = "surveys";
+    public static final String USER_GROUPS_PROPERTY = "userGroups";
+    public static final String WEBLINKS_PROPERTY = "weblinks";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -52,6 +53,13 @@ public abstract class _MasterProg extends CayenneDataObject {
     }
     public String getDescription() {
         return (String)readProperty(DESCRIPTION_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setName(String name) {
@@ -110,180 +118,180 @@ public abstract class _MasterProg extends CayenneDataObject {
         return (String)readProperty(TECH_PROPERTY);
     }
 
-    public void addToAgencyDacTypeArray(AgencyDacType obj) {
-        addToManyTarget(AGENCY_DAC_TYPE_ARRAY_PROPERTY, obj, true);
+    public void addToAgencyDacTypes(AgencyDacType obj) {
+        addToManyTarget(AGENCY_DAC_TYPES_PROPERTY, obj, true);
     }
-    public void removeFromAgencyDacTypeArray(AgencyDacType obj) {
-        removeToManyTarget(AGENCY_DAC_TYPE_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<AgencyDacType> getAgencyDacTypeArray() {
-        return (List<AgencyDacType>)readProperty(AGENCY_DAC_TYPE_ARRAY_PROPERTY);
-    }
-
-
-    public void addToDocArray(Doc obj) {
-        addToManyTarget(DOC_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromDocArray(Doc obj) {
-        removeToManyTarget(DOC_ARRAY_PROPERTY, obj, true);
+    public void removeFromAgencyDacTypes(AgencyDacType obj) {
+        removeToManyTarget(AGENCY_DAC_TYPES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Doc> getDocArray() {
-        return (List<Doc>)readProperty(DOC_ARRAY_PROPERTY);
+    public List<AgencyDacType> getAgencyDacTypes() {
+        return (List<AgencyDacType>)readProperty(AGENCY_DAC_TYPES_PROPERTY);
     }
 
 
-    public void addToImageArray(Image obj) {
-        addToManyTarget(IMAGE_ARRAY_PROPERTY, obj, true);
+    public void addToDocs(Doc obj) {
+        addToManyTarget(DOCS_PROPERTY, obj, true);
     }
-    public void removeFromImageArray(Image obj) {
-        removeToManyTarget(IMAGE_ARRAY_PROPERTY, obj, true);
+    public void removeFromDocs(Doc obj) {
+        removeToManyTarget(DOCS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Image> getImageArray() {
-        return (List<Image>)readProperty(IMAGE_ARRAY_PROPERTY);
+    public List<Doc> getDocs() {
+        return (List<Doc>)readProperty(DOCS_PROPERTY);
     }
 
 
-    public void addToIndicatorArray(Indicator obj) {
-        addToManyTarget(INDICATOR_ARRAY_PROPERTY, obj, true);
+    public void addToImages(Image obj) {
+        addToManyTarget(IMAGES_PROPERTY, obj, true);
     }
-    public void removeFromIndicatorArray(Indicator obj) {
-        removeToManyTarget(INDICATOR_ARRAY_PROPERTY, obj, true);
+    public void removeFromImages(Image obj) {
+        removeToManyTarget(IMAGES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Indicator> getIndicatorArray() {
-        return (List<Indicator>)readProperty(INDICATOR_ARRAY_PROPERTY);
+    public List<Image> getImages() {
+        return (List<Image>)readProperty(IMAGES_PROPERTY);
     }
 
 
-    public void addToMapTypeMasterProgArray(MapTypeMasterProg obj) {
-        addToManyTarget(MAP_TYPE_MASTER_PROG_ARRAY_PROPERTY, obj, true);
+    public void addToIndicators(Indicator obj) {
+        addToManyTarget(INDICATORS_PROPERTY, obj, true);
     }
-    public void removeFromMapTypeMasterProgArray(MapTypeMasterProg obj) {
-        removeToManyTarget(MAP_TYPE_MASTER_PROG_ARRAY_PROPERTY, obj, true);
+    public void removeFromIndicators(Indicator obj) {
+        removeToManyTarget(INDICATORS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<MapTypeMasterProg> getMapTypeMasterProgArray() {
-        return (List<MapTypeMasterProg>)readProperty(MAP_TYPE_MASTER_PROG_ARRAY_PROPERTY);
+    public List<Indicator> getIndicators() {
+        return (List<Indicator>)readProperty(INDICATORS_PROPERTY);
     }
 
 
-    public void addToMasterProgContactArray(MasterProgContact obj) {
-        addToManyTarget(MASTER_PROG_CONTACT_ARRAY_PROPERTY, obj, true);
+    public void addToMapTypeMasterProgs(MapTypeMasterProg obj) {
+        addToManyTarget(MAP_TYPE_MASTER_PROGS_PROPERTY, obj, true);
     }
-    public void removeFromMasterProgContactArray(MasterProgContact obj) {
-        removeToManyTarget(MASTER_PROG_CONTACT_ARRAY_PROPERTY, obj, true);
+    public void removeFromMapTypeMasterProgs(MapTypeMasterProg obj) {
+        removeToManyTarget(MAP_TYPE_MASTER_PROGS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<MasterProgContact> getMasterProgContactArray() {
-        return (List<MasterProgContact>)readProperty(MASTER_PROG_CONTACT_ARRAY_PROPERTY);
+    public List<MapTypeMasterProg> getMapTypeMasterProgs() {
+        return (List<MapTypeMasterProg>)readProperty(MAP_TYPE_MASTER_PROGS_PROPERTY);
     }
 
 
-    public void addToNetworkArray(Network obj) {
-        addToManyTarget(NETWORK_ARRAY_PROPERTY, obj, true);
+    public void setMasterProg(WebMetricMasterProg masterProg) {
+        setToOneTarget(MASTER_PROG_PROPERTY, masterProg, true);
     }
-    public void removeFromNetworkArray(Network obj) {
-        removeToManyTarget(NETWORK_ARRAY_PROPERTY, obj, true);
+
+    public WebMetricMasterProg getMasterProg() {
+        return (WebMetricMasterProg)readProperty(MASTER_PROG_PROPERTY);
+    }
+
+
+    public void addToMasterProgContacts(MasterProgContact obj) {
+        addToManyTarget(MASTER_PROG_CONTACTS_PROPERTY, obj, true);
+    }
+    public void removeFromMasterProgContacts(MasterProgContact obj) {
+        removeToManyTarget(MASTER_PROG_CONTACTS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Network> getNetworkArray() {
-        return (List<Network>)readProperty(NETWORK_ARRAY_PROPERTY);
+    public List<MasterProgContact> getMasterProgContacts() {
+        return (List<MasterProgContact>)readProperty(MASTER_PROG_CONTACTS_PROPERTY);
     }
 
 
-    public void addToProgramArray(Program obj) {
-        addToManyTarget(PROGRAM_ARRAY_PROPERTY, obj, true);
+    public void addToNetworks(Network obj) {
+        addToManyTarget(NETWORKS_PROPERTY, obj, true);
     }
-    public void removeFromProgramArray(Program obj) {
-        removeToManyTarget(PROGRAM_ARRAY_PROPERTY, obj, true);
+    public void removeFromNetworks(Network obj) {
+        removeToManyTarget(NETWORKS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Program> getProgramArray() {
-        return (List<Program>)readProperty(PROGRAM_ARRAY_PROPERTY);
+    public List<Network> getNetworks() {
+        return (List<Network>)readProperty(NETWORKS_PROPERTY);
     }
 
 
-    public void addToPtfModelArray(PtfModel obj) {
-        addToManyTarget(PTF_MODEL_ARRAY_PROPERTY, obj, true);
+    public void addToPrograms(Program obj) {
+        addToManyTarget(PROGRAMS_PROPERTY, obj, true);
     }
-    public void removeFromPtfModelArray(PtfModel obj) {
-        removeToManyTarget(PTF_MODEL_ARRAY_PROPERTY, obj, true);
+    public void removeFromPrograms(Program obj) {
+        removeToManyTarget(PROGRAMS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<PtfModel> getPtfModelArray() {
-        return (List<PtfModel>)readProperty(PTF_MODEL_ARRAY_PROPERTY);
+    public List<Program> getPrograms() {
+        return (List<Program>)readProperty(PROGRAMS_PROPERTY);
     }
 
 
-    public void addToSensorModelArray(SensorModel obj) {
-        addToManyTarget(SENSOR_MODEL_ARRAY_PROPERTY, obj, true);
+    public void addToPtfModels(PtfModel obj) {
+        addToManyTarget(PTF_MODELS_PROPERTY, obj, true);
     }
-    public void removeFromSensorModelArray(SensorModel obj) {
-        removeToManyTarget(SENSOR_MODEL_ARRAY_PROPERTY, obj, true);
+    public void removeFromPtfModels(PtfModel obj) {
+        removeToManyTarget(PTF_MODELS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<SensorModel> getSensorModelArray() {
-        return (List<SensorModel>)readProperty(SENSOR_MODEL_ARRAY_PROPERTY);
+    public List<PtfModel> getPtfModels() {
+        return (List<PtfModel>)readProperty(PTF_MODELS_PROPERTY);
     }
 
 
-    public void addToSiteArray(Site obj) {
-        addToManyTarget(SITE_ARRAY_PROPERTY, obj, true);
+    public void addToSensorModels(SensorModel obj) {
+        addToManyTarget(SENSOR_MODELS_PROPERTY, obj, true);
     }
-    public void removeFromSiteArray(Site obj) {
-        removeToManyTarget(SITE_ARRAY_PROPERTY, obj, true);
+    public void removeFromSensorModels(SensorModel obj) {
+        removeToManyTarget(SENSOR_MODELS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Site> getSiteArray() {
-        return (List<Site>)readProperty(SITE_ARRAY_PROPERTY);
+    public List<SensorModel> getSensorModels() {
+        return (List<SensorModel>)readProperty(SENSOR_MODELS_PROPERTY);
     }
 
 
-    public void addToSurveyArray(Survey obj) {
-        addToManyTarget(SURVEY_ARRAY_PROPERTY, obj, true);
+    public void addToSites(Site obj) {
+        addToManyTarget(SITES_PROPERTY, obj, true);
     }
-    public void removeFromSurveyArray(Survey obj) {
-        removeToManyTarget(SURVEY_ARRAY_PROPERTY, obj, true);
+    public void removeFromSites(Site obj) {
+        removeToManyTarget(SITES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Survey> getSurveyArray() {
-        return (List<Survey>)readProperty(SURVEY_ARRAY_PROPERTY);
+    public List<Site> getSites() {
+        return (List<Site>)readProperty(SITES_PROPERTY);
     }
 
 
-    public void setToMasterProg(WebMetricMasterProg toMasterProg) {
-        setToOneTarget(TO_MASTER_PROG_PROPERTY, toMasterProg, true);
+    public void addToSurveys(Survey obj) {
+        addToManyTarget(SURVEYS_PROPERTY, obj, true);
     }
-
-    public WebMetricMasterProg getToMasterProg() {
-        return (WebMetricMasterProg)readProperty(TO_MASTER_PROG_PROPERTY);
-    }
-
-
-    public void addToUserGroupArray(UserGroup obj) {
-        addToManyTarget(USER_GROUP_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromUserGroupArray(UserGroup obj) {
-        removeToManyTarget(USER_GROUP_ARRAY_PROPERTY, obj, true);
+    public void removeFromSurveys(Survey obj) {
+        removeToManyTarget(SURVEYS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<UserGroup> getUserGroupArray() {
-        return (List<UserGroup>)readProperty(USER_GROUP_ARRAY_PROPERTY);
+    public List<Survey> getSurveys() {
+        return (List<Survey>)readProperty(SURVEYS_PROPERTY);
     }
 
 
-    public void addToWeblinkArray(Weblink obj) {
-        addToManyTarget(WEBLINK_ARRAY_PROPERTY, obj, true);
+    public void addToUserGroups(UserGroup obj) {
+        addToManyTarget(USER_GROUPS_PROPERTY, obj, true);
     }
-    public void removeFromWeblinkArray(Weblink obj) {
-        removeToManyTarget(WEBLINK_ARRAY_PROPERTY, obj, true);
+    public void removeFromUserGroups(UserGroup obj) {
+        removeToManyTarget(USER_GROUPS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Weblink> getWeblinkArray() {
-        return (List<Weblink>)readProperty(WEBLINK_ARRAY_PROPERTY);
+    public List<UserGroup> getUserGroups() {
+        return (List<UserGroup>)readProperty(USER_GROUPS_PROPERTY);
+    }
+
+
+    public void addToWeblinks(Weblink obj) {
+        addToManyTarget(WEBLINKS_PROPERTY, obj, true);
+    }
+    public void removeFromWeblinks(Weblink obj) {
+        removeToManyTarget(WEBLINKS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Weblink> getWeblinks() {
+        return (List<Weblink>)readProperty(WEBLINKS_PROPERTY);
     }
 
 

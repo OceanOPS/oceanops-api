@@ -10,27 +10,43 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _NetworkCountry extends CayenneDataObject {
 
-    public static final String TO_COUNTRY_PROPERTY = "toCountry";
-    public static final String TO_NETWORK_PROPERTY = "toNetwork";
+    public static final String COUNTRY_ID_PROPERTY = "countryId";
+    public static final String NETWORK_ID_PROPERTY = "networkId";
+    public static final String COUNTRY_PROPERTY = "country";
+    public static final String NETWORK_PROPERTY = "network";
 
     public static final String COUNTRY_ID_PK_COLUMN = "COUNTRY_ID";
     public static final String NETWORK_ID_PK_COLUMN = "NETWORK_ID";
 
-    public void setToCountry(Country toCountry) {
-        setToOneTarget(TO_COUNTRY_PROPERTY, toCountry, true);
+    public void setCountryId(Integer countryId) {
+        writeProperty(COUNTRY_ID_PROPERTY, countryId);
+    }
+    public Integer getCountryId() {
+        return (Integer)readProperty(COUNTRY_ID_PROPERTY);
     }
 
-    public Country getToCountry() {
-        return (Country)readProperty(TO_COUNTRY_PROPERTY);
+    public void setNetworkId(Integer networkId) {
+        writeProperty(NETWORK_ID_PROPERTY, networkId);
+    }
+    public Integer getNetworkId() {
+        return (Integer)readProperty(NETWORK_ID_PROPERTY);
+    }
+
+    public void setCountry(Country country) {
+        setToOneTarget(COUNTRY_PROPERTY, country, true);
+    }
+
+    public Country getCountry() {
+        return (Country)readProperty(COUNTRY_PROPERTY);
     }
 
 
-    public void setToNetwork(Network toNetwork) {
-        setToOneTarget(TO_NETWORK_PROPERTY, toNetwork, true);
+    public void setNetwork(Network network) {
+        setToOneTarget(NETWORK_PROPERTY, network, true);
     }
 
-    public Network getToNetwork() {
-        return (Network)readProperty(TO_NETWORK_PROPERTY);
+    public Network getNetwork() {
+        return (Network)readProperty(NETWORK_PROPERTY);
     }
 
 

@@ -13,9 +13,10 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _DeplType extends CayenneDataObject {
 
     public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
-    public static final String PTF_DEPLOYMENT_ARRAY_PROPERTY = "ptfDeploymentArray";
+    public static final String PTF_DEPLOYMENTS_PROPERTY = "ptfDeployments";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -24,6 +25,13 @@ public abstract class _DeplType extends CayenneDataObject {
     }
     public String getDescription() {
         return (String)readProperty(DESCRIPTION_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setName(String name) {
@@ -40,15 +48,15 @@ public abstract class _DeplType extends CayenneDataObject {
         return (String)readProperty(NAME_SHORT_PROPERTY);
     }
 
-    public void addToPtfDeploymentArray(PtfDeployment obj) {
-        addToManyTarget(PTF_DEPLOYMENT_ARRAY_PROPERTY, obj, true);
+    public void addToPtfDeployments(PtfDeployment obj) {
+        addToManyTarget(PTF_DEPLOYMENTS_PROPERTY, obj, true);
     }
-    public void removeFromPtfDeploymentArray(PtfDeployment obj) {
-        removeToManyTarget(PTF_DEPLOYMENT_ARRAY_PROPERTY, obj, true);
+    public void removeFromPtfDeployments(PtfDeployment obj) {
+        removeToManyTarget(PTF_DEPLOYMENTS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<PtfDeployment> getPtfDeploymentArray() {
-        return (List<PtfDeployment>)readProperty(PTF_DEPLOYMENT_ARRAY_PROPERTY);
+    public List<PtfDeployment> getPtfDeployments() {
+        return (List<PtfDeployment>)readProperty(PTF_DEPLOYMENTS_PROPERTY);
     }
 
 

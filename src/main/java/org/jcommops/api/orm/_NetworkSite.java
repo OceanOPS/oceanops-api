@@ -10,27 +10,43 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _NetworkSite extends CayenneDataObject {
 
-    public static final String TO_NETWORK_PROPERTY = "toNetwork";
-    public static final String TO_SITE_PROPERTY = "toSite";
+    public static final String NETWORK_ID_PROPERTY = "networkId";
+    public static final String SITE_ID_PROPERTY = "siteId";
+    public static final String NETWORK_PROPERTY = "network";
+    public static final String SITE_PROPERTY = "site";
 
     public static final String NETWORK_ID_PK_COLUMN = "NETWORK_ID";
     public static final String SITE_ID_PK_COLUMN = "SITE_ID";
 
-    public void setToNetwork(Network toNetwork) {
-        setToOneTarget(TO_NETWORK_PROPERTY, toNetwork, true);
+    public void setNetworkId(Integer networkId) {
+        writeProperty(NETWORK_ID_PROPERTY, networkId);
+    }
+    public Integer getNetworkId() {
+        return (Integer)readProperty(NETWORK_ID_PROPERTY);
     }
 
-    public Network getToNetwork() {
-        return (Network)readProperty(TO_NETWORK_PROPERTY);
+    public void setSiteId(Integer siteId) {
+        writeProperty(SITE_ID_PROPERTY, siteId);
+    }
+    public Integer getSiteId() {
+        return (Integer)readProperty(SITE_ID_PROPERTY);
+    }
+
+    public void setNetwork(Network network) {
+        setToOneTarget(NETWORK_PROPERTY, network, true);
+    }
+
+    public Network getNetwork() {
+        return (Network)readProperty(NETWORK_PROPERTY);
     }
 
 
-    public void setToSite(Site toSite) {
-        setToOneTarget(TO_SITE_PROPERTY, toSite, true);
+    public void setSite(Site site) {
+        setToOneTarget(SITE_PROPERTY, site, true);
     }
 
-    public Site getToSite() {
-        return (Site)readProperty(TO_SITE_PROPERTY);
+    public Site getSite() {
+        return (Site)readProperty(SITE_PROPERTY);
     }
 
 

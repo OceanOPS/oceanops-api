@@ -12,12 +12,28 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _ObsObsDataStatus extends CayenneDataObject {
 
+    public static final String OBS_DATA_STATUS_ID_PROPERTY = "obsDataStatusId";
+    public static final String OBS_ID_PROPERTY = "obsId";
     public static final String STATUS_DATE_PROPERTY = "statusDate";
-    public static final String TO_OBS_PROPERTY = "toObs";
-    public static final String TO_OBS_DATA_STATUS_PROPERTY = "toObsDataStatus";
+    public static final String OBS_PROPERTY = "obs";
+    public static final String OBS_DATA_STATUS_PROPERTY = "obsDataStatus";
 
     public static final String OBS_DATA_STATUS_ID_PK_COLUMN = "OBS_DATA_STATUS_ID";
     public static final String OBS_ID_PK_COLUMN = "OBS_ID";
+
+    public void setObsDataStatusId(Integer obsDataStatusId) {
+        writeProperty(OBS_DATA_STATUS_ID_PROPERTY, obsDataStatusId);
+    }
+    public Integer getObsDataStatusId() {
+        return (Integer)readProperty(OBS_DATA_STATUS_ID_PROPERTY);
+    }
+
+    public void setObsId(Integer obsId) {
+        writeProperty(OBS_ID_PROPERTY, obsId);
+    }
+    public Integer getObsId() {
+        return (Integer)readProperty(OBS_ID_PROPERTY);
+    }
 
     public void setStatusDate(Date statusDate) {
         writeProperty(STATUS_DATE_PROPERTY, statusDate);
@@ -26,21 +42,21 @@ public abstract class _ObsObsDataStatus extends CayenneDataObject {
         return (Date)readProperty(STATUS_DATE_PROPERTY);
     }
 
-    public void setToObs(Obs toObs) {
-        setToOneTarget(TO_OBS_PROPERTY, toObs, true);
+    public void setObs(Obs obs) {
+        setToOneTarget(OBS_PROPERTY, obs, true);
     }
 
-    public Obs getToObs() {
-        return (Obs)readProperty(TO_OBS_PROPERTY);
+    public Obs getObs() {
+        return (Obs)readProperty(OBS_PROPERTY);
     }
 
 
-    public void setToObsDataStatus(ObsDataStatus toObsDataStatus) {
-        setToOneTarget(TO_OBS_DATA_STATUS_PROPERTY, toObsDataStatus, true);
+    public void setObsDataStatus(ObsDataStatus obsDataStatus) {
+        setToOneTarget(OBS_DATA_STATUS_PROPERTY, obsDataStatus, true);
     }
 
-    public ObsDataStatus getToObsDataStatus() {
-        return (ObsDataStatus)readProperty(TO_OBS_DATA_STATUS_PROPERTY);
+    public ObsDataStatus getObsDataStatus() {
+        return (ObsDataStatus)readProperty(OBS_DATA_STATUS_PROPERTY);
     }
 
 

@@ -13,10 +13,13 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _SensorType extends CayenneDataObject {
 
     public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
-    public static final String SENSOR_MODEL_SENSOR_TYPE_ARRAY_PROPERTY = "sensorModelSensorTypeArray";
-    public static final String TO_VARIABLE_PROPERTY = "toVariable";
+    public static final String PUB47REF_PROPERTY = "pub47Ref";
+    public static final String SENSOR_FAMILY_PROPERTY = "sensorFamily";
+    public static final String SENSOR_MODEL_SENSOR_TYPES_PROPERTY = "sensorModelSensorTypes";
+    public static final String VARIABLE_PROPERTY = "variable";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -25,6 +28,13 @@ public abstract class _SensorType extends CayenneDataObject {
     }
     public String getDescription() {
         return (String)readProperty(DESCRIPTION_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setName(String name) {
@@ -41,24 +51,40 @@ public abstract class _SensorType extends CayenneDataObject {
         return (String)readProperty(NAME_SHORT_PROPERTY);
     }
 
-    public void addToSensorModelSensorTypeArray(SensorModelSensorType obj) {
-        addToManyTarget(SENSOR_MODEL_SENSOR_TYPE_ARRAY_PROPERTY, obj, true);
+    public void setPub47Ref(String pub47Ref) {
+        writeProperty(PUB47REF_PROPERTY, pub47Ref);
     }
-    public void removeFromSensorModelSensorTypeArray(SensorModelSensorType obj) {
-        removeToManyTarget(SENSOR_MODEL_SENSOR_TYPE_ARRAY_PROPERTY, obj, true);
+    public String getPub47Ref() {
+        return (String)readProperty(PUB47REF_PROPERTY);
+    }
+
+    public void setSensorFamily(SensorFamily sensorFamily) {
+        setToOneTarget(SENSOR_FAMILY_PROPERTY, sensorFamily, true);
+    }
+
+    public SensorFamily getSensorFamily() {
+        return (SensorFamily)readProperty(SENSOR_FAMILY_PROPERTY);
+    }
+
+
+    public void addToSensorModelSensorTypes(SensorModelSensorType obj) {
+        addToManyTarget(SENSOR_MODEL_SENSOR_TYPES_PROPERTY, obj, true);
+    }
+    public void removeFromSensorModelSensorTypes(SensorModelSensorType obj) {
+        removeToManyTarget(SENSOR_MODEL_SENSOR_TYPES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<SensorModelSensorType> getSensorModelSensorTypeArray() {
-        return (List<SensorModelSensorType>)readProperty(SENSOR_MODEL_SENSOR_TYPE_ARRAY_PROPERTY);
+    public List<SensorModelSensorType> getSensorModelSensorTypes() {
+        return (List<SensorModelSensorType>)readProperty(SENSOR_MODEL_SENSOR_TYPES_PROPERTY);
     }
 
 
-    public void setToVariable(Variable toVariable) {
-        setToOneTarget(TO_VARIABLE_PROPERTY, toVariable, true);
+    public void setVariable(Variable variable) {
+        setToOneTarget(VARIABLE_PROPERTY, variable, true);
     }
 
-    public Variable getToVariable() {
-        return (Variable)readProperty(TO_VARIABLE_PROPERTY);
+    public Variable getVariable() {
+        return (Variable)readProperty(VARIABLE_PROPERTY);
     }
 
 

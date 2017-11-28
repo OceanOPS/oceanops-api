@@ -18,9 +18,10 @@ public abstract class _GtsCode extends CayenneDataObject {
     public static final String CODE_NAME2_PROPERTY = "codeName2";
     public static final String COMMENTS_PROPERTY = "comments";
     public static final String FORMAL_CODE_PROPERTY = "formalCode";
+    public static final String ID_PROPERTY = "id";
     public static final String MAIN_PTF_TYPE_PROPERTY = "mainPtfType";
     public static final String TAG_PROPERTY = "tag";
-    public static final String OBS_ARRAY_PROPERTY = "obsArray";
+    public static final String OBSS_PROPERTY = "obss";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -66,6 +67,13 @@ public abstract class _GtsCode extends CayenneDataObject {
         return (String)readProperty(FORMAL_CODE_PROPERTY);
     }
 
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
+
     public void setMainPtfType(String mainPtfType) {
         writeProperty(MAIN_PTF_TYPE_PROPERTY, mainPtfType);
     }
@@ -80,15 +88,15 @@ public abstract class _GtsCode extends CayenneDataObject {
         return (String)readProperty(TAG_PROPERTY);
     }
 
-    public void addToObsArray(Obs obj) {
-        addToManyTarget(OBS_ARRAY_PROPERTY, obj, true);
+    public void addToObss(Obs obj) {
+        addToManyTarget(OBSS_PROPERTY, obj, true);
     }
-    public void removeFromObsArray(Obs obj) {
-        removeToManyTarget(OBS_ARRAY_PROPERTY, obj, true);
+    public void removeFromObss(Obs obj) {
+        removeToManyTarget(OBSS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Obs> getObsArray() {
-        return (List<Obs>)readProperty(OBS_ARRAY_PROPERTY);
+    public List<Obs> getObss() {
+        return (List<Obs>)readProperty(OBSS_PROPERTY);
     }
 
 

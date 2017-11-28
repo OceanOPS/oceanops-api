@@ -10,27 +10,43 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _WeblinkPtf extends CayenneDataObject {
 
-    public static final String TO_PTF_PROPERTY = "toPtf";
-    public static final String TO_WEBLINK_PROPERTY = "toWeblink";
+    public static final String PTF_ID_PROPERTY = "ptfId";
+    public static final String WEBLINK_ID_PROPERTY = "weblinkId";
+    public static final String PTF_PROPERTY = "ptf";
+    public static final String WEBLINK_PROPERTY = "weblink";
 
     public static final String PTF_ID_PK_COLUMN = "PTF_ID";
     public static final String WEBLINK_ID_PK_COLUMN = "WEBLINK_ID";
 
-    public void setToPtf(Ptf toPtf) {
-        setToOneTarget(TO_PTF_PROPERTY, toPtf, true);
+    public void setPtfId(Integer ptfId) {
+        writeProperty(PTF_ID_PROPERTY, ptfId);
+    }
+    public Integer getPtfId() {
+        return (Integer)readProperty(PTF_ID_PROPERTY);
     }
 
-    public Ptf getToPtf() {
-        return (Ptf)readProperty(TO_PTF_PROPERTY);
+    public void setWeblinkId(Integer weblinkId) {
+        writeProperty(WEBLINK_ID_PROPERTY, weblinkId);
+    }
+    public Integer getWeblinkId() {
+        return (Integer)readProperty(WEBLINK_ID_PROPERTY);
+    }
+
+    public void setPtf(Ptf ptf) {
+        setToOneTarget(PTF_PROPERTY, ptf, true);
+    }
+
+    public Ptf getPtf() {
+        return (Ptf)readProperty(PTF_PROPERTY);
     }
 
 
-    public void setToWeblink(Weblink toWeblink) {
-        setToOneTarget(TO_WEBLINK_PROPERTY, toWeblink, true);
+    public void setWeblink(Weblink weblink) {
+        setToOneTarget(WEBLINK_PROPERTY, weblink, true);
     }
 
-    public Weblink getToWeblink() {
-        return (Weblink)readProperty(TO_WEBLINK_PROPERTY);
+    public Weblink getWeblink() {
+        return (Weblink)readProperty(WEBLINK_PROPERTY);
     }
 
 

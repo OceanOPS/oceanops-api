@@ -10,17 +10,33 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _DocLanguage extends CayenneDataObject {
 
-    public static final String TO_LANGUAGE_PROPERTY = "toLanguage";
+    public static final String DOC_ID_PROPERTY = "docId";
+    public static final String LANGUAGE_ID_PROPERTY = "languageId";
+    public static final String LANGUAGE_PROPERTY = "language";
 
     public static final String DOC_ID_PK_COLUMN = "DOC_ID";
     public static final String LANGUAGE_ID_PK_COLUMN = "LANGUAGE_ID";
 
-    public void setToLanguage(Language toLanguage) {
-        setToOneTarget(TO_LANGUAGE_PROPERTY, toLanguage, true);
+    public void setDocId(Integer docId) {
+        writeProperty(DOC_ID_PROPERTY, docId);
+    }
+    public Integer getDocId() {
+        return (Integer)readProperty(DOC_ID_PROPERTY);
     }
 
-    public Language getToLanguage() {
-        return (Language)readProperty(TO_LANGUAGE_PROPERTY);
+    public void setLanguageId(Integer languageId) {
+        writeProperty(LANGUAGE_ID_PROPERTY, languageId);
+    }
+    public Integer getLanguageId() {
+        return (Integer)readProperty(LANGUAGE_ID_PROPERTY);
+    }
+
+    public void setLanguage(Language language) {
+        setToOneTarget(LANGUAGE_PROPERTY, language, true);
+    }
+
+    public Language getLanguage() {
+        return (Language)readProperty(LANGUAGE_PROPERTY);
     }
 
 

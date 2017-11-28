@@ -15,9 +15,9 @@ public abstract class _ProgramContact extends CayenneDataObject {
     public static final String MZMS_WARNING_ENABLED_PROPERTY = "mzmsWarningEnabled";
     public static final String PROGRAM_ID_PROPERTY = "programId";
     public static final String ROLE_ID_PROPERTY = "roleId";
-    public static final String TO_CONTACT_PROPERTY = "toContact";
-    public static final String TO_PROGRAM_PROPERTY = "toProgram";
-    public static final String TO_ROLE_PROPERTY = "toRole";
+    public static final String CONTACT_PROPERTY = "contact";
+    public static final String PROGRAM_PROPERTY = "program";
+    public static final String ROLE_PROPERTY = "role";
 
     public static final String CONTACT_ID_PK_COLUMN = "CONTACT_ID";
     public static final String PROGRAM_ID_PK_COLUMN = "PROGRAM_ID";
@@ -58,30 +58,30 @@ public abstract class _ProgramContact extends CayenneDataObject {
         return (Integer)readProperty(ROLE_ID_PROPERTY);
     }
 
-    public void setToContact(Contact toContact) {
-        setToOneTarget(TO_CONTACT_PROPERTY, toContact, true);
+    public void setContact(Contact contact) {
+        setToOneTarget(CONTACT_PROPERTY, contact, true);
     }
 
-    public Contact getToContact() {
-        return (Contact)readProperty(TO_CONTACT_PROPERTY);
-    }
-
-
-    public void setToProgram(Program toProgram) {
-        setToOneTarget(TO_PROGRAM_PROPERTY, toProgram, true);
-    }
-
-    public Program getToProgram() {
-        return (Program)readProperty(TO_PROGRAM_PROPERTY);
+    public Contact getContact() {
+        return (Contact)readProperty(CONTACT_PROPERTY);
     }
 
 
-    public void setToRole(Role toRole) {
-        setToOneTarget(TO_ROLE_PROPERTY, toRole, true);
+    public void setProgram(Program program) {
+        setToOneTarget(PROGRAM_PROPERTY, program, true);
     }
 
-    public Role getToRole() {
-        return (Role)readProperty(TO_ROLE_PROPERTY);
+    public Program getProgram() {
+        return (Program)readProperty(PROGRAM_PROPERTY);
+    }
+
+
+    public void setRole(Role role) {
+        setToOneTarget(ROLE_PROPERTY, role, true);
+    }
+
+    public Role getRole() {
+        return (Role)readProperty(ROLE_PROPERTY);
     }
 
 

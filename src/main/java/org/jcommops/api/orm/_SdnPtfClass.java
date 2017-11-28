@@ -13,11 +13,12 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _SdnPtfClass extends CayenneDataObject {
 
     public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String ID_PROPERTY = "id";
     public static final String LAST_UPDATE_PROPERTY = "lastUpdate";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
-    public static final String TO_PTF_TYPE_PROPERTY = "toPtfType";
-    public static final String TO_SHIP_TYPE_PROPERTY = "toShipType";
+    public static final String PTF_TYPE_PROPERTY = "ptfType";
+    public static final String SHIP_TYPE_PROPERTY = "shipType";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -26,6 +27,13 @@ public abstract class _SdnPtfClass extends CayenneDataObject {
     }
     public String getDescription() {
         return (String)readProperty(DESCRIPTION_PROPERTY);
+    }
+
+    public void setId(String id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public String getId() {
+        return (String)readProperty(ID_PROPERTY);
     }
 
     public void setLastUpdate(Date lastUpdate) {
@@ -49,21 +57,21 @@ public abstract class _SdnPtfClass extends CayenneDataObject {
         return (String)readProperty(NAME_SHORT_PROPERTY);
     }
 
-    public void setToPtfType(PtfType toPtfType) {
-        setToOneTarget(TO_PTF_TYPE_PROPERTY, toPtfType, true);
+    public void setPtfType(PtfType ptfType) {
+        setToOneTarget(PTF_TYPE_PROPERTY, ptfType, true);
     }
 
-    public PtfType getToPtfType() {
-        return (PtfType)readProperty(TO_PTF_TYPE_PROPERTY);
+    public PtfType getPtfType() {
+        return (PtfType)readProperty(PTF_TYPE_PROPERTY);
     }
 
 
-    public void setToShipType(ShipType toShipType) {
-        setToOneTarget(TO_SHIP_TYPE_PROPERTY, toShipType, true);
+    public void setShipType(ShipType shipType) {
+        setToOneTarget(SHIP_TYPE_PROPERTY, shipType, true);
     }
 
-    public ShipType getToShipType() {
-        return (ShipType)readProperty(TO_SHIP_TYPE_PROPERTY);
+    public ShipType getShipType() {
+        return (ShipType)readProperty(SHIP_TYPE_PROPERTY);
     }
 
 

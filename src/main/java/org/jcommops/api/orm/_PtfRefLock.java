@@ -13,6 +13,8 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _PtfRefLock extends CayenneDataObject {
 
     public static final String DATE_REQUESTED_PROPERTY = "dateRequested";
+    public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String REF_PROPERTY = "ref";
     public static final String WMO_PROPERTY = "wmo";
 
     public static final String REF_PK_COLUMN = "REF";
@@ -22,6 +24,20 @@ public abstract class _PtfRefLock extends CayenneDataObject {
     }
     public Date getDateRequested() {
         return (Date)readProperty(DATE_REQUESTED_PROPERTY);
+    }
+
+    public void setDescription(String description) {
+        writeProperty(DESCRIPTION_PROPERTY, description);
+    }
+    public String getDescription() {
+        return (String)readProperty(DESCRIPTION_PROPERTY);
+    }
+
+    public void setRef(String ref) {
+        writeProperty(REF_PROPERTY, ref);
+    }
+    public String getRef() {
+        return (String)readProperty(REF_PROPERTY);
     }
 
     public void setWmo(String wmo) {

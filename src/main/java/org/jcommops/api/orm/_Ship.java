@@ -27,6 +27,7 @@ public abstract class _Ship extends CayenneDataObject {
     public static final String FREEBOARD_PROPERTY = "freeboard";
     public static final String HEIGHT_PROPERTY = "height";
     public static final String HOME_PORT_PROPERTY = "homePort";
+    public static final String ID_PROPERTY = "id";
     public static final String IMO_PROPERTY = "imo";
     public static final String INSERT_DATE_PROPERTY = "insertDate";
     public static final String LENGTH_PROPERTY = "length";
@@ -37,17 +38,21 @@ public abstract class _Ship extends CayenneDataObject {
     public static final String REF_PARENT_PROPERTY = "refParent";
     public static final String REF_TMP_PROPERTY = "refTmp";
     public static final String SPEED_PROPERTY = "speed";
+    public static final String TRACKING_SYSTEM_ID_PROPERTY = "trackingSystemId";
     public static final String UPDATE_DATE_PROPERTY = "updateDate";
     public static final String VALIDATED_PROPERTY = "validated";
-    public static final String CRUISE_ARRAY_PROPERTY = "cruiseArray";
-    public static final String DOC_ARRAY_PROPERTY = "docArray";
-    public static final String PTF_DEPLOYMENT_ARRAY_PROPERTY = "ptfDeploymentArray";
-    public static final String SHIP_LOC_ARRAY_PROPERTY = "shipLocArray";
-    public static final String TO_COUNTRY_PROPERTY = "toCountry";
-    public static final String TO_SHIP_STATUS_PROPERTY = "toShipStatus";
-    public static final String TO_SHIP_TYPE_PROPERTY = "toShipType";
-    public static final String TO_TRACKING_SYSTEM_PROPERTY = "toTrackingSystem";
-    public static final String TO_WEBLINK_PROPERTY = "toWeblink";
+    public static final String COUNTRY_PROPERTY = "country";
+    public static final String CRUISES_PROPERTY = "cruises";
+    public static final String DOCS_PROPERTY = "docs";
+    public static final String IMAGES_PROPERTY = "images";
+    public static final String PTF_DEPLOYMENTS_PROPERTY = "ptfDeployments";
+    public static final String RETRIEVALS_PROPERTY = "retrievals";
+    public static final String SHIP_HISTORIES_PROPERTY = "shipHistories";
+    public static final String SHIP_LOCS_PROPERTY = "shipLocs";
+    public static final String SHIP_RECRUITMENTS_PROPERTY = "shipRecruitments";
+    public static final String SHIP_STATUS_PROPERTY = "shipStatus";
+    public static final String SHIP_TYPE_PROPERTY = "shipType";
+    public static final String WEBLINK_PROPERTY = "weblink";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -149,6 +154,13 @@ public abstract class _Ship extends CayenneDataObject {
         return (String)readProperty(HOME_PORT_PROPERTY);
     }
 
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
+
     public void setImo(String imo) {
         writeProperty(IMO_PROPERTY, imo);
     }
@@ -219,6 +231,13 @@ public abstract class _Ship extends CayenneDataObject {
         return (Integer)readProperty(SPEED_PROPERTY);
     }
 
+    public void setTrackingSystemId(Integer trackingSystemId) {
+        writeProperty(TRACKING_SYSTEM_ID_PROPERTY, trackingSystemId);
+    }
+    public Integer getTrackingSystemId() {
+        return (Integer)readProperty(TRACKING_SYSTEM_ID_PROPERTY);
+    }
+
     public void setUpdateDate(Date updateDate) {
         writeProperty(UPDATE_DATE_PROPERTY, updateDate);
     }
@@ -233,96 +252,135 @@ public abstract class _Ship extends CayenneDataObject {
         return (Integer)readProperty(VALIDATED_PROPERTY);
     }
 
-    public void addToCruiseArray(Cruise obj) {
-        addToManyTarget(CRUISE_ARRAY_PROPERTY, obj, true);
+    public void setCountry(Country country) {
+        setToOneTarget(COUNTRY_PROPERTY, country, true);
     }
-    public void removeFromCruiseArray(Cruise obj) {
-        removeToManyTarget(CRUISE_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<Cruise> getCruiseArray() {
-        return (List<Cruise>)readProperty(CRUISE_ARRAY_PROPERTY);
+
+    public Country getCountry() {
+        return (Country)readProperty(COUNTRY_PROPERTY);
     }
 
 
-    public void addToDocArray(Doc obj) {
-        addToManyTarget(DOC_ARRAY_PROPERTY, obj, true);
+    public void addToCruises(Cruise obj) {
+        addToManyTarget(CRUISES_PROPERTY, obj, true);
     }
-    public void removeFromDocArray(Doc obj) {
-        removeToManyTarget(DOC_ARRAY_PROPERTY, obj, true);
+    public void removeFromCruises(Cruise obj) {
+        removeToManyTarget(CRUISES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Doc> getDocArray() {
-        return (List<Doc>)readProperty(DOC_ARRAY_PROPERTY);
+    public List<Cruise> getCruises() {
+        return (List<Cruise>)readProperty(CRUISES_PROPERTY);
     }
 
 
-    public void addToPtfDeploymentArray(PtfDeployment obj) {
-        addToManyTarget(PTF_DEPLOYMENT_ARRAY_PROPERTY, obj, true);
+    public void addToDocs(Doc obj) {
+        addToManyTarget(DOCS_PROPERTY, obj, true);
     }
-    public void removeFromPtfDeploymentArray(PtfDeployment obj) {
-        removeToManyTarget(PTF_DEPLOYMENT_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<PtfDeployment> getPtfDeploymentArray() {
-        return (List<PtfDeployment>)readProperty(PTF_DEPLOYMENT_ARRAY_PROPERTY);
-    }
-
-
-    public void addToShipLocArray(ShipLoc obj) {
-        addToManyTarget(SHIP_LOC_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromShipLocArray(ShipLoc obj) {
-        removeToManyTarget(SHIP_LOC_ARRAY_PROPERTY, obj, true);
+    public void removeFromDocs(Doc obj) {
+        removeToManyTarget(DOCS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<ShipLoc> getShipLocArray() {
-        return (List<ShipLoc>)readProperty(SHIP_LOC_ARRAY_PROPERTY);
+    public List<Doc> getDocs() {
+        return (List<Doc>)readProperty(DOCS_PROPERTY);
     }
 
 
-    public void setToCountry(Country toCountry) {
-        setToOneTarget(TO_COUNTRY_PROPERTY, toCountry, true);
+    public void addToImages(Image obj) {
+        addToManyTarget(IMAGES_PROPERTY, obj, true);
     }
-
-    public Country getToCountry() {
-        return (Country)readProperty(TO_COUNTRY_PROPERTY);
+    public void removeFromImages(Image obj) {
+        removeToManyTarget(IMAGES_PROPERTY, obj, true);
     }
-
-
-    public void setToShipStatus(ShipStatus toShipStatus) {
-        setToOneTarget(TO_SHIP_STATUS_PROPERTY, toShipStatus, true);
-    }
-
-    public ShipStatus getToShipStatus() {
-        return (ShipStatus)readProperty(TO_SHIP_STATUS_PROPERTY);
+    @SuppressWarnings("unchecked")
+    public List<Image> getImages() {
+        return (List<Image>)readProperty(IMAGES_PROPERTY);
     }
 
 
-    public void setToShipType(ShipType toShipType) {
-        setToOneTarget(TO_SHIP_TYPE_PROPERTY, toShipType, true);
+    public void addToPtfDeployments(PtfDeployment obj) {
+        addToManyTarget(PTF_DEPLOYMENTS_PROPERTY, obj, true);
     }
-
-    public ShipType getToShipType() {
-        return (ShipType)readProperty(TO_SHIP_TYPE_PROPERTY);
+    public void removeFromPtfDeployments(PtfDeployment obj) {
+        removeToManyTarget(PTF_DEPLOYMENTS_PROPERTY, obj, true);
     }
-
-
-    public void setToTrackingSystem(TrackingSystem toTrackingSystem) {
-        setToOneTarget(TO_TRACKING_SYSTEM_PROPERTY, toTrackingSystem, true);
-    }
-
-    public TrackingSystem getToTrackingSystem() {
-        return (TrackingSystem)readProperty(TO_TRACKING_SYSTEM_PROPERTY);
+    @SuppressWarnings("unchecked")
+    public List<PtfDeployment> getPtfDeployments() {
+        return (List<PtfDeployment>)readProperty(PTF_DEPLOYMENTS_PROPERTY);
     }
 
 
-    public void setToWeblink(Weblink toWeblink) {
-        setToOneTarget(TO_WEBLINK_PROPERTY, toWeblink, true);
+    public void addToRetrievals(Retrieval obj) {
+        addToManyTarget(RETRIEVALS_PROPERTY, obj, true);
+    }
+    public void removeFromRetrievals(Retrieval obj) {
+        removeToManyTarget(RETRIEVALS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Retrieval> getRetrievals() {
+        return (List<Retrieval>)readProperty(RETRIEVALS_PROPERTY);
     }
 
-    public Weblink getToWeblink() {
-        return (Weblink)readProperty(TO_WEBLINK_PROPERTY);
+
+    public void addToShipHistories(ShipHistory obj) {
+        addToManyTarget(SHIP_HISTORIES_PROPERTY, obj, true);
+    }
+    public void removeFromShipHistories(ShipHistory obj) {
+        removeToManyTarget(SHIP_HISTORIES_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<ShipHistory> getShipHistories() {
+        return (List<ShipHistory>)readProperty(SHIP_HISTORIES_PROPERTY);
+    }
+
+
+    public void addToShipLocs(ShipLoc obj) {
+        addToManyTarget(SHIP_LOCS_PROPERTY, obj, true);
+    }
+    public void removeFromShipLocs(ShipLoc obj) {
+        removeToManyTarget(SHIP_LOCS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<ShipLoc> getShipLocs() {
+        return (List<ShipLoc>)readProperty(SHIP_LOCS_PROPERTY);
+    }
+
+
+    public void addToShipRecruitments(ShipRecruitment obj) {
+        addToManyTarget(SHIP_RECRUITMENTS_PROPERTY, obj, true);
+    }
+    public void removeFromShipRecruitments(ShipRecruitment obj) {
+        removeToManyTarget(SHIP_RECRUITMENTS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<ShipRecruitment> getShipRecruitments() {
+        return (List<ShipRecruitment>)readProperty(SHIP_RECRUITMENTS_PROPERTY);
+    }
+
+
+    public void setShipStatus(ShipStatus shipStatus) {
+        setToOneTarget(SHIP_STATUS_PROPERTY, shipStatus, true);
+    }
+
+    public ShipStatus getShipStatus() {
+        return (ShipStatus)readProperty(SHIP_STATUS_PROPERTY);
+    }
+
+
+    public void setShipType(ShipType shipType) {
+        setToOneTarget(SHIP_TYPE_PROPERTY, shipType, true);
+    }
+
+    public ShipType getShipType() {
+        return (ShipType)readProperty(SHIP_TYPE_PROPERTY);
+    }
+
+
+    public void setWeblink(Weblink weblink) {
+        setToOneTarget(WEBLINK_PROPERTY, weblink, true);
+    }
+
+    public Weblink getWeblink() {
+        return (Weblink)readProperty(WEBLINK_PROPERTY);
     }
 
 

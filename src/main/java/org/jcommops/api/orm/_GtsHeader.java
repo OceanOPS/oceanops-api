@@ -15,11 +15,12 @@ public abstract class _GtsHeader extends CayenneDataObject {
 
     public static final String END_DATE_PROPERTY = "endDate";
     public static final String HEADER_PROPERTY = "header";
+    public static final String ID_PROPERTY = "id";
     public static final String START_DATE_PROPERTY = "startDate";
     public static final String TEXT_PROPERTY = "text";
-    public static final String GTS_CCCC_HEADER_ARRAY_PROPERTY = "gtsCcccHeaderArray";
-    public static final String OBS_ARRAY_PROPERTY = "obsArray";
-    public static final String QC_FEEDBACK_ARRAY_PROPERTY = "qcFeedbackArray";
+    public static final String GTS_CCCC_HEADERS_PROPERTY = "gtsCcccHeaders";
+    public static final String OBSS_PROPERTY = "obss";
+    public static final String QC_FEEDBACKS_PROPERTY = "qcFeedbacks";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -37,6 +38,13 @@ public abstract class _GtsHeader extends CayenneDataObject {
         return (String)readProperty(HEADER_PROPERTY);
     }
 
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
+
     public void setStartDate(Date startDate) {
         writeProperty(START_DATE_PROPERTY, startDate);
     }
@@ -51,39 +59,39 @@ public abstract class _GtsHeader extends CayenneDataObject {
         return (String)readProperty(TEXT_PROPERTY);
     }
 
-    public void addToGtsCcccHeaderArray(GtsCcccHeader obj) {
-        addToManyTarget(GTS_CCCC_HEADER_ARRAY_PROPERTY, obj, true);
+    public void addToGtsCcccHeaders(GtsCcccHeader obj) {
+        addToManyTarget(GTS_CCCC_HEADERS_PROPERTY, obj, true);
     }
-    public void removeFromGtsCcccHeaderArray(GtsCcccHeader obj) {
-        removeToManyTarget(GTS_CCCC_HEADER_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<GtsCcccHeader> getGtsCcccHeaderArray() {
-        return (List<GtsCcccHeader>)readProperty(GTS_CCCC_HEADER_ARRAY_PROPERTY);
-    }
-
-
-    public void addToObsArray(Obs obj) {
-        addToManyTarget(OBS_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromObsArray(Obs obj) {
-        removeToManyTarget(OBS_ARRAY_PROPERTY, obj, true);
+    public void removeFromGtsCcccHeaders(GtsCcccHeader obj) {
+        removeToManyTarget(GTS_CCCC_HEADERS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Obs> getObsArray() {
-        return (List<Obs>)readProperty(OBS_ARRAY_PROPERTY);
+    public List<GtsCcccHeader> getGtsCcccHeaders() {
+        return (List<GtsCcccHeader>)readProperty(GTS_CCCC_HEADERS_PROPERTY);
     }
 
 
-    public void addToQcFeedbackArray(QcFeedback obj) {
-        addToManyTarget(QC_FEEDBACK_ARRAY_PROPERTY, obj, true);
+    public void addToObss(Obs obj) {
+        addToManyTarget(OBSS_PROPERTY, obj, true);
     }
-    public void removeFromQcFeedbackArray(QcFeedback obj) {
-        removeToManyTarget(QC_FEEDBACK_ARRAY_PROPERTY, obj, true);
+    public void removeFromObss(Obs obj) {
+        removeToManyTarget(OBSS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<QcFeedback> getQcFeedbackArray() {
-        return (List<QcFeedback>)readProperty(QC_FEEDBACK_ARRAY_PROPERTY);
+    public List<Obs> getObss() {
+        return (List<Obs>)readProperty(OBSS_PROPERTY);
+    }
+
+
+    public void addToQcFeedbacks(QcFeedback obj) {
+        addToManyTarget(QC_FEEDBACKS_PROPERTY, obj, true);
+    }
+    public void removeFromQcFeedbacks(QcFeedback obj) {
+        removeToManyTarget(QC_FEEDBACKS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<QcFeedback> getQcFeedbacks() {
+        return (List<QcFeedback>)readProperty(QC_FEEDBACKS_PROPERTY);
     }
 
 

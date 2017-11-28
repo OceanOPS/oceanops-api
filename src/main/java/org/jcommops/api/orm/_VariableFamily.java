@@ -13,9 +13,13 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _VariableFamily extends CayenneDataObject {
 
     public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String ECV_PROPERTY = "ecv";
+    public static final String EOV_PROPERTY = "eov";
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
-    public static final String VARIABLE_ARRAY_PROPERTY = "variableArray";
+    public static final String VARIABLE_VARIABLE_FAMILIES_PROPERTY = "variableVariableFamilies";
+    public static final String VARIABLES_PROPERTY = "variables";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -24,6 +28,27 @@ public abstract class _VariableFamily extends CayenneDataObject {
     }
     public String getDescription() {
         return (String)readProperty(DESCRIPTION_PROPERTY);
+    }
+
+    public void setEcv(Integer ecv) {
+        writeProperty(ECV_PROPERTY, ecv);
+    }
+    public Integer getEcv() {
+        return (Integer)readProperty(ECV_PROPERTY);
+    }
+
+    public void setEov(Integer eov) {
+        writeProperty(EOV_PROPERTY, eov);
+    }
+    public Integer getEov() {
+        return (Integer)readProperty(EOV_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setName(String name) {
@@ -40,15 +65,27 @@ public abstract class _VariableFamily extends CayenneDataObject {
         return (String)readProperty(NAME_SHORT_PROPERTY);
     }
 
-    public void addToVariableArray(Variable obj) {
-        addToManyTarget(VARIABLE_ARRAY_PROPERTY, obj, true);
+    public void addToVariableVariableFamilies(VariableVariableFamily obj) {
+        addToManyTarget(VARIABLE_VARIABLE_FAMILIES_PROPERTY, obj, true);
     }
-    public void removeFromVariableArray(Variable obj) {
-        removeToManyTarget(VARIABLE_ARRAY_PROPERTY, obj, true);
+    public void removeFromVariableVariableFamilies(VariableVariableFamily obj) {
+        removeToManyTarget(VARIABLE_VARIABLE_FAMILIES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Variable> getVariableArray() {
-        return (List<Variable>)readProperty(VARIABLE_ARRAY_PROPERTY);
+    public List<VariableVariableFamily> getVariableVariableFamilies() {
+        return (List<VariableVariableFamily>)readProperty(VARIABLE_VARIABLE_FAMILIES_PROPERTY);
+    }
+
+
+    public void addToVariables(Variable obj) {
+        addToManyTarget(VARIABLES_PROPERTY, obj, true);
+    }
+    public void removeFromVariables(Variable obj) {
+        removeToManyTarget(VARIABLES_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Variable> getVariables() {
+        return (List<Variable>)readProperty(VARIABLES_PROPERTY);
     }
 
 

@@ -16,6 +16,7 @@ public abstract class _PtfLoc extends CayenneDataObject {
 
     public static final String ELEVATION_PROPERTY = "elevation";
     public static final String FLAG_PROPERTY = "flag";
+    public static final String ID_PROPERTY = "id";
     public static final String IMG_LAT_PROPERTY = "imgLat";
     public static final String IMG_LON_PROPERTY = "imgLon";
     public static final String IMG_SHAPE_PROPERTY = "imgShape";
@@ -24,11 +25,11 @@ public abstract class _PtfLoc extends CayenneDataObject {
     public static final String LON_PROPERTY = "lon";
     public static final String QUALITY_PROPERTY = "quality";
     public static final String SHAPE_PROPERTY = "shape";
-    public static final String DOC_ARRAY_PROPERTY = "docArray";
-    public static final String OBS_ARRAY_PROPERTY = "obsArray";
-    public static final String PTF_ARRAY_PROPERTY = "ptfArray";
-    public static final String TO_LOC_SYSTEM_PROPERTY = "toLocSystem";
-    public static final String TO_PTF_PROPERTY = "toPtf";
+    public static final String DOCS_PROPERTY = "docs";
+    public static final String LOC_SYSTEM_PROPERTY = "locSystem";
+    public static final String OBSS_PROPERTY = "obss";
+    public static final String PTF_PROPERTY = "ptf";
+    public static final String PTFS_PROPERTY = "ptfs";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -44,6 +45,13 @@ public abstract class _PtfLoc extends CayenneDataObject {
     }
     public Integer getFlag() {
         return (Integer)readProperty(FLAG_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setImgLat(BigDecimal imgLat) {
@@ -102,57 +110,57 @@ public abstract class _PtfLoc extends CayenneDataObject {
         return (byte[])readProperty(SHAPE_PROPERTY);
     }
 
-    public void addToDocArray(Doc obj) {
-        addToManyTarget(DOC_ARRAY_PROPERTY, obj, true);
+    public void addToDocs(Doc obj) {
+        addToManyTarget(DOCS_PROPERTY, obj, true);
     }
-    public void removeFromDocArray(Doc obj) {
-        removeToManyTarget(DOC_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<Doc> getDocArray() {
-        return (List<Doc>)readProperty(DOC_ARRAY_PROPERTY);
-    }
-
-
-    public void addToObsArray(Obs obj) {
-        addToManyTarget(OBS_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromObsArray(Obs obj) {
-        removeToManyTarget(OBS_ARRAY_PROPERTY, obj, true);
+    public void removeFromDocs(Doc obj) {
+        removeToManyTarget(DOCS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Obs> getObsArray() {
-        return (List<Obs>)readProperty(OBS_ARRAY_PROPERTY);
+    public List<Doc> getDocs() {
+        return (List<Doc>)readProperty(DOCS_PROPERTY);
     }
 
 
-    public void addToPtfArray(Ptf obj) {
-        addToManyTarget(PTF_ARRAY_PROPERTY, obj, true);
+    public void setLocSystem(LocSystem locSystem) {
+        setToOneTarget(LOC_SYSTEM_PROPERTY, locSystem, true);
     }
-    public void removeFromPtfArray(Ptf obj) {
-        removeToManyTarget(PTF_ARRAY_PROPERTY, obj, true);
+
+    public LocSystem getLocSystem() {
+        return (LocSystem)readProperty(LOC_SYSTEM_PROPERTY);
+    }
+
+
+    public void addToObss(Obs obj) {
+        addToManyTarget(OBSS_PROPERTY, obj, true);
+    }
+    public void removeFromObss(Obs obj) {
+        removeToManyTarget(OBSS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Ptf> getPtfArray() {
-        return (List<Ptf>)readProperty(PTF_ARRAY_PROPERTY);
+    public List<Obs> getObss() {
+        return (List<Obs>)readProperty(OBSS_PROPERTY);
     }
 
 
-    public void setToLocSystem(LocSystem toLocSystem) {
-        setToOneTarget(TO_LOC_SYSTEM_PROPERTY, toLocSystem, true);
+    public void setPtf(Ptf ptf) {
+        setToOneTarget(PTF_PROPERTY, ptf, true);
     }
 
-    public LocSystem getToLocSystem() {
-        return (LocSystem)readProperty(TO_LOC_SYSTEM_PROPERTY);
+    public Ptf getPtf() {
+        return (Ptf)readProperty(PTF_PROPERTY);
     }
 
 
-    public void setToPtf(Ptf toPtf) {
-        setToOneTarget(TO_PTF_PROPERTY, toPtf, true);
+    public void addToPtfs(Ptf obj) {
+        addToManyTarget(PTFS_PROPERTY, obj, true);
     }
-
-    public Ptf getToPtf() {
-        return (Ptf)readProperty(TO_PTF_PROPERTY);
+    public void removeFromPtfs(Ptf obj) {
+        removeToManyTarget(PTFS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Ptf> getPtfs() {
+        return (List<Ptf>)readProperty(PTFS_PROPERTY);
     }
 
 

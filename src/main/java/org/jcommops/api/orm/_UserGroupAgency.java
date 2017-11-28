@@ -10,27 +10,43 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _UserGroupAgency extends CayenneDataObject {
 
-    public static final String TO_AGENCY_PROPERTY = "toAgency";
-    public static final String TO_USER_GROUP_PROPERTY = "toUserGroup";
+    public static final String AGENCY_ID_PROPERTY = "agencyId";
+    public static final String USER_GROUP_ID_PROPERTY = "userGroupId";
+    public static final String AGENCY_PROPERTY = "agency";
+    public static final String USER_GROUP_PROPERTY = "userGroup";
 
     public static final String AGENCY_ID_PK_COLUMN = "AGENCY_ID";
     public static final String USER_GROUP_ID_PK_COLUMN = "USER_GROUP_ID";
 
-    public void setToAgency(Agency toAgency) {
-        setToOneTarget(TO_AGENCY_PROPERTY, toAgency, true);
+    public void setAgencyId(Integer agencyId) {
+        writeProperty(AGENCY_ID_PROPERTY, agencyId);
+    }
+    public Integer getAgencyId() {
+        return (Integer)readProperty(AGENCY_ID_PROPERTY);
     }
 
-    public Agency getToAgency() {
-        return (Agency)readProperty(TO_AGENCY_PROPERTY);
+    public void setUserGroupId(Integer userGroupId) {
+        writeProperty(USER_GROUP_ID_PROPERTY, userGroupId);
+    }
+    public Integer getUserGroupId() {
+        return (Integer)readProperty(USER_GROUP_ID_PROPERTY);
+    }
+
+    public void setAgency(Agency agency) {
+        setToOneTarget(AGENCY_PROPERTY, agency, true);
+    }
+
+    public Agency getAgency() {
+        return (Agency)readProperty(AGENCY_PROPERTY);
     }
 
 
-    public void setToUserGroup(UserGroup toUserGroup) {
-        setToOneTarget(TO_USER_GROUP_PROPERTY, toUserGroup, true);
+    public void setUserGroup(UserGroup userGroup) {
+        setToOneTarget(USER_GROUP_PROPERTY, userGroup, true);
     }
 
-    public UserGroup getToUserGroup() {
-        return (UserGroup)readProperty(TO_USER_GROUP_PROPERTY);
+    public UserGroup getUserGroup() {
+        return (UserGroup)readProperty(USER_GROUP_PROPERTY);
     }
 
 

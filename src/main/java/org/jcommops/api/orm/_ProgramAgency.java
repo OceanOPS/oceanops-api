@@ -10,27 +10,43 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _ProgramAgency extends CayenneDataObject {
 
-    public static final String TO_AGENCY_PROPERTY = "toAgency";
-    public static final String TO_PROGRAM_PROPERTY = "toProgram";
+    public static final String AGENCY_ID_PROPERTY = "agencyId";
+    public static final String PROGRAM_ID_PROPERTY = "programId";
+    public static final String AGENCY_PROPERTY = "agency";
+    public static final String PROGRAM_PROPERTY = "program";
 
     public static final String AGENCY_ID_PK_COLUMN = "AGENCY_ID";
     public static final String PROGRAM_ID_PK_COLUMN = "PROGRAM_ID";
 
-    public void setToAgency(Agency toAgency) {
-        setToOneTarget(TO_AGENCY_PROPERTY, toAgency, true);
+    public void setAgencyId(Integer agencyId) {
+        writeProperty(AGENCY_ID_PROPERTY, agencyId);
+    }
+    public Integer getAgencyId() {
+        return (Integer)readProperty(AGENCY_ID_PROPERTY);
     }
 
-    public Agency getToAgency() {
-        return (Agency)readProperty(TO_AGENCY_PROPERTY);
+    public void setProgramId(Integer programId) {
+        writeProperty(PROGRAM_ID_PROPERTY, programId);
+    }
+    public Integer getProgramId() {
+        return (Integer)readProperty(PROGRAM_ID_PROPERTY);
+    }
+
+    public void setAgency(Agency agency) {
+        setToOneTarget(AGENCY_PROPERTY, agency, true);
+    }
+
+    public Agency getAgency() {
+        return (Agency)readProperty(AGENCY_PROPERTY);
     }
 
 
-    public void setToProgram(Program toProgram) {
-        setToOneTarget(TO_PROGRAM_PROPERTY, toProgram, true);
+    public void setProgram(Program program) {
+        setToOneTarget(PROGRAM_PROPERTY, program, true);
     }
 
-    public Program getToProgram() {
-        return (Program)readProperty(TO_PROGRAM_PROPERTY);
+    public Program getProgram() {
+        return (Program)readProperty(PROGRAM_PROPERTY);
     }
 
 

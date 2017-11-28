@@ -29,16 +29,16 @@ public class PlatformDeploymentEntity implements Serializable{
 
 	public PlatformDeploymentEntity(PtfDeployment depl) {
 		this.setDeploymentDate(Utils.GetIsoDate(depl.getDeplDate()));
-		if(depl.getToCruise() != null && depl.getToCruise().getNameLong() != null)
-			this.setCruiseName(depl.getToCruise().getNameLong());
+		if(depl.getCruise() != null && depl.getCruise().getNameLong() != null)
+			this.setCruiseName(depl.getCruise().getNameLong());
 		else
 			this.setCruiseName(depl.getCruiseName());
 		this.setDeploymentDensity(depl.getDensity());
 		this.setDeploymentScore(depl.getScore());
 		this.setLat(depl.getLat());
 		this.setLon(depl.getLon());
-		if(depl.getToShip() != null)
-			this.setShip(new ShipEntity(depl.getToShip()));
+		if(depl.getShip() != null)
+			this.setShip(new ShipEntity(depl.getShip()));
 	}
 
 	@XmlElement

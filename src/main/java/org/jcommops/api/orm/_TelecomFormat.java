@@ -15,6 +15,7 @@ public abstract class _TelecomFormat extends CayenneDataObject {
 
     public static final String DESCRIPTION_PROPERTY = "description";
     public static final String END_DATE_PROPERTY = "endDate";
+    public static final String ID_PROPERTY = "id";
     public static final String KEY_PROPERTY = "key";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_LONG_PROPERTY = "nameLong";
@@ -22,10 +23,10 @@ public abstract class _TelecomFormat extends CayenneDataObject {
     public static final String NB_BITS_PROPERTY = "nbBits";
     public static final String START_DATE_PROPERTY = "startDate";
     public static final String VERSION_PROPERTY = "version";
-    public static final String TELECOM_ARRAY_PROPERTY = "telecomArray";
-    public static final String TELECOM_FORMAT_DOC_ARRAY_PROPERTY = "telecomFormatDocArray";
-    public static final String TO_CONTACT_PROPERTY = "toContact";
-    public static final String TO_PTF_MODEL_PROPERTY = "toPtfModel";
+    public static final String CONTACT_PROPERTY = "contact";
+    public static final String PTF_MODEL_PROPERTY = "ptfModel";
+    public static final String TELECOM_FORMAT_DOCS_PROPERTY = "telecomFormatDocs";
+    public static final String TELECOMS_PROPERTY = "telecoms";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -41,6 +42,13 @@ public abstract class _TelecomFormat extends CayenneDataObject {
     }
     public Date getEndDate() {
         return (Date)readProperty(END_DATE_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setKey(String key) {
@@ -92,45 +100,45 @@ public abstract class _TelecomFormat extends CayenneDataObject {
         return (String)readProperty(VERSION_PROPERTY);
     }
 
-    public void addToTelecomArray(Telecom obj) {
-        addToManyTarget(TELECOM_ARRAY_PROPERTY, obj, true);
+    public void setContact(Contact contact) {
+        setToOneTarget(CONTACT_PROPERTY, contact, true);
     }
-    public void removeFromTelecomArray(Telecom obj) {
-        removeToManyTarget(TELECOM_ARRAY_PROPERTY, obj, true);
+
+    public Contact getContact() {
+        return (Contact)readProperty(CONTACT_PROPERTY);
+    }
+
+
+    public void setPtfModel(PtfModel ptfModel) {
+        setToOneTarget(PTF_MODEL_PROPERTY, ptfModel, true);
+    }
+
+    public PtfModel getPtfModel() {
+        return (PtfModel)readProperty(PTF_MODEL_PROPERTY);
+    }
+
+
+    public void addToTelecomFormatDocs(TelecomFormatDoc obj) {
+        addToManyTarget(TELECOM_FORMAT_DOCS_PROPERTY, obj, true);
+    }
+    public void removeFromTelecomFormatDocs(TelecomFormatDoc obj) {
+        removeToManyTarget(TELECOM_FORMAT_DOCS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Telecom> getTelecomArray() {
-        return (List<Telecom>)readProperty(TELECOM_ARRAY_PROPERTY);
+    public List<TelecomFormatDoc> getTelecomFormatDocs() {
+        return (List<TelecomFormatDoc>)readProperty(TELECOM_FORMAT_DOCS_PROPERTY);
     }
 
 
-    public void addToTelecomFormatDocArray(TelecomFormatDoc obj) {
-        addToManyTarget(TELECOM_FORMAT_DOC_ARRAY_PROPERTY, obj, true);
+    public void addToTelecoms(Telecom obj) {
+        addToManyTarget(TELECOMS_PROPERTY, obj, true);
     }
-    public void removeFromTelecomFormatDocArray(TelecomFormatDoc obj) {
-        removeToManyTarget(TELECOM_FORMAT_DOC_ARRAY_PROPERTY, obj, true);
+    public void removeFromTelecoms(Telecom obj) {
+        removeToManyTarget(TELECOMS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<TelecomFormatDoc> getTelecomFormatDocArray() {
-        return (List<TelecomFormatDoc>)readProperty(TELECOM_FORMAT_DOC_ARRAY_PROPERTY);
-    }
-
-
-    public void setToContact(Contact toContact) {
-        setToOneTarget(TO_CONTACT_PROPERTY, toContact, true);
-    }
-
-    public Contact getToContact() {
-        return (Contact)readProperty(TO_CONTACT_PROPERTY);
-    }
-
-
-    public void setToPtfModel(PtfModel toPtfModel) {
-        setToOneTarget(TO_PTF_MODEL_PROPERTY, toPtfModel, true);
-    }
-
-    public PtfModel getToPtfModel() {
-        return (PtfModel)readProperty(TO_PTF_MODEL_PROPERTY);
+    public List<Telecom> getTelecoms() {
+        return (List<Telecom>)readProperty(TELECOMS_PROPERTY);
     }
 
 

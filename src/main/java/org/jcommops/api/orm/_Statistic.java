@@ -14,6 +14,8 @@ public abstract class _Statistic extends CayenneDataObject {
 
     public static final String DESCRIPTION_PROPERTY = "description";
     public static final String END_DATE_PROPERTY = "endDate";
+    public static final String NAME_PROPERTY = "name";
+    public static final String START_DATE_PROPERTY = "startDate";
     public static final String VALUE_PROPERTY = "value";
 
     public static final String NAME_PK_COLUMN = "NAME";
@@ -31,6 +33,20 @@ public abstract class _Statistic extends CayenneDataObject {
     }
     public Date getEndDate() {
         return (Date)readProperty(END_DATE_PROPERTY);
+    }
+
+    public void setName(String name) {
+        writeProperty(NAME_PROPERTY, name);
+    }
+    public String getName() {
+        return (String)readProperty(NAME_PROPERTY);
+    }
+
+    public void setStartDate(Date startDate) {
+        writeProperty(START_DATE_PROPERTY, startDate);
+    }
+    public Date getStartDate() {
+        return (Date)readProperty(START_DATE_PROPERTY);
     }
 
     public void setValue(String value) {

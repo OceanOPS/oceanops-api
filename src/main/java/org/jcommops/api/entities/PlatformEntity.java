@@ -45,34 +45,34 @@ public class PlatformEntity implements Serializable{
 		this.setId(Integer.parseInt(ptf.getObjectId().getIdSnapshot().get("ID").toString()));
 		
 		this.setJcommopsRef(ptf.getRef());
-		if(ptf.getToTelecom() != null)
-			this.setTelecom(new TelecomEntity(ptf.getToTelecom()));
-		if(ptf.getToPtfIdentifiers() != null)
-			this.setInternalRef(ptf.getToPtfIdentifiers().getInternalRef());
-		if(ptf.getToPtfHardware() != null)
-			this.setSerialRef(ptf.getToPtfHardware().getSerialRef());
+		if(ptf.getTelecom() != null)
+			this.setTelecom(new TelecomEntity(ptf.getTelecom()));
+		if(ptf.getPtfIdentifiers() != null)
+			this.setInternalRef(ptf.getPtfIdentifiers().getInternalRef());
+		if(ptf.getPtfHardware() != null)
+			this.setSerialRef(ptf.getPtfHardware().getSerialRef());
 		this.setAge(ptf.getAge());
-		this.setPtfStatus(new PlatformStatusEntity(ptf.getToPtfStatus()));
-		this.setPtfModel(new PlatformModelEntity(ptf.getToPtfModel()));
-		this.setDeployment(new PlatformDeploymentEntity(ptf.getToPtfDeployment()));
+		this.setPtfStatus(new PlatformStatusEntity(ptf.getPtfStatus()));
+		this.setPtfModel(new PlatformModelEntity(ptf.getPtfModel()));
+		this.setDeployment(new PlatformDeploymentEntity(ptf.getPtfDepl()));
 		this.setEndingDate(Utils.GetIsoDate(ptf.getEndingDate()));
-		if(ptf.getToPtfLoc() != null)
-			this.setLatestLocation(new PlatformLocEntity(ptf.getToPtfLoc()));
-		this.setProgram(new ProgramEntity(ptf.getToProgram()));
+		if(ptf.getLastLoc() != null)
+			this.setLatestLocation(new PlatformLocEntity(ptf.getLastLoc()));
+		this.setProgram(new ProgramEntity(ptf.getProgram()));
 		this.setNotificationDate(Utils.GetIsoDate(ptf.getENotificationDate()));
 		
-		List<PtfConfig> ptfConfigs = ptf.getPtfConfigArray().stream().filter(ptfConfig -> ptfConfig.getCycle() == -1).collect(Collectors.toList());
+		List<PtfConfig> ptfConfigs = ptf.getPtfConfigs().stream().filter(ptfConfig -> ptfConfig.getCycle() == -1).collect(Collectors.toList());
 		if(ptfConfigs != null && ptfConfigs.size() > 0)
-			this.setConfiguration(new ConfigurationEntity(ptfConfigs.get(0).getToConfig()));
+			this.setConfiguration(new ConfigurationEntity(ptfConfigs.get(0).getConfig()));
 
 		this.sensorModels = new ArrayList<SensorModelEntity>();
-    	for(int i = 0; i<ptf.getPtfSensorModelArray().size();i++){
-    		this.sensorModels.add(new SensorModelEntity(ptf.getPtfSensorModelArray().get(i).getToSensorModel()));
+    	for(int i = 0; i<ptf.getPtfSensorModels().size();i++){
+    		this.sensorModels.add(new SensorModelEntity(ptf.getPtfSensorModels().get(i).getSensorModel()));
     	}
     	
 		this.variables = new ArrayList<VariableEntity>();
-    	for(int i = 0; i<ptf.getToVariables().size();i++){
-    		this.variables.add(new VariableEntity(ptf.getToVariables().get(i)));
+    	for(int i = 0; i<ptf.getVariables().size();i++){
+    		this.variables.add(new VariableEntity(ptf.getVariables().get(i)));
     	}
 	}
 

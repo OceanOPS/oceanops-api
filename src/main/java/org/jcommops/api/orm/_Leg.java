@@ -14,6 +14,7 @@ public abstract class _Leg extends CayenneDataObject {
 
     public static final String END_DATE_PROPERTY = "endDate";
     public static final String END_POINT_PROPERTY = "endPoint";
+    public static final String ID_PROPERTY = "id";
     public static final String START_DATE_PROPERTY = "startDate";
     public static final String START_POINT_PROPERTY = "startPoint";
 
@@ -31,6 +32,13 @@ public abstract class _Leg extends CayenneDataObject {
     }
     public byte[] getEndPoint() {
         return (byte[])readProperty(END_POINT_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setStartDate(Date startDate) {

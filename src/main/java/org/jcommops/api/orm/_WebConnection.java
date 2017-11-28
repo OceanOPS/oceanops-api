@@ -12,11 +12,19 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _WebConnection extends CayenneDataObject {
 
+    public static final String IDENTIFIER_PROPERTY = "identifier";
     public static final String LAST_LOG_DATE_PROPERTY = "lastLogDate";
     public static final String TOKEN_PROPERTY = "token";
-    public static final String TO_CONTACT_PROPERTY = "toContact";
+    public static final String CONTACT_PROPERTY = "contact";
 
     public static final String IDENTIFIER_PK_COLUMN = "IDENTIFIER";
+
+    public void setIdentifier(String identifier) {
+        writeProperty(IDENTIFIER_PROPERTY, identifier);
+    }
+    public String getIdentifier() {
+        return (String)readProperty(IDENTIFIER_PROPERTY);
+    }
 
     public void setLastLogDate(Date lastLogDate) {
         writeProperty(LAST_LOG_DATE_PROPERTY, lastLogDate);
@@ -32,12 +40,12 @@ public abstract class _WebConnection extends CayenneDataObject {
         return (String)readProperty(TOKEN_PROPERTY);
     }
 
-    public void setToContact(Contact toContact) {
-        setToOneTarget(TO_CONTACT_PROPERTY, toContact, true);
+    public void setContact(Contact contact) {
+        setToOneTarget(CONTACT_PROPERTY, contact, true);
     }
 
-    public Contact getToContact() {
-        return (Contact)readProperty(TO_CONTACT_PROPERTY);
+    public Contact getContact() {
+        return (Contact)readProperty(CONTACT_PROPERTY);
     }
 
 

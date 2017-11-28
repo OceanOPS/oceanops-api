@@ -1,7 +1,5 @@
 package org.jcommops.api.orm;
 
-import java.util.List;
-
 import org.apache.cayenne.CayenneDataObject;
 
 /**
@@ -12,13 +10,19 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _TrackingSystem extends CayenneDataObject {
 
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
-    public static final String PTF_ARRAY_PROPERTY = "ptfArray";
-    public static final String SHIP_ARRAY_PROPERTY = "shipArray";
-    public static final String TO_FREQUENCY_PROPERTY = "toFrequency";
+    public static final String FREQUENCY_PROPERTY = "frequency";
 
     public static final String ID_PK_COLUMN = "ID";
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
 
     public void setName(String name) {
         writeProperty(NAME_PROPERTY, name);
@@ -34,36 +38,12 @@ public abstract class _TrackingSystem extends CayenneDataObject {
         return (String)readProperty(NAME_SHORT_PROPERTY);
     }
 
-    public void addToPtfArray(Ptf obj) {
-        addToManyTarget(PTF_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromPtfArray(Ptf obj) {
-        removeToManyTarget(PTF_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<Ptf> getPtfArray() {
-        return (List<Ptf>)readProperty(PTF_ARRAY_PROPERTY);
+    public void setFrequency(Frequency frequency) {
+        setToOneTarget(FREQUENCY_PROPERTY, frequency, true);
     }
 
-
-    public void addToShipArray(Ship obj) {
-        addToManyTarget(SHIP_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromShipArray(Ship obj) {
-        removeToManyTarget(SHIP_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<Ship> getShipArray() {
-        return (List<Ship>)readProperty(SHIP_ARRAY_PROPERTY);
-    }
-
-
-    public void setToFrequency(Frequency toFrequency) {
-        setToOneTarget(TO_FREQUENCY_PROPERTY, toFrequency, true);
-    }
-
-    public Frequency getToFrequency() {
-        return (Frequency)readProperty(TO_FREQUENCY_PROPERTY);
+    public Frequency getFrequency() {
+        return (Frequency)readProperty(FREQUENCY_PROPERTY);
     }
 
 

@@ -13,15 +13,18 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _Line extends CayenneDataObject {
 
     public static final String FROM_TO_PROPERTY = "fromTo";
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
     public static final String SHAPE_PROPERTY = "shape";
-    public static final String CRUISE_ARRAY_PROPERTY = "cruiseArray";
-    public static final String LINE_PROGRAM_ARRAY_PROPERTY = "lineProgramArray";
-    public static final String LINE_SURVEY_ARRAY_PROPERTY = "lineSurveyArray";
-    public static final String SECTION_ARRAY_PROPERTY = "sectionArray";
-    public static final String TO_LINE_DECADAL_STATUS_PROPERTY = "toLineDecadalStatus";
-    public static final String TO_LINE_FAMILY_PROPERTY = "toLineFamily";
-    public static final String TO_WEBLINK_PROPERTY = "toWeblink";
+    public static final String WKT_PROPERTY = "wkt";
+    public static final String CRUISES_PROPERTY = "cruises";
+    public static final String LINE_DECADAL_STATUS_PROPERTY = "lineDecadalStatus";
+    public static final String LINE_FAMILY_PROPERTY = "lineFamily";
+    public static final String LINE_PROGRAMS_PROPERTY = "linePrograms";
+    public static final String LINE_SURVEYS_PROPERTY = "lineSurveys";
+    public static final String SECTIONS_PROPERTY = "sections";
+    public static final String WEB_FREQUENTATIONS_PROPERTY = "webFrequentations";
+    public static final String WEBLINK_PROPERTY = "weblink";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -30,6 +33,13 @@ public abstract class _Line extends CayenneDataObject {
     }
     public String getFromTo() {
         return (String)readProperty(FROM_TO_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setName(String name) {
@@ -46,78 +56,97 @@ public abstract class _Line extends CayenneDataObject {
         return (byte[])readProperty(SHAPE_PROPERTY);
     }
 
-    public void addToCruiseArray(Cruise obj) {
-        addToManyTarget(CRUISE_ARRAY_PROPERTY, obj, true);
+    public void setWkt(String wkt) {
+        writeProperty(WKT_PROPERTY, wkt);
     }
-    public void removeFromCruiseArray(Cruise obj) {
-        removeToManyTarget(CRUISE_ARRAY_PROPERTY, obj, true);
+    public String getWkt() {
+        return (String)readProperty(WKT_PROPERTY);
+    }
+
+    public void addToCruises(Cruise obj) {
+        addToManyTarget(CRUISES_PROPERTY, obj, true);
+    }
+    public void removeFromCruises(Cruise obj) {
+        removeToManyTarget(CRUISES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Cruise> getCruiseArray() {
-        return (List<Cruise>)readProperty(CRUISE_ARRAY_PROPERTY);
+    public List<Cruise> getCruises() {
+        return (List<Cruise>)readProperty(CRUISES_PROPERTY);
     }
 
 
-    public void addToLineProgramArray(LineProgram obj) {
-        addToManyTarget(LINE_PROGRAM_ARRAY_PROPERTY, obj, true);
+    public void setLineDecadalStatus(LineDecadalStatus lineDecadalStatus) {
+        setToOneTarget(LINE_DECADAL_STATUS_PROPERTY, lineDecadalStatus, true);
     }
-    public void removeFromLineProgramArray(LineProgram obj) {
-        removeToManyTarget(LINE_PROGRAM_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<LineProgram> getLineProgramArray() {
-        return (List<LineProgram>)readProperty(LINE_PROGRAM_ARRAY_PROPERTY);
+
+    public LineDecadalStatus getLineDecadalStatus() {
+        return (LineDecadalStatus)readProperty(LINE_DECADAL_STATUS_PROPERTY);
     }
 
 
-    public void addToLineSurveyArray(LineSurvey obj) {
-        addToManyTarget(LINE_SURVEY_ARRAY_PROPERTY, obj, true);
+    public void setLineFamily(LineFamily lineFamily) {
+        setToOneTarget(LINE_FAMILY_PROPERTY, lineFamily, true);
     }
-    public void removeFromLineSurveyArray(LineSurvey obj) {
-        removeToManyTarget(LINE_SURVEY_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<LineSurvey> getLineSurveyArray() {
-        return (List<LineSurvey>)readProperty(LINE_SURVEY_ARRAY_PROPERTY);
+
+    public LineFamily getLineFamily() {
+        return (LineFamily)readProperty(LINE_FAMILY_PROPERTY);
     }
 
 
-    public void addToSectionArray(Section obj) {
-        addToManyTarget(SECTION_ARRAY_PROPERTY, obj, true);
+    public void addToLinePrograms(LineProgram obj) {
+        addToManyTarget(LINE_PROGRAMS_PROPERTY, obj, true);
     }
-    public void removeFromSectionArray(Section obj) {
-        removeToManyTarget(SECTION_ARRAY_PROPERTY, obj, true);
+    public void removeFromLinePrograms(LineProgram obj) {
+        removeToManyTarget(LINE_PROGRAMS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Section> getSectionArray() {
-        return (List<Section>)readProperty(SECTION_ARRAY_PROPERTY);
+    public List<LineProgram> getLinePrograms() {
+        return (List<LineProgram>)readProperty(LINE_PROGRAMS_PROPERTY);
     }
 
 
-    public void setToLineDecadalStatus(LineDecadalStatus toLineDecadalStatus) {
-        setToOneTarget(TO_LINE_DECADAL_STATUS_PROPERTY, toLineDecadalStatus, true);
+    public void addToLineSurveys(LineSurvey obj) {
+        addToManyTarget(LINE_SURVEYS_PROPERTY, obj, true);
     }
-
-    public LineDecadalStatus getToLineDecadalStatus() {
-        return (LineDecadalStatus)readProperty(TO_LINE_DECADAL_STATUS_PROPERTY);
+    public void removeFromLineSurveys(LineSurvey obj) {
+        removeToManyTarget(LINE_SURVEYS_PROPERTY, obj, true);
     }
-
-
-    public void setToLineFamily(LineFamily toLineFamily) {
-        setToOneTarget(TO_LINE_FAMILY_PROPERTY, toLineFamily, true);
-    }
-
-    public LineFamily getToLineFamily() {
-        return (LineFamily)readProperty(TO_LINE_FAMILY_PROPERTY);
+    @SuppressWarnings("unchecked")
+    public List<LineSurvey> getLineSurveys() {
+        return (List<LineSurvey>)readProperty(LINE_SURVEYS_PROPERTY);
     }
 
 
-    public void setToWeblink(Weblink toWeblink) {
-        setToOneTarget(TO_WEBLINK_PROPERTY, toWeblink, true);
+    public void addToSections(Section obj) {
+        addToManyTarget(SECTIONS_PROPERTY, obj, true);
+    }
+    public void removeFromSections(Section obj) {
+        removeToManyTarget(SECTIONS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Section> getSections() {
+        return (List<Section>)readProperty(SECTIONS_PROPERTY);
     }
 
-    public Weblink getToWeblink() {
-        return (Weblink)readProperty(TO_WEBLINK_PROPERTY);
+
+    public void addToWebFrequentations(WebFrequentation obj) {
+        addToManyTarget(WEB_FREQUENTATIONS_PROPERTY, obj, true);
+    }
+    public void removeFromWebFrequentations(WebFrequentation obj) {
+        removeToManyTarget(WEB_FREQUENTATIONS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<WebFrequentation> getWebFrequentations() {
+        return (List<WebFrequentation>)readProperty(WEB_FREQUENTATIONS_PROPERTY);
+    }
+
+
+    public void setWeblink(Weblink weblink) {
+        setToOneTarget(WEBLINK_PROPERTY, weblink, true);
+    }
+
+    public Weblink getWeblink() {
+        return (Weblink)readProperty(WEBLINK_PROPERTY);
     }
 
 

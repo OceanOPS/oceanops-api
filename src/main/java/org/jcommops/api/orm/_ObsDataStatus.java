@@ -12,11 +12,19 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _ObsDataStatus extends CayenneDataObject {
 
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
-    public static final String OBS_ARRAY_PROPERTY = "obsArray";
-    public static final String OBS_OBS_DATA_STATUS_ARRAY_PROPERTY = "obsObsDataStatusArray";
+    public static final String OBS_OBS_DATA_STATUSES_PROPERTY = "obsObsDataStatuses";
+    public static final String OBSS_PROPERTY = "obss";
 
     public static final String ID_PK_COLUMN = "ID";
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
 
     public void setName(String name) {
         writeProperty(NAME_PROPERTY, name);
@@ -25,27 +33,27 @@ public abstract class _ObsDataStatus extends CayenneDataObject {
         return (String)readProperty(NAME_PROPERTY);
     }
 
-    public void addToObsArray(Obs obj) {
-        addToManyTarget(OBS_ARRAY_PROPERTY, obj, true);
+    public void addToObsObsDataStatuses(ObsObsDataStatus obj) {
+        addToManyTarget(OBS_OBS_DATA_STATUSES_PROPERTY, obj, true);
     }
-    public void removeFromObsArray(Obs obj) {
-        removeToManyTarget(OBS_ARRAY_PROPERTY, obj, true);
+    public void removeFromObsObsDataStatuses(ObsObsDataStatus obj) {
+        removeToManyTarget(OBS_OBS_DATA_STATUSES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Obs> getObsArray() {
-        return (List<Obs>)readProperty(OBS_ARRAY_PROPERTY);
+    public List<ObsObsDataStatus> getObsObsDataStatuses() {
+        return (List<ObsObsDataStatus>)readProperty(OBS_OBS_DATA_STATUSES_PROPERTY);
     }
 
 
-    public void addToObsObsDataStatusArray(ObsObsDataStatus obj) {
-        addToManyTarget(OBS_OBS_DATA_STATUS_ARRAY_PROPERTY, obj, true);
+    public void addToObss(Obs obj) {
+        addToManyTarget(OBSS_PROPERTY, obj, true);
     }
-    public void removeFromObsObsDataStatusArray(ObsObsDataStatus obj) {
-        removeToManyTarget(OBS_OBS_DATA_STATUS_ARRAY_PROPERTY, obj, true);
+    public void removeFromObss(Obs obj) {
+        removeToManyTarget(OBSS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<ObsObsDataStatus> getObsObsDataStatusArray() {
-        return (List<ObsObsDataStatus>)readProperty(OBS_OBS_DATA_STATUS_ARRAY_PROPERTY);
+    public List<Obs> getObss() {
+        return (List<Obs>)readProperty(OBSS_PROPERTY);
     }
 
 

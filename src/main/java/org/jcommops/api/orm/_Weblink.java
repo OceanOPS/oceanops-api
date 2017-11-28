@@ -13,26 +13,29 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _Weblink extends CayenneDataObject {
 
     public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
+    public static final String RANK_PROPERTY = "rank";
     public static final String STORY_ID_PROPERTY = "storyId";
     public static final String URL_PROPERTY = "url";
-    public static final String AGENCY_ARRAY_PROPERTY = "agencyArray";
-    public static final String CONTACT_ARRAY_PROPERTY = "contactArray";
-    public static final String CRUISE_ARRAY_PROPERTY = "cruiseArray";
-    public static final String DOC_ARRAY_PROPERTY = "docArray";
-    public static final String LINE_ARRAY_PROPERTY = "lineArray";
-    public static final String MEETING_ARRAY_PROPERTY = "meetingArray";
-    public static final String PTF_MODEL_ARRAY_PROPERTY = "ptfModelArray";
-    public static final String QC_FEEDBACK_ARRAY_PROPERTY = "qcFeedbackArray";
-    public static final String SENSOR_MODEL_ARRAY_PROPERTY = "sensorModelArray";
-    public static final String SHIP_ARRAY_PROPERTY = "shipArray";
-    public static final String TO_COUNTRY_PROPERTY = "toCountry";
-    public static final String TO_MASTER_PROG_PROPERTY = "toMasterProg";
-    public static final String TO_PROGRAM_PROPERTY = "toProgram";
-    public static final String TO_PTF_PROPERTY = "toPtf";
-    public static final String TO_TOPIC_PROPERTY = "toTopic";
-    public static final String TO_USER_GROUP_PROPERTY = "toUserGroup";
-    public static final String WEBLINK_PTF_ARRAY_PROPERTY = "weblinkPtfArray";
+    public static final String AGENCIES_PROPERTY = "agencies";
+    public static final String AGENCY_DAC_TYPES_PROPERTY = "agencyDacTypes";
+    public static final String CONTACTS_PROPERTY = "contacts";
+    public static final String COUNTRY_PROPERTY = "country";
+    public static final String CRUISES_PROPERTY = "cruises";
+    public static final String DOCS_PROPERTY = "docs";
+    public static final String LINES_PROPERTY = "lines";
+    public static final String MASTER_PROG_PROPERTY = "masterProg";
+    public static final String MEETINGS_PROPERTY = "meetings";
+    public static final String PROGRAM_PROPERTY = "program";
+    public static final String PTF_PROPERTY = "ptf";
+    public static final String PTF_MODELS_PROPERTY = "ptfModels";
+    public static final String QC_FEEDBACKS_PROPERTY = "qcFeedbacks";
+    public static final String SENSOR_MODELS_PROPERTY = "sensorModels";
+    public static final String SHIPS_PROPERTY = "ships";
+    public static final String TOPIC_PROPERTY = "topic";
+    public static final String USER_GROUP_PROPERTY = "userGroup";
+    public static final String WEBLINK_PTFS_PROPERTY = "weblinkPtfs";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -43,11 +46,25 @@ public abstract class _Weblink extends CayenneDataObject {
         return (String)readProperty(DESCRIPTION_PROPERTY);
     }
 
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
+
     public void setName(String name) {
         writeProperty(NAME_PROPERTY, name);
     }
     public String getName() {
         return (String)readProperty(NAME_PROPERTY);
+    }
+
+    public void setRank(Integer rank) {
+        writeProperty(RANK_PROPERTY, rank);
+    }
+    public Integer getRank() {
+        return (Integer)readProperty(RANK_PROPERTY);
     }
 
     public void setStoryId(Integer storyId) {
@@ -64,189 +81,201 @@ public abstract class _Weblink extends CayenneDataObject {
         return (String)readProperty(URL_PROPERTY);
     }
 
-    public void addToAgencyArray(Agency obj) {
-        addToManyTarget(AGENCY_ARRAY_PROPERTY, obj, true);
+    public void addToAgencies(Agency obj) {
+        addToManyTarget(AGENCIES_PROPERTY, obj, true);
     }
-    public void removeFromAgencyArray(Agency obj) {
-        removeToManyTarget(AGENCY_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<Agency> getAgencyArray() {
-        return (List<Agency>)readProperty(AGENCY_ARRAY_PROPERTY);
-    }
-
-
-    public void addToContactArray(Contact obj) {
-        addToManyTarget(CONTACT_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromContactArray(Contact obj) {
-        removeToManyTarget(CONTACT_ARRAY_PROPERTY, obj, true);
+    public void removeFromAgencies(Agency obj) {
+        removeToManyTarget(AGENCIES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Contact> getContactArray() {
-        return (List<Contact>)readProperty(CONTACT_ARRAY_PROPERTY);
+    public List<Agency> getAgencies() {
+        return (List<Agency>)readProperty(AGENCIES_PROPERTY);
     }
 
 
-    public void addToCruiseArray(Cruise obj) {
-        addToManyTarget(CRUISE_ARRAY_PROPERTY, obj, true);
+    public void addToAgencyDacTypes(AgencyDacType obj) {
+        addToManyTarget(AGENCY_DAC_TYPES_PROPERTY, obj, true);
     }
-    public void removeFromCruiseArray(Cruise obj) {
-        removeToManyTarget(CRUISE_ARRAY_PROPERTY, obj, true);
+    public void removeFromAgencyDacTypes(AgencyDacType obj) {
+        removeToManyTarget(AGENCY_DAC_TYPES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Cruise> getCruiseArray() {
-        return (List<Cruise>)readProperty(CRUISE_ARRAY_PROPERTY);
+    public List<AgencyDacType> getAgencyDacTypes() {
+        return (List<AgencyDacType>)readProperty(AGENCY_DAC_TYPES_PROPERTY);
     }
 
 
-    public void addToDocArray(Doc obj) {
-        addToManyTarget(DOC_ARRAY_PROPERTY, obj, true);
+    public void addToContacts(Contact obj) {
+        addToManyTarget(CONTACTS_PROPERTY, obj, true);
     }
-    public void removeFromDocArray(Doc obj) {
-        removeToManyTarget(DOC_ARRAY_PROPERTY, obj, true);
+    public void removeFromContacts(Contact obj) {
+        removeToManyTarget(CONTACTS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Doc> getDocArray() {
-        return (List<Doc>)readProperty(DOC_ARRAY_PROPERTY);
+    public List<Contact> getContacts() {
+        return (List<Contact>)readProperty(CONTACTS_PROPERTY);
     }
 
 
-    public void addToLineArray(Line obj) {
-        addToManyTarget(LINE_ARRAY_PROPERTY, obj, true);
+    public void setCountry(Country country) {
+        setToOneTarget(COUNTRY_PROPERTY, country, true);
     }
-    public void removeFromLineArray(Line obj) {
-        removeToManyTarget(LINE_ARRAY_PROPERTY, obj, true);
+
+    public Country getCountry() {
+        return (Country)readProperty(COUNTRY_PROPERTY);
+    }
+
+
+    public void addToCruises(Cruise obj) {
+        addToManyTarget(CRUISES_PROPERTY, obj, true);
+    }
+    public void removeFromCruises(Cruise obj) {
+        removeToManyTarget(CRUISES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Line> getLineArray() {
-        return (List<Line>)readProperty(LINE_ARRAY_PROPERTY);
+    public List<Cruise> getCruises() {
+        return (List<Cruise>)readProperty(CRUISES_PROPERTY);
     }
 
 
-    public void addToMeetingArray(Meeting obj) {
-        addToManyTarget(MEETING_ARRAY_PROPERTY, obj, true);
+    public void addToDocs(Doc obj) {
+        addToManyTarget(DOCS_PROPERTY, obj, true);
     }
-    public void removeFromMeetingArray(Meeting obj) {
-        removeToManyTarget(MEETING_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<Meeting> getMeetingArray() {
-        return (List<Meeting>)readProperty(MEETING_ARRAY_PROPERTY);
-    }
-
-
-    public void addToPtfModelArray(PtfModel obj) {
-        addToManyTarget(PTF_MODEL_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromPtfModelArray(PtfModel obj) {
-        removeToManyTarget(PTF_MODEL_ARRAY_PROPERTY, obj, true);
+    public void removeFromDocs(Doc obj) {
+        removeToManyTarget(DOCS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<PtfModel> getPtfModelArray() {
-        return (List<PtfModel>)readProperty(PTF_MODEL_ARRAY_PROPERTY);
+    public List<Doc> getDocs() {
+        return (List<Doc>)readProperty(DOCS_PROPERTY);
     }
 
 
-    public void addToQcFeedbackArray(QcFeedback obj) {
-        addToManyTarget(QC_FEEDBACK_ARRAY_PROPERTY, obj, true);
+    public void addToLines(Line obj) {
+        addToManyTarget(LINES_PROPERTY, obj, true);
     }
-    public void removeFromQcFeedbackArray(QcFeedback obj) {
-        removeToManyTarget(QC_FEEDBACK_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<QcFeedback> getQcFeedbackArray() {
-        return (List<QcFeedback>)readProperty(QC_FEEDBACK_ARRAY_PROPERTY);
-    }
-
-
-    public void addToSensorModelArray(SensorModel obj) {
-        addToManyTarget(SENSOR_MODEL_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromSensorModelArray(SensorModel obj) {
-        removeToManyTarget(SENSOR_MODEL_ARRAY_PROPERTY, obj, true);
+    public void removeFromLines(Line obj) {
+        removeToManyTarget(LINES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<SensorModel> getSensorModelArray() {
-        return (List<SensorModel>)readProperty(SENSOR_MODEL_ARRAY_PROPERTY);
+    public List<Line> getLines() {
+        return (List<Line>)readProperty(LINES_PROPERTY);
     }
 
 
-    public void addToShipArray(Ship obj) {
-        addToManyTarget(SHIP_ARRAY_PROPERTY, obj, true);
+    public void setMasterProg(MasterProg masterProg) {
+        setToOneTarget(MASTER_PROG_PROPERTY, masterProg, true);
     }
-    public void removeFromShipArray(Ship obj) {
-        removeToManyTarget(SHIP_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<Ship> getShipArray() {
-        return (List<Ship>)readProperty(SHIP_ARRAY_PROPERTY);
+
+    public MasterProg getMasterProg() {
+        return (MasterProg)readProperty(MASTER_PROG_PROPERTY);
     }
 
 
-    public void setToCountry(Country toCountry) {
-        setToOneTarget(TO_COUNTRY_PROPERTY, toCountry, true);
+    public void addToMeetings(Meeting obj) {
+        addToManyTarget(MEETINGS_PROPERTY, obj, true);
     }
-
-    public Country getToCountry() {
-        return (Country)readProperty(TO_COUNTRY_PROPERTY);
-    }
-
-
-    public void setToMasterProg(MasterProg toMasterProg) {
-        setToOneTarget(TO_MASTER_PROG_PROPERTY, toMasterProg, true);
-    }
-
-    public MasterProg getToMasterProg() {
-        return (MasterProg)readProperty(TO_MASTER_PROG_PROPERTY);
-    }
-
-
-    public void setToProgram(Program toProgram) {
-        setToOneTarget(TO_PROGRAM_PROPERTY, toProgram, true);
-    }
-
-    public Program getToProgram() {
-        return (Program)readProperty(TO_PROGRAM_PROPERTY);
-    }
-
-
-    public void setToPtf(Ptf toPtf) {
-        setToOneTarget(TO_PTF_PROPERTY, toPtf, true);
-    }
-
-    public Ptf getToPtf() {
-        return (Ptf)readProperty(TO_PTF_PROPERTY);
-    }
-
-
-    public void setToTopic(Topic toTopic) {
-        setToOneTarget(TO_TOPIC_PROPERTY, toTopic, true);
-    }
-
-    public Topic getToTopic() {
-        return (Topic)readProperty(TO_TOPIC_PROPERTY);
-    }
-
-
-    public void setToUserGroup(UserGroup toUserGroup) {
-        setToOneTarget(TO_USER_GROUP_PROPERTY, toUserGroup, true);
-    }
-
-    public UserGroup getToUserGroup() {
-        return (UserGroup)readProperty(TO_USER_GROUP_PROPERTY);
-    }
-
-
-    public void addToWeblinkPtfArray(WeblinkPtf obj) {
-        addToManyTarget(WEBLINK_PTF_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromWeblinkPtfArray(WeblinkPtf obj) {
-        removeToManyTarget(WEBLINK_PTF_ARRAY_PROPERTY, obj, true);
+    public void removeFromMeetings(Meeting obj) {
+        removeToManyTarget(MEETINGS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<WeblinkPtf> getWeblinkPtfArray() {
-        return (List<WeblinkPtf>)readProperty(WEBLINK_PTF_ARRAY_PROPERTY);
+    public List<Meeting> getMeetings() {
+        return (List<Meeting>)readProperty(MEETINGS_PROPERTY);
+    }
+
+
+    public void setProgram(Program program) {
+        setToOneTarget(PROGRAM_PROPERTY, program, true);
+    }
+
+    public Program getProgram() {
+        return (Program)readProperty(PROGRAM_PROPERTY);
+    }
+
+
+    public void setPtf(Ptf ptf) {
+        setToOneTarget(PTF_PROPERTY, ptf, true);
+    }
+
+    public Ptf getPtf() {
+        return (Ptf)readProperty(PTF_PROPERTY);
+    }
+
+
+    public void addToPtfModels(PtfModel obj) {
+        addToManyTarget(PTF_MODELS_PROPERTY, obj, true);
+    }
+    public void removeFromPtfModels(PtfModel obj) {
+        removeToManyTarget(PTF_MODELS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<PtfModel> getPtfModels() {
+        return (List<PtfModel>)readProperty(PTF_MODELS_PROPERTY);
+    }
+
+
+    public void addToQcFeedbacks(QcFeedback obj) {
+        addToManyTarget(QC_FEEDBACKS_PROPERTY, obj, true);
+    }
+    public void removeFromQcFeedbacks(QcFeedback obj) {
+        removeToManyTarget(QC_FEEDBACKS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<QcFeedback> getQcFeedbacks() {
+        return (List<QcFeedback>)readProperty(QC_FEEDBACKS_PROPERTY);
+    }
+
+
+    public void addToSensorModels(SensorModel obj) {
+        addToManyTarget(SENSOR_MODELS_PROPERTY, obj, true);
+    }
+    public void removeFromSensorModels(SensorModel obj) {
+        removeToManyTarget(SENSOR_MODELS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<SensorModel> getSensorModels() {
+        return (List<SensorModel>)readProperty(SENSOR_MODELS_PROPERTY);
+    }
+
+
+    public void addToShips(Ship obj) {
+        addToManyTarget(SHIPS_PROPERTY, obj, true);
+    }
+    public void removeFromShips(Ship obj) {
+        removeToManyTarget(SHIPS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Ship> getShips() {
+        return (List<Ship>)readProperty(SHIPS_PROPERTY);
+    }
+
+
+    public void setTopic(Topic topic) {
+        setToOneTarget(TOPIC_PROPERTY, topic, true);
+    }
+
+    public Topic getTopic() {
+        return (Topic)readProperty(TOPIC_PROPERTY);
+    }
+
+
+    public void setUserGroup(UserGroup userGroup) {
+        setToOneTarget(USER_GROUP_PROPERTY, userGroup, true);
+    }
+
+    public UserGroup getUserGroup() {
+        return (UserGroup)readProperty(USER_GROUP_PROPERTY);
+    }
+
+
+    public void addToWeblinkPtfs(WeblinkPtf obj) {
+        addToManyTarget(WEBLINK_PTFS_PROPERTY, obj, true);
+    }
+    public void removeFromWeblinkPtfs(WeblinkPtf obj) {
+        removeToManyTarget(WEBLINK_PTFS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<WeblinkPtf> getWeblinkPtfs() {
+        return (List<WeblinkPtf>)readProperty(WEBLINK_PTFS_PROPERTY);
     }
 
 

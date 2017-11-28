@@ -10,27 +10,43 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _DocContact extends CayenneDataObject {
 
-    public static final String TO_CONTACT_PROPERTY = "toContact";
-    public static final String TO_DOC_PROPERTY = "toDoc";
+    public static final String CONTACT_ID_PROPERTY = "contactId";
+    public static final String DOC_ID_PROPERTY = "docId";
+    public static final String CONTACT_PROPERTY = "contact";
+    public static final String DOC_PROPERTY = "doc";
 
     public static final String CONTACT_ID_PK_COLUMN = "CONTACT_ID";
     public static final String DOC_ID_PK_COLUMN = "DOC_ID";
 
-    public void setToContact(Contact toContact) {
-        setToOneTarget(TO_CONTACT_PROPERTY, toContact, true);
+    public void setContactId(Integer contactId) {
+        writeProperty(CONTACT_ID_PROPERTY, contactId);
+    }
+    public Integer getContactId() {
+        return (Integer)readProperty(CONTACT_ID_PROPERTY);
     }
 
-    public Contact getToContact() {
-        return (Contact)readProperty(TO_CONTACT_PROPERTY);
+    public void setDocId(Integer docId) {
+        writeProperty(DOC_ID_PROPERTY, docId);
+    }
+    public Integer getDocId() {
+        return (Integer)readProperty(DOC_ID_PROPERTY);
+    }
+
+    public void setContact(Doc contact) {
+        setToOneTarget(CONTACT_PROPERTY, contact, true);
+    }
+
+    public Doc getContact() {
+        return (Doc)readProperty(CONTACT_PROPERTY);
     }
 
 
-    public void setToDoc(Doc toDoc) {
-        setToOneTarget(TO_DOC_PROPERTY, toDoc, true);
+    public void setDoc(Contact doc) {
+        setToOneTarget(DOC_PROPERTY, doc, true);
     }
 
-    public Doc getToDoc() {
-        return (Doc)readProperty(TO_DOC_PROPERTY);
+    public Contact getDoc() {
+        return (Contact)readProperty(DOC_PROPERTY);
     }
 
 

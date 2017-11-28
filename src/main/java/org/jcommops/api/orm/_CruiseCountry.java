@@ -10,27 +10,43 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _CruiseCountry extends CayenneDataObject {
 
-    public static final String TO_COUNTRY_PROPERTY = "toCountry";
-    public static final String TO_CRUISE_PROPERTY = "toCruise";
+    public static final String COUNTRY_ID_PROPERTY = "countryId";
+    public static final String CRUISE_ID_PROPERTY = "cruiseId";
+    public static final String COUNTRY_PROPERTY = "country";
+    public static final String CRUISE_PROPERTY = "cruise";
 
     public static final String COUNTRY_ID_PK_COLUMN = "COUNTRY_ID";
     public static final String CRUISE_ID_PK_COLUMN = "CRUISE_ID";
 
-    public void setToCountry(Country toCountry) {
-        setToOneTarget(TO_COUNTRY_PROPERTY, toCountry, true);
+    public void setCountryId(Integer countryId) {
+        writeProperty(COUNTRY_ID_PROPERTY, countryId);
+    }
+    public Integer getCountryId() {
+        return (Integer)readProperty(COUNTRY_ID_PROPERTY);
     }
 
-    public Country getToCountry() {
-        return (Country)readProperty(TO_COUNTRY_PROPERTY);
+    public void setCruiseId(Integer cruiseId) {
+        writeProperty(CRUISE_ID_PROPERTY, cruiseId);
+    }
+    public Integer getCruiseId() {
+        return (Integer)readProperty(CRUISE_ID_PROPERTY);
+    }
+
+    public void setCountry(Country country) {
+        setToOneTarget(COUNTRY_PROPERTY, country, true);
+    }
+
+    public Country getCountry() {
+        return (Country)readProperty(COUNTRY_PROPERTY);
     }
 
 
-    public void setToCruise(Cruise toCruise) {
-        setToOneTarget(TO_CRUISE_PROPERTY, toCruise, true);
+    public void setCruise(Cruise cruise) {
+        setToOneTarget(CRUISE_PROPERTY, cruise, true);
     }
 
-    public Cruise getToCruise() {
-        return (Cruise)readProperty(TO_CRUISE_PROPERTY);
+    public Cruise getCruise() {
+        return (Cruise)readProperty(CRUISE_PROPERTY);
     }
 
 

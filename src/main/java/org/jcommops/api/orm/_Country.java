@@ -17,6 +17,7 @@ public abstract class _Country extends CayenneDataObject {
     public static final String CODE3_PROPERTY = "code3";
     public static final String COLOR_PROPERTY = "color";
     public static final String EEZ_PROPERTY = "eez";
+    public static final String ID_PROPERTY = "id";
     public static final String IOC_MEMBER_PROPERTY = "iocMember";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_LONG_PROPERTY = "nameLong";
@@ -24,20 +25,23 @@ public abstract class _Country extends CayenneDataObject {
     public static final String NUMCODE_PROPERTY = "numcode";
     public static final String TO_NOTIFY_PROPERTY = "toNotify";
     public static final String WMO_MEMBER_PROPERTY = "wmoMember";
-    public static final String AGENCY_ARRAY_PROPERTY = "agencyArray";
-    public static final String CONTACT_ARRAY_PROPERTY = "contactArray";
-    public static final String CRUISE_COUNTRY_ARRAY_PROPERTY = "cruiseCountryArray";
-    public static final String GTS_CCCC_ARRAY_PROPERTY = "gtsCcccArray";
-    public static final String MEETING_ARRAY_PROPERTY = "meetingArray";
-    public static final String MZMS_PTF_COUNTRY_ARRAY_PROPERTY = "mzmsPtfCountryArray";
-    public static final String NETWORK_COUNTRY_ARRAY_PROPERTY = "networkCountryArray";
-    public static final String PROGRAM_ARRAY_PROPERTY = "programArray";
-    public static final String PTF_DEPLOYMENT_ARRAY_PROPERTY = "ptfDeploymentArray";
-    public static final String PTF_HARDWARE_ARRAY_PROPERTY = "ptfHardwareArray";
-    public static final String RETRIEVAL_ARRAY_PROPERTY = "retrievalArray";
-    public static final String SHIP_ARRAY_PROPERTY = "shipArray";
-    public static final String USER_GROUP_CONTACT_ARRAY_PROPERTY = "userGroupContactArray";
-    public static final String WEBLINK_ARRAY_PROPERTY = "weblinkArray";
+    public static final String AGENCIES_PROPERTY = "agencies";
+    public static final String CONTACTS_PROPERTY = "contacts";
+    public static final String COUNTRY_COMMITMENTS_PROPERTY = "countryCommitments";
+    public static final String CRUISE_COUNTRIES_PROPERTY = "cruiseCountries";
+    public static final String GTS_CCCCS_PROPERTY = "gtsCcccs";
+    public static final String MEETINGS_PROPERTY = "meetings";
+    public static final String MZMS_PTF_COUNTRIES_PROPERTY = "mzmsPtfCountries";
+    public static final String NETWORK_COUNTRIES_PROPERTY = "networkCountries";
+    public static final String PROGRAMS_PROPERTY = "programs";
+    public static final String PTF_DEPLOYMENTS_PROPERTY = "ptfDeployments";
+    public static final String PTF_HARDWARES_PROPERTY = "ptfHardwares";
+    public static final String PTF_SENSOR_MODELS_PROPERTY = "ptfSensorModels";
+    public static final String RETRIEVALS_PROPERTY = "retrievals";
+    public static final String SHIP_HISTORIES_PROPERTY = "shipHistories";
+    public static final String SHIPS_PROPERTY = "ships";
+    public static final String USER_GROUP_CONTACTS_PROPERTY = "userGroupContacts";
+    public static final String WEBLINKS_PROPERTY = "weblinks";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -74,6 +78,13 @@ public abstract class _Country extends CayenneDataObject {
     }
     public Integer getEez() {
         return (Integer)readProperty(EEZ_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setIocMember(Integer iocMember) {
@@ -125,171 +136,207 @@ public abstract class _Country extends CayenneDataObject {
         return (Integer)readProperty(WMO_MEMBER_PROPERTY);
     }
 
-    public void addToAgencyArray(Agency obj) {
-        addToManyTarget(AGENCY_ARRAY_PROPERTY, obj, true);
+    public void addToAgencies(Agency obj) {
+        addToManyTarget(AGENCIES_PROPERTY, obj, true);
     }
-    public void removeFromAgencyArray(Agency obj) {
-        removeToManyTarget(AGENCY_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<Agency> getAgencyArray() {
-        return (List<Agency>)readProperty(AGENCY_ARRAY_PROPERTY);
-    }
-
-
-    public void addToContactArray(Contact obj) {
-        addToManyTarget(CONTACT_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromContactArray(Contact obj) {
-        removeToManyTarget(CONTACT_ARRAY_PROPERTY, obj, true);
+    public void removeFromAgencies(Agency obj) {
+        removeToManyTarget(AGENCIES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Contact> getContactArray() {
-        return (List<Contact>)readProperty(CONTACT_ARRAY_PROPERTY);
+    public List<Agency> getAgencies() {
+        return (List<Agency>)readProperty(AGENCIES_PROPERTY);
     }
 
 
-    public void addToCruiseCountryArray(CruiseCountry obj) {
-        addToManyTarget(CRUISE_COUNTRY_ARRAY_PROPERTY, obj, true);
+    public void addToContacts(Contact obj) {
+        addToManyTarget(CONTACTS_PROPERTY, obj, true);
     }
-    public void removeFromCruiseCountryArray(CruiseCountry obj) {
-        removeToManyTarget(CRUISE_COUNTRY_ARRAY_PROPERTY, obj, true);
+    public void removeFromContacts(Contact obj) {
+        removeToManyTarget(CONTACTS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<CruiseCountry> getCruiseCountryArray() {
-        return (List<CruiseCountry>)readProperty(CRUISE_COUNTRY_ARRAY_PROPERTY);
+    public List<Contact> getContacts() {
+        return (List<Contact>)readProperty(CONTACTS_PROPERTY);
     }
 
 
-    public void addToGtsCcccArray(GtsCccc obj) {
-        addToManyTarget(GTS_CCCC_ARRAY_PROPERTY, obj, true);
+    public void addToCountryCommitments(CountryCommitment obj) {
+        addToManyTarget(COUNTRY_COMMITMENTS_PROPERTY, obj, true);
     }
-    public void removeFromGtsCcccArray(GtsCccc obj) {
-        removeToManyTarget(GTS_CCCC_ARRAY_PROPERTY, obj, true);
+    public void removeFromCountryCommitments(CountryCommitment obj) {
+        removeToManyTarget(COUNTRY_COMMITMENTS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<GtsCccc> getGtsCcccArray() {
-        return (List<GtsCccc>)readProperty(GTS_CCCC_ARRAY_PROPERTY);
+    public List<CountryCommitment> getCountryCommitments() {
+        return (List<CountryCommitment>)readProperty(COUNTRY_COMMITMENTS_PROPERTY);
     }
 
 
-    public void addToMeetingArray(Meeting obj) {
-        addToManyTarget(MEETING_ARRAY_PROPERTY, obj, true);
+    public void addToCruiseCountries(CruiseCountry obj) {
+        addToManyTarget(CRUISE_COUNTRIES_PROPERTY, obj, true);
     }
-    public void removeFromMeetingArray(Meeting obj) {
-        removeToManyTarget(MEETING_ARRAY_PROPERTY, obj, true);
+    public void removeFromCruiseCountries(CruiseCountry obj) {
+        removeToManyTarget(CRUISE_COUNTRIES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Meeting> getMeetingArray() {
-        return (List<Meeting>)readProperty(MEETING_ARRAY_PROPERTY);
+    public List<CruiseCountry> getCruiseCountries() {
+        return (List<CruiseCountry>)readProperty(CRUISE_COUNTRIES_PROPERTY);
     }
 
 
-    public void addToMzmsPtfCountryArray(MzmsPtfCountry obj) {
-        addToManyTarget(MZMS_PTF_COUNTRY_ARRAY_PROPERTY, obj, true);
+    public void addToGtsCcccs(GtsCccc obj) {
+        addToManyTarget(GTS_CCCCS_PROPERTY, obj, true);
     }
-    public void removeFromMzmsPtfCountryArray(MzmsPtfCountry obj) {
-        removeToManyTarget(MZMS_PTF_COUNTRY_ARRAY_PROPERTY, obj, true);
+    public void removeFromGtsCcccs(GtsCccc obj) {
+        removeToManyTarget(GTS_CCCCS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<MzmsPtfCountry> getMzmsPtfCountryArray() {
-        return (List<MzmsPtfCountry>)readProperty(MZMS_PTF_COUNTRY_ARRAY_PROPERTY);
+    public List<GtsCccc> getGtsCcccs() {
+        return (List<GtsCccc>)readProperty(GTS_CCCCS_PROPERTY);
     }
 
 
-    public void addToNetworkCountryArray(NetworkCountry obj) {
-        addToManyTarget(NETWORK_COUNTRY_ARRAY_PROPERTY, obj, true);
+    public void addToMeetings(Meeting obj) {
+        addToManyTarget(MEETINGS_PROPERTY, obj, true);
     }
-    public void removeFromNetworkCountryArray(NetworkCountry obj) {
-        removeToManyTarget(NETWORK_COUNTRY_ARRAY_PROPERTY, obj, true);
+    public void removeFromMeetings(Meeting obj) {
+        removeToManyTarget(MEETINGS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<NetworkCountry> getNetworkCountryArray() {
-        return (List<NetworkCountry>)readProperty(NETWORK_COUNTRY_ARRAY_PROPERTY);
+    public List<Meeting> getMeetings() {
+        return (List<Meeting>)readProperty(MEETINGS_PROPERTY);
     }
 
 
-    public void addToProgramArray(Program obj) {
-        addToManyTarget(PROGRAM_ARRAY_PROPERTY, obj, true);
+    public void addToMzmsPtfCountries(MzmsPtfCountry obj) {
+        addToManyTarget(MZMS_PTF_COUNTRIES_PROPERTY, obj, true);
     }
-    public void removeFromProgramArray(Program obj) {
-        removeToManyTarget(PROGRAM_ARRAY_PROPERTY, obj, true);
+    public void removeFromMzmsPtfCountries(MzmsPtfCountry obj) {
+        removeToManyTarget(MZMS_PTF_COUNTRIES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Program> getProgramArray() {
-        return (List<Program>)readProperty(PROGRAM_ARRAY_PROPERTY);
+    public List<MzmsPtfCountry> getMzmsPtfCountries() {
+        return (List<MzmsPtfCountry>)readProperty(MZMS_PTF_COUNTRIES_PROPERTY);
     }
 
 
-    public void addToPtfDeploymentArray(PtfDeployment obj) {
-        addToManyTarget(PTF_DEPLOYMENT_ARRAY_PROPERTY, obj, true);
+    public void addToNetworkCountries(NetworkCountry obj) {
+        addToManyTarget(NETWORK_COUNTRIES_PROPERTY, obj, true);
     }
-    public void removeFromPtfDeploymentArray(PtfDeployment obj) {
-        removeToManyTarget(PTF_DEPLOYMENT_ARRAY_PROPERTY, obj, true);
+    public void removeFromNetworkCountries(NetworkCountry obj) {
+        removeToManyTarget(NETWORK_COUNTRIES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<PtfDeployment> getPtfDeploymentArray() {
-        return (List<PtfDeployment>)readProperty(PTF_DEPLOYMENT_ARRAY_PROPERTY);
+    public List<NetworkCountry> getNetworkCountries() {
+        return (List<NetworkCountry>)readProperty(NETWORK_COUNTRIES_PROPERTY);
     }
 
 
-    public void addToPtfHardwareArray(PtfHardware obj) {
-        addToManyTarget(PTF_HARDWARE_ARRAY_PROPERTY, obj, true);
+    public void addToPrograms(Program obj) {
+        addToManyTarget(PROGRAMS_PROPERTY, obj, true);
     }
-    public void removeFromPtfHardwareArray(PtfHardware obj) {
-        removeToManyTarget(PTF_HARDWARE_ARRAY_PROPERTY, obj, true);
+    public void removeFromPrograms(Program obj) {
+        removeToManyTarget(PROGRAMS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<PtfHardware> getPtfHardwareArray() {
-        return (List<PtfHardware>)readProperty(PTF_HARDWARE_ARRAY_PROPERTY);
+    public List<Program> getPrograms() {
+        return (List<Program>)readProperty(PROGRAMS_PROPERTY);
     }
 
 
-    public void addToRetrievalArray(Retrieval obj) {
-        addToManyTarget(RETRIEVAL_ARRAY_PROPERTY, obj, true);
+    public void addToPtfDeployments(PtfDeployment obj) {
+        addToManyTarget(PTF_DEPLOYMENTS_PROPERTY, obj, true);
     }
-    public void removeFromRetrievalArray(Retrieval obj) {
-        removeToManyTarget(RETRIEVAL_ARRAY_PROPERTY, obj, true);
+    public void removeFromPtfDeployments(PtfDeployment obj) {
+        removeToManyTarget(PTF_DEPLOYMENTS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Retrieval> getRetrievalArray() {
-        return (List<Retrieval>)readProperty(RETRIEVAL_ARRAY_PROPERTY);
+    public List<PtfDeployment> getPtfDeployments() {
+        return (List<PtfDeployment>)readProperty(PTF_DEPLOYMENTS_PROPERTY);
     }
 
 
-    public void addToShipArray(Ship obj) {
-        addToManyTarget(SHIP_ARRAY_PROPERTY, obj, true);
+    public void addToPtfHardwares(PtfHardware obj) {
+        addToManyTarget(PTF_HARDWARES_PROPERTY, obj, true);
     }
-    public void removeFromShipArray(Ship obj) {
-        removeToManyTarget(SHIP_ARRAY_PROPERTY, obj, true);
+    public void removeFromPtfHardwares(PtfHardware obj) {
+        removeToManyTarget(PTF_HARDWARES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Ship> getShipArray() {
-        return (List<Ship>)readProperty(SHIP_ARRAY_PROPERTY);
+    public List<PtfHardware> getPtfHardwares() {
+        return (List<PtfHardware>)readProperty(PTF_HARDWARES_PROPERTY);
     }
 
 
-    public void addToUserGroupContactArray(UserGroupContact obj) {
-        addToManyTarget(USER_GROUP_CONTACT_ARRAY_PROPERTY, obj, true);
+    public void addToPtfSensorModels(PtfSensorModel obj) {
+        addToManyTarget(PTF_SENSOR_MODELS_PROPERTY, obj, true);
     }
-    public void removeFromUserGroupContactArray(UserGroupContact obj) {
-        removeToManyTarget(USER_GROUP_CONTACT_ARRAY_PROPERTY, obj, true);
+    public void removeFromPtfSensorModels(PtfSensorModel obj) {
+        removeToManyTarget(PTF_SENSOR_MODELS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<UserGroupContact> getUserGroupContactArray() {
-        return (List<UserGroupContact>)readProperty(USER_GROUP_CONTACT_ARRAY_PROPERTY);
+    public List<PtfSensorModel> getPtfSensorModels() {
+        return (List<PtfSensorModel>)readProperty(PTF_SENSOR_MODELS_PROPERTY);
     }
 
 
-    public void addToWeblinkArray(Weblink obj) {
-        addToManyTarget(WEBLINK_ARRAY_PROPERTY, obj, true);
+    public void addToRetrievals(Retrieval obj) {
+        addToManyTarget(RETRIEVALS_PROPERTY, obj, true);
     }
-    public void removeFromWeblinkArray(Weblink obj) {
-        removeToManyTarget(WEBLINK_ARRAY_PROPERTY, obj, true);
+    public void removeFromRetrievals(Retrieval obj) {
+        removeToManyTarget(RETRIEVALS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Weblink> getWeblinkArray() {
-        return (List<Weblink>)readProperty(WEBLINK_ARRAY_PROPERTY);
+    public List<Retrieval> getRetrievals() {
+        return (List<Retrieval>)readProperty(RETRIEVALS_PROPERTY);
+    }
+
+
+    public void addToShipHistories(ShipHistory obj) {
+        addToManyTarget(SHIP_HISTORIES_PROPERTY, obj, true);
+    }
+    public void removeFromShipHistories(ShipHistory obj) {
+        removeToManyTarget(SHIP_HISTORIES_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<ShipHistory> getShipHistories() {
+        return (List<ShipHistory>)readProperty(SHIP_HISTORIES_PROPERTY);
+    }
+
+
+    public void addToShips(Ship obj) {
+        addToManyTarget(SHIPS_PROPERTY, obj, true);
+    }
+    public void removeFromShips(Ship obj) {
+        removeToManyTarget(SHIPS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Ship> getShips() {
+        return (List<Ship>)readProperty(SHIPS_PROPERTY);
+    }
+
+
+    public void addToUserGroupContacts(UserGroupContact obj) {
+        addToManyTarget(USER_GROUP_CONTACTS_PROPERTY, obj, true);
+    }
+    public void removeFromUserGroupContacts(UserGroupContact obj) {
+        removeToManyTarget(USER_GROUP_CONTACTS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<UserGroupContact> getUserGroupContacts() {
+        return (List<UserGroupContact>)readProperty(USER_GROUP_CONTACTS_PROPERTY);
+    }
+
+
+    public void addToWeblinks(Weblink obj) {
+        addToManyTarget(WEBLINKS_PROPERTY, obj, true);
+    }
+    public void removeFromWeblinks(Weblink obj) {
+        removeToManyTarget(WEBLINKS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Weblink> getWeblinks() {
+        return (List<Weblink>)readProperty(WEBLINKS_PROPERTY);
     }
 
 

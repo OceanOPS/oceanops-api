@@ -12,8 +12,11 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _Story extends CayenneDataObject {
 
+    public static final String ID_PROPERTY = "id";
     public static final String IMAGE_ID_PROPERTY = "imageId";
     public static final String KEYWORDS_PROPERTY = "keywords";
+    public static final String PAPER_URL_PROPERTY = "paperUrl";
+    public static final String POST_URL_PROPERTY = "postUrl";
     public static final String PTF_ID_PROPERTY = "ptfId";
     public static final String SOURCE_PROPERTY = "source";
     public static final String STORY_DATE_PROPERTY = "storyDate";
@@ -21,6 +24,13 @@ public abstract class _Story extends CayenneDataObject {
     public static final String TITLE_PROPERTY = "title";
 
     public static final String ID_PK_COLUMN = "ID";
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
 
     public void setImageId(Integer imageId) {
         writeProperty(IMAGE_ID_PROPERTY, imageId);
@@ -34,6 +44,20 @@ public abstract class _Story extends CayenneDataObject {
     }
     public String getKeywords() {
         return (String)readProperty(KEYWORDS_PROPERTY);
+    }
+
+    public void setPaperUrl(String paperUrl) {
+        writeProperty(PAPER_URL_PROPERTY, paperUrl);
+    }
+    public String getPaperUrl() {
+        return (String)readProperty(PAPER_URL_PROPERTY);
+    }
+
+    public void setPostUrl(String postUrl) {
+        writeProperty(POST_URL_PROPERTY, postUrl);
+    }
+    public String getPostUrl() {
+        return (String)readProperty(POST_URL_PROPERTY);
     }
 
     public void setPtfId(Integer ptfId) {

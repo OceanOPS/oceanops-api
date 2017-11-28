@@ -12,11 +12,19 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _LocStatus extends CayenneDataObject {
 
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
-    public static final String PTF_LOC_STATUS_ARRAY_PROPERTY = "ptfLocStatusArray";
+    public static final String PTF_LOC_STATUSES_PROPERTY = "ptfLocStatuses";
 
     public static final String ID_PK_COLUMN = "ID";
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
 
     public void setName(String name) {
         writeProperty(NAME_PROPERTY, name);
@@ -32,15 +40,15 @@ public abstract class _LocStatus extends CayenneDataObject {
         return (String)readProperty(NAME_SHORT_PROPERTY);
     }
 
-    public void addToPtfLocStatusArray(PtfLocStatus obj) {
-        addToManyTarget(PTF_LOC_STATUS_ARRAY_PROPERTY, obj, true);
+    public void addToPtfLocStatuses(PtfLocStatus obj) {
+        addToManyTarget(PTF_LOC_STATUSES_PROPERTY, obj, true);
     }
-    public void removeFromPtfLocStatusArray(PtfLocStatus obj) {
-        removeToManyTarget(PTF_LOC_STATUS_ARRAY_PROPERTY, obj, true);
+    public void removeFromPtfLocStatuses(PtfLocStatus obj) {
+        removeToManyTarget(PTF_LOC_STATUSES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<PtfLocStatus> getPtfLocStatusArray() {
-        return (List<PtfLocStatus>)readProperty(PTF_LOC_STATUS_ARRAY_PROPERTY);
+    public List<PtfLocStatus> getPtfLocStatuses() {
+        return (List<PtfLocStatus>)readProperty(PTF_LOC_STATUSES_PROPERTY);
     }
 
 

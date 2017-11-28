@@ -10,57 +10,73 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _LineSurvey extends CayenneDataObject {
 
-    public static final String TO_LINE_PROPERTY = "toLine";
-    public static final String TO_LINE_PERFORMANCE_PROPERTY = "toLinePerformance";
-    public static final String TO_LINE_STATUS_PROPERTY = "toLineStatus";
-    public static final String TO_LINE_TYPE_PROPERTY = "toLineType";
-    public static final String TO_SURVEY_PROPERTY = "toSurvey";
+    public static final String LINE_ID_PROPERTY = "lineId";
+    public static final String SURVEY_ID_PROPERTY = "surveyId";
+    public static final String LINE_PROPERTY = "line";
+    public static final String LINE_PERFORMANCE_PROPERTY = "linePerformance";
+    public static final String LINE_STATUS_PROPERTY = "lineStatus";
+    public static final String LINE_TYPE_PROPERTY = "lineType";
+    public static final String SURVEY_PROPERTY = "survey";
 
     public static final String LINE_ID_PK_COLUMN = "LINE_ID";
     public static final String SURVEY_ID_PK_COLUMN = "SURVEY_ID";
 
-    public void setToLine(Line toLine) {
-        setToOneTarget(TO_LINE_PROPERTY, toLine, true);
+    public void setLineId(Integer lineId) {
+        writeProperty(LINE_ID_PROPERTY, lineId);
+    }
+    public Integer getLineId() {
+        return (Integer)readProperty(LINE_ID_PROPERTY);
     }
 
-    public Line getToLine() {
-        return (Line)readProperty(TO_LINE_PROPERTY);
+    public void setSurveyId(Integer surveyId) {
+        writeProperty(SURVEY_ID_PROPERTY, surveyId);
+    }
+    public Integer getSurveyId() {
+        return (Integer)readProperty(SURVEY_ID_PROPERTY);
     }
 
-
-    public void setToLinePerformance(LinePerformance toLinePerformance) {
-        setToOneTarget(TO_LINE_PERFORMANCE_PROPERTY, toLinePerformance, true);
+    public void setLine(Line line) {
+        setToOneTarget(LINE_PROPERTY, line, true);
     }
 
-    public LinePerformance getToLinePerformance() {
-        return (LinePerformance)readProperty(TO_LINE_PERFORMANCE_PROPERTY);
-    }
-
-
-    public void setToLineStatus(LineStatus toLineStatus) {
-        setToOneTarget(TO_LINE_STATUS_PROPERTY, toLineStatus, true);
-    }
-
-    public LineStatus getToLineStatus() {
-        return (LineStatus)readProperty(TO_LINE_STATUS_PROPERTY);
+    public Line getLine() {
+        return (Line)readProperty(LINE_PROPERTY);
     }
 
 
-    public void setToLineType(LineType toLineType) {
-        setToOneTarget(TO_LINE_TYPE_PROPERTY, toLineType, true);
+    public void setLinePerformance(LinePerformance linePerformance) {
+        setToOneTarget(LINE_PERFORMANCE_PROPERTY, linePerformance, true);
     }
 
-    public LineType getToLineType() {
-        return (LineType)readProperty(TO_LINE_TYPE_PROPERTY);
+    public LinePerformance getLinePerformance() {
+        return (LinePerformance)readProperty(LINE_PERFORMANCE_PROPERTY);
     }
 
 
-    public void setToSurvey(Survey toSurvey) {
-        setToOneTarget(TO_SURVEY_PROPERTY, toSurvey, true);
+    public void setLineStatus(LineStatus lineStatus) {
+        setToOneTarget(LINE_STATUS_PROPERTY, lineStatus, true);
     }
 
-    public Survey getToSurvey() {
-        return (Survey)readProperty(TO_SURVEY_PROPERTY);
+    public LineStatus getLineStatus() {
+        return (LineStatus)readProperty(LINE_STATUS_PROPERTY);
+    }
+
+
+    public void setLineType(LineType lineType) {
+        setToOneTarget(LINE_TYPE_PROPERTY, lineType, true);
+    }
+
+    public LineType getLineType() {
+        return (LineType)readProperty(LINE_TYPE_PROPERTY);
+    }
+
+
+    public void setSurvey(Survey survey) {
+        setToOneTarget(SURVEY_PROPERTY, survey, true);
+    }
+
+    public Survey getSurvey() {
+        return (Survey)readProperty(SURVEY_PROPERTY);
     }
 
 

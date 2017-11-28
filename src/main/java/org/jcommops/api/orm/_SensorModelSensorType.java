@@ -13,9 +13,11 @@ public abstract class _SensorModelSensorType extends CayenneDataObject {
     public static final String ACCURACY_PROPERTY = "accuracy";
     public static final String HIGH_PROPERTY = "high";
     public static final String LOW_PROPERTY = "low";
+    public static final String SENSOR_MODEL_ID_PROPERTY = "sensorModelId";
+    public static final String SENSOR_TYPE_ID_PROPERTY = "sensorTypeId";
     public static final String UNIT_PROPERTY = "unit";
-    public static final String TO_SENSOR_MODEL_PROPERTY = "toSensorModel";
-    public static final String TO_SENSOR_TYPE_PROPERTY = "toSensorType";
+    public static final String SENSOR_MODEL_PROPERTY = "sensorModel";
+    public static final String SENSOR_TYPE_PROPERTY = "sensorType";
 
     public static final String SENSOR_MODEL_ID_PK_COLUMN = "SENSOR_MODEL_ID";
     public static final String SENSOR_TYPE_ID_PK_COLUMN = "SENSOR_TYPE_ID";
@@ -41,6 +43,20 @@ public abstract class _SensorModelSensorType extends CayenneDataObject {
         return (Integer)readProperty(LOW_PROPERTY);
     }
 
+    public void setSensorModelId(Integer sensorModelId) {
+        writeProperty(SENSOR_MODEL_ID_PROPERTY, sensorModelId);
+    }
+    public Integer getSensorModelId() {
+        return (Integer)readProperty(SENSOR_MODEL_ID_PROPERTY);
+    }
+
+    public void setSensorTypeId(Integer sensorTypeId) {
+        writeProperty(SENSOR_TYPE_ID_PROPERTY, sensorTypeId);
+    }
+    public Integer getSensorTypeId() {
+        return (Integer)readProperty(SENSOR_TYPE_ID_PROPERTY);
+    }
+
     public void setUnit(String unit) {
         writeProperty(UNIT_PROPERTY, unit);
     }
@@ -48,21 +64,21 @@ public abstract class _SensorModelSensorType extends CayenneDataObject {
         return (String)readProperty(UNIT_PROPERTY);
     }
 
-    public void setToSensorModel(SensorModel toSensorModel) {
-        setToOneTarget(TO_SENSOR_MODEL_PROPERTY, toSensorModel, true);
+    public void setSensorModel(SensorModel sensorModel) {
+        setToOneTarget(SENSOR_MODEL_PROPERTY, sensorModel, true);
     }
 
-    public SensorModel getToSensorModel() {
-        return (SensorModel)readProperty(TO_SENSOR_MODEL_PROPERTY);
+    public SensorModel getSensorModel() {
+        return (SensorModel)readProperty(SENSOR_MODEL_PROPERTY);
     }
 
 
-    public void setToSensorType(SensorType toSensorType) {
-        setToOneTarget(TO_SENSOR_TYPE_PROPERTY, toSensorType, true);
+    public void setSensorType(SensorType sensorType) {
+        setToOneTarget(SENSOR_TYPE_PROPERTY, sensorType, true);
     }
 
-    public SensorType getToSensorType() {
-        return (SensorType)readProperty(TO_SENSOR_TYPE_PROPERTY);
+    public SensorType getSensorType() {
+        return (SensorType)readProperty(SENSOR_TYPE_PROPERTY);
     }
 
 

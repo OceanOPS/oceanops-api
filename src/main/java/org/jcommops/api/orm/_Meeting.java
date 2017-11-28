@@ -16,15 +16,16 @@ public abstract class _Meeting extends CayenneDataObject {
     public static final String DESCRIPTION_PROPERTY = "description";
     public static final String END_DATE_PROPERTY = "endDate";
     public static final String GEO_LOCATION_PROPERTY = "geoLocation";
+    public static final String ID_PROPERTY = "id";
     public static final String LOCATION_PROPERTY = "location";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
     public static final String PLACE_PROPERTY = "place";
     public static final String START_DATE_PROPERTY = "startDate";
-    public static final String DOC_ARRAY_PROPERTY = "docArray";
-    public static final String TO_CONTACT_PROPERTY = "toContact";
-    public static final String TO_COUNTRY_PROPERTY = "toCountry";
-    public static final String TO_WEBLINK_PROPERTY = "toWeblink";
+    public static final String CONTACT_PROPERTY = "contact";
+    public static final String COUNTRY_PROPERTY = "country";
+    public static final String DOCS_PROPERTY = "docs";
+    public static final String WEBLINK_PROPERTY = "weblink";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -47,6 +48,13 @@ public abstract class _Meeting extends CayenneDataObject {
     }
     public String getGeoLocation() {
         return (String)readProperty(GEO_LOCATION_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setLocation(String location) {
@@ -84,42 +92,42 @@ public abstract class _Meeting extends CayenneDataObject {
         return (Date)readProperty(START_DATE_PROPERTY);
     }
 
-    public void addToDocArray(Doc obj) {
-        addToManyTarget(DOC_ARRAY_PROPERTY, obj, true);
+    public void setContact(Contact contact) {
+        setToOneTarget(CONTACT_PROPERTY, contact, true);
     }
-    public void removeFromDocArray(Doc obj) {
-        removeToManyTarget(DOC_ARRAY_PROPERTY, obj, true);
+
+    public Contact getContact() {
+        return (Contact)readProperty(CONTACT_PROPERTY);
+    }
+
+
+    public void setCountry(Country country) {
+        setToOneTarget(COUNTRY_PROPERTY, country, true);
+    }
+
+    public Country getCountry() {
+        return (Country)readProperty(COUNTRY_PROPERTY);
+    }
+
+
+    public void addToDocs(Doc obj) {
+        addToManyTarget(DOCS_PROPERTY, obj, true);
+    }
+    public void removeFromDocs(Doc obj) {
+        removeToManyTarget(DOCS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Doc> getDocArray() {
-        return (List<Doc>)readProperty(DOC_ARRAY_PROPERTY);
+    public List<Doc> getDocs() {
+        return (List<Doc>)readProperty(DOCS_PROPERTY);
     }
 
 
-    public void setToContact(Contact toContact) {
-        setToOneTarget(TO_CONTACT_PROPERTY, toContact, true);
+    public void setWeblink(Weblink weblink) {
+        setToOneTarget(WEBLINK_PROPERTY, weblink, true);
     }
 
-    public Contact getToContact() {
-        return (Contact)readProperty(TO_CONTACT_PROPERTY);
-    }
-
-
-    public void setToCountry(Country toCountry) {
-        setToOneTarget(TO_COUNTRY_PROPERTY, toCountry, true);
-    }
-
-    public Country getToCountry() {
-        return (Country)readProperty(TO_COUNTRY_PROPERTY);
-    }
-
-
-    public void setToWeblink(Weblink toWeblink) {
-        setToOneTarget(TO_WEBLINK_PROPERTY, toWeblink, true);
-    }
-
-    public Weblink getToWeblink() {
-        return (Weblink)readProperty(TO_WEBLINK_PROPERTY);
+    public Weblink getWeblink() {
+        return (Weblink)readProperty(WEBLINK_PROPERTY);
     }
 
 

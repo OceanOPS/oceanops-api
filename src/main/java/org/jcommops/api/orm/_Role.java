@@ -13,14 +13,15 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _Role extends CayenneDataObject {
 
     public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_ALTER_PROPERTY = "nameAlter";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
     public static final String RANK_PROPERTY = "rank";
-    public static final String CRUISE_CONTACT_ARRAY_PROPERTY = "cruiseContactArray";
-    public static final String MASTER_PROG_CONTACT_ARRAY_PROPERTY = "masterProgContactArray";
-    public static final String PROGRAM_CONTACT_ARRAY_PROPERTY = "programContactArray";
-    public static final String USER_GROUP_CONTACT_ARRAY_PROPERTY = "userGroupContactArray";
+    public static final String CRUISE_CONTACTS_PROPERTY = "cruiseContacts";
+    public static final String MASTER_PROG_CONTACTS_PROPERTY = "masterProgContacts";
+    public static final String PROGRAM_CONTACTS_PROPERTY = "programContacts";
+    public static final String USER_GROUP_CONTACTS_PROPERTY = "userGroupContacts";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -29,6 +30,13 @@ public abstract class _Role extends CayenneDataObject {
     }
     public String getDescription() {
         return (String)readProperty(DESCRIPTION_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setName(String name) {
@@ -59,51 +67,51 @@ public abstract class _Role extends CayenneDataObject {
         return (Integer)readProperty(RANK_PROPERTY);
     }
 
-    public void addToCruiseContactArray(CruiseContact obj) {
-        addToManyTarget(CRUISE_CONTACT_ARRAY_PROPERTY, obj, true);
+    public void addToCruiseContacts(CruiseContact obj) {
+        addToManyTarget(CRUISE_CONTACTS_PROPERTY, obj, true);
     }
-    public void removeFromCruiseContactArray(CruiseContact obj) {
-        removeToManyTarget(CRUISE_CONTACT_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<CruiseContact> getCruiseContactArray() {
-        return (List<CruiseContact>)readProperty(CRUISE_CONTACT_ARRAY_PROPERTY);
-    }
-
-
-    public void addToMasterProgContactArray(MasterProgContact obj) {
-        addToManyTarget(MASTER_PROG_CONTACT_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromMasterProgContactArray(MasterProgContact obj) {
-        removeToManyTarget(MASTER_PROG_CONTACT_ARRAY_PROPERTY, obj, true);
+    public void removeFromCruiseContacts(CruiseContact obj) {
+        removeToManyTarget(CRUISE_CONTACTS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<MasterProgContact> getMasterProgContactArray() {
-        return (List<MasterProgContact>)readProperty(MASTER_PROG_CONTACT_ARRAY_PROPERTY);
+    public List<CruiseContact> getCruiseContacts() {
+        return (List<CruiseContact>)readProperty(CRUISE_CONTACTS_PROPERTY);
     }
 
 
-    public void addToProgramContactArray(ProgramContact obj) {
-        addToManyTarget(PROGRAM_CONTACT_ARRAY_PROPERTY, obj, true);
+    public void addToMasterProgContacts(MasterProgContact obj) {
+        addToManyTarget(MASTER_PROG_CONTACTS_PROPERTY, obj, true);
     }
-    public void removeFromProgramContactArray(ProgramContact obj) {
-        removeToManyTarget(PROGRAM_CONTACT_ARRAY_PROPERTY, obj, true);
+    public void removeFromMasterProgContacts(MasterProgContact obj) {
+        removeToManyTarget(MASTER_PROG_CONTACTS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<ProgramContact> getProgramContactArray() {
-        return (List<ProgramContact>)readProperty(PROGRAM_CONTACT_ARRAY_PROPERTY);
+    public List<MasterProgContact> getMasterProgContacts() {
+        return (List<MasterProgContact>)readProperty(MASTER_PROG_CONTACTS_PROPERTY);
     }
 
 
-    public void addToUserGroupContactArray(UserGroupContact obj) {
-        addToManyTarget(USER_GROUP_CONTACT_ARRAY_PROPERTY, obj, true);
+    public void addToProgramContacts(ProgramContact obj) {
+        addToManyTarget(PROGRAM_CONTACTS_PROPERTY, obj, true);
     }
-    public void removeFromUserGroupContactArray(UserGroupContact obj) {
-        removeToManyTarget(USER_GROUP_CONTACT_ARRAY_PROPERTY, obj, true);
+    public void removeFromProgramContacts(ProgramContact obj) {
+        removeToManyTarget(PROGRAM_CONTACTS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<UserGroupContact> getUserGroupContactArray() {
-        return (List<UserGroupContact>)readProperty(USER_GROUP_CONTACT_ARRAY_PROPERTY);
+    public List<ProgramContact> getProgramContacts() {
+        return (List<ProgramContact>)readProperty(PROGRAM_CONTACTS_PROPERTY);
+    }
+
+
+    public void addToUserGroupContacts(UserGroupContact obj) {
+        addToManyTarget(USER_GROUP_CONTACTS_PROPERTY, obj, true);
+    }
+    public void removeFromUserGroupContacts(UserGroupContact obj) {
+        removeToManyTarget(USER_GROUP_CONTACTS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<UserGroupContact> getUserGroupContacts() {
+        return (List<UserGroupContact>)readProperty(USER_GROUP_CONTACTS_PROPERTY);
     }
 
 

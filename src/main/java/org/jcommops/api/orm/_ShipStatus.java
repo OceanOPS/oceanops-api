@@ -13,10 +13,11 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _ShipStatus extends CayenneDataObject {
 
     public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_LONG_PROPERTY = "nameLong";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
-    public static final String SHIP_ARRAY_PROPERTY = "shipArray";
+    public static final String SHIPS_PROPERTY = "ships";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -25,6 +26,13 @@ public abstract class _ShipStatus extends CayenneDataObject {
     }
     public String getDescription() {
         return (String)readProperty(DESCRIPTION_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setName(String name) {
@@ -48,15 +56,15 @@ public abstract class _ShipStatus extends CayenneDataObject {
         return (String)readProperty(NAME_SHORT_PROPERTY);
     }
 
-    public void addToShipArray(Ship obj) {
-        addToManyTarget(SHIP_ARRAY_PROPERTY, obj, true);
+    public void addToShips(Ship obj) {
+        addToManyTarget(SHIPS_PROPERTY, obj, true);
     }
-    public void removeFromShipArray(Ship obj) {
-        removeToManyTarget(SHIP_ARRAY_PROPERTY, obj, true);
+    public void removeFromShips(Ship obj) {
+        removeToManyTarget(SHIPS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Ship> getShipArray() {
-        return (List<Ship>)readProperty(SHIP_ARRAY_PROPERTY);
+    public List<Ship> getShips() {
+        return (List<Ship>)readProperty(SHIPS_PROPERTY);
     }
 
 

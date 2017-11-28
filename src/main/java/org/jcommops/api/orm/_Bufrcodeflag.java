@@ -14,6 +14,7 @@ public abstract class _Bufrcodeflag extends CayenneDataObject {
 
     public static final String FILTER_PROPERTY = "filter";
     public static final String FXY_PROPERTY = "fxy";
+    public static final String ID_PROPERTY = "id";
     public static final String LOCAL_CENTRE_PROPERTY = "localCentre";
     public static final String LOCAL_SUB_CENTRE_PROPERTY = "localSubCentre";
     public static final String MASTER_TABLE_PROPERTY = "masterTable";
@@ -23,8 +24,8 @@ public abstract class _Bufrcodeflag extends CayenneDataObject {
     public static final String NAME_SHORT_PROPERTY = "nameShort";
     public static final String RANK_PROPERTY = "rank";
     public static final String TABLE_VERSION_PROPERTY = "tableVersion";
-    public static final String PTF_DEPLOYMENT_ARRAY_PROPERTY = "ptfDeploymentArray";
-    public static final String PTF_DEPLOYMENT_ARRAY1_PROPERTY = "ptfDeploymentArray1";
+    public static final String PTF_DEPLOYMENTS_PROPERTY = "ptfDeployments";
+    public static final String PTF_DEPLOYMENTS1_PROPERTY = "ptfDeployments1";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -40,6 +41,13 @@ public abstract class _Bufrcodeflag extends CayenneDataObject {
     }
     public String getFxy() {
         return (String)readProperty(FXY_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setLocalCentre(Integer localCentre) {
@@ -105,27 +113,27 @@ public abstract class _Bufrcodeflag extends CayenneDataObject {
         return (Integer)readProperty(TABLE_VERSION_PROPERTY);
     }
 
-    public void addToPtfDeploymentArray(PtfDeployment obj) {
-        addToManyTarget(PTF_DEPLOYMENT_ARRAY_PROPERTY, obj, true);
+    public void addToPtfDeployments(PtfDeployment obj) {
+        addToManyTarget(PTF_DEPLOYMENTS_PROPERTY, obj, true);
     }
-    public void removeFromPtfDeploymentArray(PtfDeployment obj) {
-        removeToManyTarget(PTF_DEPLOYMENT_ARRAY_PROPERTY, obj, true);
+    public void removeFromPtfDeployments(PtfDeployment obj) {
+        removeToManyTarget(PTF_DEPLOYMENTS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<PtfDeployment> getPtfDeploymentArray() {
-        return (List<PtfDeployment>)readProperty(PTF_DEPLOYMENT_ARRAY_PROPERTY);
+    public List<PtfDeployment> getPtfDeployments() {
+        return (List<PtfDeployment>)readProperty(PTF_DEPLOYMENTS_PROPERTY);
     }
 
 
-    public void addToPtfDeploymentArray1(PtfDeployment obj) {
-        addToManyTarget(PTF_DEPLOYMENT_ARRAY1_PROPERTY, obj, true);
+    public void addToPtfDeployments1(PtfDeployment obj) {
+        addToManyTarget(PTF_DEPLOYMENTS1_PROPERTY, obj, true);
     }
-    public void removeFromPtfDeploymentArray1(PtfDeployment obj) {
-        removeToManyTarget(PTF_DEPLOYMENT_ARRAY1_PROPERTY, obj, true);
+    public void removeFromPtfDeployments1(PtfDeployment obj) {
+        removeToManyTarget(PTF_DEPLOYMENTS1_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<PtfDeployment> getPtfDeploymentArray1() {
-        return (List<PtfDeployment>)readProperty(PTF_DEPLOYMENT_ARRAY1_PROPERTY);
+    public List<PtfDeployment> getPtfDeployments1() {
+        return (List<PtfDeployment>)readProperty(PTF_DEPLOYMENTS1_PROPERTY);
     }
 
 

@@ -14,8 +14,9 @@ public abstract class _GtsRecorderType extends CayenneDataObject {
 
     public static final String CODE_PROPERTY = "code";
     public static final String DETAILS_PROPERTY = "details";
+    public static final String ID_PROPERTY = "id";
     public static final String TYPE_PROPERTY = "type";
-    public static final String OBS_ARRAY_PROPERTY = "obsArray";
+    public static final String OBSS_PROPERTY = "obss";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -33,6 +34,13 @@ public abstract class _GtsRecorderType extends CayenneDataObject {
         return (String)readProperty(DETAILS_PROPERTY);
     }
 
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
+
     public void setType(String type) {
         writeProperty(TYPE_PROPERTY, type);
     }
@@ -40,15 +48,15 @@ public abstract class _GtsRecorderType extends CayenneDataObject {
         return (String)readProperty(TYPE_PROPERTY);
     }
 
-    public void addToObsArray(Obs obj) {
-        addToManyTarget(OBS_ARRAY_PROPERTY, obj, true);
+    public void addToObss(Obs obj) {
+        addToManyTarget(OBSS_PROPERTY, obj, true);
     }
-    public void removeFromObsArray(Obs obj) {
-        removeToManyTarget(OBS_ARRAY_PROPERTY, obj, true);
+    public void removeFromObss(Obs obj) {
+        removeToManyTarget(OBSS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Obs> getObsArray() {
-        return (List<Obs>)readProperty(OBS_ARRAY_PROPERTY);
+    public List<Obs> getObss() {
+        return (List<Obs>)readProperty(OBSS_PROPERTY);
     }
 
 

@@ -12,12 +12,20 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _Topic extends CayenneDataObject {
 
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
-    public static final String DOC_ARRAY_PROPERTY = "docArray";
-    public static final String QC_FEEDBACK_ARRAY_PROPERTY = "qcFeedbackArray";
-    public static final String WEBLINK_ARRAY_PROPERTY = "weblinkArray";
+    public static final String DOCS_PROPERTY = "docs";
+    public static final String QC_FEEDBACKS_PROPERTY = "qcFeedbacks";
+    public static final String WEBLINKS_PROPERTY = "weblinks";
 
     public static final String ID_PK_COLUMN = "ID";
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
 
     public void setName(String name) {
         writeProperty(NAME_PROPERTY, name);
@@ -26,39 +34,39 @@ public abstract class _Topic extends CayenneDataObject {
         return (String)readProperty(NAME_PROPERTY);
     }
 
-    public void addToDocArray(Doc obj) {
-        addToManyTarget(DOC_ARRAY_PROPERTY, obj, true);
+    public void addToDocs(Doc obj) {
+        addToManyTarget(DOCS_PROPERTY, obj, true);
     }
-    public void removeFromDocArray(Doc obj) {
-        removeToManyTarget(DOC_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<Doc> getDocArray() {
-        return (List<Doc>)readProperty(DOC_ARRAY_PROPERTY);
-    }
-
-
-    public void addToQcFeedbackArray(QcFeedback obj) {
-        addToManyTarget(QC_FEEDBACK_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromQcFeedbackArray(QcFeedback obj) {
-        removeToManyTarget(QC_FEEDBACK_ARRAY_PROPERTY, obj, true);
+    public void removeFromDocs(Doc obj) {
+        removeToManyTarget(DOCS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<QcFeedback> getQcFeedbackArray() {
-        return (List<QcFeedback>)readProperty(QC_FEEDBACK_ARRAY_PROPERTY);
+    public List<Doc> getDocs() {
+        return (List<Doc>)readProperty(DOCS_PROPERTY);
     }
 
 
-    public void addToWeblinkArray(Weblink obj) {
-        addToManyTarget(WEBLINK_ARRAY_PROPERTY, obj, true);
+    public void addToQcFeedbacks(QcFeedback obj) {
+        addToManyTarget(QC_FEEDBACKS_PROPERTY, obj, true);
     }
-    public void removeFromWeblinkArray(Weblink obj) {
-        removeToManyTarget(WEBLINK_ARRAY_PROPERTY, obj, true);
+    public void removeFromQcFeedbacks(QcFeedback obj) {
+        removeToManyTarget(QC_FEEDBACKS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Weblink> getWeblinkArray() {
-        return (List<Weblink>)readProperty(WEBLINK_ARRAY_PROPERTY);
+    public List<QcFeedback> getQcFeedbacks() {
+        return (List<QcFeedback>)readProperty(QC_FEEDBACKS_PROPERTY);
+    }
+
+
+    public void addToWeblinks(Weblink obj) {
+        addToManyTarget(WEBLINKS_PROPERTY, obj, true);
+    }
+    public void removeFromWeblinks(Weblink obj) {
+        removeToManyTarget(WEBLINKS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Weblink> getWeblinks() {
+        return (List<Weblink>)readProperty(WEBLINKS_PROPERTY);
     }
 
 

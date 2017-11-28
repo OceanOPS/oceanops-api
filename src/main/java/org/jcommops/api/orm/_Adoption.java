@@ -16,6 +16,7 @@ public abstract class _Adoption extends CayenneDataObject {
     public static final String ADOPTER_EMAIL_PROPERTY = "adopterEmail";
     public static final String ADOPTER_NAME_PROPERTY = "adopterName";
     public static final String ADOPTION_DATE_PROPERTY = "adoptionDate";
+    public static final String ID_PROPERTY = "id";
     public static final String IMAGE_ID_PROPERTY = "imageId";
     public static final String PTF_ID_PROPERTY = "ptfId";
     public static final String PTF_NAME_PROPERTY = "ptfName";
@@ -51,6 +52,13 @@ public abstract class _Adoption extends CayenneDataObject {
     }
     public Date getAdoptionDate() {
         return (Date)readProperty(ADOPTION_DATE_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setImageId(Integer imageId) {

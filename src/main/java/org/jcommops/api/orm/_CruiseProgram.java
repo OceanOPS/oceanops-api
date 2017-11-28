@@ -10,12 +10,21 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _CruiseProgram extends CayenneDataObject {
 
+    public static final String CRUISE_ID_PROPERTY = "cruiseId";
     public static final String LEAD_PROPERTY = "lead";
-    public static final String TO_CRUISE_PROPERTY = "toCruise";
-    public static final String TO_PROGRAM_PROPERTY = "toProgram";
+    public static final String PROGRAM_ID_PROPERTY = "programId";
+    public static final String CRUISE_PROPERTY = "cruise";
+    public static final String PROGRAM_PROPERTY = "program";
 
     public static final String CRUISE_ID_PK_COLUMN = "CRUISE_ID";
     public static final String PROGRAM_ID_PK_COLUMN = "PROGRAM_ID";
+
+    public void setCruiseId(Integer cruiseId) {
+        writeProperty(CRUISE_ID_PROPERTY, cruiseId);
+    }
+    public Integer getCruiseId() {
+        return (Integer)readProperty(CRUISE_ID_PROPERTY);
+    }
 
     public void setLead(Integer lead) {
         writeProperty(LEAD_PROPERTY, lead);
@@ -24,21 +33,28 @@ public abstract class _CruiseProgram extends CayenneDataObject {
         return (Integer)readProperty(LEAD_PROPERTY);
     }
 
-    public void setToCruise(Cruise toCruise) {
-        setToOneTarget(TO_CRUISE_PROPERTY, toCruise, true);
+    public void setProgramId(Integer programId) {
+        writeProperty(PROGRAM_ID_PROPERTY, programId);
+    }
+    public Integer getProgramId() {
+        return (Integer)readProperty(PROGRAM_ID_PROPERTY);
     }
 
-    public Cruise getToCruise() {
-        return (Cruise)readProperty(TO_CRUISE_PROPERTY);
+    public void setCruise(Cruise cruise) {
+        setToOneTarget(CRUISE_PROPERTY, cruise, true);
+    }
+
+    public Cruise getCruise() {
+        return (Cruise)readProperty(CRUISE_PROPERTY);
     }
 
 
-    public void setToProgram(Program toProgram) {
-        setToOneTarget(TO_PROGRAM_PROPERTY, toProgram, true);
+    public void setProgram(Program program) {
+        setToOneTarget(PROGRAM_PROPERTY, program, true);
     }
 
-    public Program getToProgram() {
-        return (Program)readProperty(TO_PROGRAM_PROPERTY);
+    public Program getProgram() {
+        return (Program)readProperty(PROGRAM_PROPERTY);
     }
 
 

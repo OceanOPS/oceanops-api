@@ -10,27 +10,43 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _NetworkPtf extends CayenneDataObject {
 
-    public static final String TO_NETWORK_PROPERTY = "toNetwork";
-    public static final String TO_PTF_PROPERTY = "toPtf";
+    public static final String NETWORK_ID_PROPERTY = "networkId";
+    public static final String PTF_ID_PROPERTY = "ptfId";
+    public static final String NETWORK_PROPERTY = "network";
+    public static final String PTF_PROPERTY = "ptf";
 
     public static final String NETWORK_ID_PK_COLUMN = "NETWORK_ID";
     public static final String PTF_ID_PK_COLUMN = "PTF_ID";
 
-    public void setToNetwork(Network toNetwork) {
-        setToOneTarget(TO_NETWORK_PROPERTY, toNetwork, true);
+    public void setNetworkId(Integer networkId) {
+        writeProperty(NETWORK_ID_PROPERTY, networkId);
+    }
+    public Integer getNetworkId() {
+        return (Integer)readProperty(NETWORK_ID_PROPERTY);
     }
 
-    public Network getToNetwork() {
-        return (Network)readProperty(TO_NETWORK_PROPERTY);
+    public void setPtfId(Integer ptfId) {
+        writeProperty(PTF_ID_PROPERTY, ptfId);
+    }
+    public Integer getPtfId() {
+        return (Integer)readProperty(PTF_ID_PROPERTY);
+    }
+
+    public void setNetwork(Network network) {
+        setToOneTarget(NETWORK_PROPERTY, network, true);
+    }
+
+    public Network getNetwork() {
+        return (Network)readProperty(NETWORK_PROPERTY);
     }
 
 
-    public void setToPtf(Ptf toPtf) {
-        setToOneTarget(TO_PTF_PROPERTY, toPtf, true);
+    public void setPtf(Ptf ptf) {
+        setToOneTarget(PTF_PROPERTY, ptf, true);
     }
 
-    public Ptf getToPtf() {
-        return (Ptf)readProperty(TO_PTF_PROPERTY);
+    public Ptf getPtf() {
+        return (Ptf)readProperty(PTF_PROPERTY);
     }
 
 

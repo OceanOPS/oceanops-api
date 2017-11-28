@@ -19,20 +19,22 @@ public abstract class _Image extends CayenneDataObject {
     public static final String DESCRIPTION_PROPERTY = "description";
     public static final String FILENAME_PROPERTY = "filename";
     public static final String HTML_ALT_PROPERTY = "htmlAlt";
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
     public static final String STORY_ID_PROPERTY = "storyId";
     public static final String TAGS_PROPERTY = "tags";
     public static final String URL_PROPERTY = "url";
-    public static final String AGENCY_ARRAY_PROPERTY = "agencyArray";
-    public static final String CONTACT_ARRAY_PROPERTY = "contactArray";
-    public static final String CRUISE_ARRAY_PROPERTY = "cruiseArray";
-    public static final String PTF_MODEL_ARRAY_PROPERTY = "ptfModelArray";
-    public static final String PTF_TYPE_ARRAY_PROPERTY = "ptfTypeArray";
-    public static final String SENSOR_MODEL_ARRAY_PROPERTY = "sensorModelArray";
-    public static final String TO_AGENCY_PROPERTY = "toAgency";
-    public static final String TO_IMAGE_TYPE_PROPERTY = "toImageType";
-    public static final String TO_MASTER_PROG_PROPERTY = "toMasterProg";
-    public static final String TO_PROGRAM_PROPERTY = "toProgram";
+    public static final String AGENCIES_PROPERTY = "agencies";
+    public static final String AGENCY_PROPERTY = "agency";
+    public static final String CONTACTS_PROPERTY = "contacts";
+    public static final String CRUISES_PROPERTY = "cruises";
+    public static final String IMAGE_TYPE_PROPERTY = "imageType";
+    public static final String MASTER_PROG_PROPERTY = "masterProg";
+    public static final String PROGRAM_PROPERTY = "program";
+    public static final String PTF_MODELS_PROPERTY = "ptfModels";
+    public static final String PTF_TYPES_PROPERTY = "ptfTypes";
+    public static final String SENSOR_MODELS_PROPERTY = "sensorModels";
+    public static final String SHIP_PROPERTY = "ship";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -78,6 +80,13 @@ public abstract class _Image extends CayenneDataObject {
         return (String)readProperty(HTML_ALT_PROPERTY);
     }
 
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
+
     public void setName(String name) {
         writeProperty(NAME_PROPERTY, name);
     }
@@ -106,111 +115,120 @@ public abstract class _Image extends CayenneDataObject {
         return (String)readProperty(URL_PROPERTY);
     }
 
-    public void addToAgencyArray(Agency obj) {
-        addToManyTarget(AGENCY_ARRAY_PROPERTY, obj, true);
+    public void addToAgencies(Agency obj) {
+        addToManyTarget(AGENCIES_PROPERTY, obj, true);
     }
-    public void removeFromAgencyArray(Agency obj) {
-        removeToManyTarget(AGENCY_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<Agency> getAgencyArray() {
-        return (List<Agency>)readProperty(AGENCY_ARRAY_PROPERTY);
-    }
-
-
-    public void addToContactArray(Contact obj) {
-        addToManyTarget(CONTACT_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromContactArray(Contact obj) {
-        removeToManyTarget(CONTACT_ARRAY_PROPERTY, obj, true);
+    public void removeFromAgencies(Agency obj) {
+        removeToManyTarget(AGENCIES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Contact> getContactArray() {
-        return (List<Contact>)readProperty(CONTACT_ARRAY_PROPERTY);
+    public List<Agency> getAgencies() {
+        return (List<Agency>)readProperty(AGENCIES_PROPERTY);
     }
 
 
-    public void addToCruiseArray(Cruise obj) {
-        addToManyTarget(CRUISE_ARRAY_PROPERTY, obj, true);
+    public void setAgency(Agency agency) {
+        setToOneTarget(AGENCY_PROPERTY, agency, true);
     }
-    public void removeFromCruiseArray(Cruise obj) {
-        removeToManyTarget(CRUISE_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<Cruise> getCruiseArray() {
-        return (List<Cruise>)readProperty(CRUISE_ARRAY_PROPERTY);
+
+    public Agency getAgency() {
+        return (Agency)readProperty(AGENCY_PROPERTY);
     }
 
 
-    public void addToPtfModelArray(PtfModel obj) {
-        addToManyTarget(PTF_MODEL_ARRAY_PROPERTY, obj, true);
+    public void addToContacts(Contact obj) {
+        addToManyTarget(CONTACTS_PROPERTY, obj, true);
     }
-    public void removeFromPtfModelArray(PtfModel obj) {
-        removeToManyTarget(PTF_MODEL_ARRAY_PROPERTY, obj, true);
+    public void removeFromContacts(Contact obj) {
+        removeToManyTarget(CONTACTS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<PtfModel> getPtfModelArray() {
-        return (List<PtfModel>)readProperty(PTF_MODEL_ARRAY_PROPERTY);
+    public List<Contact> getContacts() {
+        return (List<Contact>)readProperty(CONTACTS_PROPERTY);
     }
 
 
-    public void addToPtfTypeArray(PtfType obj) {
-        addToManyTarget(PTF_TYPE_ARRAY_PROPERTY, obj, true);
+    public void addToCruises(Cruise obj) {
+        addToManyTarget(CRUISES_PROPERTY, obj, true);
     }
-    public void removeFromPtfTypeArray(PtfType obj) {
-        removeToManyTarget(PTF_TYPE_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<PtfType> getPtfTypeArray() {
-        return (List<PtfType>)readProperty(PTF_TYPE_ARRAY_PROPERTY);
-    }
-
-
-    public void addToSensorModelArray(SensorModel obj) {
-        addToManyTarget(SENSOR_MODEL_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromSensorModelArray(SensorModel obj) {
-        removeToManyTarget(SENSOR_MODEL_ARRAY_PROPERTY, obj, true);
+    public void removeFromCruises(Cruise obj) {
+        removeToManyTarget(CRUISES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<SensorModel> getSensorModelArray() {
-        return (List<SensorModel>)readProperty(SENSOR_MODEL_ARRAY_PROPERTY);
+    public List<Cruise> getCruises() {
+        return (List<Cruise>)readProperty(CRUISES_PROPERTY);
     }
 
 
-    public void setToAgency(Agency toAgency) {
-        setToOneTarget(TO_AGENCY_PROPERTY, toAgency, true);
+    public void setImageType(ImageType imageType) {
+        setToOneTarget(IMAGE_TYPE_PROPERTY, imageType, true);
     }
 
-    public Agency getToAgency() {
-        return (Agency)readProperty(TO_AGENCY_PROPERTY);
-    }
-
-
-    public void setToImageType(ImageType toImageType) {
-        setToOneTarget(TO_IMAGE_TYPE_PROPERTY, toImageType, true);
-    }
-
-    public ImageType getToImageType() {
-        return (ImageType)readProperty(TO_IMAGE_TYPE_PROPERTY);
+    public ImageType getImageType() {
+        return (ImageType)readProperty(IMAGE_TYPE_PROPERTY);
     }
 
 
-    public void setToMasterProg(MasterProg toMasterProg) {
-        setToOneTarget(TO_MASTER_PROG_PROPERTY, toMasterProg, true);
+    public void setMasterProg(MasterProg masterProg) {
+        setToOneTarget(MASTER_PROG_PROPERTY, masterProg, true);
     }
 
-    public MasterProg getToMasterProg() {
-        return (MasterProg)readProperty(TO_MASTER_PROG_PROPERTY);
+    public MasterProg getMasterProg() {
+        return (MasterProg)readProperty(MASTER_PROG_PROPERTY);
     }
 
 
-    public void setToProgram(Program toProgram) {
-        setToOneTarget(TO_PROGRAM_PROPERTY, toProgram, true);
+    public void setProgram(Program program) {
+        setToOneTarget(PROGRAM_PROPERTY, program, true);
     }
 
-    public Program getToProgram() {
-        return (Program)readProperty(TO_PROGRAM_PROPERTY);
+    public Program getProgram() {
+        return (Program)readProperty(PROGRAM_PROPERTY);
+    }
+
+
+    public void addToPtfModels(PtfModel obj) {
+        addToManyTarget(PTF_MODELS_PROPERTY, obj, true);
+    }
+    public void removeFromPtfModels(PtfModel obj) {
+        removeToManyTarget(PTF_MODELS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<PtfModel> getPtfModels() {
+        return (List<PtfModel>)readProperty(PTF_MODELS_PROPERTY);
+    }
+
+
+    public void addToPtfTypes(PtfType obj) {
+        addToManyTarget(PTF_TYPES_PROPERTY, obj, true);
+    }
+    public void removeFromPtfTypes(PtfType obj) {
+        removeToManyTarget(PTF_TYPES_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<PtfType> getPtfTypes() {
+        return (List<PtfType>)readProperty(PTF_TYPES_PROPERTY);
+    }
+
+
+    public void addToSensorModels(SensorModel obj) {
+        addToManyTarget(SENSOR_MODELS_PROPERTY, obj, true);
+    }
+    public void removeFromSensorModels(SensorModel obj) {
+        removeToManyTarget(SENSOR_MODELS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<SensorModel> getSensorModels() {
+        return (List<SensorModel>)readProperty(SENSOR_MODELS_PROPERTY);
+    }
+
+
+    public void setShip(Ship ship) {
+        setToOneTarget(SHIP_PROPERTY, ship, true);
+    }
+
+    public Ship getShip() {
+        return (Ship)readProperty(SHIP_PROPERTY);
     }
 
 

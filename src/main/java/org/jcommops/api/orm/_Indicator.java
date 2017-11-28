@@ -16,6 +16,7 @@ public abstract class _Indicator extends CayenneDataObject {
     public static final String CORE_PROPERTY = "core";
     public static final String DESCRIPTION_PROPERTY = "description";
     public static final String EXPLANATION_PROPERTY = "explanation";
+    public static final String ID_PROPERTY = "id";
     public static final String LEGEND_MAX_PROPERTY = "legendMax";
     public static final String LEGEND_MIN_PROPERTY = "legendMin";
     public static final String NAME_PROPERTY = "name";
@@ -23,9 +24,9 @@ public abstract class _Indicator extends CayenneDataObject {
     public static final String RANK_PROPERTY = "rank";
     public static final String TARGET_TEXT_PROPERTY = "targetText";
     public static final String TARGET_VALUE_PROPERTY = "targetValue";
-    public static final String TO_INDICATOR_CATEGORY_PROPERTY = "toIndicatorCategory";
-    public static final String TO_MASTER_PROG_PROPERTY = "toMasterProg";
-    public static final String TO_NETWORK_PROPERTY = "toNetwork";
+    public static final String INDICATOR_CATEGORY_PROPERTY = "indicatorCategory";
+    public static final String MASTER_PROG_PROPERTY = "masterProg";
+    public static final String NETWORK_PROPERTY = "network";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -55,6 +56,13 @@ public abstract class _Indicator extends CayenneDataObject {
     }
     public String getExplanation() {
         return (String)readProperty(EXPLANATION_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setLegendMax(BigDecimal legendMax) {
@@ -106,30 +114,30 @@ public abstract class _Indicator extends CayenneDataObject {
         return (BigDecimal)readProperty(TARGET_VALUE_PROPERTY);
     }
 
-    public void setToIndicatorCategory(IndicatorCategory toIndicatorCategory) {
-        setToOneTarget(TO_INDICATOR_CATEGORY_PROPERTY, toIndicatorCategory, true);
+    public void setIndicatorCategory(IndicatorCategory indicatorCategory) {
+        setToOneTarget(INDICATOR_CATEGORY_PROPERTY, indicatorCategory, true);
     }
 
-    public IndicatorCategory getToIndicatorCategory() {
-        return (IndicatorCategory)readProperty(TO_INDICATOR_CATEGORY_PROPERTY);
-    }
-
-
-    public void setToMasterProg(MasterProg toMasterProg) {
-        setToOneTarget(TO_MASTER_PROG_PROPERTY, toMasterProg, true);
-    }
-
-    public MasterProg getToMasterProg() {
-        return (MasterProg)readProperty(TO_MASTER_PROG_PROPERTY);
+    public IndicatorCategory getIndicatorCategory() {
+        return (IndicatorCategory)readProperty(INDICATOR_CATEGORY_PROPERTY);
     }
 
 
-    public void setToNetwork(Network toNetwork) {
-        setToOneTarget(TO_NETWORK_PROPERTY, toNetwork, true);
+    public void setMasterProg(MasterProg masterProg) {
+        setToOneTarget(MASTER_PROG_PROPERTY, masterProg, true);
     }
 
-    public Network getToNetwork() {
-        return (Network)readProperty(TO_NETWORK_PROPERTY);
+    public MasterProg getMasterProg() {
+        return (MasterProg)readProperty(MASTER_PROG_PROPERTY);
+    }
+
+
+    public void setNetwork(Network network) {
+        setToOneTarget(NETWORK_PROPERTY, network, true);
+    }
+
+    public Network getNetwork() {
+        return (Network)readProperty(NETWORK_PROPERTY);
     }
 
 

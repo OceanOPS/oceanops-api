@@ -34,8 +34,8 @@ public class SensorModelEntity implements Serializable{
 		this.setName(sensorModel.getName());
 		this.setDescription(sensorModel.getDescription());
 		this.sensorTypes = new ArrayList<SensorTypeEntity>();
-    	for(int i = 0; i< sensorModel.getToSensorTypes().size();i++){
-    		this.sensorTypes.add(new SensorTypeEntity(sensorModel.getToSensorTypes().get(i)));
+    	for(int i = 0; i< sensorModel.getSensorTypes().size();i++){
+    		this.sensorTypes.add(new SensorTypeEntity(sensorModel.getSensorTypes().get(i)));
     	}
 	}
 	

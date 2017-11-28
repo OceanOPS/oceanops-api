@@ -15,11 +15,12 @@ public abstract class _Survey extends CayenneDataObject {
 
     public static final String DESCRIPTION_PROPERTY = "description";
     public static final String END_DATE_PROPERTY = "endDate";
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
     public static final String START_DATE_PROPERTY = "startDate";
-    public static final String LINE_SURVEY_ARRAY_PROPERTY = "lineSurveyArray";
-    public static final String TO_MASTER_PROG_PROPERTY = "toMasterProg";
+    public static final String LINE_SURVEYS_PROPERTY = "lineSurveys";
+    public static final String MASTER_PROG_PROPERTY = "masterProg";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -35,6 +36,13 @@ public abstract class _Survey extends CayenneDataObject {
     }
     public Date getEndDate() {
         return (Date)readProperty(END_DATE_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setName(String name) {
@@ -58,24 +66,24 @@ public abstract class _Survey extends CayenneDataObject {
         return (Date)readProperty(START_DATE_PROPERTY);
     }
 
-    public void addToLineSurveyArray(LineSurvey obj) {
-        addToManyTarget(LINE_SURVEY_ARRAY_PROPERTY, obj, true);
+    public void addToLineSurveys(LineSurvey obj) {
+        addToManyTarget(LINE_SURVEYS_PROPERTY, obj, true);
     }
-    public void removeFromLineSurveyArray(LineSurvey obj) {
-        removeToManyTarget(LINE_SURVEY_ARRAY_PROPERTY, obj, true);
+    public void removeFromLineSurveys(LineSurvey obj) {
+        removeToManyTarget(LINE_SURVEYS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<LineSurvey> getLineSurveyArray() {
-        return (List<LineSurvey>)readProperty(LINE_SURVEY_ARRAY_PROPERTY);
+    public List<LineSurvey> getLineSurveys() {
+        return (List<LineSurvey>)readProperty(LINE_SURVEYS_PROPERTY);
     }
 
 
-    public void setToMasterProg(MasterProg toMasterProg) {
-        setToOneTarget(TO_MASTER_PROG_PROPERTY, toMasterProg, true);
+    public void setMasterProg(MasterProg masterProg) {
+        setToOneTarget(MASTER_PROG_PROPERTY, masterProg, true);
     }
 
-    public MasterProg getToMasterProg() {
-        return (MasterProg)readProperty(TO_MASTER_PROG_PROPERTY);
+    public MasterProg getMasterProg() {
+        return (MasterProg)readProperty(MASTER_PROG_PROPERTY);
     }
 
 

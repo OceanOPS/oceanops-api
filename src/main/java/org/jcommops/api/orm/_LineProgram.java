@@ -11,8 +11,10 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _LineProgram extends CayenneDataObject {
 
     public static final String LEAD_PROPERTY = "lead";
-    public static final String TO_LINE_PROPERTY = "toLine";
-    public static final String TO_PROGRAM_PROPERTY = "toProgram";
+    public static final String LINE_ID_PROPERTY = "lineId";
+    public static final String PROGRAM_ID_PROPERTY = "programId";
+    public static final String LINE_PROPERTY = "line";
+    public static final String PROGRAM_PROPERTY = "program";
 
     public static final String LINE_ID_PK_COLUMN = "LINE_ID";
     public static final String PROGRAM_ID_PK_COLUMN = "PROGRAM_ID";
@@ -24,21 +26,35 @@ public abstract class _LineProgram extends CayenneDataObject {
         return (Integer)readProperty(LEAD_PROPERTY);
     }
 
-    public void setToLine(Line toLine) {
-        setToOneTarget(TO_LINE_PROPERTY, toLine, true);
+    public void setLineId(Integer lineId) {
+        writeProperty(LINE_ID_PROPERTY, lineId);
+    }
+    public Integer getLineId() {
+        return (Integer)readProperty(LINE_ID_PROPERTY);
     }
 
-    public Line getToLine() {
-        return (Line)readProperty(TO_LINE_PROPERTY);
+    public void setProgramId(Integer programId) {
+        writeProperty(PROGRAM_ID_PROPERTY, programId);
+    }
+    public Integer getProgramId() {
+        return (Integer)readProperty(PROGRAM_ID_PROPERTY);
+    }
+
+    public void setLine(Line line) {
+        setToOneTarget(LINE_PROPERTY, line, true);
+    }
+
+    public Line getLine() {
+        return (Line)readProperty(LINE_PROPERTY);
     }
 
 
-    public void setToProgram(Program toProgram) {
-        setToOneTarget(TO_PROGRAM_PROPERTY, toProgram, true);
+    public void setProgram(Program program) {
+        setToOneTarget(PROGRAM_PROPERTY, program, true);
     }
 
-    public Program getToProgram() {
-        return (Program)readProperty(TO_PROGRAM_PROPERTY);
+    public Program getProgram() {
+        return (Program)readProperty(PROGRAM_PROPERTY);
     }
 
 

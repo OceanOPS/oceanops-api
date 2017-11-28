@@ -1,5 +1,7 @@
 package org.jcommops.api.orm;
 
+import java.util.Date;
+
 import org.apache.cayenne.CayenneDataObject;
 
 /**
@@ -10,10 +12,43 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _ShipLoc extends CayenneDataObject {
 
+    public static final String ID_PROPERTY = "id";
+    public static final String LOC_DATE_PROPERTY = "locDate";
+    public static final String LOC_QUALITY_PROPERTY = "locQuality";
+    public static final String LOC_SYSTEM_ID_PROPERTY = "locSystemId";
     public static final String SHAPE_PROPERTY = "shape";
-    public static final String TO_SHIP_PROPERTY = "toShip";
+    public static final String SHAPE_IMG_PROPERTY = "shapeImg";
+    public static final String SHIP_PROPERTY = "ship";
 
     public static final String ID_PK_COLUMN = "ID";
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
+
+    public void setLocDate(Date locDate) {
+        writeProperty(LOC_DATE_PROPERTY, locDate);
+    }
+    public Date getLocDate() {
+        return (Date)readProperty(LOC_DATE_PROPERTY);
+    }
+
+    public void setLocQuality(Integer locQuality) {
+        writeProperty(LOC_QUALITY_PROPERTY, locQuality);
+    }
+    public Integer getLocQuality() {
+        return (Integer)readProperty(LOC_QUALITY_PROPERTY);
+    }
+
+    public void setLocSystemId(Integer locSystemId) {
+        writeProperty(LOC_SYSTEM_ID_PROPERTY, locSystemId);
+    }
+    public Integer getLocSystemId() {
+        return (Integer)readProperty(LOC_SYSTEM_ID_PROPERTY);
+    }
 
     public void setShape(byte[] shape) {
         writeProperty(SHAPE_PROPERTY, shape);
@@ -22,12 +57,19 @@ public abstract class _ShipLoc extends CayenneDataObject {
         return (byte[])readProperty(SHAPE_PROPERTY);
     }
 
-    public void setToShip(Ship toShip) {
-        setToOneTarget(TO_SHIP_PROPERTY, toShip, true);
+    public void setShapeImg(byte[] shapeImg) {
+        writeProperty(SHAPE_IMG_PROPERTY, shapeImg);
+    }
+    public byte[] getShapeImg() {
+        return (byte[])readProperty(SHAPE_IMG_PROPERTY);
     }
 
-    public Ship getToShip() {
-        return (Ship)readProperty(TO_SHIP_PROPERTY);
+    public void setShip(Ship ship) {
+        setToOneTarget(SHIP_PROPERTY, ship, true);
+    }
+
+    public Ship getShip() {
+        return (Ship)readProperty(SHIP_PROPERTY);
     }
 
 

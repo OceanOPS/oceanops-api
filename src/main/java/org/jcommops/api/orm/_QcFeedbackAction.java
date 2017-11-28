@@ -13,9 +13,10 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _QcFeedbackAction extends CayenneDataObject {
 
     public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
-    public static final String QC_FEEDBACK_ARRAY_PROPERTY = "qcFeedbackArray";
+    public static final String QC_FEEDBACKS_PROPERTY = "qcFeedbacks";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -24,6 +25,13 @@ public abstract class _QcFeedbackAction extends CayenneDataObject {
     }
     public String getDescription() {
         return (String)readProperty(DESCRIPTION_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setName(String name) {
@@ -40,15 +48,15 @@ public abstract class _QcFeedbackAction extends CayenneDataObject {
         return (String)readProperty(NAME_SHORT_PROPERTY);
     }
 
-    public void addToQcFeedbackArray(QcFeedback obj) {
-        addToManyTarget(QC_FEEDBACK_ARRAY_PROPERTY, obj, true);
+    public void addToQcFeedbacks(QcFeedback obj) {
+        addToManyTarget(QC_FEEDBACKS_PROPERTY, obj, true);
     }
-    public void removeFromQcFeedbackArray(QcFeedback obj) {
-        removeToManyTarget(QC_FEEDBACK_ARRAY_PROPERTY, obj, true);
+    public void removeFromQcFeedbacks(QcFeedback obj) {
+        removeToManyTarget(QC_FEEDBACKS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<QcFeedback> getQcFeedbackArray() {
-        return (List<QcFeedback>)readProperty(QC_FEEDBACK_ARRAY_PROPERTY);
+    public List<QcFeedback> getQcFeedbacks() {
+        return (List<QcFeedback>)readProperty(QC_FEEDBACKS_PROPERTY);
     }
 
 

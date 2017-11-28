@@ -40,29 +40,29 @@ public class ProgramEntity implements Serializable{
     	this.setName(program.getName());
     	this.setNameShort(program.getNameShort());
     	this.setDescription(program.getDescription());
-    	this.setMasterProgram(new MasterProgramEntity(program.getToMasterProg()));
+    	this.setMasterProgram(new MasterProgramEntity(program.getMasterProg()));
     	this.agencies = new ArrayList<AgencyEntity>();
-    	for(int i = 0; i<program.getToAgencies().size();i++){
-    		this.agencies.add(new AgencyEntity(program.getToAgencies().get(i)));
+    	for(int i = 0; i<program.getAgencies().size();i++){
+    		this.agencies.add(new AgencyEntity(program.getAgencies().get(i)));
     	}
     	this.contacts = new ArrayList<ContactEntity>();
     	
     	ArrayList<Integer> alreadyAddedContacts = new ArrayList<Integer>();
-    	for(int i = 0; i<program.getProgramContactArray().size();i++){
-    		if(!alreadyAddedContacts.contains(program.getProgramContactArray().get(i).getContactId())){
-    			alreadyAddedContacts.add(program.getProgramContactArray().get(i).getContactId());
+    	for(int i = 0; i<program.getProgramContacts().size();i++){
+    		if(!alreadyAddedContacts.contains(program.getProgramContacts().get(i).getContactId())){
+    			alreadyAddedContacts.add(program.getProgramContacts().get(i).getContactId());
     			
     			ArrayList<Role> roles = new ArrayList<>();
-    			for(int j = 0; j<program.getProgramContactArray().size();j++){
-    				if(program.getProgramContactArray().get(i).getContactId() == program.getProgramContactArray().get(j).getContactId()){
-    					roles.add(program.getProgramContactArray().get(j).getToRole());
+    			for(int j = 0; j<program.getProgramContacts().size();j++){
+    				if(program.getProgramContacts().get(i).getContactId() == program.getProgramContacts().get(j).getContactId()){
+    					roles.add(program.getProgramContacts().get(j).getRole());
     				}
     			}
-        		this.contacts.add(new ContactEntity(program.getProgramContactArray().get(i).getToContact(), roles));
+        		this.contacts.add(new ContactEntity(program.getProgramContacts().get(i).getContact(), roles));
     		}
     	}
-    	if(program.getToCountry() != null)
-    		this.setCountry(new CountryEntity(program.getToCountry()));
+    	if(program.getCountry() != null)
+    		this.setCountry(new CountryEntity(program.getCountry()));
     }
 
 
