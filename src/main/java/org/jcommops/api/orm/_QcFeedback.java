@@ -20,6 +20,7 @@ public abstract class _QcFeedback extends CayenneDataObject {
     public static final String DONE_PROPERTY = "done";
     public static final String EMAIL_PROPERTY = "email";
     public static final String END_DATE_PROPERTY = "endDate";
+    public static final String ID_PROPERTY = "id";
     public static final String MESSAGE_PROPERTY = "message";
     public static final String ORIGIN_PROPERTY = "origin";
     public static final String RECIPIENTS_PROPERTY = "recipients";
@@ -27,20 +28,20 @@ public abstract class _QcFeedback extends CayenneDataObject {
     public static final String START_DATE_PROPERTY = "startDate";
     public static final String SUBJECT_PROPERTY = "subject";
     public static final String WMO_PROPERTY = "wmo";
-    public static final String QC_FEEDBACK_OBS_ARRAY_PROPERTY = "qcFeedbackObsArray";
-    public static final String QC_FEEDBACK_VARIABLE_ARRAY_PROPERTY = "qcFeedbackVariableArray";
-    public static final String TO_AGENCY_PROPERTY = "toAgency";
-    public static final String TO_CONTACT_PROPERTY = "toContact";
-    public static final String TO_CONTACT1_PROPERTY = "toContact1";
-    public static final String TO_GTS_CCCC_PROPERTY = "toGtsCccc";
-    public static final String TO_GTS_HEADER_PROPERTY = "toGtsHeader";
-    public static final String TO_PTF_PROPERTY = "toPtf";
-    public static final String TO_QC_FEEDBACK_ACTION_PROPERTY = "toQcFeedbackAction";
-    public static final String TO_QC_FEEDBACK_ERROR_TYPE_PROPERTY = "toQcFeedbackErrorType";
-    public static final String TO_QC_FEEDBACK_TYPE_PROPERTY = "toQcFeedbackType";
-    public static final String TO_TOPIC_PROPERTY = "toTopic";
-    public static final String TO_VARIABLE_PROPERTY = "toVariable";
-    public static final String TO_WEBLINK_PROPERTY = "toWeblink";
+    public static final String AGENCY_PROPERTY = "agency";
+    public static final String ANSWER_CONTACT_PROPERTY = "answerContact";
+    public static final String CONTACT_PROPERTY = "contact";
+    public static final String GTS_CCCC_PROPERTY = "gtsCccc";
+    public static final String GTS_HEADER_PROPERTY = "gtsHeader";
+    public static final String PTF_PROPERTY = "ptf";
+    public static final String QC_FEEDBACK_ACTION_PROPERTY = "qcFeedbackAction";
+    public static final String QC_FEEDBACK_ERROR_TYPE_PROPERTY = "qcFeedbackErrorType";
+    public static final String QC_FEEDBACK_OBSS_PROPERTY = "qcFeedbackObss";
+    public static final String QC_FEEDBACK_TYPE_PROPERTY = "qcFeedbackType";
+    public static final String QC_FEEDBACK_VARIABLES_PROPERTY = "qcFeedbackVariables";
+    public static final String TOPIC_PROPERTY = "topic";
+    public static final String VARIABLE_PROPERTY = "variable";
+    public static final String WEBLINK_PROPERTY = "weblink";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -84,6 +85,13 @@ public abstract class _QcFeedback extends CayenneDataObject {
     }
     public Date getEndDate() {
         return (Date)readProperty(END_DATE_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setMessage(String message) {
@@ -135,135 +143,135 @@ public abstract class _QcFeedback extends CayenneDataObject {
         return (String)readProperty(WMO_PROPERTY);
     }
 
-    public void addToQcFeedbackObsArray(QcFeedbackObs obj) {
-        addToManyTarget(QC_FEEDBACK_OBS_ARRAY_PROPERTY, obj, true);
+    public void setAgency(Agency agency) {
+        setToOneTarget(AGENCY_PROPERTY, agency, true);
     }
-    public void removeFromQcFeedbackObsArray(QcFeedbackObs obj) {
-        removeToManyTarget(QC_FEEDBACK_OBS_ARRAY_PROPERTY, obj, true);
+
+    public Agency getAgency() {
+        return (Agency)readProperty(AGENCY_PROPERTY);
+    }
+
+
+    public void setAnswerContact(Contact answerContact) {
+        setToOneTarget(ANSWER_CONTACT_PROPERTY, answerContact, true);
+    }
+
+    public Contact getAnswerContact() {
+        return (Contact)readProperty(ANSWER_CONTACT_PROPERTY);
+    }
+
+
+    public void setContact(Contact contact) {
+        setToOneTarget(CONTACT_PROPERTY, contact, true);
+    }
+
+    public Contact getContact() {
+        return (Contact)readProperty(CONTACT_PROPERTY);
+    }
+
+
+    public void setGtsCccc(GtsCccc gtsCccc) {
+        setToOneTarget(GTS_CCCC_PROPERTY, gtsCccc, true);
+    }
+
+    public GtsCccc getGtsCccc() {
+        return (GtsCccc)readProperty(GTS_CCCC_PROPERTY);
+    }
+
+
+    public void setGtsHeader(GtsHeader gtsHeader) {
+        setToOneTarget(GTS_HEADER_PROPERTY, gtsHeader, true);
+    }
+
+    public GtsHeader getGtsHeader() {
+        return (GtsHeader)readProperty(GTS_HEADER_PROPERTY);
+    }
+
+
+    public void setPtf(Ptf ptf) {
+        setToOneTarget(PTF_PROPERTY, ptf, true);
+    }
+
+    public Ptf getPtf() {
+        return (Ptf)readProperty(PTF_PROPERTY);
+    }
+
+
+    public void setQcFeedbackAction(QcFeedbackAction qcFeedbackAction) {
+        setToOneTarget(QC_FEEDBACK_ACTION_PROPERTY, qcFeedbackAction, true);
+    }
+
+    public QcFeedbackAction getQcFeedbackAction() {
+        return (QcFeedbackAction)readProperty(QC_FEEDBACK_ACTION_PROPERTY);
+    }
+
+
+    public void setQcFeedbackErrorType(QcFeedbackErrorType qcFeedbackErrorType) {
+        setToOneTarget(QC_FEEDBACK_ERROR_TYPE_PROPERTY, qcFeedbackErrorType, true);
+    }
+
+    public QcFeedbackErrorType getQcFeedbackErrorType() {
+        return (QcFeedbackErrorType)readProperty(QC_FEEDBACK_ERROR_TYPE_PROPERTY);
+    }
+
+
+    public void addToQcFeedbackObss(QcFeedbackObs obj) {
+        addToManyTarget(QC_FEEDBACK_OBSS_PROPERTY, obj, true);
+    }
+    public void removeFromQcFeedbackObss(QcFeedbackObs obj) {
+        removeToManyTarget(QC_FEEDBACK_OBSS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<QcFeedbackObs> getQcFeedbackObsArray() {
-        return (List<QcFeedbackObs>)readProperty(QC_FEEDBACK_OBS_ARRAY_PROPERTY);
+    public List<QcFeedbackObs> getQcFeedbackObss() {
+        return (List<QcFeedbackObs>)readProperty(QC_FEEDBACK_OBSS_PROPERTY);
     }
 
 
-    public void addToQcFeedbackVariableArray(QcFeedbackVariable obj) {
-        addToManyTarget(QC_FEEDBACK_VARIABLE_ARRAY_PROPERTY, obj, true);
+    public void setQcFeedbackType(QcFeedbackType qcFeedbackType) {
+        setToOneTarget(QC_FEEDBACK_TYPE_PROPERTY, qcFeedbackType, true);
     }
-    public void removeFromQcFeedbackVariableArray(QcFeedbackVariable obj) {
-        removeToManyTarget(QC_FEEDBACK_VARIABLE_ARRAY_PROPERTY, obj, true);
+
+    public QcFeedbackType getQcFeedbackType() {
+        return (QcFeedbackType)readProperty(QC_FEEDBACK_TYPE_PROPERTY);
+    }
+
+
+    public void addToQcFeedbackVariables(QcFeedbackVariable obj) {
+        addToManyTarget(QC_FEEDBACK_VARIABLES_PROPERTY, obj, true);
+    }
+    public void removeFromQcFeedbackVariables(QcFeedbackVariable obj) {
+        removeToManyTarget(QC_FEEDBACK_VARIABLES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<QcFeedbackVariable> getQcFeedbackVariableArray() {
-        return (List<QcFeedbackVariable>)readProperty(QC_FEEDBACK_VARIABLE_ARRAY_PROPERTY);
+    public List<QcFeedbackVariable> getQcFeedbackVariables() {
+        return (List<QcFeedbackVariable>)readProperty(QC_FEEDBACK_VARIABLES_PROPERTY);
     }
 
 
-    public void setToAgency(Agency toAgency) {
-        setToOneTarget(TO_AGENCY_PROPERTY, toAgency, true);
+    public void setTopic(Topic topic) {
+        setToOneTarget(TOPIC_PROPERTY, topic, true);
     }
 
-    public Agency getToAgency() {
-        return (Agency)readProperty(TO_AGENCY_PROPERTY);
-    }
-
-
-    public void setToContact(Contact toContact) {
-        setToOneTarget(TO_CONTACT_PROPERTY, toContact, true);
-    }
-
-    public Contact getToContact() {
-        return (Contact)readProperty(TO_CONTACT_PROPERTY);
+    public Topic getTopic() {
+        return (Topic)readProperty(TOPIC_PROPERTY);
     }
 
 
-    public void setToContact1(Contact toContact1) {
-        setToOneTarget(TO_CONTACT1_PROPERTY, toContact1, true);
+    public void setVariable(Variable variable) {
+        setToOneTarget(VARIABLE_PROPERTY, variable, true);
     }
 
-    public Contact getToContact1() {
-        return (Contact)readProperty(TO_CONTACT1_PROPERTY);
-    }
-
-
-    public void setToGtsCccc(GtsCccc toGtsCccc) {
-        setToOneTarget(TO_GTS_CCCC_PROPERTY, toGtsCccc, true);
-    }
-
-    public GtsCccc getToGtsCccc() {
-        return (GtsCccc)readProperty(TO_GTS_CCCC_PROPERTY);
+    public Variable getVariable() {
+        return (Variable)readProperty(VARIABLE_PROPERTY);
     }
 
 
-    public void setToGtsHeader(GtsHeader toGtsHeader) {
-        setToOneTarget(TO_GTS_HEADER_PROPERTY, toGtsHeader, true);
+    public void setWeblink(Weblink weblink) {
+        setToOneTarget(WEBLINK_PROPERTY, weblink, true);
     }
 
-    public GtsHeader getToGtsHeader() {
-        return (GtsHeader)readProperty(TO_GTS_HEADER_PROPERTY);
-    }
-
-
-    public void setToPtf(Ptf toPtf) {
-        setToOneTarget(TO_PTF_PROPERTY, toPtf, true);
-    }
-
-    public Ptf getToPtf() {
-        return (Ptf)readProperty(TO_PTF_PROPERTY);
-    }
-
-
-    public void setToQcFeedbackAction(QcFeedbackAction toQcFeedbackAction) {
-        setToOneTarget(TO_QC_FEEDBACK_ACTION_PROPERTY, toQcFeedbackAction, true);
-    }
-
-    public QcFeedbackAction getToQcFeedbackAction() {
-        return (QcFeedbackAction)readProperty(TO_QC_FEEDBACK_ACTION_PROPERTY);
-    }
-
-
-    public void setToQcFeedbackErrorType(QcFeedbackErrorType toQcFeedbackErrorType) {
-        setToOneTarget(TO_QC_FEEDBACK_ERROR_TYPE_PROPERTY, toQcFeedbackErrorType, true);
-    }
-
-    public QcFeedbackErrorType getToQcFeedbackErrorType() {
-        return (QcFeedbackErrorType)readProperty(TO_QC_FEEDBACK_ERROR_TYPE_PROPERTY);
-    }
-
-
-    public void setToQcFeedbackType(QcFeedbackType toQcFeedbackType) {
-        setToOneTarget(TO_QC_FEEDBACK_TYPE_PROPERTY, toQcFeedbackType, true);
-    }
-
-    public QcFeedbackType getToQcFeedbackType() {
-        return (QcFeedbackType)readProperty(TO_QC_FEEDBACK_TYPE_PROPERTY);
-    }
-
-
-    public void setToTopic(Topic toTopic) {
-        setToOneTarget(TO_TOPIC_PROPERTY, toTopic, true);
-    }
-
-    public Topic getToTopic() {
-        return (Topic)readProperty(TO_TOPIC_PROPERTY);
-    }
-
-
-    public void setToVariable(Variable toVariable) {
-        setToOneTarget(TO_VARIABLE_PROPERTY, toVariable, true);
-    }
-
-    public Variable getToVariable() {
-        return (Variable)readProperty(TO_VARIABLE_PROPERTY);
-    }
-
-
-    public void setToWeblink(Weblink toWeblink) {
-        setToOneTarget(TO_WEBLINK_PROPERTY, toWeblink, true);
-    }
-
-    public Weblink getToWeblink() {
-        return (Weblink)readProperty(TO_WEBLINK_PROPERTY);
+    public Weblink getWeblink() {
+        return (Weblink)readProperty(WEBLINK_PROPERTY);
     }
 
 

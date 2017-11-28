@@ -26,47 +26,56 @@ public abstract class _Ptf extends CayenneDataObject {
     public static final String E_NOTIFICATION_DATE_PROPERTY = "eNotificationDate";
     public static final String ENDING_DATE_PROPERTY = "endingDate";
     public static final String ICED_OVER_PROPERTY = "icedOver";
+    public static final String ID_PROPERTY = "id";
     public static final String INSERT_DATE_PROPERTY = "insertDate";
     public static final String LAST_UPDATE_PROPERTY = "lastUpdate";
     public static final String METADATA_AVAILABLE_PROPERTY = "metadataAvailable";
+    public static final String NAME_PROPERTY = "name";
     public static final String NOK_REASON_PROPERTY = "nokReason";
     public static final String REF_PROPERTY = "ref";
     public static final String REF_PARENT_PROPERTY = "refParent";
-    public static final String TRACKING_SYSTEM_ID_PROPERTY = "trackingSystemId";
     public static final String UPDATE_DATE_PROPERTY = "updateDate";
     public static final String VALIDATED_PROPERTY = "validated";
-    public static final String AGENCY_PTF_ARRAY_PROPERTY = "agencyPtfArray";
-    public static final String DOC_ARRAY_PROPERTY = "docArray";
-    public static final String MZMS_PTF_COUNTRY_ARRAY_PROPERTY = "mzmsPtfCountryArray";
-    public static final String TO_NETWORKS_PROPERTY = "toNetworks";
-    public static final String OBS_ARRAY_PROPERTY = "obsArray";
-    public static final String PTF_CONFIG_ARRAY_PROPERTY = "ptfConfigArray";
-    public static final String PTF_CRUISE_ARRAY_PROPERTY = "ptfCruiseArray";
-    public static final String PTF_LOC_ARRAY_PROPERTY = "ptfLocArray";
-    public static final String PTF_LOC_STATUS_ARRAY_PROPERTY = "ptfLocStatusArray";
-    public static final String PTF_SENSOR_MODEL_ARRAY_PROPERTY = "ptfSensorModelArray";
-    public static final String TO_VARIABLES_PROPERTY = "toVariables";
-    public static final String QC_FEEDBACK_ARRAY_PROPERTY = "qcFeedbackArray";
-    public static final String SERVICE_ARRAY_PROPERTY = "serviceArray";
-    public static final String SITE_PTF_ARRAY_PROPERTY = "sitePtfArray";
-    public static final String TO_DATA_STATUS_PROPERTY = "toDataStatus";
-    public static final String TO_ENDING_CAUSE_PROPERTY = "toEndingCause";
-    public static final String TO_OBS_PROPERTY = "toObs";
-    public static final String TO_PROGRAM_PROPERTY = "toProgram";
-    public static final String TO_PTF_DEPLOYMENT_PROPERTY = "toPtfDeployment";
-    public static final String TO_PTF_HARDWARE_PROPERTY = "toPtfHardware";
-    public static final String TO_PTF_IDENTIFIERS_PROPERTY = "toPtfIdentifiers";
-    public static final String TO_PTF_LOC_PROPERTY = "toPtfLoc";
-    public static final String TO_PTF_MODEL_PROPERTY = "toPtfModel";
-    public static final String TO_PTF_STATUS_PROPERTY = "toPtfStatus";
-    public static final String TO_RETRIEVAL_PROPERTY = "toRetrieval";
-    public static final String TO_SITE_PROPERTY = "toSite";
-    public static final String TO_TELECOM_PROPERTY = "toTelecom";
-    public static final String TO_TELECOM1_PROPERTY = "toTelecom1";
-    public static final String TO_TRACKING_SYSTEM_PROPERTY = "toTrackingSystem";
-    public static final String WEBLINK_ARRAY_PROPERTY = "weblinkArray";
-    public static final String TO_WEBLINKS_PROPERTY = "toWeblinks";
-    public static final String WMO_ARRAY_PROPERTY = "wmoArray";
+    public static final String AGENCY_PTFS_PROPERTY = "agencyPtfs";
+    public static final String BACKUP_TELECOM_PROPERTY = "backupTelecom";
+    public static final String BACKUP_TRACKING_SYSTEM_PROPERTY = "backupTrackingSystem";
+    public static final String DATA_STATUS_PROPERTY = "dataStatus";
+    public static final String DOCS_PROPERTY = "docs";
+    public static final String ENDING_CAUSE_PROPERTY = "endingCause";
+    public static final String LAST_LOC_PROPERTY = "lastLoc";
+    public static final String LAST_OBS_PROPERTY = "lastObs";
+    public static final String MZMS_PTF_COUNTRIES_PROPERTY = "mzmsPtfCountries";
+    public static final String NETWORK_PTFS_PROPERTY = "networkPtfs";
+    public static final String OBSS_PROPERTY = "obss";
+    public static final String PROGRAM_PROPERTY = "program";
+    public static final String PTF_AUTOMATION_PROPERTY = "ptfAutomation";
+    public static final String PTF_CATEGORIES_PROPERTY = "ptfCategories";
+    public static final String PTF_CONFIGS_PROPERTY = "ptfConfigs";
+    public static final String PTF_CRUISES_PROPERTY = "ptfCruises";
+    public static final String PTF_DEPL_PROPERTY = "ptfDepl";
+    public static final String PTF_HARDWARE_PROPERTY = "ptfHardware";
+    public static final String PTF_IDENTIFIERS_PROPERTY = "ptfIdentifiers";
+    public static final String PTF_INSPECTION_PROPERTY = "ptfInspection";
+    public static final String PTF_LOC_STATUSES_PROPERTY = "ptfLocStatuses";
+    public static final String PTF_LOCS_PROPERTY = "ptfLocs";
+    public static final String PTF_MODEL_PROPERTY = "ptfModel";
+    public static final String PTF_SENSOR_MODELS_PROPERTY = "ptfSensorModels";
+    public static final String PTF_SOFTWARE_PROPERTY = "ptfSoftware";
+    public static final String PTF_STATUS_PROPERTY = "ptfStatus";
+    public static final String PTF_VARIABLE_SUBS_PROPERTY = "ptfVariableSubs";
+    public static final String PTF_VARIABLES_PROPERTY = "ptfVariables";
+    public static final String QC_FEEDBACKS_PROPERTY = "qcFeedbacks";
+    public static final String RETRIEVAL_PROPERTY = "retrieval";
+    public static final String SERVICES_PROPERTY = "services";
+    public static final String SITE_PROPERTY = "site";
+    public static final String SITE_PTFS_PROPERTY = "sitePtfs";
+    public static final String TELECOM_PROPERTY = "telecom";
+    public static final String TRACKING_SYSTEM_PROPERTY = "trackingSystem";
+    public static final String VARIABLES_PROPERTY = "variables";
+    public static final String WEB_FREQUENTATIONS_PROPERTY = "webFrequentations";
+    public static final String WEBLINK_PTFS_PROPERTY = "weblinkPtfs";
+    public static final String WEBLINKS_PROPERTY = "weblinks";
+    public static final String WMOES_PROPERTY = "wmoes";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -161,6 +170,13 @@ public abstract class _Ptf extends CayenneDataObject {
         return (Integer)readProperty(ICED_OVER_PROPERTY);
     }
 
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
+
     public void setInsertDate(Date insertDate) {
         writeProperty(INSERT_DATE_PROPERTY, insertDate);
     }
@@ -180,6 +196,13 @@ public abstract class _Ptf extends CayenneDataObject {
     }
     public Integer getMetadataAvailable() {
         return (Integer)readProperty(METADATA_AVAILABLE_PROPERTY);
+    }
+
+    public void setName(String name) {
+        writeProperty(NAME_PROPERTY, name);
+    }
+    public String getName() {
+        return (String)readProperty(NAME_PROPERTY);
     }
 
     public void setNokReason(String nokReason) {
@@ -203,13 +226,6 @@ public abstract class _Ptf extends CayenneDataObject {
         return (String)readProperty(REF_PARENT_PROPERTY);
     }
 
-    public void setTrackingSystemId(Integer trackingSystemId) {
-        writeProperty(TRACKING_SYSTEM_ID_PROPERTY, trackingSystemId);
-    }
-    public Integer getTrackingSystemId() {
-        return (Integer)readProperty(TRACKING_SYSTEM_ID_PROPERTY);
-    }
-
     public void setUpdateDate(Date updateDate) {
         writeProperty(UPDATE_DATE_PROPERTY, updateDate);
     }
@@ -224,342 +240,426 @@ public abstract class _Ptf extends CayenneDataObject {
         return (Integer)readProperty(VALIDATED_PROPERTY);
     }
 
-    public void addToAgencyPtfArray(AgencyPtf obj) {
-        addToManyTarget(AGENCY_PTF_ARRAY_PROPERTY, obj, true);
+    public void addToAgencyPtfs(AgencyPtf obj) {
+        addToManyTarget(AGENCY_PTFS_PROPERTY, obj, true);
     }
-    public void removeFromAgencyPtfArray(AgencyPtf obj) {
-        removeToManyTarget(AGENCY_PTF_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<AgencyPtf> getAgencyPtfArray() {
-        return (List<AgencyPtf>)readProperty(AGENCY_PTF_ARRAY_PROPERTY);
-    }
-
-
-    public void addToDocArray(Doc obj) {
-        addToManyTarget(DOC_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromDocArray(Doc obj) {
-        removeToManyTarget(DOC_ARRAY_PROPERTY, obj, true);
+    public void removeFromAgencyPtfs(AgencyPtf obj) {
+        removeToManyTarget(AGENCY_PTFS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Doc> getDocArray() {
-        return (List<Doc>)readProperty(DOC_ARRAY_PROPERTY);
+    public List<AgencyPtf> getAgencyPtfs() {
+        return (List<AgencyPtf>)readProperty(AGENCY_PTFS_PROPERTY);
     }
 
 
-    public void addToMzmsPtfCountryArray(MzmsPtfCountry obj) {
-        addToManyTarget(MZMS_PTF_COUNTRY_ARRAY_PROPERTY, obj, true);
+    public void setBackupTelecom(Telecom backupTelecom) {
+        setToOneTarget(BACKUP_TELECOM_PROPERTY, backupTelecom, true);
     }
-    public void removeFromMzmsPtfCountryArray(MzmsPtfCountry obj) {
-        removeToManyTarget(MZMS_PTF_COUNTRY_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<MzmsPtfCountry> getMzmsPtfCountryArray() {
-        return (List<MzmsPtfCountry>)readProperty(MZMS_PTF_COUNTRY_ARRAY_PROPERTY);
+
+    public Telecom getBackupTelecom() {
+        return (Telecom)readProperty(BACKUP_TELECOM_PROPERTY);
     }
 
 
-    public void addToToNetworks(Network obj) {
-        addToManyTarget(TO_NETWORKS_PROPERTY, obj, true);
+    public void setBackupTrackingSystem(LocSystem backupTrackingSystem) {
+        setToOneTarget(BACKUP_TRACKING_SYSTEM_PROPERTY, backupTrackingSystem, true);
     }
-    public void removeFromToNetworks(Network obj) {
-        removeToManyTarget(TO_NETWORKS_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<Network> getToNetworks() {
-        return (List<Network>)readProperty(TO_NETWORKS_PROPERTY);
+
+    public LocSystem getBackupTrackingSystem() {
+        return (LocSystem)readProperty(BACKUP_TRACKING_SYSTEM_PROPERTY);
     }
 
 
-    public void addToObsArray(Obs obj) {
-        addToManyTarget(OBS_ARRAY_PROPERTY, obj, true);
+    public void setDataStatus(DataStatus dataStatus) {
+        setToOneTarget(DATA_STATUS_PROPERTY, dataStatus, true);
     }
-    public void removeFromObsArray(Obs obj) {
-        removeToManyTarget(OBS_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<Obs> getObsArray() {
-        return (List<Obs>)readProperty(OBS_ARRAY_PROPERTY);
+
+    public DataStatus getDataStatus() {
+        return (DataStatus)readProperty(DATA_STATUS_PROPERTY);
     }
 
 
-    public void addToPtfConfigArray(PtfConfig obj) {
-        addToManyTarget(PTF_CONFIG_ARRAY_PROPERTY, obj, true);
+    public void addToDocs(Doc obj) {
+        addToManyTarget(DOCS_PROPERTY, obj, true);
     }
-    public void removeFromPtfConfigArray(PtfConfig obj) {
-        removeToManyTarget(PTF_CONFIG_ARRAY_PROPERTY, obj, true);
+    public void removeFromDocs(Doc obj) {
+        removeToManyTarget(DOCS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<PtfConfig> getPtfConfigArray() {
-        return (List<PtfConfig>)readProperty(PTF_CONFIG_ARRAY_PROPERTY);
+    public List<Doc> getDocs() {
+        return (List<Doc>)readProperty(DOCS_PROPERTY);
     }
 
 
-    public void addToPtfCruiseArray(PtfCruise obj) {
-        addToManyTarget(PTF_CRUISE_ARRAY_PROPERTY, obj, true);
+    public void setEndingCause(EndingCause endingCause) {
+        setToOneTarget(ENDING_CAUSE_PROPERTY, endingCause, true);
     }
-    public void removeFromPtfCruiseArray(PtfCruise obj) {
-        removeToManyTarget(PTF_CRUISE_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<PtfCruise> getPtfCruiseArray() {
-        return (List<PtfCruise>)readProperty(PTF_CRUISE_ARRAY_PROPERTY);
+
+    public EndingCause getEndingCause() {
+        return (EndingCause)readProperty(ENDING_CAUSE_PROPERTY);
     }
 
 
-    public void addToPtfLocArray(PtfLoc obj) {
-        addToManyTarget(PTF_LOC_ARRAY_PROPERTY, obj, true);
+    public void setLastLoc(PtfLoc lastLoc) {
+        setToOneTarget(LAST_LOC_PROPERTY, lastLoc, true);
     }
-    public void removeFromPtfLocArray(PtfLoc obj) {
-        removeToManyTarget(PTF_LOC_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<PtfLoc> getPtfLocArray() {
-        return (List<PtfLoc>)readProperty(PTF_LOC_ARRAY_PROPERTY);
+
+    public PtfLoc getLastLoc() {
+        return (PtfLoc)readProperty(LAST_LOC_PROPERTY);
     }
 
 
-    public void addToPtfLocStatusArray(PtfLocStatus obj) {
-        addToManyTarget(PTF_LOC_STATUS_ARRAY_PROPERTY, obj, true);
+    public void setLastObs(Obs lastObs) {
+        setToOneTarget(LAST_OBS_PROPERTY, lastObs, true);
     }
-    public void removeFromPtfLocStatusArray(PtfLocStatus obj) {
-        removeToManyTarget(PTF_LOC_STATUS_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<PtfLocStatus> getPtfLocStatusArray() {
-        return (List<PtfLocStatus>)readProperty(PTF_LOC_STATUS_ARRAY_PROPERTY);
+
+    public Obs getLastObs() {
+        return (Obs)readProperty(LAST_OBS_PROPERTY);
     }
 
 
-    public void addToPtfSensorModelArray(PtfSensorModel obj) {
-        addToManyTarget(PTF_SENSOR_MODEL_ARRAY_PROPERTY, obj, true);
+    public void addToMzmsPtfCountries(MzmsPtfCountry obj) {
+        addToManyTarget(MZMS_PTF_COUNTRIES_PROPERTY, obj, true);
     }
-    public void removeFromPtfSensorModelArray(PtfSensorModel obj) {
-        removeToManyTarget(PTF_SENSOR_MODEL_ARRAY_PROPERTY, obj, true);
+    public void removeFromMzmsPtfCountries(MzmsPtfCountry obj) {
+        removeToManyTarget(MZMS_PTF_COUNTRIES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<PtfSensorModel> getPtfSensorModelArray() {
-        return (List<PtfSensorModel>)readProperty(PTF_SENSOR_MODEL_ARRAY_PROPERTY);
+    public List<MzmsPtfCountry> getMzmsPtfCountries() {
+        return (List<MzmsPtfCountry>)readProperty(MZMS_PTF_COUNTRIES_PROPERTY);
     }
 
 
-    public void addToToVariables(Variable obj) {
-        addToManyTarget(TO_VARIABLES_PROPERTY, obj, true);
+    public void addToNetworkPtfs(NetworkPtf obj) {
+        addToManyTarget(NETWORK_PTFS_PROPERTY, obj, true);
     }
-    public void removeFromToVariables(Variable obj) {
-        removeToManyTarget(TO_VARIABLES_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<Variable> getToVariables() {
-        return (List<Variable>)readProperty(TO_VARIABLES_PROPERTY);
-    }
-
-
-    public void addToQcFeedbackArray(QcFeedback obj) {
-        addToManyTarget(QC_FEEDBACK_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromQcFeedbackArray(QcFeedback obj) {
-        removeToManyTarget(QC_FEEDBACK_ARRAY_PROPERTY, obj, true);
+    public void removeFromNetworkPtfs(NetworkPtf obj) {
+        removeToManyTarget(NETWORK_PTFS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<QcFeedback> getQcFeedbackArray() {
-        return (List<QcFeedback>)readProperty(QC_FEEDBACK_ARRAY_PROPERTY);
+    public List<NetworkPtf> getNetworkPtfs() {
+        return (List<NetworkPtf>)readProperty(NETWORK_PTFS_PROPERTY);
     }
 
 
-    public void addToServiceArray(Service obj) {
-        addToManyTarget(SERVICE_ARRAY_PROPERTY, obj, true);
+    public void addToObss(Obs obj) {
+        addToManyTarget(OBSS_PROPERTY, obj, true);
     }
-    public void removeFromServiceArray(Service obj) {
-        removeToManyTarget(SERVICE_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<Service> getServiceArray() {
-        return (List<Service>)readProperty(SERVICE_ARRAY_PROPERTY);
-    }
-
-
-    public void addToSitePtfArray(SitePtf obj) {
-        addToManyTarget(SITE_PTF_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromSitePtfArray(SitePtf obj) {
-        removeToManyTarget(SITE_PTF_ARRAY_PROPERTY, obj, true);
+    public void removeFromObss(Obs obj) {
+        removeToManyTarget(OBSS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<SitePtf> getSitePtfArray() {
-        return (List<SitePtf>)readProperty(SITE_PTF_ARRAY_PROPERTY);
+    public List<Obs> getObss() {
+        return (List<Obs>)readProperty(OBSS_PROPERTY);
     }
 
 
-    public void setToDataStatus(DataStatus toDataStatus) {
-        setToOneTarget(TO_DATA_STATUS_PROPERTY, toDataStatus, true);
+    public void setProgram(Program program) {
+        setToOneTarget(PROGRAM_PROPERTY, program, true);
     }
 
-    public DataStatus getToDataStatus() {
-        return (DataStatus)readProperty(TO_DATA_STATUS_PROPERTY);
-    }
-
-
-    public void setToEndingCause(EndingCause toEndingCause) {
-        setToOneTarget(TO_ENDING_CAUSE_PROPERTY, toEndingCause, true);
-    }
-
-    public EndingCause getToEndingCause() {
-        return (EndingCause)readProperty(TO_ENDING_CAUSE_PROPERTY);
+    public Program getProgram() {
+        return (Program)readProperty(PROGRAM_PROPERTY);
     }
 
 
-    public void setToObs(Obs toObs) {
-        setToOneTarget(TO_OBS_PROPERTY, toObs, true);
+    public void setPtfAutomation(PtfAutomation ptfAutomation) {
+        setToOneTarget(PTF_AUTOMATION_PROPERTY, ptfAutomation, true);
     }
 
-    public Obs getToObs() {
-        return (Obs)readProperty(TO_OBS_PROPERTY);
-    }
-
-
-    public void setToProgram(Program toProgram) {
-        setToOneTarget(TO_PROGRAM_PROPERTY, toProgram, true);
-    }
-
-    public Program getToProgram() {
-        return (Program)readProperty(TO_PROGRAM_PROPERTY);
+    public PtfAutomation getPtfAutomation() {
+        return (PtfAutomation)readProperty(PTF_AUTOMATION_PROPERTY);
     }
 
 
-    public void setToPtfDeployment(PtfDeployment toPtfDeployment) {
-        setToOneTarget(TO_PTF_DEPLOYMENT_PROPERTY, toPtfDeployment, true);
+    public void addToPtfCategories(PtfCategory obj) {
+        addToManyTarget(PTF_CATEGORIES_PROPERTY, obj, true);
     }
-
-    public PtfDeployment getToPtfDeployment() {
-        return (PtfDeployment)readProperty(TO_PTF_DEPLOYMENT_PROPERTY);
-    }
-
-
-    public void setToPtfHardware(PtfHardware toPtfHardware) {
-        setToOneTarget(TO_PTF_HARDWARE_PROPERTY, toPtfHardware, true);
-    }
-
-    public PtfHardware getToPtfHardware() {
-        return (PtfHardware)readProperty(TO_PTF_HARDWARE_PROPERTY);
-    }
-
-
-    public void setToPtfIdentifiers(PtfIdentifiers toPtfIdentifiers) {
-        setToOneTarget(TO_PTF_IDENTIFIERS_PROPERTY, toPtfIdentifiers, true);
-    }
-
-    public PtfIdentifiers getToPtfIdentifiers() {
-        return (PtfIdentifiers)readProperty(TO_PTF_IDENTIFIERS_PROPERTY);
-    }
-
-
-    public void setToPtfLoc(PtfLoc toPtfLoc) {
-        setToOneTarget(TO_PTF_LOC_PROPERTY, toPtfLoc, true);
-    }
-
-    public PtfLoc getToPtfLoc() {
-        return (PtfLoc)readProperty(TO_PTF_LOC_PROPERTY);
-    }
-
-
-    public void setToPtfModel(PtfModel toPtfModel) {
-        setToOneTarget(TO_PTF_MODEL_PROPERTY, toPtfModel, true);
-    }
-
-    public PtfModel getToPtfModel() {
-        return (PtfModel)readProperty(TO_PTF_MODEL_PROPERTY);
-    }
-
-
-    public void setToPtfStatus(PtfStatus toPtfStatus) {
-        setToOneTarget(TO_PTF_STATUS_PROPERTY, toPtfStatus, true);
-    }
-
-    public PtfStatus getToPtfStatus() {
-        return (PtfStatus)readProperty(TO_PTF_STATUS_PROPERTY);
-    }
-
-
-    public void setToRetrieval(Retrieval toRetrieval) {
-        setToOneTarget(TO_RETRIEVAL_PROPERTY, toRetrieval, true);
-    }
-
-    public Retrieval getToRetrieval() {
-        return (Retrieval)readProperty(TO_RETRIEVAL_PROPERTY);
-    }
-
-
-    public void setToSite(Site toSite) {
-        setToOneTarget(TO_SITE_PROPERTY, toSite, true);
-    }
-
-    public Site getToSite() {
-        return (Site)readProperty(TO_SITE_PROPERTY);
-    }
-
-
-    public void setToTelecom(Telecom toTelecom) {
-        setToOneTarget(TO_TELECOM_PROPERTY, toTelecom, true);
-    }
-
-    public Telecom getToTelecom() {
-        return (Telecom)readProperty(TO_TELECOM_PROPERTY);
-    }
-
-
-    public void setToTelecom1(Telecom toTelecom1) {
-        setToOneTarget(TO_TELECOM1_PROPERTY, toTelecom1, true);
-    }
-
-    public Telecom getToTelecom1() {
-        return (Telecom)readProperty(TO_TELECOM1_PROPERTY);
-    }
-
-
-    public void setToTrackingSystem(TrackingSystem toTrackingSystem) {
-        setToOneTarget(TO_TRACKING_SYSTEM_PROPERTY, toTrackingSystem, true);
-    }
-
-    public TrackingSystem getToTrackingSystem() {
-        return (TrackingSystem)readProperty(TO_TRACKING_SYSTEM_PROPERTY);
-    }
-
-
-    public void addToWeblinkArray(Weblink obj) {
-        addToManyTarget(WEBLINK_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromWeblinkArray(Weblink obj) {
-        removeToManyTarget(WEBLINK_ARRAY_PROPERTY, obj, true);
+    public void removeFromPtfCategories(PtfCategory obj) {
+        removeToManyTarget(PTF_CATEGORIES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Weblink> getWeblinkArray() {
-        return (List<Weblink>)readProperty(WEBLINK_ARRAY_PROPERTY);
+    public List<PtfCategory> getPtfCategories() {
+        return (List<PtfCategory>)readProperty(PTF_CATEGORIES_PROPERTY);
     }
 
 
-    public void addToToWeblinks(Weblink obj) {
-        addToManyTarget(TO_WEBLINKS_PROPERTY, obj, true);
+    public void addToPtfConfigs(PtfConfig obj) {
+        addToManyTarget(PTF_CONFIGS_PROPERTY, obj, true);
     }
-    public void removeFromToWeblinks(Weblink obj) {
-        removeToManyTarget(TO_WEBLINKS_PROPERTY, obj, true);
+    public void removeFromPtfConfigs(PtfConfig obj) {
+        removeToManyTarget(PTF_CONFIGS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Weblink> getToWeblinks() {
-        return (List<Weblink>)readProperty(TO_WEBLINKS_PROPERTY);
+    public List<PtfConfig> getPtfConfigs() {
+        return (List<PtfConfig>)readProperty(PTF_CONFIGS_PROPERTY);
     }
 
 
-    public void addToWmoArray(Wmo obj) {
-        addToManyTarget(WMO_ARRAY_PROPERTY, obj, true);
+    public void addToPtfCruises(PtfCruise obj) {
+        addToManyTarget(PTF_CRUISES_PROPERTY, obj, true);
     }
-    public void removeFromWmoArray(Wmo obj) {
-        removeToManyTarget(WMO_ARRAY_PROPERTY, obj, true);
+    public void removeFromPtfCruises(PtfCruise obj) {
+        removeToManyTarget(PTF_CRUISES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Wmo> getWmoArray() {
-        return (List<Wmo>)readProperty(WMO_ARRAY_PROPERTY);
+    public List<PtfCruise> getPtfCruises() {
+        return (List<PtfCruise>)readProperty(PTF_CRUISES_PROPERTY);
+    }
+
+
+    public void setPtfDepl(PtfDeployment ptfDepl) {
+        setToOneTarget(PTF_DEPL_PROPERTY, ptfDepl, true);
+    }
+
+    public PtfDeployment getPtfDepl() {
+        return (PtfDeployment)readProperty(PTF_DEPL_PROPERTY);
+    }
+
+
+    public void setPtfHardware(PtfHardware ptfHardware) {
+        setToOneTarget(PTF_HARDWARE_PROPERTY, ptfHardware, true);
+    }
+
+    public PtfHardware getPtfHardware() {
+        return (PtfHardware)readProperty(PTF_HARDWARE_PROPERTY);
+    }
+
+
+    public void setPtfIdentifiers(PtfIdentifiers ptfIdentifiers) {
+        setToOneTarget(PTF_IDENTIFIERS_PROPERTY, ptfIdentifiers, true);
+    }
+
+    public PtfIdentifiers getPtfIdentifiers() {
+        return (PtfIdentifiers)readProperty(PTF_IDENTIFIERS_PROPERTY);
+    }
+
+
+    public void setPtfInspection(PtfInspection ptfInspection) {
+        setToOneTarget(PTF_INSPECTION_PROPERTY, ptfInspection, true);
+    }
+
+    public PtfInspection getPtfInspection() {
+        return (PtfInspection)readProperty(PTF_INSPECTION_PROPERTY);
+    }
+
+
+    public void addToPtfLocStatuses(PtfLocStatus obj) {
+        addToManyTarget(PTF_LOC_STATUSES_PROPERTY, obj, true);
+    }
+    public void removeFromPtfLocStatuses(PtfLocStatus obj) {
+        removeToManyTarget(PTF_LOC_STATUSES_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<PtfLocStatus> getPtfLocStatuses() {
+        return (List<PtfLocStatus>)readProperty(PTF_LOC_STATUSES_PROPERTY);
+    }
+
+
+    public void addToPtfLocs(PtfLoc obj) {
+        addToManyTarget(PTF_LOCS_PROPERTY, obj, true);
+    }
+    public void removeFromPtfLocs(PtfLoc obj) {
+        removeToManyTarget(PTF_LOCS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<PtfLoc> getPtfLocs() {
+        return (List<PtfLoc>)readProperty(PTF_LOCS_PROPERTY);
+    }
+
+
+    public void setPtfModel(PtfModel ptfModel) {
+        setToOneTarget(PTF_MODEL_PROPERTY, ptfModel, true);
+    }
+
+    public PtfModel getPtfModel() {
+        return (PtfModel)readProperty(PTF_MODEL_PROPERTY);
+    }
+
+
+    public void addToPtfSensorModels(PtfSensorModel obj) {
+        addToManyTarget(PTF_SENSOR_MODELS_PROPERTY, obj, true);
+    }
+    public void removeFromPtfSensorModels(PtfSensorModel obj) {
+        removeToManyTarget(PTF_SENSOR_MODELS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<PtfSensorModel> getPtfSensorModels() {
+        return (List<PtfSensorModel>)readProperty(PTF_SENSOR_MODELS_PROPERTY);
+    }
+
+
+    public void setPtfSoftware(PtfSoftware ptfSoftware) {
+        setToOneTarget(PTF_SOFTWARE_PROPERTY, ptfSoftware, true);
+    }
+
+    public PtfSoftware getPtfSoftware() {
+        return (PtfSoftware)readProperty(PTF_SOFTWARE_PROPERTY);
+    }
+
+
+    public void setPtfStatus(PtfStatus ptfStatus) {
+        setToOneTarget(PTF_STATUS_PROPERTY, ptfStatus, true);
+    }
+
+    public PtfStatus getPtfStatus() {
+        return (PtfStatus)readProperty(PTF_STATUS_PROPERTY);
+    }
+
+
+    public void addToPtfVariableSubs(PtfVariableSub obj) {
+        addToManyTarget(PTF_VARIABLE_SUBS_PROPERTY, obj, true);
+    }
+    public void removeFromPtfVariableSubs(PtfVariableSub obj) {
+        removeToManyTarget(PTF_VARIABLE_SUBS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<PtfVariableSub> getPtfVariableSubs() {
+        return (List<PtfVariableSub>)readProperty(PTF_VARIABLE_SUBS_PROPERTY);
+    }
+
+
+    public void addToPtfVariables(PtfVariable obj) {
+        addToManyTarget(PTF_VARIABLES_PROPERTY, obj, true);
+    }
+    public void removeFromPtfVariables(PtfVariable obj) {
+        removeToManyTarget(PTF_VARIABLES_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<PtfVariable> getPtfVariables() {
+        return (List<PtfVariable>)readProperty(PTF_VARIABLES_PROPERTY);
+    }
+
+
+    public void addToQcFeedbacks(QcFeedback obj) {
+        addToManyTarget(QC_FEEDBACKS_PROPERTY, obj, true);
+    }
+    public void removeFromQcFeedbacks(QcFeedback obj) {
+        removeToManyTarget(QC_FEEDBACKS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<QcFeedback> getQcFeedbacks() {
+        return (List<QcFeedback>)readProperty(QC_FEEDBACKS_PROPERTY);
+    }
+
+
+    public void setRetrieval(Retrieval retrieval) {
+        setToOneTarget(RETRIEVAL_PROPERTY, retrieval, true);
+    }
+
+    public Retrieval getRetrieval() {
+        return (Retrieval)readProperty(RETRIEVAL_PROPERTY);
+    }
+
+
+    public void addToServices(Service obj) {
+        addToManyTarget(SERVICES_PROPERTY, obj, true);
+    }
+    public void removeFromServices(Service obj) {
+        removeToManyTarget(SERVICES_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Service> getServices() {
+        return (List<Service>)readProperty(SERVICES_PROPERTY);
+    }
+
+
+    public void setSite(Site site) {
+        setToOneTarget(SITE_PROPERTY, site, true);
+    }
+
+    public Site getSite() {
+        return (Site)readProperty(SITE_PROPERTY);
+    }
+
+
+    public void addToSitePtfs(SitePtf obj) {
+        addToManyTarget(SITE_PTFS_PROPERTY, obj, true);
+    }
+    public void removeFromSitePtfs(SitePtf obj) {
+        removeToManyTarget(SITE_PTFS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<SitePtf> getSitePtfs() {
+        return (List<SitePtf>)readProperty(SITE_PTFS_PROPERTY);
+    }
+
+
+    public void setTelecom(Telecom telecom) {
+        setToOneTarget(TELECOM_PROPERTY, telecom, true);
+    }
+
+    public Telecom getTelecom() {
+        return (Telecom)readProperty(TELECOM_PROPERTY);
+    }
+
+
+    public void setTrackingSystem(LocSystem trackingSystem) {
+        setToOneTarget(TRACKING_SYSTEM_PROPERTY, trackingSystem, true);
+    }
+
+    public LocSystem getTrackingSystem() {
+        return (LocSystem)readProperty(TRACKING_SYSTEM_PROPERTY);
+    }
+
+
+    public void addToVariables(Variable obj) {
+        addToManyTarget(VARIABLES_PROPERTY, obj, true);
+    }
+    public void removeFromVariables(Variable obj) {
+        removeToManyTarget(VARIABLES_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Variable> getVariables() {
+        return (List<Variable>)readProperty(VARIABLES_PROPERTY);
+    }
+
+
+    public void addToWebFrequentations(WebFrequentation obj) {
+        addToManyTarget(WEB_FREQUENTATIONS_PROPERTY, obj, true);
+    }
+    public void removeFromWebFrequentations(WebFrequentation obj) {
+        removeToManyTarget(WEB_FREQUENTATIONS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<WebFrequentation> getWebFrequentations() {
+        return (List<WebFrequentation>)readProperty(WEB_FREQUENTATIONS_PROPERTY);
+    }
+
+
+    public void addToWeblinkPtfs(WeblinkPtf obj) {
+        addToManyTarget(WEBLINK_PTFS_PROPERTY, obj, true);
+    }
+    public void removeFromWeblinkPtfs(WeblinkPtf obj) {
+        removeToManyTarget(WEBLINK_PTFS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<WeblinkPtf> getWeblinkPtfs() {
+        return (List<WeblinkPtf>)readProperty(WEBLINK_PTFS_PROPERTY);
+    }
+
+
+    public void addToWeblinks(Weblink obj) {
+        addToManyTarget(WEBLINKS_PROPERTY, obj, true);
+    }
+    public void removeFromWeblinks(Weblink obj) {
+        removeToManyTarget(WEBLINKS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Weblink> getWeblinks() {
+        return (List<Weblink>)readProperty(WEBLINKS_PROPERTY);
+    }
+
+
+    public void addToWmoes(Wmo obj) {
+        addToManyTarget(WMOES_PROPERTY, obj, true);
+    }
+    public void removeFromWmoes(Wmo obj) {
+        removeToManyTarget(WMOES_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Wmo> getWmoes() {
+        return (List<Wmo>)readProperty(WMOES_PROPERTY);
     }
 
 

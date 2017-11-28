@@ -10,11 +10,19 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _WebMetricMasterProg extends CayenneDataObject {
 
+    public static final String MASTER_PROG_ID_PROPERTY = "masterProgId";
     public static final String TARGET_PROPERTY = "target";
-    public static final String TO_MASTER_PROG_PROPERTY = "toMasterProg";
-    public static final String TO_WEB_METRIC_PROPERTY = "toWebMetric";
+    public static final String MASTER_PROG_PROPERTY = "masterProg";
+    public static final String METRIC_PROPERTY = "metric";
 
     public static final String MASTER_PROG_ID_PK_COLUMN = "MASTER_PROG_ID";
+
+    public void setMasterProgId(Integer masterProgId) {
+        writeProperty(MASTER_PROG_ID_PROPERTY, masterProgId);
+    }
+    public Integer getMasterProgId() {
+        return (Integer)readProperty(MASTER_PROG_ID_PROPERTY);
+    }
 
     public void setTarget(Integer target) {
         writeProperty(TARGET_PROPERTY, target);
@@ -23,21 +31,21 @@ public abstract class _WebMetricMasterProg extends CayenneDataObject {
         return (Integer)readProperty(TARGET_PROPERTY);
     }
 
-    public void setToMasterProg(MasterProg toMasterProg) {
-        setToOneTarget(TO_MASTER_PROG_PROPERTY, toMasterProg, true);
+    public void setMasterProg(MasterProg masterProg) {
+        setToOneTarget(MASTER_PROG_PROPERTY, masterProg, true);
     }
 
-    public MasterProg getToMasterProg() {
-        return (MasterProg)readProperty(TO_MASTER_PROG_PROPERTY);
+    public MasterProg getMasterProg() {
+        return (MasterProg)readProperty(MASTER_PROG_PROPERTY);
     }
 
 
-    public void setToWebMetric(WebMetric toWebMetric) {
-        setToOneTarget(TO_WEB_METRIC_PROPERTY, toWebMetric, true);
+    public void setMetric(WebMetric metric) {
+        setToOneTarget(METRIC_PROPERTY, metric, true);
     }
 
-    public WebMetric getToWebMetric() {
-        return (WebMetric)readProperty(TO_WEB_METRIC_PROPERTY);
+    public WebMetric getMetric() {
+        return (WebMetric)readProperty(METRIC_PROPERTY);
     }
 
 

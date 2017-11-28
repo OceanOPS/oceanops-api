@@ -17,9 +17,10 @@ public abstract class _GtsInstrumentType extends CayenneDataObject {
     public static final String DETAILS_PROPERTY = "details";
     public static final String FALLRATE_A_PROPERTY = "fallrateA";
     public static final String FALLRATE_B_PROPERTY = "fallrateB";
+    public static final String ID_PROPERTY = "id";
     public static final String TYPE_PROPERTY = "type";
-    public static final String OBS_ARRAY_PROPERTY = "obsArray";
-    public static final String PTF_MODEL_ARRAY_PROPERTY = "ptfModelArray";
+    public static final String OBSS_PROPERTY = "obss";
+    public static final String PTF_MODELS_PROPERTY = "ptfModels";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -51,6 +52,13 @@ public abstract class _GtsInstrumentType extends CayenneDataObject {
         return (BigDecimal)readProperty(FALLRATE_B_PROPERTY);
     }
 
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
+
     public void setType(String type) {
         writeProperty(TYPE_PROPERTY, type);
     }
@@ -58,27 +66,27 @@ public abstract class _GtsInstrumentType extends CayenneDataObject {
         return (String)readProperty(TYPE_PROPERTY);
     }
 
-    public void addToObsArray(Obs obj) {
-        addToManyTarget(OBS_ARRAY_PROPERTY, obj, true);
+    public void addToObss(Obs obj) {
+        addToManyTarget(OBSS_PROPERTY, obj, true);
     }
-    public void removeFromObsArray(Obs obj) {
-        removeToManyTarget(OBS_ARRAY_PROPERTY, obj, true);
+    public void removeFromObss(Obs obj) {
+        removeToManyTarget(OBSS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Obs> getObsArray() {
-        return (List<Obs>)readProperty(OBS_ARRAY_PROPERTY);
+    public List<Obs> getObss() {
+        return (List<Obs>)readProperty(OBSS_PROPERTY);
     }
 
 
-    public void addToPtfModelArray(PtfModel obj) {
-        addToManyTarget(PTF_MODEL_ARRAY_PROPERTY, obj, true);
+    public void addToPtfModels(PtfModel obj) {
+        addToManyTarget(PTF_MODELS_PROPERTY, obj, true);
     }
-    public void removeFromPtfModelArray(PtfModel obj) {
-        removeToManyTarget(PTF_MODEL_ARRAY_PROPERTY, obj, true);
+    public void removeFromPtfModels(PtfModel obj) {
+        removeToManyTarget(PTF_MODELS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<PtfModel> getPtfModelArray() {
-        return (List<PtfModel>)readProperty(PTF_MODEL_ARRAY_PROPERTY);
+    public List<PtfModel> getPtfModels() {
+        return (List<PtfModel>)readProperty(PTF_MODELS_PROPERTY);
     }
 
 

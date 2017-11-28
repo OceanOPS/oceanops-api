@@ -10,27 +10,43 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _GtsCcccHeader extends CayenneDataObject {
 
-    public static final String TO_GTS_CCCC_PROPERTY = "toGtsCccc";
-    public static final String TO_GTS_HEADER_PROPERTY = "toGtsHeader";
+    public static final String GTS_CCCC_ID_PROPERTY = "gtsCcccId";
+    public static final String GTS_HEADER_ID_PROPERTY = "gtsHeaderId";
+    public static final String GTS_CCCC_PROPERTY = "gtsCccc";
+    public static final String GTS_HEADER_PROPERTY = "gtsHeader";
 
     public static final String GTS_CCCC_ID_PK_COLUMN = "GTS_CCCC_ID";
     public static final String GTS_HEADER_ID_PK_COLUMN = "GTS_HEADER_ID";
 
-    public void setToGtsCccc(GtsCccc toGtsCccc) {
-        setToOneTarget(TO_GTS_CCCC_PROPERTY, toGtsCccc, true);
+    public void setGtsCcccId(Integer gtsCcccId) {
+        writeProperty(GTS_CCCC_ID_PROPERTY, gtsCcccId);
+    }
+    public Integer getGtsCcccId() {
+        return (Integer)readProperty(GTS_CCCC_ID_PROPERTY);
     }
 
-    public GtsCccc getToGtsCccc() {
-        return (GtsCccc)readProperty(TO_GTS_CCCC_PROPERTY);
+    public void setGtsHeaderId(Integer gtsHeaderId) {
+        writeProperty(GTS_HEADER_ID_PROPERTY, gtsHeaderId);
+    }
+    public Integer getGtsHeaderId() {
+        return (Integer)readProperty(GTS_HEADER_ID_PROPERTY);
+    }
+
+    public void setGtsCccc(GtsCccc gtsCccc) {
+        setToOneTarget(GTS_CCCC_PROPERTY, gtsCccc, true);
+    }
+
+    public GtsCccc getGtsCccc() {
+        return (GtsCccc)readProperty(GTS_CCCC_PROPERTY);
     }
 
 
-    public void setToGtsHeader(GtsHeader toGtsHeader) {
-        setToOneTarget(TO_GTS_HEADER_PROPERTY, toGtsHeader, true);
+    public void setGtsHeader(GtsHeader gtsHeader) {
+        setToOneTarget(GTS_HEADER_PROPERTY, gtsHeader, true);
     }
 
-    public GtsHeader getToGtsHeader() {
-        return (GtsHeader)readProperty(TO_GTS_HEADER_PROPERTY);
+    public GtsHeader getGtsHeader() {
+        return (GtsHeader)readProperty(GTS_HEADER_PROPERTY);
     }
 
 

@@ -12,19 +12,41 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _WebModule extends CayenneDataObject {
 
+    public static final String ADMIN_PROPERTY = "admin";
     public static final String DASHBOARD_PROPERTY = "dashboard";
+    public static final String DESCRIPTION_PROPERTY = "description";
     public static final String HELP_PROPERTY = "help";
+    public static final String ICON_PROPERTY = "icon";
+    public static final String ID_PROPERTY = "id";
+    public static final String LOGGED_PROPERTY = "logged";
     public static final String NAME_PROPERTY = "name";
+    public static final String NAME_SHORT_PROPERTY = "nameShort";
+    public static final String TOPIC_PROPERTY = "topic";
     public static final String TYPE_PROPERTY = "type";
-    public static final String WEB_CONTACT_MODULE_ARRAY_PROPERTY = "webContactModuleArray";
+    public static final String WEB_CONTACT_MODULES_PROPERTY = "webContactModules";
+    public static final String WEB_FREQUENTATIONS_PROPERTY = "webFrequentations";
 
     public static final String ID_PK_COLUMN = "ID";
+
+    public void setAdmin(Integer admin) {
+        writeProperty(ADMIN_PROPERTY, admin);
+    }
+    public Integer getAdmin() {
+        return (Integer)readProperty(ADMIN_PROPERTY);
+    }
 
     public void setDashboard(Integer dashboard) {
         writeProperty(DASHBOARD_PROPERTY, dashboard);
     }
     public Integer getDashboard() {
         return (Integer)readProperty(DASHBOARD_PROPERTY);
+    }
+
+    public void setDescription(String description) {
+        writeProperty(DESCRIPTION_PROPERTY, description);
+    }
+    public String getDescription() {
+        return (String)readProperty(DESCRIPTION_PROPERTY);
     }
 
     public void setHelp(String help) {
@@ -34,11 +56,46 @@ public abstract class _WebModule extends CayenneDataObject {
         return (String)readProperty(HELP_PROPERTY);
     }
 
+    public void setIcon(String icon) {
+        writeProperty(ICON_PROPERTY, icon);
+    }
+    public String getIcon() {
+        return (String)readProperty(ICON_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
+
+    public void setLogged(Integer logged) {
+        writeProperty(LOGGED_PROPERTY, logged);
+    }
+    public Integer getLogged() {
+        return (Integer)readProperty(LOGGED_PROPERTY);
+    }
+
     public void setName(String name) {
         writeProperty(NAME_PROPERTY, name);
     }
     public String getName() {
         return (String)readProperty(NAME_PROPERTY);
+    }
+
+    public void setNameShort(String nameShort) {
+        writeProperty(NAME_SHORT_PROPERTY, nameShort);
+    }
+    public String getNameShort() {
+        return (String)readProperty(NAME_SHORT_PROPERTY);
+    }
+
+    public void setTopic(String topic) {
+        writeProperty(TOPIC_PROPERTY, topic);
+    }
+    public String getTopic() {
+        return (String)readProperty(TOPIC_PROPERTY);
     }
 
     public void setType(String type) {
@@ -48,15 +105,27 @@ public abstract class _WebModule extends CayenneDataObject {
         return (String)readProperty(TYPE_PROPERTY);
     }
 
-    public void addToWebContactModuleArray(WebContactModule obj) {
-        addToManyTarget(WEB_CONTACT_MODULE_ARRAY_PROPERTY, obj, true);
+    public void addToWebContactModules(WebContactModule obj) {
+        addToManyTarget(WEB_CONTACT_MODULES_PROPERTY, obj, true);
     }
-    public void removeFromWebContactModuleArray(WebContactModule obj) {
-        removeToManyTarget(WEB_CONTACT_MODULE_ARRAY_PROPERTY, obj, true);
+    public void removeFromWebContactModules(WebContactModule obj) {
+        removeToManyTarget(WEB_CONTACT_MODULES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<WebContactModule> getWebContactModuleArray() {
-        return (List<WebContactModule>)readProperty(WEB_CONTACT_MODULE_ARRAY_PROPERTY);
+    public List<WebContactModule> getWebContactModules() {
+        return (List<WebContactModule>)readProperty(WEB_CONTACT_MODULES_PROPERTY);
+    }
+
+
+    public void addToWebFrequentations(WebFrequentation obj) {
+        addToManyTarget(WEB_FREQUENTATIONS_PROPERTY, obj, true);
+    }
+    public void removeFromWebFrequentations(WebFrequentation obj) {
+        removeToManyTarget(WEB_FREQUENTATIONS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<WebFrequentation> getWebFrequentations() {
+        return (List<WebFrequentation>)readProperty(WEB_FREQUENTATIONS_PROPERTY);
     }
 
 

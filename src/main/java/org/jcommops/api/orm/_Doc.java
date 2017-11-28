@@ -21,23 +21,24 @@ public abstract class _Doc extends CayenneDataObject {
     public static final String CREATION_DATE_PROPERTY = "creationDate";
     public static final String DOC_NO_PROPERTY = "docNo";
     public static final String DUE_DATE_PROPERTY = "dueDate";
+    public static final String ID_PROPERTY = "id";
     public static final String KEYWORDS_PROPERTY = "keywords";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
     public static final String VALIDATED_PROPERTY = "validated";
     public static final String VERSION_PROPERTY = "version";
-    public static final String DOC_CONTACT_ARRAY_PROPERTY = "docContactArray";
-    public static final String TELECOM_FORMAT_DOC_ARRAY_PROPERTY = "telecomFormatDocArray";
-    public static final String TO_DOC_TYPE_PROPERTY = "toDocType";
-    public static final String TO_LANGUAGE_PROPERTY = "toLanguage";
-    public static final String TO_MASTER_PROG_PROPERTY = "toMasterProg";
-    public static final String TO_MEETING_PROPERTY = "toMeeting";
-    public static final String TO_PTF_PROPERTY = "toPtf";
-    public static final String TO_PTF_LOC_PROPERTY = "toPtfLoc";
-    public static final String TO_SHIP_PROPERTY = "toShip";
-    public static final String TO_TOPIC_PROPERTY = "toTopic";
-    public static final String TO_USER_GROUP_PROPERTY = "toUserGroup";
-    public static final String TO_WEBLINK_PROPERTY = "toWeblink";
+    public static final String DOC_CONTACTS_PROPERTY = "docContacts";
+    public static final String DOC_TYPE_PROPERTY = "docType";
+    public static final String LANGUAGE_PROPERTY = "language";
+    public static final String LOC_PROPERTY = "loc";
+    public static final String MASTER_PROG_PROPERTY = "masterProg";
+    public static final String MEETING_PROPERTY = "meeting";
+    public static final String PTF_PROPERTY = "ptf";
+    public static final String SHIP_PROPERTY = "ship";
+    public static final String TELECOM_FORMAT_DOCS_PROPERTY = "telecomFormatDocs";
+    public static final String TOPIC_PROPERTY = "topic";
+    public static final String USER_GROUP_PROPERTY = "userGroup";
+    public static final String WEBLINK_PROPERTY = "weblink";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -90,6 +91,13 @@ public abstract class _Doc extends CayenneDataObject {
         return (String)readProperty(DUE_DATE_PROPERTY);
     }
 
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
+
     public void setKeywords(String keywords) {
         writeProperty(KEYWORDS_PROPERTY, keywords);
     }
@@ -125,117 +133,117 @@ public abstract class _Doc extends CayenneDataObject {
         return (BigDecimal)readProperty(VERSION_PROPERTY);
     }
 
-    public void addToDocContactArray(DocContact obj) {
-        addToManyTarget(DOC_CONTACT_ARRAY_PROPERTY, obj, true);
+    public void addToDocContacts(DocContact obj) {
+        addToManyTarget(DOC_CONTACTS_PROPERTY, obj, true);
     }
-    public void removeFromDocContactArray(DocContact obj) {
-        removeToManyTarget(DOC_CONTACT_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<DocContact> getDocContactArray() {
-        return (List<DocContact>)readProperty(DOC_CONTACT_ARRAY_PROPERTY);
-    }
-
-
-    public void addToTelecomFormatDocArray(TelecomFormatDoc obj) {
-        addToManyTarget(TELECOM_FORMAT_DOC_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromTelecomFormatDocArray(TelecomFormatDoc obj) {
-        removeToManyTarget(TELECOM_FORMAT_DOC_ARRAY_PROPERTY, obj, true);
+    public void removeFromDocContacts(DocContact obj) {
+        removeToManyTarget(DOC_CONTACTS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<TelecomFormatDoc> getTelecomFormatDocArray() {
-        return (List<TelecomFormatDoc>)readProperty(TELECOM_FORMAT_DOC_ARRAY_PROPERTY);
+    public List<DocContact> getDocContacts() {
+        return (List<DocContact>)readProperty(DOC_CONTACTS_PROPERTY);
     }
 
 
-    public void setToDocType(DocType toDocType) {
-        setToOneTarget(TO_DOC_TYPE_PROPERTY, toDocType, true);
+    public void setDocType(DocType docType) {
+        setToOneTarget(DOC_TYPE_PROPERTY, docType, true);
     }
 
-    public DocType getToDocType() {
-        return (DocType)readProperty(TO_DOC_TYPE_PROPERTY);
-    }
-
-
-    public void setToLanguage(Language toLanguage) {
-        setToOneTarget(TO_LANGUAGE_PROPERTY, toLanguage, true);
-    }
-
-    public Language getToLanguage() {
-        return (Language)readProperty(TO_LANGUAGE_PROPERTY);
+    public DocType getDocType() {
+        return (DocType)readProperty(DOC_TYPE_PROPERTY);
     }
 
 
-    public void setToMasterProg(MasterProg toMasterProg) {
-        setToOneTarget(TO_MASTER_PROG_PROPERTY, toMasterProg, true);
+    public void setLanguage(Language language) {
+        setToOneTarget(LANGUAGE_PROPERTY, language, true);
     }
 
-    public MasterProg getToMasterProg() {
-        return (MasterProg)readProperty(TO_MASTER_PROG_PROPERTY);
-    }
-
-
-    public void setToMeeting(Meeting toMeeting) {
-        setToOneTarget(TO_MEETING_PROPERTY, toMeeting, true);
-    }
-
-    public Meeting getToMeeting() {
-        return (Meeting)readProperty(TO_MEETING_PROPERTY);
+    public Language getLanguage() {
+        return (Language)readProperty(LANGUAGE_PROPERTY);
     }
 
 
-    public void setToPtf(Ptf toPtf) {
-        setToOneTarget(TO_PTF_PROPERTY, toPtf, true);
+    public void setLoc(PtfLoc loc) {
+        setToOneTarget(LOC_PROPERTY, loc, true);
     }
 
-    public Ptf getToPtf() {
-        return (Ptf)readProperty(TO_PTF_PROPERTY);
-    }
-
-
-    public void setToPtfLoc(PtfLoc toPtfLoc) {
-        setToOneTarget(TO_PTF_LOC_PROPERTY, toPtfLoc, true);
-    }
-
-    public PtfLoc getToPtfLoc() {
-        return (PtfLoc)readProperty(TO_PTF_LOC_PROPERTY);
+    public PtfLoc getLoc() {
+        return (PtfLoc)readProperty(LOC_PROPERTY);
     }
 
 
-    public void setToShip(Ship toShip) {
-        setToOneTarget(TO_SHIP_PROPERTY, toShip, true);
+    public void setMasterProg(MasterProg masterProg) {
+        setToOneTarget(MASTER_PROG_PROPERTY, masterProg, true);
     }
 
-    public Ship getToShip() {
-        return (Ship)readProperty(TO_SHIP_PROPERTY);
-    }
-
-
-    public void setToTopic(Topic toTopic) {
-        setToOneTarget(TO_TOPIC_PROPERTY, toTopic, true);
-    }
-
-    public Topic getToTopic() {
-        return (Topic)readProperty(TO_TOPIC_PROPERTY);
+    public MasterProg getMasterProg() {
+        return (MasterProg)readProperty(MASTER_PROG_PROPERTY);
     }
 
 
-    public void setToUserGroup(UserGroup toUserGroup) {
-        setToOneTarget(TO_USER_GROUP_PROPERTY, toUserGroup, true);
+    public void setMeeting(Meeting meeting) {
+        setToOneTarget(MEETING_PROPERTY, meeting, true);
     }
 
-    public UserGroup getToUserGroup() {
-        return (UserGroup)readProperty(TO_USER_GROUP_PROPERTY);
+    public Meeting getMeeting() {
+        return (Meeting)readProperty(MEETING_PROPERTY);
     }
 
 
-    public void setToWeblink(Weblink toWeblink) {
-        setToOneTarget(TO_WEBLINK_PROPERTY, toWeblink, true);
+    public void setPtf(Ptf ptf) {
+        setToOneTarget(PTF_PROPERTY, ptf, true);
     }
 
-    public Weblink getToWeblink() {
-        return (Weblink)readProperty(TO_WEBLINK_PROPERTY);
+    public Ptf getPtf() {
+        return (Ptf)readProperty(PTF_PROPERTY);
+    }
+
+
+    public void setShip(Ship ship) {
+        setToOneTarget(SHIP_PROPERTY, ship, true);
+    }
+
+    public Ship getShip() {
+        return (Ship)readProperty(SHIP_PROPERTY);
+    }
+
+
+    public void addToTelecomFormatDocs(TelecomFormatDoc obj) {
+        addToManyTarget(TELECOM_FORMAT_DOCS_PROPERTY, obj, true);
+    }
+    public void removeFromTelecomFormatDocs(TelecomFormatDoc obj) {
+        removeToManyTarget(TELECOM_FORMAT_DOCS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<TelecomFormatDoc> getTelecomFormatDocs() {
+        return (List<TelecomFormatDoc>)readProperty(TELECOM_FORMAT_DOCS_PROPERTY);
+    }
+
+
+    public void setTopic(Topic topic) {
+        setToOneTarget(TOPIC_PROPERTY, topic, true);
+    }
+
+    public Topic getTopic() {
+        return (Topic)readProperty(TOPIC_PROPERTY);
+    }
+
+
+    public void setUserGroup(UserGroup userGroup) {
+        setToOneTarget(USER_GROUP_PROPERTY, userGroup, true);
+    }
+
+    public UserGroup getUserGroup() {
+        return (UserGroup)readProperty(USER_GROUP_PROPERTY);
+    }
+
+
+    public void setWeblink(Weblink weblink) {
+        setToOneTarget(WEBLINK_PROPERTY, weblink, true);
+    }
+
+    public Weblink getWeblink() {
+        return (Weblink)readProperty(WEBLINK_PROPERTY);
     }
 
 

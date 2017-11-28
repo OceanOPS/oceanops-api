@@ -15,6 +15,7 @@ public abstract class _PtfIdentifiers extends CayenneDataObject {
     public static final String DATACENTER_REF_PROPERTY = "datacenterRef";
     public static final String ESURFMAR_REF_PROPERTY = "esurfmarRef";
     public static final String GLOSS_REF_PROPERTY = "glossRef";
+    public static final String ID_PROPERTY = "id";
     public static final String IMO_REF_PROPERTY = "imoRef";
     public static final String INTERNAL_REF_PROPERTY = "internalRef";
     public static final String OCEANSITES_REF_PROPERTY = "oceansitesRef";
@@ -22,7 +23,7 @@ public abstract class _PtfIdentifiers extends CayenneDataObject {
     public static final String OPERATOR_REF_PROPERTY = "operatorRef";
     public static final String SEADATANET_REF_PROPERTY = "seadatanetRef";
     public static final String WIGOS_REF_PROPERTY = "wigosRef";
-    public static final String PTF_ARRAY_PROPERTY = "ptfArray";
+    public static final String PTFS_PROPERTY = "ptfs";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -45,6 +46,13 @@ public abstract class _PtfIdentifiers extends CayenneDataObject {
     }
     public String getGlossRef() {
         return (String)readProperty(GLOSS_REF_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setImoRef(String imoRef) {
@@ -96,15 +104,15 @@ public abstract class _PtfIdentifiers extends CayenneDataObject {
         return (String)readProperty(WIGOS_REF_PROPERTY);
     }
 
-    public void addToPtfArray(Ptf obj) {
-        addToManyTarget(PTF_ARRAY_PROPERTY, obj, true);
+    public void addToPtfs(Ptf obj) {
+        addToManyTarget(PTFS_PROPERTY, obj, true);
     }
-    public void removeFromPtfArray(Ptf obj) {
-        removeToManyTarget(PTF_ARRAY_PROPERTY, obj, true);
+    public void removeFromPtfs(Ptf obj) {
+        removeToManyTarget(PTFS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Ptf> getPtfArray() {
-        return (List<Ptf>)readProperty(PTF_ARRAY_PROPERTY);
+    public List<Ptf> getPtfs() {
+        return (List<Ptf>)readProperty(PTFS_PROPERTY);
     }
 
 

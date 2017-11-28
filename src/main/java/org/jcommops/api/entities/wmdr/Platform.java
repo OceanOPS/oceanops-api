@@ -222,9 +222,9 @@ public class Platform {
 			list.add(value);
 			address.setElectronicMailAddress(list);
 		}
-		if(agency.getToCountry() != null){
+		if(agency.getCountry() != null){
 			value = this.gcoOF.createCharacterStringPropertyType();
-			value.setCharacterString(this.gcoOF.createCharacterString(agency.getToCountry().getNameLong()));
+			value.setCharacterString(this.gcoOF.createCharacterString(agency.getCountry().getNameLong()));
 			address.setCountry(value);
 		}
 		
@@ -233,7 +233,7 @@ public class Platform {
 		CIOnlineResourcePropertyType onlineRsrcProperty = this.gmdOF.createCIOnlineResourcePropertyType();
 		CIOnlineResourceType onlineRsrc = this.gmdOF.createCIOnlineResourceType();
 		URLPropertyType urlProperty = this.gmdOF.createURLPropertyType();
-		urlProperty.setURL(agency.getToWeblink().getUrl());
+		urlProperty.setURL(agency.getWeblink().getUrl());
 		onlineRsrc.setLinkage(urlProperty);
 		onlineRsrcProperty.setCIOnlineResource(onlineRsrc);
 		
@@ -285,7 +285,7 @@ public class Platform {
 	 * @return the deployment list
 	 */
 	private List<WIGOSMetadataRecordType.Deployment> getDeployments(Ptf ptf){
-		PtfDeployment depl = ptf.getToPtfDeployment();
+		PtfDeployment depl = ptf.getPtfDepl();
 		ArrayList<WIGOSMetadataRecordType.Deployment> depls =  new ArrayList<>();
 		
 		
@@ -298,13 +298,13 @@ public class Platform {
 	 * @return the Equipement list
 	 */
 	private List<EquipmentPropertyType> getEquipements(Ptf ptf){
-		List<PtfSensorModel> ptfSensorModels = ptf.getPtfSensorModelArray();
+		List<PtfSensorModel> ptfSensorModels = ptf.getPtfSensorModels();
 		ArrayList<EquipmentPropertyType> equipements = new ArrayList<>();
 		
 		EquipmentPropertyType currentEquipment;
 		EquipmentType currentEquipmentType;
 		for(PtfSensorModel ptfSM: ptfSensorModels){
-			SensorModel sm = ptfSM.getToSensorModel();
+			SensorModel sm = ptfSM.getSensorModel();
 			currentEquipment = this.wmdrOF.createEquipmentPropertyType();
 			currentEquipmentType = this.wmdrOF.createEquipmentType();
 			
@@ -321,11 +321,11 @@ public class Platform {
 			
 			currentEquipmentType.setSerialNumber(ptfSM.getSerialNo());
 			
-			if(sm.getToWeblink() != null){
+			if(sm.getWeblink() != null){
 				OnlineResource or = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeOnlineResource();
 				CIOnlineResourceType onlineRsrc = this.gmdOF.createCIOnlineResourceType();
 				URLPropertyType urlProperty = this.gmdOF.createURLPropertyType();
-				urlProperty.setURL(sm.getToWeblink().getUrl());
+				urlProperty.setURL(sm.getWeblink().getUrl());
 				onlineRsrc.setLinkage(urlProperty);
 				or.setCIOnlineResource(onlineRsrc);
 				currentEquipmentType.getOnlineResource().add(or);
@@ -336,10 +336,10 @@ public class Platform {
 			currentEquipmentType.setGeopositioningMethod(refType);
 
 			AbstractEnvironmentalMonitoringFacilityType.ResponsibleParty responsibleParty = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeResponsibleParty();
-			if(sm.getToAgency() != null){
-				responsibleParty.setCIResponsibleParty(this.getCIResponsibleParty(Integer.parseInt(sm.getToAgency().getObjectId().getIdSnapshot().get("ID").toString()), "custodian"));
+			if(sm.getAgency() != null){
+				responsibleParty.setCIResponsibleParty(this.getCIResponsibleParty(Integer.parseInt(sm.getAgency().getObjectId().getIdSnapshot().get("ID").toString()), "custodian"));
 				
-				currentEquipmentType.setManufacturer(sm.getToAgency().getName());
+				currentEquipmentType.setManufacturer(sm.getAgency().getName());
 			}
 			else
 				responsibleParty.setCIResponsibleParty(this.getCIResponsibleParty(null, null));
@@ -384,7 +384,7 @@ public class Platform {
 		or.setCIOnlineResource(onlineRsrc);
 		onlineResources.add(or);
 		
-		for(Weblink w : ptf.getToWeblinks()){
+		for(Weblink w : ptf.getWeblinks()){
 			or = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeOnlineResource();
 			onlineRsrc = this.gmdOF.createCIOnlineResourceType();
 			urlProperty = this.gmdOF.createURLPropertyType();
@@ -402,7 +402,7 @@ public class Platform {
 		TimePeriodType timePeriod = this.gmlOF.createTimePeriodType();
 		TimePositionType timePosition = this.gmlOF.createTimePositionType();
 		
-		timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(ptf.getToPtfLoc().getLocDate())));
+		timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(ptf.getLastLoc().getLocDate())));
 		timePeriod.setId("observingFacility-" + ptf.getRef() + "-LatestLocationTimePeriod");
 		timePeriod.setBeginPosition(timePosition);
 		timePeriod.setEndPosition(this.gmlOF.createTimePositionType());
@@ -412,7 +412,7 @@ public class Platform {
 		PointType geom = this.gmlOF.createPointType();
 		geom.setId("observingFacility-" + ptf.getRef() + "-LatestLocationGeometry");
 		DirectPositionType pos = this.gmlOF.createDirectPositionType();
-		pos.setValue(Arrays.asList(ptf.getToPtfLoc().getLat().doubleValue(), ptf.getToPtfLoc().getLon().doubleValue(), ptf.getToPtfLoc().getElevation() == null ? 0: ptf.getToPtfLoc().getElevation().doubleValue()));
+		pos.setValue(Arrays.asList(ptf.getLastLoc().getLat().doubleValue(), ptf.getLastLoc().getLon().doubleValue(), ptf.getLastLoc().getElevation() == null ? 0: ptf.getLastLoc().getElevation().doubleValue()));
 		geom.setPos(pos);
 		geom.setSrsName("http://www.opengis.net/def/crs/EPSG/0/4979");
 		geomProperty.setAbstractGeometry(this.gmlOF.createPoint(geom));
@@ -425,13 +425,13 @@ public class Platform {
 		
 		ReferenceType refType = this.gmlOF.createReferenceType();
 		refType.setHref("http://codes.wmo.int/common/wmdr/GeopositioningMethod/VOCABULARYTERM");
-		if(ptf.getToTelecom() != null && ptf.getToTelecom().getToTelecomType() != null)
-			refType.setTitle(ptf.getToTelecom().getToTelecomType().getName());
+		if(ptf.getTelecom() != null && ptf.getTelecom().getTelecomType() != null)
+			refType.setTitle(ptf.getTelecom().getTelecomType().getName());
 		o.setGeopositioningMethod(refType);
 		
 		AbstractEnvironmentalMonitoringFacilityType.ResponsibleParty responsibleParty = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeResponsibleParty();
-		if(ptf.getToProgram().getToAgencies().size() > 0){
-			responsibleParty.setCIResponsibleParty(this.getCIResponsibleParty(Integer.parseInt(ptf.getToProgram().getToAgencies().get(0).getObjectId().getIdSnapshot().get("ID").toString()), "custodian"));
+		if(ptf.getProgram().getAgencies().size() > 0){
+			responsibleParty.setCIResponsibleParty(this.getCIResponsibleParty(Integer.parseInt(ptf.getProgram().getAgencies().get(0).getObjectId().getIdSnapshot().get("ID").toString()), "custodian"));
 		}
 		else
 			responsibleParty.setCIResponsibleParty(this.getCIResponsibleParty(null, null));
@@ -447,23 +447,23 @@ public class Platform {
 
 		refType = this.gmlOF.createReferenceType();
 		refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/VOCABULARYTERM");
-		refType.setTitle(ptf.getToProgram().getToMasterProg().getName());
+		refType.setTitle(ptf.getProgram().getMasterProg().getName());
 		o.getProgramAffiliation().add(refType);
 		refType = this.gmlOF.createReferenceType();
 		refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/VOCABULARYTERM");
-		refType.setTitle(ptf.getToProgram().getName());
+		refType.setTitle(ptf.getProgram().getName());
 		o.getProgramAffiliation().add(refType);
 		
 		refType = this.gmlOF.createReferenceType();
 		refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/VOCABULARYTERM");
-		refType.setTitle(ptf.getToPtfStatus().getName());
+		refType.setTitle(ptf.getPtfStatus().getName());
 		o.setReportingStatus(refType);
 		
-		o.setBelongsToSet(ptf.getToProgram().getToMasterProg().getName());
+		o.setBelongsToSet(ptf.getProgram().getMasterProg().getName());
 
 		refType = this.gmlOF.createReferenceType();
 		refType.setHref("http://codes.wmo.int/common/wmdr/FacilityType/VOCABULARYTERM");
-		refType.setTitle(ptf.getToPtfModel().getName());
+		refType.setTitle(ptf.getPtfModel().getName());
 		o.setFacilityType(refType);
 		
 		refType = this.gmlOF.createReferenceType();
@@ -538,8 +538,8 @@ public class Platform {
 			
 			PointType geom = this.gmlOF.createPointType();
 			DirectPositionType pos = this.gmlOF.createDirectPositionType();
-			pos.setValue(Arrays.asList(obs.getToPtfLoc().getLat().doubleValue(), obs.getToPtfLoc().getLon().doubleValue(), obs.getToPtfLoc().getElevation() == null ? 0: obs.getToPtfLoc().getElevation().doubleValue()));
-			geom.setId("obs-" + obs.getObjectId().getIdSnapshot().get("ID").toString() + "-geometry-" + obs.getToPtfLoc().getObjectId().getIdSnapshot().get("ID").toString());
+			pos.setValue(Arrays.asList(obs.getPtfLoc().getLat().doubleValue(), obs.getPtfLoc().getLon().doubleValue(), obs.getPtfLoc().getElevation() == null ? 0: obs.getPtfLoc().getElevation().doubleValue()));
+			geom.setId("obs-" + obs.getObjectId().getIdSnapshot().get("ID").toString() + "-geometry-" + obs.getPtfLoc().getObjectId().getIdSnapshot().get("ID").toString());
 			geom.setPos(pos);
 			geom.setSrsName("http://www.opengis.net/def/crs/EPSG/0/4979");
 			ShapeType shape = this.samsOF.createShapeType();

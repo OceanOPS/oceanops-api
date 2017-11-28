@@ -13,9 +13,10 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _LineFamily extends CayenneDataObject {
 
     public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
-    public static final String LINE_ARRAY_PROPERTY = "lineArray";
+    public static final String LINES_PROPERTY = "lines";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -24,6 +25,13 @@ public abstract class _LineFamily extends CayenneDataObject {
     }
     public String getDescription() {
         return (String)readProperty(DESCRIPTION_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setName(String name) {
@@ -40,15 +48,15 @@ public abstract class _LineFamily extends CayenneDataObject {
         return (String)readProperty(NAME_SHORT_PROPERTY);
     }
 
-    public void addToLineArray(Line obj) {
-        addToManyTarget(LINE_ARRAY_PROPERTY, obj, true);
+    public void addToLines(Line obj) {
+        addToManyTarget(LINES_PROPERTY, obj, true);
     }
-    public void removeFromLineArray(Line obj) {
-        removeToManyTarget(LINE_ARRAY_PROPERTY, obj, true);
+    public void removeFromLines(Line obj) {
+        removeToManyTarget(LINES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Line> getLineArray() {
-        return (List<Line>)readProperty(LINE_ARRAY_PROPERTY);
+    public List<Line> getLines() {
+        return (List<Line>)readProperty(LINES_PROPERTY);
     }
 
 

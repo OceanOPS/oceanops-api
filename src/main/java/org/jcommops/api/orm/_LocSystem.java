@@ -12,11 +12,21 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _LocSystem extends CayenneDataObject {
 
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
-    public static final String PTF_LOC_ARRAY_PROPERTY = "ptfLocArray";
+    public static final String PTF_LOCS_PROPERTY = "ptfLocs";
+    public static final String PTFS_PROPERTY = "ptfs";
+    public static final String PTFS1_PROPERTY = "ptfs1";
 
     public static final String ID_PK_COLUMN = "ID";
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
 
     public void setName(String name) {
         writeProperty(NAME_PROPERTY, name);
@@ -32,15 +42,39 @@ public abstract class _LocSystem extends CayenneDataObject {
         return (String)readProperty(NAME_SHORT_PROPERTY);
     }
 
-    public void addToPtfLocArray(PtfLoc obj) {
-        addToManyTarget(PTF_LOC_ARRAY_PROPERTY, obj, true);
+    public void addToPtfLocs(PtfLoc obj) {
+        addToManyTarget(PTF_LOCS_PROPERTY, obj, true);
     }
-    public void removeFromPtfLocArray(PtfLoc obj) {
-        removeToManyTarget(PTF_LOC_ARRAY_PROPERTY, obj, true);
+    public void removeFromPtfLocs(PtfLoc obj) {
+        removeToManyTarget(PTF_LOCS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<PtfLoc> getPtfLocArray() {
-        return (List<PtfLoc>)readProperty(PTF_LOC_ARRAY_PROPERTY);
+    public List<PtfLoc> getPtfLocs() {
+        return (List<PtfLoc>)readProperty(PTF_LOCS_PROPERTY);
+    }
+
+
+    public void addToPtfs(Ptf obj) {
+        addToManyTarget(PTFS_PROPERTY, obj, true);
+    }
+    public void removeFromPtfs(Ptf obj) {
+        removeToManyTarget(PTFS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Ptf> getPtfs() {
+        return (List<Ptf>)readProperty(PTFS_PROPERTY);
+    }
+
+
+    public void addToPtfs1(Ptf obj) {
+        addToManyTarget(PTFS1_PROPERTY, obj, true);
+    }
+    public void removeFromPtfs1(Ptf obj) {
+        removeToManyTarget(PTFS1_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Ptf> getPtfs1() {
+        return (List<Ptf>)readProperty(PTFS1_PROPERTY);
     }
 
 

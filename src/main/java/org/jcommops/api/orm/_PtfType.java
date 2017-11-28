@@ -13,12 +13,13 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _PtfType extends CayenneDataObject {
 
     public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
-    public static final String PTF_MODEL_ARRAY_PROPERTY = "ptfModelArray";
-    public static final String SDN_PTF_CLASS_ARRAY_PROPERTY = "sdnPtfClassArray";
-    public static final String TO_IMAGE_PROPERTY = "toImage";
-    public static final String TO_PTF_FAMILY_PROPERTY = "toPtfFamily";
+    public static final String IMAGE_PROPERTY = "image";
+    public static final String PTF_FAMILY_PROPERTY = "ptfFamily";
+    public static final String PTF_MODELS_PROPERTY = "ptfModels";
+    public static final String SDN_PTF_CLASSES_PROPERTY = "sdnPtfClasses";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -27,6 +28,13 @@ public abstract class _PtfType extends CayenneDataObject {
     }
     public String getDescription() {
         return (String)readProperty(DESCRIPTION_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setName(String name) {
@@ -43,45 +51,45 @@ public abstract class _PtfType extends CayenneDataObject {
         return (String)readProperty(NAME_SHORT_PROPERTY);
     }
 
-    public void addToPtfModelArray(PtfModel obj) {
-        addToManyTarget(PTF_MODEL_ARRAY_PROPERTY, obj, true);
+    public void setImage(Image image) {
+        setToOneTarget(IMAGE_PROPERTY, image, true);
     }
-    public void removeFromPtfModelArray(PtfModel obj) {
-        removeToManyTarget(PTF_MODEL_ARRAY_PROPERTY, obj, true);
+
+    public Image getImage() {
+        return (Image)readProperty(IMAGE_PROPERTY);
+    }
+
+
+    public void setPtfFamily(PtfFamily ptfFamily) {
+        setToOneTarget(PTF_FAMILY_PROPERTY, ptfFamily, true);
+    }
+
+    public PtfFamily getPtfFamily() {
+        return (PtfFamily)readProperty(PTF_FAMILY_PROPERTY);
+    }
+
+
+    public void addToPtfModels(PtfModel obj) {
+        addToManyTarget(PTF_MODELS_PROPERTY, obj, true);
+    }
+    public void removeFromPtfModels(PtfModel obj) {
+        removeToManyTarget(PTF_MODELS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<PtfModel> getPtfModelArray() {
-        return (List<PtfModel>)readProperty(PTF_MODEL_ARRAY_PROPERTY);
+    public List<PtfModel> getPtfModels() {
+        return (List<PtfModel>)readProperty(PTF_MODELS_PROPERTY);
     }
 
 
-    public void addToSdnPtfClassArray(SdnPtfClass obj) {
-        addToManyTarget(SDN_PTF_CLASS_ARRAY_PROPERTY, obj, true);
+    public void addToSdnPtfClasses(SdnPtfClass obj) {
+        addToManyTarget(SDN_PTF_CLASSES_PROPERTY, obj, true);
     }
-    public void removeFromSdnPtfClassArray(SdnPtfClass obj) {
-        removeToManyTarget(SDN_PTF_CLASS_ARRAY_PROPERTY, obj, true);
+    public void removeFromSdnPtfClasses(SdnPtfClass obj) {
+        removeToManyTarget(SDN_PTF_CLASSES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<SdnPtfClass> getSdnPtfClassArray() {
-        return (List<SdnPtfClass>)readProperty(SDN_PTF_CLASS_ARRAY_PROPERTY);
-    }
-
-
-    public void setToImage(Image toImage) {
-        setToOneTarget(TO_IMAGE_PROPERTY, toImage, true);
-    }
-
-    public Image getToImage() {
-        return (Image)readProperty(TO_IMAGE_PROPERTY);
-    }
-
-
-    public void setToPtfFamily(PtfFamily toPtfFamily) {
-        setToOneTarget(TO_PTF_FAMILY_PROPERTY, toPtfFamily, true);
-    }
-
-    public PtfFamily getToPtfFamily() {
-        return (PtfFamily)readProperty(TO_PTF_FAMILY_PROPERTY);
+    public List<SdnPtfClass> getSdnPtfClasses() {
+        return (List<SdnPtfClass>)readProperty(SDN_PTF_CLASSES_PROPERTY);
     }
 
 

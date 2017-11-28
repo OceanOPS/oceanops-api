@@ -17,6 +17,7 @@ public abstract class _PtfHardware extends CayenneDataObject {
     public static final String BALLOON_SIZE_PROPERTY = "balloonSize";
     public static final String BATCH_REF_PROPERTY = "batchRef";
     public static final String DROGUE_PROPERTY = "drogue";
+    public static final String ID_PROPERTY = "id";
     public static final String MANUF_DATE_PROPERTY = "manufDate";
     public static final String MOORING_DEPTH_PROPERTY = "mooringDepth";
     public static final String MOORING_TYPE_ID_PROPERTY = "mooringTypeId";
@@ -24,13 +25,13 @@ public abstract class _PtfHardware extends CayenneDataObject {
     public static final String SERIAL_REF_PROPERTY = "serialRef";
     public static final String SPEC_PROPERTY = "spec";
     public static final String WATCH_CIRCLE_PROPERTY = "watchCircle";
-    public static final String PTF_ARRAY_PROPERTY = "ptfArray";
-    public static final String TO_COUNTRY_PROPERTY = "toCountry";
-    public static final String TO_PTF_BATTERY_PROPERTY = "toPtfBattery";
-    public static final String TO_PTF_FIRMWARE_PROPERTY = "toPtfFirmware";
-    public static final String TO_PTF_FIRMWARE1_PROPERTY = "toPtfFirmware1";
-    public static final String TO_PTF_HULL_TYPE_PROPERTY = "toPtfHullType";
-    public static final String TO_PUMP_TYPE_PROPERTY = "toPumpType";
+    public static final String BATTERY_PROPERTY = "battery";
+    public static final String FIRMWARE_PROPERTY = "firmware";
+    public static final String FIRMWARE_ADD_PROPERTY = "firmwareAdd";
+    public static final String HULL_TYPE_PROPERTY = "hullType";
+    public static final String PTFS_PROPERTY = "ptfs";
+    public static final String PUMP_TYPE_PROPERTY = "pumpType";
+    public static final String SENSOR_UPGRADE_COUNTRY_PROPERTY = "sensorUpgradeCountry";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -53,6 +54,13 @@ public abstract class _PtfHardware extends CayenneDataObject {
     }
     public Integer getDrogue() {
         return (Integer)readProperty(DROGUE_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setManufDate(Date manufDate) {
@@ -104,69 +112,69 @@ public abstract class _PtfHardware extends CayenneDataObject {
         return (Integer)readProperty(WATCH_CIRCLE_PROPERTY);
     }
 
-    public void addToPtfArray(Ptf obj) {
-        addToManyTarget(PTF_ARRAY_PROPERTY, obj, true);
+    public void setBattery(PtfBattery battery) {
+        setToOneTarget(BATTERY_PROPERTY, battery, true);
     }
-    public void removeFromPtfArray(Ptf obj) {
-        removeToManyTarget(PTF_ARRAY_PROPERTY, obj, true);
+
+    public PtfBattery getBattery() {
+        return (PtfBattery)readProperty(BATTERY_PROPERTY);
+    }
+
+
+    public void setFirmware(PtfFirmware firmware) {
+        setToOneTarget(FIRMWARE_PROPERTY, firmware, true);
+    }
+
+    public PtfFirmware getFirmware() {
+        return (PtfFirmware)readProperty(FIRMWARE_PROPERTY);
+    }
+
+
+    public void setFirmwareAdd(PtfFirmware firmwareAdd) {
+        setToOneTarget(FIRMWARE_ADD_PROPERTY, firmwareAdd, true);
+    }
+
+    public PtfFirmware getFirmwareAdd() {
+        return (PtfFirmware)readProperty(FIRMWARE_ADD_PROPERTY);
+    }
+
+
+    public void setHullType(PtfHullType hullType) {
+        setToOneTarget(HULL_TYPE_PROPERTY, hullType, true);
+    }
+
+    public PtfHullType getHullType() {
+        return (PtfHullType)readProperty(HULL_TYPE_PROPERTY);
+    }
+
+
+    public void addToPtfs(Ptf obj) {
+        addToManyTarget(PTFS_PROPERTY, obj, true);
+    }
+    public void removeFromPtfs(Ptf obj) {
+        removeToManyTarget(PTFS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Ptf> getPtfArray() {
-        return (List<Ptf>)readProperty(PTF_ARRAY_PROPERTY);
+    public List<Ptf> getPtfs() {
+        return (List<Ptf>)readProperty(PTFS_PROPERTY);
     }
 
 
-    public void setToCountry(Country toCountry) {
-        setToOneTarget(TO_COUNTRY_PROPERTY, toCountry, true);
+    public void setPumpType(PumpType pumpType) {
+        setToOneTarget(PUMP_TYPE_PROPERTY, pumpType, true);
     }
 
-    public Country getToCountry() {
-        return (Country)readProperty(TO_COUNTRY_PROPERTY);
-    }
-
-
-    public void setToPtfBattery(PtfBattery toPtfBattery) {
-        setToOneTarget(TO_PTF_BATTERY_PROPERTY, toPtfBattery, true);
-    }
-
-    public PtfBattery getToPtfBattery() {
-        return (PtfBattery)readProperty(TO_PTF_BATTERY_PROPERTY);
+    public PumpType getPumpType() {
+        return (PumpType)readProperty(PUMP_TYPE_PROPERTY);
     }
 
 
-    public void setToPtfFirmware(PtfFirmware toPtfFirmware) {
-        setToOneTarget(TO_PTF_FIRMWARE_PROPERTY, toPtfFirmware, true);
+    public void setSensorUpgradeCountry(Country sensorUpgradeCountry) {
+        setToOneTarget(SENSOR_UPGRADE_COUNTRY_PROPERTY, sensorUpgradeCountry, true);
     }
 
-    public PtfFirmware getToPtfFirmware() {
-        return (PtfFirmware)readProperty(TO_PTF_FIRMWARE_PROPERTY);
-    }
-
-
-    public void setToPtfFirmware1(PtfFirmware toPtfFirmware1) {
-        setToOneTarget(TO_PTF_FIRMWARE1_PROPERTY, toPtfFirmware1, true);
-    }
-
-    public PtfFirmware getToPtfFirmware1() {
-        return (PtfFirmware)readProperty(TO_PTF_FIRMWARE1_PROPERTY);
-    }
-
-
-    public void setToPtfHullType(PtfHullType toPtfHullType) {
-        setToOneTarget(TO_PTF_HULL_TYPE_PROPERTY, toPtfHullType, true);
-    }
-
-    public PtfHullType getToPtfHullType() {
-        return (PtfHullType)readProperty(TO_PTF_HULL_TYPE_PROPERTY);
-    }
-
-
-    public void setToPumpType(PumpType toPumpType) {
-        setToOneTarget(TO_PUMP_TYPE_PROPERTY, toPumpType, true);
-    }
-
-    public PumpType getToPumpType() {
-        return (PumpType)readProperty(TO_PUMP_TYPE_PROPERTY);
+    public Country getSensorUpgradeCountry() {
+        return (Country)readProperty(SENSOR_UPGRADE_COUNTRY_PROPERTY);
     }
 
 

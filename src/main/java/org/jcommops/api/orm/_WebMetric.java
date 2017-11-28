@@ -12,11 +12,19 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _WebMetric extends CayenneDataObject {
 
+    public static final String ID_PROPERTY = "id";
     public static final String METHOD_PROPERTY = "method";
     public static final String NAME_PROPERTY = "name";
-    public static final String WEB_METRIC_MASTER_PROG_ARRAY_PROPERTY = "webMetricMasterProgArray";
+    public static final String WEB_METRIC_MASTER_PROGS_PROPERTY = "webMetricMasterProgs";
 
     public static final String ID_PK_COLUMN = "ID";
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
 
     public void setMethod(String method) {
         writeProperty(METHOD_PROPERTY, method);
@@ -32,15 +40,15 @@ public abstract class _WebMetric extends CayenneDataObject {
         return (String)readProperty(NAME_PROPERTY);
     }
 
-    public void addToWebMetricMasterProgArray(WebMetricMasterProg obj) {
-        addToManyTarget(WEB_METRIC_MASTER_PROG_ARRAY_PROPERTY, obj, true);
+    public void addToWebMetricMasterProgs(WebMetricMasterProg obj) {
+        addToManyTarget(WEB_METRIC_MASTER_PROGS_PROPERTY, obj, true);
     }
-    public void removeFromWebMetricMasterProgArray(WebMetricMasterProg obj) {
-        removeToManyTarget(WEB_METRIC_MASTER_PROG_ARRAY_PROPERTY, obj, true);
+    public void removeFromWebMetricMasterProgs(WebMetricMasterProg obj) {
+        removeToManyTarget(WEB_METRIC_MASTER_PROGS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<WebMetricMasterProg> getWebMetricMasterProgArray() {
-        return (List<WebMetricMasterProg>)readProperty(WEB_METRIC_MASTER_PROG_ARRAY_PROPERTY);
+    public List<WebMetricMasterProg> getWebMetricMasterProgs() {
+        return (List<WebMetricMasterProg>)readProperty(WEB_METRIC_MASTER_PROGS_PROPERTY);
     }
 
 

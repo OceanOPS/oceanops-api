@@ -10,19 +10,37 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _AgencyDacType extends CayenneDataObject {
 
+    public static final String AGENCY_ID_PROPERTY = "agencyId";
+    public static final String DAC_TYPE_ID_PROPERTY = "dacTypeId";
     public static final String DATA_PATH_PROPERTY = "dataPath";
     public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String MASTER_PROGRAM_ID_PROPERTY = "masterProgramId";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
     public static final String OLD_DAC_ID_PROPERTY = "oldDacId";
     public static final String OP_MAIL_PROPERTY = "opMail";
-    public static final String TO_AGENCY_PROPERTY = "toAgency";
-    public static final String TO_DAC_TYPE_PROPERTY = "toDacType";
-    public static final String TO_MASTER_PROG_PROPERTY = "toMasterProg";
+    public static final String AGENCY_PROPERTY = "agency";
+    public static final String DAC_TYPE_PROPERTY = "dacType";
+    public static final String MASTER_PROGRAM_PROPERTY = "masterProgram";
+    public static final String WEBLINK_PROPERTY = "weblink";
 
     public static final String AGENCY_ID_PK_COLUMN = "AGENCY_ID";
     public static final String DAC_TYPE_ID_PK_COLUMN = "DAC_TYPE_ID";
     public static final String MASTER_PROGRAM_ID_PK_COLUMN = "MASTER_PROGRAM_ID";
+
+    public void setAgencyId(Integer agencyId) {
+        writeProperty(AGENCY_ID_PROPERTY, agencyId);
+    }
+    public Integer getAgencyId() {
+        return (Integer)readProperty(AGENCY_ID_PROPERTY);
+    }
+
+    public void setDacTypeId(Integer dacTypeId) {
+        writeProperty(DAC_TYPE_ID_PROPERTY, dacTypeId);
+    }
+    public Integer getDacTypeId() {
+        return (Integer)readProperty(DAC_TYPE_ID_PROPERTY);
+    }
 
     public void setDataPath(String dataPath) {
         writeProperty(DATA_PATH_PROPERTY, dataPath);
@@ -36,6 +54,13 @@ public abstract class _AgencyDacType extends CayenneDataObject {
     }
     public String getDescription() {
         return (String)readProperty(DESCRIPTION_PROPERTY);
+    }
+
+    public void setMasterProgramId(Integer masterProgramId) {
+        writeProperty(MASTER_PROGRAM_ID_PROPERTY, masterProgramId);
+    }
+    public Integer getMasterProgramId() {
+        return (Integer)readProperty(MASTER_PROGRAM_ID_PROPERTY);
     }
 
     public void setName(String name) {
@@ -66,30 +91,39 @@ public abstract class _AgencyDacType extends CayenneDataObject {
         return (String)readProperty(OP_MAIL_PROPERTY);
     }
 
-    public void setToAgency(Agency toAgency) {
-        setToOneTarget(TO_AGENCY_PROPERTY, toAgency, true);
+    public void setAgency(Agency agency) {
+        setToOneTarget(AGENCY_PROPERTY, agency, true);
     }
 
-    public Agency getToAgency() {
-        return (Agency)readProperty(TO_AGENCY_PROPERTY);
-    }
-
-
-    public void setToDacType(DacType toDacType) {
-        setToOneTarget(TO_DAC_TYPE_PROPERTY, toDacType, true);
-    }
-
-    public DacType getToDacType() {
-        return (DacType)readProperty(TO_DAC_TYPE_PROPERTY);
+    public Agency getAgency() {
+        return (Agency)readProperty(AGENCY_PROPERTY);
     }
 
 
-    public void setToMasterProg(MasterProg toMasterProg) {
-        setToOneTarget(TO_MASTER_PROG_PROPERTY, toMasterProg, true);
+    public void setDacType(DacType dacType) {
+        setToOneTarget(DAC_TYPE_PROPERTY, dacType, true);
     }
 
-    public MasterProg getToMasterProg() {
-        return (MasterProg)readProperty(TO_MASTER_PROG_PROPERTY);
+    public DacType getDacType() {
+        return (DacType)readProperty(DAC_TYPE_PROPERTY);
+    }
+
+
+    public void setMasterProgram(MasterProg masterProgram) {
+        setToOneTarget(MASTER_PROGRAM_PROPERTY, masterProgram, true);
+    }
+
+    public MasterProg getMasterProgram() {
+        return (MasterProg)readProperty(MASTER_PROGRAM_PROPERTY);
+    }
+
+
+    public void setWeblink(Weblink weblink) {
+        setToOneTarget(WEBLINK_PROPERTY, weblink, true);
+    }
+
+    public Weblink getWeblink() {
+        return (Weblink)readProperty(WEBLINK_PROPERTY);
     }
 
 

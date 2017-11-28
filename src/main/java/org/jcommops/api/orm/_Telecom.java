@@ -15,15 +15,17 @@ public abstract class _Telecom extends CayenneDataObject {
 
     public static final String END_DATE_PROPERTY = "endDate";
     public static final String FREQUENCY_PROPERTY = "frequency";
+    public static final String ID_PROPERTY = "id";
     public static final String IMEI_PROPERTY = "imei";
     public static final String NUM_PROPERTY = "num";
     public static final String PTF_ID_PROPERTY = "ptfId";
     public static final String REF_PROG_PROPERTY = "refProg";
     public static final String START_DATE_PROPERTY = "startDate";
-    public static final String PTF_ARRAY_PROPERTY = "ptfArray";
-    public static final String PTF_ARRAY1_PROPERTY = "ptfArray1";
-    public static final String TO_TELECOM_FORMAT_PROPERTY = "toTelecomFormat";
-    public static final String TO_TELECOM_TYPE_PROPERTY = "toTelecomType";
+    public static final String PTFS_PROPERTY = "ptfs";
+    public static final String PTFS1_PROPERTY = "ptfs1";
+    public static final String TELECOM_FORMAT_PROPERTY = "telecomFormat";
+    public static final String TELECOM_SERVICE_PROPERTY = "telecomService";
+    public static final String TELECOM_TYPE_PROPERTY = "telecomType";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -39,6 +41,13 @@ public abstract class _Telecom extends CayenneDataObject {
     }
     public String getFrequency() {
         return (String)readProperty(FREQUENCY_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setImei(String imei) {
@@ -76,45 +85,54 @@ public abstract class _Telecom extends CayenneDataObject {
         return (Date)readProperty(START_DATE_PROPERTY);
     }
 
-    public void addToPtfArray(Ptf obj) {
-        addToManyTarget(PTF_ARRAY_PROPERTY, obj, true);
+    public void addToPtfs(Ptf obj) {
+        addToManyTarget(PTFS_PROPERTY, obj, true);
     }
-    public void removeFromPtfArray(Ptf obj) {
-        removeToManyTarget(PTF_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<Ptf> getPtfArray() {
-        return (List<Ptf>)readProperty(PTF_ARRAY_PROPERTY);
-    }
-
-
-    public void addToPtfArray1(Ptf obj) {
-        addToManyTarget(PTF_ARRAY1_PROPERTY, obj, true);
-    }
-    public void removeFromPtfArray1(Ptf obj) {
-        removeToManyTarget(PTF_ARRAY1_PROPERTY, obj, true);
+    public void removeFromPtfs(Ptf obj) {
+        removeToManyTarget(PTFS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Ptf> getPtfArray1() {
-        return (List<Ptf>)readProperty(PTF_ARRAY1_PROPERTY);
+    public List<Ptf> getPtfs() {
+        return (List<Ptf>)readProperty(PTFS_PROPERTY);
     }
 
 
-    public void setToTelecomFormat(TelecomFormat toTelecomFormat) {
-        setToOneTarget(TO_TELECOM_FORMAT_PROPERTY, toTelecomFormat, true);
+    public void addToPtfs1(Ptf obj) {
+        addToManyTarget(PTFS1_PROPERTY, obj, true);
+    }
+    public void removeFromPtfs1(Ptf obj) {
+        removeToManyTarget(PTFS1_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Ptf> getPtfs1() {
+        return (List<Ptf>)readProperty(PTFS1_PROPERTY);
     }
 
-    public TelecomFormat getToTelecomFormat() {
-        return (TelecomFormat)readProperty(TO_TELECOM_FORMAT_PROPERTY);
+
+    public void setTelecomFormat(TelecomFormat telecomFormat) {
+        setToOneTarget(TELECOM_FORMAT_PROPERTY, telecomFormat, true);
+    }
+
+    public TelecomFormat getTelecomFormat() {
+        return (TelecomFormat)readProperty(TELECOM_FORMAT_PROPERTY);
     }
 
 
-    public void setToTelecomType(TelecomType toTelecomType) {
-        setToOneTarget(TO_TELECOM_TYPE_PROPERTY, toTelecomType, true);
+    public void setTelecomService(TelecomService telecomService) {
+        setToOneTarget(TELECOM_SERVICE_PROPERTY, telecomService, true);
     }
 
-    public TelecomType getToTelecomType() {
-        return (TelecomType)readProperty(TO_TELECOM_TYPE_PROPERTY);
+    public TelecomService getTelecomService() {
+        return (TelecomService)readProperty(TELECOM_SERVICE_PROPERTY);
+    }
+
+
+    public void setTelecomType(TelecomType telecomType) {
+        setToOneTarget(TELECOM_TYPE_PROPERTY, telecomType, true);
+    }
+
+    public TelecomType getTelecomType() {
+        return (TelecomType)readProperty(TELECOM_TYPE_PROPERTY);
     }
 
 

@@ -1,5 +1,7 @@
 package org.jcommops.api.orm;
 
+import java.util.Date;
+
 import org.apache.cayenne.CayenneDataObject;
 
 /**
@@ -10,9 +12,33 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _PtfPtfStatus extends CayenneDataObject {
 
+    public static final String CHANGING_DATE_PROPERTY = "changingDate";
+    public static final String PTF_ID_PROPERTY = "ptfId";
+    public static final String PTF_STATUS_ID_PROPERTY = "ptfStatusId";
 
     public static final String CHANGING_DATE_PK_COLUMN = "CHANGING_DATE";
     public static final String PTF_ID_PK_COLUMN = "PTF_ID";
     public static final String PTF_STATUS_ID_PK_COLUMN = "PTF_STATUS_ID";
+
+    public void setChangingDate(Date changingDate) {
+        writeProperty(CHANGING_DATE_PROPERTY, changingDate);
+    }
+    public Date getChangingDate() {
+        return (Date)readProperty(CHANGING_DATE_PROPERTY);
+    }
+
+    public void setPtfId(Integer ptfId) {
+        writeProperty(PTF_ID_PROPERTY, ptfId);
+    }
+    public Integer getPtfId() {
+        return (Integer)readProperty(PTF_ID_PROPERTY);
+    }
+
+    public void setPtfStatusId(Integer ptfStatusId) {
+        writeProperty(PTF_STATUS_ID_PROPERTY, ptfStatusId);
+    }
+    public Integer getPtfStatusId() {
+        return (Integer)readProperty(PTF_STATUS_ID_PROPERTY);
+    }
 
 }

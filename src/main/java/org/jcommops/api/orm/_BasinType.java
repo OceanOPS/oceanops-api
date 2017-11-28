@@ -13,10 +13,11 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _BasinType extends CayenneDataObject {
 
     public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_LONG_PROPERTY = "nameLong";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
-    public static final String BASIN_ARRAY_PROPERTY = "basinArray";
+    public static final String BASINS_PROPERTY = "basins";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -25,6 +26,13 @@ public abstract class _BasinType extends CayenneDataObject {
     }
     public String getDescription() {
         return (String)readProperty(DESCRIPTION_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setName(String name) {
@@ -48,15 +56,15 @@ public abstract class _BasinType extends CayenneDataObject {
         return (String)readProperty(NAME_SHORT_PROPERTY);
     }
 
-    public void addToBasinArray(Basin obj) {
-        addToManyTarget(BASIN_ARRAY_PROPERTY, obj, true);
+    public void addToBasins(Basin obj) {
+        addToManyTarget(BASINS_PROPERTY, obj, true);
     }
-    public void removeFromBasinArray(Basin obj) {
-        removeToManyTarget(BASIN_ARRAY_PROPERTY, obj, true);
+    public void removeFromBasins(Basin obj) {
+        removeToManyTarget(BASINS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Basin> getBasinArray() {
-        return (List<Basin>)readProperty(BASIN_ARRAY_PROPERTY);
+    public List<Basin> getBasins() {
+        return (List<Basin>)readProperty(BASINS_PROPERTY);
     }
 
 

@@ -13,10 +13,11 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _ImageType extends CayenneDataObject {
 
     public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_LONG_PROPERTY = "nameLong";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
-    public static final String IMAGE_ARRAY_PROPERTY = "imageArray";
+    public static final String IMAGES_PROPERTY = "images";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -25,6 +26,13 @@ public abstract class _ImageType extends CayenneDataObject {
     }
     public String getDescription() {
         return (String)readProperty(DESCRIPTION_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setName(String name) {
@@ -48,15 +56,15 @@ public abstract class _ImageType extends CayenneDataObject {
         return (String)readProperty(NAME_SHORT_PROPERTY);
     }
 
-    public void addToImageArray(Image obj) {
-        addToManyTarget(IMAGE_ARRAY_PROPERTY, obj, true);
+    public void addToImages(Image obj) {
+        addToManyTarget(IMAGES_PROPERTY, obj, true);
     }
-    public void removeFromImageArray(Image obj) {
-        removeToManyTarget(IMAGE_ARRAY_PROPERTY, obj, true);
+    public void removeFromImages(Image obj) {
+        removeToManyTarget(IMAGES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Image> getImageArray() {
-        return (List<Image>)readProperty(IMAGE_ARRAY_PROPERTY);
+    public List<Image> getImages() {
+        return (List<Image>)readProperty(IMAGES_PROPERTY);
     }
 
 

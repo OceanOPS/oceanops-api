@@ -10,27 +10,43 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _MapTypeMasterProg extends CayenneDataObject {
 
-    public static final String TO_MAP_TYPE_PROPERTY = "toMapType";
-    public static final String TO_MASTER_PROG_PROPERTY = "toMasterProg";
+    public static final String MAP_TYPE_ID_PROPERTY = "mapTypeId";
+    public static final String MASTER_PROG_ID_PROPERTY = "masterProgId";
+    public static final String MAP_TYPE_PROPERTY = "mapType";
+    public static final String MASTER_PROG_PROPERTY = "masterProg";
 
     public static final String MAP_TYPE_ID_PK_COLUMN = "MAP_TYPE_ID";
     public static final String MASTER_PROG_ID_PK_COLUMN = "MASTER_PROG_ID";
 
-    public void setToMapType(MapType toMapType) {
-        setToOneTarget(TO_MAP_TYPE_PROPERTY, toMapType, true);
+    public void setMapTypeId(Integer mapTypeId) {
+        writeProperty(MAP_TYPE_ID_PROPERTY, mapTypeId);
+    }
+    public Integer getMapTypeId() {
+        return (Integer)readProperty(MAP_TYPE_ID_PROPERTY);
     }
 
-    public MapType getToMapType() {
-        return (MapType)readProperty(TO_MAP_TYPE_PROPERTY);
+    public void setMasterProgId(Integer masterProgId) {
+        writeProperty(MASTER_PROG_ID_PROPERTY, masterProgId);
+    }
+    public Integer getMasterProgId() {
+        return (Integer)readProperty(MASTER_PROG_ID_PROPERTY);
+    }
+
+    public void setMapType(MapType mapType) {
+        setToOneTarget(MAP_TYPE_PROPERTY, mapType, true);
+    }
+
+    public MapType getMapType() {
+        return (MapType)readProperty(MAP_TYPE_PROPERTY);
     }
 
 
-    public void setToMasterProg(MasterProg toMasterProg) {
-        setToOneTarget(TO_MASTER_PROG_PROPERTY, toMasterProg, true);
+    public void setMasterProg(MasterProg masterProg) {
+        setToOneTarget(MASTER_PROG_PROPERTY, masterProg, true);
     }
 
-    public MasterProg getToMasterProg() {
-        return (MasterProg)readProperty(TO_MASTER_PROG_PROPERTY);
+    public MasterProg getMasterProg() {
+        return (MasterProg)readProperty(MASTER_PROG_PROPERTY);
     }
 
 

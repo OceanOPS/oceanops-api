@@ -12,20 +12,46 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _Service extends CayenneDataObject {
 
+    public static final String CALIBRATION_DATE_PROPERTY = "calibrationDate";
     public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String END_DATE_PROPERTY = "endDate";
+    public static final String ID_PROPERTY = "id";
     public static final String SERVICE_DATE_PROPERTY = "serviceDate";
-    public static final String TO_AGENCY_PROPERTY = "toAgency";
-    public static final String TO_CONTACT_PROPERTY = "toContact";
-    public static final String TO_CRUISE_PROPERTY = "toCruise";
-    public static final String TO_PTF_PROPERTY = "toPtf";
+    public static final String START_DATE_PROPERTY = "startDate";
+    public static final String AGENCY_PROPERTY = "agency";
+    public static final String CONTACT_PROPERTY = "contact";
+    public static final String CRUISE_PROPERTY = "cruise";
+    public static final String PTF_PROPERTY = "ptf";
+    public static final String SENSOR_MODEL_PROPERTY = "sensorModel";
 
     public static final String ID_PK_COLUMN = "ID";
+
+    public void setCalibrationDate(Date calibrationDate) {
+        writeProperty(CALIBRATION_DATE_PROPERTY, calibrationDate);
+    }
+    public Date getCalibrationDate() {
+        return (Date)readProperty(CALIBRATION_DATE_PROPERTY);
+    }
 
     public void setDescription(String description) {
         writeProperty(DESCRIPTION_PROPERTY, description);
     }
     public String getDescription() {
         return (String)readProperty(DESCRIPTION_PROPERTY);
+    }
+
+    public void setEndDate(Date endDate) {
+        writeProperty(END_DATE_PROPERTY, endDate);
+    }
+    public Date getEndDate() {
+        return (Date)readProperty(END_DATE_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setServiceDate(Date serviceDate) {
@@ -35,39 +61,55 @@ public abstract class _Service extends CayenneDataObject {
         return (Date)readProperty(SERVICE_DATE_PROPERTY);
     }
 
-    public void setToAgency(Agency toAgency) {
-        setToOneTarget(TO_AGENCY_PROPERTY, toAgency, true);
+    public void setStartDate(Date startDate) {
+        writeProperty(START_DATE_PROPERTY, startDate);
+    }
+    public Date getStartDate() {
+        return (Date)readProperty(START_DATE_PROPERTY);
     }
 
-    public Agency getToAgency() {
-        return (Agency)readProperty(TO_AGENCY_PROPERTY);
+    public void setAgency(Agency agency) {
+        setToOneTarget(AGENCY_PROPERTY, agency, true);
     }
 
-
-    public void setToContact(Contact toContact) {
-        setToOneTarget(TO_CONTACT_PROPERTY, toContact, true);
-    }
-
-    public Contact getToContact() {
-        return (Contact)readProperty(TO_CONTACT_PROPERTY);
-    }
-
-
-    public void setToCruise(Cruise toCruise) {
-        setToOneTarget(TO_CRUISE_PROPERTY, toCruise, true);
-    }
-
-    public Cruise getToCruise() {
-        return (Cruise)readProperty(TO_CRUISE_PROPERTY);
+    public Agency getAgency() {
+        return (Agency)readProperty(AGENCY_PROPERTY);
     }
 
 
-    public void setToPtf(Ptf toPtf) {
-        setToOneTarget(TO_PTF_PROPERTY, toPtf, true);
+    public void setContact(Contact contact) {
+        setToOneTarget(CONTACT_PROPERTY, contact, true);
     }
 
-    public Ptf getToPtf() {
-        return (Ptf)readProperty(TO_PTF_PROPERTY);
+    public Contact getContact() {
+        return (Contact)readProperty(CONTACT_PROPERTY);
+    }
+
+
+    public void setCruise(Cruise cruise) {
+        setToOneTarget(CRUISE_PROPERTY, cruise, true);
+    }
+
+    public Cruise getCruise() {
+        return (Cruise)readProperty(CRUISE_PROPERTY);
+    }
+
+
+    public void setPtf(Ptf ptf) {
+        setToOneTarget(PTF_PROPERTY, ptf, true);
+    }
+
+    public Ptf getPtf() {
+        return (Ptf)readProperty(PTF_PROPERTY);
+    }
+
+
+    public void setSensorModel(SensorModel sensorModel) {
+        setToOneTarget(SENSOR_MODEL_PROPERTY, sensorModel, true);
+    }
+
+    public SensorModel getSensorModel() {
+        return (SensorModel)readProperty(SENSOR_MODEL_PROPERTY);
     }
 
 

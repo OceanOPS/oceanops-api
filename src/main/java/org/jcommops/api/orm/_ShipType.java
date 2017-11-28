@@ -14,10 +14,11 @@ public abstract class _ShipType extends CayenneDataObject {
 
     public static final String CODE_PROPERTY = "code";
     public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
     public static final String ORIGINAL_DATASET_PROPERTY = "originalDataset";
-    public static final String SDN_PTF_CLASS_ARRAY_PROPERTY = "sdnPtfClassArray";
-    public static final String SHIP_ARRAY_PROPERTY = "shipArray";
+    public static final String SDN_PTF_CLASSES_PROPERTY = "sdnPtfClasses";
+    public static final String SHIPS_PROPERTY = "ships";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -35,6 +36,13 @@ public abstract class _ShipType extends CayenneDataObject {
         return (String)readProperty(DESCRIPTION_PROPERTY);
     }
 
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
+
     public void setName(String name) {
         writeProperty(NAME_PROPERTY, name);
     }
@@ -49,27 +57,27 @@ public abstract class _ShipType extends CayenneDataObject {
         return (String)readProperty(ORIGINAL_DATASET_PROPERTY);
     }
 
-    public void addToSdnPtfClassArray(SdnPtfClass obj) {
-        addToManyTarget(SDN_PTF_CLASS_ARRAY_PROPERTY, obj, true);
+    public void addToSdnPtfClasses(SdnPtfClass obj) {
+        addToManyTarget(SDN_PTF_CLASSES_PROPERTY, obj, true);
     }
-    public void removeFromSdnPtfClassArray(SdnPtfClass obj) {
-        removeToManyTarget(SDN_PTF_CLASS_ARRAY_PROPERTY, obj, true);
+    public void removeFromSdnPtfClasses(SdnPtfClass obj) {
+        removeToManyTarget(SDN_PTF_CLASSES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<SdnPtfClass> getSdnPtfClassArray() {
-        return (List<SdnPtfClass>)readProperty(SDN_PTF_CLASS_ARRAY_PROPERTY);
+    public List<SdnPtfClass> getSdnPtfClasses() {
+        return (List<SdnPtfClass>)readProperty(SDN_PTF_CLASSES_PROPERTY);
     }
 
 
-    public void addToShipArray(Ship obj) {
-        addToManyTarget(SHIP_ARRAY_PROPERTY, obj, true);
+    public void addToShips(Ship obj) {
+        addToManyTarget(SHIPS_PROPERTY, obj, true);
     }
-    public void removeFromShipArray(Ship obj) {
-        removeToManyTarget(SHIP_ARRAY_PROPERTY, obj, true);
+    public void removeFromShips(Ship obj) {
+        removeToManyTarget(SHIPS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Ship> getShipArray() {
-        return (List<Ship>)readProperty(SHIP_ARRAY_PROPERTY);
+    public List<Ship> getShips() {
+        return (List<Ship>)readProperty(SHIPS_PROPERTY);
     }
 
 

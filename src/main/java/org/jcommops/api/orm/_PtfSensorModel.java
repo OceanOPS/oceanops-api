@@ -17,19 +17,28 @@ public abstract class _PtfSensorModel extends CayenneDataObject {
     public static final String AVERAGING_PERIOD_PROPERTY = "averagingPeriod";
     public static final String CALIB_DATE_PROPERTY = "calibDate";
     public static final String COMMENTS_PROPERTY = "comments";
+    public static final String DISTANCE_BOW_PROPERTY = "distanceBow";
+    public static final String DISTANCE_CENTER_PROPERTY = "distanceCenter";
     public static final String END_DATE_PROPERTY = "endDate";
     public static final String HEIGHT_PROPERTY = "height";
+    public static final String HEIGHT_DECK_PROPERTY = "heightDeck";
     public static final String HEIGHT_WATER_PROPERTY = "heightWater";
+    public static final String ID_PROPERTY = "id";
     public static final String INSTALL_DATE_PROPERTY = "installDate";
+    public static final String IS_PRIMARY_PROPERTY = "isPrimary";
     public static final String MANUF_DATE_PROPERTY = "manufDate";
+    public static final String OWNERSHIP_PROPERTY = "ownership";
     public static final String SAMPLING_RATE_PROPERTY = "samplingRate";
     public static final String SERIAL_NO_PROPERTY = "serialNo";
+    public static final String SIDE_INDICATOR_PROPERTY = "sideIndicator";
     public static final String TIME_OFFSET_PROPERTY = "timeOffset";
-    public static final String TO_PTF_PROPERTY = "toPtf";
-    public static final String TO_SENSOR_MODEL_PROPERTY = "toSensorModel";
+    public static final String FUNDING_COUNTRY_PROPERTY = "fundingCountry";
+    public static final String PTF_PROPERTY = "ptf";
+    public static final String SENSOR_EXPOSURE_PROPERTY = "sensorExposure";
+    public static final String SENSOR_LOCATION_PROPERTY = "sensorLocation";
+    public static final String SENSOR_MODEL_PROPERTY = "sensorModel";
 
-    public static final String PTF_ID_PK_COLUMN = "PTF_ID";
-    public static final String SENSOR_MODEL_ID_PK_COLUMN = "SENSOR_MODEL_ID";
+    public static final String ID_PK_COLUMN = "ID";
 
     public void setAveragingMethod(String averagingMethod) {
         writeProperty(AVERAGING_METHOD_PROPERTY, averagingMethod);
@@ -59,6 +68,20 @@ public abstract class _PtfSensorModel extends CayenneDataObject {
         return (String)readProperty(COMMENTS_PROPERTY);
     }
 
+    public void setDistanceBow(String distanceBow) {
+        writeProperty(DISTANCE_BOW_PROPERTY, distanceBow);
+    }
+    public String getDistanceBow() {
+        return (String)readProperty(DISTANCE_BOW_PROPERTY);
+    }
+
+    public void setDistanceCenter(String distanceCenter) {
+        writeProperty(DISTANCE_CENTER_PROPERTY, distanceCenter);
+    }
+    public String getDistanceCenter() {
+        return (String)readProperty(DISTANCE_CENTER_PROPERTY);
+    }
+
     public void setEndDate(Date endDate) {
         writeProperty(END_DATE_PROPERTY, endDate);
     }
@@ -73,11 +96,25 @@ public abstract class _PtfSensorModel extends CayenneDataObject {
         return (Integer)readProperty(HEIGHT_PROPERTY);
     }
 
-    public void setHeightWater(Integer heightWater) {
+    public void setHeightDeck(String heightDeck) {
+        writeProperty(HEIGHT_DECK_PROPERTY, heightDeck);
+    }
+    public String getHeightDeck() {
+        return (String)readProperty(HEIGHT_DECK_PROPERTY);
+    }
+
+    public void setHeightWater(String heightWater) {
         writeProperty(HEIGHT_WATER_PROPERTY, heightWater);
     }
-    public Integer getHeightWater() {
-        return (Integer)readProperty(HEIGHT_WATER_PROPERTY);
+    public String getHeightWater() {
+        return (String)readProperty(HEIGHT_WATER_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setInstallDate(Date installDate) {
@@ -87,11 +124,25 @@ public abstract class _PtfSensorModel extends CayenneDataObject {
         return (Date)readProperty(INSTALL_DATE_PROPERTY);
     }
 
+    public void setIsPrimary(Integer isPrimary) {
+        writeProperty(IS_PRIMARY_PROPERTY, isPrimary);
+    }
+    public Integer getIsPrimary() {
+        return (Integer)readProperty(IS_PRIMARY_PROPERTY);
+    }
+
     public void setManufDate(Date manufDate) {
         writeProperty(MANUF_DATE_PROPERTY, manufDate);
     }
     public Date getManufDate() {
         return (Date)readProperty(MANUF_DATE_PROPERTY);
+    }
+
+    public void setOwnership(String ownership) {
+        writeProperty(OWNERSHIP_PROPERTY, ownership);
+    }
+    public String getOwnership() {
+        return (String)readProperty(OWNERSHIP_PROPERTY);
     }
 
     public void setSamplingRate(Integer samplingRate) {
@@ -108,6 +159,13 @@ public abstract class _PtfSensorModel extends CayenneDataObject {
         return (String)readProperty(SERIAL_NO_PROPERTY);
     }
 
+    public void setSideIndicator(String sideIndicator) {
+        writeProperty(SIDE_INDICATOR_PROPERTY, sideIndicator);
+    }
+    public String getSideIndicator() {
+        return (String)readProperty(SIDE_INDICATOR_PROPERTY);
+    }
+
     public void setTimeOffset(BigDecimal timeOffset) {
         writeProperty(TIME_OFFSET_PROPERTY, timeOffset);
     }
@@ -115,21 +173,48 @@ public abstract class _PtfSensorModel extends CayenneDataObject {
         return (BigDecimal)readProperty(TIME_OFFSET_PROPERTY);
     }
 
-    public void setToPtf(Ptf toPtf) {
-        setToOneTarget(TO_PTF_PROPERTY, toPtf, true);
+    public void setFundingCountry(Country fundingCountry) {
+        setToOneTarget(FUNDING_COUNTRY_PROPERTY, fundingCountry, true);
     }
 
-    public Ptf getToPtf() {
-        return (Ptf)readProperty(TO_PTF_PROPERTY);
+    public Country getFundingCountry() {
+        return (Country)readProperty(FUNDING_COUNTRY_PROPERTY);
     }
 
 
-    public void setToSensorModel(SensorModel toSensorModel) {
-        setToOneTarget(TO_SENSOR_MODEL_PROPERTY, toSensorModel, true);
+    public void setPtf(Ptf ptf) {
+        setToOneTarget(PTF_PROPERTY, ptf, true);
     }
 
-    public SensorModel getToSensorModel() {
-        return (SensorModel)readProperty(TO_SENSOR_MODEL_PROPERTY);
+    public Ptf getPtf() {
+        return (Ptf)readProperty(PTF_PROPERTY);
+    }
+
+
+    public void setSensorExposure(SensorExposure sensorExposure) {
+        setToOneTarget(SENSOR_EXPOSURE_PROPERTY, sensorExposure, true);
+    }
+
+    public SensorExposure getSensorExposure() {
+        return (SensorExposure)readProperty(SENSOR_EXPOSURE_PROPERTY);
+    }
+
+
+    public void setSensorLocation(SensorLocation sensorLocation) {
+        setToOneTarget(SENSOR_LOCATION_PROPERTY, sensorLocation, true);
+    }
+
+    public SensorLocation getSensorLocation() {
+        return (SensorLocation)readProperty(SENSOR_LOCATION_PROPERTY);
+    }
+
+
+    public void setSensorModel(SensorModel sensorModel) {
+        setToOneTarget(SENSOR_MODEL_PROPERTY, sensorModel, true);
+    }
+
+    public SensorModel getSensorModel() {
+        return (SensorModel)readProperty(SENSOR_MODEL_PROPERTY);
     }
 
 

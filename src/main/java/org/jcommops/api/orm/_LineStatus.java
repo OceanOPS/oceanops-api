@@ -13,8 +13,9 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _LineStatus extends CayenneDataObject {
 
     public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
-    public static final String LINE_SURVEY_ARRAY_PROPERTY = "lineSurveyArray";
+    public static final String LINE_SURVEYS_PROPERTY = "lineSurveys";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -25,6 +26,13 @@ public abstract class _LineStatus extends CayenneDataObject {
         return (String)readProperty(DESCRIPTION_PROPERTY);
     }
 
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
+
     public void setName(String name) {
         writeProperty(NAME_PROPERTY, name);
     }
@@ -32,15 +40,15 @@ public abstract class _LineStatus extends CayenneDataObject {
         return (String)readProperty(NAME_PROPERTY);
     }
 
-    public void addToLineSurveyArray(LineSurvey obj) {
-        addToManyTarget(LINE_SURVEY_ARRAY_PROPERTY, obj, true);
+    public void addToLineSurveys(LineSurvey obj) {
+        addToManyTarget(LINE_SURVEYS_PROPERTY, obj, true);
     }
-    public void removeFromLineSurveyArray(LineSurvey obj) {
-        removeToManyTarget(LINE_SURVEY_ARRAY_PROPERTY, obj, true);
+    public void removeFromLineSurveys(LineSurvey obj) {
+        removeToManyTarget(LINE_SURVEYS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<LineSurvey> getLineSurveyArray() {
-        return (List<LineSurvey>)readProperty(LINE_SURVEY_ARRAY_PROPERTY);
+    public List<LineSurvey> getLineSurveys() {
+        return (List<LineSurvey>)readProperty(LINE_SURVEYS_PROPERTY);
     }
 
 

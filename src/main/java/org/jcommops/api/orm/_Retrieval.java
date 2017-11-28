@@ -17,14 +17,17 @@ public abstract class _Retrieval extends CayenneDataObject {
     public static final String DESCRIPTION_PROPERTY = "description";
     public static final String EMAIL_PROPERTY = "email";
     public static final String END_DATE_PROPERTY = "endDate";
+    public static final String ID_PROPERTY = "id";
     public static final String LOCAL_CONTACT_INFO_PROPERTY = "localContactInfo";
     public static final String REGION_PROPERTY = "region";
     public static final String START_DATE_PROPERTY = "startDate";
     public static final String TEL_PROPERTY = "tel";
-    public static final String PTF_ARRAY_PROPERTY = "ptfArray";
-    public static final String TO_COUNTRY_PROPERTY = "toCountry";
-    public static final String TO_POST_RETRIEVAL_STATUS_PROPERTY = "toPostRetrievalStatus";
-    public static final String TO_RETRIEVAL_STATUS_PROPERTY = "toRetrievalStatus";
+    public static final String COUNTRY_PROPERTY = "country";
+    public static final String CRUISE_PROPERTY = "cruise";
+    public static final String POST_RETRIEVAL_STATUS_PROPERTY = "postRetrievalStatus";
+    public static final String PTFS_PROPERTY = "ptfs";
+    public static final String RETRIEVAL_STATUS_PROPERTY = "retrievalStatus";
+    public static final String SHIP_PROPERTY = "ship";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -56,6 +59,13 @@ public abstract class _Retrieval extends CayenneDataObject {
         return (Date)readProperty(END_DATE_PROPERTY);
     }
 
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
+
     public void setLocalContactInfo(String localContactInfo) {
         writeProperty(LOCAL_CONTACT_INFO_PROPERTY, localContactInfo);
     }
@@ -84,42 +94,60 @@ public abstract class _Retrieval extends CayenneDataObject {
         return (String)readProperty(TEL_PROPERTY);
     }
 
-    public void addToPtfArray(Ptf obj) {
-        addToManyTarget(PTF_ARRAY_PROPERTY, obj, true);
+    public void setCountry(Country country) {
+        setToOneTarget(COUNTRY_PROPERTY, country, true);
     }
-    public void removeFromPtfArray(Ptf obj) {
-        removeToManyTarget(PTF_ARRAY_PROPERTY, obj, true);
+
+    public Country getCountry() {
+        return (Country)readProperty(COUNTRY_PROPERTY);
+    }
+
+
+    public void setCruise(Cruise cruise) {
+        setToOneTarget(CRUISE_PROPERTY, cruise, true);
+    }
+
+    public Cruise getCruise() {
+        return (Cruise)readProperty(CRUISE_PROPERTY);
+    }
+
+
+    public void setPostRetrievalStatus(PostRetrievalStatus postRetrievalStatus) {
+        setToOneTarget(POST_RETRIEVAL_STATUS_PROPERTY, postRetrievalStatus, true);
+    }
+
+    public PostRetrievalStatus getPostRetrievalStatus() {
+        return (PostRetrievalStatus)readProperty(POST_RETRIEVAL_STATUS_PROPERTY);
+    }
+
+
+    public void addToPtfs(Ptf obj) {
+        addToManyTarget(PTFS_PROPERTY, obj, true);
+    }
+    public void removeFromPtfs(Ptf obj) {
+        removeToManyTarget(PTFS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Ptf> getPtfArray() {
-        return (List<Ptf>)readProperty(PTF_ARRAY_PROPERTY);
+    public List<Ptf> getPtfs() {
+        return (List<Ptf>)readProperty(PTFS_PROPERTY);
     }
 
 
-    public void setToCountry(Country toCountry) {
-        setToOneTarget(TO_COUNTRY_PROPERTY, toCountry, true);
+    public void setRetrievalStatus(RetrievalStatus retrievalStatus) {
+        setToOneTarget(RETRIEVAL_STATUS_PROPERTY, retrievalStatus, true);
     }
 
-    public Country getToCountry() {
-        return (Country)readProperty(TO_COUNTRY_PROPERTY);
-    }
-
-
-    public void setToPostRetrievalStatus(PostRetrievalStatus toPostRetrievalStatus) {
-        setToOneTarget(TO_POST_RETRIEVAL_STATUS_PROPERTY, toPostRetrievalStatus, true);
-    }
-
-    public PostRetrievalStatus getToPostRetrievalStatus() {
-        return (PostRetrievalStatus)readProperty(TO_POST_RETRIEVAL_STATUS_PROPERTY);
+    public RetrievalStatus getRetrievalStatus() {
+        return (RetrievalStatus)readProperty(RETRIEVAL_STATUS_PROPERTY);
     }
 
 
-    public void setToRetrievalStatus(RetrievalStatus toRetrievalStatus) {
-        setToOneTarget(TO_RETRIEVAL_STATUS_PROPERTY, toRetrievalStatus, true);
+    public void setShip(Ship ship) {
+        setToOneTarget(SHIP_PROPERTY, ship, true);
     }
 
-    public RetrievalStatus getToRetrievalStatus() {
-        return (RetrievalStatus)readProperty(TO_RETRIEVAL_STATUS_PROPERTY);
+    public Ship getShip() {
+        return (Ship)readProperty(SHIP_PROPERTY);
     }
 
 

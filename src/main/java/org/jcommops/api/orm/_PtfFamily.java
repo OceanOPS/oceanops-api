@@ -13,9 +13,10 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _PtfFamily extends CayenneDataObject {
 
     public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
-    public static final String PTF_TYPE_ARRAY_PROPERTY = "ptfTypeArray";
+    public static final String PTF_TYPES_PROPERTY = "ptfTypes";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -24,6 +25,13 @@ public abstract class _PtfFamily extends CayenneDataObject {
     }
     public String getDescription() {
         return (String)readProperty(DESCRIPTION_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setName(String name) {
@@ -40,15 +48,15 @@ public abstract class _PtfFamily extends CayenneDataObject {
         return (String)readProperty(NAME_SHORT_PROPERTY);
     }
 
-    public void addToPtfTypeArray(PtfType obj) {
-        addToManyTarget(PTF_TYPE_ARRAY_PROPERTY, obj, true);
+    public void addToPtfTypes(PtfType obj) {
+        addToManyTarget(PTF_TYPES_PROPERTY, obj, true);
     }
-    public void removeFromPtfTypeArray(PtfType obj) {
-        removeToManyTarget(PTF_TYPE_ARRAY_PROPERTY, obj, true);
+    public void removeFromPtfTypes(PtfType obj) {
+        removeToManyTarget(PTF_TYPES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<PtfType> getPtfTypeArray() {
-        return (List<PtfType>)readProperty(PTF_TYPE_ARRAY_PROPERTY);
+    public List<PtfType> getPtfTypes() {
+        return (List<PtfType>)readProperty(PTF_TYPES_PROPERTY);
     }
 
 

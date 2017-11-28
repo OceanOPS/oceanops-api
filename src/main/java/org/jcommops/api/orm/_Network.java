@@ -13,14 +13,16 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _Network extends CayenneDataObject {
 
     public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
     public static final String RANK_PROPERTY = "rank";
-    public static final String INDICATOR_ARRAY_PROPERTY = "indicatorArray";
-    public static final String NETWORK_COUNTRY_ARRAY_PROPERTY = "networkCountryArray";
-    public static final String NETWORK_PTF_ARRAY_PROPERTY = "networkPtfArray";
-    public static final String NETWORK_SITE_ARRAY_PROPERTY = "networkSiteArray";
-    public static final String TO_MASTER_PROG_PROPERTY = "toMasterProg";
+    public static final String COUNTRY_COMMITMENTS_PROPERTY = "countryCommitments";
+    public static final String INDICATORS_PROPERTY = "indicators";
+    public static final String MASTER_PROG_PROPERTY = "masterProg";
+    public static final String NETWORK_COUNTRIES_PROPERTY = "networkCountries";
+    public static final String NETWORK_PTFS_PROPERTY = "networkPtfs";
+    public static final String NETWORK_SITES_PROPERTY = "networkSites";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -29,6 +31,13 @@ public abstract class _Network extends CayenneDataObject {
     }
     public String getDescription() {
         return (String)readProperty(DESCRIPTION_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setName(String name) {
@@ -52,60 +61,72 @@ public abstract class _Network extends CayenneDataObject {
         return (Integer)readProperty(RANK_PROPERTY);
     }
 
-    public void addToIndicatorArray(Indicator obj) {
-        addToManyTarget(INDICATOR_ARRAY_PROPERTY, obj, true);
+    public void addToCountryCommitments(CountryCommitment obj) {
+        addToManyTarget(COUNTRY_COMMITMENTS_PROPERTY, obj, true);
     }
-    public void removeFromIndicatorArray(Indicator obj) {
-        removeToManyTarget(INDICATOR_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<Indicator> getIndicatorArray() {
-        return (List<Indicator>)readProperty(INDICATOR_ARRAY_PROPERTY);
-    }
-
-
-    public void addToNetworkCountryArray(NetworkCountry obj) {
-        addToManyTarget(NETWORK_COUNTRY_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromNetworkCountryArray(NetworkCountry obj) {
-        removeToManyTarget(NETWORK_COUNTRY_ARRAY_PROPERTY, obj, true);
+    public void removeFromCountryCommitments(CountryCommitment obj) {
+        removeToManyTarget(COUNTRY_COMMITMENTS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<NetworkCountry> getNetworkCountryArray() {
-        return (List<NetworkCountry>)readProperty(NETWORK_COUNTRY_ARRAY_PROPERTY);
+    public List<CountryCommitment> getCountryCommitments() {
+        return (List<CountryCommitment>)readProperty(COUNTRY_COMMITMENTS_PROPERTY);
     }
 
 
-    public void addToNetworkPtfArray(NetworkPtf obj) {
-        addToManyTarget(NETWORK_PTF_ARRAY_PROPERTY, obj, true);
+    public void addToIndicators(Indicator obj) {
+        addToManyTarget(INDICATORS_PROPERTY, obj, true);
     }
-    public void removeFromNetworkPtfArray(NetworkPtf obj) {
-        removeToManyTarget(NETWORK_PTF_ARRAY_PROPERTY, obj, true);
+    public void removeFromIndicators(Indicator obj) {
+        removeToManyTarget(INDICATORS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<NetworkPtf> getNetworkPtfArray() {
-        return (List<NetworkPtf>)readProperty(NETWORK_PTF_ARRAY_PROPERTY);
+    public List<Indicator> getIndicators() {
+        return (List<Indicator>)readProperty(INDICATORS_PROPERTY);
     }
 
 
-    public void addToNetworkSiteArray(NetworkSite obj) {
-        addToManyTarget(NETWORK_SITE_ARRAY_PROPERTY, obj, true);
+    public void setMasterProg(MasterProg masterProg) {
+        setToOneTarget(MASTER_PROG_PROPERTY, masterProg, true);
     }
-    public void removeFromNetworkSiteArray(NetworkSite obj) {
-        removeToManyTarget(NETWORK_SITE_ARRAY_PROPERTY, obj, true);
+
+    public MasterProg getMasterProg() {
+        return (MasterProg)readProperty(MASTER_PROG_PROPERTY);
+    }
+
+
+    public void addToNetworkCountries(NetworkCountry obj) {
+        addToManyTarget(NETWORK_COUNTRIES_PROPERTY, obj, true);
+    }
+    public void removeFromNetworkCountries(NetworkCountry obj) {
+        removeToManyTarget(NETWORK_COUNTRIES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<NetworkSite> getNetworkSiteArray() {
-        return (List<NetworkSite>)readProperty(NETWORK_SITE_ARRAY_PROPERTY);
+    public List<NetworkCountry> getNetworkCountries() {
+        return (List<NetworkCountry>)readProperty(NETWORK_COUNTRIES_PROPERTY);
     }
 
 
-    public void setToMasterProg(MasterProg toMasterProg) {
-        setToOneTarget(TO_MASTER_PROG_PROPERTY, toMasterProg, true);
+    public void addToNetworkPtfs(NetworkPtf obj) {
+        addToManyTarget(NETWORK_PTFS_PROPERTY, obj, true);
+    }
+    public void removeFromNetworkPtfs(NetworkPtf obj) {
+        removeToManyTarget(NETWORK_PTFS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<NetworkPtf> getNetworkPtfs() {
+        return (List<NetworkPtf>)readProperty(NETWORK_PTFS_PROPERTY);
     }
 
-    public MasterProg getToMasterProg() {
-        return (MasterProg)readProperty(TO_MASTER_PROG_PROPERTY);
+
+    public void addToNetworkSites(NetworkSite obj) {
+        addToManyTarget(NETWORK_SITES_PROPERTY, obj, true);
+    }
+    public void removeFromNetworkSites(NetworkSite obj) {
+        removeToManyTarget(NETWORK_SITES_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<NetworkSite> getNetworkSites() {
+        return (List<NetworkSite>)readProperty(NETWORK_SITES_PROPERTY);
     }
 
 

@@ -14,6 +14,7 @@ public abstract class _UpdateTimestamp extends CayenneDataObject {
 
     public static final String COMPLETED_PROPERTY = "completed";
     public static final String LAST_UPDATE_PROPERTY = "lastUpdate";
+    public static final String NAME_PROPERTY = "name";
 
     public static final String NAME_PK_COLUMN = "NAME";
 
@@ -29,6 +30,13 @@ public abstract class _UpdateTimestamp extends CayenneDataObject {
     }
     public Date getLastUpdate() {
         return (Date)readProperty(LAST_UPDATE_PROPERTY);
+    }
+
+    public void setName(String name) {
+        writeProperty(NAME_PROPERTY, name);
+    }
+    public String getName() {
+        return (String)readProperty(NAME_PROPERTY);
     }
 
 }

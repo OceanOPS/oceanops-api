@@ -30,8 +30,8 @@ public class PlatformModelEntity implements Serializable{
 		this.setName(ptfModel.getName());
 		this.setNameShort(ptfModel.getNameShort());
 		this.setDescription(ptfModel.getDescription());
-		if(ptfModel.getToPtfType() != null)
-			this.setPlatformType(new PlatformTypeEntity(ptfModel.getToPtfType()));
+		if(ptfModel.getPtfType() != null)
+			this.setPlatformType(new PlatformTypeEntity(ptfModel.getPtfType()));
 	}
 
 	@XmlElement

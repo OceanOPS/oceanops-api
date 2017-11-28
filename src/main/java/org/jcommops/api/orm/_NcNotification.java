@@ -13,13 +13,14 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _NcNotification extends CayenneDataObject {
 
     public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String ID_PROPERTY = "id";
     public static final String IS_PRIVATE_PROPERTY = "isPrivate";
     public static final String NAME_PROPERTY = "name";
     public static final String NOTIFICATION_DATE_PROPERTY = "notificationDate";
     public static final String SENT_PROPERTY = "sent";
-    public static final String TO_CONTACT_PROPERTY = "toContact";
-    public static final String TO_NC_LEVEL_PROPERTY = "toNcLevel";
-    public static final String TO_NC_TOPIC_PROPERTY = "toNcTopic";
+    public static final String CONTACT_PROPERTY = "contact";
+    public static final String NC_LEVEL_PROPERTY = "ncLevel";
+    public static final String NC_TOPIC_PROPERTY = "ncTopic";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -28,6 +29,13 @@ public abstract class _NcNotification extends CayenneDataObject {
     }
     public String getDescription() {
         return (String)readProperty(DESCRIPTION_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setIsPrivate(Integer isPrivate) {
@@ -58,30 +66,30 @@ public abstract class _NcNotification extends CayenneDataObject {
         return (Integer)readProperty(SENT_PROPERTY);
     }
 
-    public void setToContact(Contact toContact) {
-        setToOneTarget(TO_CONTACT_PROPERTY, toContact, true);
+    public void setContact(Contact contact) {
+        setToOneTarget(CONTACT_PROPERTY, contact, true);
     }
 
-    public Contact getToContact() {
-        return (Contact)readProperty(TO_CONTACT_PROPERTY);
-    }
-
-
-    public void setToNcLevel(NcLevel toNcLevel) {
-        setToOneTarget(TO_NC_LEVEL_PROPERTY, toNcLevel, true);
-    }
-
-    public NcLevel getToNcLevel() {
-        return (NcLevel)readProperty(TO_NC_LEVEL_PROPERTY);
+    public Contact getContact() {
+        return (Contact)readProperty(CONTACT_PROPERTY);
     }
 
 
-    public void setToNcTopic(NcTopic toNcTopic) {
-        setToOneTarget(TO_NC_TOPIC_PROPERTY, toNcTopic, true);
+    public void setNcLevel(NcLevel ncLevel) {
+        setToOneTarget(NC_LEVEL_PROPERTY, ncLevel, true);
     }
 
-    public NcTopic getToNcTopic() {
-        return (NcTopic)readProperty(TO_NC_TOPIC_PROPERTY);
+    public NcLevel getNcLevel() {
+        return (NcLevel)readProperty(NC_LEVEL_PROPERTY);
+    }
+
+
+    public void setNcTopic(NcTopic ncTopic) {
+        setToOneTarget(NC_TOPIC_PROPERTY, ncTopic, true);
+    }
+
+    public NcTopic getNcTopic() {
+        return (NcTopic)readProperty(NC_TOPIC_PROPERTY);
     }
 
 

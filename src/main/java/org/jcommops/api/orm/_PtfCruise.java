@@ -10,27 +10,43 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _PtfCruise extends CayenneDataObject {
 
-    public static final String TO_CRUISE_PROPERTY = "toCruise";
-    public static final String TO_PTF_PROPERTY = "toPtf";
+    public static final String CRUISE_ID_PROPERTY = "cruiseId";
+    public static final String PTF_ID_PROPERTY = "ptfId";
+    public static final String CRUISE_PROPERTY = "cruise";
+    public static final String PTF_PROPERTY = "ptf";
 
     public static final String CRUISE_ID_PK_COLUMN = "CRUISE_ID";
     public static final String PTF_ID_PK_COLUMN = "PTF_ID";
 
-    public void setToCruise(Cruise toCruise) {
-        setToOneTarget(TO_CRUISE_PROPERTY, toCruise, true);
+    public void setCruiseId(Integer cruiseId) {
+        writeProperty(CRUISE_ID_PROPERTY, cruiseId);
+    }
+    public Integer getCruiseId() {
+        return (Integer)readProperty(CRUISE_ID_PROPERTY);
     }
 
-    public Cruise getToCruise() {
-        return (Cruise)readProperty(TO_CRUISE_PROPERTY);
+    public void setPtfId(Integer ptfId) {
+        writeProperty(PTF_ID_PROPERTY, ptfId);
+    }
+    public Integer getPtfId() {
+        return (Integer)readProperty(PTF_ID_PROPERTY);
+    }
+
+    public void setCruise(Cruise cruise) {
+        setToOneTarget(CRUISE_PROPERTY, cruise, true);
+    }
+
+    public Cruise getCruise() {
+        return (Cruise)readProperty(CRUISE_PROPERTY);
     }
 
 
-    public void setToPtf(Ptf toPtf) {
-        setToOneTarget(TO_PTF_PROPERTY, toPtf, true);
+    public void setPtf(Ptf ptf) {
+        setToOneTarget(PTF_PROPERTY, ptf, true);
     }
 
-    public Ptf getToPtf() {
-        return (Ptf)readProperty(TO_PTF_PROPERTY);
+    public Ptf getPtf() {
+        return (Ptf)readProperty(PTF_PROPERTY);
     }
 
 

@@ -10,47 +10,63 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _UserGroupContact extends CayenneDataObject {
 
-    public static final String TO_CONTACT_PROPERTY = "toContact";
-    public static final String TO_COUNTRY_PROPERTY = "toCountry";
-    public static final String TO_ROLE_PROPERTY = "toRole";
-    public static final String TO_USER_GROUP_PROPERTY = "toUserGroup";
+    public static final String CONTACT_ID_PROPERTY = "contactId";
+    public static final String USER_GROUP_ID_PROPERTY = "userGroupId";
+    public static final String CONTACT_PROPERTY = "contact";
+    public static final String COUNTRY_PROPERTY = "country";
+    public static final String ROLE_PROPERTY = "role";
+    public static final String USER_GROUP_PROPERTY = "userGroup";
 
     public static final String CONTACT_ID_PK_COLUMN = "CONTACT_ID";
     public static final String USER_GROUP_ID_PK_COLUMN = "USER_GROUP_ID";
 
-    public void setToContact(Contact toContact) {
-        setToOneTarget(TO_CONTACT_PROPERTY, toContact, true);
+    public void setContactId(Integer contactId) {
+        writeProperty(CONTACT_ID_PROPERTY, contactId);
+    }
+    public Integer getContactId() {
+        return (Integer)readProperty(CONTACT_ID_PROPERTY);
     }
 
-    public Contact getToContact() {
-        return (Contact)readProperty(TO_CONTACT_PROPERTY);
+    public void setUserGroupId(Integer userGroupId) {
+        writeProperty(USER_GROUP_ID_PROPERTY, userGroupId);
+    }
+    public Integer getUserGroupId() {
+        return (Integer)readProperty(USER_GROUP_ID_PROPERTY);
     }
 
-
-    public void setToCountry(Country toCountry) {
-        setToOneTarget(TO_COUNTRY_PROPERTY, toCountry, true);
+    public void setContact(Contact contact) {
+        setToOneTarget(CONTACT_PROPERTY, contact, true);
     }
 
-    public Country getToCountry() {
-        return (Country)readProperty(TO_COUNTRY_PROPERTY);
-    }
-
-
-    public void setToRole(Role toRole) {
-        setToOneTarget(TO_ROLE_PROPERTY, toRole, true);
-    }
-
-    public Role getToRole() {
-        return (Role)readProperty(TO_ROLE_PROPERTY);
+    public Contact getContact() {
+        return (Contact)readProperty(CONTACT_PROPERTY);
     }
 
 
-    public void setToUserGroup(UserGroup toUserGroup) {
-        setToOneTarget(TO_USER_GROUP_PROPERTY, toUserGroup, true);
+    public void setCountry(Country country) {
+        setToOneTarget(COUNTRY_PROPERTY, country, true);
     }
 
-    public UserGroup getToUserGroup() {
-        return (UserGroup)readProperty(TO_USER_GROUP_PROPERTY);
+    public Country getCountry() {
+        return (Country)readProperty(COUNTRY_PROPERTY);
+    }
+
+
+    public void setRole(Role role) {
+        setToOneTarget(ROLE_PROPERTY, role, true);
+    }
+
+    public Role getRole() {
+        return (Role)readProperty(ROLE_PROPERTY);
+    }
+
+
+    public void setUserGroup(UserGroup userGroup) {
+        setToOneTarget(USER_GROUP_PROPERTY, userGroup, true);
+    }
+
+    public UserGroup getUserGroup() {
+        return (UserGroup)readProperty(USER_GROUP_PROPERTY);
     }
 
 

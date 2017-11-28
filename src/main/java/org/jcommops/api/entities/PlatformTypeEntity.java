@@ -28,7 +28,7 @@ public class PlatformTypeEntity implements Serializable{
 		this.setName(ptfType.getName());
 		this.setNameShort(ptfType.getNameShort());
 		this.setDescription(ptfType.getDescription());
-		this.setPlatformFamily(new PlatformFamilyEntity(ptfType.getToPtfFamily()));
+		this.setPlatformFamily(new PlatformFamilyEntity(ptfType.getPtfFamily()));
 	}
 
 

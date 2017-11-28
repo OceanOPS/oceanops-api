@@ -10,27 +10,43 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _TelecomFormatDoc extends CayenneDataObject {
 
-    public static final String TO_DOC_PROPERTY = "toDoc";
-    public static final String TO_TELECOM_FORMAT_PROPERTY = "toTelecomFormat";
+    public static final String DOC_ID_PROPERTY = "docId";
+    public static final String TELECOM_FORMAT_ID_PROPERTY = "telecomFormatId";
+    public static final String DOC_PROPERTY = "doc";
+    public static final String TELECOM_FORMAT_PROPERTY = "telecomFormat";
 
     public static final String DOC_ID_PK_COLUMN = "DOC_ID";
     public static final String TELECOM_FORMAT_ID_PK_COLUMN = "TELECOM_FORMAT_ID";
 
-    public void setToDoc(Doc toDoc) {
-        setToOneTarget(TO_DOC_PROPERTY, toDoc, true);
+    public void setDocId(Integer docId) {
+        writeProperty(DOC_ID_PROPERTY, docId);
+    }
+    public Integer getDocId() {
+        return (Integer)readProperty(DOC_ID_PROPERTY);
     }
 
-    public Doc getToDoc() {
-        return (Doc)readProperty(TO_DOC_PROPERTY);
+    public void setTelecomFormatId(Integer telecomFormatId) {
+        writeProperty(TELECOM_FORMAT_ID_PROPERTY, telecomFormatId);
+    }
+    public Integer getTelecomFormatId() {
+        return (Integer)readProperty(TELECOM_FORMAT_ID_PROPERTY);
+    }
+
+    public void setDoc(Doc doc) {
+        setToOneTarget(DOC_PROPERTY, doc, true);
+    }
+
+    public Doc getDoc() {
+        return (Doc)readProperty(DOC_PROPERTY);
     }
 
 
-    public void setToTelecomFormat(TelecomFormat toTelecomFormat) {
-        setToOneTarget(TO_TELECOM_FORMAT_PROPERTY, toTelecomFormat, true);
+    public void setTelecomFormat(TelecomFormat telecomFormat) {
+        setToOneTarget(TELECOM_FORMAT_PROPERTY, telecomFormat, true);
     }
 
-    public TelecomFormat getToTelecomFormat() {
-        return (TelecomFormat)readProperty(TO_TELECOM_FORMAT_PROPERTY);
+    public TelecomFormat getTelecomFormat() {
+        return (TelecomFormat)readProperty(TELECOM_FORMAT_PROPERTY);
     }
 
 

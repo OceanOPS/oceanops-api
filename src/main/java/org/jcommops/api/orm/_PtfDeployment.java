@@ -22,6 +22,7 @@ public abstract class _PtfDeployment extends CayenneDataObject {
     public static final String DEPL_DATE_PROPERTY = "deplDate";
     public static final String DEPL_HEIGHT_PROPERTY = "deplHeight";
     public static final String DEPL_SPEED_PROPERTY = "deplSpeed";
+    public static final String ID_PROPERTY = "id";
     public static final String LABEL_PROPERTY = "label";
     public static final String LAT_PROPERTY = "lat";
     public static final String LON_PROPERTY = "lon";
@@ -29,16 +30,16 @@ public abstract class _PtfDeployment extends CayenneDataObject {
     public static final String SHAPE_PROPERTY = "shape";
     public static final String SHIP_NAME_PROPERTY = "shipName";
     public static final String WIND_SPEED_PROPERTY = "windSpeed";
-    public static final String PTF_ARRAY_PROPERTY = "ptfArray";
-    public static final String TO_BUFRCODEFLAG_PROPERTY = "toBufrcodeflag";
-    public static final String TO_BUFRCODEFLAG1_PROPERTY = "toBufrcodeflag1";
-    public static final String TO_CONTACT_PROPERTY = "toContact";
-    public static final String TO_COUNTRY_PROPERTY = "toCountry";
-    public static final String TO_CRUISE_PROPERTY = "toCruise";
-    public static final String TO_DEPL_METHOD_PROPERTY = "toDeplMethod";
-    public static final String TO_DEPL_TYPE_PROPERTY = "toDeplType";
-    public static final String TO_PACKAGE_TYPE_PROPERTY = "toPackageType";
-    public static final String TO_SHIP_PROPERTY = "toShip";
+    public static final String CONTACT_PROPERTY = "contact";
+    public static final String COUNTRY_PROPERTY = "country";
+    public static final String CRUISE_PROPERTY = "cruise";
+    public static final String DEPL_METHOD_PROPERTY = "deplMethod";
+    public static final String DEPL_TYPE_PROPERTY = "deplType";
+    public static final String PACK_TYPE_PROPERTY = "packType";
+    public static final String PTFS_PROPERTY = "ptfs";
+    public static final String SEA_STATE_PROPERTY = "seaState";
+    public static final String SHIP_PROPERTY = "ship";
+    public static final String WEATHER_PROPERTY = "weather";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -98,6 +99,13 @@ public abstract class _PtfDeployment extends CayenneDataObject {
         return (BigDecimal)readProperty(DEPL_SPEED_PROPERTY);
     }
 
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
+
     public void setLabel(Integer label) {
         writeProperty(LABEL_PROPERTY, label);
     }
@@ -147,96 +155,96 @@ public abstract class _PtfDeployment extends CayenneDataObject {
         return (BigDecimal)readProperty(WIND_SPEED_PROPERTY);
     }
 
-    public void addToPtfArray(Ptf obj) {
-        addToManyTarget(PTF_ARRAY_PROPERTY, obj, true);
+    public void setContact(Contact contact) {
+        setToOneTarget(CONTACT_PROPERTY, contact, true);
     }
-    public void removeFromPtfArray(Ptf obj) {
-        removeToManyTarget(PTF_ARRAY_PROPERTY, obj, true);
+
+    public Contact getContact() {
+        return (Contact)readProperty(CONTACT_PROPERTY);
+    }
+
+
+    public void setCountry(Country country) {
+        setToOneTarget(COUNTRY_PROPERTY, country, true);
+    }
+
+    public Country getCountry() {
+        return (Country)readProperty(COUNTRY_PROPERTY);
+    }
+
+
+    public void setCruise(Cruise cruise) {
+        setToOneTarget(CRUISE_PROPERTY, cruise, true);
+    }
+
+    public Cruise getCruise() {
+        return (Cruise)readProperty(CRUISE_PROPERTY);
+    }
+
+
+    public void setDeplMethod(DeplMethod deplMethod) {
+        setToOneTarget(DEPL_METHOD_PROPERTY, deplMethod, true);
+    }
+
+    public DeplMethod getDeplMethod() {
+        return (DeplMethod)readProperty(DEPL_METHOD_PROPERTY);
+    }
+
+
+    public void setDeplType(DeplType deplType) {
+        setToOneTarget(DEPL_TYPE_PROPERTY, deplType, true);
+    }
+
+    public DeplType getDeplType() {
+        return (DeplType)readProperty(DEPL_TYPE_PROPERTY);
+    }
+
+
+    public void setPackType(PackageType packType) {
+        setToOneTarget(PACK_TYPE_PROPERTY, packType, true);
+    }
+
+    public PackageType getPackType() {
+        return (PackageType)readProperty(PACK_TYPE_PROPERTY);
+    }
+
+
+    public void addToPtfs(Ptf obj) {
+        addToManyTarget(PTFS_PROPERTY, obj, true);
+    }
+    public void removeFromPtfs(Ptf obj) {
+        removeToManyTarget(PTFS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Ptf> getPtfArray() {
-        return (List<Ptf>)readProperty(PTF_ARRAY_PROPERTY);
+    public List<Ptf> getPtfs() {
+        return (List<Ptf>)readProperty(PTFS_PROPERTY);
     }
 
 
-    public void setToBufrcodeflag(Bufrcodeflag toBufrcodeflag) {
-        setToOneTarget(TO_BUFRCODEFLAG_PROPERTY, toBufrcodeflag, true);
+    public void setSeaState(Bufrcodeflag seaState) {
+        setToOneTarget(SEA_STATE_PROPERTY, seaState, true);
     }
 
-    public Bufrcodeflag getToBufrcodeflag() {
-        return (Bufrcodeflag)readProperty(TO_BUFRCODEFLAG_PROPERTY);
-    }
-
-
-    public void setToBufrcodeflag1(Bufrcodeflag toBufrcodeflag1) {
-        setToOneTarget(TO_BUFRCODEFLAG1_PROPERTY, toBufrcodeflag1, true);
-    }
-
-    public Bufrcodeflag getToBufrcodeflag1() {
-        return (Bufrcodeflag)readProperty(TO_BUFRCODEFLAG1_PROPERTY);
+    public Bufrcodeflag getSeaState() {
+        return (Bufrcodeflag)readProperty(SEA_STATE_PROPERTY);
     }
 
 
-    public void setToContact(Contact toContact) {
-        setToOneTarget(TO_CONTACT_PROPERTY, toContact, true);
+    public void setShip(Ship ship) {
+        setToOneTarget(SHIP_PROPERTY, ship, true);
     }
 
-    public Contact getToContact() {
-        return (Contact)readProperty(TO_CONTACT_PROPERTY);
-    }
-
-
-    public void setToCountry(Country toCountry) {
-        setToOneTarget(TO_COUNTRY_PROPERTY, toCountry, true);
-    }
-
-    public Country getToCountry() {
-        return (Country)readProperty(TO_COUNTRY_PROPERTY);
+    public Ship getShip() {
+        return (Ship)readProperty(SHIP_PROPERTY);
     }
 
 
-    public void setToCruise(Cruise toCruise) {
-        setToOneTarget(TO_CRUISE_PROPERTY, toCruise, true);
+    public void setWeather(Bufrcodeflag weather) {
+        setToOneTarget(WEATHER_PROPERTY, weather, true);
     }
 
-    public Cruise getToCruise() {
-        return (Cruise)readProperty(TO_CRUISE_PROPERTY);
-    }
-
-
-    public void setToDeplMethod(DeplMethod toDeplMethod) {
-        setToOneTarget(TO_DEPL_METHOD_PROPERTY, toDeplMethod, true);
-    }
-
-    public DeplMethod getToDeplMethod() {
-        return (DeplMethod)readProperty(TO_DEPL_METHOD_PROPERTY);
-    }
-
-
-    public void setToDeplType(DeplType toDeplType) {
-        setToOneTarget(TO_DEPL_TYPE_PROPERTY, toDeplType, true);
-    }
-
-    public DeplType getToDeplType() {
-        return (DeplType)readProperty(TO_DEPL_TYPE_PROPERTY);
-    }
-
-
-    public void setToPackageType(PackageType toPackageType) {
-        setToOneTarget(TO_PACKAGE_TYPE_PROPERTY, toPackageType, true);
-    }
-
-    public PackageType getToPackageType() {
-        return (PackageType)readProperty(TO_PACKAGE_TYPE_PROPERTY);
-    }
-
-
-    public void setToShip(Ship toShip) {
-        setToOneTarget(TO_SHIP_PROPERTY, toShip, true);
-    }
-
-    public Ship getToShip() {
-        return (Ship)readProperty(TO_SHIP_PROPERTY);
+    public Bufrcodeflag getWeather() {
+        return (Bufrcodeflag)readProperty(WEATHER_PROPERTY);
     }
 
 

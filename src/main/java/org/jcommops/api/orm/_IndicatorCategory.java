@@ -13,9 +13,10 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _IndicatorCategory extends CayenneDataObject {
 
     public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
     public static final String RANK_PROPERTY = "rank";
-    public static final String INDICATOR_ARRAY_PROPERTY = "indicatorArray";
+    public static final String INDICATORS_PROPERTY = "indicators";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -24,6 +25,13 @@ public abstract class _IndicatorCategory extends CayenneDataObject {
     }
     public String getDescription() {
         return (String)readProperty(DESCRIPTION_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setName(String name) {
@@ -40,15 +48,15 @@ public abstract class _IndicatorCategory extends CayenneDataObject {
         return (Integer)readProperty(RANK_PROPERTY);
     }
 
-    public void addToIndicatorArray(Indicator obj) {
-        addToManyTarget(INDICATOR_ARRAY_PROPERTY, obj, true);
+    public void addToIndicators(Indicator obj) {
+        addToManyTarget(INDICATORS_PROPERTY, obj, true);
     }
-    public void removeFromIndicatorArray(Indicator obj) {
-        removeToManyTarget(INDICATOR_ARRAY_PROPERTY, obj, true);
+    public void removeFromIndicators(Indicator obj) {
+        removeToManyTarget(INDICATORS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Indicator> getIndicatorArray() {
-        return (List<Indicator>)readProperty(INDICATOR_ARRAY_PROPERTY);
+    public List<Indicator> getIndicators() {
+        return (List<Indicator>)readProperty(INDICATORS_PROPERTY);
     }
 
 

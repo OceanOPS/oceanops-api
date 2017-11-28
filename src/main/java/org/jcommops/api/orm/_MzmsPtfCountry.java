@@ -14,11 +14,13 @@ public abstract class _MzmsPtfCountry extends CayenneDataObject {
 
     public static final String CHECKED_PROPERTY = "checked";
     public static final String COMMENTS_PROPERTY = "comments";
+    public static final String COUNTRY_ID_PROPERTY = "countryId";
     public static final String FORMAL_NOTIFICATION_DATE_PROPERTY = "formalNotificationDate";
     public static final String LATEST_REPORT_DATE_PROPERTY = "latestReportDate";
+    public static final String PTF_ID_PROPERTY = "ptfId";
     public static final String WARNING_DATE_PROPERTY = "warningDate";
-    public static final String TO_COUNTRY_PROPERTY = "toCountry";
-    public static final String TO_PTF_PROPERTY = "toPtf";
+    public static final String COUNTRY_PROPERTY = "country";
+    public static final String PTF_PROPERTY = "ptf";
 
     public static final String COUNTRY_ID_PK_COLUMN = "COUNTRY_ID";
     public static final String PTF_ID_PK_COLUMN = "PTF_ID";
@@ -37,6 +39,13 @@ public abstract class _MzmsPtfCountry extends CayenneDataObject {
         return (String)readProperty(COMMENTS_PROPERTY);
     }
 
+    public void setCountryId(Integer countryId) {
+        writeProperty(COUNTRY_ID_PROPERTY, countryId);
+    }
+    public Integer getCountryId() {
+        return (Integer)readProperty(COUNTRY_ID_PROPERTY);
+    }
+
     public void setFormalNotificationDate(Date formalNotificationDate) {
         writeProperty(FORMAL_NOTIFICATION_DATE_PROPERTY, formalNotificationDate);
     }
@@ -51,6 +60,13 @@ public abstract class _MzmsPtfCountry extends CayenneDataObject {
         return (Date)readProperty(LATEST_REPORT_DATE_PROPERTY);
     }
 
+    public void setPtfId(Integer ptfId) {
+        writeProperty(PTF_ID_PROPERTY, ptfId);
+    }
+    public Integer getPtfId() {
+        return (Integer)readProperty(PTF_ID_PROPERTY);
+    }
+
     public void setWarningDate(Date warningDate) {
         writeProperty(WARNING_DATE_PROPERTY, warningDate);
     }
@@ -58,21 +74,21 @@ public abstract class _MzmsPtfCountry extends CayenneDataObject {
         return (Date)readProperty(WARNING_DATE_PROPERTY);
     }
 
-    public void setToCountry(Country toCountry) {
-        setToOneTarget(TO_COUNTRY_PROPERTY, toCountry, true);
+    public void setCountry(Country country) {
+        setToOneTarget(COUNTRY_PROPERTY, country, true);
     }
 
-    public Country getToCountry() {
-        return (Country)readProperty(TO_COUNTRY_PROPERTY);
+    public Country getCountry() {
+        return (Country)readProperty(COUNTRY_PROPERTY);
     }
 
 
-    public void setToPtf(Ptf toPtf) {
-        setToOneTarget(TO_PTF_PROPERTY, toPtf, true);
+    public void setPtf(Ptf ptf) {
+        setToOneTarget(PTF_PROPERTY, ptf, true);
     }
 
-    public Ptf getToPtf() {
-        return (Ptf)readProperty(TO_PTF_PROPERTY);
+    public Ptf getPtf() {
+        return (Ptf)readProperty(PTF_PROPERTY);
     }
 
 

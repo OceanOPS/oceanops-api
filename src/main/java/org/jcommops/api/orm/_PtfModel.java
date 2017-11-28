@@ -23,6 +23,7 @@ public abstract class _PtfModel extends CayenneDataObject {
     public static final String HEIGHT_PROPERTY = "height";
     public static final String HEIGHT_ABOVE_PROPERTY = "heightAbove";
     public static final String HULL_DEPTH_PROPERTY = "hullDepth";
+    public static final String ID_PROPERTY = "id";
     public static final String KEY_PROPERTY = "key";
     public static final String LENGTH_PROPERTY = "length";
     public static final String LIFE_TIME_PROPERTY = "lifeTime";
@@ -31,16 +32,16 @@ public abstract class _PtfModel extends CayenneDataObject {
     public static final String TOTAL_HEIGHT_PROPERTY = "totalHeight";
     public static final String WEIGHT_PROPERTY = "weight";
     public static final String WIDTH_PROPERTY = "width";
-    public static final String PTF_ARRAY_PROPERTY = "ptfArray";
-    public static final String TELECOM_FORMAT_ARRAY_PROPERTY = "telecomFormatArray";
-    public static final String TO_AGENCY_PROPERTY = "toAgency";
-    public static final String TO_CONTACT_PROPERTY = "toContact";
-    public static final String TO_GTS_INSTRUMENT_TYPE_PROPERTY = "toGtsInstrumentType";
-    public static final String TO_IMAGE_PROPERTY = "toImage";
-    public static final String TO_MASTER_PROG_PROPERTY = "toMasterProg";
-    public static final String TO_PTF_HULL_TYPE_PROPERTY = "toPtfHullType";
-    public static final String TO_PTF_TYPE_PROPERTY = "toPtfType";
-    public static final String TO_WEBLINK_PROPERTY = "toWeblink";
+    public static final String AGENCY_PROPERTY = "agency";
+    public static final String CONTACT_PROPERTY = "contact";
+    public static final String GTS_INSTRUMENT_TYPE_PROPERTY = "gtsInstrumentType";
+    public static final String HULL_TYPE_PROPERTY = "hullType";
+    public static final String IMAGE_PROPERTY = "image";
+    public static final String MASTER_PROG_PROPERTY = "masterProg";
+    public static final String PTF_TYPE_PROPERTY = "ptfType";
+    public static final String PTFS_PROPERTY = "ptfs";
+    public static final String TELECOM_FORMATS_PROPERTY = "telecomFormats";
+    public static final String WEBLINK_PROPERTY = "weblink";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -114,6 +115,13 @@ public abstract class _PtfModel extends CayenneDataObject {
         return (Integer)readProperty(HULL_DEPTH_PROPERTY);
     }
 
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
+
     public void setKey(String key) {
         writeProperty(KEY_PROPERTY, key);
     }
@@ -170,99 +178,99 @@ public abstract class _PtfModel extends CayenneDataObject {
         return (BigDecimal)readProperty(WIDTH_PROPERTY);
     }
 
-    public void addToPtfArray(Ptf obj) {
-        addToManyTarget(PTF_ARRAY_PROPERTY, obj, true);
+    public void setAgency(Agency agency) {
+        setToOneTarget(AGENCY_PROPERTY, agency, true);
     }
-    public void removeFromPtfArray(Ptf obj) {
-        removeToManyTarget(PTF_ARRAY_PROPERTY, obj, true);
+
+    public Agency getAgency() {
+        return (Agency)readProperty(AGENCY_PROPERTY);
+    }
+
+
+    public void setContact(Contact contact) {
+        setToOneTarget(CONTACT_PROPERTY, contact, true);
+    }
+
+    public Contact getContact() {
+        return (Contact)readProperty(CONTACT_PROPERTY);
+    }
+
+
+    public void setGtsInstrumentType(GtsInstrumentType gtsInstrumentType) {
+        setToOneTarget(GTS_INSTRUMENT_TYPE_PROPERTY, gtsInstrumentType, true);
+    }
+
+    public GtsInstrumentType getGtsInstrumentType() {
+        return (GtsInstrumentType)readProperty(GTS_INSTRUMENT_TYPE_PROPERTY);
+    }
+
+
+    public void setHullType(PtfHullType hullType) {
+        setToOneTarget(HULL_TYPE_PROPERTY, hullType, true);
+    }
+
+    public PtfHullType getHullType() {
+        return (PtfHullType)readProperty(HULL_TYPE_PROPERTY);
+    }
+
+
+    public void setImage(Image image) {
+        setToOneTarget(IMAGE_PROPERTY, image, true);
+    }
+
+    public Image getImage() {
+        return (Image)readProperty(IMAGE_PROPERTY);
+    }
+
+
+    public void setMasterProg(MasterProg masterProg) {
+        setToOneTarget(MASTER_PROG_PROPERTY, masterProg, true);
+    }
+
+    public MasterProg getMasterProg() {
+        return (MasterProg)readProperty(MASTER_PROG_PROPERTY);
+    }
+
+
+    public void setPtfType(PtfType ptfType) {
+        setToOneTarget(PTF_TYPE_PROPERTY, ptfType, true);
+    }
+
+    public PtfType getPtfType() {
+        return (PtfType)readProperty(PTF_TYPE_PROPERTY);
+    }
+
+
+    public void addToPtfs(Ptf obj) {
+        addToManyTarget(PTFS_PROPERTY, obj, true);
+    }
+    public void removeFromPtfs(Ptf obj) {
+        removeToManyTarget(PTFS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Ptf> getPtfArray() {
-        return (List<Ptf>)readProperty(PTF_ARRAY_PROPERTY);
+    public List<Ptf> getPtfs() {
+        return (List<Ptf>)readProperty(PTFS_PROPERTY);
     }
 
 
-    public void addToTelecomFormatArray(TelecomFormat obj) {
-        addToManyTarget(TELECOM_FORMAT_ARRAY_PROPERTY, obj, true);
+    public void addToTelecomFormats(TelecomFormat obj) {
+        addToManyTarget(TELECOM_FORMATS_PROPERTY, obj, true);
     }
-    public void removeFromTelecomFormatArray(TelecomFormat obj) {
-        removeToManyTarget(TELECOM_FORMAT_ARRAY_PROPERTY, obj, true);
+    public void removeFromTelecomFormats(TelecomFormat obj) {
+        removeToManyTarget(TELECOM_FORMATS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<TelecomFormat> getTelecomFormatArray() {
-        return (List<TelecomFormat>)readProperty(TELECOM_FORMAT_ARRAY_PROPERTY);
+    public List<TelecomFormat> getTelecomFormats() {
+        return (List<TelecomFormat>)readProperty(TELECOM_FORMATS_PROPERTY);
     }
 
 
-    public void setToAgency(Agency toAgency) {
-        setToOneTarget(TO_AGENCY_PROPERTY, toAgency, true);
+    public void setWeblink(Weblink weblink) {
+        setToOneTarget(WEBLINK_PROPERTY, weblink, true);
     }
 
-    public Agency getToAgency() {
-        return (Agency)readProperty(TO_AGENCY_PROPERTY);
-    }
-
-
-    public void setToContact(Contact toContact) {
-        setToOneTarget(TO_CONTACT_PROPERTY, toContact, true);
-    }
-
-    public Contact getToContact() {
-        return (Contact)readProperty(TO_CONTACT_PROPERTY);
-    }
-
-
-    public void setToGtsInstrumentType(GtsInstrumentType toGtsInstrumentType) {
-        setToOneTarget(TO_GTS_INSTRUMENT_TYPE_PROPERTY, toGtsInstrumentType, true);
-    }
-
-    public GtsInstrumentType getToGtsInstrumentType() {
-        return (GtsInstrumentType)readProperty(TO_GTS_INSTRUMENT_TYPE_PROPERTY);
-    }
-
-
-    public void setToImage(Image toImage) {
-        setToOneTarget(TO_IMAGE_PROPERTY, toImage, true);
-    }
-
-    public Image getToImage() {
-        return (Image)readProperty(TO_IMAGE_PROPERTY);
-    }
-
-
-    public void setToMasterProg(MasterProg toMasterProg) {
-        setToOneTarget(TO_MASTER_PROG_PROPERTY, toMasterProg, true);
-    }
-
-    public MasterProg getToMasterProg() {
-        return (MasterProg)readProperty(TO_MASTER_PROG_PROPERTY);
-    }
-
-
-    public void setToPtfHullType(PtfHullType toPtfHullType) {
-        setToOneTarget(TO_PTF_HULL_TYPE_PROPERTY, toPtfHullType, true);
-    }
-
-    public PtfHullType getToPtfHullType() {
-        return (PtfHullType)readProperty(TO_PTF_HULL_TYPE_PROPERTY);
-    }
-
-
-    public void setToPtfType(PtfType toPtfType) {
-        setToOneTarget(TO_PTF_TYPE_PROPERTY, toPtfType, true);
-    }
-
-    public PtfType getToPtfType() {
-        return (PtfType)readProperty(TO_PTF_TYPE_PROPERTY);
-    }
-
-
-    public void setToWeblink(Weblink toWeblink) {
-        setToOneTarget(TO_WEBLINK_PROPERTY, toWeblink, true);
-    }
-
-    public Weblink getToWeblink() {
-        return (Weblink)readProperty(TO_WEBLINK_PROPERTY);
+    public Weblink getWeblink() {
+        return (Weblink)readProperty(WEBLINK_PROPERTY);
     }
 
 

@@ -36,8 +36,8 @@ public class ContactEntity implements Serializable{
     	this.setEmail(contact.getEmail());
     	this.setFirstName(contact.getFirstName());
     	this.setLastName(contact.getLastName());
-    	if(contact.getToAgency() != null)
-    		this.setAgency(new AgencyEntity(contact.getToAgency()));
+    	if(contact.getAgency() != null)
+    		this.setAgency(new AgencyEntity(contact.getAgency()));
     }
     
 

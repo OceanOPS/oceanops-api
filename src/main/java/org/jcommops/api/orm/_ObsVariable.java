@@ -14,9 +14,11 @@ public abstract class _ObsVariable extends CayenneDataObject {
 
     public static final String DEPTH_PROPERTY = "depth";
     public static final String LEVELS_NB_PROPERTY = "levelsNb";
+    public static final String OBS_ID_PROPERTY = "obsId";
     public static final String QC_PROPERTY = "qc";
-    public static final String TO_OBS_PROPERTY = "toObs";
-    public static final String TO_VARIABLE_PROPERTY = "toVariable";
+    public static final String VARIABLE_ID_PROPERTY = "variableId";
+    public static final String OBS_PROPERTY = "obs";
+    public static final String VARIABLE_PROPERTY = "variable";
 
     public static final String OBS_ID_PK_COLUMN = "OBS_ID";
     public static final String VARIABLE_ID_PK_COLUMN = "VARIABLE_ID";
@@ -35,6 +37,13 @@ public abstract class _ObsVariable extends CayenneDataObject {
         return (Integer)readProperty(LEVELS_NB_PROPERTY);
     }
 
+    public void setObsId(Integer obsId) {
+        writeProperty(OBS_ID_PROPERTY, obsId);
+    }
+    public Integer getObsId() {
+        return (Integer)readProperty(OBS_ID_PROPERTY);
+    }
+
     public void setQc(String qc) {
         writeProperty(QC_PROPERTY, qc);
     }
@@ -42,21 +51,28 @@ public abstract class _ObsVariable extends CayenneDataObject {
         return (String)readProperty(QC_PROPERTY);
     }
 
-    public void setToObs(Obs toObs) {
-        setToOneTarget(TO_OBS_PROPERTY, toObs, true);
+    public void setVariableId(Integer variableId) {
+        writeProperty(VARIABLE_ID_PROPERTY, variableId);
+    }
+    public Integer getVariableId() {
+        return (Integer)readProperty(VARIABLE_ID_PROPERTY);
     }
 
-    public Obs getToObs() {
-        return (Obs)readProperty(TO_OBS_PROPERTY);
+    public void setObs(Obs obs) {
+        setToOneTarget(OBS_PROPERTY, obs, true);
+    }
+
+    public Obs getObs() {
+        return (Obs)readProperty(OBS_PROPERTY);
     }
 
 
-    public void setToVariable(Variable toVariable) {
-        setToOneTarget(TO_VARIABLE_PROPERTY, toVariable, true);
+    public void setVariable(Variable variable) {
+        setToOneTarget(VARIABLE_PROPERTY, variable, true);
     }
 
-    public Variable getToVariable() {
-        return (Variable)readProperty(TO_VARIABLE_PROPERTY);
+    public Variable getVariable() {
+        return (Variable)readProperty(VARIABLE_PROPERTY);
     }
 
 

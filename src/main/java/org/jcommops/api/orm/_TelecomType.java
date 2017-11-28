@@ -13,9 +13,10 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _TelecomType extends CayenneDataObject {
 
     public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
     public static final String PUB47REF_PROPERTY = "pub47Ref";
-    public static final String TELECOM_ARRAY_PROPERTY = "telecomArray";
+    public static final String TELECOMS_PROPERTY = "telecoms";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -24,6 +25,13 @@ public abstract class _TelecomType extends CayenneDataObject {
     }
     public String getDescription() {
         return (String)readProperty(DESCRIPTION_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setName(String name) {
@@ -40,15 +48,15 @@ public abstract class _TelecomType extends CayenneDataObject {
         return (String)readProperty(PUB47REF_PROPERTY);
     }
 
-    public void addToTelecomArray(Telecom obj) {
-        addToManyTarget(TELECOM_ARRAY_PROPERTY, obj, true);
+    public void addToTelecoms(Telecom obj) {
+        addToManyTarget(TELECOMS_PROPERTY, obj, true);
     }
-    public void removeFromTelecomArray(Telecom obj) {
-        removeToManyTarget(TELECOM_ARRAY_PROPERTY, obj, true);
+    public void removeFromTelecoms(Telecom obj) {
+        removeToManyTarget(TELECOMS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Telecom> getTelecomArray() {
-        return (List<Telecom>)readProperty(TELECOM_ARRAY_PROPERTY);
+    public List<Telecom> getTelecoms() {
+        return (List<Telecom>)readProperty(TELECOMS_PROPERTY);
     }
 
 

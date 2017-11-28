@@ -19,6 +19,7 @@ public abstract class _LineType extends CayenneDataObject {
     public static final String HORIZ_RESOL_DEG_PROPERTY = "horizResolDeg";
     public static final String HORIZ_RESOL_HR_PROPERTY = "horizResolHr";
     public static final String HORIZ_RESOL_KM_PROPERTY = "horizResolKm";
+    public static final String ID_PROPERTY = "id";
     public static final String MAX_HORIZ_RES_PROPERTY = "maxHorizRes";
     public static final String MAX_HORIZ_RES_I4_PROPERTY = "maxHorizResI4";
     public static final String MAX_NB_TRANS12_PROPERTY = "maxNbTrans12";
@@ -36,7 +37,7 @@ public abstract class _LineType extends CayenneDataObject {
     public static final String PERCENT_GOOD_TR_PROPERTY = "percentGoodTr";
     public static final String PERIOD_TOLERANCE_PROPERTY = "periodTolerance";
     public static final String TRANSECTS_PROPERTY = "transects";
-    public static final String LINE_SURVEY_ARRAY_PROPERTY = "lineSurveyArray";
+    public static final String LINE_SURVEYS_PROPERTY = "lineSurveys";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -80,6 +81,13 @@ public abstract class _LineType extends CayenneDataObject {
     }
     public Integer getHorizResolKm() {
         return (Integer)readProperty(HORIZ_RESOL_KM_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setMaxHorizRes(Integer maxHorizRes) {
@@ -201,15 +209,15 @@ public abstract class _LineType extends CayenneDataObject {
         return (Integer)readProperty(TRANSECTS_PROPERTY);
     }
 
-    public void addToLineSurveyArray(LineSurvey obj) {
-        addToManyTarget(LINE_SURVEY_ARRAY_PROPERTY, obj, true);
+    public void addToLineSurveys(LineSurvey obj) {
+        addToManyTarget(LINE_SURVEYS_PROPERTY, obj, true);
     }
-    public void removeFromLineSurveyArray(LineSurvey obj) {
-        removeToManyTarget(LINE_SURVEY_ARRAY_PROPERTY, obj, true);
+    public void removeFromLineSurveys(LineSurvey obj) {
+        removeToManyTarget(LINE_SURVEYS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<LineSurvey> getLineSurveyArray() {
-        return (List<LineSurvey>)readProperty(LINE_SURVEY_ARRAY_PROPERTY);
+    public List<LineSurvey> getLineSurveys() {
+        return (List<LineSurvey>)readProperty(LINE_SURVEYS_PROPERTY);
     }
 
 

@@ -1,26 +1,15 @@
 package org.jcommops.api;
 
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import javax.ws.rs.GET;
-import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
 import javax.xml.datatype.DatatypeConfigurationException;
 
 import org.apache.cayenne.CayenneRuntimeException;
@@ -41,11 +30,6 @@ import org.jcommops.api.entities.SensorTypeEntity;
 import org.jcommops.api.entities.VariableEntity;
 import org.jcommops.api.entities.wmdr.Platform;
 import org.jcommops.api.entities.wmdr.PlatformObservations;
-
-import _int.wmo.def.wmdr._2017.ObjectFactory;
-import _int.wmo.def.wmdr._2017.WIGOSMetadataRecordType;
-import net.opengis.gml.v_3_2_1.BoundingShapeType;
-import net.opengis.gml.v_3_2_1.StringOrRefType;
 
 @Path("/")
 public class WebServiceManager {

@@ -24,6 +24,8 @@ public abstract class _Cruise extends CayenneDataObject {
     public static final String DESCRIPTION_PROPERTY = "description";
     public static final String EMBARK_CAPACITY_PROPERTY = "embarkCapacity";
     public static final String FLEXIBLE_ROUTE_PROPERTY = "flexibleRoute";
+    public static final String ID_PROPERTY = "id";
+    public static final String IIOE2ID_PROPERTY = "iioe2Id";
     public static final String INSERT_DATE_PROPERTY = "insertDate";
     public static final String MOB_DATE_PROPERTY = "mobDate";
     public static final String MODIF_DATE_PROPERTY = "modifDate";
@@ -41,25 +43,28 @@ public abstract class _Cruise extends CayenneDataObject {
     public static final String UPDATE_DATE_PROPERTY = "updateDate";
     public static final String VALIDATED_PROPERTY = "validated";
     public static final String WKT_PROPERTY = "wkt";
-    public static final String CRUISE_CONTACT_ARRAY_PROPERTY = "cruiseContactArray";
-    public static final String CRUISE_COUNTRY_ARRAY_PROPERTY = "cruiseCountryArray";
-    public static final String CRUISE_PROGRAM_ARRAY_PROPERTY = "cruiseProgramArray";
-    public static final String CRUISE_SENSOR_MODEL_ARRAY_PROPERTY = "cruiseSensorModelArray";
-    public static final String CRUISE_VARIABLE_ARRAY_PROPERTY = "cruiseVariableArray";
-    public static final String PTF_CRUISE_ARRAY_PROPERTY = "ptfCruiseArray";
-    public static final String PTF_DEPLOYMENT_ARRAY_PROPERTY = "ptfDeploymentArray";
-    public static final String SECTION_ARRAY_PROPERTY = "sectionArray";
-    public static final String SERVICE_ARRAY_PROPERTY = "serviceArray";
-    public static final String TO_AGENCY_PROPERTY = "toAgency";
-    public static final String TO_AVAILABILITY_PROPERTY = "toAvailability";
-    public static final String TO_CRUISE_CLASS_PROPERTY = "toCruiseClass";
-    public static final String TO_CRUISE_STATUS_PROPERTY = "toCruiseStatus";
-    public static final String TO_CRUISE_TYPE_PROPERTY = "toCruiseType";
-    public static final String TO_FREQUENCY_PROPERTY = "toFrequency";
-    public static final String TO_IMAGE_PROPERTY = "toImage";
-    public static final String TO_LINE_PROPERTY = "toLine";
-    public static final String TO_SHIP_PROPERTY = "toShip";
-    public static final String TO_WEBLINK_PROPERTY = "toWeblink";
+    public static final String AGENCY_PROPERTY = "agency";
+    public static final String CREW_AVAILABILITY_PROPERTY = "crewAvailability";
+    public static final String CRUISE_PROPERTY = "cruise";
+    public static final String CRUISE_CLASS_PROPERTY = "cruiseClass";
+    public static final String CRUISE_CONTACTS_PROPERTY = "cruiseContacts";
+    public static final String CRUISE_COUNTRIES_PROPERTY = "cruiseCountries";
+    public static final String CRUISE_PROGRAMS_PROPERTY = "cruisePrograms";
+    public static final String CRUISE_SENSOR_MODELS_PROPERTY = "cruiseSensorModels";
+    public static final String CRUISE_STATUS_PROPERTY = "cruiseStatus";
+    public static final String CRUISE_TYPE_PROPERTY = "cruiseType";
+    public static final String CRUISE_VARIABLES_PROPERTY = "cruiseVariables";
+    public static final String FREQUENCY_PROPERTY = "frequency";
+    public static final String IMAGE_PROPERTY = "image";
+    public static final String LINE_PROPERTY = "line";
+    public static final String PTF_CRUISES_PROPERTY = "ptfCruises";
+    public static final String PTF_DEPLOYMENTS_PROPERTY = "ptfDeployments";
+    public static final String RETRIEVALS_PROPERTY = "retrievals";
+    public static final String SECTIONS_PROPERTY = "sections";
+    public static final String SERVICES_PROPERTY = "services";
+    public static final String SHIP_PROPERTY = "ship";
+    public static final String WEB_FREQUENTATIONS_PROPERTY = "webFrequentations";
+    public static final String WEBLINK_PROPERTY = "weblink";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -138,6 +143,20 @@ public abstract class _Cruise extends CayenneDataObject {
     }
     public Integer getFlexibleRoute() {
         return (Integer)readProperty(FLEXIBLE_ROUTE_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
+
+    public void setIioe2Id(String iioe2Id) {
+        writeProperty(IIOE2ID_PROPERTY, iioe2Id);
+    }
+    public String getIioe2Id() {
+        return (String)readProperty(IIOE2ID_PROPERTY);
     }
 
     public void setInsertDate(Date insertDate) {
@@ -259,201 +278,234 @@ public abstract class _Cruise extends CayenneDataObject {
         return (String)readProperty(WKT_PROPERTY);
     }
 
-    public void addToCruiseContactArray(CruiseContact obj) {
-        addToManyTarget(CRUISE_CONTACT_ARRAY_PROPERTY, obj, true);
+    public void setAgency(Agency agency) {
+        setToOneTarget(AGENCY_PROPERTY, agency, true);
     }
-    public void removeFromCruiseContactArray(CruiseContact obj) {
-        removeToManyTarget(CRUISE_CONTACT_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<CruiseContact> getCruiseContactArray() {
-        return (List<CruiseContact>)readProperty(CRUISE_CONTACT_ARRAY_PROPERTY);
+
+    public Agency getAgency() {
+        return (Agency)readProperty(AGENCY_PROPERTY);
     }
 
 
-    public void addToCruiseCountryArray(CruiseCountry obj) {
-        addToManyTarget(CRUISE_COUNTRY_ARRAY_PROPERTY, obj, true);
+    public void setCrewAvailability(Availability crewAvailability) {
+        setToOneTarget(CREW_AVAILABILITY_PROPERTY, crewAvailability, true);
     }
-    public void removeFromCruiseCountryArray(CruiseCountry obj) {
-        removeToManyTarget(CRUISE_COUNTRY_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<CruiseCountry> getCruiseCountryArray() {
-        return (List<CruiseCountry>)readProperty(CRUISE_COUNTRY_ARRAY_PROPERTY);
+
+    public Availability getCrewAvailability() {
+        return (Availability)readProperty(CREW_AVAILABILITY_PROPERTY);
     }
 
 
-    public void addToCruiseProgramArray(CruiseProgram obj) {
-        addToManyTarget(CRUISE_PROGRAM_ARRAY_PROPERTY, obj, true);
+    public void setCruise(CruisePolygon cruise) {
+        setToOneTarget(CRUISE_PROPERTY, cruise, true);
     }
-    public void removeFromCruiseProgramArray(CruiseProgram obj) {
-        removeToManyTarget(CRUISE_PROGRAM_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<CruiseProgram> getCruiseProgramArray() {
-        return (List<CruiseProgram>)readProperty(CRUISE_PROGRAM_ARRAY_PROPERTY);
+
+    public CruisePolygon getCruise() {
+        return (CruisePolygon)readProperty(CRUISE_PROPERTY);
     }
 
 
-    public void addToCruiseSensorModelArray(CruiseSensorModel obj) {
-        addToManyTarget(CRUISE_SENSOR_MODEL_ARRAY_PROPERTY, obj, true);
+    public void setCruiseClass(CruiseClass cruiseClass) {
+        setToOneTarget(CRUISE_CLASS_PROPERTY, cruiseClass, true);
     }
-    public void removeFromCruiseSensorModelArray(CruiseSensorModel obj) {
-        removeToManyTarget(CRUISE_SENSOR_MODEL_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<CruiseSensorModel> getCruiseSensorModelArray() {
-        return (List<CruiseSensorModel>)readProperty(CRUISE_SENSOR_MODEL_ARRAY_PROPERTY);
+
+    public CruiseClass getCruiseClass() {
+        return (CruiseClass)readProperty(CRUISE_CLASS_PROPERTY);
     }
 
 
-    public void addToCruiseVariableArray(CruiseVariable obj) {
-        addToManyTarget(CRUISE_VARIABLE_ARRAY_PROPERTY, obj, true);
+    public void addToCruiseContacts(CruiseContact obj) {
+        addToManyTarget(CRUISE_CONTACTS_PROPERTY, obj, true);
     }
-    public void removeFromCruiseVariableArray(CruiseVariable obj) {
-        removeToManyTarget(CRUISE_VARIABLE_ARRAY_PROPERTY, obj, true);
+    public void removeFromCruiseContacts(CruiseContact obj) {
+        removeToManyTarget(CRUISE_CONTACTS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<CruiseVariable> getCruiseVariableArray() {
-        return (List<CruiseVariable>)readProperty(CRUISE_VARIABLE_ARRAY_PROPERTY);
+    public List<CruiseContact> getCruiseContacts() {
+        return (List<CruiseContact>)readProperty(CRUISE_CONTACTS_PROPERTY);
     }
 
 
-    public void addToPtfCruiseArray(PtfCruise obj) {
-        addToManyTarget(PTF_CRUISE_ARRAY_PROPERTY, obj, true);
+    public void addToCruiseCountries(CruiseCountry obj) {
+        addToManyTarget(CRUISE_COUNTRIES_PROPERTY, obj, true);
     }
-    public void removeFromPtfCruiseArray(PtfCruise obj) {
-        removeToManyTarget(PTF_CRUISE_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<PtfCruise> getPtfCruiseArray() {
-        return (List<PtfCruise>)readProperty(PTF_CRUISE_ARRAY_PROPERTY);
-    }
-
-
-    public void addToPtfDeploymentArray(PtfDeployment obj) {
-        addToManyTarget(PTF_DEPLOYMENT_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromPtfDeploymentArray(PtfDeployment obj) {
-        removeToManyTarget(PTF_DEPLOYMENT_ARRAY_PROPERTY, obj, true);
+    public void removeFromCruiseCountries(CruiseCountry obj) {
+        removeToManyTarget(CRUISE_COUNTRIES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<PtfDeployment> getPtfDeploymentArray() {
-        return (List<PtfDeployment>)readProperty(PTF_DEPLOYMENT_ARRAY_PROPERTY);
+    public List<CruiseCountry> getCruiseCountries() {
+        return (List<CruiseCountry>)readProperty(CRUISE_COUNTRIES_PROPERTY);
     }
 
 
-    public void addToSectionArray(Section obj) {
-        addToManyTarget(SECTION_ARRAY_PROPERTY, obj, true);
+    public void addToCruisePrograms(CruiseProgram obj) {
+        addToManyTarget(CRUISE_PROGRAMS_PROPERTY, obj, true);
     }
-    public void removeFromSectionArray(Section obj) {
-        removeToManyTarget(SECTION_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<Section> getSectionArray() {
-        return (List<Section>)readProperty(SECTION_ARRAY_PROPERTY);
-    }
-
-
-    public void addToServiceArray(Service obj) {
-        addToManyTarget(SERVICE_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromServiceArray(Service obj) {
-        removeToManyTarget(SERVICE_ARRAY_PROPERTY, obj, true);
+    public void removeFromCruisePrograms(CruiseProgram obj) {
+        removeToManyTarget(CRUISE_PROGRAMS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Service> getServiceArray() {
-        return (List<Service>)readProperty(SERVICE_ARRAY_PROPERTY);
+    public List<CruiseProgram> getCruisePrograms() {
+        return (List<CruiseProgram>)readProperty(CRUISE_PROGRAMS_PROPERTY);
     }
 
 
-    public void setToAgency(Agency toAgency) {
-        setToOneTarget(TO_AGENCY_PROPERTY, toAgency, true);
+    public void addToCruiseSensorModels(CruiseSensorModel obj) {
+        addToManyTarget(CRUISE_SENSOR_MODELS_PROPERTY, obj, true);
     }
-
-    public Agency getToAgency() {
-        return (Agency)readProperty(TO_AGENCY_PROPERTY);
+    public void removeFromCruiseSensorModels(CruiseSensorModel obj) {
+        removeToManyTarget(CRUISE_SENSOR_MODELS_PROPERTY, obj, true);
     }
-
-
-    public void setToAvailability(Availability toAvailability) {
-        setToOneTarget(TO_AVAILABILITY_PROPERTY, toAvailability, true);
-    }
-
-    public Availability getToAvailability() {
-        return (Availability)readProperty(TO_AVAILABILITY_PROPERTY);
+    @SuppressWarnings("unchecked")
+    public List<CruiseSensorModel> getCruiseSensorModels() {
+        return (List<CruiseSensorModel>)readProperty(CRUISE_SENSOR_MODELS_PROPERTY);
     }
 
 
-    public void setToCruiseClass(CruiseClass toCruiseClass) {
-        setToOneTarget(TO_CRUISE_CLASS_PROPERTY, toCruiseClass, true);
+    public void setCruiseStatus(CruiseStatus cruiseStatus) {
+        setToOneTarget(CRUISE_STATUS_PROPERTY, cruiseStatus, true);
     }
 
-    public CruiseClass getToCruiseClass() {
-        return (CruiseClass)readProperty(TO_CRUISE_CLASS_PROPERTY);
-    }
-
-
-    public void setToCruiseStatus(CruiseStatus toCruiseStatus) {
-        setToOneTarget(TO_CRUISE_STATUS_PROPERTY, toCruiseStatus, true);
-    }
-
-    public CruiseStatus getToCruiseStatus() {
-        return (CruiseStatus)readProperty(TO_CRUISE_STATUS_PROPERTY);
+    public CruiseStatus getCruiseStatus() {
+        return (CruiseStatus)readProperty(CRUISE_STATUS_PROPERTY);
     }
 
 
-    public void setToCruiseType(CruiseType toCruiseType) {
-        setToOneTarget(TO_CRUISE_TYPE_PROPERTY, toCruiseType, true);
+    public void setCruiseType(CruiseType cruiseType) {
+        setToOneTarget(CRUISE_TYPE_PROPERTY, cruiseType, true);
     }
 
-    public CruiseType getToCruiseType() {
-        return (CruiseType)readProperty(TO_CRUISE_TYPE_PROPERTY);
-    }
-
-
-    public void setToFrequency(Frequency toFrequency) {
-        setToOneTarget(TO_FREQUENCY_PROPERTY, toFrequency, true);
-    }
-
-    public Frequency getToFrequency() {
-        return (Frequency)readProperty(TO_FREQUENCY_PROPERTY);
+    public CruiseType getCruiseType() {
+        return (CruiseType)readProperty(CRUISE_TYPE_PROPERTY);
     }
 
 
-    public void setToImage(Image toImage) {
-        setToOneTarget(TO_IMAGE_PROPERTY, toImage, true);
+    public void addToCruiseVariables(CruiseVariable obj) {
+        addToManyTarget(CRUISE_VARIABLES_PROPERTY, obj, true);
     }
-
-    public Image getToImage() {
-        return (Image)readProperty(TO_IMAGE_PROPERTY);
+    public void removeFromCruiseVariables(CruiseVariable obj) {
+        removeToManyTarget(CRUISE_VARIABLES_PROPERTY, obj, true);
     }
-
-
-    public void setToLine(Line toLine) {
-        setToOneTarget(TO_LINE_PROPERTY, toLine, true);
-    }
-
-    public Line getToLine() {
-        return (Line)readProperty(TO_LINE_PROPERTY);
+    @SuppressWarnings("unchecked")
+    public List<CruiseVariable> getCruiseVariables() {
+        return (List<CruiseVariable>)readProperty(CRUISE_VARIABLES_PROPERTY);
     }
 
 
-    public void setToShip(Ship toShip) {
-        setToOneTarget(TO_SHIP_PROPERTY, toShip, true);
+    public void setFrequency(Frequency frequency) {
+        setToOneTarget(FREQUENCY_PROPERTY, frequency, true);
     }
 
-    public Ship getToShip() {
-        return (Ship)readProperty(TO_SHIP_PROPERTY);
+    public Frequency getFrequency() {
+        return (Frequency)readProperty(FREQUENCY_PROPERTY);
     }
 
 
-    public void setToWeblink(Weblink toWeblink) {
-        setToOneTarget(TO_WEBLINK_PROPERTY, toWeblink, true);
+    public void setImage(Image image) {
+        setToOneTarget(IMAGE_PROPERTY, image, true);
     }
 
-    public Weblink getToWeblink() {
-        return (Weblink)readProperty(TO_WEBLINK_PROPERTY);
+    public Image getImage() {
+        return (Image)readProperty(IMAGE_PROPERTY);
+    }
+
+
+    public void setLine(Line line) {
+        setToOneTarget(LINE_PROPERTY, line, true);
+    }
+
+    public Line getLine() {
+        return (Line)readProperty(LINE_PROPERTY);
+    }
+
+
+    public void addToPtfCruises(PtfCruise obj) {
+        addToManyTarget(PTF_CRUISES_PROPERTY, obj, true);
+    }
+    public void removeFromPtfCruises(PtfCruise obj) {
+        removeToManyTarget(PTF_CRUISES_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<PtfCruise> getPtfCruises() {
+        return (List<PtfCruise>)readProperty(PTF_CRUISES_PROPERTY);
+    }
+
+
+    public void addToPtfDeployments(PtfDeployment obj) {
+        addToManyTarget(PTF_DEPLOYMENTS_PROPERTY, obj, true);
+    }
+    public void removeFromPtfDeployments(PtfDeployment obj) {
+        removeToManyTarget(PTF_DEPLOYMENTS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<PtfDeployment> getPtfDeployments() {
+        return (List<PtfDeployment>)readProperty(PTF_DEPLOYMENTS_PROPERTY);
+    }
+
+
+    public void addToRetrievals(Retrieval obj) {
+        addToManyTarget(RETRIEVALS_PROPERTY, obj, true);
+    }
+    public void removeFromRetrievals(Retrieval obj) {
+        removeToManyTarget(RETRIEVALS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Retrieval> getRetrievals() {
+        return (List<Retrieval>)readProperty(RETRIEVALS_PROPERTY);
+    }
+
+
+    public void addToSections(Section obj) {
+        addToManyTarget(SECTIONS_PROPERTY, obj, true);
+    }
+    public void removeFromSections(Section obj) {
+        removeToManyTarget(SECTIONS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Section> getSections() {
+        return (List<Section>)readProperty(SECTIONS_PROPERTY);
+    }
+
+
+    public void addToServices(Service obj) {
+        addToManyTarget(SERVICES_PROPERTY, obj, true);
+    }
+    public void removeFromServices(Service obj) {
+        removeToManyTarget(SERVICES_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Service> getServices() {
+        return (List<Service>)readProperty(SERVICES_PROPERTY);
+    }
+
+
+    public void setShip(Ship ship) {
+        setToOneTarget(SHIP_PROPERTY, ship, true);
+    }
+
+    public Ship getShip() {
+        return (Ship)readProperty(SHIP_PROPERTY);
+    }
+
+
+    public void addToWebFrequentations(WebFrequentation obj) {
+        addToManyTarget(WEB_FREQUENTATIONS_PROPERTY, obj, true);
+    }
+    public void removeFromWebFrequentations(WebFrequentation obj) {
+        removeToManyTarget(WEB_FREQUENTATIONS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<WebFrequentation> getWebFrequentations() {
+        return (List<WebFrequentation>)readProperty(WEB_FREQUENTATIONS_PROPERTY);
+    }
+
+
+    public void setWeblink(Weblink weblink) {
+        setToOneTarget(WEBLINK_PROPERTY, weblink, true);
+    }
+
+    public Weblink getWeblink() {
+        return (Weblink)readProperty(WEBLINK_PROPERTY);
     }
 
 

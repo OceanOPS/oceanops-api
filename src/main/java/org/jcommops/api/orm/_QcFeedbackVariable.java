@@ -10,27 +10,43 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _QcFeedbackVariable extends CayenneDataObject {
 
-    public static final String TO_QC_FEEDBACK_PROPERTY = "toQcFeedback";
-    public static final String TO_VARIABLE_PROPERTY = "toVariable";
+    public static final String QC_FEEDBACK_ID_PROPERTY = "qcFeedbackId";
+    public static final String VARIABLE_ID_PROPERTY = "variableId";
+    public static final String QC_FEEDBACK_PROPERTY = "qcFeedback";
+    public static final String VARIABLE_PROPERTY = "variable";
 
     public static final String QC_FEEDBACK_ID_PK_COLUMN = "QC_FEEDBACK_ID";
     public static final String VARIABLE_ID_PK_COLUMN = "VARIABLE_ID";
 
-    public void setToQcFeedback(QcFeedback toQcFeedback) {
-        setToOneTarget(TO_QC_FEEDBACK_PROPERTY, toQcFeedback, true);
+    public void setQcFeedbackId(Integer qcFeedbackId) {
+        writeProperty(QC_FEEDBACK_ID_PROPERTY, qcFeedbackId);
+    }
+    public Integer getQcFeedbackId() {
+        return (Integer)readProperty(QC_FEEDBACK_ID_PROPERTY);
     }
 
-    public QcFeedback getToQcFeedback() {
-        return (QcFeedback)readProperty(TO_QC_FEEDBACK_PROPERTY);
+    public void setVariableId(Integer variableId) {
+        writeProperty(VARIABLE_ID_PROPERTY, variableId);
+    }
+    public Integer getVariableId() {
+        return (Integer)readProperty(VARIABLE_ID_PROPERTY);
+    }
+
+    public void setQcFeedback(QcFeedback qcFeedback) {
+        setToOneTarget(QC_FEEDBACK_PROPERTY, qcFeedback, true);
+    }
+
+    public QcFeedback getQcFeedback() {
+        return (QcFeedback)readProperty(QC_FEEDBACK_PROPERTY);
     }
 
 
-    public void setToVariable(Variable toVariable) {
-        setToOneTarget(TO_VARIABLE_PROPERTY, toVariable, true);
+    public void setVariable(Variable variable) {
+        setToOneTarget(VARIABLE_PROPERTY, variable, true);
     }
 
-    public Variable getToVariable() {
-        return (Variable)readProperty(TO_VARIABLE_PROPERTY);
+    public Variable getVariable() {
+        return (Variable)readProperty(VARIABLE_PROPERTY);
     }
 
 

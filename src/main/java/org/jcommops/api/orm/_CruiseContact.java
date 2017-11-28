@@ -10,38 +10,62 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _CruiseContact extends CayenneDataObject {
 
-    public static final String TO_CONTACT_PROPERTY = "toContact";
-    public static final String TO_CRUISE_PROPERTY = "toCruise";
-    public static final String TO_ROLE_PROPERTY = "toRole";
+    public static final String CONTACT_ID_PROPERTY = "contactId";
+    public static final String CRUISE_ID_PROPERTY = "cruiseId";
+    public static final String ROLE_ID_PROPERTY = "roleId";
+    public static final String CONTACT_PROPERTY = "contact";
+    public static final String CRUISE_PROPERTY = "cruise";
+    public static final String ROLE_PROPERTY = "role";
 
     public static final String CONTACT_ID_PK_COLUMN = "CONTACT_ID";
     public static final String CRUISE_ID_PK_COLUMN = "CRUISE_ID";
     public static final String ROLE_ID_PK_COLUMN = "ROLE_ID";
 
-    public void setToContact(Contact toContact) {
-        setToOneTarget(TO_CONTACT_PROPERTY, toContact, true);
+    public void setContactId(Integer contactId) {
+        writeProperty(CONTACT_ID_PROPERTY, contactId);
+    }
+    public Integer getContactId() {
+        return (Integer)readProperty(CONTACT_ID_PROPERTY);
     }
 
-    public Contact getToContact() {
-        return (Contact)readProperty(TO_CONTACT_PROPERTY);
+    public void setCruiseId(Integer cruiseId) {
+        writeProperty(CRUISE_ID_PROPERTY, cruiseId);
+    }
+    public Integer getCruiseId() {
+        return (Integer)readProperty(CRUISE_ID_PROPERTY);
+    }
+
+    public void setRoleId(Integer roleId) {
+        writeProperty(ROLE_ID_PROPERTY, roleId);
+    }
+    public Integer getRoleId() {
+        return (Integer)readProperty(ROLE_ID_PROPERTY);
+    }
+
+    public void setContact(Contact contact) {
+        setToOneTarget(CONTACT_PROPERTY, contact, true);
+    }
+
+    public Contact getContact() {
+        return (Contact)readProperty(CONTACT_PROPERTY);
     }
 
 
-    public void setToCruise(Cruise toCruise) {
-        setToOneTarget(TO_CRUISE_PROPERTY, toCruise, true);
+    public void setCruise(Cruise cruise) {
+        setToOneTarget(CRUISE_PROPERTY, cruise, true);
     }
 
-    public Cruise getToCruise() {
-        return (Cruise)readProperty(TO_CRUISE_PROPERTY);
+    public Cruise getCruise() {
+        return (Cruise)readProperty(CRUISE_PROPERTY);
     }
 
 
-    public void setToRole(Role toRole) {
-        setToOneTarget(TO_ROLE_PROPERTY, toRole, true);
+    public void setRole(Role role) {
+        setToOneTarget(ROLE_PROPERTY, role, true);
     }
 
-    public Role getToRole() {
-        return (Role)readProperty(TO_ROLE_PROPERTY);
+    public Role getRole() {
+        return (Role)readProperty(ROLE_PROPERTY);
     }
 
 

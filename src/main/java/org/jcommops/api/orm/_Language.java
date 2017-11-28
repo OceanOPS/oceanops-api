@@ -12,12 +12,20 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _Language extends CayenneDataObject {
 
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
-    public static final String DOC_ARRAY_PROPERTY = "docArray";
-    public static final String DOC_LANGUAGE_ARRAY_PROPERTY = "docLanguageArray";
+    public static final String DOC_LANGUAGES_PROPERTY = "docLanguages";
+    public static final String DOCS_PROPERTY = "docs";
 
     public static final String ID_PK_COLUMN = "ID";
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
 
     public void setName(String name) {
         writeProperty(NAME_PROPERTY, name);
@@ -33,27 +41,27 @@ public abstract class _Language extends CayenneDataObject {
         return (String)readProperty(NAME_SHORT_PROPERTY);
     }
 
-    public void addToDocArray(Doc obj) {
-        addToManyTarget(DOC_ARRAY_PROPERTY, obj, true);
+    public void addToDocLanguages(DocLanguage obj) {
+        addToManyTarget(DOC_LANGUAGES_PROPERTY, obj, true);
     }
-    public void removeFromDocArray(Doc obj) {
-        removeToManyTarget(DOC_ARRAY_PROPERTY, obj, true);
+    public void removeFromDocLanguages(DocLanguage obj) {
+        removeToManyTarget(DOC_LANGUAGES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Doc> getDocArray() {
-        return (List<Doc>)readProperty(DOC_ARRAY_PROPERTY);
+    public List<DocLanguage> getDocLanguages() {
+        return (List<DocLanguage>)readProperty(DOC_LANGUAGES_PROPERTY);
     }
 
 
-    public void addToDocLanguageArray(DocLanguage obj) {
-        addToManyTarget(DOC_LANGUAGE_ARRAY_PROPERTY, obj, true);
+    public void addToDocs(Doc obj) {
+        addToManyTarget(DOCS_PROPERTY, obj, true);
     }
-    public void removeFromDocLanguageArray(DocLanguage obj) {
-        removeToManyTarget(DOC_LANGUAGE_ARRAY_PROPERTY, obj, true);
+    public void removeFromDocs(Doc obj) {
+        removeToManyTarget(DOCS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<DocLanguage> getDocLanguageArray() {
-        return (List<DocLanguage>)readProperty(DOC_LANGUAGE_ARRAY_PROPERTY);
+    public List<Doc> getDocs() {
+        return (List<Doc>)readProperty(DOCS_PROPERTY);
     }
 
 

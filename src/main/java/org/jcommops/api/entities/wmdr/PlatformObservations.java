@@ -185,9 +185,9 @@ public class PlatformObservations {
 			list.add(value);
 			address.setElectronicMailAddress(list);
 		}
-		if(agency.getToCountry() != null){
+		if(agency.getCountry() != null){
 			value = this.gcoOF.createCharacterStringPropertyType();
-			value.setCharacterString(this.gcoOF.createCharacterString(agency.getToCountry().getNameLong()));
+			value.setCharacterString(this.gcoOF.createCharacterString(agency.getCountry().getNameLong()));
 			address.setCountry(value);
 		}
 		
@@ -196,7 +196,7 @@ public class PlatformObservations {
 		CIOnlineResourcePropertyType onlineRsrcProperty = this.gmdOF.createCIOnlineResourcePropertyType();
 		CIOnlineResourceType onlineRsrc = this.gmdOF.createCIOnlineResourceType();
 		URLPropertyType urlProperty = this.gmdOF.createURLPropertyType();
-		urlProperty.setURL(agency.getToWeblink().getUrl());
+		urlProperty.setURL(agency.getWeblink().getUrl());
 		onlineRsrc.setLinkage(urlProperty);
 		onlineRsrcProperty.setCIOnlineResource(onlineRsrc);
 		
@@ -278,8 +278,8 @@ public class PlatformObservations {
 			
 			PointType geom = this.gmlOF.createPointType();
 			DirectPositionType pos = this.gmlOF.createDirectPositionType();
-			pos.setValue(Arrays.asList(obs.getToPtfLoc().getLat().doubleValue(), obs.getToPtfLoc().getLon().doubleValue(), obs.getToPtfLoc().getElevation() == null ? 0: obs.getToPtfLoc().getElevation().doubleValue()));
-			geom.setId("obs-" + obs.getObjectId().getIdSnapshot().get("ID").toString() + "-geometry-" + obs.getToPtfLoc().getObjectId().getIdSnapshot().get("ID").toString());
+			pos.setValue(Arrays.asList(obs.getPtfLoc().getLat().doubleValue(), obs.getPtfLoc().getLon().doubleValue(), obs.getPtfLoc().getElevation() == null ? 0: obs.getPtfLoc().getElevation().doubleValue()));
+			geom.setId("obs-" + obs.getObjectId().getIdSnapshot().get("ID").toString() + "-geometry-" + obs.getPtfLoc().getObjectId().getIdSnapshot().get("ID").toString());
 			geom.setPos(pos);
 			geom.setSrsName("http://www.opengis.net/def/crs/EPSG/0/4979");
 			ShapeType shape = this.samsOF.createShapeType();

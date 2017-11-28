@@ -13,12 +13,15 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _Site extends CayenneDataObject {
 
     public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
-    public static final String NETWORK_SITE_ARRAY_PROPERTY = "networkSiteArray";
-    public static final String PTF_ARRAY_PROPERTY = "ptfArray";
-    public static final String SITE_PTF_ARRAY_PROPERTY = "sitePtfArray";
-    public static final String TO_MASTER_PROG_PROPERTY = "toMasterProg";
+    public static final String SHAPE_PROPERTY = "shape";
+    public static final String WKT_PROPERTY = "wkt";
+    public static final String MASTER_PROG_PROPERTY = "masterProg";
+    public static final String NETWORK_SITES_PROPERTY = "networkSites";
+    public static final String PTFS_PROPERTY = "ptfs";
+    public static final String SITE_PTFS_PROPERTY = "sitePtfs";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -27,6 +30,13 @@ public abstract class _Site extends CayenneDataObject {
     }
     public String getDescription() {
         return (String)readProperty(DESCRIPTION_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setName(String name) {
@@ -43,48 +53,62 @@ public abstract class _Site extends CayenneDataObject {
         return (String)readProperty(NAME_SHORT_PROPERTY);
     }
 
-    public void addToNetworkSiteArray(NetworkSite obj) {
-        addToManyTarget(NETWORK_SITE_ARRAY_PROPERTY, obj, true);
+    public void setShape(byte[] shape) {
+        writeProperty(SHAPE_PROPERTY, shape);
     }
-    public void removeFromNetworkSiteArray(NetworkSite obj) {
-        removeToManyTarget(NETWORK_SITE_ARRAY_PROPERTY, obj, true);
+    public byte[] getShape() {
+        return (byte[])readProperty(SHAPE_PROPERTY);
+    }
+
+    public void setWkt(String wkt) {
+        writeProperty(WKT_PROPERTY, wkt);
+    }
+    public String getWkt() {
+        return (String)readProperty(WKT_PROPERTY);
+    }
+
+    public void setMasterProg(MasterProg masterProg) {
+        setToOneTarget(MASTER_PROG_PROPERTY, masterProg, true);
+    }
+
+    public MasterProg getMasterProg() {
+        return (MasterProg)readProperty(MASTER_PROG_PROPERTY);
+    }
+
+
+    public void addToNetworkSites(NetworkSite obj) {
+        addToManyTarget(NETWORK_SITES_PROPERTY, obj, true);
+    }
+    public void removeFromNetworkSites(NetworkSite obj) {
+        removeToManyTarget(NETWORK_SITES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<NetworkSite> getNetworkSiteArray() {
-        return (List<NetworkSite>)readProperty(NETWORK_SITE_ARRAY_PROPERTY);
+    public List<NetworkSite> getNetworkSites() {
+        return (List<NetworkSite>)readProperty(NETWORK_SITES_PROPERTY);
     }
 
 
-    public void addToPtfArray(Ptf obj) {
-        addToManyTarget(PTF_ARRAY_PROPERTY, obj, true);
+    public void addToPtfs(Ptf obj) {
+        addToManyTarget(PTFS_PROPERTY, obj, true);
     }
-    public void removeFromPtfArray(Ptf obj) {
-        removeToManyTarget(PTF_ARRAY_PROPERTY, obj, true);
+    public void removeFromPtfs(Ptf obj) {
+        removeToManyTarget(PTFS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Ptf> getPtfArray() {
-        return (List<Ptf>)readProperty(PTF_ARRAY_PROPERTY);
+    public List<Ptf> getPtfs() {
+        return (List<Ptf>)readProperty(PTFS_PROPERTY);
     }
 
 
-    public void addToSitePtfArray(SitePtf obj) {
-        addToManyTarget(SITE_PTF_ARRAY_PROPERTY, obj, true);
+    public void addToSitePtfs(SitePtf obj) {
+        addToManyTarget(SITE_PTFS_PROPERTY, obj, true);
     }
-    public void removeFromSitePtfArray(SitePtf obj) {
-        removeToManyTarget(SITE_PTF_ARRAY_PROPERTY, obj, true);
+    public void removeFromSitePtfs(SitePtf obj) {
+        removeToManyTarget(SITE_PTFS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<SitePtf> getSitePtfArray() {
-        return (List<SitePtf>)readProperty(SITE_PTF_ARRAY_PROPERTY);
-    }
-
-
-    public void setToMasterProg(MasterProg toMasterProg) {
-        setToOneTarget(TO_MASTER_PROG_PROPERTY, toMasterProg, true);
-    }
-
-    public MasterProg getToMasterProg() {
-        return (MasterProg)readProperty(TO_MASTER_PROG_PROPERTY);
+    public List<SitePtf> getSitePtfs() {
+        return (List<SitePtf>)readProperty(SITE_PTFS_PROPERTY);
     }
 
 

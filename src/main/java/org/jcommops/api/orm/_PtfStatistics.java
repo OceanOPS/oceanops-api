@@ -28,6 +28,7 @@ public abstract class _PtfStatistics extends CayenneDataObject {
     public static final String NB_OBS_GDAC1_PROPERTY = "nbObsGdac1";
     public static final String NB_OBS_GDAC2_PROPERTY = "nbObsGdac2";
     public static final String NB_OBS_GTS_PROPERTY = "nbObsGts";
+    public static final String PTF_ID_PROPERTY = "ptfId";
 
     public static final String PTF_ID_PK_COLUMN = "PTF_ID";
 
@@ -141,6 +142,13 @@ public abstract class _PtfStatistics extends CayenneDataObject {
     }
     public Integer getNbObsGts() {
         return (Integer)readProperty(NB_OBS_GTS_PROPERTY);
+    }
+
+    public void setPtfId(Integer ptfId) {
+        writeProperty(PTF_ID_PROPERTY, ptfId);
+    }
+    public Integer getPtfId() {
+        return (Integer)readProperty(PTF_ID_PROPERTY);
     }
 
 }

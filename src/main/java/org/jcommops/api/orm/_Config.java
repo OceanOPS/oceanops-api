@@ -16,13 +16,13 @@ public abstract class _Config extends CayenneDataObject {
     public static final String CYCLE_TIME_PROPERTY = "cycleTime";
     public static final String DRIFT_PRESS_PROPERTY = "driftPress";
     public static final String ICE_DETECTION_PROPERTY = "iceDetection";
+    public static final String ID_PROPERTY = "id";
     public static final String N_LEVELS_PROPERTY = "nLevels";
-    public static final String OBS_PERIOD_PROPERTY = "obsPeriod";
     public static final String PNP_PROPERTY = "pnp";
     public static final String PROFILE_PRESS_PROPERTY = "profilePress";
     public static final String SURFACE_TIME_PROPERTY = "surfaceTime";
     public static final String WATCH_CIRCLE_PROPERTY = "watchCircle";
-    public static final String PTF_CONFIG_ARRAY_PROPERTY = "ptfConfigArray";
+    public static final String PTF_CONFIGS_PROPERTY = "ptfConfigs";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -47,18 +47,18 @@ public abstract class _Config extends CayenneDataObject {
         return (Integer)readProperty(ICE_DETECTION_PROPERTY);
     }
 
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
+
     public void setNLevels(Integer nLevels) {
         writeProperty(N_LEVELS_PROPERTY, nLevels);
     }
     public Integer getNLevels() {
         return (Integer)readProperty(N_LEVELS_PROPERTY);
-    }
-
-    public void setObsPeriod(Integer obsPeriod) {
-        writeProperty(OBS_PERIOD_PROPERTY, obsPeriod);
-    }
-    public Integer getObsPeriod() {
-        return (Integer)readProperty(OBS_PERIOD_PROPERTY);
     }
 
     public void setPnp(Integer pnp) {
@@ -89,15 +89,15 @@ public abstract class _Config extends CayenneDataObject {
         return (Integer)readProperty(WATCH_CIRCLE_PROPERTY);
     }
 
-    public void addToPtfConfigArray(PtfConfig obj) {
-        addToManyTarget(PTF_CONFIG_ARRAY_PROPERTY, obj, true);
+    public void addToPtfConfigs(PtfConfig obj) {
+        addToManyTarget(PTF_CONFIGS_PROPERTY, obj, true);
     }
-    public void removeFromPtfConfigArray(PtfConfig obj) {
-        removeToManyTarget(PTF_CONFIG_ARRAY_PROPERTY, obj, true);
+    public void removeFromPtfConfigs(PtfConfig obj) {
+        removeToManyTarget(PTF_CONFIGS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<PtfConfig> getPtfConfigArray() {
-        return (List<PtfConfig>)readProperty(PTF_CONFIG_ARRAY_PROPERTY);
+    public List<PtfConfig> getPtfConfigs() {
+        return (List<PtfConfig>)readProperty(PTF_CONFIGS_PROPERTY);
     }
 
 

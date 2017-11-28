@@ -14,14 +14,15 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _PtfFirmware extends CayenneDataObject {
 
     public static final String FORMAT_REF_PROPERTY = "formatRef";
+    public static final String ID_PROPERTY = "id";
     public static final String MANUF_DATE_PROPERTY = "manufDate";
     public static final String NAME_PROPERTY = "name";
     public static final String SERIAL_REF_PROPERTY = "serialRef";
     public static final String SOFTWARE_NAME_PROPERTY = "softwareName";
     public static final String SOFTWARE_VERSION_PROPERTY = "softwareVersion";
-    public static final String PTF_HARDWARE_ARRAY_PROPERTY = "ptfHardwareArray";
-    public static final String PTF_HARDWARE_ARRAY1_PROPERTY = "ptfHardwareArray1";
-    public static final String TO_AGENCY_PROPERTY = "toAgency";
+    public static final String AGENCY_PROPERTY = "agency";
+    public static final String PTF_HARDWARES_PROPERTY = "ptfHardwares";
+    public static final String PTF_HARDWARES1_PROPERTY = "ptfHardwares1";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -30,6 +31,13 @@ public abstract class _PtfFirmware extends CayenneDataObject {
     }
     public String getFormatRef() {
         return (String)readProperty(FORMAT_REF_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setManufDate(Date manufDate) {
@@ -67,36 +75,36 @@ public abstract class _PtfFirmware extends CayenneDataObject {
         return (String)readProperty(SOFTWARE_VERSION_PROPERTY);
     }
 
-    public void addToPtfHardwareArray(PtfHardware obj) {
-        addToManyTarget(PTF_HARDWARE_ARRAY_PROPERTY, obj, true);
+    public void setAgency(Agency agency) {
+        setToOneTarget(AGENCY_PROPERTY, agency, true);
     }
-    public void removeFromPtfHardwareArray(PtfHardware obj) {
-        removeToManyTarget(PTF_HARDWARE_ARRAY_PROPERTY, obj, true);
+
+    public Agency getAgency() {
+        return (Agency)readProperty(AGENCY_PROPERTY);
+    }
+
+
+    public void addToPtfHardwares(PtfHardware obj) {
+        addToManyTarget(PTF_HARDWARES_PROPERTY, obj, true);
+    }
+    public void removeFromPtfHardwares(PtfHardware obj) {
+        removeToManyTarget(PTF_HARDWARES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<PtfHardware> getPtfHardwareArray() {
-        return (List<PtfHardware>)readProperty(PTF_HARDWARE_ARRAY_PROPERTY);
+    public List<PtfHardware> getPtfHardwares() {
+        return (List<PtfHardware>)readProperty(PTF_HARDWARES_PROPERTY);
     }
 
 
-    public void addToPtfHardwareArray1(PtfHardware obj) {
-        addToManyTarget(PTF_HARDWARE_ARRAY1_PROPERTY, obj, true);
+    public void addToPtfHardwares1(PtfHardware obj) {
+        addToManyTarget(PTF_HARDWARES1_PROPERTY, obj, true);
     }
-    public void removeFromPtfHardwareArray1(PtfHardware obj) {
-        removeToManyTarget(PTF_HARDWARE_ARRAY1_PROPERTY, obj, true);
+    public void removeFromPtfHardwares1(PtfHardware obj) {
+        removeToManyTarget(PTF_HARDWARES1_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<PtfHardware> getPtfHardwareArray1() {
-        return (List<PtfHardware>)readProperty(PTF_HARDWARE_ARRAY1_PROPERTY);
-    }
-
-
-    public void setToAgency(Agency toAgency) {
-        setToOneTarget(TO_AGENCY_PROPERTY, toAgency, true);
-    }
-
-    public Agency getToAgency() {
-        return (Agency)readProperty(TO_AGENCY_PROPERTY);
+    public List<PtfHardware> getPtfHardwares1() {
+        return (List<PtfHardware>)readProperty(PTF_HARDWARES1_PROPERTY);
     }
 
 

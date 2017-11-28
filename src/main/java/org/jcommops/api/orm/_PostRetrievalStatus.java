@@ -13,9 +13,10 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _PostRetrievalStatus extends CayenneDataObject {
 
     public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
-    public static final String RETRIEVAL_ARRAY_PROPERTY = "retrievalArray";
+    public static final String RETRIEVALS_PROPERTY = "retrievals";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -24,6 +25,13 @@ public abstract class _PostRetrievalStatus extends CayenneDataObject {
     }
     public String getDescription() {
         return (String)readProperty(DESCRIPTION_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setName(String name) {
@@ -40,15 +48,15 @@ public abstract class _PostRetrievalStatus extends CayenneDataObject {
         return (String)readProperty(NAME_SHORT_PROPERTY);
     }
 
-    public void addToRetrievalArray(Retrieval obj) {
-        addToManyTarget(RETRIEVAL_ARRAY_PROPERTY, obj, true);
+    public void addToRetrievals(Retrieval obj) {
+        addToManyTarget(RETRIEVALS_PROPERTY, obj, true);
     }
-    public void removeFromRetrievalArray(Retrieval obj) {
-        removeToManyTarget(RETRIEVAL_ARRAY_PROPERTY, obj, true);
+    public void removeFromRetrievals(Retrieval obj) {
+        removeToManyTarget(RETRIEVALS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Retrieval> getRetrievalArray() {
-        return (List<Retrieval>)readProperty(RETRIEVAL_ARRAY_PROPERTY);
+    public List<Retrieval> getRetrievals() {
+        return (List<Retrieval>)readProperty(RETRIEVALS_PROPERTY);
     }
 
 

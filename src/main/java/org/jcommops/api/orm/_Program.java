@@ -14,17 +14,20 @@ public abstract class _Program extends CayenneDataObject {
 
     public static final String ACTIVE_PROPERTY = "active";
     public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
-    public static final String CRUISE_PROGRAM_ARRAY_PROPERTY = "cruiseProgramArray";
-    public static final String IMAGE_ARRAY_PROPERTY = "imageArray";
-    public static final String LINE_PROGRAM_ARRAY_PROPERTY = "lineProgramArray";
-    public static final String TO_AGENCIES_PROPERTY = "toAgencies";
-    public static final String PROGRAM_CONTACT_ARRAY_PROPERTY = "programContactArray";
-    public static final String PTF_ARRAY_PROPERTY = "ptfArray";
-    public static final String TO_COUNTRY_PROPERTY = "toCountry";
-    public static final String TO_MASTER_PROG_PROPERTY = "toMasterProg";
-    public static final String WEBLINK_ARRAY_PROPERTY = "weblinkArray";
+    public static final String COUNTRY_PROPERTY = "country";
+    public static final String CRUISE_PROGRAMS_PROPERTY = "cruisePrograms";
+    public static final String IMAGES_PROPERTY = "images";
+    public static final String LINE_PROGRAMS_PROPERTY = "linePrograms";
+    public static final String MASTER_PROG_PROPERTY = "masterProg";
+    public static final String PROGRAM_AGENCIES_PROPERTY = "programAgencies";
+    public static final String PROGRAM_CONTACTS_PROPERTY = "programContacts";
+    public static final String PTFS_PROPERTY = "ptfs";
+    public static final String SHIP_RECRUITMENTS_PROPERTY = "shipRecruitments";
+    public static final String AGENCIES_PROPERTY = "agencies";
+    public static final String WEBLINKS_PROPERTY = "weblinks";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -42,6 +45,13 @@ public abstract class _Program extends CayenneDataObject {
         return (String)readProperty(DESCRIPTION_PROPERTY);
     }
 
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
+
     public void setName(String name) {
         writeProperty(NAME_PROPERTY, name);
     }
@@ -56,105 +66,129 @@ public abstract class _Program extends CayenneDataObject {
         return (String)readProperty(NAME_SHORT_PROPERTY);
     }
 
-    public void addToCruiseProgramArray(CruiseProgram obj) {
-        addToManyTarget(CRUISE_PROGRAM_ARRAY_PROPERTY, obj, true);
+    public void setCountry(Country country) {
+        setToOneTarget(COUNTRY_PROPERTY, country, true);
     }
-    public void removeFromCruiseProgramArray(CruiseProgram obj) {
-        removeToManyTarget(CRUISE_PROGRAM_ARRAY_PROPERTY, obj, true);
+
+    public Country getCountry() {
+        return (Country)readProperty(COUNTRY_PROPERTY);
+    }
+
+
+    public void addToCruisePrograms(CruiseProgram obj) {
+        addToManyTarget(CRUISE_PROGRAMS_PROPERTY, obj, true);
+    }
+    public void removeFromCruisePrograms(CruiseProgram obj) {
+        removeToManyTarget(CRUISE_PROGRAMS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<CruiseProgram> getCruiseProgramArray() {
-        return (List<CruiseProgram>)readProperty(CRUISE_PROGRAM_ARRAY_PROPERTY);
+    public List<CruiseProgram> getCruisePrograms() {
+        return (List<CruiseProgram>)readProperty(CRUISE_PROGRAMS_PROPERTY);
     }
 
 
-    public void addToImageArray(Image obj) {
-        addToManyTarget(IMAGE_ARRAY_PROPERTY, obj, true);
+    public void addToImages(Image obj) {
+        addToManyTarget(IMAGES_PROPERTY, obj, true);
     }
-    public void removeFromImageArray(Image obj) {
-        removeToManyTarget(IMAGE_ARRAY_PROPERTY, obj, true);
+    public void removeFromImages(Image obj) {
+        removeToManyTarget(IMAGES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Image> getImageArray() {
-        return (List<Image>)readProperty(IMAGE_ARRAY_PROPERTY);
+    public List<Image> getImages() {
+        return (List<Image>)readProperty(IMAGES_PROPERTY);
     }
 
 
-    public void addToLineProgramArray(LineProgram obj) {
-        addToManyTarget(LINE_PROGRAM_ARRAY_PROPERTY, obj, true);
+    public void addToLinePrograms(LineProgram obj) {
+        addToManyTarget(LINE_PROGRAMS_PROPERTY, obj, true);
     }
-    public void removeFromLineProgramArray(LineProgram obj) {
-        removeToManyTarget(LINE_PROGRAM_ARRAY_PROPERTY, obj, true);
+    public void removeFromLinePrograms(LineProgram obj) {
+        removeToManyTarget(LINE_PROGRAMS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<LineProgram> getLineProgramArray() {
-        return (List<LineProgram>)readProperty(LINE_PROGRAM_ARRAY_PROPERTY);
+    public List<LineProgram> getLinePrograms() {
+        return (List<LineProgram>)readProperty(LINE_PROGRAMS_PROPERTY);
     }
 
 
-    public void addToToAgencies(Agency obj) {
-        addToManyTarget(TO_AGENCIES_PROPERTY, obj, true);
+    public void setMasterProg(MasterProg masterProg) {
+        setToOneTarget(MASTER_PROG_PROPERTY, masterProg, true);
     }
-    public void removeFromToAgencies(Agency obj) {
-        removeToManyTarget(TO_AGENCIES_PROPERTY, obj, true);
+
+    public MasterProg getMasterProg() {
+        return (MasterProg)readProperty(MASTER_PROG_PROPERTY);
+    }
+
+
+    public void addToProgramAgencies(ProgramAgency obj) {
+        addToManyTarget(PROGRAM_AGENCIES_PROPERTY, obj, true);
+    }
+    public void removeFromProgramAgencies(ProgramAgency obj) {
+        removeToManyTarget(PROGRAM_AGENCIES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Agency> getToAgencies() {
-        return (List<Agency>)readProperty(TO_AGENCIES_PROPERTY);
+    public List<ProgramAgency> getProgramAgencies() {
+        return (List<ProgramAgency>)readProperty(PROGRAM_AGENCIES_PROPERTY);
     }
 
 
-    public void addToProgramContactArray(ProgramContact obj) {
-        addToManyTarget(PROGRAM_CONTACT_ARRAY_PROPERTY, obj, true);
+    public void addToProgramContacts(ProgramContact obj) {
+        addToManyTarget(PROGRAM_CONTACTS_PROPERTY, obj, true);
     }
-    public void removeFromProgramContactArray(ProgramContact obj) {
-        removeToManyTarget(PROGRAM_CONTACT_ARRAY_PROPERTY, obj, true);
+    public void removeFromProgramContacts(ProgramContact obj) {
+        removeToManyTarget(PROGRAM_CONTACTS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<ProgramContact> getProgramContactArray() {
-        return (List<ProgramContact>)readProperty(PROGRAM_CONTACT_ARRAY_PROPERTY);
+    public List<ProgramContact> getProgramContacts() {
+        return (List<ProgramContact>)readProperty(PROGRAM_CONTACTS_PROPERTY);
     }
 
 
-    public void addToPtfArray(Ptf obj) {
-        addToManyTarget(PTF_ARRAY_PROPERTY, obj, true);
+    public void addToPtfs(Ptf obj) {
+        addToManyTarget(PTFS_PROPERTY, obj, true);
     }
-    public void removeFromPtfArray(Ptf obj) {
-        removeToManyTarget(PTF_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<Ptf> getPtfArray() {
-        return (List<Ptf>)readProperty(PTF_ARRAY_PROPERTY);
-    }
-
-
-    public void setToCountry(Country toCountry) {
-        setToOneTarget(TO_COUNTRY_PROPERTY, toCountry, true);
-    }
-
-    public Country getToCountry() {
-        return (Country)readProperty(TO_COUNTRY_PROPERTY);
-    }
-
-
-    public void setToMasterProg(MasterProg toMasterProg) {
-        setToOneTarget(TO_MASTER_PROG_PROPERTY, toMasterProg, true);
-    }
-
-    public MasterProg getToMasterProg() {
-        return (MasterProg)readProperty(TO_MASTER_PROG_PROPERTY);
-    }
-
-
-    public void addToWeblinkArray(Weblink obj) {
-        addToManyTarget(WEBLINK_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromWeblinkArray(Weblink obj) {
-        removeToManyTarget(WEBLINK_ARRAY_PROPERTY, obj, true);
+    public void removeFromPtfs(Ptf obj) {
+        removeToManyTarget(PTFS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Weblink> getWeblinkArray() {
-        return (List<Weblink>)readProperty(WEBLINK_ARRAY_PROPERTY);
+    public List<Ptf> getPtfs() {
+        return (List<Ptf>)readProperty(PTFS_PROPERTY);
+    }
+
+
+    public void addToShipRecruitments(ShipRecruitment obj) {
+        addToManyTarget(SHIP_RECRUITMENTS_PROPERTY, obj, true);
+    }
+    public void removeFromShipRecruitments(ShipRecruitment obj) {
+        removeToManyTarget(SHIP_RECRUITMENTS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<ShipRecruitment> getShipRecruitments() {
+        return (List<ShipRecruitment>)readProperty(SHIP_RECRUITMENTS_PROPERTY);
+    }
+
+
+    public void addToAgencies(Agency obj) {
+        addToManyTarget(AGENCIES_PROPERTY, obj, true);
+    }
+    public void removeFromAgencies(Agency obj) {
+        removeToManyTarget(AGENCIES_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Agency> getAgencies() {
+        return (List<Agency>)readProperty(AGENCIES_PROPERTY);
+    }
+
+
+    public void addToWeblinks(Weblink obj) {
+        addToManyTarget(WEBLINKS_PROPERTY, obj, true);
+    }
+    public void removeFromWeblinks(Weblink obj) {
+        removeToManyTarget(WEBLINKS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<Weblink> getWeblinks() {
+        return (List<Weblink>)readProperty(WEBLINKS_PROPERTY);
     }
 
 

@@ -13,6 +13,7 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _WebMessage extends CayenneDataObject {
 
     public static final String ENABLED_PROPERTY = "enabled";
+    public static final String ID_PROPERTY = "id";
     public static final String TEXT_PROPERTY = "text";
 
     public static final String ID_PK_COLUMN = "ID";
@@ -22,6 +23,13 @@ public abstract class _WebMessage extends CayenneDataObject {
     }
     public BigDecimal getEnabled() {
         return (BigDecimal)readProperty(ENABLED_PROPERTY);
+    }
+
+    public void setId(BigDecimal id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public BigDecimal getId() {
+        return (BigDecimal)readProperty(ID_PROPERTY);
     }
 
     public void setText(String text) {

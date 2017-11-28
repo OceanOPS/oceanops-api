@@ -10,27 +10,43 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _WebContactModule extends CayenneDataObject {
 
-    public static final String TO_CONTACT_PROPERTY = "toContact";
-    public static final String TO_WEB_MODULE_PROPERTY = "toWebModule";
+    public static final String CONTACT_ID_PROPERTY = "contactId";
+    public static final String MODULE_ID_PROPERTY = "moduleId";
+    public static final String CONTACT_PROPERTY = "contact";
+    public static final String MODULE_PROPERTY = "module";
 
     public static final String CONTACT_ID_PK_COLUMN = "CONTACT_ID";
     public static final String MODULE_ID_PK_COLUMN = "MODULE_ID";
 
-    public void setToContact(Contact toContact) {
-        setToOneTarget(TO_CONTACT_PROPERTY, toContact, true);
+    public void setContactId(Integer contactId) {
+        writeProperty(CONTACT_ID_PROPERTY, contactId);
+    }
+    public Integer getContactId() {
+        return (Integer)readProperty(CONTACT_ID_PROPERTY);
     }
 
-    public Contact getToContact() {
-        return (Contact)readProperty(TO_CONTACT_PROPERTY);
+    public void setModuleId(Integer moduleId) {
+        writeProperty(MODULE_ID_PROPERTY, moduleId);
+    }
+    public Integer getModuleId() {
+        return (Integer)readProperty(MODULE_ID_PROPERTY);
+    }
+
+    public void setContact(Contact contact) {
+        setToOneTarget(CONTACT_PROPERTY, contact, true);
+    }
+
+    public Contact getContact() {
+        return (Contact)readProperty(CONTACT_PROPERTY);
     }
 
 
-    public void setToWebModule(WebModule toWebModule) {
-        setToOneTarget(TO_WEB_MODULE_PROPERTY, toWebModule, true);
+    public void setModule(WebModule module) {
+        setToOneTarget(MODULE_PROPERTY, module, true);
     }
 
-    public WebModule getToWebModule() {
-        return (WebModule)readProperty(TO_WEB_MODULE_PROPERTY);
+    public WebModule getModule() {
+        return (WebModule)readProperty(MODULE_PROPERTY);
     }
 
 

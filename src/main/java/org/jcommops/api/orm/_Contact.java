@@ -20,6 +20,7 @@ public abstract class _Contact extends CayenneDataObject {
     public static final String FAX_PROPERTY = "fax";
     public static final String FIRST_NAME_PROPERTY = "firstName";
     public static final String GREETINGS_PROPERTY = "greetings";
+    public static final String ID_PROPERTY = "id";
     public static final String IS_PRIVATE_PROPERTY = "isPrivate";
     public static final String LAST_NAME_PROPERTY = "lastName";
     public static final String LAST_UPDATE_PROPERTY = "lastUpdate";
@@ -28,26 +29,30 @@ public abstract class _Contact extends CayenneDataObject {
     public static final String TEL_PROPERTY = "tel";
     public static final String TEL2_PROPERTY = "tel2";
     public static final String TITLE_PROPERTY = "title";
-    public static final String CRUISE_CONTACT_ARRAY_PROPERTY = "cruiseContactArray";
-    public static final String DOC_CONTACT_ARRAY_PROPERTY = "docContactArray";
-    public static final String MASTER_PROG_CONTACT_ARRAY_PROPERTY = "masterProgContactArray";
-    public static final String MEETING_ARRAY_PROPERTY = "meetingArray";
-    public static final String NC_NOTIFICATION_ARRAY_PROPERTY = "ncNotificationArray";
-    public static final String PROGRAM_CONTACT_ARRAY_PROPERTY = "programContactArray";
-    public static final String PTF_DEPLOYMENT_ARRAY_PROPERTY = "ptfDeploymentArray";
-    public static final String PTF_MODEL_ARRAY_PROPERTY = "ptfModelArray";
-    public static final String QC_FEEDBACK_ARRAY_PROPERTY = "qcFeedbackArray";
-    public static final String QC_FEEDBACK_ARRAY1_PROPERTY = "qcFeedbackArray1";
-    public static final String SERVICE_ARRAY_PROPERTY = "serviceArray";
-    public static final String TELECOM_FORMAT_ARRAY_PROPERTY = "telecomFormatArray";
-    public static final String TO_AGENCY_PROPERTY = "toAgency";
-    public static final String TO_COUNTRY_PROPERTY = "toCountry";
-    public static final String TO_IMAGE_PROPERTY = "toImage";
-    public static final String TO_WEBLINK_PROPERTY = "toWeblink";
-    public static final String USER_GROUP_CONTACT_ARRAY_PROPERTY = "userGroupContactArray";
-    public static final String WEB_CONNECTION_ARRAY_PROPERTY = "webConnectionArray";
-    public static final String WEB_CONTACT_MODULE_ARRAY_PROPERTY = "webContactModuleArray";
-    public static final String WEB_QUERY_ARRAY_PROPERTY = "webQueryArray";
+    public static final String AGENCY_PROPERTY = "agency";
+    public static final String CONTACT_PROPERTY = "contact";
+    public static final String COUNTRY_PROPERTY = "country";
+    public static final String CRUISE_CONTACTS_PROPERTY = "cruiseContacts";
+    public static final String DOC_CONTACTS_PROPERTY = "docContacts";
+    public static final String IMAGE_PROPERTY = "image";
+    public static final String MASTER_PROG_CONTACTS_PROPERTY = "masterProgContacts";
+    public static final String MEETINGS_PROPERTY = "meetings";
+    public static final String NC_NOTIFICATIONS_PROPERTY = "ncNotifications";
+    public static final String PROGRAM_CONTACTS_PROPERTY = "programContacts";
+    public static final String PTF_DEPLOYMENTS_PROPERTY = "ptfDeployments";
+    public static final String PTF_MODELS_PROPERTY = "ptfModels";
+    public static final String QC_FEEDBACKS_PROPERTY = "qcFeedbacks";
+    public static final String QC_FEEDBACKS1_PROPERTY = "qcFeedbacks1";
+    public static final String SERVICES_PROPERTY = "services";
+    public static final String SHIP_RECRUITMENTS_PROPERTY = "shipRecruitments";
+    public static final String TELECOM_FORMATS_PROPERTY = "telecomFormats";
+    public static final String USER_GROUP_CONTACTS_PROPERTY = "userGroupContacts";
+    public static final String WEB_CONNECTIONS_PROPERTY = "webConnections";
+    public static final String WEB_CONTACT_MODULES_PROPERTY = "webContactModules";
+    public static final String WEB_FREQUENTATIONS_PROPERTY = "webFrequentations";
+    public static final String WEB_QUERIES_PROPERTY = "webQueries";
+    public static final String WEB_WORKSPACES_PROPERTY = "webWorkspaces";
+    public static final String WEBLINK_PROPERTY = "weblink";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -98,6 +103,13 @@ public abstract class _Contact extends CayenneDataObject {
     }
     public Integer getGreetings() {
         return (Integer)readProperty(GREETINGS_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setIsPrivate(Integer isPrivate) {
@@ -156,231 +168,276 @@ public abstract class _Contact extends CayenneDataObject {
         return (String)readProperty(TITLE_PROPERTY);
     }
 
-    public void addToCruiseContactArray(CruiseContact obj) {
-        addToManyTarget(CRUISE_CONTACT_ARRAY_PROPERTY, obj, true);
+    public void setAgency(Agency agency) {
+        setToOneTarget(AGENCY_PROPERTY, agency, true);
     }
-    public void removeFromCruiseContactArray(CruiseContact obj) {
-        removeToManyTarget(CRUISE_CONTACT_ARRAY_PROPERTY, obj, true);
+
+    public Agency getAgency() {
+        return (Agency)readProperty(AGENCY_PROPERTY);
+    }
+
+
+    public void setContact(WebContactPreferences contact) {
+        setToOneTarget(CONTACT_PROPERTY, contact, true);
+    }
+
+    public WebContactPreferences getContact() {
+        return (WebContactPreferences)readProperty(CONTACT_PROPERTY);
+    }
+
+
+    public void setCountry(Country country) {
+        setToOneTarget(COUNTRY_PROPERTY, country, true);
+    }
+
+    public Country getCountry() {
+        return (Country)readProperty(COUNTRY_PROPERTY);
+    }
+
+
+    public void addToCruiseContacts(CruiseContact obj) {
+        addToManyTarget(CRUISE_CONTACTS_PROPERTY, obj, true);
+    }
+    public void removeFromCruiseContacts(CruiseContact obj) {
+        removeToManyTarget(CRUISE_CONTACTS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<CruiseContact> getCruiseContactArray() {
-        return (List<CruiseContact>)readProperty(CRUISE_CONTACT_ARRAY_PROPERTY);
+    public List<CruiseContact> getCruiseContacts() {
+        return (List<CruiseContact>)readProperty(CRUISE_CONTACTS_PROPERTY);
     }
 
 
-    public void addToDocContactArray(DocContact obj) {
-        addToManyTarget(DOC_CONTACT_ARRAY_PROPERTY, obj, true);
+    public void addToDocContacts(DocContact obj) {
+        addToManyTarget(DOC_CONTACTS_PROPERTY, obj, true);
     }
-    public void removeFromDocContactArray(DocContact obj) {
-        removeToManyTarget(DOC_CONTACT_ARRAY_PROPERTY, obj, true);
+    public void removeFromDocContacts(DocContact obj) {
+        removeToManyTarget(DOC_CONTACTS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<DocContact> getDocContactArray() {
-        return (List<DocContact>)readProperty(DOC_CONTACT_ARRAY_PROPERTY);
+    public List<DocContact> getDocContacts() {
+        return (List<DocContact>)readProperty(DOC_CONTACTS_PROPERTY);
     }
 
 
-    public void addToMasterProgContactArray(MasterProgContact obj) {
-        addToManyTarget(MASTER_PROG_CONTACT_ARRAY_PROPERTY, obj, true);
+    public void setImage(Image image) {
+        setToOneTarget(IMAGE_PROPERTY, image, true);
     }
-    public void removeFromMasterProgContactArray(MasterProgContact obj) {
-        removeToManyTarget(MASTER_PROG_CONTACT_ARRAY_PROPERTY, obj, true);
+
+    public Image getImage() {
+        return (Image)readProperty(IMAGE_PROPERTY);
+    }
+
+
+    public void addToMasterProgContacts(MasterProgContact obj) {
+        addToManyTarget(MASTER_PROG_CONTACTS_PROPERTY, obj, true);
+    }
+    public void removeFromMasterProgContacts(MasterProgContact obj) {
+        removeToManyTarget(MASTER_PROG_CONTACTS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<MasterProgContact> getMasterProgContactArray() {
-        return (List<MasterProgContact>)readProperty(MASTER_PROG_CONTACT_ARRAY_PROPERTY);
+    public List<MasterProgContact> getMasterProgContacts() {
+        return (List<MasterProgContact>)readProperty(MASTER_PROG_CONTACTS_PROPERTY);
     }
 
 
-    public void addToMeetingArray(Meeting obj) {
-        addToManyTarget(MEETING_ARRAY_PROPERTY, obj, true);
+    public void addToMeetings(Meeting obj) {
+        addToManyTarget(MEETINGS_PROPERTY, obj, true);
     }
-    public void removeFromMeetingArray(Meeting obj) {
-        removeToManyTarget(MEETING_ARRAY_PROPERTY, obj, true);
+    public void removeFromMeetings(Meeting obj) {
+        removeToManyTarget(MEETINGS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Meeting> getMeetingArray() {
-        return (List<Meeting>)readProperty(MEETING_ARRAY_PROPERTY);
+    public List<Meeting> getMeetings() {
+        return (List<Meeting>)readProperty(MEETINGS_PROPERTY);
     }
 
 
-    public void addToNcNotificationArray(NcNotification obj) {
-        addToManyTarget(NC_NOTIFICATION_ARRAY_PROPERTY, obj, true);
+    public void addToNcNotifications(NcNotification obj) {
+        addToManyTarget(NC_NOTIFICATIONS_PROPERTY, obj, true);
     }
-    public void removeFromNcNotificationArray(NcNotification obj) {
-        removeToManyTarget(NC_NOTIFICATION_ARRAY_PROPERTY, obj, true);
+    public void removeFromNcNotifications(NcNotification obj) {
+        removeToManyTarget(NC_NOTIFICATIONS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<NcNotification> getNcNotificationArray() {
-        return (List<NcNotification>)readProperty(NC_NOTIFICATION_ARRAY_PROPERTY);
+    public List<NcNotification> getNcNotifications() {
+        return (List<NcNotification>)readProperty(NC_NOTIFICATIONS_PROPERTY);
     }
 
 
-    public void addToProgramContactArray(ProgramContact obj) {
-        addToManyTarget(PROGRAM_CONTACT_ARRAY_PROPERTY, obj, true);
+    public void addToProgramContacts(ProgramContact obj) {
+        addToManyTarget(PROGRAM_CONTACTS_PROPERTY, obj, true);
     }
-    public void removeFromProgramContactArray(ProgramContact obj) {
-        removeToManyTarget(PROGRAM_CONTACT_ARRAY_PROPERTY, obj, true);
+    public void removeFromProgramContacts(ProgramContact obj) {
+        removeToManyTarget(PROGRAM_CONTACTS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<ProgramContact> getProgramContactArray() {
-        return (List<ProgramContact>)readProperty(PROGRAM_CONTACT_ARRAY_PROPERTY);
+    public List<ProgramContact> getProgramContacts() {
+        return (List<ProgramContact>)readProperty(PROGRAM_CONTACTS_PROPERTY);
     }
 
 
-    public void addToPtfDeploymentArray(PtfDeployment obj) {
-        addToManyTarget(PTF_DEPLOYMENT_ARRAY_PROPERTY, obj, true);
+    public void addToPtfDeployments(PtfDeployment obj) {
+        addToManyTarget(PTF_DEPLOYMENTS_PROPERTY, obj, true);
     }
-    public void removeFromPtfDeploymentArray(PtfDeployment obj) {
-        removeToManyTarget(PTF_DEPLOYMENT_ARRAY_PROPERTY, obj, true);
+    public void removeFromPtfDeployments(PtfDeployment obj) {
+        removeToManyTarget(PTF_DEPLOYMENTS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<PtfDeployment> getPtfDeploymentArray() {
-        return (List<PtfDeployment>)readProperty(PTF_DEPLOYMENT_ARRAY_PROPERTY);
+    public List<PtfDeployment> getPtfDeployments() {
+        return (List<PtfDeployment>)readProperty(PTF_DEPLOYMENTS_PROPERTY);
     }
 
 
-    public void addToPtfModelArray(PtfModel obj) {
-        addToManyTarget(PTF_MODEL_ARRAY_PROPERTY, obj, true);
+    public void addToPtfModels(PtfModel obj) {
+        addToManyTarget(PTF_MODELS_PROPERTY, obj, true);
     }
-    public void removeFromPtfModelArray(PtfModel obj) {
-        removeToManyTarget(PTF_MODEL_ARRAY_PROPERTY, obj, true);
+    public void removeFromPtfModels(PtfModel obj) {
+        removeToManyTarget(PTF_MODELS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<PtfModel> getPtfModelArray() {
-        return (List<PtfModel>)readProperty(PTF_MODEL_ARRAY_PROPERTY);
+    public List<PtfModel> getPtfModels() {
+        return (List<PtfModel>)readProperty(PTF_MODELS_PROPERTY);
     }
 
 
-    public void addToQcFeedbackArray(QcFeedback obj) {
-        addToManyTarget(QC_FEEDBACK_ARRAY_PROPERTY, obj, true);
+    public void addToQcFeedbacks(QcFeedback obj) {
+        addToManyTarget(QC_FEEDBACKS_PROPERTY, obj, true);
     }
-    public void removeFromQcFeedbackArray(QcFeedback obj) {
-        removeToManyTarget(QC_FEEDBACK_ARRAY_PROPERTY, obj, true);
+    public void removeFromQcFeedbacks(QcFeedback obj) {
+        removeToManyTarget(QC_FEEDBACKS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<QcFeedback> getQcFeedbackArray() {
-        return (List<QcFeedback>)readProperty(QC_FEEDBACK_ARRAY_PROPERTY);
+    public List<QcFeedback> getQcFeedbacks() {
+        return (List<QcFeedback>)readProperty(QC_FEEDBACKS_PROPERTY);
     }
 
 
-    public void addToQcFeedbackArray1(QcFeedback obj) {
-        addToManyTarget(QC_FEEDBACK_ARRAY1_PROPERTY, obj, true);
+    public void addToQcFeedbacks1(QcFeedback obj) {
+        addToManyTarget(QC_FEEDBACKS1_PROPERTY, obj, true);
     }
-    public void removeFromQcFeedbackArray1(QcFeedback obj) {
-        removeToManyTarget(QC_FEEDBACK_ARRAY1_PROPERTY, obj, true);
+    public void removeFromQcFeedbacks1(QcFeedback obj) {
+        removeToManyTarget(QC_FEEDBACKS1_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<QcFeedback> getQcFeedbackArray1() {
-        return (List<QcFeedback>)readProperty(QC_FEEDBACK_ARRAY1_PROPERTY);
+    public List<QcFeedback> getQcFeedbacks1() {
+        return (List<QcFeedback>)readProperty(QC_FEEDBACKS1_PROPERTY);
     }
 
 
-    public void addToServiceArray(Service obj) {
-        addToManyTarget(SERVICE_ARRAY_PROPERTY, obj, true);
+    public void addToServices(Service obj) {
+        addToManyTarget(SERVICES_PROPERTY, obj, true);
     }
-    public void removeFromServiceArray(Service obj) {
-        removeToManyTarget(SERVICE_ARRAY_PROPERTY, obj, true);
+    public void removeFromServices(Service obj) {
+        removeToManyTarget(SERVICES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Service> getServiceArray() {
-        return (List<Service>)readProperty(SERVICE_ARRAY_PROPERTY);
+    public List<Service> getServices() {
+        return (List<Service>)readProperty(SERVICES_PROPERTY);
     }
 
 
-    public void addToTelecomFormatArray(TelecomFormat obj) {
-        addToManyTarget(TELECOM_FORMAT_ARRAY_PROPERTY, obj, true);
+    public void addToShipRecruitments(ShipRecruitment obj) {
+        addToManyTarget(SHIP_RECRUITMENTS_PROPERTY, obj, true);
     }
-    public void removeFromTelecomFormatArray(TelecomFormat obj) {
-        removeToManyTarget(TELECOM_FORMAT_ARRAY_PROPERTY, obj, true);
+    public void removeFromShipRecruitments(ShipRecruitment obj) {
+        removeToManyTarget(SHIP_RECRUITMENTS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<TelecomFormat> getTelecomFormatArray() {
-        return (List<TelecomFormat>)readProperty(TELECOM_FORMAT_ARRAY_PROPERTY);
+    public List<ShipRecruitment> getShipRecruitments() {
+        return (List<ShipRecruitment>)readProperty(SHIP_RECRUITMENTS_PROPERTY);
     }
 
 
-    public void setToAgency(Agency toAgency) {
-        setToOneTarget(TO_AGENCY_PROPERTY, toAgency, true);
+    public void addToTelecomFormats(TelecomFormat obj) {
+        addToManyTarget(TELECOM_FORMATS_PROPERTY, obj, true);
     }
-
-    public Agency getToAgency() {
-        return (Agency)readProperty(TO_AGENCY_PROPERTY);
-    }
-
-
-    public void setToCountry(Country toCountry) {
-        setToOneTarget(TO_COUNTRY_PROPERTY, toCountry, true);
-    }
-
-    public Country getToCountry() {
-        return (Country)readProperty(TO_COUNTRY_PROPERTY);
-    }
-
-
-    public void setToImage(Image toImage) {
-        setToOneTarget(TO_IMAGE_PROPERTY, toImage, true);
-    }
-
-    public Image getToImage() {
-        return (Image)readProperty(TO_IMAGE_PROPERTY);
-    }
-
-
-    public void setToWeblink(Weblink toWeblink) {
-        setToOneTarget(TO_WEBLINK_PROPERTY, toWeblink, true);
-    }
-
-    public Weblink getToWeblink() {
-        return (Weblink)readProperty(TO_WEBLINK_PROPERTY);
-    }
-
-
-    public void addToUserGroupContactArray(UserGroupContact obj) {
-        addToManyTarget(USER_GROUP_CONTACT_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromUserGroupContactArray(UserGroupContact obj) {
-        removeToManyTarget(USER_GROUP_CONTACT_ARRAY_PROPERTY, obj, true);
+    public void removeFromTelecomFormats(TelecomFormat obj) {
+        removeToManyTarget(TELECOM_FORMATS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<UserGroupContact> getUserGroupContactArray() {
-        return (List<UserGroupContact>)readProperty(USER_GROUP_CONTACT_ARRAY_PROPERTY);
+    public List<TelecomFormat> getTelecomFormats() {
+        return (List<TelecomFormat>)readProperty(TELECOM_FORMATS_PROPERTY);
     }
 
 
-    public void addToWebConnectionArray(WebConnection obj) {
-        addToManyTarget(WEB_CONNECTION_ARRAY_PROPERTY, obj, true);
+    public void addToUserGroupContacts(UserGroupContact obj) {
+        addToManyTarget(USER_GROUP_CONTACTS_PROPERTY, obj, true);
     }
-    public void removeFromWebConnectionArray(WebConnection obj) {
-        removeToManyTarget(WEB_CONNECTION_ARRAY_PROPERTY, obj, true);
+    public void removeFromUserGroupContacts(UserGroupContact obj) {
+        removeToManyTarget(USER_GROUP_CONTACTS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<WebConnection> getWebConnectionArray() {
-        return (List<WebConnection>)readProperty(WEB_CONNECTION_ARRAY_PROPERTY);
+    public List<UserGroupContact> getUserGroupContacts() {
+        return (List<UserGroupContact>)readProperty(USER_GROUP_CONTACTS_PROPERTY);
     }
 
 
-    public void addToWebContactModuleArray(WebContactModule obj) {
-        addToManyTarget(WEB_CONTACT_MODULE_ARRAY_PROPERTY, obj, true);
+    public void addToWebConnections(WebConnection obj) {
+        addToManyTarget(WEB_CONNECTIONS_PROPERTY, obj, true);
     }
-    public void removeFromWebContactModuleArray(WebContactModule obj) {
-        removeToManyTarget(WEB_CONTACT_MODULE_ARRAY_PROPERTY, obj, true);
+    public void removeFromWebConnections(WebConnection obj) {
+        removeToManyTarget(WEB_CONNECTIONS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<WebContactModule> getWebContactModuleArray() {
-        return (List<WebContactModule>)readProperty(WEB_CONTACT_MODULE_ARRAY_PROPERTY);
+    public List<WebConnection> getWebConnections() {
+        return (List<WebConnection>)readProperty(WEB_CONNECTIONS_PROPERTY);
     }
 
 
-    public void addToWebQueryArray(WebQuery obj) {
-        addToManyTarget(WEB_QUERY_ARRAY_PROPERTY, obj, true);
+    public void addToWebContactModules(WebContactModule obj) {
+        addToManyTarget(WEB_CONTACT_MODULES_PROPERTY, obj, true);
     }
-    public void removeFromWebQueryArray(WebQuery obj) {
-        removeToManyTarget(WEB_QUERY_ARRAY_PROPERTY, obj, true);
+    public void removeFromWebContactModules(WebContactModule obj) {
+        removeToManyTarget(WEB_CONTACT_MODULES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<WebQuery> getWebQueryArray() {
-        return (List<WebQuery>)readProperty(WEB_QUERY_ARRAY_PROPERTY);
+    public List<WebContactModule> getWebContactModules() {
+        return (List<WebContactModule>)readProperty(WEB_CONTACT_MODULES_PROPERTY);
+    }
+
+
+    public void addToWebFrequentations(WebFrequentation obj) {
+        addToManyTarget(WEB_FREQUENTATIONS_PROPERTY, obj, true);
+    }
+    public void removeFromWebFrequentations(WebFrequentation obj) {
+        removeToManyTarget(WEB_FREQUENTATIONS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<WebFrequentation> getWebFrequentations() {
+        return (List<WebFrequentation>)readProperty(WEB_FREQUENTATIONS_PROPERTY);
+    }
+
+
+    public void addToWebQueries(WebQuery obj) {
+        addToManyTarget(WEB_QUERIES_PROPERTY, obj, true);
+    }
+    public void removeFromWebQueries(WebQuery obj) {
+        removeToManyTarget(WEB_QUERIES_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<WebQuery> getWebQueries() {
+        return (List<WebQuery>)readProperty(WEB_QUERIES_PROPERTY);
+    }
+
+
+    public void addToWebWorkspaces(WebWorkspace obj) {
+        addToManyTarget(WEB_WORKSPACES_PROPERTY, obj, true);
+    }
+    public void removeFromWebWorkspaces(WebWorkspace obj) {
+        removeToManyTarget(WEB_WORKSPACES_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<WebWorkspace> getWebWorkspaces() {
+        return (List<WebWorkspace>)readProperty(WEB_WORKSPACES_PROPERTY);
+    }
+
+
+    public void setWeblink(Weblink weblink) {
+        setToOneTarget(WEBLINK_PROPERTY, weblink, true);
+    }
+
+    public Weblink getWeblink() {
+        return (Weblink)readProperty(WEBLINK_PROPERTY);
     }
 
 

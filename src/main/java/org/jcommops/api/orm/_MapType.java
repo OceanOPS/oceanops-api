@@ -13,11 +13,12 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _MapType extends CayenneDataObject {
 
     public static final String FREQ_PROPERTY = "freq";
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_LONG_PROPERTY = "nameLong";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
     public static final String RANK_PROPERTY = "rank";
-    public static final String MAP_TYPE_MASTER_PROG_ARRAY_PROPERTY = "mapTypeMasterProgArray";
+    public static final String MAP_TYPE_MASTER_PROGS_PROPERTY = "mapTypeMasterProgs";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -26,6 +27,13 @@ public abstract class _MapType extends CayenneDataObject {
     }
     public Integer getFreq() {
         return (Integer)readProperty(FREQ_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setName(String name) {
@@ -56,15 +64,15 @@ public abstract class _MapType extends CayenneDataObject {
         return (Integer)readProperty(RANK_PROPERTY);
     }
 
-    public void addToMapTypeMasterProgArray(MapTypeMasterProg obj) {
-        addToManyTarget(MAP_TYPE_MASTER_PROG_ARRAY_PROPERTY, obj, true);
+    public void addToMapTypeMasterProgs(MapTypeMasterProg obj) {
+        addToManyTarget(MAP_TYPE_MASTER_PROGS_PROPERTY, obj, true);
     }
-    public void removeFromMapTypeMasterProgArray(MapTypeMasterProg obj) {
-        removeToManyTarget(MAP_TYPE_MASTER_PROG_ARRAY_PROPERTY, obj, true);
+    public void removeFromMapTypeMasterProgs(MapTypeMasterProg obj) {
+        removeToManyTarget(MAP_TYPE_MASTER_PROGS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<MapTypeMasterProg> getMapTypeMasterProgArray() {
-        return (List<MapTypeMasterProg>)readProperty(MAP_TYPE_MASTER_PROG_ARRAY_PROPERTY);
+    public List<MapTypeMasterProg> getMapTypeMasterProgs() {
+        return (List<MapTypeMasterProg>)readProperty(MAP_TYPE_MASTER_PROGS_PROPERTY);
     }
 
 

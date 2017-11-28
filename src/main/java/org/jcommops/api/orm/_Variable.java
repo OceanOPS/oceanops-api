@@ -17,19 +17,23 @@ public abstract class _Variable extends CayenneDataObject {
     public static final String CF_REF_PROPERTY = "cfRef";
     public static final String DATA_SOURCE_PROPERTY = "dataSource";
     public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String ID_PROPERTY = "id";
+    public static final String IMOS_REF_PROPERTY = "imosRef";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_ALTER_PROPERTY = "nameAlter";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
     public static final String P01REF_PROPERTY = "p01Ref";
     public static final String QC_REF_PROPERTY = "qcRef";
     public static final String WIGOS_REF_PROPERTY = "wigosRef";
-    public static final String CRUISE_VARIABLE_ARRAY_PROPERTY = "cruiseVariableArray";
-    public static final String OBS_VARIABLE_ARRAY_PROPERTY = "obsVariableArray";
-    public static final String PTF_VARIABLE_ARRAY_PROPERTY = "ptfVariableArray";
-    public static final String QC_FEEDBACK_ARRAY_PROPERTY = "qcFeedbackArray";
-    public static final String QC_FEEDBACK_VARIABLE_ARRAY_PROPERTY = "qcFeedbackVariableArray";
-    public static final String SENSOR_TYPE_ARRAY_PROPERTY = "sensorTypeArray";
-    public static final String TO_VARIABLE_FAMILY_PROPERTY = "toVariableFamily";
+    public static final String CRUISE_VARIABLES_PROPERTY = "cruiseVariables";
+    public static final String OBS_VARIABLES_PROPERTY = "obsVariables";
+    public static final String PTF_VARIABLES_PROPERTY = "ptfVariables";
+    public static final String QC_FEEDBACK_VARIABLES_PROPERTY = "qcFeedbackVariables";
+    public static final String QC_FEEDBACKS_PROPERTY = "qcFeedbacks";
+    public static final String SENSOR_TYPES_PROPERTY = "sensorTypes";
+    public static final String VARIABLE_FAMILY_PROPERTY = "variableFamily";
+    public static final String VARIABLE_SUBS_PROPERTY = "variableSubs";
+    public static final String VARIABLE_VARIABLE_FAMILIES_PROPERTY = "variableVariableFamilies";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -66,6 +70,20 @@ public abstract class _Variable extends CayenneDataObject {
     }
     public String getDescription() {
         return (String)readProperty(DESCRIPTION_PROPERTY);
+    }
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
+
+    public void setImosRef(String imosRef) {
+        writeProperty(IMOS_REF_PROPERTY, imosRef);
+    }
+    public String getImosRef() {
+        return (String)readProperty(IMOS_REF_PROPERTY);
     }
 
     public void setName(String name) {
@@ -110,84 +128,108 @@ public abstract class _Variable extends CayenneDataObject {
         return (Integer)readProperty(WIGOS_REF_PROPERTY);
     }
 
-    public void addToCruiseVariableArray(CruiseVariable obj) {
-        addToManyTarget(CRUISE_VARIABLE_ARRAY_PROPERTY, obj, true);
+    public void addToCruiseVariables(CruiseVariable obj) {
+        addToManyTarget(CRUISE_VARIABLES_PROPERTY, obj, true);
     }
-    public void removeFromCruiseVariableArray(CruiseVariable obj) {
-        removeToManyTarget(CRUISE_VARIABLE_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<CruiseVariable> getCruiseVariableArray() {
-        return (List<CruiseVariable>)readProperty(CRUISE_VARIABLE_ARRAY_PROPERTY);
-    }
-
-
-    public void addToObsVariableArray(ObsVariable obj) {
-        addToManyTarget(OBS_VARIABLE_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromObsVariableArray(ObsVariable obj) {
-        removeToManyTarget(OBS_VARIABLE_ARRAY_PROPERTY, obj, true);
+    public void removeFromCruiseVariables(CruiseVariable obj) {
+        removeToManyTarget(CRUISE_VARIABLES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<ObsVariable> getObsVariableArray() {
-        return (List<ObsVariable>)readProperty(OBS_VARIABLE_ARRAY_PROPERTY);
+    public List<CruiseVariable> getCruiseVariables() {
+        return (List<CruiseVariable>)readProperty(CRUISE_VARIABLES_PROPERTY);
     }
 
 
-    public void addToPtfVariableArray(PtfVariable obj) {
-        addToManyTarget(PTF_VARIABLE_ARRAY_PROPERTY, obj, true);
+    public void addToObsVariables(ObsVariable obj) {
+        addToManyTarget(OBS_VARIABLES_PROPERTY, obj, true);
     }
-    public void removeFromPtfVariableArray(PtfVariable obj) {
-        removeToManyTarget(PTF_VARIABLE_ARRAY_PROPERTY, obj, true);
+    public void removeFromObsVariables(ObsVariable obj) {
+        removeToManyTarget(OBS_VARIABLES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<PtfVariable> getPtfVariableArray() {
-        return (List<PtfVariable>)readProperty(PTF_VARIABLE_ARRAY_PROPERTY);
+    public List<ObsVariable> getObsVariables() {
+        return (List<ObsVariable>)readProperty(OBS_VARIABLES_PROPERTY);
     }
 
 
-    public void addToQcFeedbackArray(QcFeedback obj) {
-        addToManyTarget(QC_FEEDBACK_ARRAY_PROPERTY, obj, true);
+    public void addToPtfVariables(PtfVariable obj) {
+        addToManyTarget(PTF_VARIABLES_PROPERTY, obj, true);
     }
-    public void removeFromQcFeedbackArray(QcFeedback obj) {
-        removeToManyTarget(QC_FEEDBACK_ARRAY_PROPERTY, obj, true);
+    public void removeFromPtfVariables(PtfVariable obj) {
+        removeToManyTarget(PTF_VARIABLES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<QcFeedback> getQcFeedbackArray() {
-        return (List<QcFeedback>)readProperty(QC_FEEDBACK_ARRAY_PROPERTY);
+    public List<PtfVariable> getPtfVariables() {
+        return (List<PtfVariable>)readProperty(PTF_VARIABLES_PROPERTY);
     }
 
 
-    public void addToQcFeedbackVariableArray(QcFeedbackVariable obj) {
-        addToManyTarget(QC_FEEDBACK_VARIABLE_ARRAY_PROPERTY, obj, true);
+    public void addToQcFeedbackVariables(QcFeedbackVariable obj) {
+        addToManyTarget(QC_FEEDBACK_VARIABLES_PROPERTY, obj, true);
     }
-    public void removeFromQcFeedbackVariableArray(QcFeedbackVariable obj) {
-        removeToManyTarget(QC_FEEDBACK_VARIABLE_ARRAY_PROPERTY, obj, true);
+    public void removeFromQcFeedbackVariables(QcFeedbackVariable obj) {
+        removeToManyTarget(QC_FEEDBACK_VARIABLES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<QcFeedbackVariable> getQcFeedbackVariableArray() {
-        return (List<QcFeedbackVariable>)readProperty(QC_FEEDBACK_VARIABLE_ARRAY_PROPERTY);
+    public List<QcFeedbackVariable> getQcFeedbackVariables() {
+        return (List<QcFeedbackVariable>)readProperty(QC_FEEDBACK_VARIABLES_PROPERTY);
     }
 
 
-    public void addToSensorTypeArray(SensorType obj) {
-        addToManyTarget(SENSOR_TYPE_ARRAY_PROPERTY, obj, true);
+    public void addToQcFeedbacks(QcFeedback obj) {
+        addToManyTarget(QC_FEEDBACKS_PROPERTY, obj, true);
     }
-    public void removeFromSensorTypeArray(SensorType obj) {
-        removeToManyTarget(SENSOR_TYPE_ARRAY_PROPERTY, obj, true);
+    public void removeFromQcFeedbacks(QcFeedback obj) {
+        removeToManyTarget(QC_FEEDBACKS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<SensorType> getSensorTypeArray() {
-        return (List<SensorType>)readProperty(SENSOR_TYPE_ARRAY_PROPERTY);
+    public List<QcFeedback> getQcFeedbacks() {
+        return (List<QcFeedback>)readProperty(QC_FEEDBACKS_PROPERTY);
     }
 
 
-    public void setToVariableFamily(VariableFamily toVariableFamily) {
-        setToOneTarget(TO_VARIABLE_FAMILY_PROPERTY, toVariableFamily, true);
+    public void addToSensorTypes(SensorType obj) {
+        addToManyTarget(SENSOR_TYPES_PROPERTY, obj, true);
+    }
+    public void removeFromSensorTypes(SensorType obj) {
+        removeToManyTarget(SENSOR_TYPES_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<SensorType> getSensorTypes() {
+        return (List<SensorType>)readProperty(SENSOR_TYPES_PROPERTY);
     }
 
-    public VariableFamily getToVariableFamily() {
-        return (VariableFamily)readProperty(TO_VARIABLE_FAMILY_PROPERTY);
+
+    public void setVariableFamily(VariableFamily variableFamily) {
+        setToOneTarget(VARIABLE_FAMILY_PROPERTY, variableFamily, true);
+    }
+
+    public VariableFamily getVariableFamily() {
+        return (VariableFamily)readProperty(VARIABLE_FAMILY_PROPERTY);
+    }
+
+
+    public void addToVariableSubs(VariableSub obj) {
+        addToManyTarget(VARIABLE_SUBS_PROPERTY, obj, true);
+    }
+    public void removeFromVariableSubs(VariableSub obj) {
+        removeToManyTarget(VARIABLE_SUBS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<VariableSub> getVariableSubs() {
+        return (List<VariableSub>)readProperty(VARIABLE_SUBS_PROPERTY);
+    }
+
+
+    public void addToVariableVariableFamilies(VariableVariableFamily obj) {
+        addToManyTarget(VARIABLE_VARIABLE_FAMILIES_PROPERTY, obj, true);
+    }
+    public void removeFromVariableVariableFamilies(VariableVariableFamily obj) {
+        removeToManyTarget(VARIABLE_VARIABLE_FAMILIES_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<VariableVariableFamily> getVariableVariableFamilies() {
+        return (List<VariableVariableFamily>)readProperty(VARIABLE_VARIABLE_FAMILIES_PROPERTY);
     }
 
 

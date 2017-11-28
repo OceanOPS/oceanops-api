@@ -10,49 +10,81 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _AgencyPtf extends CayenneDataObject {
 
-    public static final String TO_AGENCY_PROPERTY = "toAgency";
-    public static final String TO_ASSEMBLY_TYPE_PROPERTY = "toAssemblyType";
-    public static final String TO_DAC_TYPE_PROPERTY = "toDacType";
-    public static final String TO_PTF_PROPERTY = "toPtf";
+    public static final String AGENCY_ID_PROPERTY = "agencyId";
+    public static final String ASSEMBLY_TYPE_ID_PROPERTY = "assemblyTypeId";
+    public static final String DAC_TYPE_ID_PROPERTY = "dacTypeId";
+    public static final String PTF_ID_PROPERTY = "ptfId";
+    public static final String AGENCY_PROPERTY = "agency";
+    public static final String ASSEMBLY_TYPE_PROPERTY = "assemblyType";
+    public static final String DAC_TYPE_PROPERTY = "dacType";
+    public static final String PTF_PROPERTY = "ptf";
 
     public static final String AGENCY_ID_PK_COLUMN = "AGENCY_ID";
     public static final String ASSEMBLY_TYPE_ID_PK_COLUMN = "ASSEMBLY_TYPE_ID";
     public static final String DAC_TYPE_ID_PK_COLUMN = "DAC_TYPE_ID";
     public static final String PTF_ID_PK_COLUMN = "PTF_ID";
 
-    public void setToAgency(Agency toAgency) {
-        setToOneTarget(TO_AGENCY_PROPERTY, toAgency, true);
+    public void setAgencyId(Integer agencyId) {
+        writeProperty(AGENCY_ID_PROPERTY, agencyId);
+    }
+    public Integer getAgencyId() {
+        return (Integer)readProperty(AGENCY_ID_PROPERTY);
     }
 
-    public Agency getToAgency() {
-        return (Agency)readProperty(TO_AGENCY_PROPERTY);
+    public void setAssemblyTypeId(Integer assemblyTypeId) {
+        writeProperty(ASSEMBLY_TYPE_ID_PROPERTY, assemblyTypeId);
+    }
+    public Integer getAssemblyTypeId() {
+        return (Integer)readProperty(ASSEMBLY_TYPE_ID_PROPERTY);
+    }
+
+    public void setDacTypeId(Integer dacTypeId) {
+        writeProperty(DAC_TYPE_ID_PROPERTY, dacTypeId);
+    }
+    public Integer getDacTypeId() {
+        return (Integer)readProperty(DAC_TYPE_ID_PROPERTY);
+    }
+
+    public void setPtfId(Integer ptfId) {
+        writeProperty(PTF_ID_PROPERTY, ptfId);
+    }
+    public Integer getPtfId() {
+        return (Integer)readProperty(PTF_ID_PROPERTY);
+    }
+
+    public void setAgency(Agency agency) {
+        setToOneTarget(AGENCY_PROPERTY, agency, true);
+    }
+
+    public Agency getAgency() {
+        return (Agency)readProperty(AGENCY_PROPERTY);
     }
 
 
-    public void setToAssemblyType(AssemblyType toAssemblyType) {
-        setToOneTarget(TO_ASSEMBLY_TYPE_PROPERTY, toAssemblyType, true);
+    public void setAssemblyType(AssemblyType assemblyType) {
+        setToOneTarget(ASSEMBLY_TYPE_PROPERTY, assemblyType, true);
     }
 
-    public AssemblyType getToAssemblyType() {
-        return (AssemblyType)readProperty(TO_ASSEMBLY_TYPE_PROPERTY);
-    }
-
-
-    public void setToDacType(DacType toDacType) {
-        setToOneTarget(TO_DAC_TYPE_PROPERTY, toDacType, true);
-    }
-
-    public DacType getToDacType() {
-        return (DacType)readProperty(TO_DAC_TYPE_PROPERTY);
+    public AssemblyType getAssemblyType() {
+        return (AssemblyType)readProperty(ASSEMBLY_TYPE_PROPERTY);
     }
 
 
-    public void setToPtf(Ptf toPtf) {
-        setToOneTarget(TO_PTF_PROPERTY, toPtf, true);
+    public void setDacType(DacType dacType) {
+        setToOneTarget(DAC_TYPE_PROPERTY, dacType, true);
     }
 
-    public Ptf getToPtf() {
-        return (Ptf)readProperty(TO_PTF_PROPERTY);
+    public DacType getDacType() {
+        return (DacType)readProperty(DAC_TYPE_PROPERTY);
+    }
+
+
+    public void setPtf(Ptf ptf) {
+        setToOneTarget(PTF_PROPERTY, ptf, true);
+    }
+
+    public Ptf getPtf() {
+        return (Ptf)readProperty(PTF_PROPERTY);
     }
 
 

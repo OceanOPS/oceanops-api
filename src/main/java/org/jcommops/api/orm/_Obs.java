@@ -24,29 +24,30 @@ public abstract class _Obs extends CayenneDataObject {
     public static final String DESCENDING_PROPERTY = "descending";
     public static final String DISTRIBUTION_DATE_PROPERTY = "distributionDate";
     public static final String FILENAME_PROPERTY = "filename";
+    public static final String ID_PROPERTY = "id";
     public static final String INSERT_DATE_PROPERTY = "insertDate";
     public static final String LATEST_ASSEMBLY_DATE_PROPERTY = "latestAssemblyDate";
     public static final String LATEST_DISTRIBUTION_DATE_PROPERTY = "latestDistributionDate";
     public static final String OBS_DATE_PROPERTY = "obsDate";
     public static final String OBS_END_DATE_PROPERTY = "obsEndDate";
-    public static final String PTF_ID_PROPERTY = "ptfId";
     public static final String SHAPE_PROPERTY = "shape";
     public static final String UPDATE_DATE_PROPERTY = "updateDate";
     public static final String WMO_PROPERTY = "wmo";
-    public static final String OBS_OBS_DATA_STATUS_ARRAY_PROPERTY = "obsObsDataStatusArray";
-    public static final String OBS_VARIABLE_ARRAY_PROPERTY = "obsVariableArray";
-    public static final String PTF_ARRAY_PROPERTY = "ptfArray";
-    public static final String TO_AGENCY_PROPERTY = "toAgency";
-    public static final String TO_AGENCY1_PROPERTY = "toAgency1";
-    public static final String TO_DATA_FORMAT_PROPERTY = "toDataFormat";
-    public static final String TO_GTS_CCCC_PROPERTY = "toGtsCccc";
-    public static final String TO_GTS_CODE_PROPERTY = "toGtsCode";
-    public static final String TO_GTS_HEADER_PROPERTY = "toGtsHeader";
-    public static final String TO_GTS_INSTRUMENT_TYPE_PROPERTY = "toGtsInstrumentType";
-    public static final String TO_GTS_RECORDER_TYPE_PROPERTY = "toGtsRecorderType";
-    public static final String TO_OBS_DATA_STATUS_PROPERTY = "toObsDataStatus";
-    public static final String TO_PTF_PROPERTY = "toPtf";
-    public static final String TO_PTF_LOC_PROPERTY = "toPtfLoc";
+    public static final String DAC_PROPERTY = "dac";
+    public static final String DATA_FORMAT_PROPERTY = "dataFormat";
+    public static final String GDAC_PROPERTY = "gdac";
+    public static final String GTS_CCCC_PROPERTY = "gtsCccc";
+    public static final String GTS_CODE_PROPERTY = "gtsCode";
+    public static final String GTS_HEADER_PROPERTY = "gtsHeader";
+    public static final String GTS_INSTRUMENT_TYPE_PROPERTY = "gtsInstrumentType";
+    public static final String GTS_RECORDER_TYPE_PROPERTY = "gtsRecorderType";
+    public static final String OBS_DATA_STATUS_PROPERTY = "obsDataStatus";
+    public static final String OBS_OBS_DATA_STATUSES_PROPERTY = "obsObsDataStatuses";
+    public static final String OBS_VARIABLE_SUBS_PROPERTY = "obsVariableSubs";
+    public static final String OBS_VARIABLES_PROPERTY = "obsVariables";
+    public static final String PTF_PROPERTY = "ptf";
+    public static final String PTF_LOC_PROPERTY = "ptfLoc";
+    public static final String PTFS_PROPERTY = "ptfs";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -120,6 +121,13 @@ public abstract class _Obs extends CayenneDataObject {
         return (String)readProperty(FILENAME_PROPERTY);
     }
 
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
+
     public void setInsertDate(Date insertDate) {
         writeProperty(INSERT_DATE_PROPERTY, insertDate);
     }
@@ -155,13 +163,6 @@ public abstract class _Obs extends CayenneDataObject {
         return (Date)readProperty(OBS_END_DATE_PROPERTY);
     }
 
-    public void setPtfId(Integer ptfId) {
-        writeProperty(PTF_ID_PROPERTY, ptfId);
-    }
-    public Integer getPtfId() {
-        return (Integer)readProperty(PTF_ID_PROPERTY);
-    }
-
     public void setShape(byte[] shape) {
         writeProperty(SHAPE_PROPERTY, shape);
     }
@@ -183,138 +184,150 @@ public abstract class _Obs extends CayenneDataObject {
         return (String)readProperty(WMO_PROPERTY);
     }
 
-    public void addToObsObsDataStatusArray(ObsObsDataStatus obj) {
-        addToManyTarget(OBS_OBS_DATA_STATUS_ARRAY_PROPERTY, obj, true);
+    public void setDac(Agency dac) {
+        setToOneTarget(DAC_PROPERTY, dac, true);
     }
-    public void removeFromObsObsDataStatusArray(ObsObsDataStatus obj) {
-        removeToManyTarget(OBS_OBS_DATA_STATUS_ARRAY_PROPERTY, obj, true);
+
+    public Agency getDac() {
+        return (Agency)readProperty(DAC_PROPERTY);
+    }
+
+
+    public void setDataFormat(DataFormat dataFormat) {
+        setToOneTarget(DATA_FORMAT_PROPERTY, dataFormat, true);
+    }
+
+    public DataFormat getDataFormat() {
+        return (DataFormat)readProperty(DATA_FORMAT_PROPERTY);
+    }
+
+
+    public void setGdac(Agency gdac) {
+        setToOneTarget(GDAC_PROPERTY, gdac, true);
+    }
+
+    public Agency getGdac() {
+        return (Agency)readProperty(GDAC_PROPERTY);
+    }
+
+
+    public void setGtsCccc(GtsCccc gtsCccc) {
+        setToOneTarget(GTS_CCCC_PROPERTY, gtsCccc, true);
+    }
+
+    public GtsCccc getGtsCccc() {
+        return (GtsCccc)readProperty(GTS_CCCC_PROPERTY);
+    }
+
+
+    public void setGtsCode(GtsCode gtsCode) {
+        setToOneTarget(GTS_CODE_PROPERTY, gtsCode, true);
+    }
+
+    public GtsCode getGtsCode() {
+        return (GtsCode)readProperty(GTS_CODE_PROPERTY);
+    }
+
+
+    public void setGtsHeader(GtsHeader gtsHeader) {
+        setToOneTarget(GTS_HEADER_PROPERTY, gtsHeader, true);
+    }
+
+    public GtsHeader getGtsHeader() {
+        return (GtsHeader)readProperty(GTS_HEADER_PROPERTY);
+    }
+
+
+    public void setGtsInstrumentType(GtsInstrumentType gtsInstrumentType) {
+        setToOneTarget(GTS_INSTRUMENT_TYPE_PROPERTY, gtsInstrumentType, true);
+    }
+
+    public GtsInstrumentType getGtsInstrumentType() {
+        return (GtsInstrumentType)readProperty(GTS_INSTRUMENT_TYPE_PROPERTY);
+    }
+
+
+    public void setGtsRecorderType(GtsRecorderType gtsRecorderType) {
+        setToOneTarget(GTS_RECORDER_TYPE_PROPERTY, gtsRecorderType, true);
+    }
+
+    public GtsRecorderType getGtsRecorderType() {
+        return (GtsRecorderType)readProperty(GTS_RECORDER_TYPE_PROPERTY);
+    }
+
+
+    public void setObsDataStatus(ObsDataStatus obsDataStatus) {
+        setToOneTarget(OBS_DATA_STATUS_PROPERTY, obsDataStatus, true);
+    }
+
+    public ObsDataStatus getObsDataStatus() {
+        return (ObsDataStatus)readProperty(OBS_DATA_STATUS_PROPERTY);
+    }
+
+
+    public void addToObsObsDataStatuses(ObsObsDataStatus obj) {
+        addToManyTarget(OBS_OBS_DATA_STATUSES_PROPERTY, obj, true);
+    }
+    public void removeFromObsObsDataStatuses(ObsObsDataStatus obj) {
+        removeToManyTarget(OBS_OBS_DATA_STATUSES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<ObsObsDataStatus> getObsObsDataStatusArray() {
-        return (List<ObsObsDataStatus>)readProperty(OBS_OBS_DATA_STATUS_ARRAY_PROPERTY);
+    public List<ObsObsDataStatus> getObsObsDataStatuses() {
+        return (List<ObsObsDataStatus>)readProperty(OBS_OBS_DATA_STATUSES_PROPERTY);
     }
 
 
-    public void addToObsVariableArray(ObsVariable obj) {
-        addToManyTarget(OBS_VARIABLE_ARRAY_PROPERTY, obj, true);
+    public void addToObsVariableSubs(ObsVariableSub obj) {
+        addToManyTarget(OBS_VARIABLE_SUBS_PROPERTY, obj, true);
     }
-    public void removeFromObsVariableArray(ObsVariable obj) {
-        removeToManyTarget(OBS_VARIABLE_ARRAY_PROPERTY, obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<ObsVariable> getObsVariableArray() {
-        return (List<ObsVariable>)readProperty(OBS_VARIABLE_ARRAY_PROPERTY);
-    }
-
-
-    public void addToPtfArray(Ptf obj) {
-        addToManyTarget(PTF_ARRAY_PROPERTY, obj, true);
-    }
-    public void removeFromPtfArray(Ptf obj) {
-        removeToManyTarget(PTF_ARRAY_PROPERTY, obj, true);
+    public void removeFromObsVariableSubs(ObsVariableSub obj) {
+        removeToManyTarget(OBS_VARIABLE_SUBS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Ptf> getPtfArray() {
-        return (List<Ptf>)readProperty(PTF_ARRAY_PROPERTY);
+    public List<ObsVariableSub> getObsVariableSubs() {
+        return (List<ObsVariableSub>)readProperty(OBS_VARIABLE_SUBS_PROPERTY);
     }
 
 
-    public void setToAgency(Agency toAgency) {
-        setToOneTarget(TO_AGENCY_PROPERTY, toAgency, true);
+    public void addToObsVariables(ObsVariable obj) {
+        addToManyTarget(OBS_VARIABLES_PROPERTY, obj, true);
     }
-
-    public Agency getToAgency() {
-        return (Agency)readProperty(TO_AGENCY_PROPERTY);
+    public void removeFromObsVariables(ObsVariable obj) {
+        removeToManyTarget(OBS_VARIABLES_PROPERTY, obj, true);
     }
-
-
-    public void setToAgency1(Agency toAgency1) {
-        setToOneTarget(TO_AGENCY1_PROPERTY, toAgency1, true);
-    }
-
-    public Agency getToAgency1() {
-        return (Agency)readProperty(TO_AGENCY1_PROPERTY);
+    @SuppressWarnings("unchecked")
+    public List<ObsVariable> getObsVariables() {
+        return (List<ObsVariable>)readProperty(OBS_VARIABLES_PROPERTY);
     }
 
 
-    public void setToDataFormat(DataFormat toDataFormat) {
-        setToOneTarget(TO_DATA_FORMAT_PROPERTY, toDataFormat, true);
+    public void setPtf(Ptf ptf) {
+        setToOneTarget(PTF_PROPERTY, ptf, true);
     }
 
-    public DataFormat getToDataFormat() {
-        return (DataFormat)readProperty(TO_DATA_FORMAT_PROPERTY);
-    }
-
-
-    public void setToGtsCccc(GtsCccc toGtsCccc) {
-        setToOneTarget(TO_GTS_CCCC_PROPERTY, toGtsCccc, true);
-    }
-
-    public GtsCccc getToGtsCccc() {
-        return (GtsCccc)readProperty(TO_GTS_CCCC_PROPERTY);
+    public Ptf getPtf() {
+        return (Ptf)readProperty(PTF_PROPERTY);
     }
 
 
-    public void setToGtsCode(GtsCode toGtsCode) {
-        setToOneTarget(TO_GTS_CODE_PROPERTY, toGtsCode, true);
+    public void setPtfLoc(PtfLoc ptfLoc) {
+        setToOneTarget(PTF_LOC_PROPERTY, ptfLoc, true);
     }
 
-    public GtsCode getToGtsCode() {
-        return (GtsCode)readProperty(TO_GTS_CODE_PROPERTY);
-    }
-
-
-    public void setToGtsHeader(GtsHeader toGtsHeader) {
-        setToOneTarget(TO_GTS_HEADER_PROPERTY, toGtsHeader, true);
-    }
-
-    public GtsHeader getToGtsHeader() {
-        return (GtsHeader)readProperty(TO_GTS_HEADER_PROPERTY);
+    public PtfLoc getPtfLoc() {
+        return (PtfLoc)readProperty(PTF_LOC_PROPERTY);
     }
 
 
-    public void setToGtsInstrumentType(GtsInstrumentType toGtsInstrumentType) {
-        setToOneTarget(TO_GTS_INSTRUMENT_TYPE_PROPERTY, toGtsInstrumentType, true);
+    public void addToPtfs(Ptf obj) {
+        addToManyTarget(PTFS_PROPERTY, obj, true);
     }
-
-    public GtsInstrumentType getToGtsInstrumentType() {
-        return (GtsInstrumentType)readProperty(TO_GTS_INSTRUMENT_TYPE_PROPERTY);
+    public void removeFromPtfs(Ptf obj) {
+        removeToManyTarget(PTFS_PROPERTY, obj, true);
     }
-
-
-    public void setToGtsRecorderType(GtsRecorderType toGtsRecorderType) {
-        setToOneTarget(TO_GTS_RECORDER_TYPE_PROPERTY, toGtsRecorderType, true);
-    }
-
-    public GtsRecorderType getToGtsRecorderType() {
-        return (GtsRecorderType)readProperty(TO_GTS_RECORDER_TYPE_PROPERTY);
-    }
-
-
-    public void setToObsDataStatus(ObsDataStatus toObsDataStatus) {
-        setToOneTarget(TO_OBS_DATA_STATUS_PROPERTY, toObsDataStatus, true);
-    }
-
-    public ObsDataStatus getToObsDataStatus() {
-        return (ObsDataStatus)readProperty(TO_OBS_DATA_STATUS_PROPERTY);
-    }
-
-
-    public void setToPtf(Ptf toPtf) {
-        setToOneTarget(TO_PTF_PROPERTY, toPtf, true);
-    }
-
-    public Ptf getToPtf() {
-        return (Ptf)readProperty(TO_PTF_PROPERTY);
-    }
-
-
-    public void setToPtfLoc(PtfLoc toPtfLoc) {
-        setToOneTarget(TO_PTF_LOC_PROPERTY, toPtfLoc, true);
-    }
-
-    public PtfLoc getToPtfLoc() {
-        return (PtfLoc)readProperty(TO_PTF_LOC_PROPERTY);
+    @SuppressWarnings("unchecked")
+    public List<Ptf> getPtfs() {
+        return (List<Ptf>)readProperty(PTFS_PROPERTY);
     }
 
 

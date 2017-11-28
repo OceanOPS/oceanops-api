@@ -1,5 +1,7 @@
 package org.jcommops.api.orm;
 
+import java.util.List;
+
 import org.apache.cayenne.CayenneDataObject;
 
 /**
@@ -10,6 +12,7 @@ import org.apache.cayenne.CayenneDataObject;
  */
 public abstract class _Basin extends CayenneDataObject {
 
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
     public static final String NAME_LONG_PROPERTY = "nameLong";
     public static final String NAME_SHORT_PROPERTY = "nameShort";
@@ -17,9 +20,17 @@ public abstract class _Basin extends CayenneDataObject {
     public static final String RANK_PROPERTY = "rank";
     public static final String SHAPE_PROPERTY = "shape";
     public static final String SUBOCEAN_PROPERTY = "subocean";
-    public static final String TO_BASIN_TYPE_PROPERTY = "toBasinType";
+    public static final String BASIN_TYPE_PROPERTY = "basinType";
+    public static final String COUNTRY_COMMITMENTS_PROPERTY = "countryCommitments";
 
     public static final String ID_PK_COLUMN = "ID";
+
+    public void setId(Integer id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty(ID_PROPERTY);
+    }
 
     public void setName(String name) {
         writeProperty(NAME_PROPERTY, name);
@@ -70,12 +81,24 @@ public abstract class _Basin extends CayenneDataObject {
         return (String)readProperty(SUBOCEAN_PROPERTY);
     }
 
-    public void setToBasinType(BasinType toBasinType) {
-        setToOneTarget(TO_BASIN_TYPE_PROPERTY, toBasinType, true);
+    public void setBasinType(BasinType basinType) {
+        setToOneTarget(BASIN_TYPE_PROPERTY, basinType, true);
     }
 
-    public BasinType getToBasinType() {
-        return (BasinType)readProperty(TO_BASIN_TYPE_PROPERTY);
+    public BasinType getBasinType() {
+        return (BasinType)readProperty(BASIN_TYPE_PROPERTY);
+    }
+
+
+    public void addToCountryCommitments(CountryCommitment obj) {
+        addToManyTarget(COUNTRY_COMMITMENTS_PROPERTY, obj, true);
+    }
+    public void removeFromCountryCommitments(CountryCommitment obj) {
+        removeToManyTarget(COUNTRY_COMMITMENTS_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<CountryCommitment> getCountryCommitments() {
+        return (List<CountryCommitment>)readProperty(COUNTRY_COMMITMENTS_PROPERTY);
     }
 
 
