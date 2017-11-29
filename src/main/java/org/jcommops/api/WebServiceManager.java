@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
+import javax.ws.rs.NotSupportedException;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -44,7 +45,7 @@ public class WebServiceManager {
 			@QueryParam("sensorModel") String sensormod, @QueryParam("sensorType") String sensortyp,
 			@QueryParam("ship") String ship, @QueryParam("country") String country) {
 
-		PlatformAccessor m = new PlatformAccessor();
+		/*PlatformAccessor m = new PlatformAccessor();
 		HashMap<Integer, String> foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program,
 				network, masterprg, variable, sensormod, sensortyp, ship, country);
 		
@@ -55,7 +56,8 @@ public class WebServiceManager {
 			ptf.setJcommopsRef(foundPlatforms.get(id));
 			result.add(ptf);
 		}
-		return result;
+		return result;*/
+		throw new NotFoundException("XML document is not yet supported");
 	}
 	@GET
 	@Path("platforms.json")
@@ -65,11 +67,12 @@ public class WebServiceManager {
 			@QueryParam("program") String program, @QueryParam("network") String network,
 			@QueryParam("masterProgram") String masterprg, @QueryParam("variable") String variable,
 			@QueryParam("sensorModel") String sensormod, @QueryParam("sensorType") String sensortyp,
-			@QueryParam("ship") String ship, @QueryParam("country") String country) {
+			@QueryParam("ship") String ship, @QueryParam("country") String country, 
+			@QueryParam("updateDate") String updateDate, @QueryParam("insertDate") String insertDate) {
 
 		PlatformAccessor m = new PlatformAccessor();
 		HashMap<Integer, String> foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program,
-				network, masterprg, variable, sensormod, sensortyp, ship, country);
+				network, masterprg, variable, sensormod, sensortyp, ship, country, updateDate, insertDate);
 		
 		ArrayList<PlatformEntity> result = new ArrayList<PlatformEntity>();
 		for (Integer id : foundPlatforms.keySet()) {
@@ -89,7 +92,8 @@ public class WebServiceManager {
 			@QueryParam("network") String network, @QueryParam("masterProgram") String masterprg,
 			@QueryParam("variable") String variable, @QueryParam("sensorModel") String sensormod,
 			@QueryParam("sensorType") String sensortyp, @QueryParam("ship") String ship,
-			@QueryParam("country") String country) {
+			@QueryParam("country") String country, 
+			@QueryParam("updateDate") String updateDate, @QueryParam("insertDate") String insertDate) {
 
 		PlatformAccessor m = new PlatformAccessor();
 		HashMap<Integer, String> foundPlatforms = null;
@@ -97,7 +101,7 @@ public class WebServiceManager {
 		StringBuilder csv = new StringBuilder();
 
 		foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable,
-				sensormod, sensortyp, ship, country);
+				sensormod, sensortyp, ship, country, updateDate, insertDate);
 
 		csv.append("id" + Utils.CSV_SEPARATOR + "ref");
 		for (Integer id : foundPlatforms.keySet()) {
@@ -110,18 +114,20 @@ public class WebServiceManager {
 	@Path("platforms.xml/{id}")
 	@Produces(MediaType.APPLICATION_XML)
 	public String getPlatformWmdrById(@PathParam("id") String id) throws JAXBException, NumberFormatException, DatatypeConfigurationException {
-		Platform wmdr = new Platform(Integer.parseInt(id));
+		/*Platform wmdr = new Platform(Integer.parseInt(id));
 		
-		return wmdr.toString();
+		return wmdr.toString();*/
+		throw new NotFoundException("XML document is not yet supported");
 	}
 	
 	@GET
 	@Path("platforms/{id}/observations.xml")
 	@Produces(MediaType.APPLICATION_XML)
 	public String getPlatformObservationsWmdrById(@PathParam("id") String id) throws JAXBException, NumberFormatException, DatatypeConfigurationException {
-		PlatformObservations wmdr = new PlatformObservations(Integer.parseInt(id));
+		/*PlatformObservations wmdr = new PlatformObservations(Integer.parseInt(id));
 		
-		return wmdr.toString();
+		return wmdr.toString();*/
+		throw new NotFoundException("XML document is not yet supported");
 	}
 
 

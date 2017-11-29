@@ -1,10 +1,15 @@
 package org.jcommops.api.accessors;
 
 import java.io.StringWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+
+import javax.ws.rs.BadRequestException;
 
 import org.apache.cayenne.Cayenne;
 import org.apache.cayenne.DataRow;
@@ -317,11 +322,14 @@ public class PlatformAccessor {
 	 * @param sensorType
 	 * @param ship
 	 * @param country
+	 * @param insertDate 
+	 * @param updateDate 
 	 * @return
 	 */
 	public HashMap<Integer, String> getPtfbySelectedParam(String ptfStatus, String ptfFamily, String ptfType,
 			String ptfModel, String program, String network, String masterProg, String variable, String sensorModel,
-			String sensorType, String ship, String country) {
+			String sensorType, String ship, String country, String updateDate, String insertDate) {
+		
 		// Sanitize all parameters
 		ptfStatus = Utils.basicSanitize(ptfStatus);
 		ptfFamily = Utils.basicSanitize(ptfFamily);
@@ -335,12 +343,23 @@ public class PlatformAccessor {
 		sensorType = Utils.basicSanitize(sensorType);
 		ship = Utils.basicSanitize(ship);
 		country = Utils.basicSanitize(country);
+		updateDate = Utils.basicSanitize(updateDate);
+		insertDate = Utils.basicSanitize(insertDate);
 
 		// QUERY PARAMETERS
 		String intersectionSymbol = ".", unionSymbol = ",";
 		StringBuilder query = new StringBuilder("select ptf.id, ptf.ref from ptf where 1=1");
 		StringBuilder whereClause = new StringBuilder();
 		boolean usingID = false;
+		
+		// Dates
+		if(updateDate != null){
+			whereClause.append(buildWhereClauseForDateParam(updateDate, "ptf.update_date"));
+		}
+		if(insertDate != null){
+			whereClause.append(buildWhereClauseForDateParam(insertDate, "ptf.insert_date"));
+		}
+
 
 		// Platform status
 		if (ptfStatus != null && !ptfStatus.isEmpty()) {
@@ -747,5 +766,92 @@ public class PlatformAccessor {
 		return csv;
 
 	}
+	
+	
+	/**
+	 * From an input date parameter query string and a database path, computes the corresponding where clause.
+	 * @param dateParam	Date query string parameter, following the mathematical ineterval syntax
+	 * @param sqlParam	Database path for the concerned field
+	 * @return	String	The expected where clause
+	 * @throws BadRequestException	When the date format is incorrect
+	 */
+	public String buildWhereClauseForDateParam(String dateParam, String sqlParam) throws BadRequestException{
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+		StringBuilder whereClause = new StringBuilder();
+		
+		if(dateParam != null){
+			String startSymbol = null, endSymbol = null;
+			String sqlStartSymbol = null, sqlEndSymbol = null;
+			String[] updateDatesString;
+			
+			// Identifying symbols
+			if(dateParam.startsWith("[") || dateParam.startsWith("]")){
+				startSymbol = dateParam.substring(0, 1);
+				if(startSymbol.equals("["))
+					sqlStartSymbol = ">=";
+				else if (startSymbol.equals("]"))
+					sqlStartSymbol = ">";
+				dateParam = dateParam.substring(1);
+			}
 
+			if(dateParam.endsWith("[") ||  dateParam.endsWith("]")){
+				endSymbol = dateParam.substring(dateParam.length()-1);
+				if(endSymbol.equals("]"))
+					sqlEndSymbol = "<=";
+				else if (endSymbol.equals("["))
+					sqlEndSymbol = "<";
+				dateParam = dateParam.substring(0, dateParam.length() - 1);
+			}
+			
+			// Default: considering date as a left side bounder (looking for more recent or equal to that date)
+			if(startSymbol == null && endSymbol == null){
+				sqlStartSymbol = ">=";
+			}
+			
+			// Guessing if there is one date or an interval
+			if(dateParam.contains(",")){
+				updateDatesString = dateParam.split(",");
+			}
+			else{
+				updateDatesString = new String[1];
+				updateDatesString[0] = dateParam;
+			}
+
+			try{
+				// Tryinig to parse the date-s
+				if(updateDatesString.length == 1){
+					Date updateDateDate = dateFormatter.parse(updateDatesString[0]);
+					if(sqlStartSymbol != null){
+						whereClause.append(" and (" + sqlParam + " ");
+						whereClause.append(sqlStartSymbol);
+						whereClause.append(" to_date('" + updateDatesString[0] + "','YYYY-MM-DD\"T\"HH24:MI:SS'))");
+					}
+					if(sqlEndSymbol != null){
+						whereClause.append(" and (" + sqlParam + " ");
+						whereClause.append(sqlEndSymbol);
+						whereClause.append(" to_date('" + updateDatesString[0] + "','YYYY-MM-DD\"T\"HH24:MI:SS'))");
+					}
+				}
+				else if(updateDatesString.length == 2){
+					Date updateDateDate = dateFormatter.parse(updateDatesString[0]);
+					updateDateDate = dateFormatter.parse(updateDatesString[1]);
+					if(sqlStartSymbol != null){
+						whereClause.append(" and (" + sqlParam + " ");
+						whereClause.append(sqlStartSymbol);
+						whereClause.append(" to_date('" + updateDatesString[0] + "','YYYY-MM-DD\"T\"HH24:MI:SS'))");
+					}
+					if(sqlEndSymbol != null){
+						whereClause.append(" and (" + sqlParam + " ");
+						whereClause.append(sqlEndSymbol);
+						whereClause.append(" to_date('" + updateDatesString[1] + "','YYYY-MM-DD\"T\"HH24:MI:SS'))");
+					}
+				}
+			}
+			catch (ParseException e) {
+				throw new BadRequestException("Date parameter is not well formatted. Date should be given in the following format: YYYY-MM-DDTHH:MI:SS");
+			}
+		}
+		
+		return whereClause.toString();
+	}
 }
