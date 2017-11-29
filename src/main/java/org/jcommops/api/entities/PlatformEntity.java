@@ -37,6 +37,8 @@ public class PlatformEntity implements Serializable{
 	private ConfigurationEntity configuration;
 	private List<SensorModelEntity> sensorModels;
 	private List<VariableEntity> variables;
+	private String jcommopsDBUpdateDate;
+	private String jcommopsDBInsertDate;
 
 	public PlatformEntity() {
 	}
@@ -74,6 +76,9 @@ public class PlatformEntity implements Serializable{
     	for(int i = 0; i<ptf.getVariables().size();i++){
     		this.variables.add(new VariableEntity(ptf.getVariables().get(i)));
     	}
+    	
+    	this.setJcommopsDBInsertDate(Utils.GetIsoDate(ptf.getInsertDate()));
+    	this.setJcommopsDBUpdateDate(Utils.GetIsoDate(ptf.getUpdateDate()));
 	}
 
 	@XmlAttribute
@@ -364,6 +369,24 @@ public class PlatformEntity implements Serializable{
 		
 		
 		return csv.toString();
+	}
+
+	@XmlElement
+	public String getJcommopsDBUpdateDate() {
+		return jcommopsDBUpdateDate;
+	}
+
+	public void setJcommopsDBUpdateDate(String jcommopsDBUpdateDate) {
+		this.jcommopsDBUpdateDate = jcommopsDBUpdateDate;
+	}
+
+	@XmlElement
+	public String getJcommopsDBInsertDate() {
+		return jcommopsDBInsertDate;
+	}
+
+	public void setJcommopsDBInsertDate(String jcommopsDBInsertDate) {
+		this.jcommopsDBInsertDate = jcommopsDBInsertDate;
 	}
 
 }
