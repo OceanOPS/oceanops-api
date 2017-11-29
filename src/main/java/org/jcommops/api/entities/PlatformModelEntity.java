@@ -20,6 +20,7 @@ public class PlatformModelEntity implements Serializable{
 	private String name;
 	private String description;
 	private PlatformTypeEntity platformType;
+	private AgencyEntity manufacturer;
 	
 	
 	public PlatformModelEntity (){	
@@ -32,6 +33,8 @@ public class PlatformModelEntity implements Serializable{
 		this.setDescription(ptfModel.getDescription());
 		if(ptfModel.getPtfType() != null)
 			this.setPlatformType(new PlatformTypeEntity(ptfModel.getPtfType()));
+		if(ptfModel.getAgency() != null)
+			this.setManufacturer(new AgencyEntity(ptfModel.getAgency()));
 	}
 
 	@XmlElement
@@ -75,6 +78,15 @@ public class PlatformModelEntity implements Serializable{
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	@XmlElement
+	public AgencyEntity getManufacturer() {
+		return manufacturer;
+	}
+
+	public void setManufacturer(AgencyEntity manufacturer) {
+		this.manufacturer = manufacturer;
 	}
 	
 
