@@ -17,7 +17,6 @@ public class VariableEntity implements Serializable{
 	private Integer id;
 	private String name;
 	private String nameShort;
-	private String description;
 	private String cfRef;
 	private String argoRef;
 	private Integer wigosRef;
@@ -34,7 +33,6 @@ public class VariableEntity implements Serializable{
 		this.setId(Integer.parseInt(var.getObjectId().getIdSnapshot().get("ID").toString()));
 		this.setArgoRef(var.getArgoRef());
 		this.setCfRef(var.getCfRef());
-		this.setDescription(var.getDescription());
 		this.setName(var.getName());
 		this.setNameShort(var.getNameShort());
 		this.setP01Ref(var.getP01Ref());
@@ -108,18 +106,4 @@ public class VariableEntity implements Serializable{
 	public void setNameShort(String nameShort) {
 		this.nameShort = nameShort;
 	}
-
-	@XmlElement
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-
-	
-	
-
 }

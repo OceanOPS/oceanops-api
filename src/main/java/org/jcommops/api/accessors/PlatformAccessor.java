@@ -87,7 +87,7 @@ public class PlatformAccessor {
 	 * 
 	 * @return The list of PlatformStatus objects.
 	 */
-	public ArrayList<PlatformStatusEntity> getPtfStatuses() {// List of Statuses
+	public ArrayList<PlatformStatusEntity> getPtfStatuses() {
 		SelectQuery Status_query = new SelectQuery(PtfStatus.class);
 		List<PtfStatus> statuses = context.performQuery(Status_query);
 
@@ -104,9 +104,11 @@ public class PlatformAccessor {
 
 	}
 
-	public ArrayList<PlatformFamilyEntity> getPtfFamilies() { // List of
-																// platforms'
-		// families
+	/**
+	 * Query the database to retrieve all platform families
+	 * @return	The platform families list
+	 */
+	public ArrayList<PlatformFamilyEntity> getPtfFamilies() {
 		SelectQuery Family_query = new SelectQuery(PtfFamily.class);
 		List<PtfFamily> families = context.performQuery(Family_query);
 
@@ -124,8 +126,11 @@ public class PlatformAccessor {
 
 	}
 
-	public ArrayList<PlatformTypeEntity> getPtfTypes() { // List of platforms'
-															// types
+	/**
+	 * Query the database to retrieve all platform types
+	 * @return	The platform types list
+	 */
+	public ArrayList<PlatformTypeEntity> getPtfTypes() {
 		SelectQuery Type_query = new SelectQuery(PtfType.class);
 		List<PtfType> types = context.performQuery(Type_query);
 
@@ -142,8 +147,11 @@ public class PlatformAccessor {
 
 	}
 
-	public ArrayList<PlatformModelEntity> getPtfModels() { // List of platforms'
-															// models
+	/**
+	 * Query the database to retrieve all platform models
+	 * @return	The platform models list
+	 */
+	public ArrayList<PlatformModelEntity> getPtfModels() {
 		SelectQuery Model_query = new SelectQuery(PtfModel.class);
 		List<PtfModel> models = context.performQuery(Model_query);
 
@@ -160,8 +168,11 @@ public class PlatformAccessor {
 
 	}
 
-	public ArrayList<ProgramEntity> getProgram() { // List of platforms'
-													// programs
+	/**
+	 * Query the database to retrieve all programs
+	 * @return	The programs list
+	 */
+	public ArrayList<ProgramEntity> getProgram() { 
 		SelectQuery ProgramPtf_query = new SelectQuery(Program.class);
 		List<Program> programs = context.performQuery(ProgramPtf_query);
 
@@ -178,10 +189,11 @@ public class PlatformAccessor {
 
 	}
 
-	public ArrayList<MasterProgramEntity> getMasterProgram() { // List of
-																// platforms'
-																// master
-																// programs
+	/**
+	 * Query the database to retrieve all master programs
+	 * @return	The master programs list
+	 */
+	public ArrayList<MasterProgramEntity> getMasterProgram() {
 		SelectQuery MasterProgram_query = new SelectQuery(MasterProg.class);
 		List<MasterProg> mprograms = context.performQuery(MasterProgram_query);
 
@@ -198,8 +210,11 @@ public class PlatformAccessor {
 
 	}
 
-	public ArrayList<NetworkEntity> getPtfNetworks() { // List of platforms'
-		// Networks
+	/**
+	 * Query the database to retrieve all networks
+	 * @return	The networks list
+	 */
+	public ArrayList<NetworkEntity> getPtfNetworks() {
 		SelectQuery Network_query = new SelectQuery(Network.class);
 		List<Network> networks = context.performQuery(Network_query);
 
@@ -216,9 +231,11 @@ public class PlatformAccessor {
 
 	}
 
-	public ArrayList<SensorModelEntity> getPtfSensorModel() { // List of
-																// platforms'
-		// sensors model
+	/**
+	 * Query the database to retrieve all sensor models
+	 * @return	The sensor models list
+	 */
+	public ArrayList<SensorModelEntity> getPtfSensorModel() {
 		SelectQuery SensModel_query = new SelectQuery(SensorModel.class);
 		List<SensorModel> SensModels = context.performQuery(SensModel_query);
 
@@ -235,9 +252,11 @@ public class PlatformAccessor {
 
 	}
 
-	public ArrayList<SensorTypeEntity> getPtfSensorType() { // List of
-															// platforms'
-		// sensors type
+	/**
+	 * Query the database to retrieve all sensor types
+	 * @return	The sensor types list
+	 */
+	public ArrayList<SensorTypeEntity> getPtfSensorType() { 
 		SelectQuery SensType_query = new SelectQuery(SensorType.class);
 		List<SensorType> SensTypes = context.performQuery(SensType_query);
 
@@ -254,9 +273,11 @@ public class PlatformAccessor {
 
 	}
 
-	public ArrayList<VariableEntity> getPtfVariables() { // List of platforms'
-		// variables
-		
+	/**
+	 * Query the database to retrieve all variables
+	 * @return	The variables list
+	 */
+	public ArrayList<VariableEntity> getPtfVariables() { 		
 		SQLTemplate select = new SQLTemplate(Variable.class, "select * from variable where exists (select null from ptf_variable where variable_id = variable.id) and name_short not like 'GEN%'"); 
 		List<Variable> Variables = context.performQuery(select);
 
@@ -273,9 +294,11 @@ public class PlatformAccessor {
 
 	}
 
-	public ArrayList<CountryEntity> getPtfCountries() { // List of platforms'
-		// variables
-
+	/**
+	 * Query the database to retrieve all countries
+	 * @return	The countries list
+	 */
+	public ArrayList<CountryEntity> getPtfCountries() { 
 		SelectQuery Country_query = new SelectQuery(Country.class);
 		List<Country> countries = context.performQuery(Country_query);
 
@@ -292,6 +315,11 @@ public class PlatformAccessor {
 
 	}
 
+	/**
+	 * Query the datanase to retrieve a platform's details, based on its database ID.
+	 * @param id	long	The database identifier
+	 * @return	A PlatformEntity object, filled with database information 
+	 */
 	public PlatformEntity getPtfbyID(long id) {// Platform's details by ID
 		// Find the platform
 		Ptf platform = Cayenne.objectForPK(context, Ptf.class, id); 
@@ -324,7 +352,7 @@ public class PlatformAccessor {
 	 * @param country
 	 * @param insertDate 
 	 * @param updateDate 
-	 * @return
+	 * @return A HashMap containing the database identifiers as keys, the JCOMMOPS reference as values
 	 */
 	public HashMap<Integer, String> getPtfbySelectedParam(String ptfStatus, String ptfFamily, String ptfType,
 			String ptfModel, String program, String network, String masterProg, String variable, String sensorModel,

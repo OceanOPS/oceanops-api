@@ -20,7 +20,7 @@ import org.jcommops.api.entities.VariableEntity;
 public class Utils {
 	private static ServerRuntime cayenneRuntime;
 	private static Properties properties;
-	private static String projectName, projectVersion, rootUrl, programUrl, inspectPtfUrl;
+	private static String projectName, projectVersion, rootUrl, programUrl, inspectPtfUrl, helpEditionDate;
 	public static final String CSV_SEPARATOR = ";";
 	public static final SimpleDateFormat ISO_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 	public static final Integer JCOMMOPS_AGENCY_ID = 61;
@@ -38,6 +38,7 @@ public class Utils {
 				rootUrl = properties.getProperty("ROOT_URL");
 				programUrl = properties.getProperty("PROGRAM_URL");
 				inspectPtfUrl = properties.getProperty("INSPECT_PTF_URL");
+				helpEditionDate = properties.getProperty("HELP_EDITION_DATE");
 			} catch (IOException e) {
 				projectVersion = "X.Y";
 				projectName = "ERROR";
@@ -242,11 +243,22 @@ public class Utils {
 	}
 
 	public static String getRootUrl() {
+		Utils.init();
 		return rootUrl;
 	}
 
 	public static void setRootUrl(String rootUrl) {
 		Utils.rootUrl = rootUrl;
+	}
+
+	public static String getHelpEditionDate() {
+
+		Utils.init();
+		return helpEditionDate;
+	}
+
+	public static void setHelpEditionDate(String buildDate) {
+		Utils.helpEditionDate = buildDate;
 	}
 
 }
