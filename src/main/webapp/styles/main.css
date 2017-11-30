@@ -1,0 +1,33 @@
+body{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1.7em;
+}
+
+h1, h2, h3, h4 {
+	font-family: 'Roboto Condensed', sans-serif;
+	color: rgb(3,21,57);
+}
+
+h2.title-border-bottom, h3.title-border-bottom, h4.title-border-bottom {
+	border-bottom: rgb(40,157,222) solid 1px;	
+}
+
+a{
+	color: rgb(40,157,222);
+}
+
+ul{
+	list-style-type: square;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.url{
+	font-family: monospace;
+	padding: 2px 4px;
+	color: rgb(3,21,57);
+	background-color: rgba(137,165,190,0.2);
+	border-radius: 4px;
+}

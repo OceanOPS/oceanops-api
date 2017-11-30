@@ -23,6 +23,7 @@ public class Help extends HttpServlet {
 		request.setAttribute("rootUrl", Utils.getRootUrl());
 		request.setAttribute("projectVersion", Utils.getProjectVersion());
 		request.setAttribute("projectName", Utils.getProjectName());
+		request.setAttribute("helpEditionDate", Utils.getHelpEditionDate());
 		String jspName = "";
 		
 		if (request.getParameter("param") != null) {
@@ -30,19 +31,19 @@ public class Help extends HttpServlet {
 			switch (request.getParameter("param")) {
 			case "status":
 				request.setAttribute("parameter", "ptf_statuses.json");
-				request.setAttribute("parameter_name", "Platform Statuses");
+				request.setAttribute("parameter_name", "Platform statuses");
 				break;
 			case "model":
 				request.setAttribute("parameter", "ptf_models.json");
-				request.setAttribute("parameter_name", "Platform Models");
+				request.setAttribute("parameter_name", "Platform models");
 				break;
 			case "type":
 				request.setAttribute("parameter", "ptf_types.json");
-				request.setAttribute("parameter_name", "Platform Types");
+				request.setAttribute("parameter_name", "Platform types");
 				break;
 			case "family":
 				request.setAttribute("parameter", "ptf_families.json");
-				request.setAttribute("parameter_name", "Platform Families");
+				request.setAttribute("parameter_name", "Platform families");
 				break;
 			case "network":
 				request.setAttribute("parameter", "networks.json");
@@ -54,7 +55,7 @@ public class Help extends HttpServlet {
 				break;
 			case "masterProgram":
 				request.setAttribute("parameter", "master_programs.json");
-				request.setAttribute("parameter_name", "Master Programs");
+				request.setAttribute("parameter_name", "Master programs");
 				break;
 			case "variable":
 				request.setAttribute("parameter", "variables.json");
@@ -63,11 +64,11 @@ public class Help extends HttpServlet {
 				break;
 			case "sensorModel":
 				request.setAttribute("parameter", "sensor_models.json");
-				request.setAttribute("parameter_name", "Sensor Models");
+				request.setAttribute("parameter_name", "Sensor models");
 				break;
 			case "sensorType":
 				request.setAttribute("parameter", "sensor_types.json");
-				request.setAttribute("parameter_name", "Sensor Types");
+				request.setAttribute("parameter_name", "Sensor types");
 				break;
 			case "country":
 				request.setAttribute("parameter", "countries.json");
