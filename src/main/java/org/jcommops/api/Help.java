@@ -21,6 +21,7 @@ public class Help extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setAttribute("rootUrl", Utils.getRootUrl());
+		request.setAttribute("rootUrlNoVersion", Utils.getRootUrl().substring(0, Utils.getRootUrl().length() - Utils.getProjectVersion().length() - 1));
 		request.setAttribute("projectVersion", Utils.getProjectVersion());
 		request.setAttribute("projectName", Utils.getProjectName());
 		request.setAttribute("helpEditionDate", Utils.getHelpEditionDate());
