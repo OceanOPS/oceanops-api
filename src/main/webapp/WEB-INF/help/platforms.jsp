@@ -34,7 +34,7 @@
 <br>
 
 
-<h3>Listing a filtered list of platforms using key parameters</h3>
+<h3>Listing a filtered set of platforms using key parameters</h3>
 <p>
 	A filtered list of platforms can be obtained with a GET request using this URL pattern:
 	<div class="text-center">

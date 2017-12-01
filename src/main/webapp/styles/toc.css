@@ -1,0 +1,48 @@
+nav#toc{
+	font-family: 'Roboto Condensed', sans-serif;
+}
+
+nav#toc .nav>li>a {
+	font-size: 1em;
+}
+nav#toc .nav .nav>li>a {
+	font-size: 0.8em;
+}
+nav#toc .nav>.active>a {
+  color: rgb(3,21,57);
+  border-left: solid 2px rgb(40,157,222);
+}
+nav#toc .nav>.active:focus>a {
+  color: rgb(3,21,57);
+  border-left: solid 2px rgb(40,157,222);
+}
+nav#toc .nav>li:hover>a {
+  color: rgb(3,21,57);
+  border-left: solid 1px rgb(40,157,222);
+}
+nav#toc .nav>li.active:hover>a {
+  color: rgb(3,21,57);
+  border-left: solid 2px rgb(40,157,222);
+}
+
+nav[data-toggle='toc'] {
+  margin-top: 30px;
+}
+
+/* small screens */
+@media (max-width: 768px) {
+  /* override the Affix plugin so that the navigation isn't sticky */
+  nav.affix[data-toggle='toc'] {
+    position: static;
+  }
+
+  /* PICK ONE */
+  /* don't expand nested items, which pushes down the rest of the page when navigating */
+  nav[data-toggle='toc'] .nav .active .nav {
+    display: none;
+  }
+  /* alternatively, if you *do* want the second-level navigation to be shown (as seen on this page on mobile), use this */
+  nav[data-toggle='toc'] .nav .nav {
+    display: block;
+  }
+}
