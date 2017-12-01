@@ -25,7 +25,10 @@
 	<servlet-mapping>
 		<servlet-name>Help</servlet-name>
 		<url-pattern>/rest/help</url-pattern>
-		<!-- /api/rest/1.0/help -->
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Help</servlet-name>
+		<url-pattern>/rest/</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>JerseyWebApplication</servlet-name>

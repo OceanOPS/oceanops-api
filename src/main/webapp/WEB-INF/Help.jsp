@@ -9,11 +9,12 @@
 		String version = (String) request.getAttribute("projectVersion");
 		String name = (String) request.getAttribute("projectName");
 		String helpEditionDate = (String) request.getAttribute("helpEditionDate");
+		boolean isBetaVersion = (boolean) request.getAttribute("betaVersion");
 	%>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width = device-width, initial-scale = 1">
-	<title><%=name%></title>
+	<title><%=name%> help</title>
    	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
    	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -24,34 +25,37 @@
 	<script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.js"></script>
 	
 	<link rel="stylesheet" href="../styles/main.css">
+	<link rel="stylesheet" href="../styles/toc.css">
 	<script src="../scripts/main.js"></script>
 </head>	
 <body data-spy="scroll" data-target="#toc">
-	<nav class="navbar navbar-default navbar-fixed-top">
+	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<h1>JCOMMOPS API <small>documentation <span class="label label-warning">beta</span></small></h1>
+				<h1>JCOMMOPS API <small>documentation<%if(isBetaVersion){ %> <span class="label label-warning">beta</span><%}%></small></h1>
 			</div>
 			<p class="navbar-text navbar-right text-right">Applicable version: <%=version%><br>Last edited: <%=helpEditionDate%></p>
 		</div>
 	</nav>
 	<div id="main-container" class="container-fluid">
 		<div class="row">
-			<div class="col-sm-3">
+			<div class="col-sm-2">
 				<nav id="toc" data-spy="affix"></nav>
 			</div>
-			<div class="col-sm-9">
+			<div class="col-sm-10">
+				<%if(isBetaVersion){ %>
 				<div class="well">			
 					<p class="text-warning">This is a beta version. The specifications listed below and the results provided by this API are highly susceptible to change.</p>
 				</div>
+				<%}%>
 								
 				<h2 class="title-border-bottom">About the API</h2>
 				<div class="container-fluid">
 					<%@include file="help/about.jsp" %>
 				</div>
-				<h2 class="title-border-bottom">Vocabulary and entities</h2>
+				<h2 class="title-border-bottom">Vocabulary</h2>
 				<div class="container-fluid">
-					<%@include file="help/vocabularyAndEntities.jsp" %>
+					<%@include file="help/vocab.jsp" %>
 				</div>
 				<h2 class="title-border-bottom">Reference tables</h2>
 				<div class="container-fluid">
