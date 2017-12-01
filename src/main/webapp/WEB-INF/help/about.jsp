@@ -26,7 +26,7 @@
 </p>
 
 <p>
-	The latest version of the API can be reached at that URL (the link will redirect to the numbered version of the API): 
+	The latest version of the API can be reached at that URL (the link will redirect to the numbered version of the URL): 
 	<div class="text-center"><span class="url"><%=rootUrlNoVersion%>latest/</span></div>
 	<br>
 	On top of the latest version, two previous versions (major or sub-major) will be kept for backward compatibility.
