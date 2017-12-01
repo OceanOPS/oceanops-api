@@ -45,7 +45,7 @@
 			<div class="col-sm-10">
 				<%if(isBetaVersion){ %>
 				<div class="well">			
-					<p class="text-warning">This is a beta version. The specifications listed below and the results provided by this API are highly susceptible to change.</p>
+					<p class="text-warning">This is a beta version. The specifications listed below and the results provided by this API are highly susceptible to change. Feedbacks are welcomed.</p>
 				</div>
 				<%}%>
 								
