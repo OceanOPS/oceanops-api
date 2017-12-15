@@ -45,44 +45,38 @@
 		});		
 	</script>
 </head>
-<body>
+<body>	
+	<div id="loader" class="cssload-container fullscreen-loader">
+		<ul class="cssload-flex-container">
+			<li>
+				<span class="cssload-loading"></span>
+			</li>
+		</ul>
+	</div>
 	<div class="container">
 		<div class="page-header">
 			<h1><%=parameter_name%></h1>
 		</div>
 		<div class="well">
-			<div class="row">
-				<div class="col-lg-12 col-md-2 col-sm-4 col-xs-12">
-					<div class="table-responsive">
-						<table class="table" id="table">
-							<thead>
-								<tr>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<th>ISO Code (2)*</th>
-									<th>Name</th>
-									<th>Description</th>
-								</tr>
-							</thead>
-							<tbody id="parameterTableBody">
-							</tbody>
-						</table>
-					</div>
-				</div>
-				<p>(*) Parameters used in the search URL</p>
-				
-				<div id="loader" class="cssload-container">
-					<ul class="cssload-flex-container">
-						<li>
-							<span class="cssload-loading"></span>
-						</li>
-					</div>
-				</div>	
+			<div class="table-responsive">
+				<table class="table" id="table">
+					<thead>
+						<tr>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th>ISO Code (2)*</th>
+							<th>Name</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody id="parameterTableBody">
+					</tbody>
+				</table>
 			</div>
 		</div>
-</div>
-
+		<p>(*) Parameters used in the search URL</p>
+	</div>
 </body>
 </html>
