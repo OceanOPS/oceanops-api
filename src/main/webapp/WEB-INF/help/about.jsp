@@ -31,8 +31,8 @@
 	<br>
 	On top of the latest version, two previous versions (major or sub-major) will be kept for backward compatibility.
 	<br><br>
-	Should you wish to follow our latest improvements, check out our latest beta version by going there:
-	<div class="text-center"><span class="url"><%=rootUrlNoVersion%>beta/</span></div>
+	Should you wish to follow our latest improvements, check out our latest preview version by going there:
+	<div class="text-center"><span class="url"><%=rootUrlNoVersion%>preview/</span></div>
 </p>
 <h3>Release notes</h3>
 <p>Release notes can be consulted <a href="https://trello.com/c/eI7YS3wp" target="_blank">here</a>.</p>

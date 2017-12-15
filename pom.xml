@@ -131,6 +131,7 @@
 		<jersey.version>2.16</jersey.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<helpEditionDate>2017-11-30</helpEditionDate>
+		<versionQualifier>alpha</versionQualifier>
 	</properties>
 	<url>www.jcommops.org/data/api/${project.version}/</url>
 </project>
