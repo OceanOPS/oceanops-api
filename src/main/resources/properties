@@ -1,3 +1,7 @@
 PROJECT_VERSION=${project.version}
 ARTIFACT_ID=${project.artifactId}
 PROJECT_NAME=${project.name}
+ROOT_URL=${project.url}
+HELP_EDITION_DATE=${helpEditionDate}
+BETA=${betaVersion}
+VERSION_QUALIFIER=${versionQualifier}
