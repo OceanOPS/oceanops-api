@@ -5,7 +5,7 @@
 	<groupId>org.jcommops</groupId>
 	<artifactId>api</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.3-SNAPSHOT</version>
+	<version>1.0.0alpha1-SNAPSHOT</version>
 	<name>JCOMMOPS API</name>
 	
 	<scm>
