@@ -32,14 +32,14 @@
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<h1>JCOMMOPS API <small>documentation<%if(isBetaVersion){ %> <span class="label label-warning">beta</span><%}%></small></h1>
+				<h1><img src="//www.jcommops.org/static/images/jcommops/logos/jcommops-sm.png" alt="JCOMMOPS logo"/> API <small>documentation<%if(isBetaVersion){ %> <span class="label label-warning">beta</span><%}%></small></h1>
 			</div>
-			<p class="navbar-text navbar-right text-right">Applicable version: <%=version%><br>Last edited: <%=helpEditionDate%></p>
+			<p class="navbar-text navbar-right text-right">applicable version: <%=version%><br>last edited: <%=helpEditionDate%></p>
 		</div>
 	</nav>
 	<div id="main-container" class="container-fluid">
 		<div class="row">
-			<div class="col-sm-2">
+			<div class="col-sm-2" id="left-side-container">
 				<nav id="toc" data-spy="affix"></nav>
 			</div>
 			<div class="col-sm-10">

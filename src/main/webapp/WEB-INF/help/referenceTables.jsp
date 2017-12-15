@@ -1,4 +1,5 @@
-<h3>Integrated view</h3>
+<p>One can access the reference tables being used at JCOMMOPS in a JSON format.</p>
+<h3>Commons & integrated view</h3>
 $$TBD
 <h3>Argo</h3>
 $$TBD

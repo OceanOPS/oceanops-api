@@ -1,5 +1,5 @@
 <p>
-As the number of information systems is growing as well as networks metadata specifications are specified, it is important to clearly define the vocabulary being used within the JCOMMOPS' scope.
+As the number of information systems is growing as well as networks metadata specifications are defined, it is important to clearly define the vocabulary being used within the JCOMMOPS' scope.
 JCOMMOPS tries to harmonize and integrate different vocabularies and ontologies. Hence, you might not be familiar with all the terms used and how they are used by this API, so please read carefully this section. 
 </p>
 <div class="table-responsive">
@@ -15,7 +15,7 @@ JCOMMOPS tries to harmonize and integrate different vocabularies and ontologies.
 			<tr>
 				<td>Platform</td>
 				<td>
-				All that can be deployed and can measure parameters is considered as a "Platform" at JCOMMOPS:
+				All that can be deployed and can measure parameters (an observing entity) is considered as a "Platform" at JCOMMOPS:
 				<ul>
 					<li>Argo: float;</li>
 					<li>DBCP: drifting buoy, moored buoy, fixed platform, tsunameter;</li>
@@ -25,7 +25,7 @@ JCOMMOPS tries to harmonize and integrate different vocabularies and ontologies.
 					<li>GLOSS: tide gauge.</li>
 				</ul>
 				</td>
-				<td>Station&nbsp;(VOS)</td>
+				<td>Station&nbsp;(VOS), Observing facility (WIGOS)</td>
 			</tr>
 			<tr>
 				<td>Ship</td>
@@ -38,7 +38,7 @@ JCOMMOPS tries to harmonize and integrate different vocabularies and ontologies.
 			<tr>
 				<td>Master program</td>
 				<td>
-					A master program is a core network that contribute to JCOMM, and then act as pillars to JCOMMOPS. It is a key entity in all JCOMMOPS products and usually defines the main categorization that can be encoutered.
+					A master program is a core network that contribute to JCOMM and then act as a pillar to JCOMMOPS. It is a key entity in all JCOMMOPS products and usually defines the main categorization that can be encoutered.
 					Currently, there are 6 of them: Argo, DBCP, SOT, OceanSITES, GO-SHIP and GLOSS.
 				</td>
 				<td>Network</td>
@@ -46,7 +46,7 @@ JCOMMOPS tries to harmonize and integrate different vocabularies and ontologies.
 			<tr>
 				<td>Platform status</td>
 				<td>
-					JCOMMOPS defines several statuses, which are used to track a platform during its lifecycle. They are automatically set depending on the metadata we received at the registration (deployment plans) and in real time (through observations, i.e. GTS/GDAC).
+					JCOMMOPS defines several statuses, which are used to track a platform during its lifecycle. They are automatically set, depending on the metadata we received at the registration (deployment plans) and in real time (through observations, i.e. GTS/GDAC).
 					<ul>
 						<li><strong>Probable</strong>: starting status for some platforms, when there is only a few metadata available, like rough deployment location and date. The platform may be deployed;</li>
 						<li><strong>Confirmed</strong>: automatically set when a ship is attached to the deployment information. The platform is ready to be deployed, deployment is planned;</li>
@@ -106,8 +106,8 @@ JCOMMOPS tries to harmonize and integrate different vocabularies and ontologies.
 				<td>Parameter</td>
 			</tr>
 			<tr>
-				<td>Variable detailled/Sub variable</td>
-				<td>Sub-variables are detailled variable, used as needed and coming from reference datasets like CF.$$examples</td>
+				<td>Variable detailed/Sub variable</td>
+				<td>Sub-variables are detailed variable, used as needed and coming from reference datasets like CF.$$examples</td>
 				<td>Parameter</td>
 			</tr>
 			<tr>
@@ -126,7 +126,7 @@ JCOMMOPS tries to harmonize and integrate different vocabularies and ontologies.
 			<tr>
 				<td>Sensor type</td>
 				<td>
-					A sensor type is a high categorization of sensor, performing one measurement.
+					A sensor type is a high categorization level of sensor, performing one measurement.
 					<br>Examples: Barometer aneroid, SST radiation thermometer, Fluorometer Chla, etc.
 				</td>
 				<td>Sensor</td>
