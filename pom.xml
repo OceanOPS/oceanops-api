@@ -132,6 +132,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<helpEditionDate>2017-11-30</helpEditionDate>
 		<versionQualifier>alpha</versionQualifier>
+		<project.scm.id>jcommops-scm-server</project.scm.id>
 	</properties>
 	<url>www.jcommops.org/data/api/${project.version}/</url>
 </project>
