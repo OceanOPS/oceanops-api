@@ -10,6 +10,7 @@
 		String name = (String) request.getAttribute("projectName");
 		String helpEditionDate = (String) request.getAttribute("helpEditionDate");
 		boolean isBetaVersion = (boolean) request.getAttribute("betaVersion");
+		String versionQualifier = (String) request.getAttribute("versionQualifier");
 	%>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,7 +33,7 @@
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<h1><img src="//www.jcommops.org/static/images/jcommops/logos/jcommops-sm.png" alt="JCOMMOPS logo"/> API <small>documentation<%if(isBetaVersion){ %> <span class="label label-warning">beta</span><%}%></small></h1>
+				<h1><img src="//www.jcommops.org/static/images/jcommops/logos/jcommops-sm.png" alt="JCOMMOPS logo"/> API <small>documentation<%if(isBetaVersion){ %> <span class="label label-warning"><%=versionQualifier%></span><%}%></small></h1>
 			</div>
 			<p class="navbar-text navbar-right text-right">applicable version: <%=version%><br>last edited: <%=helpEditionDate%></p>
 		</div>
@@ -45,7 +46,7 @@
 			<div class="col-sm-10">
 				<%if(isBetaVersion){ %>
 				<div class="well">			
-					<p class="text-warning">This is a beta version. The specifications listed below and the results provided by this API are highly susceptible to change. Feedbacks are welcomed.</p>
+					<p class="text-warning">This version is tagged "<%=versionQualifier%>". The specifications listed below and the results provided by this API are highly susceptible to change. Feedbacks are welcomed.</p>
 				</div>
 				<%}%>
 								

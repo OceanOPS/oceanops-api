@@ -26,6 +26,7 @@ public class Help extends HttpServlet {
 		request.setAttribute("projectName", Utils.getProjectName());
 		request.setAttribute("helpEditionDate", Utils.getHelpEditionDate());
 		request.setAttribute("betaVersion", Utils.isBetaVersion());
+		request.setAttribute("versionQualifier", Utils.getVersionQualifier());
 		String jspName = "";
 		
 		if (request.getParameter("param") != null) {

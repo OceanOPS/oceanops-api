@@ -20,7 +20,7 @@ import org.jcommops.api.entities.VariableEntity;
 public class Utils {
 	private static ServerRuntime cayenneRuntime;
 	private static Properties properties;
-	private static String projectName, projectVersion, rootUrl, programUrl, inspectPtfUrl, helpEditionDate;
+	private static String projectName, projectVersion, rootUrl, programUrl, inspectPtfUrl, helpEditionDate, versionQualifier;
 	private static boolean betaVersion;
 	public static final String CSV_SEPARATOR = ";";
 	public static final SimpleDateFormat ISO_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
@@ -40,7 +40,10 @@ public class Utils {
 				programUrl = properties.getProperty("PROGRAM_URL");
 				inspectPtfUrl = properties.getProperty("INSPECT_PTF_URL");
 				helpEditionDate = properties.getProperty("HELP_EDITION_DATE");
-				betaVersion = projectVersion.substring(0,1).equals("0") || projectVersion.endsWith("-SNAPSHOT");
+				versionQualifier = properties.getProperty("VERSION_QUALIFIER");
+				betaVersion = projectVersion.substring(0,1).equals("0") || projectVersion.endsWith("-SNAPSHOT") || versionQualifier.length() > 0;
+				if(versionQualifier.length() == 0 && betaVersion)
+					versionQualifier = "preview";
 			} catch (IOException e) {
 				projectVersion = "X.Y";
 				projectName = "ERROR";
@@ -270,6 +273,15 @@ public class Utils {
 
 	public static void setBetaVersion(boolean betaVersion) {
 		Utils.betaVersion = betaVersion;
+	}
+
+	public static String getVersionQualifier() {
+		Utils.init();
+		return versionQualifier;
+	}
+
+	public static void setVersionQualifier(String versionQualifier) {
+		Utils.versionQualifier = versionQualifier;
 	}
 
 }
