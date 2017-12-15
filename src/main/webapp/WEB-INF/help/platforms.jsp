@@ -4,7 +4,7 @@
 <p>
 	The total list of all the referenced platforms can be obtained with a GET request using the following URL pattern:
 	<div class="text-center">
-		<span class="url"><%=rootUrl%>platforms.[format]</span>
+		<span class="url"><%=rootUrl%>rest/platforms.[format]</span>
 	</div>
 	<br> Where "format" in "platforms.[format]" string path	represents the data output.
 </p>
@@ -38,7 +38,7 @@
 <p>
 	A filtered list of platforms can be obtained with a GET request using this URL pattern:
 	<div class="text-center">
-		<span class="url"><%=rootUrl%>platforms.[format]?parm1=value1&parm2=value2&...</span>
+		<span class="url"><%=rootUrl%>rest/platforms.[format]?parm1=value1&parm2=value2&...</span>
 	</div>
 	<br>
 	Where parm1, parm2...param(i) respresent the query parameters and value1, value2...value(i) represent the corresponding values respectively. 
@@ -164,7 +164,7 @@
 		<p>
 			To generate the list of <b>operational platforms</b> monitoring the <b>dissolved	oxygen (ID = 33)</b>, here the dedicated URL:
 			<div class="text-center">
-				<span class="url"><%=rootUrl%>platforms.json?status=OPERATIONAL&variable=33</span>
+				<span class="url"><%=rootUrl%>rest/platforms.json?status=OPERATIONAL&variable=33</span>
 			</div>
 		</p>
 		<br><br>
@@ -204,7 +204,7 @@
 			In the URL of the example above the parameter "<b>status</b>" has the value of "<b>OPERATIONAL</b>" standing for an "<b>operational platform</b>" 
 			and the parameter "<b>variable</b>" has the value of "<b>33</b>" standing for "<b>dissolved oxygen</b>". The previous URL is equivalent to:
 		<div class="text-center">
-			<span class="url"><%=rootUrl%>platforms.json?status=6&variable=33</span>
+			<span class="url"><%=rootUrl%>rest/platforms.json?status=6&variable=33</span>
 		</div>
 		Where in this URL we replaced the short name value of the status ("OPERATIONAL") by its corresponding ID ("6").
 		</p>
@@ -216,7 +216,7 @@
 	The platform details include a number of essential metadata on that platform (only some of them are listed in table 1).
 	Platform details can be obtained with a GET request using the following dedicated URL pattern:
 	<div class="text-center">
-		<span class="url"><%=rootUrl%>platforms.format/[ID]</span><br>
+		<span class="url"><%=rootUrl%>rest/platforms.format/[ID]</span><br>
 	</div>
 	<br>
 	Where "[ID]" is the database identifier of the platform.
@@ -229,7 +229,7 @@
 		This platform was identified in the previous section's example as "<b>operational</b>" 
 		and including a sensor measuring "<b>dissolved oxygen</b>". Here the dedicated URL for this example:
 		<div class="text-center">
-			<span class="url"><%=rootUrl%>platform.json/512263</span><br>
+			<span class="url"><%=rootUrl%>rest/platform.json/512263</span><br>
 		</div>
 		Below is a truncated output of the example URL:<br>
 		<pre>
