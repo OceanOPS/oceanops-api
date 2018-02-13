@@ -114,10 +114,10 @@ public class WebServiceManager {
 	@Path("platforms.xml/{id}")
 	@Produces(MediaType.APPLICATION_XML)
 	public String getPlatformWmdrById(@PathParam("id") String id) throws JAXBException, NumberFormatException, DatatypeConfigurationException {
-		/*Platform wmdr = new Platform(Integer.parseInt(id));
+		Platform wmdr = new Platform(Integer.parseInt(id));
 		
-		return wmdr.toString();*/
-		throw new NotFoundException("XML document is not yet supported");
+		return wmdr.toString();
+		//throw new NotFoundException("XML document is not yet supported");
 	}
 	
 	@GET

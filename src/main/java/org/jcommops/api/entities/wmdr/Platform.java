@@ -115,6 +115,37 @@ public class Platform {
 	private Integer ciResponsiblePartyCounter = 0;
 	
 	/**
+	 * Builds the final WIGOS identifier, based on the platform reference.
+	 * @param ptfRef String Platform's reference
+	 * @return String The full WIGOS identifier
+	 */
+	private String getWIGOSIdentifier(String ptfRef){
+		StringBuilder wigosID = new StringBuilder();
+		// TODO: review this identifier when specs are finalized
+		int issuerOfIdentifier = 20002;
+		String identifier = ptfRef;
+		int issueNumber = 0;
+		if(identifier.contains("_")){
+			String[] parts = identifier.split("_");
+			identifier = parts[0];
+			if(parts[1] != null){
+				issueNumber = Integer.parseInt(parts[1]);
+			}
+		}
+		
+		// Building WIGOS ID
+		wigosID.append("0");
+		wigosID.append("-");
+		wigosID.append(String.valueOf(issuerOfIdentifier));
+		wigosID.append("-");
+		wigosID.append(String.valueOf(issueNumber));
+		wigosID.append("-");
+		wigosID.append(identifier);		
+		
+		return wigosID.toString();
+	}
+	
+	/**
 	 * Constructor of this class. Initializes all the context variables. Should not be used directly.
 	 * @throws JAXBException
 	 */
@@ -362,15 +393,21 @@ public class Platform {
 	 * Builds the ObservingFacilityType object for the given platform.
 	 * @param ptf  The Ptf entity object from which data should be extracted
 	 * @return the ObervingFacilityType representation of the platform
+	 * @throws DatatypeConfigurationException 
 	 */
-	private ObservingFacilityType getObservingFacilityType(Ptf ptf) {
+	private ObservingFacilityType getObservingFacilityType(Ptf ptf) throws DatatypeConfigurationException {
 		ObservingFacilityType o = this.wmdrOF.createObservingFacilityType();
 		
 		o.setId("observingFacility-" + ptf.getRef());
 		CodeWithAuthorityType value = this.gmlOF.createCodeWithAuthorityType();
-		value.setValue(ptf.getRef());
+		value.setValue(getWIGOSIdentifier(ptf.getRef()));
 		value.setCodeSpace("http://wigos.wmo.int");
 		o.setIdentifier(value);
+		CodeType name = this.gmlOF.createCodeType();
+		name.setValue(ptf.getName() == null ? ptf.getRef() : ptf.getName());
+		List<CodeType> nameList = new ArrayList<>();
+		nameList.add(name);
+		o.setName(nameList);
 		StringOrRefType value1 = this.gmlOF.createStringOrRefType();
 		value1.setValue(ptf.getDescription());
 		o.setDescription(value1);
@@ -438,13 +475,23 @@ public class Platform {
 
 		o.getResponsibleParty().add(responsibleParty);
 
-		refType = this.gmlOF.createReferenceType();
-		refType.setHref("http://codes.wmo.int/common/wmdr/WMORegion/VOCABULARYTERM");
-		o.setWmoRegion(refType);
+		GregorianCalendar c = new GregorianCalendar();
+		c.setTime(ptf.getUpdateDate());
+		XMLGregorianCalendar date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+		o.setDateEstablished(date2);
+
+
+		TimePeriodPropertyType timePeriodPropertyType = this.gmlOF.createTimePeriodPropertyType();
+		o.setTerritoryNameValidPeriod(timePeriodPropertyType);
 		
 		refType = this.gmlOF.createReferenceType();
 		refType.setHref("http://codes.wmo.int/common/wmdr/TerritoryName/VOCABULARYTERM");
 		o.setTerritoryName(refType);
+		
+		refType = this.gmlOF.createReferenceType();
+		refType.setHref("http://codes.wmo.int/common/wmdr/WMORegion/VOCABULARYTERM");
+		o.setWmoRegion(refType);
+		
 
 		// TODO : check to fit these field
 		refType = this.gmlOF.createReferenceType();
@@ -462,8 +509,6 @@ public class Platform {
 		refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/VOCABULARYTERM");
 		refType.setTitle(ptf.getPtfStatus().getName());
 		//o.setReportingStatus(refType);
-		
-		o.setBelongsToSet(ptf.getProgram().getMasterProg().getName());
 
 		refType = this.gmlOF.createReferenceType();
 		refType.setHref("http://codes.wmo.int/common/wmdr/FacilityType/VOCABULARYTERM");
@@ -579,6 +624,7 @@ public class Platform {
 		
 		return result;
 	}
+	
 	
 	/**
 	 * Marshaller method of this class. Converts a WIGOSMetadataRecord object to its String XML representation.

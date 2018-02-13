@@ -283,5 +283,4 @@ public class Utils {
 	public static void setVersionQualifier(String versionQualifier) {
 		Utils.versionQualifier = versionQualifier;
 	}
-
 }

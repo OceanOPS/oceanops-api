@@ -22,19 +22,19 @@ import org.hisrc.w3c.xlink.v_1_0.TypeType;
 
 
 /**
- * <p>Java class for ControlCheckReportPropertyType complex type.
+ * <p>Java class for FrequenciesPropertyType complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="ControlCheckReportPropertyType">
+ * &lt;complexType name="FrequenciesPropertyType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence minOccurs="0">
- *         &lt;element ref="{http://def.wmo.int/wmdr/2017}ControlCheckReport"/>
+ *         &lt;element ref="{http://def.wmo.int/wmdr/2017}Frequencies"/>
  *       &lt;/sequence>
- *       &lt;attGroup ref="{http://www.opengis.net/gml/3.2}OwnershipAttributeGroup"/>
  *       &lt;attGroup ref="{http://www.opengis.net/gml/3.2}AssociationAttributeGroup"/>
+ *       &lt;attGroup ref="{http://www.opengis.net/gml/3.2}OwnershipAttributeGroup"/>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -43,15 +43,13 @@ import org.hisrc.w3c.xlink.v_1_0.TypeType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ControlCheckReportPropertyType", propOrder = {
-    "controlCheckReport"
+@XmlType(name = "FrequenciesPropertyType", propOrder = {
+    "frequencies"
 })
-public class ControlCheckReportPropertyType {
+public class FrequenciesPropertyType {
 
-    @XmlElement(name = "ControlCheckReport")
-    protected ControlCheckReportType controlCheckReport;
-    @XmlAttribute(name = "owns")
-    protected Boolean owns;
+    @XmlElement(name = "Frequencies")
+    protected FrequenciesType frequencies;
     @XmlAttribute(name = "nilReason")
     protected List<String> nilReason;
     @XmlAttribute(name = "remoteSchema", namespace = "http://www.opengis.net/gml/3.2")
@@ -71,57 +69,31 @@ public class ControlCheckReportPropertyType {
     protected ShowType show;
     @XmlAttribute(name = "actuate", namespace = "http://www.w3.org/1999/xlink")
     protected ActuateType actuate;
+    @XmlAttribute(name = "owns")
+    protected Boolean owns;
 
     /**
-     * Gets the value of the controlCheckReport property.
+     * Gets the value of the frequencies property.
      * 
      * @return
      *     possible object is
-     *     {@link ControlCheckReportType }
+     *     {@link FrequenciesType }
      *     
      */
-    public ControlCheckReportType getControlCheckReport() {
-        return controlCheckReport;
+    public FrequenciesType getFrequencies() {
+        return frequencies;
     }
 
     /**
-     * Sets the value of the controlCheckReport property.
+     * Sets the value of the frequencies property.
      * 
      * @param value
      *     allowed object is
-     *     {@link ControlCheckReportType }
+     *     {@link FrequenciesType }
      *     
      */
-    public void setControlCheckReport(ControlCheckReportType value) {
-        this.controlCheckReport = value;
-    }
-
-    /**
-     * Gets the value of the owns property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
-     */
-    public boolean isOwns() {
-        if (owns == null) {
-            return false;
-        } else {
-            return owns;
-        }
-    }
-
-    /**
-     * Sets the value of the owns property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
-     */
-    public void setOwns(Boolean value) {
-        this.owns = value;
+    public void setFrequencies(FrequenciesType value) {
+        this.frequencies = value;
     }
 
     /**
@@ -343,6 +315,34 @@ public class ControlCheckReportPropertyType {
      */
     public void setActuate(ActuateType value) {
         this.actuate = value;
+    }
+
+    /**
+     * Gets the value of the owns property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public boolean isOwns() {
+        if (owns == null) {
+            return false;
+        } else {
+            return owns;
+        }
+    }
+
+    /**
+     * Sets the value of the owns property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setOwns(Boolean value) {
+        this.owns = value;
     }
 
 }
