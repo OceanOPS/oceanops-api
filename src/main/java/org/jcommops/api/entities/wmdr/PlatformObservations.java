@@ -31,7 +31,7 @@ import org.jcommops.api.orm.Ptf;
 import _int.wmo.def.wmdr._2017.HeaderType;
 import _int.wmo.def.wmdr._2017.ResultSetType;
 import _int.wmo.def.wmdr._2017.WIGOSMetadataRecordType;
-import _int.wmo.def.wmdr._2017.WIGOSMetadataRecordType.Observations;
+//import _int.wmo.def.wmdr._2017.WIGOSMetadataRecordType.Observations;
 import net.opengis.gml.v_3_2_1.CodeType;
 import net.opengis.gml.v_3_2_1.CodeWithAuthorityType;
 import net.opengis.gml.v_3_2_1.DirectPositionType;
@@ -127,8 +127,8 @@ public class PlatformObservations {
 		this.rootElementType.setName(new ArrayList<CodeType>());
 		this.rootElementType.setHeaderInformation(this.getHeaderInformation(ptf));	
 			
-		List<Observations> obss = this.rootElementType.getObservations();
-		List<OMObservationPropertyType> observations = this.getObservations(ptf);
+		//List<Observations> obss = this.rootElementType.getObservations();
+		//List<OMObservationPropertyType> observations = this.getObservations(ptf);
 		// TODO : check to fit these field
 		//obss.addAll(observations);
 	}
