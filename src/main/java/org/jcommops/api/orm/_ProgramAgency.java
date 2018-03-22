@@ -11,6 +11,7 @@ import org.apache.cayenne.CayenneDataObject;
 public abstract class _ProgramAgency extends CayenneDataObject {
 
     public static final String AGENCY_ID_PROPERTY = "agencyId";
+    public static final String LEAD_PROPERTY = "lead";
     public static final String PROGRAM_ID_PROPERTY = "programId";
     public static final String AGENCY_PROPERTY = "agency";
     public static final String PROGRAM_PROPERTY = "program";
@@ -23,6 +24,13 @@ public abstract class _ProgramAgency extends CayenneDataObject {
     }
     public Integer getAgencyId() {
         return (Integer)readProperty(AGENCY_ID_PROPERTY);
+    }
+
+    public void setLead(Integer lead) {
+        writeProperty(LEAD_PROPERTY, lead);
+    }
+    public Integer getLead() {
+        return (Integer)readProperty(LEAD_PROPERTY);
     }
 
     public void setProgramId(Integer programId) {

@@ -7,11 +7,15 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.xml.bind.DatatypeConverter;
 
 import org.apache.cayenne.configuration.server.ServerRuntime;
 import org.jcommops.api.entities.SensorTypeEntity;
@@ -20,7 +24,8 @@ import org.jcommops.api.entities.VariableEntity;
 public class Utils {
 	private static ServerRuntime cayenneRuntime;
 	private static Properties properties;
-	private static String projectName, projectVersion, rootUrl, programUrl, inspectPtfUrl, helpEditionDate, versionQualifier;
+	private static String projectName, projectVersion, rootUrl, programUrl, inspectPtfUrl, helpEditionDate,
+			versionQualifier;
 	private static boolean betaVersion;
 	public static final String CSV_SEPARATOR = ";";
 	public static final SimpleDateFormat ISO_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
@@ -28,9 +33,9 @@ public class Utils {
 
 	private Utils() {
 	}
-	
+
 	public static void init() {
-		if(Utils.properties == null){
+		if (Utils.properties == null) {
 			properties = new Properties();
 			try {
 				properties.load(Utils.class.getClassLoader().getResourceAsStream("properties"));
@@ -41,8 +46,9 @@ public class Utils {
 				inspectPtfUrl = properties.getProperty("INSPECT_PTF_URL");
 				helpEditionDate = properties.getProperty("HELP_EDITION_DATE");
 				versionQualifier = properties.getProperty("VERSION_QUALIFIER");
-				betaVersion = projectVersion.substring(0,1).equals("0") || projectVersion.endsWith("-SNAPSHOT") || versionQualifier.length() > 0;
-				if(versionQualifier.length() == 0 && betaVersion)
+				betaVersion = projectVersion.substring(0, 1).equals("0") || projectVersion.endsWith("-SNAPSHOT")
+						|| versionQualifier.length() > 0;
+				if (versionQualifier.length() == 0 && betaVersion)
 					versionQualifier = "preview";
 			} catch (IOException e) {
 				projectVersion = "X.Y";
@@ -50,13 +56,13 @@ public class Utils {
 			}
 		}
 	}
-	
-	public static String getProgramUrl(){
+
+	public static String getProgramUrl() {
 		Utils.init();
 		return programUrl;
 	}
-	
-	public static String getInspectPtfUrl(){
+
+	public static String getInspectPtfUrl() {
 		Utils.init();
 		return inspectPtfUrl;
 	}
@@ -66,12 +72,10 @@ public class Utils {
 		return projectName;
 	}
 
-
 	public static String getProjectVersion() {
 		Utils.init();
 		return projectVersion;
 	}
-
 
 	public static void initCayenneRuntime() {
 		if (Utils.cayenneRuntime == null) {
@@ -98,7 +102,7 @@ public class Utils {
 	public static String GetIsoDate(Date date) {
 		String dateISO = null;
 		DateFormat formatISO = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-		if(date != null)
+		if (date != null)
 			dateISO = formatISO.format(date);
 		return dateISO;
 	}
@@ -148,15 +152,14 @@ public class Utils {
 		String SqlValueString = str.trim().replace(",", "','");
 		return SqlValueString;
 	}
-	
-	public static boolean isNumeric(String str)
-	{
-	  return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
+
+	public static boolean isNumeric(String str) {
+		return str.matches("-?\\d+(\\.\\d+)?"); // match a number with optional
+												// '-' and decimal.
 	}
-	
-	public static boolean isInt(String str)
-	{
-	  return str.matches("-?\\d+");  //match a number with optional '-'.
+
+	public static boolean isInt(String str) {
+		return str.matches("-?\\d+"); // match a number with optional '-'.
 	}
 
 	public static boolean CheckIntValueForSql(String str) {
@@ -186,7 +189,7 @@ public class Utils {
 
 		} else {
 			try {
-				str =  l.toString();
+				str = l.toString();
 			} catch (NullPointerException e) {
 
 			}
@@ -223,24 +226,24 @@ public class Utils {
 		}
 		return str;
 	}
-	
-	
-	public static String CatchException(Object o){
-		String str="";
-		if (o instanceof NullPointerException){
-			str="catched";
+
+	public static String CatchException(Object o) {
+		String str = "";
+		if (o instanceof NullPointerException) {
+			str = "catched";
 		}
-		
+
 		return str;
-		
+
 	}
-	
+
 	public static String basicSanitize(String value) {
 		String tempValue = null;
-		if(value != null){
+		if (value != null) {
 			tempValue = value.toUpperCase();
 			if ((tempValue.contains("INSERT ") || tempValue.contains("DELETE ") || tempValue.contains("UPDATE ")
-					|| tempValue.contains("DROP ") || tempValue.contains("DEFINE ") || tempValue.contains("ALTER ") || tempValue.contains(";") || tempValue.contains("COMMIT"))) {
+					|| tempValue.contains("DROP ") || tempValue.contains("DEFINE ") || tempValue.contains("ALTER ")
+					|| tempValue.contains(";") || tempValue.contains("COMMIT"))) {
 				tempValue = null;
 			}
 		}
@@ -282,5 +285,15 @@ public class Utils {
 
 	public static void setVersionQualifier(String versionQualifier) {
 		Utils.versionQualifier = versionQualifier;
+	}
+
+	public static Date parseDate(String s) {
+		return DatatypeConverter.parseDate(s).getTime();
+	}
+
+	public static String printDate(Date dt) {
+		Calendar cal = new GregorianCalendar();
+		cal.setTime(dt);
+		return DatatypeConverter.printDate(cal);
 	}
 }

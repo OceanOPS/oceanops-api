@@ -15,6 +15,7 @@ public abstract class _PtfPtfStatus extends CayenneDataObject {
     public static final String CHANGING_DATE_PROPERTY = "changingDate";
     public static final String PTF_ID_PROPERTY = "ptfId";
     public static final String PTF_STATUS_ID_PROPERTY = "ptfStatusId";
+    public static final String PTF_PROPERTY = "ptf";
 
     public static final String CHANGING_DATE_PK_COLUMN = "CHANGING_DATE";
     public static final String PTF_ID_PK_COLUMN = "PTF_ID";
@@ -40,5 +41,14 @@ public abstract class _PtfPtfStatus extends CayenneDataObject {
     public Integer getPtfStatusId() {
         return (Integer)readProperty(PTF_STATUS_ID_PROPERTY);
     }
+
+    public void setPtf(Ptf ptf) {
+        setToOneTarget(PTF_PROPERTY, ptf, true);
+    }
+
+    public Ptf getPtf() {
+        return (Ptf)readProperty(PTF_PROPERTY);
+    }
+
 
 }

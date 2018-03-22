@@ -59,6 +59,7 @@ public abstract class _Ptf extends CayenneDataObject {
     public static final String PTF_LOC_STATUSES_PROPERTY = "ptfLocStatuses";
     public static final String PTF_LOCS_PROPERTY = "ptfLocs";
     public static final String PTF_MODEL_PROPERTY = "ptfModel";
+    public static final String PTF_PTF_STATUSES_PROPERTY = "ptfPtfStatuses";
     public static final String PTF_SENSOR_MODELS_PROPERTY = "ptfSensorModels";
     public static final String PTF_SOFTWARE_PROPERTY = "ptfSoftware";
     public static final String PTF_STATUS_PROPERTY = "ptfStatus";
@@ -474,6 +475,18 @@ public abstract class _Ptf extends CayenneDataObject {
 
     public PtfModel getPtfModel() {
         return (PtfModel)readProperty(PTF_MODEL_PROPERTY);
+    }
+
+
+    public void addToPtfPtfStatuses(PtfPtfStatus obj) {
+        addToManyTarget(PTF_PTF_STATUSES_PROPERTY, obj, true);
+    }
+    public void removeFromPtfPtfStatuses(PtfPtfStatus obj) {
+        removeToManyTarget(PTF_PTF_STATUSES_PROPERTY, obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<PtfPtfStatus> getPtfPtfStatuses() {
+        return (List<PtfPtfStatus>)readProperty(PTF_PTF_STATUSES_PROPERTY);
     }
 
 

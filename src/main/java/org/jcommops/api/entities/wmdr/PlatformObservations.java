@@ -114,11 +114,11 @@ public class PlatformObservations {
 		this();
 		Ptf ptf = Cayenne.objectForPK(this.cayenneContext, Ptf.class, (long)ptfId); 
 		
-		CodeWithAuthorityType identifier = gmlOF.createCodeWithAuthorityType();
+		CodeWithAuthorityType identifier = this.gmlOF.createCodeWithAuthorityType();
 		identifier.setValue(ptf.getRef());
 		identifier.setCodeSpace("http://wigos.wmo.int");
 		
-		StringOrRefType description = gmlOF.createStringOrRefType();
+		StringOrRefType description = this.gmlOF.createStringOrRefType();
 		description.setValue(ptf.getDescription());
 		
 		this.rootElementType.setId("WMDR-" + ptf.getRef());
