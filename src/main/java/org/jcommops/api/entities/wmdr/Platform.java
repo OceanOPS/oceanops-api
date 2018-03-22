@@ -32,8 +32,10 @@ import org.jcommops.api.Utils;
 import org.jcommops.api.accessors.PlatformAccessor;
 import org.jcommops.api.orm.Agency;
 import org.jcommops.api.orm.Obs;
+import org.jcommops.api.orm.ProgramAgency;
 import org.jcommops.api.orm.Ptf;
 import org.jcommops.api.orm.PtfDeployment;
+import org.jcommops.api.orm.PtfPtfStatus;
 import org.jcommops.api.orm.PtfSensorModel;
 import org.jcommops.api.orm.SensorModel;
 import org.jcommops.api.orm.Weblink;
@@ -46,12 +48,16 @@ import _int.wmo.def.wmdr._2017.EquipmentPropertyType;
 import _int.wmo.def.wmdr._2017.EquipmentType;
 import _int.wmo.def.wmdr._2017.FacilityLogPropertyType;
 import _int.wmo.def.wmdr._2017.FacilityLogType;
+import _int.wmo.def.wmdr._2017.GeospatialLocationType;
 import _int.wmo.def.wmdr._2017.HeaderType;
 import _int.wmo.def.wmdr._2017.ObjectFactory;
 import _int.wmo.def.wmdr._2017.ObservingFacilityType;
+import _int.wmo.def.wmdr._2017.ObservingFacilityType.ProgramAffiliation;
+import _int.wmo.def.wmdr._2017.ProgramAffiliationType;
+import _int.wmo.def.wmdr._2017.ProgramAffiliationType.ReportingStatus;
+import _int.wmo.def.wmdr._2017.ReportingStatusType;
+import _int.wmo.def.wmdr._2017.ResponsiblePartyType;
 import _int.wmo.def.wmdr._2017.ResultSetType;
-import _int.wmo.def.wmdr._2017.TimestampedLocationPropertyType;
-import _int.wmo.def.wmdr._2017.TimestampedLocationType;
 import _int.wmo.def.wmdr._2017.WIGOSMetadataRecordType;
 import _int.wmo.def.wmdr._2017.WIGOSMetadataRecordType.Equipment;
 import _int.wmo.def.wmdr._2017.WIGOSMetadataRecordType.Facility;
@@ -179,11 +185,11 @@ public class Platform {
 		this();
 		Ptf ptf = Cayenne.objectForPK(this.cayenneContext, Ptf.class, (long)ptfId); 
 		
-		CodeWithAuthorityType identifier = gmlOF.createCodeWithAuthorityType();
+		CodeWithAuthorityType identifier = new CodeWithAuthorityType();
 		identifier.setValue(ptf.getRef());
 		identifier.setCodeSpace("http://wigos.wmo.int");
 		
-		StringOrRefType description = gmlOF.createStringOrRefType();
+		StringOrRefType description = new StringOrRefType();
 		description.setValue(ptf.getDescription());
 		
 		this.rootElementType.setId("WMDR-" + ptf.getRef());
@@ -208,7 +214,7 @@ public class Platform {
 	 */
 	private CIResponsiblePartyType getCIResponsibleParty(Integer agencyId, String ciRoleCode){
 		ciResponsiblePartyCounter++;
-		CIResponsiblePartyType responsibleParty = this.gmdOF.createCIResponsiblePartyType();
+		CIResponsiblePartyType responsibleParty = new CIResponsiblePartyType();
 		Agency agency;
 		if(agencyId != null){
 			agency = Cayenne.objectForPK(this.cayenneContext, Agency.class, agencyId); 
@@ -342,11 +348,11 @@ public class Platform {
 			currentEquipmentType.setId("equipment-" + sm.getObjectId().getIdSnapshot().get("ID").toString());
 			
 			ArrayList<CodeType> names = new ArrayList<CodeType>();
-			CodeType name = this.gmlOF.createCodeType();
+			CodeType name = new CodeType();
 			name.setValue(sm.getName());
 			names.add(name);
 			currentEquipmentType.setName(names);
-			StringOrRefType value = this.gmlOF.createStringOrRefType();
+			StringOrRefType value = new StringOrRefType();
 			value.setValue(sm.getDescription());
 			currentEquipmentType.setDescription(value);
 			
@@ -364,17 +370,21 @@ public class Platform {
 						
 			ReferenceType refType = this.gmlOF.createReferenceType();
 			refType.setHref("http://codes.wmo.int/common/wmdr/GeopositioningMethod/VOCABULARYTERM");
-			currentEquipmentType.setGeopositioningMethod(refType);
+			//currentEquipmentType.setGeopositioningMethod(refType);
 
 			AbstractEnvironmentalMonitoringFacilityType.ResponsibleParty responsibleParty = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeResponsibleParty();
+			ResponsiblePartyType responsiblePartyType = this.wmdrOF.createResponsiblePartyType();
+			ResponsiblePartyType.ResponsibleParty rp = this.wmdrOF.createResponsiblePartyTypeResponsibleParty();
 			if(sm.getAgency() != null){
-				responsibleParty.setCIResponsibleParty(this.getCIResponsibleParty(Integer.parseInt(sm.getAgency().getObjectId().getIdSnapshot().get("ID").toString()), "custodian"));
+				rp.setCIResponsibleParty(this.getCIResponsibleParty(Integer.parseInt(sm.getAgency().getObjectId().getIdSnapshot().get("ID").toString()), "custodian"));
 				
 				currentEquipmentType.setManufacturer(sm.getAgency().getName());
 			}
 			else
-				responsibleParty.setCIResponsibleParty(this.getCIResponsibleParty(null, null));
+				rp.setCIResponsibleParty(this.getCIResponsibleParty(null, null));
 			
+			responsiblePartyType.setResponsibleParty(rp);
+			responsibleParty.setResponsibleParty(responsiblePartyType);
 			currentEquipmentType.getResponsibleParty().add(responsibleParty);
 			
 
@@ -397,18 +407,18 @@ public class Platform {
 	 */
 	private ObservingFacilityType getObservingFacilityType(Ptf ptf) throws DatatypeConfigurationException {
 		ObservingFacilityType o = this.wmdrOF.createObservingFacilityType();
-		
-		o.setId("observingFacility-" + ptf.getRef());
-		CodeWithAuthorityType value = this.gmlOF.createCodeWithAuthorityType();
-		value.setValue(getWIGOSIdentifier(ptf.getRef()));
+		String wigosID = getWIGOSIdentifier(ptf.getRef());
+		o.setId("_" + wigosID);
+		CodeWithAuthorityType value = new CodeWithAuthorityType();
+		value.setValue(wigosID);
 		value.setCodeSpace("http://wigos.wmo.int");
 		o.setIdentifier(value);
-		CodeType name = this.gmlOF.createCodeType();
+		CodeType name = new CodeType();
 		name.setValue(ptf.getName() == null ? ptf.getRef() : ptf.getName());
 		List<CodeType> nameList = new ArrayList<>();
 		nameList.add(name);
 		o.setName(nameList);
-		StringOrRefType value1 = this.gmlOF.createStringOrRefType();
+		StringOrRefType value1 = new StringOrRefType();
 		value1.setValue(ptf.getDescription());
 		o.setDescription(value1);
 		
@@ -431,113 +441,155 @@ public class Platform {
 			onlineResources.add(or);
 		}
 		
-		// TODO Check we can add all ptf locations
+		// BEGIN - Latest location
 		List<GeospatialLocation> geospatialLocs = o.getGeospatialLocation();
 		GeospatialLocation gsLoc = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeGeospatialLocation();
-		TimestampedLocationType tsLoc = this.wmdrOF.createTimestampedLocationType();
-		TimePeriodPropertyType timePeriodProperty = this.gmlOF.createTimePeriodPropertyType();
-		TimePeriodType timePeriod = this.gmlOF.createTimePeriodType();
-		TimePositionType timePosition = this.gmlOF.createTimePositionType();
+		GeospatialLocationType gsLocType = this.wmdrOF.createGeospatialLocationType();
 		
+		TimePeriodPropertyType timePeriodProperty = new TimePeriodPropertyType();
+		TimePeriodType timePeriod = new TimePeriodType();
+		TimePositionType timePosition = new TimePositionType();
 		timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(ptf.getLastLoc().getLocDate())));
-		timePeriod.setId("observingFacility-" + ptf.getRef() + "-LatestLocationTimePeriod");
+		timePeriod.setId(o.getId() + "-LatestLocationTimePeriod");
 		timePeriod.setBeginPosition(timePosition);
-		timePeriod.setEndPosition(this.gmlOF.createTimePositionType());
+		timePeriod.setEndPosition(new TimePositionType());
 		timePeriodProperty.setTimePeriod(timePeriod);
 		
-		GeometryPropertyType geomProperty = this.gmlOF.createGeometryPropertyType();
-		PointType geom = this.gmlOF.createPointType();
-		geom.setId("observingFacility-" + ptf.getRef() + "-LatestLocationGeometry");
-		DirectPositionType pos = this.gmlOF.createDirectPositionType();
+		PointType geom = new PointType();
+		geom.setId(o.getId() + "-LatestLocationGeometry");
+		DirectPositionType pos = new DirectPositionType();
 		pos.setValue(Arrays.asList(ptf.getLastLoc().getLat().doubleValue(), ptf.getLastLoc().getLon().doubleValue(), ptf.getLastLoc().getElevation() == null ? 0: ptf.getLastLoc().getElevation().doubleValue()));
 		geom.setPos(pos);
 		geom.setSrsName("http://www.opengis.net/def/crs/EPSG/0/4979");
-		geomProperty.setAbstractGeometry(this.gmlOF.createPoint(geom));
+
+		GeometryPropertyType geomProperty = new GeometryPropertyType();
+		geomProperty.setAbstractGeometry(this.gmlOF.createAbstractGeometry(geom));
 		
-		tsLoc.setValidTimePeriod(timePeriodProperty);
-		tsLoc.setLocation(geomProperty);
-		
-		gsLoc.setTimestampedLocation(tsLoc);
-		geospatialLocs.add(gsLoc);
-		
+		// TODO Check WMO code tables
 		ReferenceType refType = this.gmlOF.createReferenceType();
 		refType.setHref("http://codes.wmo.int/common/wmdr/GeopositioningMethod/VOCABULARYTERM");
-		if(ptf.getTelecom() != null && ptf.getTelecom().getTelecomType() != null)
-			refType.setTitle(ptf.getTelecom().getTelecomType().getName());
-		o.setGeopositioningMethod(refType);
+		if(ptf.getTrackingSystem() != null)
+			refType.setTitle(ptf.getTrackingSystem().getName());
+		
+		gsLocType.setGeopositioningMethod(refType);
+		gsLocType.setGeoLocation(geomProperty);
+		gsLocType.setValidPeriod(timePeriodProperty);
+		
+		gsLoc.setGeospatialLocation(gsLocType);
+		geospatialLocs.add(gsLoc);
+		// END - Latest location
+		
 		
 		AbstractEnvironmentalMonitoringFacilityType.ResponsibleParty responsibleParty = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeResponsibleParty();
+		ResponsiblePartyType responsiblePartyType = this.wmdrOF.createResponsiblePartyType();
+		ResponsiblePartyType.ResponsibleParty rp = this.wmdrOF.createResponsiblePartyTypeResponsibleParty();
 		if(ptf.getProgram().getAgencies().size() > 0){
-			responsibleParty.setCIResponsibleParty(this.getCIResponsibleParty(Integer.parseInt(ptf.getProgram().getAgencies().get(0).getObjectId().getIdSnapshot().get("ID").toString()), "custodian"));
+			String agencyID = null;
+			for(ProgramAgency prAgency: ptf.getProgram().getProgramAgencies()){
+				if(prAgency.getLead() == 1)
+					agencyID = String.valueOf(prAgency.getAgencyId());
+			}
+			
+			if(agencyID == null)
+				rp.setCIResponsibleParty(this.getCIResponsibleParty(Integer.parseInt(ptf.getProgram().getAgencies().get(0).getObjectId().getIdSnapshot().get("ID").toString()), "custodian"));
 		}
 		else
-			responsibleParty.setCIResponsibleParty(this.getCIResponsibleParty(null, null));
-
+			rp.setCIResponsibleParty(this.getCIResponsibleParty(null, null));
+		responsiblePartyType.setResponsibleParty(rp);
+		responsibleParty.setResponsibleParty(responsiblePartyType);
 		o.getResponsibleParty().add(responsibleParty);
 
 		GregorianCalendar c = new GregorianCalendar();
 		c.setTime(ptf.getUpdateDate());
-		XMLGregorianCalendar date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
-		o.setDateEstablished(date2);
+		XMLGregorianCalendar date = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+		o.setDateEstablished(date);
+		
+		if(ptf.getEndingDate() != null){
+			c.setTime(ptf.getEndingDate());
+			date = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+			o.setDateClosed(date);
+		}
 
 
 		TimePeriodPropertyType timePeriodPropertyType = this.gmlOF.createTimePeriodPropertyType();
-		o.setTerritoryNameValidPeriod(timePeriodPropertyType);
+		//o.setTerritoryNameValidPeriod(timePeriodPropertyType);
 		
 		refType = this.gmlOF.createReferenceType();
 		refType.setHref("http://codes.wmo.int/common/wmdr/TerritoryName/VOCABULARYTERM");
-		o.setTerritoryName(refType);
+		//o.setTerritoryName(refType);
 		
 		refType = this.gmlOF.createReferenceType();
 		refType.setHref("http://codes.wmo.int/common/wmdr/WMORegion/VOCABULARYTERM");
 		o.setWmoRegion(refType);
 		
 
-		// TODO : check to fit these field
-		refType = this.gmlOF.createReferenceType();
-		refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/VOCABULARYTERM");
-		refType.setTitle(ptf.getProgram().getMasterProg().getName());
-		// TODO : check to fit these field
-		//o.getProgramAffiliation().add(refType);
+		// TODO : check WMO code tables
+		ProgramAffiliation progAffiliation = this.wmdrOF.createObservingFacilityTypeProgramAffiliation();
+		ProgramAffiliationType progAffiliationType = this.wmdrOF.createProgramAffiliationType();
 		refType = this.gmlOF.createReferenceType();
 		refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/VOCABULARYTERM");
 		refType.setTitle(ptf.getProgram().getName());
-		// TODO : check to fit these field
-		//o.getProgramAffiliation().add(refType);
+		progAffiliationType.setProgramAffiliation(refType);
+		ReportingStatus reportingStatus = null;
+		ReportingStatusType reportingStatusType = null;
+		for(PtfPtfStatus ptfPtfStatus: ptf.getPtfPtfStatuses()){
+			reportingStatus = this.wmdrOF.createProgramAffiliationTypeReportingStatus();
+			reportingStatusType = this.wmdrOF.createReportingStatusType();
+			// TODO : check WMO code tables
+			refType = new ReferenceType();
+			refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/VOCABULARYTERM");
+			refType.setTitle(ptf.getPtfStatus().getName());
+			reportingStatusType.setReportingStatus(refType);
+			
+			timePeriodProperty = new TimePeriodPropertyType();
+			timePeriod = new TimePeriodType();
+			timePosition = new TimePositionType();
+			timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(ptfPtfStatus.getChangingDate())));
+			timePeriod.setId(o.getId() + "-StatusChangingDateTimePeriod");
+			timePeriod.setBeginPosition(timePosition);
+			timePeriod.setEndPosition(new TimePositionType());
+			timePeriodProperty.setTimePeriod(timePeriod);
+			
+			reportingStatusType.setValidPeriod(timePeriodProperty);
+			reportingStatus.setReportingStatus(reportingStatusType);
+			progAffiliationType.getReportingStatus().add(reportingStatus);
+		}
+		progAffiliation.setProgramAffiliation(progAffiliationType);
+		o.getProgramAffiliation().add(progAffiliation);
 		
-		refType = this.gmlOF.createReferenceType();
+		refType = new ReferenceType();
 		refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/VOCABULARYTERM");
 		refType.setTitle(ptf.getPtfStatus().getName());
 		//o.setReportingStatus(refType);
 
-		refType = this.gmlOF.createReferenceType();
+		refType = new ReferenceType();
 		refType.setHref("http://codes.wmo.int/common/wmdr/FacilityType/VOCABULARYTERM");
 		refType.setTitle(ptf.getPtfModel().getName());
 		o.setFacilityType(refType);
 		
-		refType = this.gmlOF.createReferenceType();
+		refType = new ReferenceType();
 		refType.setHref("http://codes.wmo.int/common/wmdr/AltitudeOrDepth/VOCABULARYTERM");
-		o.setAltitudeOrDepth(refType);
+		//o.setAltitudeOrDepth(refType);
 
-		refType = this.gmlOF.createReferenceType();
+		refType = new ReferenceType();
 		refType.setHref("http://codes.wmo.int/common/wmdr/LocalTopography/VOCABULARYTERM");
-		o.setLocalTopography(refType);
+		//o.setLocalTopography(refType);
 		
-		refType = this.gmlOF.createReferenceType();
+		refType = new ReferenceType();
 		refType.setHref("http://codes.wmo.int/common/wmdr/RelativeElevation/VOCABULARYTERM");
-		o.setRelativeElevation(refType);
+		//o.setRelativeElevation(refType);
 
-		refType = this.gmlOF.createReferenceType();
+		refType = new ReferenceType();
 		refType.setHref("http://codes.wmo.int/common/wmdr/SurfaceCoverIGBP/VOCABULARYTERM");
-		o.setSurfaceCover(refType);
+		//o.setSurfaceCover(refType);
 		
-		refType = this.gmlOF.createReferenceType();
+		refType = new ReferenceType();
 		refType.setHref("http://codes.wmo.int/common/wmdr/SurfaceCoverClassification/VOCABULARYTERM");
-		o.setSurfaceCoverClassification(refType);
+		//o.setSurfaceCoverClassification(refType);
 
-		refType = this.gmlOF.createReferenceType();
+		refType = new ReferenceType();
 		refType.setHref("http://codes.wmo.int/common/wmdr/TopographicContext/VOCABULARYTERM");
-		o.setTopographicContext(refType);
+		//o.setTopographicContext(refType);
 
 
 		List<EquipmentPropertyType> equipments = o.getEquipment();
@@ -560,7 +612,7 @@ public class Platform {
 	private List<OMObservationPropertyType> getObservations(Ptf ptf){
 		List<OMObservationPropertyType> result = new ArrayList<OMObservationPropertyType>();
 		
-		Expression qual = ExpressionFactory.matchExp("ptfId", Integer.parseInt(ptf.getObjectId().getIdSnapshot().get("ID").toString()));
+		/*Expression qual = ExpressionFactory.matchExp("ptfId", Integer.parseInt(ptf.getObjectId().getIdSnapshot().get("ID").toString()));
 		SelectQuery query = new SelectQuery(Obs.class, qual);
 		List<Obs> observations = cayenneContext.performQuery(query);
 		
@@ -620,7 +672,7 @@ public class Platform {
 			currentObsType.setOMObservation(currentObs);
 			
 			result.add(currentObsType);
-		}
+		}*/
 		
 		return result;
 	}

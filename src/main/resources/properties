@@ -5,3 +5,4 @@ ROOT_URL=${project.url}
 HELP_EDITION_DATE=${helpEditionDate}
 BETA=${betaVersion}
 VERSION_QUALIFIER=${versionQualifier}
+INSPECT_PTF_URL=http://www.jcommops.org/board/wa/Platform?ref=
