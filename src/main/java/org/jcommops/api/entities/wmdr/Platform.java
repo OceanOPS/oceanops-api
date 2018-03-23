@@ -32,6 +32,7 @@ import org.jcommops.api.orm.Weblink;
 import _int.wmo.def.wmdr._2017.AbstractEnvironmentalMonitoringFacilityType;
 import _int.wmo.def.wmdr._2017.AbstractEnvironmentalMonitoringFacilityType.GeospatialLocation;
 import _int.wmo.def.wmdr._2017.AbstractEnvironmentalMonitoringFacilityType.OnlineResource;
+import _int.wmo.def.wmdr._2017.DataGenerationPropertyType;
 import _int.wmo.def.wmdr._2017.DeploymentType;
 import _int.wmo.def.wmdr._2017.EquipmentPropertyType;
 import _int.wmo.def.wmdr._2017.EquipmentType;
@@ -306,6 +307,14 @@ public class Platform {
 		
 		Deployment d = new Deployment();
 		DeploymentType dt = new DeploymentType();
+		
+		dt.setId(ptfId + "-depl");
+		
+		EquipmentPropertyType equipmentPropType = new EquipmentPropertyType();
+		dt.setDeployedEquipment(equipmentPropType);
+		
+		DataGenerationPropertyType dataGenerationPropType = new DataGenerationPropertyType();
+		dt.getDataGeneration().add(dataGenerationPropType);
 	
 		LocationPropertyType locationPropType = new LocationPropertyType();
 
@@ -324,19 +333,32 @@ public class Platform {
 		
 		locationPropType.setAbstractGeometry(this.gmlOF.createPoint(geom));
 		dt.setLocation(this.gmlOF.createLocation(locationPropType));
-		
+
+		MeasureType measureType = new MeasureType();
+		measureType.setUom("m");
 		if(depl.getDeplHeight() != null){
-			MeasureType measureType = new MeasureType();
 			measureType.setValue(depl.getDeplHeight().doubleValue());
-			dt.setHeightAboveLocalReferenceSurface(measureType);
 		}
+		dt.setHeightAboveLocalReferenceSurface(measureType);
+		
+		ReferenceType refType = new ReferenceType();
+		dt.setLocalReferenceSurface(refType);
+		
+		refType = new ReferenceType();
+		dt.getApplicationArea().add(refType);
+
+		refType = new ReferenceType();
+		dt.setSourceOfObservation(refType);
 		
 		if(depl.getDeplDate() != null){
 			TimePeriodPropertyType timePeriodPropertyType = new TimePeriodPropertyType();
 			TimePeriodType timePeriodType = new TimePeriodType();
+			timePeriodType.setId(ptfId + "-depl-date");
 			TimePositionType timePositionType = new TimePositionType();
 			timePositionType.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(depl.getDeplDate())));
 			timePeriodType.setBeginPosition(timePositionType);
+			timePositionType = new TimePositionType();
+			timePeriodType.setEndPosition(timePositionType);
 			timePeriodPropertyType.setTimePeriod(timePeriodType);
 			dt.setValidPeriod(timePeriodPropertyType);
 		}
@@ -387,7 +409,7 @@ public class Platform {
 			}
 						
 			ReferenceType refType = this.gmlOF.createReferenceType();
-			refType.setHref("http://codes.wmo.int/common/wmdr/GeopositioningMethod/VOCABULARYTERM");
+			refType.setHref("http://codes.wmo.int/common/wmdr/GeopositioningMethod/");
 			//currentEquipmentType.setGeopositioningMethod(refType);
 
 			AbstractEnvironmentalMonitoringFacilityType.ResponsibleParty responsibleParty = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeResponsibleParty();
@@ -407,7 +429,7 @@ public class Platform {
 			
 
 			refType = this.gmlOF.createReferenceType();
-			refType.setHref("http://codes.wmo.int/common/wmdr/ObservingMethod/VOCABULARYTERM");
+			refType.setHref("http://codes.wmo.int/common/wmdr/ObservingMethod/");
 			currentEquipmentType.setObservingMethod(refType);
 			
 			currentEquipment.setEquipment(currentEquipmentType);
@@ -486,9 +508,10 @@ public class Platform {
 		
 		// TODO Check WMO code tables
 		ReferenceType refType = this.gmlOF.createReferenceType();
-		refType.setHref("http://codes.wmo.int/common/wmdr/GeopositioningMethod/VOCABULARYTERM");
 		if(ptf.getTrackingSystem() != null)
-			refType.setTitle(ptf.getTrackingSystem().getName());
+			refType.setHref("http://codes.wmo.int/common/wmdr/GeopositioningMethod/" + ptf.getTrackingSystem().getName());
+		else
+			refType.setHref("http://codes.wmo.int/common/wmdr/GeopositioningMethod/");
 		
 		gsLocType.setGeopositioningMethod(refType);
 		gsLocType.setGeoLocation(geomProperty);
@@ -525,13 +548,13 @@ public class Platform {
 		}
 		
 		refType = this.gmlOF.createReferenceType();
-		refType.setHref("http://codes.wmo.int/common/wmdr/WMORegion/VOCABULARYTERM");
+		refType.setHref("http://codes.wmo.int/common/wmdr/WMORegion/");
 		o.setWmoRegion(refType);
 		
 		Territory territory = new Territory();
 		TerritoryType territoryType = new TerritoryType();
 		refType = this.gmlOF.createReferenceType();
-		refType.setHref("http://codes.wmo.int/common/wmdr/TerritoryName/VOCABULARYTERM");
+		refType.setHref("http://codes.wmo.int/common/wmdr/TerritoryName/");
 		territoryType.setTerritoryName(refType);
 		territory.setTerritory(territoryType);
 		o.getTerritory().add(territory);
@@ -540,8 +563,7 @@ public class Platform {
 		ProgramAffiliation progAffiliation = this.wmdrOF.createObservingFacilityTypeProgramAffiliation();
 		ProgramAffiliationType progAffiliationType = this.wmdrOF.createProgramAffiliationType();
 		refType = this.gmlOF.createReferenceType();
-		refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/VOCABULARYTERM");
-		refType.setTitle(ptf.getProgram().getMasterProg().getName());
+		refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/" + ptf.getProgram().getMasterProg().getName());
 		progAffiliationType.setProgramAffiliation(refType);
 		ReportingStatus reportingStatus = null;
 		ReportingStatusType reportingStatusType = null;
@@ -551,8 +573,7 @@ public class Platform {
 			reportingStatusType = this.wmdrOF.createReportingStatusType();
 			// TODO : check WMO code tables
 			refType = new ReferenceType();
-			refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/VOCABULARYTERM");
-			refType.setTitle(ptfPtfStatus.getPtfStatus().getName());
+			refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + ptfPtfStatus.getPtfStatus().getName());
 			reportingStatusType.setReportingStatus(refType);
 			
 			timePeriodProperty = new TimePeriodPropertyType();
@@ -575,15 +596,13 @@ public class Platform {
 		progAffiliation = this.wmdrOF.createObservingFacilityTypeProgramAffiliation();
 		progAffiliationType = this.wmdrOF.createProgramAffiliationType();
 		refType = this.gmlOF.createReferenceType();
-		refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/VOCABULARYTERM");
-		refType.setTitle(ptf.getProgram().getName());
+		refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/" + ptf.getProgram().getName());
 		progAffiliationType.setProgramAffiliation(refType);
 		progAffiliation.setProgramAffiliation(progAffiliationType);
 		o.getProgramAffiliation().add(progAffiliation);
 
 		refType = new ReferenceType();
-		refType.setHref("http://codes.wmo.int/common/wmdr/FacilityType/VOCABULARYTERM");
-		refType.setTitle(ptf.getPtfModel().getName());
+		refType.setHref("http://codes.wmo.int/common/wmdr/FacilityType/" + ptf.getPtfModel().getName());
 		o.setFacilityType(refType);
 				
 		List<EquipmentPropertyType> equipments = o.getEquipment();
