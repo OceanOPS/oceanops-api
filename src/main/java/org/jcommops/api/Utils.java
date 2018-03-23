@@ -12,10 +12,14 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.Properties;
+import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.xml.bind.DatatypeConverter;
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.apache.cayenne.configuration.server.ServerRuntime;
 import org.jcommops.api.entities.SensorTypeEntity;
@@ -292,8 +296,19 @@ public class Utils {
 	}
 
 	public static String printDate(Date dt) {
-		Calendar cal = new GregorianCalendar();
-		cal.setTime(dt);
-		return DatatypeConverter.printDate(cal);
+		GregorianCalendar c = new GregorianCalendar(TimeZone.getTimeZone("UTC"));
+		c.setTime(dt);
+		return DatatypeConverter.printDate(c);
+	}
+	
+	public static XMLGregorianCalendar getDateAsXmlGregCal(Date dt){
+		GregorianCalendar c = new GregorianCalendar(TimeZone.getTimeZone("UTC"));
+		c.setTime(dt);
+		try {
+			XMLGregorianCalendar date = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+			return date;
+		} catch (DatatypeConfigurationException e) {
+			return null;
+		}
 	}
 }
