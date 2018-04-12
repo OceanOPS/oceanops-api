@@ -24,7 +24,6 @@ public abstract class _PtfHardware extends CayenneDataObject {
     public static final String MOORING_WEIGHT_PROPERTY = "mooringWeight";
     public static final String SERIAL_REF_PROPERTY = "serialRef";
     public static final String SPEC_PROPERTY = "spec";
-    public static final String WATCH_CIRCLE_PROPERTY = "watchCircle";
     public static final String BATTERY_PROPERTY = "battery";
     public static final String FIRMWARE_PROPERTY = "firmware";
     public static final String FIRMWARE_ADD_PROPERTY = "firmwareAdd";
@@ -103,13 +102,6 @@ public abstract class _PtfHardware extends CayenneDataObject {
     }
     public byte[] getSpec() {
         return (byte[])readProperty(SPEC_PROPERTY);
-    }
-
-    public void setWatchCircle(Integer watchCircle) {
-        writeProperty(WATCH_CIRCLE_PROPERTY, watchCircle);
-    }
-    public Integer getWatchCircle() {
-        return (Integer)readProperty(WATCH_CIRCLE_PROPERTY);
     }
 
     public void setBattery(PtfBattery battery) {
