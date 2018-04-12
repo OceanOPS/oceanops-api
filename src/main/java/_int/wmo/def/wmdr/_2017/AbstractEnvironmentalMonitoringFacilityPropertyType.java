@@ -89,8 +89,8 @@ public class AbstractEnvironmentalMonitoringFacilityPropertyType implements Seri
      * @return
      *     possible object is
      *     {@link JAXBElement }{@code <}{@link ObservingFacilityType }{@code >}
-     *     {@link JAXBElement }{@code <}{@link EquipmentType }{@code >}
      *     {@link JAXBElement }{@code <}{@link AbstractEnvironmentalMonitoringFacilityType }{@code >}
+     *     {@link JAXBElement }{@code <}{@link EquipmentType }{@code >}
      *     
      */
     public JAXBElement<? extends AbstractEnvironmentalMonitoringFacilityType> getAbstractEnvironmentalMonitoringFacility() {
@@ -103,8 +103,8 @@ public class AbstractEnvironmentalMonitoringFacilityPropertyType implements Seri
      * @param value
      *     allowed object is
      *     {@link JAXBElement }{@code <}{@link ObservingFacilityType }{@code >}
-     *     {@link JAXBElement }{@code <}{@link EquipmentType }{@code >}
      *     {@link JAXBElement }{@code <}{@link AbstractEnvironmentalMonitoringFacilityType }{@code >}
+     *     {@link JAXBElement }{@code <}{@link EquipmentType }{@code >}
      *     
      */
     public void setAbstractEnvironmentalMonitoringFacility(JAXBElement<? extends AbstractEnvironmentalMonitoringFacilityType> value) {

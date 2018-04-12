@@ -42,8 +42,8 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  *       &lt;sequence minOccurs="0"&gt;
  *         &lt;element ref="{http://def.wmo.int/opm/2013}AbstractObservableProperty"/&gt;
  *       &lt;/sequence&gt;
- *       &lt;attGroup ref="{http://www.opengis.net/gml/3.2}AssociationAttributeGroup"/&gt;
  *       &lt;attGroup ref="{http://www.opengis.net/gml/3.2}OwnershipAttributeGroup"/&gt;
+ *       &lt;attGroup ref="{http://www.opengis.net/gml/3.2}AssociationAttributeGroup"/&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -61,6 +61,8 @@ public class AbstractObservablePropertyPropertyType implements Serializable, Clo
     private final static long serialVersionUID = 1L;
     @XmlElementRef(name = "AbstractObservableProperty", namespace = "http://def.wmo.int/opm/2013", type = JAXBElement.class, required = false)
     protected JAXBElement<? extends AbstractObservablePropertyType> abstractObservableProperty;
+    @XmlAttribute(name = "owns")
+    protected Boolean owns;
     @XmlAttribute(name = "nilReason")
     protected List<String> nilReason;
     @XmlAttribute(name = "remoteSchema", namespace = "http://www.opengis.net/gml/3.2")
@@ -80,18 +82,16 @@ public class AbstractObservablePropertyPropertyType implements Serializable, Clo
     protected ShowType show;
     @XmlAttribute(name = "actuate", namespace = "http://www.w3.org/1999/xlink")
     protected ActuateType actuate;
-    @XmlAttribute(name = "owns")
-    protected Boolean owns;
 
     /**
      * Gets the value of the abstractObservableProperty property.
      * 
      * @return
      *     possible object is
+     *     {@link JAXBElement }{@code <}{@link QualifiedObservablePropertyType }{@code >}
      *     {@link JAXBElement }{@code <}{@link ObservablePropertyType }{@code >}
      *     {@link JAXBElement }{@code <}{@link CompositeObservablePropertyType }{@code >}
      *     {@link JAXBElement }{@code <}{@link AbstractObservablePropertyType }{@code >}
-     *     {@link JAXBElement }{@code <}{@link QualifiedObservablePropertyType }{@code >}
      *     
      */
     public JAXBElement<? extends AbstractObservablePropertyType> getAbstractObservableProperty() {
@@ -103,10 +103,10 @@ public class AbstractObservablePropertyPropertyType implements Serializable, Clo
      * 
      * @param value
      *     allowed object is
+     *     {@link JAXBElement }{@code <}{@link QualifiedObservablePropertyType }{@code >}
      *     {@link JAXBElement }{@code <}{@link ObservablePropertyType }{@code >}
      *     {@link JAXBElement }{@code <}{@link CompositeObservablePropertyType }{@code >}
      *     {@link JAXBElement }{@code <}{@link AbstractObservablePropertyType }{@code >}
-     *     {@link JAXBElement }{@code <}{@link QualifiedObservablePropertyType }{@code >}
      *     
      */
     public void setAbstractObservableProperty(JAXBElement<? extends AbstractObservablePropertyType> value) {
@@ -115,6 +115,42 @@ public class AbstractObservablePropertyPropertyType implements Serializable, Clo
 
     public boolean isSetAbstractObservableProperty() {
         return (this.abstractObservableProperty!= null);
+    }
+
+    /**
+     * Gets the value of the owns property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public boolean isOwns() {
+        if (owns == null) {
+            return false;
+        } else {
+            return owns;
+        }
+    }
+
+    /**
+     * Sets the value of the owns property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setOwns(boolean value) {
+        this.owns = value;
+    }
+
+    public boolean isSetOwns() {
+        return (this.owns!= null);
+    }
+
+    public void unsetOwns() {
+        this.owns = null;
     }
 
     /**
@@ -378,42 +414,6 @@ public class AbstractObservablePropertyPropertyType implements Serializable, Clo
         return (this.actuate!= null);
     }
 
-    /**
-     * Gets the value of the owns property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
-     */
-    public boolean isOwns() {
-        if (owns == null) {
-            return false;
-        } else {
-            return owns;
-        }
-    }
-
-    /**
-     * Sets the value of the owns property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
-     */
-    public void setOwns(boolean value) {
-        this.owns = value;
-    }
-
-    public boolean isSetOwns() {
-        return (this.owns!= null);
-    }
-
-    public void unsetOwns() {
-        this.owns = null;
-    }
-
     public String toString() {
         final ToStringStrategy2 strategy = JAXBToStringStrategy.INSTANCE;
         final StringBuilder buffer = new StringBuilder();
@@ -433,6 +433,11 @@ public class AbstractObservablePropertyPropertyType implements Serializable, Clo
             JAXBElement<? extends AbstractObservablePropertyType> theAbstractObservableProperty;
             theAbstractObservableProperty = this.getAbstractObservableProperty();
             strategy.appendField(locator, this, "abstractObservableProperty", buffer, theAbstractObservableProperty, this.isSetAbstractObservableProperty());
+        }
+        {
+            boolean theOwns;
+            theOwns = (this.isSetOwns()?this.isOwns():false);
+            strategy.appendField(locator, this, "owns", buffer, theOwns, this.isSetOwns());
         }
         {
             List<String> theNilReason;
@@ -479,11 +484,6 @@ public class AbstractObservablePropertyPropertyType implements Serializable, Clo
             theActuate = this.getActuate();
             strategy.appendField(locator, this, "actuate", buffer, theActuate, this.isSetActuate());
         }
-        {
-            boolean theOwns;
-            theOwns = (this.isSetOwns()?this.isOwns():false);
-            strategy.appendField(locator, this, "owns", buffer, theOwns, this.isSetOwns());
-        }
         return buffer;
     }
 
@@ -501,6 +501,15 @@ public class AbstractObservablePropertyPropertyType implements Serializable, Clo
             JAXBElement<? extends AbstractObservablePropertyType> rhsAbstractObservableProperty;
             rhsAbstractObservableProperty = that.getAbstractObservableProperty();
             if (!strategy.equals(LocatorUtils.property(thisLocator, "abstractObservableProperty", lhsAbstractObservableProperty), LocatorUtils.property(thatLocator, "abstractObservableProperty", rhsAbstractObservableProperty), lhsAbstractObservableProperty, rhsAbstractObservableProperty, this.isSetAbstractObservableProperty(), that.isSetAbstractObservableProperty())) {
+                return false;
+            }
+        }
+        {
+            boolean lhsOwns;
+            lhsOwns = (this.isSetOwns()?this.isOwns():false);
+            boolean rhsOwns;
+            rhsOwns = (that.isSetOwns()?that.isOwns():false);
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "owns", lhsOwns), LocatorUtils.property(thatLocator, "owns", rhsOwns), lhsOwns, rhsOwns, this.isSetOwns(), that.isSetOwns())) {
                 return false;
             }
         }
@@ -585,15 +594,6 @@ public class AbstractObservablePropertyPropertyType implements Serializable, Clo
                 return false;
             }
         }
-        {
-            boolean lhsOwns;
-            lhsOwns = (this.isSetOwns()?this.isOwns():false);
-            boolean rhsOwns;
-            rhsOwns = (that.isSetOwns()?that.isOwns():false);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "owns", lhsOwns), LocatorUtils.property(thatLocator, "owns", rhsOwns), lhsOwns, rhsOwns, this.isSetOwns(), that.isSetOwns())) {
-                return false;
-            }
-        }
         return true;
     }
 
@@ -608,6 +608,11 @@ public class AbstractObservablePropertyPropertyType implements Serializable, Clo
             JAXBElement<? extends AbstractObservablePropertyType> theAbstractObservableProperty;
             theAbstractObservableProperty = this.getAbstractObservableProperty();
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "abstractObservableProperty", theAbstractObservableProperty), currentHashCode, theAbstractObservableProperty, this.isSetAbstractObservableProperty());
+        }
+        {
+            boolean theOwns;
+            theOwns = (this.isSetOwns()?this.isOwns():false);
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "owns", theOwns), currentHashCode, theOwns, this.isSetOwns());
         }
         {
             List<String> theNilReason;
@@ -654,11 +659,6 @@ public class AbstractObservablePropertyPropertyType implements Serializable, Clo
             theActuate = this.getActuate();
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "actuate", theActuate), currentHashCode, theActuate, this.isSetActuate());
         }
-        {
-            boolean theOwns;
-            theOwns = (this.isSetOwns()?this.isOwns():false);
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "owns", theOwns), currentHashCode, theOwns, this.isSetOwns());
-        }
         return currentHashCode;
     }
 
@@ -691,6 +691,19 @@ public class AbstractObservablePropertyPropertyType implements Serializable, Clo
                 } else {
                     if (abstractObservablePropertyShouldBeCopiedAndSet == Boolean.FALSE) {
                         copy.abstractObservableProperty = null;
+                    }
+                }
+            }
+            {
+                Boolean ownsShouldBeCopiedAndSet = strategy.shouldBeCopiedAndSet(locator, this.isSetOwns());
+                if (ownsShouldBeCopiedAndSet == Boolean.TRUE) {
+                    boolean sourceOwns;
+                    sourceOwns = (this.isSetOwns()?this.isOwns():false);
+                    boolean copyOwns = strategy.copy(LocatorUtils.property(locator, "owns", sourceOwns), sourceOwns, this.isSetOwns());
+                    copy.setOwns(copyOwns);
+                } else {
+                    if (ownsShouldBeCopiedAndSet == Boolean.FALSE) {
+                        copy.unsetOwns();
                     }
                 }
             }
@@ -813,19 +826,6 @@ public class AbstractObservablePropertyPropertyType implements Serializable, Clo
                 } else {
                     if (actuateShouldBeCopiedAndSet == Boolean.FALSE) {
                         copy.actuate = null;
-                    }
-                }
-            }
-            {
-                Boolean ownsShouldBeCopiedAndSet = strategy.shouldBeCopiedAndSet(locator, this.isSetOwns());
-                if (ownsShouldBeCopiedAndSet == Boolean.TRUE) {
-                    boolean sourceOwns;
-                    sourceOwns = (this.isSetOwns()?this.isOwns():false);
-                    boolean copyOwns = strategy.copy(LocatorUtils.property(locator, "owns", sourceOwns), sourceOwns, this.isSetOwns());
-                    copy.setOwns(copyOwns);
-                } else {
-                    if (ownsShouldBeCopiedAndSet == Boolean.FALSE) {
-                        copy.unsetOwns();
                     }
                 }
             }

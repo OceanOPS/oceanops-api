@@ -62,10 +62,10 @@ public class ConstraintPropertyType implements Serializable, Cloneable, CopyTo2,
      * 
      * @return
      *     possible object is
-     *     {@link JAXBElement }{@code <}{@link ScalarConstraintType }{@code >}
      *     {@link JAXBElement }{@code <}{@link CategoryConstraintType }{@code >}
      *     {@link JAXBElement }{@code <}{@link RangeConstraintType }{@code >}
      *     {@link JAXBElement }{@code <}{@link ConstraintType }{@code >}
+     *     {@link JAXBElement }{@code <}{@link ScalarConstraintType }{@code >}
      *     
      */
     public JAXBElement<? extends ConstraintType> getConstraint() {
@@ -77,10 +77,10 @@ public class ConstraintPropertyType implements Serializable, Cloneable, CopyTo2,
      * 
      * @param value
      *     allowed object is
-     *     {@link JAXBElement }{@code <}{@link ScalarConstraintType }{@code >}
      *     {@link JAXBElement }{@code <}{@link CategoryConstraintType }{@code >}
      *     {@link JAXBElement }{@code <}{@link RangeConstraintType }{@code >}
      *     {@link JAXBElement }{@code <}{@link ConstraintType }{@code >}
+     *     {@link JAXBElement }{@code <}{@link ScalarConstraintType }{@code >}
      *     
      */
     public void setConstraint(JAXBElement<? extends ConstraintType> value) {

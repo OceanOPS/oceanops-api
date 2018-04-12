@@ -62,10 +62,10 @@ public class LogEntryPropertyType implements Serializable, Cloneable, CopyTo2, E
      * 
      * @return
      *     possible object is
-     *     {@link JAXBElement }{@code <}{@link ControlCheckReportType }{@code >}
+     *     {@link JAXBElement }{@code <}{@link MaintenanceReportType }{@code >}
      *     {@link JAXBElement }{@code <}{@link LogEntryType }{@code >}
      *     {@link JAXBElement }{@code <}{@link EventReportType }{@code >}
-     *     {@link JAXBElement }{@code <}{@link MaintenanceReportType }{@code >}
+     *     {@link JAXBElement }{@code <}{@link ControlCheckReportType }{@code >}
      *     
      */
     public JAXBElement<? extends LogEntryType> getLogEntry() {
@@ -77,10 +77,10 @@ public class LogEntryPropertyType implements Serializable, Cloneable, CopyTo2, E
      * 
      * @param value
      *     allowed object is
-     *     {@link JAXBElement }{@code <}{@link ControlCheckReportType }{@code >}
+     *     {@link JAXBElement }{@code <}{@link MaintenanceReportType }{@code >}
      *     {@link JAXBElement }{@code <}{@link LogEntryType }{@code >}
      *     {@link JAXBElement }{@code <}{@link EventReportType }{@code >}
-     *     {@link JAXBElement }{@code <}{@link MaintenanceReportType }{@code >}
+     *     {@link JAXBElement }{@code <}{@link ControlCheckReportType }{@code >}
      *     
      */
     public void setLogEntry(JAXBElement<? extends LogEntryType> value) {

@@ -88,9 +88,9 @@ public class LogPropertyType implements Serializable, Cloneable, CopyTo2, Equals
      * 
      * @return
      *     possible object is
-     *     {@link JAXBElement }{@code <}{@link EquipmentLogType }{@code >}
      *     {@link JAXBElement }{@code <}{@link LogType }{@code >}
      *     {@link JAXBElement }{@code <}{@link FacilityLogType }{@code >}
+     *     {@link JAXBElement }{@code <}{@link EquipmentLogType }{@code >}
      *     
      */
     public JAXBElement<? extends LogType> getLog() {
@@ -102,9 +102,9 @@ public class LogPropertyType implements Serializable, Cloneable, CopyTo2, Equals
      * 
      * @param value
      *     allowed object is
-     *     {@link JAXBElement }{@code <}{@link EquipmentLogType }{@code >}
      *     {@link JAXBElement }{@code <}{@link LogType }{@code >}
      *     {@link JAXBElement }{@code <}{@link FacilityLogType }{@code >}
+     *     {@link JAXBElement }{@code <}{@link EquipmentLogType }{@code >}
      *     
      */
     public void setLog(JAXBElement<? extends LogType> value) {
