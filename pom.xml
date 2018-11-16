@@ -173,6 +173,16 @@
 			<artifactId>samplingSpatial-v_2_0</artifactId>
 			<version>2.6.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.cayenne</groupId>
+			<artifactId>cayenne-java8</artifactId>
+			<version>4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cayenne</groupId>
+			<artifactId>cayenne-di</artifactId>
+			<version>4.0</version>
+		</dependency>
 	</dependencies>
 	<properties>
 		<jersey.version>2.16</jersey.version>

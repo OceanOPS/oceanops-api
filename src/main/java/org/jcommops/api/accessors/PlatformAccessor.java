@@ -45,12 +45,12 @@ import org.jcommops.api.orm.Variable;
 
 public class PlatformAccessor {
 	private Log log = LogFactory.getLog(PlatformAccessor.class);
-	private ServerRuntime runtime = Utils.getCayenneRuntime();
-	private ObjectContext context = Utils.getCayenneRuntime().getContext();
+	private ServerRuntime runtime;
+	private ObjectContext context;
 
 	public PlatformAccessor() {
 		this.runtime = Utils.getCayenneRuntime();
-		this.context = this.runtime.getContext();
+		this.context = this.runtime.newContext();
 	}
 
 	/**

@@ -32,7 +32,7 @@ public class MethodsAssociativeTables {
 	
 	public MethodsAssociativeTables(){
 		this.runtime = Utils.getCayenneRuntime();
-		this.context = this.runtime.getContext();
+		this.context = this.runtime.newContext();
 	}
 	
 	public ArrayList<AgencyEntity> FindProgramAgencies (long prgm_id) {
