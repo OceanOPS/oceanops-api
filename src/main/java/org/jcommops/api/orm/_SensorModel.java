@@ -31,7 +31,6 @@ public abstract class _SensorModel extends CayenneDataObject {
     public static final Property<Agency> AGENCY = Property.create("agency", Agency.class);
     public static final Property<List<CruiseSensorModel>> CRUISE_SENSOR_MODELS = Property.create("cruiseSensorModels", List.class);
     public static final Property<Image> IMAGE = Property.create("image", Image.class);
-    public static final Property<MasterProg> MASTER_PROG = Property.create("masterProg", MasterProg.class);
     public static final Property<List<PtfSensorModel>> PTF_SENSOR_MODELS = Property.create("ptfSensorModels", List.class);
     public static final Property<List<SensorModelNetwork>> SENSOR_MODEL_NETWORKS = Property.create("sensorModelNetworks", List.class);
     public static final Property<List<SensorType>> SENSOR_TYPES = Property.create("sensorTypes", List.class);
@@ -147,15 +146,6 @@ public abstract class _SensorModel extends CayenneDataObject {
 
     public Image getImage() {
         return (Image)readProperty("image");
-    }
-
-
-    public void setMasterProg(MasterProg masterProg) {
-        setToOneTarget("masterProg", masterProg, true);
-    }
-
-    public MasterProg getMasterProg() {
-        return (MasterProg)readProperty("masterProg");
     }
 
 

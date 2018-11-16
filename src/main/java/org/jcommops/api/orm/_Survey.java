@@ -25,7 +25,6 @@ public abstract class _Survey extends CayenneDataObject {
     public static final Property<String> NAME_SHORT = Property.create("nameShort", String.class);
     public static final Property<LocalDateTime> START_DATE = Property.create("startDate", LocalDateTime.class);
     public static final Property<List<LineSurvey>> LINE_SURVEYS = Property.create("lineSurveys", List.class);
-    public static final Property<MasterProg> MASTER_PROG = Property.create("masterProg", MasterProg.class);
     public static final Property<Network> NETWORK = Property.create("network", Network.class);
 
     public void setDescription(String description) {
@@ -80,15 +79,6 @@ public abstract class _Survey extends CayenneDataObject {
     @SuppressWarnings("unchecked")
     public List<LineSurvey> getLineSurveys() {
         return (List<LineSurvey>)readProperty("lineSurveys");
-    }
-
-
-    public void setMasterProg(MasterProg masterProg) {
-        setToOneTarget("masterProg", masterProg, true);
-    }
-
-    public MasterProg getMasterProg() {
-        return (MasterProg)readProperty("masterProg");
     }
 
 

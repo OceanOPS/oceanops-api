@@ -27,7 +27,6 @@ public abstract class _Program extends CayenneDataObject {
     public static final Property<List<CruiseProgram>> CRUISE_PROGRAMS = Property.create("cruisePrograms", List.class);
     public static final Property<List<Image>> IMAGES = Property.create("images", List.class);
     public static final Property<List<LineProgram>> LINE_PROGRAMS = Property.create("linePrograms", List.class);
-    public static final Property<MasterProg> MASTER_PROG = Property.create("masterProg", MasterProg.class);
     public static final Property<List<NcSubscription>> NC_SUBSCRIPTIONS = Property.create("ncSubscriptions", List.class);
     public static final Property<Network> NETWORK = Property.create("network", Network.class);
     public static final Property<List<ProgramAgency>> PROGRAM_AGENCIES = Property.create("programAgencies", List.class);
@@ -128,15 +127,6 @@ public abstract class _Program extends CayenneDataObject {
     @SuppressWarnings("unchecked")
     public List<LineProgram> getLinePrograms() {
         return (List<LineProgram>)readProperty("linePrograms");
-    }
-
-
-    public void setMasterProg(MasterProg masterProg) {
-        setToOneTarget("masterProg", masterProg, true);
-    }
-
-    public MasterProg getMasterProg() {
-        return (MasterProg)readProperty("masterProg");
     }
 
 

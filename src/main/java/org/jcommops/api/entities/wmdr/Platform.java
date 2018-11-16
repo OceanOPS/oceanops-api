@@ -563,7 +563,7 @@ public class Platform {
 		ProgramAffiliation progAffiliation = this.wmdrOF.createObservingFacilityTypeProgramAffiliation();
 		ProgramAffiliationType progAffiliationType = this.wmdrOF.createProgramAffiliationType();
 		refType = this.gmlOF.createReferenceType();
-		refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/" + ptf.getProgram().getMasterProg().getName());
+		refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/" + ptf.getProgram().getNetwork().getName());
 		progAffiliationType.setProgramAffiliation(refType);
 		ReportingStatus reportingStatus = null;
 		ReportingStatusType reportingStatusType = null;

@@ -24,7 +24,6 @@ public abstract class _Role extends CayenneDataObject {
     public static final Property<String> NAME_SHORT = Property.create("nameShort", String.class);
     public static final Property<Integer> RANK = Property.create("rank", Integer.class);
     public static final Property<List<CruiseContact>> CRUISE_CONTACTS = Property.create("cruiseContacts", List.class);
-    public static final Property<List<MasterProgContact>> MASTER_PROG_CONTACTS = Property.create("masterProgContacts", List.class);
     public static final Property<List<NetworkContact>> NETWORK_CONTACTS = Property.create("networkContacts", List.class);
     public static final Property<List<ProgramContact>> PROGRAM_CONTACTS = Property.create("programContacts", List.class);
     public static final Property<List<UserGroupContact>> USER_GROUP_CONTACTS = Property.create("userGroupContacts", List.class);
@@ -82,18 +81,6 @@ public abstract class _Role extends CayenneDataObject {
     @SuppressWarnings("unchecked")
     public List<CruiseContact> getCruiseContacts() {
         return (List<CruiseContact>)readProperty("cruiseContacts");
-    }
-
-
-    public void addToMasterProgContacts(MasterProgContact obj) {
-        addToManyTarget("masterProgContacts", obj, true);
-    }
-    public void removeFromMasterProgContacts(MasterProgContact obj) {
-        removeToManyTarget("masterProgContacts", obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<MasterProgContact> getMasterProgContacts() {
-        return (List<MasterProgContact>)readProperty("masterProgContacts");
     }
 
 

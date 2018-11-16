@@ -26,7 +26,7 @@ public class ProgramEntity implements Serializable{
 	private String name;
 	private String nameShort;
     private String description;
-    private MasterProgramEntity masterProgram;
+    private NetworkEntity network;
     private List<AgencyEntity> agencies;
     private List<ContactEntity> contacts;
     private CountryEntity country;
@@ -40,7 +40,7 @@ public class ProgramEntity implements Serializable{
     	this.setName(program.getName());
     	this.setNameShort(program.getNameShort());
     	this.setDescription(program.getDescription());
-    	this.setMasterProgram(new MasterProgramEntity(program.getMasterProg()));
+    	this.setNetwork(new NetworkEntity(program.getNetwork()));
     	this.agencies = new ArrayList<AgencyEntity>();
     	for(int i = 0; i<program.getAgencies().size();i++){
     		this.agencies.add(new AgencyEntity(program.getAgencies().get(i)));
@@ -65,8 +65,16 @@ public class ProgramEntity implements Serializable{
     		this.setCountry(new CountryEntity(program.getCountry()));
     }
 
-
     @XmlElement
+    public NetworkEntity getNetwork() {
+		return network;
+	}
+
+	public void setNetwork(NetworkEntity network) {
+		this.network = network;
+	}
+
+	@XmlElement
     public String getName() {
         return name;
     }
@@ -102,15 +110,6 @@ public class ProgramEntity implements Serializable{
     public void setAgencies(ArrayList<AgencyEntity> agencies) {
         this.agencies = agencies;
     }
-
-    @XmlElement
-	public MasterProgramEntity getMasterProgram() {
-		return masterProgram;
-	}
-
-	public void setMasterProgram(MasterProgramEntity masterProgram) {
-		this.masterProgram = masterProgram;
-	}
 
 	public CountryEntity getCountry() {
 		return country;

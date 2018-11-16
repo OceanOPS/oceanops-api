@@ -36,7 +36,6 @@ public abstract class _Doc extends CayenneDataObject {
     public static final Property<DocType> DOC_TYPE = Property.create("docType", DocType.class);
     public static final Property<Language> LANGUAGE = Property.create("language", Language.class);
     public static final Property<PtfLoc> LOC = Property.create("loc", PtfLoc.class);
-    public static final Property<MasterProg> MASTER_PROG = Property.create("masterProg", MasterProg.class);
     public static final Property<Meeting> MEETING = Property.create("meeting", Meeting.class);
     public static final Property<Network> NETWORK = Property.create("network", Network.class);
     public static final Property<Ptf> PTF = Property.create("ptf", Ptf.class);
@@ -176,15 +175,6 @@ public abstract class _Doc extends CayenneDataObject {
 
     public PtfLoc getLoc() {
         return (PtfLoc)readProperty("loc");
-    }
-
-
-    public void setMasterProg(MasterProg masterProg) {
-        setToOneTarget("masterProg", masterProg, true);
-    }
-
-    public MasterProg getMasterProg() {
-        return (MasterProg)readProperty("masterProg");
     }
 
 

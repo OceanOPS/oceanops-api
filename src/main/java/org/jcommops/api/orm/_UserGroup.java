@@ -23,7 +23,6 @@ public abstract class _UserGroup extends CayenneDataObject {
     public static final Property<String> NAME = Property.create("name", String.class);
     public static final Property<String> NAME_SHORT = Property.create("nameShort", String.class);
     public static final Property<List<Doc>> DOCS = Property.create("docs", List.class);
-    public static final Property<MasterProg> MASTER_PROG = Property.create("masterProg", MasterProg.class);
     public static final Property<Network> NETWORK = Property.create("network", Network.class);
     public static final Property<List<UserGroupAgency>> USER_GROUP_AGENCIES = Property.create("userGroupAgencies", List.class);
     public static final Property<List<UserGroupContact>> USER_GROUP_CONTACTS = Property.create("userGroupContacts", List.class);
@@ -74,15 +73,6 @@ public abstract class _UserGroup extends CayenneDataObject {
     @SuppressWarnings("unchecked")
     public List<Doc> getDocs() {
         return (List<Doc>)readProperty("docs");
-    }
-
-
-    public void setMasterProg(MasterProg masterProg) {
-        setToOneTarget("masterProg", masterProg, true);
-    }
-
-    public MasterProg getMasterProg() {
-        return (MasterProg)readProperty("masterProg");
     }
 
 

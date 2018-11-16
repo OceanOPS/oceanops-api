@@ -34,7 +34,6 @@ public abstract class _Image extends CayenneDataObject {
     public static final Property<List<Contact>> CONTACTS = Property.create("contacts", List.class);
     public static final Property<List<Cruise>> CRUISES = Property.create("cruises", List.class);
     public static final Property<ImageType> IMAGE_TYPE = Property.create("imageType", ImageType.class);
-    public static final Property<MasterProg> MASTER_PROG = Property.create("masterProg", MasterProg.class);
     public static final Property<Network> NETWORK = Property.create("network", Network.class);
     public static final Property<Program> PROGRAM = Property.create("program", Program.class);
     public static final Property<List<PtfModel>> PTF_MODELS = Property.create("ptfModels", List.class);
@@ -172,15 +171,6 @@ public abstract class _Image extends CayenneDataObject {
 
     public ImageType getImageType() {
         return (ImageType)readProperty("imageType");
-    }
-
-
-    public void setMasterProg(MasterProg masterProg) {
-        setToOneTarget("masterProg", masterProg, true);
-    }
-
-    public MasterProg getMasterProg() {
-        return (MasterProg)readProperty("masterProg");
     }
 
 

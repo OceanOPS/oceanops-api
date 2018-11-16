@@ -15,20 +15,18 @@ public abstract class _AgencyDacType extends CayenneDataObject {
 
     public static final String AGENCY_ID_PK_COLUMN = "AGENCY_ID";
     public static final String DAC_TYPE_ID_PK_COLUMN = "DAC_TYPE_ID";
-    public static final String MASTER_PROGRAM_ID_PK_COLUMN = "MASTER_PROGRAM_ID";
+    public static final String NETWORK_ID_PK_COLUMN = "NETWORK_ID";
 
     public static final Property<Integer> AGENCY_ID = Property.create("agencyId", Integer.class);
     public static final Property<Integer> DAC_TYPE_ID = Property.create("dacTypeId", Integer.class);
     public static final Property<String> DATA_PATH = Property.create("dataPath", String.class);
     public static final Property<String> DESCRIPTION = Property.create("description", String.class);
-    public static final Property<Integer> MASTER_PROGRAM_ID = Property.create("masterProgramId", Integer.class);
     public static final Property<String> NAME = Property.create("name", String.class);
     public static final Property<String> NAME_SHORT = Property.create("nameShort", String.class);
     public static final Property<Integer> OLD_DAC_ID = Property.create("oldDacId", Integer.class);
     public static final Property<String> OP_MAIL = Property.create("opMail", String.class);
     public static final Property<Agency> AGENCY = Property.create("agency", Agency.class);
     public static final Property<DacType> DAC_TYPE = Property.create("dacType", DacType.class);
-    public static final Property<MasterProg> MASTER_PROGRAM = Property.create("masterProgram", MasterProg.class);
     public static final Property<Network> NETWORK = Property.create("network", Network.class);
     public static final Property<Weblink> WEBLINK = Property.create("weblink", Weblink.class);
 
@@ -60,14 +58,6 @@ public abstract class _AgencyDacType extends CayenneDataObject {
     }
     public String getDescription() {
         return (String)readProperty("description");
-    }
-
-    public void setMasterProgramId(int masterProgramId) {
-        writeProperty("masterProgramId", masterProgramId);
-    }
-    public int getMasterProgramId() {
-        Object value = readProperty("masterProgramId");
-        return (value != null) ? (Integer) value : 0;
     }
 
     public void setName(String name) {
@@ -114,15 +104,6 @@ public abstract class _AgencyDacType extends CayenneDataObject {
 
     public DacType getDacType() {
         return (DacType)readProperty("dacType");
-    }
-
-
-    public void setMasterProgram(MasterProg masterProgram) {
-        setToOneTarget("masterProgram", masterProgram, true);
-    }
-
-    public MasterProg getMasterProgram() {
-        return (MasterProg)readProperty("masterProgram");
     }
 
 
