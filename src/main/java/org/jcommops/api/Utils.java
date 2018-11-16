@@ -8,6 +8,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -34,7 +35,7 @@ public class Utils {
 			versionQualifier;
 	private static boolean betaVersion;
 	public static final String CSV_SEPARATOR = ";";
-	public static final SimpleDateFormat ISO_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+	public static final DateTimeFormatter ISO_DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
 	public static final Integer JCOMMOPS_AGENCY_ID = 61;
 
 	private Utils() {
@@ -85,7 +86,9 @@ public class Utils {
 
 	public static void initCayenneRuntime() {
 		if (Utils.cayenneRuntime == null) {
-			Utils.cayenneRuntime = new ServerRuntime("cayenne-project.xml");
+			Utils.cayenneRuntime = ServerRuntime.builder()
+                    .addConfig("cayenne-project.xml")
+                    .build();
 		}
 	}
 

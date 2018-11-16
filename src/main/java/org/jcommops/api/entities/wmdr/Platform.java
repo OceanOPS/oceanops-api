@@ -17,6 +17,7 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import org.apache.cayenne.Cayenne;
 import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.configuration.server.ServerRuntime;
+import org.apache.cayenne.query.SelectById;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jcommops.api.Utils;
@@ -163,7 +164,7 @@ public class Platform {
 	 */
 	public Platform(Integer ptfId) throws JAXBException, DatatypeConfigurationException{
 		this();
-		Ptf ptf = Cayenne.objectForPK(this.cayenneContext, Ptf.class, (long)ptfId); 
+		Ptf ptf = SelectById.query(Ptf.class, ptfId).selectOne(this.cayenneContext);			
 		
 		CodeWithAuthorityType identifier = new CodeWithAuthorityType();
 		identifier.setValue(ptf.getRef());
