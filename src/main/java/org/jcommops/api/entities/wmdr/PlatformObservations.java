@@ -235,9 +235,7 @@ public class PlatformObservations {
 		recordOwner.setCIResponsibleParty(this.getCIResponsibleParty(Utils.JCOMMOPS_AGENCY_ID, "custodian"));		
 		
 		headerType.setRecordOwner(recordOwner);
-		GregorianCalendar calendar = new GregorianCalendar(TimeZone.getTimeZone("UTC"));
-		calendar.setTime(ptf.getUpdateDate());
-		headerType.setFileDateTime(DatatypeFactory.newInstance().newXMLGregorianCalendar(calendar));
+		headerType.setFileDateTime(Utils.getDateAsXmlGregCal(ptf.getUpdateDate()));
 		
 		headerInfo.setHeader(headerType);
 		

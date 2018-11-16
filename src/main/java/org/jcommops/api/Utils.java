@@ -6,6 +6,8 @@ import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -103,11 +105,11 @@ public class Utils {
 
 	}
 
-	public static String GetIsoDate(Date date) {
+	public static String GetIsoDate(LocalDateTime localDateTime) {
 		String dateISO = null;
 		DateFormat formatISO = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-		if (date != null)
-			dateISO = formatISO.format(date);
+		if (localDateTime != null)
+			dateISO = formatISO.format(localDateTime);
 		return dateISO;
 	}
 
@@ -301,9 +303,8 @@ public class Utils {
 		return DatatypeConverter.printDate(c);
 	}
 	
-	public static XMLGregorianCalendar getDateAsXmlGregCal(Date dt){
-		GregorianCalendar c = new GregorianCalendar(TimeZone.getTimeZone("UTC"));
-		c.setTime(dt);
+	public static XMLGregorianCalendar getDateAsXmlGregCal(LocalDateTime localDateTime){
+		GregorianCalendar c = GregorianCalendar.from(localDateTime.atZone(ZoneId.systemDefault()));
 		try {
 			XMLGregorianCalendar date = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
 			return date;
