@@ -23,7 +23,6 @@ public abstract class _Site extends CayenneDataObject {
     public static final Property<String> NAME_SHORT = Property.create("nameShort", String.class);
     public static final Property<byte[]> SHAPE = Property.create("shape", byte[].class);
     public static final Property<String> WKT = Property.create("wkt", String.class);
-    public static final Property<MasterProg> MASTER_PROG = Property.create("masterProg", MasterProg.class);
     public static final Property<List<NetworkSite>> NETWORK_SITES = Property.create("networkSites", List.class);
     public static final Property<List<Ptf>> PTFS = Property.create("ptfs", List.class);
     public static final Property<List<SitePtf>> SITE_PTFS = Property.create("sitePtfs", List.class);
@@ -70,15 +69,6 @@ public abstract class _Site extends CayenneDataObject {
     public String getWkt() {
         return (String)readProperty("wkt");
     }
-
-    public void setMasterProg(MasterProg masterProg) {
-        setToOneTarget("masterProg", masterProg, true);
-    }
-
-    public MasterProg getMasterProg() {
-        return (MasterProg)readProperty("masterProg");
-    }
-
 
     public void addToNetworkSites(NetworkSite obj) {
         addToManyTarget("networkSites", obj, true);

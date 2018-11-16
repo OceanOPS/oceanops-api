@@ -18,7 +18,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jcommops.api.accessors.PlatformAccessor;
 import org.jcommops.api.entities.CountryEntity;
-import org.jcommops.api.entities.MasterProgramEntity;
 import org.jcommops.api.entities.NetworkEntity;
 import org.jcommops.api.entities.PlatformEntity;
 import org.jcommops.api.entities.PlatformFamilyEntity;
@@ -372,12 +371,12 @@ public class WebServiceManager {
 	}
 
 	@GET
-	@Path("master_programs.xml")
-	public ArrayList<MasterProgramEntity> getAllPtfPtfMasterProgramsXML() {
+	@Path("master_networks.xml")
+	public ArrayList<NetworkEntity> getAllPtfPtfMasterNetworksXML() {
 		PlatformAccessor m = new PlatformAccessor();
-		ArrayList<MasterProgramEntity> List = new ArrayList<MasterProgramEntity>();
+		ArrayList<NetworkEntity> List = new ArrayList<NetworkEntity>();
 		try {
-			List = m.getMasterProgram();
+			List = m.getMasterNetworks();
 		} catch (CayenneRuntimeException CRE) {
 			/*
 			 * MasterProgram ptf0 = new MasterProgram(); ptf0.setId(-1);
@@ -389,13 +388,13 @@ public class WebServiceManager {
 	}
 
 	@GET
-	@Path("master_programs.json")
+	@Path("master_networks.json")
 	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
-	public ArrayList<MasterProgramEntity> getAllPtfMasterProgramsJSON() {
+	public ArrayList<NetworkEntity> getAllPtfMasterNetworksJSON() {
 		PlatformAccessor m = new PlatformAccessor();
-		ArrayList<MasterProgramEntity> List = new ArrayList<MasterProgramEntity>();
+		ArrayList<NetworkEntity> List = new ArrayList<NetworkEntity>();
 		try {
-			List = m.getMasterProgram();
+			List = m.getMasterNetworks();
 		} catch (CayenneRuntimeException CRE) {
 			/*
 			 * MasterProgram ptf0 = new MasterProgram(); ptf0.setId(-1);

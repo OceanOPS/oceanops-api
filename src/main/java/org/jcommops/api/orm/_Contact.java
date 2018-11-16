@@ -39,7 +39,6 @@ public abstract class _Contact extends CayenneDataObject {
     public static final Property<List<CruiseContact>> CRUISE_CONTACTS = Property.create("cruiseContacts", List.class);
     public static final Property<List<DocContact>> DOC_CONTACTS = Property.create("docContacts", List.class);
     public static final Property<Image> IMAGE = Property.create("image", Image.class);
-    public static final Property<List<MasterProgContact>> MASTER_PROG_CONTACTS = Property.create("masterProgContacts", List.class);
     public static final Property<List<Meeting>> MEETINGS = Property.create("meetings", List.class);
     public static final Property<List<NcNotification>> NC_NOTIFICATIONS = Property.create("ncNotifications", List.class);
     public static final Property<List<NcSubscription>> NC_SUBSCRIPTIONS = Property.create("ncSubscriptions", List.class);
@@ -225,18 +224,6 @@ public abstract class _Contact extends CayenneDataObject {
 
     public Image getImage() {
         return (Image)readProperty("image");
-    }
-
-
-    public void addToMasterProgContacts(MasterProgContact obj) {
-        addToManyTarget("masterProgContacts", obj, true);
-    }
-    public void removeFromMasterProgContacts(MasterProgContact obj) {
-        removeToManyTarget("masterProgContacts", obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<MasterProgContact> getMasterProgContacts() {
-        return (List<MasterProgContact>)readProperty("masterProgContacts");
     }
 
 

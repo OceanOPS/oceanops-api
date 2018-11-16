@@ -22,8 +22,8 @@ public abstract class _PtfPtfStatus extends CayenneDataObject {
     public static final Property<LocalDateTime> INSERT_DATE = Property.create("insertDate", LocalDateTime.class);
     public static final Property<Integer> PTF_ID = Property.create("ptfId", Integer.class);
     public static final Property<Integer> PTF_STATUS_ID = Property.create("ptfStatusId", Integer.class);
-    public static final Property<PtfStatus> PTF_STATUS = Property.create("ptfStatus", PtfStatus.class);
     public static final Property<Ptf> PTF = Property.create("ptf", Ptf.class);
+    public static final Property<PtfStatus> PTF_STATUS = Property.create("ptfStatus", PtfStatus.class);
 
     public void setChangingDate(LocalDateTime changingDate) {
         writeProperty("changingDate", changingDate);
@@ -63,21 +63,21 @@ public abstract class _PtfPtfStatus extends CayenneDataObject {
         return (value != null) ? (Integer) value : 0;
     }
 
-    public void setPtfStatus(PtfStatus ptfStatus) {
-        setToOneTarget("ptfStatus", ptfStatus, true);
-    }
-
-    public PtfStatus getPtfStatus() {
-        return (PtfStatus)readProperty("ptfStatus");
-    }
-
-
     public void setPtf(Ptf ptf) {
         setToOneTarget("ptf", ptf, true);
     }
 
     public Ptf getPtf() {
         return (Ptf)readProperty("ptf");
+    }
+
+
+    public void setPtfStatus(PtfStatus ptfStatus) {
+        setToOneTarget("ptfStatus", ptfStatus, true);
+    }
+
+    public PtfStatus getPtfStatus() {
+        return (PtfStatus)readProperty("ptfStatus");
     }
 
 

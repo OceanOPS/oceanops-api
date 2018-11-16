@@ -31,7 +31,6 @@ public abstract class _Indicator extends CayenneDataObject {
     public static final Property<BigDecimal> TARGET_VALUE = Property.create("targetValue", BigDecimal.class);
     public static final Property<IndicatorCategory> INDICATOR_CATEGORY = Property.create("indicatorCategory", IndicatorCategory.class);
     public static final Property<Network> MASTER_NETWORK = Property.create("masterNetwork", Network.class);
-    public static final Property<MasterProg> MASTER_PROG = Property.create("masterProg", MasterProg.class);
     public static final Property<Network> NETWORK = Property.create("network", Network.class);
 
     public void setBasinId(int basinId) {
@@ -138,15 +137,6 @@ public abstract class _Indicator extends CayenneDataObject {
 
     public Network getMasterNetwork() {
         return (Network)readProperty("masterNetwork");
-    }
-
-
-    public void setMasterProg(MasterProg masterProg) {
-        setToOneTarget("masterProg", masterProg, true);
-    }
-
-    public MasterProg getMasterProg() {
-        return (MasterProg)readProperty("masterProg");
     }
 
 

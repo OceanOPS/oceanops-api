@@ -20,7 +20,6 @@ public abstract class _WebMetric extends CayenneDataObject {
     public static final Property<Integer> ID = Property.create("id", Integer.class);
     public static final Property<String> METHOD = Property.create("method", String.class);
     public static final Property<String> NAME = Property.create("name", String.class);
-    public static final Property<List<WebMetricMasterProg>> WEB_METRIC_MASTER_PROGS = Property.create("webMetricMasterProgs", List.class);
     public static final Property<List<WebMetricNetwork>> WEB_METRIC_NETWORKS = Property.create("webMetricNetworks", List.class);
 
     public void setId(int id) {
@@ -44,18 +43,6 @@ public abstract class _WebMetric extends CayenneDataObject {
     public String getName() {
         return (String)readProperty("name");
     }
-
-    public void addToWebMetricMasterProgs(WebMetricMasterProg obj) {
-        addToManyTarget("webMetricMasterProgs", obj, true);
-    }
-    public void removeFromWebMetricMasterProgs(WebMetricMasterProg obj) {
-        removeToManyTarget("webMetricMasterProgs", obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<WebMetricMasterProg> getWebMetricMasterProgs() {
-        return (List<WebMetricMasterProg>)readProperty("webMetricMasterProgs");
-    }
-
 
     public void addToWebMetricNetworks(WebMetricNetwork obj) {
         addToManyTarget("webMetricNetworks", obj, true);

@@ -30,7 +30,6 @@ public abstract class _Network extends CayenneDataObject {
     public static final Property<List<Indicator>> INDICATORS = Property.create("indicators", List.class);
     public static final Property<List<Indicator>> INDICATORS1 = Property.create("indicators1", List.class);
     public static final Property<List<MapTypeNetwork>> MAP_TYPE_NETWORKS = Property.create("mapTypeNetworks", List.class);
-    public static final Property<MasterProg> MASTER_PROG = Property.create("masterProg", MasterProg.class);
     public static final Property<List<NetworkContact>> NETWORK_CONTACTS = Property.create("networkContacts", List.class);
     public static final Property<List<NetworkCountry>> NETWORK_COUNTRIES = Property.create("networkCountries", List.class);
     public static final Property<List<NetworkPtf>> NETWORK_PTFS = Property.create("networkPtfs", List.class);
@@ -169,15 +168,6 @@ public abstract class _Network extends CayenneDataObject {
     @SuppressWarnings("unchecked")
     public List<MapTypeNetwork> getMapTypeNetworks() {
         return (List<MapTypeNetwork>)readProperty("mapTypeNetworks");
-    }
-
-
-    public void setMasterProg(MasterProg masterProg) {
-        setToOneTarget("masterProg", masterProg, true);
-    }
-
-    public MasterProg getMasterProg() {
-        return (MasterProg)readProperty("masterProg");
     }
 
 

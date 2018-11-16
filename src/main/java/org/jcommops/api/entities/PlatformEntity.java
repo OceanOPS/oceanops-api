@@ -288,7 +288,7 @@ public class PlatformEntity implements Serializable{
 		else
 			csv.append(Utils.CSV_SEPARATOR);
 		
-		csv.append((this.getProgram().getMasterProgram().getNameShort() != null ? this.getProgram().getMasterProgram().getNameShort() : "") + Utils.CSV_SEPARATOR);
+		csv.append((this.getProgram().getNetwork().getNameShort() != null ? this.getProgram().getNetwork().getNameShort() : "") + Utils.CSV_SEPARATOR);
 		
 		if(this.getDeployment() != null){
 			csv.append((this.getDeployment().getDeploymentDate() != null ? this.getDeployment().getDeploymentDate() : "") + Utils.CSV_SEPARATOR);

@@ -23,7 +23,6 @@ public abstract class _MapType extends CayenneDataObject {
     public static final Property<String> NAME_LONG = Property.create("nameLong", String.class);
     public static final Property<String> NAME_SHORT = Property.create("nameShort", String.class);
     public static final Property<Integer> RANK = Property.create("rank", Integer.class);
-    public static final Property<List<MapTypeMasterProg>> MAP_TYPE_MASTER_PROGS = Property.create("mapTypeMasterProgs", List.class);
     public static final Property<List<MapTypeNetwork>> MAP_TYPE_NETWORKS = Property.create("mapTypeNetworks", List.class);
 
     public void setFreq(int freq) {
@@ -70,18 +69,6 @@ public abstract class _MapType extends CayenneDataObject {
         Object value = readProperty("rank");
         return (value != null) ? (Integer) value : 0;
     }
-
-    public void addToMapTypeMasterProgs(MapTypeMasterProg obj) {
-        addToManyTarget("mapTypeMasterProgs", obj, true);
-    }
-    public void removeFromMapTypeMasterProgs(MapTypeMasterProg obj) {
-        removeToManyTarget("mapTypeMasterProgs", obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<MapTypeMasterProg> getMapTypeMasterProgs() {
-        return (List<MapTypeMasterProg>)readProperty("mapTypeMasterProgs");
-    }
-
 
     public void addToMapTypeNetworks(MapTypeNetwork obj) {
         addToManyTarget("mapTypeNetworks", obj, true);

@@ -67,6 +67,7 @@ public abstract class _Ptf extends CayenneDataObject {
     public static final Property<List<PtfLocStatus>> PTF_LOC_STATUSES = Property.create("ptfLocStatuses", List.class);
     public static final Property<List<PtfLoc>> PTF_LOCS = Property.create("ptfLocs", List.class);
     public static final Property<PtfModel> PTF_MODEL = Property.create("ptfModel", PtfModel.class);
+    public static final Property<List<PtfPtfStatus>> PTF_PTF_STATUSES = Property.create("ptfPtfStatuses", List.class);
     public static final Property<List<PtfSensorModel>> PTF_SENSOR_MODELS = Property.create("ptfSensorModels", List.class);
     public static final Property<PtfStatus> PTF_STATUS = Property.create("ptfStatus", PtfStatus.class);
     public static final Property<List<PtfVariableSub>> PTF_VARIABLE_SUBS = Property.create("ptfVariableSubs", List.class);
@@ -77,7 +78,6 @@ public abstract class _Ptf extends CayenneDataObject {
     public static final Property<List<SitePtf>> SITE_PTFS = Property.create("sitePtfs", List.class);
     public static final Property<Telecom> TELECOM = Property.create("telecom", Telecom.class);
     public static final Property<LocSystem> TRACKING_SYSTEM = Property.create("trackingSystem", LocSystem.class);
-    public static final Property<List<PtfPtfStatus>> PTF_PTF_STATUSES = Property.create("ptfPtfStatuses", List.class);
     public static final Property<List<Variable>> VARIABLES = Property.create("variables", List.class);
     public static final Property<List<WebFrequentation>> WEB_FREQUENTATIONS = Property.create("webFrequentations", List.class);
     public static final Property<List<WeblinkPtf>> WEBLINK_PTFS = Property.create("weblinkPtfs", List.class);
@@ -523,6 +523,18 @@ public abstract class _Ptf extends CayenneDataObject {
     }
 
 
+    public void addToPtfPtfStatuses(PtfPtfStatus obj) {
+        addToManyTarget("ptfPtfStatuses", obj, true);
+    }
+    public void removeFromPtfPtfStatuses(PtfPtfStatus obj) {
+        removeToManyTarget("ptfPtfStatuses", obj, true);
+    }
+    @SuppressWarnings("unchecked")
+    public List<PtfPtfStatus> getPtfPtfStatuses() {
+        return (List<PtfPtfStatus>)readProperty("ptfPtfStatuses");
+    }
+
+
     public void addToPtfSensorModels(PtfSensorModel obj) {
         addToManyTarget("ptfSensorModels", obj, true);
     }
@@ -625,18 +637,6 @@ public abstract class _Ptf extends CayenneDataObject {
 
     public LocSystem getTrackingSystem() {
         return (LocSystem)readProperty("trackingSystem");
-    }
-
-
-    public void addToPtfPtfStatuses(PtfPtfStatus obj) {
-        addToManyTarget("ptfPtfStatuses", obj, true);
-    }
-    public void removeFromPtfPtfStatuses(PtfPtfStatus obj) {
-        removeToManyTarget("ptfPtfStatuses", obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<PtfPtfStatus> getPtfPtfStatuses() {
-        return (List<PtfPtfStatus>)readProperty("ptfPtfStatuses");
     }
 
 

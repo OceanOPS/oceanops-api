@@ -42,7 +42,6 @@ public abstract class _PtfModel extends CayenneDataObject {
     public static final Property<GtsInstrumentType> GTS_INSTRUMENT_TYPE = Property.create("gtsInstrumentType", GtsInstrumentType.class);
     public static final Property<PtfHullType> HULL_TYPE = Property.create("hullType", PtfHullType.class);
     public static final Property<Image> IMAGE = Property.create("image", Image.class);
-    public static final Property<MasterProg> MASTER_PROG = Property.create("masterProg", MasterProg.class);
     public static final Property<Network> NETWORK = Property.create("network", Network.class);
     public static final Property<PtfType> PTF_TYPE = Property.create("ptfType", PtfType.class);
     public static final Property<List<Ptf>> PTFS = Property.create("ptfs", List.class);
@@ -232,15 +231,6 @@ public abstract class _PtfModel extends CayenneDataObject {
 
     public Image getImage() {
         return (Image)readProperty("image");
-    }
-
-
-    public void setMasterProg(MasterProg masterProg) {
-        setToOneTarget("masterProg", masterProg, true);
-    }
-
-    public MasterProg getMasterProg() {
-        return (MasterProg)readProperty("masterProg");
     }
 
 

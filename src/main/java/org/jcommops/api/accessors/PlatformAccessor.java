@@ -21,7 +21,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jcommops.api.Utils;
 import org.jcommops.api.entities.CountryEntity;
-import org.jcommops.api.entities.MasterProgramEntity;
 import org.jcommops.api.entities.NetworkEntity;
 import org.jcommops.api.entities.PlatformEntity;
 import org.jcommops.api.entities.PlatformFamilyEntity;
@@ -33,7 +32,6 @@ import org.jcommops.api.entities.SensorModelEntity;
 import org.jcommops.api.entities.SensorTypeEntity;
 import org.jcommops.api.entities.VariableEntity;
 import org.jcommops.api.orm.Country;
-import org.jcommops.api.orm.MasterProg;
 import org.jcommops.api.orm.Network;
 import org.jcommops.api.orm.Program;
 import org.jcommops.api.orm.Ptf;
@@ -190,23 +188,25 @@ public class PlatformAccessor {
 	}
 
 	/**
-	 * Query the database to retrieve all master programs
-	 * @return	The master programs list
+	 * Query the database to retrieve all master networks
+	 * @return	The master networks list
 	 */
-	public ArrayList<MasterProgramEntity> getMasterProgram() {
-		SelectQuery MasterProgram_query = new SelectQuery(MasterProg.class);
-		List<MasterProg> mprograms = context.performQuery(MasterProgram_query);
+	public ArrayList<NetworkEntity> getMasterNetworks() {
+		SelectQuery Network_query = new SelectQuery(Network.class);
+		List<Network> networks = context.performQuery(Network_query);
 
-		ArrayList<MasterProgramEntity> mprograms_list = new ArrayList<MasterProgramEntity>();
+		ArrayList<NetworkEntity> nets_list = new ArrayList<NetworkEntity>();
 
-		Iterator<MasterProg> mprograms_itr = mprograms.iterator();
+		Iterator<Network> networks_itr = networks.iterator();
 
-		while (mprograms_itr.hasNext()) {
-			MasterProg a = mprograms_itr.next();
-			MasterProgramEntity mprogram = new MasterProgramEntity(a);
-			mprograms_list.add(mprogram);
+		while (networks_itr.hasNext()) {
+			Network a = networks_itr.next();
+			if(a.getRank() == 0) {
+				NetworkEntity net = new NetworkEntity(a);
+				nets_list.add(net);
+			}
 		}
-		return mprograms_list;
+		return nets_list;
 
 	}
 

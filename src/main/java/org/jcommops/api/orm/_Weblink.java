@@ -30,7 +30,6 @@ public abstract class _Weblink extends CayenneDataObject {
     public static final Property<List<Cruise>> CRUISES = Property.create("cruises", List.class);
     public static final Property<List<Doc>> DOCS = Property.create("docs", List.class);
     public static final Property<List<Line>> LINES = Property.create("lines", List.class);
-    public static final Property<MasterProg> MASTER_PROG = Property.create("masterProg", MasterProg.class);
     public static final Property<List<Meeting>> MEETINGS = Property.create("meetings", List.class);
     public static final Property<Network> NETWORK = Property.create("network", Network.class);
     public static final Property<Program> PROGRAM = Property.create("program", Program.class);
@@ -166,15 +165,6 @@ public abstract class _Weblink extends CayenneDataObject {
     @SuppressWarnings("unchecked")
     public List<Line> getLines() {
         return (List<Line>)readProperty("lines");
-    }
-
-
-    public void setMasterProg(MasterProg masterProg) {
-        setToOneTarget("masterProg", masterProg, true);
-    }
-
-    public MasterProg getMasterProg() {
-        return (MasterProg)readProperty("masterProg");
     }
 
 
