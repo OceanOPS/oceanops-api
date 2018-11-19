@@ -25,6 +25,7 @@ import org.jcommops.api.orm.Agency;
 import org.jcommops.api.orm.ProgramAgency;
 import org.jcommops.api.orm.Ptf;
 import org.jcommops.api.orm.PtfDeployment;
+import org.jcommops.api.orm.PtfModel;
 import org.jcommops.api.orm.PtfPtfStatus;
 import org.jcommops.api.orm.PtfSensorModel;
 import org.jcommops.api.orm.SensorModel;
@@ -109,7 +110,7 @@ public class Platform {
 	private String getWIGOSIdentifier(String ptfRef){
 		StringBuilder wigosID = new StringBuilder();
 		// TODO: review this identifier when specs are finalized
-		int issuerOfIdentifier = 20002;
+		int issuerOfIdentifier = 22000;
 		String identifier = ptfRef;
 		int issueNumber = 0;
 		if(identifier.contains("_")){
@@ -138,7 +139,7 @@ public class Platform {
 	 */
 	public Platform() throws JAXBException{
 		this.cayenneRuntime = Utils.getCayenneRuntime();
-		this.cayenneContext = this.cayenneRuntime.getContext();
+		this.cayenneContext = this.cayenneRuntime.newContext();
 		this.jaxbContext = JAXBContext.newInstance( "_int.wmo.def.wmdr._2017:_int.wmo.def.metce._2013:_int.wmo.def.opm._2013:net.opengis.gml.v_3_2_1:net.opengis.om.v_2_0:net.opengis.sampling.v_2_0:net.opengis.samplingspatial.v_2_0" );
 		this.wmdrOF = new _int.wmo.def.wmdr._2017.ObjectFactory();
 		this.opmOF = new _int.wmo.def.opm._2013.ObjectFactory();
@@ -164,16 +165,17 @@ public class Platform {
 	 */
 	public Platform(Integer ptfId) throws JAXBException, DatatypeConfigurationException{
 		this();
-		Ptf ptf = SelectById.query(Ptf.class, ptfId).selectOne(this.cayenneContext);			
+		Ptf ptf = SelectById.query(Ptf.class, ptfId).selectOne(this.cayenneContext);		
+		String wigosRef = this.getWIGOSIdentifier(ptf.getRef());
 		
 		CodeWithAuthorityType identifier = new CodeWithAuthorityType();
-		identifier.setValue(ptf.getRef());
+		identifier.setValue(wigosRef);
 		identifier.setCodeSpace("http://wigos.wmo.int");
 		
 		StringOrRefType description = new StringOrRefType();
 		description.setValue(ptf.getDescription());
 		
-		this.rootElementType.setId("WMDR-" + ptf.getRef());
+		this.rootElementType.setId("WMDR-" + wigosRef);
 		this.rootElementType.setDescription(description);
 		this.rootElementType.setIdentifier(identifier);
 		this.rootElementType.setName(new ArrayList<CodeType>());
@@ -371,11 +373,81 @@ public class Platform {
 	}
 	
 	/**
-	 * Builds the Equipement list for the given platform. This correspond to the SensorModel database entity.
+	 * Builds the Equipement list for the given platform. This correspond to the PlatformModel database entity.
 	 * @param ptf  The Ptf entity object from which data should be extracted
 	 * @return the Equipement list
 	 */
 	private List<EquipmentPropertyType> getEquipements(Ptf ptf){
+		ArrayList<EquipmentPropertyType> equipements = new ArrayList<>();
+		
+		EquipmentPropertyType currentEquipment;
+		EquipmentType currentEquipmentType;
+		
+		PtfModel pm = ptf.getPtfModel();
+		currentEquipment = this.wmdrOF.createEquipmentPropertyType();
+		currentEquipmentType = this.wmdrOF.createEquipmentType();		
+		
+		currentEquipmentType.setId("equipment-" + pm.getObjectId().getIdSnapshot().get("ID").toString());
+		
+		ArrayList<CodeType> names = new ArrayList<CodeType>();
+		CodeType name = new CodeType();
+		name.setValue(pm.getName());
+		names.add(name);
+		currentEquipmentType.setName(names);
+		StringOrRefType value = new StringOrRefType();
+		value.setValue(pm.getDescription());
+		currentEquipmentType.setDescription(value);
+		
+		currentEquipmentType.setSerialNumber(ptf.getPtfHardware().getSerialRef());
+		
+		if(pm.getWeblink() != null){
+			OnlineResource or = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeOnlineResource();
+			CIOnlineResourceType onlineRsrc = this.gmdOF.createCIOnlineResourceType();
+			URLPropertyType urlProperty = this.gmdOF.createURLPropertyType();
+			urlProperty.setURL(pm.getWeblink().getUrl());
+			onlineRsrc.setLinkage(urlProperty);
+			or.setCIOnlineResource(onlineRsrc);
+			currentEquipmentType.getOnlineResource().add(or);
+		}
+					
+		ReferenceType refType = this.gmlOF.createReferenceType();
+		refType.setHref("http://codes.wmo.int/common/wmdr/GeopositioningMethod/");
+		//currentEquipmentType.setGeopositioningMethod(refType);
+
+		AbstractEnvironmentalMonitoringFacilityType.ResponsibleParty responsibleParty = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeResponsibleParty();
+		ResponsiblePartyType responsiblePartyType = this.wmdrOF.createResponsiblePartyType();
+		ResponsiblePartyType.ResponsibleParty rp = this.wmdrOF.createResponsiblePartyTypeResponsibleParty();
+		if(pm.getAgency() != null){
+			rp.setCIResponsibleParty(this.getCIResponsibleParty(Integer.parseInt(pm.getAgency().getObjectId().getIdSnapshot().get("ID").toString()), "custodian"));
+			
+			currentEquipmentType.setManufacturer(pm.getAgency().getName());
+		}
+		else
+			rp.setCIResponsibleParty(this.getCIResponsibleParty(null, null));
+		
+		responsiblePartyType.setResponsibleParty(rp);
+		responsibleParty.setResponsibleParty(responsiblePartyType);
+		currentEquipmentType.getResponsibleParty().add(responsibleParty);
+		
+
+		refType = this.gmlOF.createReferenceType();
+		refType.setHref("http://codes.wmo.int/common/wmdr/ObservingMethod/");
+		currentEquipmentType.setObservingMethod(refType);
+		
+		
+		
+		currentEquipment.setEquipment(currentEquipmentType);
+		equipements.add(currentEquipment);
+		
+		return equipements;
+	}
+	
+	/**
+	 * Builds the SubEquipement list for the given platform. This correspond to the SensorModel database entity.
+	 * @param ptf  The Ptf entity object from which data should be extracted
+	 * @return the Equipement list
+	 */
+	private List<EquipmentPropertyType> getSubEquipements(Ptf ptf){
 		List<PtfSensorModel> ptfSensorModels = ptf.getPtfSensorModels();
 		ArrayList<EquipmentPropertyType> equipements = new ArrayList<>();
 		
@@ -386,7 +458,7 @@ public class Platform {
 			currentEquipment = this.wmdrOF.createEquipmentPropertyType();
 			currentEquipmentType = this.wmdrOF.createEquipmentType();
 			
-			currentEquipmentType.setId("equipment-" + sm.getObjectId().getIdSnapshot().get("ID").toString());
+			currentEquipmentType.setId("subequipment-" + sm.getObjectId().getIdSnapshot().get("ID").toString());
 			
 			ArrayList<CodeType> names = new ArrayList<CodeType>();
 			CodeType name = new CodeType();
@@ -607,7 +679,7 @@ public class Platform {
 		o.setFacilityType(refType);
 				
 		List<EquipmentPropertyType> equipments = o.getEquipment();
-		List<EquipmentPropertyType> equipmentList = this.getEquipements(ptf);
+		List<EquipmentPropertyType> equipmentList = this.getSubEquipements(ptf);
 		equipments.addAll(equipmentList);
 		
 		/*FacilityLogPropertyType facilityLogProperty = this.wmdrOF.createFacilityLogPropertyType();
