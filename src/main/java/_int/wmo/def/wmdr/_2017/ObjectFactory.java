@@ -725,11 +725,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link AttributionType.Attribution }
+     * Create an instance of {@link AttributionType.OriginatorURL }
      * 
      */
-    public AttributionType.Attribution createAttributionTypeAttribution() {
-        return new AttributionType.Attribution();
+    public AttributionType.OriginatorURL createAttributionTypeOriginatorURL() {
+        return new AttributionType.OriginatorURL();
     }
 
     /**
@@ -893,8 +893,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AbstractEnvironmentalMonitoringFacilityType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link AbstractEnvironmentalMonitoringFacilityType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link AbstractEnvironmentalMonitoringFacilityType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "AbstractEnvironmentalMonitoringFacility", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractFeature")
     public JAXBElement<AbstractEnvironmentalMonitoringFacilityType> createAbstractEnvironmentalMonitoringFacility(AbstractEnvironmentalMonitoringFacilityType value) {
@@ -902,8 +906,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ControlCheckReportType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ControlCheckReportType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ControlCheckReportType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "ControlCheckReport", substitutionHeadNamespace = "http://def.wmo.int/wmdr/2017", substitutionHeadName = "LogEntry")
     public JAXBElement<ControlCheckReportType> createControlCheckReport(ControlCheckReportType value) {
@@ -911,8 +919,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link LogEntryType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link LogEntryType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link LogEntryType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "LogEntry", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractObject")
     public JAXBElement<LogEntryType> createLogEntry(LogEntryType value) {
@@ -920,8 +932,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DataGenerationType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link DataGenerationType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link DataGenerationType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "DataGeneration", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractFeature")
     public JAXBElement<DataGenerationType> createDataGeneration(DataGenerationType value) {
@@ -929,8 +945,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DeploymentType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link DeploymentType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link DeploymentType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "Deployment", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractFeature")
     public JAXBElement<DeploymentType> createDeployment(DeploymentType value) {
@@ -938,8 +958,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link EquipmentType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link EquipmentType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link EquipmentType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "Equipment", substitutionHeadNamespace = "http://def.wmo.int/wmdr/2017", substitutionHeadName = "AbstractEnvironmentalMonitoringFacility")
     public JAXBElement<EquipmentType> createEquipment(EquipmentType value) {
@@ -947,8 +971,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link EventReportType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link EventReportType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link EventReportType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "EventReport", substitutionHeadNamespace = "http://def.wmo.int/wmdr/2017", substitutionHeadName = "LogEntry")
     public JAXBElement<EventReportType> createEventReport(EventReportType value) {
@@ -956,8 +984,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FacilityLogType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link FacilityLogType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link FacilityLogType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "FacilityLog", substitutionHeadNamespace = "http://def.wmo.int/wmdr/2017", substitutionHeadName = "Log")
     public JAXBElement<FacilityLogType> createFacilityLog(FacilityLogType value) {
@@ -965,8 +997,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link LogType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link LogType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link LogType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "Log", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractFeature")
     public JAXBElement<LogType> createLog(LogType value) {
@@ -974,8 +1010,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FacilitySetType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link FacilitySetType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link FacilitySetType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "FacilitySet", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractFeature")
     public JAXBElement<FacilitySetType> createFacilitySet(FacilitySetType value) {
@@ -983,8 +1023,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FrequenciesType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link FrequenciesType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link FrequenciesType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "Frequencies", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractFeature")
     public JAXBElement<FrequenciesType> createFrequencies(FrequenciesType value) {
@@ -992,8 +1036,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link HeaderType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link HeaderType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link HeaderType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "Header", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractObject")
     public JAXBElement<HeaderType> createHeader(HeaderType value) {
@@ -1001,8 +1049,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link InstrumentOperatingStatusType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link InstrumentOperatingStatusType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link InstrumentOperatingStatusType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "InstrumentOperatingStatus", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractObject")
     public JAXBElement<InstrumentOperatingStatusType> createInstrumentOperatingStatus(InstrumentOperatingStatusType value) {
@@ -1010,8 +1062,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link MaintenanceReportType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link MaintenanceReportType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link MaintenanceReportType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "MaintenanceReport", substitutionHeadNamespace = "http://def.wmo.int/wmdr/2017", substitutionHeadName = "LogEntry")
     public JAXBElement<MaintenanceReportType> createMaintenanceReport(MaintenanceReportType value) {
@@ -1019,8 +1075,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ObservingCapabilityType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ObservingCapabilityType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ObservingCapabilityType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "ObservingCapability", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractFeature")
     public JAXBElement<ObservingCapabilityType> createObservingCapability(ObservingCapabilityType value) {
@@ -1028,8 +1088,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ObservingFacilityType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ObservingFacilityType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ObservingFacilityType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "ObservingFacility", substitutionHeadNamespace = "http://def.wmo.int/wmdr/2017", substitutionHeadName = "AbstractEnvironmentalMonitoringFacility")
     public JAXBElement<ObservingFacilityType> createObservingFacility(ObservingFacilityType value) {
@@ -1037,8 +1101,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ProcessType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ProcessType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ProcessType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "Process", substitutionHeadNamespace = "http://def.wmo.int/metce/2013", substitutionHeadName = "Process")
     public JAXBElement<ProcessType> createProcess(ProcessType value) {
@@ -1046,8 +1114,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ProcessingType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ProcessingType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ProcessingType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "Processing", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractObject")
     public JAXBElement<ProcessingType> createProcessing(ProcessingType value) {
@@ -1055,8 +1127,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ProgramAffiliationType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ProgramAffiliationType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ProgramAffiliationType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "ProgramAffiliation", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractObject")
     public JAXBElement<ProgramAffiliationType> createProgramAffiliation(ProgramAffiliationType value) {
@@ -1064,8 +1140,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ReportingType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ReportingType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ReportingType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "Reporting", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractObject")
     public JAXBElement<ReportingType> createReporting(ReportingType value) {
@@ -1073,8 +1153,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ResultSetType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ResultSetType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ResultSetType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "ResultSet", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractObject")
     public JAXBElement<ResultSetType> createResultSet(ResultSetType value) {
@@ -1082,8 +1166,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SamplingType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link SamplingType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link SamplingType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "Sampling", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractObject")
     public JAXBElement<SamplingType> createSampling(SamplingType value) {
@@ -1091,8 +1179,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ScheduleType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ScheduleType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ScheduleType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "Schedule", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractObject")
     public JAXBElement<ScheduleType> createSchedule(ScheduleType value) {
@@ -1100,8 +1192,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AttributionType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link AttributionType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link AttributionType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "Attribution", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractObject")
     public JAXBElement<AttributionType> createAttribution(AttributionType value) {
@@ -1109,8 +1205,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ClimateZoneType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ClimateZoneType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ClimateZoneType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "ClimateZone", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractObject")
     public JAXBElement<ClimateZoneType> createClimateZone(ClimateZoneType value) {
@@ -1118,8 +1218,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DataPolicyType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link DataPolicyType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link DataPolicyType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "DataPolicy", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractObject")
     public JAXBElement<DataPolicyType> createDataPolicy(DataPolicyType value) {
@@ -1127,8 +1231,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DescriptionType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link DescriptionType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link DescriptionType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "Description", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractObject")
     public JAXBElement<DescriptionType> createDescription(DescriptionType value) {
@@ -1136,8 +1244,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GeospatialLocationType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link GeospatialLocationType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link GeospatialLocationType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "GeospatialLocation", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractObject")
     public JAXBElement<GeospatialLocationType> createGeospatialLocation(GeospatialLocationType value) {
@@ -1145,8 +1257,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ReportingStatusType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ReportingStatusType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ReportingStatusType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "ReportingStatus", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractObject")
     public JAXBElement<ReportingStatusType> createReportingStatus(ReportingStatusType value) {
@@ -1154,8 +1270,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ResponsiblePartyType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ResponsiblePartyType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ResponsiblePartyType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "ResponsibleParty", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractObject")
     public JAXBElement<ResponsiblePartyType> createResponsibleParty(ResponsiblePartyType value) {
@@ -1163,8 +1283,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SurfaceCoverType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link SurfaceCoverType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link SurfaceCoverType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "SurfaceCover", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractObject")
     public JAXBElement<SurfaceCoverType> createSurfaceCover(SurfaceCoverType value) {
@@ -1172,8 +1296,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SurfaceRoughnessType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link SurfaceRoughnessType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link SurfaceRoughnessType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "SurfaceRoughness", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractObject")
     public JAXBElement<SurfaceRoughnessType> createSurfaceRoughness(SurfaceRoughnessType value) {
@@ -1181,8 +1309,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link TerritoryType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link TerritoryType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link TerritoryType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "Territory", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractObject")
     public JAXBElement<TerritoryType> createTerritory(TerritoryType value) {
@@ -1190,8 +1322,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link TopographyBathymetryType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link TopographyBathymetryType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link TopographyBathymetryType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "TopographyBathymetry", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractObject")
     public JAXBElement<TopographyBathymetryType> createTopographyBathymetry(TopographyBathymetryType value) {
@@ -1199,8 +1335,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link WIGOSMetadataRecordType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link WIGOSMetadataRecordType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link WIGOSMetadataRecordType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "WIGOSMetadataRecord", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractFeature")
     public JAXBElement<WIGOSMetadataRecordType> createWIGOSMetadataRecord(WIGOSMetadataRecordType value) {
@@ -1208,8 +1348,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link EquipmentLogType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link EquipmentLogType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link EquipmentLogType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/wmdr/2017", name = "EquipmentLog", substitutionHeadNamespace = "http://def.wmo.int/wmdr/2017", substitutionHeadName = "Log")
     public JAXBElement<EquipmentLogType> createEquipmentLog(EquipmentLogType value) {

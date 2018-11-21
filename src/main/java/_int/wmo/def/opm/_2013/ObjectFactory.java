@@ -203,8 +203,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AbstractObservablePropertyType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link AbstractObservablePropertyType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link AbstractObservablePropertyType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/opm/2013", name = "AbstractObservableProperty", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractGML")
     public JAXBElement<AbstractObservablePropertyType> createAbstractObservableProperty(AbstractObservablePropertyType value) {
@@ -212,8 +216,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CompositeObservablePropertyType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link CompositeObservablePropertyType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link CompositeObservablePropertyType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/opm/2013", name = "CompositeObservableProperty", substitutionHeadNamespace = "http://def.wmo.int/opm/2013", substitutionHeadName = "AbstractObservableProperty")
     public JAXBElement<CompositeObservablePropertyType> createCompositeObservableProperty(CompositeObservablePropertyType value) {
@@ -221,8 +229,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ObservablePropertyType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ObservablePropertyType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ObservablePropertyType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/opm/2013", name = "ObservableProperty", substitutionHeadNamespace = "http://def.wmo.int/opm/2013", substitutionHeadName = "AbstractObservableProperty")
     public JAXBElement<ObservablePropertyType> createObservableProperty(ObservablePropertyType value) {
@@ -230,8 +242,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link QualifiedObservablePropertyType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link QualifiedObservablePropertyType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link QualifiedObservablePropertyType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/opm/2013", name = "QualifiedObservableProperty", substitutionHeadNamespace = "http://def.wmo.int/opm/2013", substitutionHeadName = "ObservableProperty")
     public JAXBElement<QualifiedObservablePropertyType> createQualifiedObservableProperty(QualifiedObservablePropertyType value) {
@@ -239,8 +255,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ScalarConstraintType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ScalarConstraintType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ScalarConstraintType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/opm/2013", name = "ScalarConstraint", substitutionHeadNamespace = "http://def.wmo.int/opm/2013", substitutionHeadName = "Constraint")
     public JAXBElement<ScalarConstraintType> createScalarConstraint(ScalarConstraintType value) {
@@ -248,8 +268,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ConstraintType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ConstraintType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ConstraintType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/opm/2013", name = "Constraint", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractObject")
     public JAXBElement<ConstraintType> createConstraint(ConstraintType value) {
@@ -257,8 +281,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link StatisticalQualifierType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link StatisticalQualifierType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link StatisticalQualifierType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/opm/2013", name = "StatisticalQualifier", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractObject")
     public JAXBElement<StatisticalQualifierType> createStatisticalQualifier(StatisticalQualifierType value) {
@@ -266,8 +294,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CategoryConstraintType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link CategoryConstraintType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link CategoryConstraintType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/opm/2013", name = "CategoryConstraint", substitutionHeadNamespace = "http://def.wmo.int/opm/2013", substitutionHeadName = "Constraint")
     public JAXBElement<CategoryConstraintType> createCategoryConstraint(CategoryConstraintType value) {
@@ -275,8 +307,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link RangeConstraintType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link RangeConstraintType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link RangeConstraintType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/opm/2013", name = "RangeConstraint", substitutionHeadNamespace = "http://def.wmo.int/opm/2013", substitutionHeadName = "Constraint")
     public JAXBElement<RangeConstraintType> createRangeConstraint(RangeConstraintType value) {
@@ -284,8 +320,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link RangeBoundsType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link RangeBoundsType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link RangeBoundsType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/opm/2013", name = "RangeBounds", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractObject")
     public JAXBElement<RangeBoundsType> createRangeBounds(RangeBoundsType value) {

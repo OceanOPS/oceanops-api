@@ -135,8 +135,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ProcessType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ProcessType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ProcessType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/metce/2013", name = "Process", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractFeature")
     public JAXBElement<ProcessType> createProcess(ProcessType value) {
@@ -144,8 +148,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link MeasurementContextType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link MeasurementContextType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link MeasurementContextType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/metce/2013", name = "MeasurementContext", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractGML")
     public JAXBElement<MeasurementContextType> createMeasurementContext(MeasurementContextType value) {
@@ -153,8 +161,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link RangeBoundsType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link RangeBoundsType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link RangeBoundsType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/metce/2013", name = "RangeBounds", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractObject")
     public JAXBElement<RangeBoundsType> createRangeBounds(RangeBoundsType value) {
@@ -162,8 +174,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link TropicalCycloneType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link TropicalCycloneType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link TropicalCycloneType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/metce/2013", name = "TropicalCyclone", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractFeature")
     public JAXBElement<TropicalCycloneType> createTropicalCyclone(TropicalCycloneType value) {
@@ -171,8 +187,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link VolcanoType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link VolcanoType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link VolcanoType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/metce/2013", name = "Volcano", substitutionHeadNamespace = "http://www.opengis.net/gml/3.2", substitutionHeadName = "AbstractFeature")
     public JAXBElement<VolcanoType> createVolcano(VolcanoType value) {
@@ -180,8 +200,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link EruptingVolcanoType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link EruptingVolcanoType }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link EruptingVolcanoType }{@code >}
      */
     @XmlElementDecl(namespace = "http://def.wmo.int/metce/2013", name = "EruptingVolcano", substitutionHeadNamespace = "http://def.wmo.int/metce/2013", substitutionHeadName = "Volcano")
     public JAXBElement<EruptingVolcanoType> createEruptingVolcano(EruptingVolcanoType value) {

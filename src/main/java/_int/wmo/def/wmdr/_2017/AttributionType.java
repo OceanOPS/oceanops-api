@@ -47,7 +47,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  *             &lt;/complexContent&gt;
  *           &lt;/complexType&gt;
  *         &lt;/element&gt;
- *         &lt;element name="attribution" minOccurs="0"&gt;
+ *         &lt;element name="originatorURL" minOccurs="0"&gt;
  *           &lt;complexType&gt;
  *             &lt;complexContent&gt;
  *               &lt;extension base="{http://www.opengis.net/gml/3.2}AbstractMetadataPropertyType"&gt;
@@ -81,7 +81,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 @XmlType(name = "AttributionType", propOrder = {
     "title",
     "originator",
-    "attribution",
+    "originatorURL",
     "source"
 })
 public class AttributionType implements Serializable, Cloneable, CopyTo2, Equals2, HashCode2, ToString2
@@ -91,7 +91,7 @@ public class AttributionType implements Serializable, Cloneable, CopyTo2, Equals
     protected String title;
     @XmlElement(required = true)
     protected AttributionType.Originator originator;
-    protected AttributionType.Attribution attribution;
+    protected AttributionType.OriginatorURL originatorURL;
     protected AttributionType.Source source;
 
     /**
@@ -151,31 +151,31 @@ public class AttributionType implements Serializable, Cloneable, CopyTo2, Equals
     }
 
     /**
-     * Gets the value of the attribution property.
+     * Gets the value of the originatorURL property.
      * 
      * @return
      *     possible object is
-     *     {@link AttributionType.Attribution }
+     *     {@link AttributionType.OriginatorURL }
      *     
      */
-    public AttributionType.Attribution getAttribution() {
-        return attribution;
+    public AttributionType.OriginatorURL getOriginatorURL() {
+        return originatorURL;
     }
 
     /**
-     * Sets the value of the attribution property.
+     * Sets the value of the originatorURL property.
      * 
      * @param value
      *     allowed object is
-     *     {@link AttributionType.Attribution }
+     *     {@link AttributionType.OriginatorURL }
      *     
      */
-    public void setAttribution(AttributionType.Attribution value) {
-        this.attribution = value;
+    public void setOriginatorURL(AttributionType.OriginatorURL value) {
+        this.originatorURL = value;
     }
 
-    public boolean isSetAttribution() {
-        return (this.attribution!= null);
+    public boolean isSetOriginatorURL() {
+        return (this.originatorURL!= null);
     }
 
     /**
@@ -232,9 +232,9 @@ public class AttributionType implements Serializable, Cloneable, CopyTo2, Equals
             strategy.appendField(locator, this, "originator", buffer, theOriginator, this.isSetOriginator());
         }
         {
-            AttributionType.Attribution theAttribution;
-            theAttribution = this.getAttribution();
-            strategy.appendField(locator, this, "attribution", buffer, theAttribution, this.isSetAttribution());
+            AttributionType.OriginatorURL theOriginatorURL;
+            theOriginatorURL = this.getOriginatorURL();
+            strategy.appendField(locator, this, "originatorURL", buffer, theOriginatorURL, this.isSetOriginatorURL());
         }
         {
             AttributionType.Source theSource;
@@ -271,11 +271,11 @@ public class AttributionType implements Serializable, Cloneable, CopyTo2, Equals
             }
         }
         {
-            AttributionType.Attribution lhsAttribution;
-            lhsAttribution = this.getAttribution();
-            AttributionType.Attribution rhsAttribution;
-            rhsAttribution = that.getAttribution();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "attribution", lhsAttribution), LocatorUtils.property(thatLocator, "attribution", rhsAttribution), lhsAttribution, rhsAttribution, this.isSetAttribution(), that.isSetAttribution())) {
+            AttributionType.OriginatorURL lhsOriginatorURL;
+            lhsOriginatorURL = this.getOriginatorURL();
+            AttributionType.OriginatorURL rhsOriginatorURL;
+            rhsOriginatorURL = that.getOriginatorURL();
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "originatorURL", lhsOriginatorURL), LocatorUtils.property(thatLocator, "originatorURL", rhsOriginatorURL), lhsOriginatorURL, rhsOriginatorURL, this.isSetOriginatorURL(), that.isSetOriginatorURL())) {
                 return false;
             }
         }
@@ -309,9 +309,9 @@ public class AttributionType implements Serializable, Cloneable, CopyTo2, Equals
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "originator", theOriginator), currentHashCode, theOriginator, this.isSetOriginator());
         }
         {
-            AttributionType.Attribution theAttribution;
-            theAttribution = this.getAttribution();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "attribution", theAttribution), currentHashCode, theAttribution, this.isSetAttribution());
+            AttributionType.OriginatorURL theOriginatorURL;
+            theOriginatorURL = this.getOriginatorURL();
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "originatorURL", theOriginatorURL), currentHashCode, theOriginatorURL, this.isSetOriginatorURL());
         }
         {
             AttributionType.Source theSource;
@@ -366,15 +366,15 @@ public class AttributionType implements Serializable, Cloneable, CopyTo2, Equals
                 }
             }
             {
-                Boolean attributionShouldBeCopiedAndSet = strategy.shouldBeCopiedAndSet(locator, this.isSetAttribution());
-                if (attributionShouldBeCopiedAndSet == Boolean.TRUE) {
-                    AttributionType.Attribution sourceAttribution;
-                    sourceAttribution = this.getAttribution();
-                    AttributionType.Attribution copyAttribution = ((AttributionType.Attribution) strategy.copy(LocatorUtils.property(locator, "attribution", sourceAttribution), sourceAttribution, this.isSetAttribution()));
-                    copy.setAttribution(copyAttribution);
+                Boolean originatorURLShouldBeCopiedAndSet = strategy.shouldBeCopiedAndSet(locator, this.isSetOriginatorURL());
+                if (originatorURLShouldBeCopiedAndSet == Boolean.TRUE) {
+                    AttributionType.OriginatorURL sourceOriginatorURL;
+                    sourceOriginatorURL = this.getOriginatorURL();
+                    AttributionType.OriginatorURL copyOriginatorURL = ((AttributionType.OriginatorURL) strategy.copy(LocatorUtils.property(locator, "originatorURL", sourceOriginatorURL), sourceOriginatorURL, this.isSetOriginatorURL()));
+                    copy.setOriginatorURL(copyOriginatorURL);
                 } else {
-                    if (attributionShouldBeCopiedAndSet == Boolean.FALSE) {
-                        copy.attribution = null;
+                    if (originatorURLShouldBeCopiedAndSet == Boolean.FALSE) {
+                        copy.originatorURL = null;
                     }
                 }
             }
@@ -397,171 +397,6 @@ public class AttributionType implements Serializable, Cloneable, CopyTo2, Equals
 
     public Object createNewInstance() {
         return new AttributionType();
-    }
-
-
-    /**
-     * <p>Java class for anonymous complex type.
-     * 
-     * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
-     * <pre>
-     * &lt;complexType&gt;
-     *   &lt;complexContent&gt;
-     *     &lt;extension base="{http://www.opengis.net/gml/3.2}AbstractMetadataPropertyType"&gt;
-     *       &lt;sequence&gt;
-     *         &lt;element ref="{http://www.isotc211.org/2005/gmd}CI_OnlineResource"/&gt;
-     *       &lt;/sequence&gt;
-     *     &lt;/extension&gt;
-     *   &lt;/complexContent&gt;
-     * &lt;/complexType&gt;
-     * </pre>
-     * 
-     * 
-     */
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "ciOnlineResource"
-    })
-    public static class Attribution
-        extends AbstractMetadataPropertyType
-        implements Serializable, Cloneable, CopyTo2, Equals2, HashCode2, ToString2
-    {
-
-        private final static long serialVersionUID = 1L;
-        @XmlElement(name = "CI_OnlineResource", namespace = "http://www.isotc211.org/2005/gmd", required = true)
-        protected CIOnlineResourceType ciOnlineResource;
-
-        /**
-         * Gets the value of the ciOnlineResource property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link CIOnlineResourceType }
-         *     
-         */
-        public CIOnlineResourceType getCIOnlineResource() {
-            return ciOnlineResource;
-        }
-
-        /**
-         * Sets the value of the ciOnlineResource property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link CIOnlineResourceType }
-         *     
-         */
-        public void setCIOnlineResource(CIOnlineResourceType value) {
-            this.ciOnlineResource = value;
-        }
-
-        public boolean isSetCIOnlineResource() {
-            return (this.ciOnlineResource!= null);
-        }
-
-        public String toString() {
-            final ToStringStrategy2 strategy = JAXBToStringStrategy.INSTANCE;
-            final StringBuilder buffer = new StringBuilder();
-            append(null, buffer, strategy);
-            return buffer.toString();
-        }
-
-        public StringBuilder append(ObjectLocator locator, StringBuilder buffer, ToStringStrategy2 strategy) {
-            strategy.appendStart(locator, this, buffer);
-            appendFields(locator, buffer, strategy);
-            strategy.appendEnd(locator, this, buffer);
-            return buffer;
-        }
-
-        public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy2 strategy) {
-            super.appendFields(locator, buffer, strategy);
-            {
-                CIOnlineResourceType theCIOnlineResource;
-                theCIOnlineResource = this.getCIOnlineResource();
-                strategy.appendField(locator, this, "ciOnlineResource", buffer, theCIOnlineResource, this.isSetCIOnlineResource());
-            }
-            return buffer;
-        }
-
-        public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy2 strategy) {
-            if ((object == null)||(this.getClass()!= object.getClass())) {
-                return false;
-            }
-            if (this == object) {
-                return true;
-            }
-            if (!super.equals(thisLocator, thatLocator, object, strategy)) {
-                return false;
-            }
-            final AttributionType.Attribution that = ((AttributionType.Attribution) object);
-            {
-                CIOnlineResourceType lhsCIOnlineResource;
-                lhsCIOnlineResource = this.getCIOnlineResource();
-                CIOnlineResourceType rhsCIOnlineResource;
-                rhsCIOnlineResource = that.getCIOnlineResource();
-                if (!strategy.equals(LocatorUtils.property(thisLocator, "ciOnlineResource", lhsCIOnlineResource), LocatorUtils.property(thatLocator, "ciOnlineResource", rhsCIOnlineResource), lhsCIOnlineResource, rhsCIOnlineResource, this.isSetCIOnlineResource(), that.isSetCIOnlineResource())) {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        public boolean equals(Object object) {
-            final EqualsStrategy2 strategy = JAXBEqualsStrategy.INSTANCE;
-            return equals(null, null, object, strategy);
-        }
-
-        public int hashCode(ObjectLocator locator, HashCodeStrategy2 strategy) {
-            int currentHashCode = super.hashCode(locator, strategy);
-            {
-                CIOnlineResourceType theCIOnlineResource;
-                theCIOnlineResource = this.getCIOnlineResource();
-                currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "ciOnlineResource", theCIOnlineResource), currentHashCode, theCIOnlineResource, this.isSetCIOnlineResource());
-            }
-            return currentHashCode;
-        }
-
-        public int hashCode() {
-            final HashCodeStrategy2 strategy = JAXBHashCodeStrategy.INSTANCE;
-            return this.hashCode(null, strategy);
-        }
-
-        public Object clone() {
-            return copyTo(createNewInstance());
-        }
-
-        public Object copyTo(Object target) {
-            final CopyStrategy2 strategy = JAXBCopyStrategy.INSTANCE;
-            return copyTo(null, target, strategy);
-        }
-
-        public Object copyTo(ObjectLocator locator, Object target, CopyStrategy2 strategy) {
-            final Object draftCopy = ((target == null)?createNewInstance():target);
-            super.copyTo(locator, draftCopy, strategy);
-            if (draftCopy instanceof AttributionType.Attribution) {
-                final AttributionType.Attribution copy = ((AttributionType.Attribution) draftCopy);
-                {
-                    Boolean ciOnlineResourceShouldBeCopiedAndSet = strategy.shouldBeCopiedAndSet(locator, this.isSetCIOnlineResource());
-                    if (ciOnlineResourceShouldBeCopiedAndSet == Boolean.TRUE) {
-                        CIOnlineResourceType sourceCIOnlineResource;
-                        sourceCIOnlineResource = this.getCIOnlineResource();
-                        CIOnlineResourceType copyCIOnlineResource = ((CIOnlineResourceType) strategy.copy(LocatorUtils.property(locator, "ciOnlineResource", sourceCIOnlineResource), sourceCIOnlineResource, this.isSetCIOnlineResource()));
-                        copy.setCIOnlineResource(copyCIOnlineResource);
-                    } else {
-                        if (ciOnlineResourceShouldBeCopiedAndSet == Boolean.FALSE) {
-                            copy.ciOnlineResource = null;
-                        }
-                    }
-                }
-            }
-            return draftCopy;
-        }
-
-        public Object createNewInstance() {
-            return new AttributionType.Attribution();
-        }
-
     }
 
 
@@ -725,6 +560,171 @@ public class AttributionType implements Serializable, Cloneable, CopyTo2, Equals
 
         public Object createNewInstance() {
             return new AttributionType.Originator();
+        }
+
+    }
+
+
+    /**
+     * <p>Java class for anonymous complex type.
+     * 
+     * <p>The following schema fragment specifies the expected content contained within this class.
+     * 
+     * <pre>
+     * &lt;complexType&gt;
+     *   &lt;complexContent&gt;
+     *     &lt;extension base="{http://www.opengis.net/gml/3.2}AbstractMetadataPropertyType"&gt;
+     *       &lt;sequence&gt;
+     *         &lt;element ref="{http://www.isotc211.org/2005/gmd}CI_OnlineResource"/&gt;
+     *       &lt;/sequence&gt;
+     *     &lt;/extension&gt;
+     *   &lt;/complexContent&gt;
+     * &lt;/complexType&gt;
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "ciOnlineResource"
+    })
+    public static class OriginatorURL
+        extends AbstractMetadataPropertyType
+        implements Serializable, Cloneable, CopyTo2, Equals2, HashCode2, ToString2
+    {
+
+        private final static long serialVersionUID = 1L;
+        @XmlElement(name = "CI_OnlineResource", namespace = "http://www.isotc211.org/2005/gmd", required = true)
+        protected CIOnlineResourceType ciOnlineResource;
+
+        /**
+         * Gets the value of the ciOnlineResource property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link CIOnlineResourceType }
+         *     
+         */
+        public CIOnlineResourceType getCIOnlineResource() {
+            return ciOnlineResource;
+        }
+
+        /**
+         * Sets the value of the ciOnlineResource property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link CIOnlineResourceType }
+         *     
+         */
+        public void setCIOnlineResource(CIOnlineResourceType value) {
+            this.ciOnlineResource = value;
+        }
+
+        public boolean isSetCIOnlineResource() {
+            return (this.ciOnlineResource!= null);
+        }
+
+        public String toString() {
+            final ToStringStrategy2 strategy = JAXBToStringStrategy.INSTANCE;
+            final StringBuilder buffer = new StringBuilder();
+            append(null, buffer, strategy);
+            return buffer.toString();
+        }
+
+        public StringBuilder append(ObjectLocator locator, StringBuilder buffer, ToStringStrategy2 strategy) {
+            strategy.appendStart(locator, this, buffer);
+            appendFields(locator, buffer, strategy);
+            strategy.appendEnd(locator, this, buffer);
+            return buffer;
+        }
+
+        public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy2 strategy) {
+            super.appendFields(locator, buffer, strategy);
+            {
+                CIOnlineResourceType theCIOnlineResource;
+                theCIOnlineResource = this.getCIOnlineResource();
+                strategy.appendField(locator, this, "ciOnlineResource", buffer, theCIOnlineResource, this.isSetCIOnlineResource());
+            }
+            return buffer;
+        }
+
+        public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy2 strategy) {
+            if ((object == null)||(this.getClass()!= object.getClass())) {
+                return false;
+            }
+            if (this == object) {
+                return true;
+            }
+            if (!super.equals(thisLocator, thatLocator, object, strategy)) {
+                return false;
+            }
+            final AttributionType.OriginatorURL that = ((AttributionType.OriginatorURL) object);
+            {
+                CIOnlineResourceType lhsCIOnlineResource;
+                lhsCIOnlineResource = this.getCIOnlineResource();
+                CIOnlineResourceType rhsCIOnlineResource;
+                rhsCIOnlineResource = that.getCIOnlineResource();
+                if (!strategy.equals(LocatorUtils.property(thisLocator, "ciOnlineResource", lhsCIOnlineResource), LocatorUtils.property(thatLocator, "ciOnlineResource", rhsCIOnlineResource), lhsCIOnlineResource, rhsCIOnlineResource, this.isSetCIOnlineResource(), that.isSetCIOnlineResource())) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public boolean equals(Object object) {
+            final EqualsStrategy2 strategy = JAXBEqualsStrategy.INSTANCE;
+            return equals(null, null, object, strategy);
+        }
+
+        public int hashCode(ObjectLocator locator, HashCodeStrategy2 strategy) {
+            int currentHashCode = super.hashCode(locator, strategy);
+            {
+                CIOnlineResourceType theCIOnlineResource;
+                theCIOnlineResource = this.getCIOnlineResource();
+                currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "ciOnlineResource", theCIOnlineResource), currentHashCode, theCIOnlineResource, this.isSetCIOnlineResource());
+            }
+            return currentHashCode;
+        }
+
+        public int hashCode() {
+            final HashCodeStrategy2 strategy = JAXBHashCodeStrategy.INSTANCE;
+            return this.hashCode(null, strategy);
+        }
+
+        public Object clone() {
+            return copyTo(createNewInstance());
+        }
+
+        public Object copyTo(Object target) {
+            final CopyStrategy2 strategy = JAXBCopyStrategy.INSTANCE;
+            return copyTo(null, target, strategy);
+        }
+
+        public Object copyTo(ObjectLocator locator, Object target, CopyStrategy2 strategy) {
+            final Object draftCopy = ((target == null)?createNewInstance():target);
+            super.copyTo(locator, draftCopy, strategy);
+            if (draftCopy instanceof AttributionType.OriginatorURL) {
+                final AttributionType.OriginatorURL copy = ((AttributionType.OriginatorURL) draftCopy);
+                {
+                    Boolean ciOnlineResourceShouldBeCopiedAndSet = strategy.shouldBeCopiedAndSet(locator, this.isSetCIOnlineResource());
+                    if (ciOnlineResourceShouldBeCopiedAndSet == Boolean.TRUE) {
+                        CIOnlineResourceType sourceCIOnlineResource;
+                        sourceCIOnlineResource = this.getCIOnlineResource();
+                        CIOnlineResourceType copyCIOnlineResource = ((CIOnlineResourceType) strategy.copy(LocatorUtils.property(locator, "ciOnlineResource", sourceCIOnlineResource), sourceCIOnlineResource, this.isSetCIOnlineResource()));
+                        copy.setCIOnlineResource(copyCIOnlineResource);
+                    } else {
+                        if (ciOnlineResourceShouldBeCopiedAndSet == Boolean.FALSE) {
+                            copy.ciOnlineResource = null;
+                        }
+                    }
+                }
+            }
+            return draftCopy;
+        }
+
+        public Object createNewInstance() {
+            return new AttributionType.OriginatorURL();
         }
 
     }
