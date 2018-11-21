@@ -165,7 +165,7 @@ public class Platform {
 	 */
 	public Platform(Integer ptfId) throws JAXBException, DatatypeConfigurationException{
 		this();
-		Ptf ptf = SelectById.query(Ptf.class, ptfId).selectOne(this.cayenneContext);		
+		Ptf ptf = SelectById.query(Ptf.class, ptfId).selectOne(this.cayenneContext);
 		String wigosRef = this.getWIGOSIdentifier(ptf.getRef());
 		
 		CodeWithAuthorityType identifier = new CodeWithAuthorityType();
@@ -174,7 +174,6 @@ public class Platform {
 		
 		StringOrRefType description = new StringOrRefType();
 		description.setValue(ptf.getDescription());
-		
 		this.rootElementType.setId("WMDR-" + wigosRef);
 		this.rootElementType.setDescription(description);
 		this.rootElementType.setIdentifier(identifier);

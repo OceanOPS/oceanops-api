@@ -110,17 +110,13 @@ public class Utils {
 
 	public static String GetIsoDate(LocalDateTime localDateTime) {
 		String dateISO = null;
-		DateFormat formatISO = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 		if (localDateTime != null)
-			dateISO = formatISO.format(localDateTime);
+			dateISO = ISO_DATE_FORMAT.format(localDateTime);
 		return dateISO;
 	}
 
-	public static String GetYear(Date date) {
-		String year = null;
-		DateFormat formatISO = new SimpleDateFormat("yyyy");
-		year = formatISO.format(date);
-		return year;
+	public static String GetYear(LocalDateTime date) {
+		return String.valueOf(date.getYear());
 	}
 
 	public static String GetVariablesListToString(ArrayList<VariableEntity> Arr) {
