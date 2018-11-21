@@ -4,7 +4,6 @@ package _int.wmo.def.wmdr._2017;
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -42,7 +41,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  *         &lt;element name="endHour" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *         &lt;element name="startMinute" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *         &lt;element name="endMinute" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
- *         &lt;element name="diurnalBaseTime" type="{http://www.w3.org/2001/XMLSchema}time"/&gt;
+ *         &lt;element name="diurnalBaseTime" type="{http://www.w3.org/2001/XMLSchema}time" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -75,7 +74,6 @@ public class ScheduleType implements Serializable, Cloneable, CopyTo2, Equals2, 
     protected int endHour;
     protected int startMinute;
     protected int endMinute;
-    @XmlElement(required = true)
     @XmlSchemaType(name = "time")
     protected XMLGregorianCalendar diurnalBaseTime;
 

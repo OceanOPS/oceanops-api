@@ -40,7 +40,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  *       &lt;sequence&gt;
  *         &lt;element name="facilitySet" type="{http://www.opengis.net/gml/3.2}ReferenceType" maxOccurs="unbounded" minOccurs="0"/&gt;
  *         &lt;element name="facilityType" type="{http://www.opengis.net/gml/3.2}ReferenceType" minOccurs="0"/&gt;
- *         &lt;element name="dateEstablished" type="{http://www.w3.org/2001/XMLSchema}date"/&gt;
+ *         &lt;element name="dateEstablished" type="{http://www.w3.org/2001/XMLSchema}date" minOccurs="0"/&gt;
  *         &lt;element name="dateClosed" type="{http://www.w3.org/2001/XMLSchema}date" minOccurs="0"/&gt;
  *         &lt;element name="wmoRegion" type="{http://www.opengis.net/gml/3.2}ReferenceType"/&gt;
  *         &lt;element name="territory" maxOccurs="unbounded"&gt;
@@ -145,7 +145,6 @@ public class ObservingFacilityType
     private final static long serialVersionUID = 1L;
     protected List<ReferenceType> facilitySet;
     protected ReferenceType facilityType;
-    @XmlElement(required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar dateEstablished;
     @XmlSchemaType(name = "date")

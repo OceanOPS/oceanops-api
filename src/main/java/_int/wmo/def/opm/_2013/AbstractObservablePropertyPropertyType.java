@@ -88,9 +88,9 @@ public class AbstractObservablePropertyPropertyType implements Serializable, Clo
      * 
      * @return
      *     possible object is
+     *     {@link JAXBElement }{@code <}{@link CompositeObservablePropertyType }{@code >}
      *     {@link JAXBElement }{@code <}{@link QualifiedObservablePropertyType }{@code >}
      *     {@link JAXBElement }{@code <}{@link ObservablePropertyType }{@code >}
-     *     {@link JAXBElement }{@code <}{@link CompositeObservablePropertyType }{@code >}
      *     {@link JAXBElement }{@code <}{@link AbstractObservablePropertyType }{@code >}
      *     
      */
@@ -103,9 +103,9 @@ public class AbstractObservablePropertyPropertyType implements Serializable, Clo
      * 
      * @param value
      *     allowed object is
+     *     {@link JAXBElement }{@code <}{@link CompositeObservablePropertyType }{@code >}
      *     {@link JAXBElement }{@code <}{@link QualifiedObservablePropertyType }{@code >}
      *     {@link JAXBElement }{@code <}{@link ObservablePropertyType }{@code >}
-     *     {@link JAXBElement }{@code <}{@link CompositeObservablePropertyType }{@code >}
      *     {@link JAXBElement }{@code <}{@link AbstractObservablePropertyType }{@code >}
      *     
      */

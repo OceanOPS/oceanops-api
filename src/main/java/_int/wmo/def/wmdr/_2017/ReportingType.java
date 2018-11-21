@@ -71,7 +71,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  *         &lt;element name="dataFormat" type="{http://www.opengis.net/gml/3.2}ReferenceType" minOccurs="0"/&gt;
  *         &lt;element name="officialStatus" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/&gt;
  *         &lt;element name="dataFormatVersion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="latency" type="{http://www.w3.org/2001/XMLSchema}duration" minOccurs="0"/&gt;
+ *         &lt;element name="timeliness" type="{http://www.w3.org/2001/XMLSchema}duration" minOccurs="0"/&gt;
  *         &lt;element name="numericalResolution" type="{http://www.opengis.net/gml/3.2}MeasureType" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
@@ -96,7 +96,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
     "dataFormat",
     "officialStatus",
     "dataFormatVersion",
-    "latency",
+    "timeliness",
     "numericalResolution"
 })
 public class ReportingType implements Serializable, Cloneable, CopyTo2, Equals2, HashCode2, ToString2
@@ -118,7 +118,7 @@ public class ReportingType implements Serializable, Cloneable, CopyTo2, Equals2,
     protected ReferenceType dataFormat;
     protected Boolean officialStatus;
     protected String dataFormatVersion;
-    protected Duration latency;
+    protected Duration timeliness;
     protected MeasureType numericalResolution;
 
     /**
@@ -478,31 +478,31 @@ public class ReportingType implements Serializable, Cloneable, CopyTo2, Equals2,
     }
 
     /**
-     * Gets the value of the latency property.
+     * Gets the value of the timeliness property.
      * 
      * @return
      *     possible object is
      *     {@link Duration }
      *     
      */
-    public Duration getLatency() {
-        return latency;
+    public Duration getTimeliness() {
+        return timeliness;
     }
 
     /**
-     * Sets the value of the latency property.
+     * Sets the value of the timeliness property.
      * 
      * @param value
      *     allowed object is
      *     {@link Duration }
      *     
      */
-    public void setLatency(Duration value) {
-        this.latency = value;
+    public void setTimeliness(Duration value) {
+        this.timeliness = value;
     }
 
-    public boolean isSetLatency() {
-        return (this.latency!= null);
+    public boolean isSetTimeliness() {
+        return (this.timeliness!= null);
     }
 
     /**
@@ -614,9 +614,9 @@ public class ReportingType implements Serializable, Cloneable, CopyTo2, Equals2,
             strategy.appendField(locator, this, "dataFormatVersion", buffer, theDataFormatVersion, this.isSetDataFormatVersion());
         }
         {
-            Duration theLatency;
-            theLatency = this.getLatency();
-            strategy.appendField(locator, this, "latency", buffer, theLatency, this.isSetLatency());
+            Duration theTimeliness;
+            theTimeliness = this.getTimeliness();
+            strategy.appendField(locator, this, "timeliness", buffer, theTimeliness, this.isSetTimeliness());
         }
         {
             MeasureType theNumericalResolution;
@@ -752,11 +752,11 @@ public class ReportingType implements Serializable, Cloneable, CopyTo2, Equals2,
             }
         }
         {
-            Duration lhsLatency;
-            lhsLatency = this.getLatency();
-            Duration rhsLatency;
-            rhsLatency = that.getLatency();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "latency", lhsLatency), LocatorUtils.property(thatLocator, "latency", rhsLatency), lhsLatency, rhsLatency, this.isSetLatency(), that.isSetLatency())) {
+            Duration lhsTimeliness;
+            lhsTimeliness = this.getTimeliness();
+            Duration rhsTimeliness;
+            rhsTimeliness = that.getTimeliness();
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "timeliness", lhsTimeliness), LocatorUtils.property(thatLocator, "timeliness", rhsTimeliness), lhsTimeliness, rhsTimeliness, this.isSetTimeliness(), that.isSetTimeliness())) {
                 return false;
             }
         }
@@ -845,9 +845,9 @@ public class ReportingType implements Serializable, Cloneable, CopyTo2, Equals2,
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "dataFormatVersion", theDataFormatVersion), currentHashCode, theDataFormatVersion, this.isSetDataFormatVersion());
         }
         {
-            Duration theLatency;
-            theLatency = this.getLatency();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "latency", theLatency), currentHashCode, theLatency, this.isSetLatency());
+            Duration theTimeliness;
+            theTimeliness = this.getTimeliness();
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "timeliness", theTimeliness), currentHashCode, theTimeliness, this.isSetTimeliness());
         }
         {
             MeasureType theNumericalResolution;
@@ -1044,15 +1044,15 @@ public class ReportingType implements Serializable, Cloneable, CopyTo2, Equals2,
                 }
             }
             {
-                Boolean latencyShouldBeCopiedAndSet = strategy.shouldBeCopiedAndSet(locator, this.isSetLatency());
-                if (latencyShouldBeCopiedAndSet == Boolean.TRUE) {
-                    Duration sourceLatency;
-                    sourceLatency = this.getLatency();
-                    Duration copyLatency = ((Duration) strategy.copy(LocatorUtils.property(locator, "latency", sourceLatency), sourceLatency, this.isSetLatency()));
-                    copy.setLatency(copyLatency);
+                Boolean timelinessShouldBeCopiedAndSet = strategy.shouldBeCopiedAndSet(locator, this.isSetTimeliness());
+                if (timelinessShouldBeCopiedAndSet == Boolean.TRUE) {
+                    Duration sourceTimeliness;
+                    sourceTimeliness = this.getTimeliness();
+                    Duration copyTimeliness = ((Duration) strategy.copy(LocatorUtils.property(locator, "timeliness", sourceTimeliness), sourceTimeliness, this.isSetTimeliness()));
+                    copy.setTimeliness(copyTimeliness);
                 } else {
-                    if (latencyShouldBeCopiedAndSet == Boolean.FALSE) {
-                        copy.latency = null;
+                    if (timelinessShouldBeCopiedAndSet == Boolean.FALSE) {
+                        copy.timeliness = null;
                     }
                 }
             }

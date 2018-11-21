@@ -42,8 +42,8 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  *       &lt;sequence minOccurs="0"&gt;
  *         &lt;element ref="{http://def.wmo.int/opm/2013}ObservableProperty"/&gt;
  *       &lt;/sequence&gt;
- *       &lt;attGroup ref="{http://www.opengis.net/gml/3.2}OwnershipAttributeGroup"/&gt;
  *       &lt;attGroup ref="{http://www.opengis.net/gml/3.2}AssociationAttributeGroup"/&gt;
+ *       &lt;attGroup ref="{http://www.opengis.net/gml/3.2}OwnershipAttributeGroup"/&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -61,8 +61,6 @@ public class ObservablePropertyPropertyType implements Serializable, Cloneable, 
     private final static long serialVersionUID = 1L;
     @XmlElementRef(name = "ObservableProperty", namespace = "http://def.wmo.int/opm/2013", type = JAXBElement.class, required = false)
     protected JAXBElement<? extends ObservablePropertyType> observableProperty;
-    @XmlAttribute(name = "owns")
-    protected Boolean owns;
     @XmlAttribute(name = "nilReason")
     protected List<String> nilReason;
     @XmlAttribute(name = "remoteSchema", namespace = "http://www.opengis.net/gml/3.2")
@@ -82,6 +80,8 @@ public class ObservablePropertyPropertyType implements Serializable, Cloneable, 
     protected ShowType show;
     @XmlAttribute(name = "actuate", namespace = "http://www.w3.org/1999/xlink")
     protected ActuateType actuate;
+    @XmlAttribute(name = "owns")
+    protected Boolean owns;
 
     /**
      * Gets the value of the observableProperty property.
@@ -111,42 +111,6 @@ public class ObservablePropertyPropertyType implements Serializable, Cloneable, 
 
     public boolean isSetObservableProperty() {
         return (this.observableProperty!= null);
-    }
-
-    /**
-     * Gets the value of the owns property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
-     */
-    public boolean isOwns() {
-        if (owns == null) {
-            return false;
-        } else {
-            return owns;
-        }
-    }
-
-    /**
-     * Sets the value of the owns property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
-     */
-    public void setOwns(boolean value) {
-        this.owns = value;
-    }
-
-    public boolean isSetOwns() {
-        return (this.owns!= null);
-    }
-
-    public void unsetOwns() {
-        this.owns = null;
     }
 
     /**
@@ -410,6 +374,42 @@ public class ObservablePropertyPropertyType implements Serializable, Cloneable, 
         return (this.actuate!= null);
     }
 
+    /**
+     * Gets the value of the owns property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public boolean isOwns() {
+        if (owns == null) {
+            return false;
+        } else {
+            return owns;
+        }
+    }
+
+    /**
+     * Sets the value of the owns property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setOwns(boolean value) {
+        this.owns = value;
+    }
+
+    public boolean isSetOwns() {
+        return (this.owns!= null);
+    }
+
+    public void unsetOwns() {
+        this.owns = null;
+    }
+
     public String toString() {
         final ToStringStrategy2 strategy = JAXBToStringStrategy.INSTANCE;
         final StringBuilder buffer = new StringBuilder();
@@ -429,11 +429,6 @@ public class ObservablePropertyPropertyType implements Serializable, Cloneable, 
             JAXBElement<? extends ObservablePropertyType> theObservableProperty;
             theObservableProperty = this.getObservableProperty();
             strategy.appendField(locator, this, "observableProperty", buffer, theObservableProperty, this.isSetObservableProperty());
-        }
-        {
-            boolean theOwns;
-            theOwns = (this.isSetOwns()?this.isOwns():false);
-            strategy.appendField(locator, this, "owns", buffer, theOwns, this.isSetOwns());
         }
         {
             List<String> theNilReason;
@@ -480,6 +475,11 @@ public class ObservablePropertyPropertyType implements Serializable, Cloneable, 
             theActuate = this.getActuate();
             strategy.appendField(locator, this, "actuate", buffer, theActuate, this.isSetActuate());
         }
+        {
+            boolean theOwns;
+            theOwns = (this.isSetOwns()?this.isOwns():false);
+            strategy.appendField(locator, this, "owns", buffer, theOwns, this.isSetOwns());
+        }
         return buffer;
     }
 
@@ -497,15 +497,6 @@ public class ObservablePropertyPropertyType implements Serializable, Cloneable, 
             JAXBElement<? extends ObservablePropertyType> rhsObservableProperty;
             rhsObservableProperty = that.getObservableProperty();
             if (!strategy.equals(LocatorUtils.property(thisLocator, "observableProperty", lhsObservableProperty), LocatorUtils.property(thatLocator, "observableProperty", rhsObservableProperty), lhsObservableProperty, rhsObservableProperty, this.isSetObservableProperty(), that.isSetObservableProperty())) {
-                return false;
-            }
-        }
-        {
-            boolean lhsOwns;
-            lhsOwns = (this.isSetOwns()?this.isOwns():false);
-            boolean rhsOwns;
-            rhsOwns = (that.isSetOwns()?that.isOwns():false);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "owns", lhsOwns), LocatorUtils.property(thatLocator, "owns", rhsOwns), lhsOwns, rhsOwns, this.isSetOwns(), that.isSetOwns())) {
                 return false;
             }
         }
@@ -590,6 +581,15 @@ public class ObservablePropertyPropertyType implements Serializable, Cloneable, 
                 return false;
             }
         }
+        {
+            boolean lhsOwns;
+            lhsOwns = (this.isSetOwns()?this.isOwns():false);
+            boolean rhsOwns;
+            rhsOwns = (that.isSetOwns()?that.isOwns():false);
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "owns", lhsOwns), LocatorUtils.property(thatLocator, "owns", rhsOwns), lhsOwns, rhsOwns, this.isSetOwns(), that.isSetOwns())) {
+                return false;
+            }
+        }
         return true;
     }
 
@@ -604,11 +604,6 @@ public class ObservablePropertyPropertyType implements Serializable, Cloneable, 
             JAXBElement<? extends ObservablePropertyType> theObservableProperty;
             theObservableProperty = this.getObservableProperty();
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "observableProperty", theObservableProperty), currentHashCode, theObservableProperty, this.isSetObservableProperty());
-        }
-        {
-            boolean theOwns;
-            theOwns = (this.isSetOwns()?this.isOwns():false);
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "owns", theOwns), currentHashCode, theOwns, this.isSetOwns());
         }
         {
             List<String> theNilReason;
@@ -655,6 +650,11 @@ public class ObservablePropertyPropertyType implements Serializable, Cloneable, 
             theActuate = this.getActuate();
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "actuate", theActuate), currentHashCode, theActuate, this.isSetActuate());
         }
+        {
+            boolean theOwns;
+            theOwns = (this.isSetOwns()?this.isOwns():false);
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "owns", theOwns), currentHashCode, theOwns, this.isSetOwns());
+        }
         return currentHashCode;
     }
 
@@ -687,19 +687,6 @@ public class ObservablePropertyPropertyType implements Serializable, Cloneable, 
                 } else {
                     if (observablePropertyShouldBeCopiedAndSet == Boolean.FALSE) {
                         copy.observableProperty = null;
-                    }
-                }
-            }
-            {
-                Boolean ownsShouldBeCopiedAndSet = strategy.shouldBeCopiedAndSet(locator, this.isSetOwns());
-                if (ownsShouldBeCopiedAndSet == Boolean.TRUE) {
-                    boolean sourceOwns;
-                    sourceOwns = (this.isSetOwns()?this.isOwns():false);
-                    boolean copyOwns = strategy.copy(LocatorUtils.property(locator, "owns", sourceOwns), sourceOwns, this.isSetOwns());
-                    copy.setOwns(copyOwns);
-                } else {
-                    if (ownsShouldBeCopiedAndSet == Boolean.FALSE) {
-                        copy.unsetOwns();
                     }
                 }
             }
@@ -822,6 +809,19 @@ public class ObservablePropertyPropertyType implements Serializable, Cloneable, 
                 } else {
                     if (actuateShouldBeCopiedAndSet == Boolean.FALSE) {
                         copy.actuate = null;
+                    }
+                }
+            }
+            {
+                Boolean ownsShouldBeCopiedAndSet = strategy.shouldBeCopiedAndSet(locator, this.isSetOwns());
+                if (ownsShouldBeCopiedAndSet == Boolean.TRUE) {
+                    boolean sourceOwns;
+                    sourceOwns = (this.isSetOwns()?this.isOwns():false);
+                    boolean copyOwns = strategy.copy(LocatorUtils.property(locator, "owns", sourceOwns), sourceOwns, this.isSetOwns());
+                    copy.setOwns(copyOwns);
+                } else {
+                    if (ownsShouldBeCopiedAndSet == Boolean.FALSE) {
+                        copy.unsetOwns();
                     }
                 }
             }

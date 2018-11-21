@@ -292,13 +292,12 @@ public class Utils {
 		Utils.versionQualifier = versionQualifier;
 	}
 
-	public static Date parseDate(String s) {
-		return DatatypeConverter.parseDate(s).getTime();
+	public static LocalDateTime parseDate(String s) {
+		return LocalDateTime.parse(s, ISO_DATE_FORMAT);
 	}
 
-	public static String printDate(Date dt) {
-		GregorianCalendar c = new GregorianCalendar(TimeZone.getTimeZone("UTC"));
-		c.setTime(dt);
+	public static String printDate(LocalDateTime dt) {
+		GregorianCalendar c = GregorianCalendar.from(dt.atZone(ZoneId.systemDefault()));
 		return DatatypeConverter.printDate(c);
 	}
 	

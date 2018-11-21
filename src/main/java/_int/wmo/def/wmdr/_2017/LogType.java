@@ -253,10 +253,10 @@ public abstract class LogType
          * 
          * @return
          *     possible object is
-         *     {@link JAXBElement }{@code <}{@link MaintenanceReportType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link LogEntryType }{@code >}
          *     {@link JAXBElement }{@code <}{@link EventReportType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link MaintenanceReportType }{@code >}
          *     {@link JAXBElement }{@code <}{@link ControlCheckReportType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link LogEntryType }{@code >}
          *     
          */
         public JAXBElement<? extends LogEntryType> getLogEntry() {
@@ -268,10 +268,10 @@ public abstract class LogType
          * 
          * @param value
          *     allowed object is
-         *     {@link JAXBElement }{@code <}{@link MaintenanceReportType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link LogEntryType }{@code >}
          *     {@link JAXBElement }{@code <}{@link EventReportType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link MaintenanceReportType }{@code >}
          *     {@link JAXBElement }{@code <}{@link ControlCheckReportType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link LogEntryType }{@code >}
          *     
          */
         public void setLogEntry(JAXBElement<? extends LogEntryType> value) {
