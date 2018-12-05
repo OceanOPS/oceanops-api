@@ -16,10 +16,7 @@ import javax.xml.datatype.DatatypeConfigurationException;
 
 import org.apache.cayenne.Cayenne;
 import org.apache.cayenne.ObjectContext;
-import org.apache.cayenne.configuration.server.ServerRuntime;
 import org.apache.cayenne.query.SelectById;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.jcommops.api.Utils;
 import org.jcommops.api.orm.Agency;
 import org.jcommops.api.orm.ProgramAgency;
@@ -30,6 +27,8 @@ import org.jcommops.api.orm.PtfPtfStatus;
 import org.jcommops.api.orm.PtfSensorModel;
 import org.jcommops.api.orm.SensorModel;
 import org.jcommops.api.orm.Weblink;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import _int.wmo.def.wmdr._2017.AbstractEnvironmentalMonitoringFacilityType;
 import _int.wmo.def.wmdr._2017.AbstractEnvironmentalMonitoringFacilityType.GeospatialLocation;
@@ -52,7 +51,6 @@ import _int.wmo.def.wmdr._2017.WIGOSMetadataRecordType;
 import _int.wmo.def.wmdr._2017.WIGOSMetadataRecordType.Deployment;
 import net.opengis.gml.v_3_2_1.CodeType;
 import net.opengis.gml.v_3_2_1.CodeWithAuthorityType;
-import net.opengis.gml.v_3_2_1.CoordinatesType;
 import net.opengis.gml.v_3_2_1.DirectPositionType;
 import net.opengis.gml.v_3_2_1.GeometryPropertyType;
 import net.opengis.gml.v_3_2_1.LocationPropertyType;
@@ -84,9 +82,7 @@ import net.opengis.om.v_2_0.OMObservationPropertyType;
  * Main class respresenting a XML WIGOS Metadata Record.
  */
 public class Platform {
-	private Log log = LogFactory.getLog(Platform.class);
-	private ServerRuntime cayenneRuntime = Utils.getCayenneRuntime();
-	private ObjectContext cayenneContext = Utils.getCayenneRuntime().getContext();
+	private ObjectContext cayenneContext;
 	private JAXBContext jaxbContext;
 	private _int.wmo.def.wmdr._2017.ObjectFactory wmdrOF;
 	private _int.wmo.def.opm._2013.ObjectFactory opmOF;
@@ -101,6 +97,7 @@ public class Platform {
 	private net.opengis.iso19139.gco.v_20070417.ObjectFactory gcoOF;
 	
 	private Integer ciResponsiblePartyCounter = 0;
+	private final Logger logger = LoggerFactory.getLogger(Platform.class);
 	
 	/**
 	 * Builds the final WIGOS identifier, based on the platform reference.
@@ -138,8 +135,7 @@ public class Platform {
 	 * @throws JAXBException
 	 */
 	public Platform() throws JAXBException{
-		this.cayenneRuntime = Utils.getCayenneRuntime();
-		this.cayenneContext = this.cayenneRuntime.newContext();
+		this.cayenneContext = Utils.getCayenneContext();
 		this.jaxbContext = JAXBContext.newInstance( "_int.wmo.def.wmdr._2017:_int.wmo.def.metce._2013:_int.wmo.def.opm._2013:net.opengis.gml.v_3_2_1:net.opengis.om.v_2_0:net.opengis.sampling.v_2_0:net.opengis.samplingspatial.v_2_0" );
 		this.wmdrOF = new _int.wmo.def.wmdr._2017.ObjectFactory();
 		this.opmOF = new _int.wmo.def.opm._2013.ObjectFactory();
@@ -169,8 +165,8 @@ public class Platform {
 		String wigosRef = this.getWIGOSIdentifier(ptf.getRef());
 		
 		CodeWithAuthorityType identifier = new CodeWithAuthorityType();
-		identifier.setValue(wigosRef);
-		identifier.setCodeSpace("http://wigos.wmo.int");
+		identifier.setValue("http://data.wmo.int/" + wigosRef);
+		identifier.setCodeSpace("http://data.wmo.int/");
 		
 		StringOrRefType description = new StringOrRefType();
 		description.setValue(ptf.getDescription());
@@ -305,7 +301,7 @@ public class Platform {
 		PtfDeployment depl = ptf.getPtfDepl();
 		ArrayList<WIGOSMetadataRecordType.Deployment> depls =  new ArrayList<>();
 		
-		String ptfId = "_" + getWIGOSIdentifier(ptf.getRef());
+		String ptfId = "http://data.wmo.int/" + getWIGOSIdentifier(ptf.getRef());
 		
 		Deployment d = new Deployment();
 		DeploymentType dt = new DeploymentType();
@@ -520,10 +516,10 @@ public class Platform {
 	private ObservingFacilityType getObservingFacilityType(Ptf ptf) throws DatatypeConfigurationException {
 		ObservingFacilityType o = this.wmdrOF.createObservingFacilityType();
 		String wigosID = getWIGOSIdentifier(ptf.getRef());
-		o.setId("_" + wigosID);
+		o.setId("http://data.wmo.int/" + wigosID);
 		CodeWithAuthorityType value = new CodeWithAuthorityType();
-		value.setValue(wigosID);
-		value.setCodeSpace("http://wigos.wmo.int");
+		value.setValue("http://data.wmo.int/" + wigosID);
+		value.setCodeSpace("http://data.wmo.int");
 		o.setIdentifier(value);
 		CodeType name = new CodeType();
 		name.setValue(ptf.getName() == null ? ptf.getRef() : ptf.getName());

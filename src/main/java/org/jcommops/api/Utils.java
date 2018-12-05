@@ -3,19 +3,13 @@ package org.jcommops.api;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.math.BigDecimal;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.Properties;
-import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,12 +18,14 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.configuration.server.ServerRuntime;
 import org.jcommops.api.entities.SensorTypeEntity;
 import org.jcommops.api.entities.VariableEntity;
 
 public class Utils {
 	private static ServerRuntime cayenneRuntime;
+	private static ObjectContext cayenneContext;
 	private static Properties properties;
 	private static String projectName, projectVersion, rootUrl, programUrl, inspectPtfUrl, helpEditionDate,
 			versionQualifier;
@@ -309,5 +305,11 @@ public class Utils {
 		} catch (DatatypeConfigurationException e) {
 			return null;
 		}
+	}
+
+	public static ObjectContext getCayenneContext() {
+		if(Utils.cayenneContext == null)
+			Utils.cayenneContext = Utils.getCayenneRuntime().newContext();
+		return Utils.cayenneContext;
 	}
 }

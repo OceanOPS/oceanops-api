@@ -14,8 +14,6 @@ import javax.xml.bind.JAXBException;
 import javax.xml.datatype.DatatypeConfigurationException;
 
 import org.apache.cayenne.CayenneRuntimeException;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.jcommops.api.accessors.PlatformAccessor;
 import org.jcommops.api.entities.CountryEntity;
 import org.jcommops.api.entities.NetworkEntity;
@@ -29,11 +27,12 @@ import org.jcommops.api.entities.SensorModelEntity;
 import org.jcommops.api.entities.SensorTypeEntity;
 import org.jcommops.api.entities.VariableEntity;
 import org.jcommops.api.entities.wmdr.Platform;
-import org.jcommops.api.entities.wmdr.PlatformObservations;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Path("/")
 public class WebServiceManager {
-	private Log log = LogFactory.getLog(WebServiceManager.class);
+	private final Logger logger = LoggerFactory.getLogger(WebServiceManager.class);
 
 	@GET
 	@Path("platforms.xml")
@@ -116,7 +115,6 @@ public class WebServiceManager {
 		Platform wmdr = new Platform(Integer.parseInt(id));
 		
 		return wmdr.toString();
-		//throw new NotFoundException("XML document is not yet supported");
 	}
 	
 	@GET

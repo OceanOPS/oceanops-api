@@ -22,16 +22,17 @@ import org.apache.cayenne.configuration.server.ServerRuntime;
 import org.apache.cayenne.exp.Expression;
 import org.apache.cayenne.exp.ExpressionFactory;
 import org.apache.cayenne.query.SelectQuery;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.jcommops.api.Utils;
+import org.jcommops.api.exceptionmappers.NotFoundMapper;
 import org.jcommops.api.orm.Agency;
 import org.jcommops.api.orm.Obs;
 import org.jcommops.api.orm.Ptf;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import _int.wmo.def.wmdr._2017.HeaderType;
 import _int.wmo.def.wmdr._2017.ResultSetType;
 import _int.wmo.def.wmdr._2017.WIGOSMetadataRecordType;
-//import _int.wmo.def.wmdr._2017.WIGOSMetadataRecordType.Observations;
 import net.opengis.gml.v_3_2_1.CodeType;
 import net.opengis.gml.v_3_2_1.CodeWithAuthorityType;
 import net.opengis.gml.v_3_2_1.DirectPositionType;
@@ -65,9 +66,8 @@ import net.opengis.samplingspatial.v_2_0.ShapeType;
  * Main class respresenting a XML WIGOS Metadata Record.
  */
 public class PlatformObservations {
-	private Log log = LogFactory.getLog(PlatformObservations.class);
-	private ServerRuntime cayenneRuntime = Utils.getCayenneRuntime();
-	private ObjectContext cayenneContext = Utils.getCayenneRuntime().getContext();
+	private final Logger logger = LoggerFactory.getLogger(NotFoundMapper.class);
+	private ObjectContext cayenneContext;
 	private JAXBContext jaxbContext;
 	private _int.wmo.def.wmdr._2017.ObjectFactory wmdrOF;
 	private net.opengis.samplingspatial.v_2_0.ObjectFactory samsOF;
@@ -85,8 +85,7 @@ public class PlatformObservations {
 	 * @throws JAXBException
 	 */
 	public PlatformObservations() throws JAXBException{
-		this.cayenneRuntime = Utils.getCayenneRuntime();
-		this.cayenneContext = this.cayenneRuntime.getContext();
+		this.cayenneContext = Utils.getCayenneContext();
 		this.jaxbContext = JAXBContext.newInstance( "_int.wmo.def.wmdr._2017:_int.wmo.def.metce._2013:_int.wmo.def.opm._2013:net.opengis.gml.v_3_2_1:net.opengis.om.v_2_0:net.opengis.sampling.v_2_0:net.opengis.samplingspatial.v_2_0" );
 		this.wmdrOF = new _int.wmo.def.wmdr._2017.ObjectFactory();
 		new _int.wmo.def.opm._2013.ObjectFactory();
