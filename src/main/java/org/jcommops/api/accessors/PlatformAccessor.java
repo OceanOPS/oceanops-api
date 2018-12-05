@@ -1,6 +1,5 @@
 package org.jcommops.api.accessors;
 
-import java.io.StringWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -14,11 +13,8 @@ import javax.ws.rs.BadRequestException;
 import org.apache.cayenne.Cayenne;
 import org.apache.cayenne.DataRow;
 import org.apache.cayenne.ObjectContext;
-import org.apache.cayenne.configuration.server.ServerRuntime;
 import org.apache.cayenne.query.SQLTemplate;
 import org.apache.cayenne.query.SelectQuery;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.jcommops.api.Utils;
 import org.jcommops.api.entities.CountryEntity;
 import org.jcommops.api.entities.NetworkEntity;
@@ -42,15 +38,15 @@ import org.jcommops.api.orm.PtfType;
 import org.jcommops.api.orm.SensorModel;
 import org.jcommops.api.orm.SensorType;
 import org.jcommops.api.orm.Variable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class PlatformAccessor {
-	private Log log = LogFactory.getLog(PlatformAccessor.class);
-	private ServerRuntime runtime;
+	private final Logger logger = LoggerFactory.getLogger(PlatformAccessor.class);
 	private ObjectContext context;
 
 	public PlatformAccessor() {
-		this.runtime = Utils.getCayenneRuntime();
-		this.context = this.runtime.newContext();
+		this.context = Utils.getCayenneContext();
 	}
 
 	/**

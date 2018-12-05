@@ -4,15 +4,15 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Provider
 public class ErrorMapper implements ExceptionMapper<Exception> {
-	private Log log = LogFactory.getLog(ErrorMapper.class);
+	private final Logger logger = LoggerFactory.getLogger(ErrorMapper.class);
 
 	public Response toResponse(Exception ex) {
-		log.error(ex.getMessage(), ex);
+		logger.error(ex.getMessage(), ex);
 		return Response.status(500).entity("{\"success\": false, \"errorMessage\": \"Error while retrieving data\"}").type("text/plain").build();
 	}
 
