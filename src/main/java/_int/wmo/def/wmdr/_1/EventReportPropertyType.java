@@ -1,14 +1,13 @@
 
-package _int.wmo.def.metce._2013;
+package _int.wmo.def.wmdr._1;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElementRef;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import org.hisrc.w3c.xlink.v_1_0.ActuateType;
@@ -31,19 +30,19 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 
 /**
- * <p>Java class for ProcessPropertyType complex type.
+ * <p>Java class for EventReportPropertyType complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="ProcessPropertyType"&gt;
+ * &lt;complexType name="EventReportPropertyType"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence minOccurs="0"&gt;
- *         &lt;element ref="{http://def.wmo.int/metce/2013}Process"/&gt;
+ *         &lt;element ref="{http://def.wmo.int/wmdr/1.0}EventReport"/&gt;
  *       &lt;/sequence&gt;
- *       &lt;attGroup ref="{http://www.opengis.net/gml/3.2}OwnershipAttributeGroup"/&gt;
  *       &lt;attGroup ref="{http://www.opengis.net/gml/3.2}AssociationAttributeGroup"/&gt;
+ *       &lt;attGroup ref="{http://www.opengis.net/gml/3.2}OwnershipAttributeGroup"/&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -52,17 +51,15 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ProcessPropertyType", propOrder = {
-    "process"
+@XmlType(name = "EventReportPropertyType", propOrder = {
+    "eventReport"
 })
-public class ProcessPropertyType implements Serializable, Cloneable, CopyTo2, Equals2, HashCode2, ToString2
+public class EventReportPropertyType implements Serializable, Cloneable, CopyTo2, Equals2, HashCode2, ToString2
 {
 
     private final static long serialVersionUID = 1L;
-    @XmlElementRef(name = "Process", namespace = "http://def.wmo.int/metce/2013", type = JAXBElement.class, required = false)
-    protected JAXBElement<? extends _int.wmo.def.metce._2013.ProcessType> process;
-    @XmlAttribute(name = "owns")
-    protected Boolean owns;
+    @XmlElement(name = "EventReport")
+    protected EventReportType eventReport;
     @XmlAttribute(name = "nilReason")
     protected List<String> nilReason;
     @XmlAttribute(name = "remoteSchema", namespace = "http://www.opengis.net/gml/3.2")
@@ -82,71 +79,35 @@ public class ProcessPropertyType implements Serializable, Cloneable, CopyTo2, Eq
     protected ShowType show;
     @XmlAttribute(name = "actuate", namespace = "http://www.w3.org/1999/xlink")
     protected ActuateType actuate;
+    @XmlAttribute(name = "owns")
+    protected Boolean owns;
 
     /**
-     * Gets the value of the process property.
+     * Gets the value of the eventReport property.
      * 
      * @return
      *     possible object is
-     *     {@link JAXBElement }{@code <}{@link _int.wmo.def.wmdr._1.ProcessType }{@code >}
-     *     {@link JAXBElement }{@code <}{@link _int.wmo.def.metce._2013.ProcessType }{@code >}
+     *     {@link EventReportType }
      *     
      */
-    public JAXBElement<? extends _int.wmo.def.metce._2013.ProcessType> getProcess() {
-        return process;
+    public EventReportType getEventReport() {
+        return eventReport;
     }
 
     /**
-     * Sets the value of the process property.
+     * Sets the value of the eventReport property.
      * 
      * @param value
      *     allowed object is
-     *     {@link JAXBElement }{@code <}{@link _int.wmo.def.wmdr._1.ProcessType }{@code >}
-     *     {@link JAXBElement }{@code <}{@link _int.wmo.def.metce._2013.ProcessType }{@code >}
+     *     {@link EventReportType }
      *     
      */
-    public void setProcess(JAXBElement<? extends _int.wmo.def.metce._2013.ProcessType> value) {
-        this.process = value;
+    public void setEventReport(EventReportType value) {
+        this.eventReport = value;
     }
 
-    public boolean isSetProcess() {
-        return (this.process!= null);
-    }
-
-    /**
-     * Gets the value of the owns property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
-     */
-    public boolean isOwns() {
-        if (owns == null) {
-            return false;
-        } else {
-            return owns;
-        }
-    }
-
-    /**
-     * Sets the value of the owns property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
-     */
-    public void setOwns(boolean value) {
-        this.owns = value;
-    }
-
-    public boolean isSetOwns() {
-        return (this.owns!= null);
-    }
-
-    public void unsetOwns() {
-        this.owns = null;
+    public boolean isSetEventReport() {
+        return (this.eventReport!= null);
     }
 
     /**
@@ -410,6 +371,42 @@ public class ProcessPropertyType implements Serializable, Cloneable, CopyTo2, Eq
         return (this.actuate!= null);
     }
 
+    /**
+     * Gets the value of the owns property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public boolean isOwns() {
+        if (owns == null) {
+            return false;
+        } else {
+            return owns;
+        }
+    }
+
+    /**
+     * Sets the value of the owns property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setOwns(boolean value) {
+        this.owns = value;
+    }
+
+    public boolean isSetOwns() {
+        return (this.owns!= null);
+    }
+
+    public void unsetOwns() {
+        this.owns = null;
+    }
+
     public String toString() {
         final ToStringStrategy2 strategy = JAXBToStringStrategy.INSTANCE;
         final StringBuilder buffer = new StringBuilder();
@@ -426,14 +423,9 @@ public class ProcessPropertyType implements Serializable, Cloneable, CopyTo2, Eq
 
     public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy2 strategy) {
         {
-            JAXBElement<? extends _int.wmo.def.metce._2013.ProcessType> theProcess;
-            theProcess = this.getProcess();
-            strategy.appendField(locator, this, "process", buffer, theProcess, this.isSetProcess());
-        }
-        {
-            boolean theOwns;
-            theOwns = (this.isSetOwns()?this.isOwns():false);
-            strategy.appendField(locator, this, "owns", buffer, theOwns, this.isSetOwns());
+            EventReportType theEventReport;
+            theEventReport = this.getEventReport();
+            strategy.appendField(locator, this, "eventReport", buffer, theEventReport, this.isSetEventReport());
         }
         {
             List<String> theNilReason;
@@ -480,6 +472,11 @@ public class ProcessPropertyType implements Serializable, Cloneable, CopyTo2, Eq
             theActuate = this.getActuate();
             strategy.appendField(locator, this, "actuate", buffer, theActuate, this.isSetActuate());
         }
+        {
+            boolean theOwns;
+            theOwns = (this.isSetOwns()?this.isOwns():false);
+            strategy.appendField(locator, this, "owns", buffer, theOwns, this.isSetOwns());
+        }
         return buffer;
     }
 
@@ -490,22 +487,13 @@ public class ProcessPropertyType implements Serializable, Cloneable, CopyTo2, Eq
         if (this == object) {
             return true;
         }
-        final ProcessPropertyType that = ((ProcessPropertyType) object);
+        final EventReportPropertyType that = ((EventReportPropertyType) object);
         {
-            JAXBElement<? extends _int.wmo.def.metce._2013.ProcessType> lhsProcess;
-            lhsProcess = this.getProcess();
-            JAXBElement<? extends _int.wmo.def.metce._2013.ProcessType> rhsProcess;
-            rhsProcess = that.getProcess();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "process", lhsProcess), LocatorUtils.property(thatLocator, "process", rhsProcess), lhsProcess, rhsProcess, this.isSetProcess(), that.isSetProcess())) {
-                return false;
-            }
-        }
-        {
-            boolean lhsOwns;
-            lhsOwns = (this.isSetOwns()?this.isOwns():false);
-            boolean rhsOwns;
-            rhsOwns = (that.isSetOwns()?that.isOwns():false);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "owns", lhsOwns), LocatorUtils.property(thatLocator, "owns", rhsOwns), lhsOwns, rhsOwns, this.isSetOwns(), that.isSetOwns())) {
+            EventReportType lhsEventReport;
+            lhsEventReport = this.getEventReport();
+            EventReportType rhsEventReport;
+            rhsEventReport = that.getEventReport();
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "eventReport", lhsEventReport), LocatorUtils.property(thatLocator, "eventReport", rhsEventReport), lhsEventReport, rhsEventReport, this.isSetEventReport(), that.isSetEventReport())) {
                 return false;
             }
         }
@@ -590,6 +578,15 @@ public class ProcessPropertyType implements Serializable, Cloneable, CopyTo2, Eq
                 return false;
             }
         }
+        {
+            boolean lhsOwns;
+            lhsOwns = (this.isSetOwns()?this.isOwns():false);
+            boolean rhsOwns;
+            rhsOwns = (that.isSetOwns()?that.isOwns():false);
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "owns", lhsOwns), LocatorUtils.property(thatLocator, "owns", rhsOwns), lhsOwns, rhsOwns, this.isSetOwns(), that.isSetOwns())) {
+                return false;
+            }
+        }
         return true;
     }
 
@@ -601,14 +598,9 @@ public class ProcessPropertyType implements Serializable, Cloneable, CopyTo2, Eq
     public int hashCode(ObjectLocator locator, HashCodeStrategy2 strategy) {
         int currentHashCode = 1;
         {
-            JAXBElement<? extends _int.wmo.def.metce._2013.ProcessType> theProcess;
-            theProcess = this.getProcess();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "process", theProcess), currentHashCode, theProcess, this.isSetProcess());
-        }
-        {
-            boolean theOwns;
-            theOwns = (this.isSetOwns()?this.isOwns():false);
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "owns", theOwns), currentHashCode, theOwns, this.isSetOwns());
+            EventReportType theEventReport;
+            theEventReport = this.getEventReport();
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "eventReport", theEventReport), currentHashCode, theEventReport, this.isSetEventReport());
         }
         {
             List<String> theNilReason;
@@ -655,6 +647,11 @@ public class ProcessPropertyType implements Serializable, Cloneable, CopyTo2, Eq
             theActuate = this.getActuate();
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "actuate", theActuate), currentHashCode, theActuate, this.isSetActuate());
         }
+        {
+            boolean theOwns;
+            theOwns = (this.isSetOwns()?this.isOwns():false);
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "owns", theOwns), currentHashCode, theOwns, this.isSetOwns());
+        }
         return currentHashCode;
     }
 
@@ -674,32 +671,18 @@ public class ProcessPropertyType implements Serializable, Cloneable, CopyTo2, Eq
 
     public Object copyTo(ObjectLocator locator, Object target, CopyStrategy2 strategy) {
         final Object draftCopy = ((target == null)?createNewInstance():target);
-        if (draftCopy instanceof ProcessPropertyType) {
-            final ProcessPropertyType copy = ((ProcessPropertyType) draftCopy);
+        if (draftCopy instanceof EventReportPropertyType) {
+            final EventReportPropertyType copy = ((EventReportPropertyType) draftCopy);
             {
-                Boolean processShouldBeCopiedAndSet = strategy.shouldBeCopiedAndSet(locator, this.isSetProcess());
-                if (processShouldBeCopiedAndSet == Boolean.TRUE) {
-                    JAXBElement<? extends _int.wmo.def.metce._2013.ProcessType> sourceProcess;
-                    sourceProcess = this.getProcess();
-                    @SuppressWarnings("unchecked")
-                    JAXBElement<? extends _int.wmo.def.metce._2013.ProcessType> copyProcess = ((JAXBElement<? extends _int.wmo.def.metce._2013.ProcessType> ) strategy.copy(LocatorUtils.property(locator, "process", sourceProcess), sourceProcess, this.isSetProcess()));
-                    copy.setProcess(copyProcess);
+                Boolean eventReportShouldBeCopiedAndSet = strategy.shouldBeCopiedAndSet(locator, this.isSetEventReport());
+                if (eventReportShouldBeCopiedAndSet == Boolean.TRUE) {
+                    EventReportType sourceEventReport;
+                    sourceEventReport = this.getEventReport();
+                    EventReportType copyEventReport = ((EventReportType) strategy.copy(LocatorUtils.property(locator, "eventReport", sourceEventReport), sourceEventReport, this.isSetEventReport()));
+                    copy.setEventReport(copyEventReport);
                 } else {
-                    if (processShouldBeCopiedAndSet == Boolean.FALSE) {
-                        copy.process = null;
-                    }
-                }
-            }
-            {
-                Boolean ownsShouldBeCopiedAndSet = strategy.shouldBeCopiedAndSet(locator, this.isSetOwns());
-                if (ownsShouldBeCopiedAndSet == Boolean.TRUE) {
-                    boolean sourceOwns;
-                    sourceOwns = (this.isSetOwns()?this.isOwns():false);
-                    boolean copyOwns = strategy.copy(LocatorUtils.property(locator, "owns", sourceOwns), sourceOwns, this.isSetOwns());
-                    copy.setOwns(copyOwns);
-                } else {
-                    if (ownsShouldBeCopiedAndSet == Boolean.FALSE) {
-                        copy.unsetOwns();
+                    if (eventReportShouldBeCopiedAndSet == Boolean.FALSE) {
+                        copy.eventReport = null;
                     }
                 }
             }
@@ -825,12 +808,25 @@ public class ProcessPropertyType implements Serializable, Cloneable, CopyTo2, Eq
                     }
                 }
             }
+            {
+                Boolean ownsShouldBeCopiedAndSet = strategy.shouldBeCopiedAndSet(locator, this.isSetOwns());
+                if (ownsShouldBeCopiedAndSet == Boolean.TRUE) {
+                    boolean sourceOwns;
+                    sourceOwns = (this.isSetOwns()?this.isOwns():false);
+                    boolean copyOwns = strategy.copy(LocatorUtils.property(locator, "owns", sourceOwns), sourceOwns, this.isSetOwns());
+                    copy.setOwns(copyOwns);
+                } else {
+                    if (ownsShouldBeCopiedAndSet == Boolean.FALSE) {
+                        copy.unsetOwns();
+                    }
+                }
+            }
         }
         return draftCopy;
     }
 
     public Object createNewInstance() {
-        return new ProcessPropertyType();
+        return new EventReportPropertyType();
     }
 
 }
