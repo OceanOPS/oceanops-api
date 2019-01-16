@@ -1,14 +1,13 @@
 
-package _int.wmo.def.metce._2013;
+package _int.wmo.def.wmdr._1;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElementRef;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import org.hisrc.w3c.xlink.v_1_0.ActuateType;
@@ -31,16 +30,16 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 
 /**
- * <p>Java class for ProcessPropertyType complex type.
+ * <p>Java class for MaintenanceReportPropertyType complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="ProcessPropertyType"&gt;
+ * &lt;complexType name="MaintenanceReportPropertyType"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence minOccurs="0"&gt;
- *         &lt;element ref="{http://def.wmo.int/metce/2013}Process"/&gt;
+ *         &lt;element ref="{http://def.wmo.int/wmdr/1.0}MaintenanceReport"/&gt;
  *       &lt;/sequence&gt;
  *       &lt;attGroup ref="{http://www.opengis.net/gml/3.2}OwnershipAttributeGroup"/&gt;
  *       &lt;attGroup ref="{http://www.opengis.net/gml/3.2}AssociationAttributeGroup"/&gt;
@@ -52,15 +51,15 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ProcessPropertyType", propOrder = {
-    "process"
+@XmlType(name = "MaintenanceReportPropertyType", propOrder = {
+    "maintenanceReport"
 })
-public class ProcessPropertyType implements Serializable, Cloneable, CopyTo2, Equals2, HashCode2, ToString2
+public class MaintenanceReportPropertyType implements Serializable, Cloneable, CopyTo2, Equals2, HashCode2, ToString2
 {
 
     private final static long serialVersionUID = 1L;
-    @XmlElementRef(name = "Process", namespace = "http://def.wmo.int/metce/2013", type = JAXBElement.class, required = false)
-    protected JAXBElement<? extends _int.wmo.def.metce._2013.ProcessType> process;
+    @XmlElement(name = "MaintenanceReport")
+    protected MaintenanceReportType maintenanceReport;
     @XmlAttribute(name = "owns")
     protected Boolean owns;
     @XmlAttribute(name = "nilReason")
@@ -84,33 +83,31 @@ public class ProcessPropertyType implements Serializable, Cloneable, CopyTo2, Eq
     protected ActuateType actuate;
 
     /**
-     * Gets the value of the process property.
+     * Gets the value of the maintenanceReport property.
      * 
      * @return
      *     possible object is
-     *     {@link JAXBElement }{@code <}{@link _int.wmo.def.wmdr._1.ProcessType }{@code >}
-     *     {@link JAXBElement }{@code <}{@link _int.wmo.def.metce._2013.ProcessType }{@code >}
+     *     {@link MaintenanceReportType }
      *     
      */
-    public JAXBElement<? extends _int.wmo.def.metce._2013.ProcessType> getProcess() {
-        return process;
+    public MaintenanceReportType getMaintenanceReport() {
+        return maintenanceReport;
     }
 
     /**
-     * Sets the value of the process property.
+     * Sets the value of the maintenanceReport property.
      * 
      * @param value
      *     allowed object is
-     *     {@link JAXBElement }{@code <}{@link _int.wmo.def.wmdr._1.ProcessType }{@code >}
-     *     {@link JAXBElement }{@code <}{@link _int.wmo.def.metce._2013.ProcessType }{@code >}
+     *     {@link MaintenanceReportType }
      *     
      */
-    public void setProcess(JAXBElement<? extends _int.wmo.def.metce._2013.ProcessType> value) {
-        this.process = value;
+    public void setMaintenanceReport(MaintenanceReportType value) {
+        this.maintenanceReport = value;
     }
 
-    public boolean isSetProcess() {
-        return (this.process!= null);
+    public boolean isSetMaintenanceReport() {
+        return (this.maintenanceReport!= null);
     }
 
     /**
@@ -426,9 +423,9 @@ public class ProcessPropertyType implements Serializable, Cloneable, CopyTo2, Eq
 
     public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy2 strategy) {
         {
-            JAXBElement<? extends _int.wmo.def.metce._2013.ProcessType> theProcess;
-            theProcess = this.getProcess();
-            strategy.appendField(locator, this, "process", buffer, theProcess, this.isSetProcess());
+            MaintenanceReportType theMaintenanceReport;
+            theMaintenanceReport = this.getMaintenanceReport();
+            strategy.appendField(locator, this, "maintenanceReport", buffer, theMaintenanceReport, this.isSetMaintenanceReport());
         }
         {
             boolean theOwns;
@@ -490,13 +487,13 @@ public class ProcessPropertyType implements Serializable, Cloneable, CopyTo2, Eq
         if (this == object) {
             return true;
         }
-        final ProcessPropertyType that = ((ProcessPropertyType) object);
+        final MaintenanceReportPropertyType that = ((MaintenanceReportPropertyType) object);
         {
-            JAXBElement<? extends _int.wmo.def.metce._2013.ProcessType> lhsProcess;
-            lhsProcess = this.getProcess();
-            JAXBElement<? extends _int.wmo.def.metce._2013.ProcessType> rhsProcess;
-            rhsProcess = that.getProcess();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "process", lhsProcess), LocatorUtils.property(thatLocator, "process", rhsProcess), lhsProcess, rhsProcess, this.isSetProcess(), that.isSetProcess())) {
+            MaintenanceReportType lhsMaintenanceReport;
+            lhsMaintenanceReport = this.getMaintenanceReport();
+            MaintenanceReportType rhsMaintenanceReport;
+            rhsMaintenanceReport = that.getMaintenanceReport();
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "maintenanceReport", lhsMaintenanceReport), LocatorUtils.property(thatLocator, "maintenanceReport", rhsMaintenanceReport), lhsMaintenanceReport, rhsMaintenanceReport, this.isSetMaintenanceReport(), that.isSetMaintenanceReport())) {
                 return false;
             }
         }
@@ -601,9 +598,9 @@ public class ProcessPropertyType implements Serializable, Cloneable, CopyTo2, Eq
     public int hashCode(ObjectLocator locator, HashCodeStrategy2 strategy) {
         int currentHashCode = 1;
         {
-            JAXBElement<? extends _int.wmo.def.metce._2013.ProcessType> theProcess;
-            theProcess = this.getProcess();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "process", theProcess), currentHashCode, theProcess, this.isSetProcess());
+            MaintenanceReportType theMaintenanceReport;
+            theMaintenanceReport = this.getMaintenanceReport();
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "maintenanceReport", theMaintenanceReport), currentHashCode, theMaintenanceReport, this.isSetMaintenanceReport());
         }
         {
             boolean theOwns;
@@ -674,19 +671,18 @@ public class ProcessPropertyType implements Serializable, Cloneable, CopyTo2, Eq
 
     public Object copyTo(ObjectLocator locator, Object target, CopyStrategy2 strategy) {
         final Object draftCopy = ((target == null)?createNewInstance():target);
-        if (draftCopy instanceof ProcessPropertyType) {
-            final ProcessPropertyType copy = ((ProcessPropertyType) draftCopy);
+        if (draftCopy instanceof MaintenanceReportPropertyType) {
+            final MaintenanceReportPropertyType copy = ((MaintenanceReportPropertyType) draftCopy);
             {
-                Boolean processShouldBeCopiedAndSet = strategy.shouldBeCopiedAndSet(locator, this.isSetProcess());
-                if (processShouldBeCopiedAndSet == Boolean.TRUE) {
-                    JAXBElement<? extends _int.wmo.def.metce._2013.ProcessType> sourceProcess;
-                    sourceProcess = this.getProcess();
-                    @SuppressWarnings("unchecked")
-                    JAXBElement<? extends _int.wmo.def.metce._2013.ProcessType> copyProcess = ((JAXBElement<? extends _int.wmo.def.metce._2013.ProcessType> ) strategy.copy(LocatorUtils.property(locator, "process", sourceProcess), sourceProcess, this.isSetProcess()));
-                    copy.setProcess(copyProcess);
+                Boolean maintenanceReportShouldBeCopiedAndSet = strategy.shouldBeCopiedAndSet(locator, this.isSetMaintenanceReport());
+                if (maintenanceReportShouldBeCopiedAndSet == Boolean.TRUE) {
+                    MaintenanceReportType sourceMaintenanceReport;
+                    sourceMaintenanceReport = this.getMaintenanceReport();
+                    MaintenanceReportType copyMaintenanceReport = ((MaintenanceReportType) strategy.copy(LocatorUtils.property(locator, "maintenanceReport", sourceMaintenanceReport), sourceMaintenanceReport, this.isSetMaintenanceReport()));
+                    copy.setMaintenanceReport(copyMaintenanceReport);
                 } else {
-                    if (processShouldBeCopiedAndSet == Boolean.FALSE) {
-                        copy.process = null;
+                    if (maintenanceReportShouldBeCopiedAndSet == Boolean.FALSE) {
+                        copy.maintenanceReport = null;
                     }
                 }
             }
@@ -830,7 +826,7 @@ public class ProcessPropertyType implements Serializable, Cloneable, CopyTo2, Eq
     }
 
     public Object createNewInstance() {
-        return new ProcessPropertyType();
+        return new MaintenanceReportPropertyType();
     }
 
 }

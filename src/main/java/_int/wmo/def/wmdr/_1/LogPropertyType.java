@@ -1,5 +1,5 @@
 
-package _int.wmo.def.metce._2013;
+package _int.wmo.def.wmdr._1;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -31,16 +31,16 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 
 /**
- * <p>Java class for ProcessPropertyType complex type.
+ * <p>Java class for LogPropertyType complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="ProcessPropertyType"&gt;
+ * &lt;complexType name="LogPropertyType"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence minOccurs="0"&gt;
- *         &lt;element ref="{http://def.wmo.int/metce/2013}Process"/&gt;
+ *         &lt;element ref="{http://def.wmo.int/wmdr/1.0}Log"/&gt;
  *       &lt;/sequence&gt;
  *       &lt;attGroup ref="{http://www.opengis.net/gml/3.2}OwnershipAttributeGroup"/&gt;
  *       &lt;attGroup ref="{http://www.opengis.net/gml/3.2}AssociationAttributeGroup"/&gt;
@@ -52,15 +52,15 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ProcessPropertyType", propOrder = {
-    "process"
+@XmlType(name = "LogPropertyType", propOrder = {
+    "log"
 })
-public class ProcessPropertyType implements Serializable, Cloneable, CopyTo2, Equals2, HashCode2, ToString2
+public class LogPropertyType implements Serializable, Cloneable, CopyTo2, Equals2, HashCode2, ToString2
 {
 
     private final static long serialVersionUID = 1L;
-    @XmlElementRef(name = "Process", namespace = "http://def.wmo.int/metce/2013", type = JAXBElement.class, required = false)
-    protected JAXBElement<? extends _int.wmo.def.metce._2013.ProcessType> process;
+    @XmlElementRef(name = "Log", namespace = "http://def.wmo.int/wmdr/1.0", type = JAXBElement.class, required = false)
+    protected JAXBElement<? extends LogType> log;
     @XmlAttribute(name = "owns")
     protected Boolean owns;
     @XmlAttribute(name = "nilReason")
@@ -84,33 +84,35 @@ public class ProcessPropertyType implements Serializable, Cloneable, CopyTo2, Eq
     protected ActuateType actuate;
 
     /**
-     * Gets the value of the process property.
+     * Gets the value of the log property.
      * 
      * @return
      *     possible object is
-     *     {@link JAXBElement }{@code <}{@link _int.wmo.def.wmdr._1.ProcessType }{@code >}
-     *     {@link JAXBElement }{@code <}{@link _int.wmo.def.metce._2013.ProcessType }{@code >}
+     *     {@link JAXBElement }{@code <}{@link FacilityLogType }{@code >}
+     *     {@link JAXBElement }{@code <}{@link EquipmentLogType }{@code >}
+     *     {@link JAXBElement }{@code <}{@link LogType }{@code >}
      *     
      */
-    public JAXBElement<? extends _int.wmo.def.metce._2013.ProcessType> getProcess() {
-        return process;
+    public JAXBElement<? extends LogType> getLog() {
+        return log;
     }
 
     /**
-     * Sets the value of the process property.
+     * Sets the value of the log property.
      * 
      * @param value
      *     allowed object is
-     *     {@link JAXBElement }{@code <}{@link _int.wmo.def.wmdr._1.ProcessType }{@code >}
-     *     {@link JAXBElement }{@code <}{@link _int.wmo.def.metce._2013.ProcessType }{@code >}
+     *     {@link JAXBElement }{@code <}{@link FacilityLogType }{@code >}
+     *     {@link JAXBElement }{@code <}{@link EquipmentLogType }{@code >}
+     *     {@link JAXBElement }{@code <}{@link LogType }{@code >}
      *     
      */
-    public void setProcess(JAXBElement<? extends _int.wmo.def.metce._2013.ProcessType> value) {
-        this.process = value;
+    public void setLog(JAXBElement<? extends LogType> value) {
+        this.log = value;
     }
 
-    public boolean isSetProcess() {
-        return (this.process!= null);
+    public boolean isSetLog() {
+        return (this.log!= null);
     }
 
     /**
@@ -426,9 +428,9 @@ public class ProcessPropertyType implements Serializable, Cloneable, CopyTo2, Eq
 
     public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy2 strategy) {
         {
-            JAXBElement<? extends _int.wmo.def.metce._2013.ProcessType> theProcess;
-            theProcess = this.getProcess();
-            strategy.appendField(locator, this, "process", buffer, theProcess, this.isSetProcess());
+            JAXBElement<? extends LogType> theLog;
+            theLog = this.getLog();
+            strategy.appendField(locator, this, "log", buffer, theLog, this.isSetLog());
         }
         {
             boolean theOwns;
@@ -490,13 +492,13 @@ public class ProcessPropertyType implements Serializable, Cloneable, CopyTo2, Eq
         if (this == object) {
             return true;
         }
-        final ProcessPropertyType that = ((ProcessPropertyType) object);
+        final LogPropertyType that = ((LogPropertyType) object);
         {
-            JAXBElement<? extends _int.wmo.def.metce._2013.ProcessType> lhsProcess;
-            lhsProcess = this.getProcess();
-            JAXBElement<? extends _int.wmo.def.metce._2013.ProcessType> rhsProcess;
-            rhsProcess = that.getProcess();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "process", lhsProcess), LocatorUtils.property(thatLocator, "process", rhsProcess), lhsProcess, rhsProcess, this.isSetProcess(), that.isSetProcess())) {
+            JAXBElement<? extends LogType> lhsLog;
+            lhsLog = this.getLog();
+            JAXBElement<? extends LogType> rhsLog;
+            rhsLog = that.getLog();
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "log", lhsLog), LocatorUtils.property(thatLocator, "log", rhsLog), lhsLog, rhsLog, this.isSetLog(), that.isSetLog())) {
                 return false;
             }
         }
@@ -601,9 +603,9 @@ public class ProcessPropertyType implements Serializable, Cloneable, CopyTo2, Eq
     public int hashCode(ObjectLocator locator, HashCodeStrategy2 strategy) {
         int currentHashCode = 1;
         {
-            JAXBElement<? extends _int.wmo.def.metce._2013.ProcessType> theProcess;
-            theProcess = this.getProcess();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "process", theProcess), currentHashCode, theProcess, this.isSetProcess());
+            JAXBElement<? extends LogType> theLog;
+            theLog = this.getLog();
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "log", theLog), currentHashCode, theLog, this.isSetLog());
         }
         {
             boolean theOwns;
@@ -674,19 +676,19 @@ public class ProcessPropertyType implements Serializable, Cloneable, CopyTo2, Eq
 
     public Object copyTo(ObjectLocator locator, Object target, CopyStrategy2 strategy) {
         final Object draftCopy = ((target == null)?createNewInstance():target);
-        if (draftCopy instanceof ProcessPropertyType) {
-            final ProcessPropertyType copy = ((ProcessPropertyType) draftCopy);
+        if (draftCopy instanceof LogPropertyType) {
+            final LogPropertyType copy = ((LogPropertyType) draftCopy);
             {
-                Boolean processShouldBeCopiedAndSet = strategy.shouldBeCopiedAndSet(locator, this.isSetProcess());
-                if (processShouldBeCopiedAndSet == Boolean.TRUE) {
-                    JAXBElement<? extends _int.wmo.def.metce._2013.ProcessType> sourceProcess;
-                    sourceProcess = this.getProcess();
+                Boolean logShouldBeCopiedAndSet = strategy.shouldBeCopiedAndSet(locator, this.isSetLog());
+                if (logShouldBeCopiedAndSet == Boolean.TRUE) {
+                    JAXBElement<? extends LogType> sourceLog;
+                    sourceLog = this.getLog();
                     @SuppressWarnings("unchecked")
-                    JAXBElement<? extends _int.wmo.def.metce._2013.ProcessType> copyProcess = ((JAXBElement<? extends _int.wmo.def.metce._2013.ProcessType> ) strategy.copy(LocatorUtils.property(locator, "process", sourceProcess), sourceProcess, this.isSetProcess()));
-                    copy.setProcess(copyProcess);
+                    JAXBElement<? extends LogType> copyLog = ((JAXBElement<? extends LogType> ) strategy.copy(LocatorUtils.property(locator, "log", sourceLog), sourceLog, this.isSetLog()));
+                    copy.setLog(copyLog);
                 } else {
-                    if (processShouldBeCopiedAndSet == Boolean.FALSE) {
-                        copy.process = null;
+                    if (logShouldBeCopiedAndSet == Boolean.FALSE) {
+                        copy.log = null;
                     }
                 }
             }
@@ -830,7 +832,7 @@ public class ProcessPropertyType implements Serializable, Cloneable, CopyTo2, Eq
     }
 
     public Object createNewInstance() {
-        return new ProcessPropertyType();
+        return new LogPropertyType();
     }
 
 }

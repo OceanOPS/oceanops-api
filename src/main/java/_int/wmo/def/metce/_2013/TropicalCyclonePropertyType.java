@@ -41,8 +41,8 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  *       &lt;sequence minOccurs="0"&gt;
  *         &lt;element ref="{http://def.wmo.int/metce/2013}TropicalCyclone"/&gt;
  *       &lt;/sequence&gt;
- *       &lt;attGroup ref="{http://www.opengis.net/gml/3.2}OwnershipAttributeGroup"/&gt;
  *       &lt;attGroup ref="{http://www.opengis.net/gml/3.2}AssociationAttributeGroup"/&gt;
+ *       &lt;attGroup ref="{http://www.opengis.net/gml/3.2}OwnershipAttributeGroup"/&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -60,8 +60,6 @@ public class TropicalCyclonePropertyType implements Serializable, Cloneable, Cop
     private final static long serialVersionUID = 1L;
     @XmlElement(name = "TropicalCyclone")
     protected TropicalCycloneType tropicalCyclone;
-    @XmlAttribute(name = "owns")
-    protected Boolean owns;
     @XmlAttribute(name = "nilReason")
     protected List<String> nilReason;
     @XmlAttribute(name = "remoteSchema", namespace = "http://www.opengis.net/gml/3.2")
@@ -81,6 +79,8 @@ public class TropicalCyclonePropertyType implements Serializable, Cloneable, Cop
     protected ShowType show;
     @XmlAttribute(name = "actuate", namespace = "http://www.w3.org/1999/xlink")
     protected ActuateType actuate;
+    @XmlAttribute(name = "owns")
+    protected Boolean owns;
 
     /**
      * Gets the value of the tropicalCyclone property.
@@ -108,42 +108,6 @@ public class TropicalCyclonePropertyType implements Serializable, Cloneable, Cop
 
     public boolean isSetTropicalCyclone() {
         return (this.tropicalCyclone!= null);
-    }
-
-    /**
-     * Gets the value of the owns property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
-     */
-    public boolean isOwns() {
-        if (owns == null) {
-            return false;
-        } else {
-            return owns;
-        }
-    }
-
-    /**
-     * Sets the value of the owns property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
-     */
-    public void setOwns(boolean value) {
-        this.owns = value;
-    }
-
-    public boolean isSetOwns() {
-        return (this.owns!= null);
-    }
-
-    public void unsetOwns() {
-        this.owns = null;
     }
 
     /**
@@ -407,6 +371,42 @@ public class TropicalCyclonePropertyType implements Serializable, Cloneable, Cop
         return (this.actuate!= null);
     }
 
+    /**
+     * Gets the value of the owns property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public boolean isOwns() {
+        if (owns == null) {
+            return false;
+        } else {
+            return owns;
+        }
+    }
+
+    /**
+     * Sets the value of the owns property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setOwns(boolean value) {
+        this.owns = value;
+    }
+
+    public boolean isSetOwns() {
+        return (this.owns!= null);
+    }
+
+    public void unsetOwns() {
+        this.owns = null;
+    }
+
     public String toString() {
         final ToStringStrategy2 strategy = JAXBToStringStrategy.INSTANCE;
         final StringBuilder buffer = new StringBuilder();
@@ -426,11 +426,6 @@ public class TropicalCyclonePropertyType implements Serializable, Cloneable, Cop
             TropicalCycloneType theTropicalCyclone;
             theTropicalCyclone = this.getTropicalCyclone();
             strategy.appendField(locator, this, "tropicalCyclone", buffer, theTropicalCyclone, this.isSetTropicalCyclone());
-        }
-        {
-            boolean theOwns;
-            theOwns = (this.isSetOwns()?this.isOwns():false);
-            strategy.appendField(locator, this, "owns", buffer, theOwns, this.isSetOwns());
         }
         {
             List<String> theNilReason;
@@ -477,6 +472,11 @@ public class TropicalCyclonePropertyType implements Serializable, Cloneable, Cop
             theActuate = this.getActuate();
             strategy.appendField(locator, this, "actuate", buffer, theActuate, this.isSetActuate());
         }
+        {
+            boolean theOwns;
+            theOwns = (this.isSetOwns()?this.isOwns():false);
+            strategy.appendField(locator, this, "owns", buffer, theOwns, this.isSetOwns());
+        }
         return buffer;
     }
 
@@ -494,15 +494,6 @@ public class TropicalCyclonePropertyType implements Serializable, Cloneable, Cop
             TropicalCycloneType rhsTropicalCyclone;
             rhsTropicalCyclone = that.getTropicalCyclone();
             if (!strategy.equals(LocatorUtils.property(thisLocator, "tropicalCyclone", lhsTropicalCyclone), LocatorUtils.property(thatLocator, "tropicalCyclone", rhsTropicalCyclone), lhsTropicalCyclone, rhsTropicalCyclone, this.isSetTropicalCyclone(), that.isSetTropicalCyclone())) {
-                return false;
-            }
-        }
-        {
-            boolean lhsOwns;
-            lhsOwns = (this.isSetOwns()?this.isOwns():false);
-            boolean rhsOwns;
-            rhsOwns = (that.isSetOwns()?that.isOwns():false);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "owns", lhsOwns), LocatorUtils.property(thatLocator, "owns", rhsOwns), lhsOwns, rhsOwns, this.isSetOwns(), that.isSetOwns())) {
                 return false;
             }
         }
@@ -587,6 +578,15 @@ public class TropicalCyclonePropertyType implements Serializable, Cloneable, Cop
                 return false;
             }
         }
+        {
+            boolean lhsOwns;
+            lhsOwns = (this.isSetOwns()?this.isOwns():false);
+            boolean rhsOwns;
+            rhsOwns = (that.isSetOwns()?that.isOwns():false);
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "owns", lhsOwns), LocatorUtils.property(thatLocator, "owns", rhsOwns), lhsOwns, rhsOwns, this.isSetOwns(), that.isSetOwns())) {
+                return false;
+            }
+        }
         return true;
     }
 
@@ -601,11 +601,6 @@ public class TropicalCyclonePropertyType implements Serializable, Cloneable, Cop
             TropicalCycloneType theTropicalCyclone;
             theTropicalCyclone = this.getTropicalCyclone();
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "tropicalCyclone", theTropicalCyclone), currentHashCode, theTropicalCyclone, this.isSetTropicalCyclone());
-        }
-        {
-            boolean theOwns;
-            theOwns = (this.isSetOwns()?this.isOwns():false);
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "owns", theOwns), currentHashCode, theOwns, this.isSetOwns());
         }
         {
             List<String> theNilReason;
@@ -652,6 +647,11 @@ public class TropicalCyclonePropertyType implements Serializable, Cloneable, Cop
             theActuate = this.getActuate();
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "actuate", theActuate), currentHashCode, theActuate, this.isSetActuate());
         }
+        {
+            boolean theOwns;
+            theOwns = (this.isSetOwns()?this.isOwns():false);
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "owns", theOwns), currentHashCode, theOwns, this.isSetOwns());
+        }
         return currentHashCode;
     }
 
@@ -683,19 +683,6 @@ public class TropicalCyclonePropertyType implements Serializable, Cloneable, Cop
                 } else {
                     if (tropicalCycloneShouldBeCopiedAndSet == Boolean.FALSE) {
                         copy.tropicalCyclone = null;
-                    }
-                }
-            }
-            {
-                Boolean ownsShouldBeCopiedAndSet = strategy.shouldBeCopiedAndSet(locator, this.isSetOwns());
-                if (ownsShouldBeCopiedAndSet == Boolean.TRUE) {
-                    boolean sourceOwns;
-                    sourceOwns = (this.isSetOwns()?this.isOwns():false);
-                    boolean copyOwns = strategy.copy(LocatorUtils.property(locator, "owns", sourceOwns), sourceOwns, this.isSetOwns());
-                    copy.setOwns(copyOwns);
-                } else {
-                    if (ownsShouldBeCopiedAndSet == Boolean.FALSE) {
-                        copy.unsetOwns();
                     }
                 }
             }
@@ -818,6 +805,19 @@ public class TropicalCyclonePropertyType implements Serializable, Cloneable, Cop
                 } else {
                     if (actuateShouldBeCopiedAndSet == Boolean.FALSE) {
                         copy.actuate = null;
+                    }
+                }
+            }
+            {
+                Boolean ownsShouldBeCopiedAndSet = strategy.shouldBeCopiedAndSet(locator, this.isSetOwns());
+                if (ownsShouldBeCopiedAndSet == Boolean.TRUE) {
+                    boolean sourceOwns;
+                    sourceOwns = (this.isSetOwns()?this.isOwns():false);
+                    boolean copyOwns = strategy.copy(LocatorUtils.property(locator, "owns", sourceOwns), sourceOwns, this.isSetOwns());
+                    copy.setOwns(copyOwns);
+                } else {
+                    if (ownsShouldBeCopiedAndSet == Boolean.FALSE) {
+                        copy.unsetOwns();
                     }
                 }
             }

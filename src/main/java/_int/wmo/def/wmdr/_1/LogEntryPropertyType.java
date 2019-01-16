@@ -1,5 +1,5 @@
 
-package _int.wmo.def.opm._2013;
+package _int.wmo.def.wmdr._1;
 
 import java.io.Serializable;
 import javax.xml.bind.JAXBElement;
@@ -25,16 +25,16 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 
 /**
- * <p>Java class for ConstraintPropertyType complex type.
+ * <p>Java class for LogEntryPropertyType complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="ConstraintPropertyType"&gt;
+ * &lt;complexType name="LogEntryPropertyType"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element ref="{http://def.wmo.int/opm/2013}Constraint"/&gt;
+ *         &lt;element ref="{http://def.wmo.int/wmdr/1.0}LogEntry"/&gt;
  *       &lt;/sequence&gt;
  *       &lt;attGroup ref="{http://www.opengis.net/gml/3.2}OwnershipAttributeGroup"/&gt;
  *     &lt;/restriction&gt;
@@ -45,50 +45,50 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ConstraintPropertyType", propOrder = {
-    "constraint"
+@XmlType(name = "LogEntryPropertyType", propOrder = {
+    "logEntry"
 })
-public class ConstraintPropertyType implements Serializable, Cloneable, CopyTo2, Equals2, HashCode2, ToString2
+public class LogEntryPropertyType implements Serializable, Cloneable, CopyTo2, Equals2, HashCode2, ToString2
 {
 
     private final static long serialVersionUID = 1L;
-    @XmlElementRef(name = "Constraint", namespace = "http://def.wmo.int/opm/2013", type = JAXBElement.class)
-    protected JAXBElement<? extends ConstraintType> constraint;
+    @XmlElementRef(name = "LogEntry", namespace = "http://def.wmo.int/wmdr/1.0", type = JAXBElement.class)
+    protected JAXBElement<? extends LogEntryType> logEntry;
     @XmlAttribute(name = "owns")
     protected Boolean owns;
 
     /**
-     * Gets the value of the constraint property.
+     * Gets the value of the logEntry property.
      * 
      * @return
      *     possible object is
-     *     {@link JAXBElement }{@code <}{@link RangeConstraintType }{@code >}
-     *     {@link JAXBElement }{@code <}{@link ScalarConstraintType }{@code >}
-     *     {@link JAXBElement }{@code <}{@link CategoryConstraintType }{@code >}
-     *     {@link JAXBElement }{@code <}{@link ConstraintType }{@code >}
+     *     {@link JAXBElement }{@code <}{@link EventReportType }{@code >}
+     *     {@link JAXBElement }{@code <}{@link MaintenanceReportType }{@code >}
+     *     {@link JAXBElement }{@code <}{@link ControlCheckReportType }{@code >}
+     *     {@link JAXBElement }{@code <}{@link LogEntryType }{@code >}
      *     
      */
-    public JAXBElement<? extends ConstraintType> getConstraint() {
-        return constraint;
+    public JAXBElement<? extends LogEntryType> getLogEntry() {
+        return logEntry;
     }
 
     /**
-     * Sets the value of the constraint property.
+     * Sets the value of the logEntry property.
      * 
      * @param value
      *     allowed object is
-     *     {@link JAXBElement }{@code <}{@link RangeConstraintType }{@code >}
-     *     {@link JAXBElement }{@code <}{@link ScalarConstraintType }{@code >}
-     *     {@link JAXBElement }{@code <}{@link CategoryConstraintType }{@code >}
-     *     {@link JAXBElement }{@code <}{@link ConstraintType }{@code >}
+     *     {@link JAXBElement }{@code <}{@link EventReportType }{@code >}
+     *     {@link JAXBElement }{@code <}{@link MaintenanceReportType }{@code >}
+     *     {@link JAXBElement }{@code <}{@link ControlCheckReportType }{@code >}
+     *     {@link JAXBElement }{@code <}{@link LogEntryType }{@code >}
      *     
      */
-    public void setConstraint(JAXBElement<? extends ConstraintType> value) {
-        this.constraint = value;
+    public void setLogEntry(JAXBElement<? extends LogEntryType> value) {
+        this.logEntry = value;
     }
 
-    public boolean isSetConstraint() {
-        return (this.constraint!= null);
+    public boolean isSetLogEntry() {
+        return (this.logEntry!= null);
     }
 
     /**
@@ -143,9 +143,9 @@ public class ConstraintPropertyType implements Serializable, Cloneable, CopyTo2,
 
     public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy2 strategy) {
         {
-            JAXBElement<? extends ConstraintType> theConstraint;
-            theConstraint = this.getConstraint();
-            strategy.appendField(locator, this, "constraint", buffer, theConstraint, this.isSetConstraint());
+            JAXBElement<? extends LogEntryType> theLogEntry;
+            theLogEntry = this.getLogEntry();
+            strategy.appendField(locator, this, "logEntry", buffer, theLogEntry, this.isSetLogEntry());
         }
         {
             boolean theOwns;
@@ -162,13 +162,13 @@ public class ConstraintPropertyType implements Serializable, Cloneable, CopyTo2,
         if (this == object) {
             return true;
         }
-        final ConstraintPropertyType that = ((ConstraintPropertyType) object);
+        final LogEntryPropertyType that = ((LogEntryPropertyType) object);
         {
-            JAXBElement<? extends ConstraintType> lhsConstraint;
-            lhsConstraint = this.getConstraint();
-            JAXBElement<? extends ConstraintType> rhsConstraint;
-            rhsConstraint = that.getConstraint();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "constraint", lhsConstraint), LocatorUtils.property(thatLocator, "constraint", rhsConstraint), lhsConstraint, rhsConstraint, this.isSetConstraint(), that.isSetConstraint())) {
+            JAXBElement<? extends LogEntryType> lhsLogEntry;
+            lhsLogEntry = this.getLogEntry();
+            JAXBElement<? extends LogEntryType> rhsLogEntry;
+            rhsLogEntry = that.getLogEntry();
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "logEntry", lhsLogEntry), LocatorUtils.property(thatLocator, "logEntry", rhsLogEntry), lhsLogEntry, rhsLogEntry, this.isSetLogEntry(), that.isSetLogEntry())) {
                 return false;
             }
         }
@@ -192,9 +192,9 @@ public class ConstraintPropertyType implements Serializable, Cloneable, CopyTo2,
     public int hashCode(ObjectLocator locator, HashCodeStrategy2 strategy) {
         int currentHashCode = 1;
         {
-            JAXBElement<? extends ConstraintType> theConstraint;
-            theConstraint = this.getConstraint();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "constraint", theConstraint), currentHashCode, theConstraint, this.isSetConstraint());
+            JAXBElement<? extends LogEntryType> theLogEntry;
+            theLogEntry = this.getLogEntry();
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "logEntry", theLogEntry), currentHashCode, theLogEntry, this.isSetLogEntry());
         }
         {
             boolean theOwns;
@@ -220,19 +220,19 @@ public class ConstraintPropertyType implements Serializable, Cloneable, CopyTo2,
 
     public Object copyTo(ObjectLocator locator, Object target, CopyStrategy2 strategy) {
         final Object draftCopy = ((target == null)?createNewInstance():target);
-        if (draftCopy instanceof ConstraintPropertyType) {
-            final ConstraintPropertyType copy = ((ConstraintPropertyType) draftCopy);
+        if (draftCopy instanceof LogEntryPropertyType) {
+            final LogEntryPropertyType copy = ((LogEntryPropertyType) draftCopy);
             {
-                Boolean constraintShouldBeCopiedAndSet = strategy.shouldBeCopiedAndSet(locator, this.isSetConstraint());
-                if (constraintShouldBeCopiedAndSet == Boolean.TRUE) {
-                    JAXBElement<? extends ConstraintType> sourceConstraint;
-                    sourceConstraint = this.getConstraint();
+                Boolean logEntryShouldBeCopiedAndSet = strategy.shouldBeCopiedAndSet(locator, this.isSetLogEntry());
+                if (logEntryShouldBeCopiedAndSet == Boolean.TRUE) {
+                    JAXBElement<? extends LogEntryType> sourceLogEntry;
+                    sourceLogEntry = this.getLogEntry();
                     @SuppressWarnings("unchecked")
-                    JAXBElement<? extends ConstraintType> copyConstraint = ((JAXBElement<? extends ConstraintType> ) strategy.copy(LocatorUtils.property(locator, "constraint", sourceConstraint), sourceConstraint, this.isSetConstraint()));
-                    copy.setConstraint(copyConstraint);
+                    JAXBElement<? extends LogEntryType> copyLogEntry = ((JAXBElement<? extends LogEntryType> ) strategy.copy(LocatorUtils.property(locator, "logEntry", sourceLogEntry), sourceLogEntry, this.isSetLogEntry()));
+                    copy.setLogEntry(copyLogEntry);
                 } else {
-                    if (constraintShouldBeCopiedAndSet == Boolean.FALSE) {
-                        copy.constraint = null;
+                    if (logEntryShouldBeCopiedAndSet == Boolean.FALSE) {
+                        copy.logEntry = null;
                     }
                 }
             }
@@ -254,7 +254,7 @@ public class ConstraintPropertyType implements Serializable, Cloneable, CopyTo2,
     }
 
     public Object createNewInstance() {
-        return new ConstraintPropertyType();
+        return new LogEntryPropertyType();
     }
 
 }

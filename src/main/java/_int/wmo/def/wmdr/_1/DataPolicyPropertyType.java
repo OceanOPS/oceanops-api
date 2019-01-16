@@ -1,12 +1,11 @@
 
-package _int.wmo.def.opm._2013;
+package _int.wmo.def.wmdr._1;
 
 import java.io.Serializable;
-import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElementRef;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import org.jvnet.jaxb2_commons.lang.CopyStrategy2;
 import org.jvnet.jaxb2_commons.lang.CopyTo2;
@@ -25,16 +24,16 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 
 /**
- * <p>Java class for ConstraintPropertyType complex type.
+ * <p>Java class for DataPolicyPropertyType complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="ConstraintPropertyType"&gt;
+ * &lt;complexType name="DataPolicyPropertyType"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element ref="{http://def.wmo.int/opm/2013}Constraint"/&gt;
+ *         &lt;element ref="{http://def.wmo.int/wmdr/1.0}DataPolicy"/&gt;
  *       &lt;/sequence&gt;
  *       &lt;attGroup ref="{http://www.opengis.net/gml/3.2}OwnershipAttributeGroup"/&gt;
  *     &lt;/restriction&gt;
@@ -45,50 +44,44 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ConstraintPropertyType", propOrder = {
-    "constraint"
+@XmlType(name = "DataPolicyPropertyType", propOrder = {
+    "dataPolicy"
 })
-public class ConstraintPropertyType implements Serializable, Cloneable, CopyTo2, Equals2, HashCode2, ToString2
+public class DataPolicyPropertyType implements Serializable, Cloneable, CopyTo2, Equals2, HashCode2, ToString2
 {
 
     private final static long serialVersionUID = 1L;
-    @XmlElementRef(name = "Constraint", namespace = "http://def.wmo.int/opm/2013", type = JAXBElement.class)
-    protected JAXBElement<? extends ConstraintType> constraint;
+    @XmlElement(name = "DataPolicy", required = true)
+    protected DataPolicyType dataPolicy;
     @XmlAttribute(name = "owns")
     protected Boolean owns;
 
     /**
-     * Gets the value of the constraint property.
+     * Gets the value of the dataPolicy property.
      * 
      * @return
      *     possible object is
-     *     {@link JAXBElement }{@code <}{@link RangeConstraintType }{@code >}
-     *     {@link JAXBElement }{@code <}{@link ScalarConstraintType }{@code >}
-     *     {@link JAXBElement }{@code <}{@link CategoryConstraintType }{@code >}
-     *     {@link JAXBElement }{@code <}{@link ConstraintType }{@code >}
+     *     {@link DataPolicyType }
      *     
      */
-    public JAXBElement<? extends ConstraintType> getConstraint() {
-        return constraint;
+    public DataPolicyType getDataPolicy() {
+        return dataPolicy;
     }
 
     /**
-     * Sets the value of the constraint property.
+     * Sets the value of the dataPolicy property.
      * 
      * @param value
      *     allowed object is
-     *     {@link JAXBElement }{@code <}{@link RangeConstraintType }{@code >}
-     *     {@link JAXBElement }{@code <}{@link ScalarConstraintType }{@code >}
-     *     {@link JAXBElement }{@code <}{@link CategoryConstraintType }{@code >}
-     *     {@link JAXBElement }{@code <}{@link ConstraintType }{@code >}
+     *     {@link DataPolicyType }
      *     
      */
-    public void setConstraint(JAXBElement<? extends ConstraintType> value) {
-        this.constraint = value;
+    public void setDataPolicy(DataPolicyType value) {
+        this.dataPolicy = value;
     }
 
-    public boolean isSetConstraint() {
-        return (this.constraint!= null);
+    public boolean isSetDataPolicy() {
+        return (this.dataPolicy!= null);
     }
 
     /**
@@ -143,9 +136,9 @@ public class ConstraintPropertyType implements Serializable, Cloneable, CopyTo2,
 
     public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy2 strategy) {
         {
-            JAXBElement<? extends ConstraintType> theConstraint;
-            theConstraint = this.getConstraint();
-            strategy.appendField(locator, this, "constraint", buffer, theConstraint, this.isSetConstraint());
+            DataPolicyType theDataPolicy;
+            theDataPolicy = this.getDataPolicy();
+            strategy.appendField(locator, this, "dataPolicy", buffer, theDataPolicy, this.isSetDataPolicy());
         }
         {
             boolean theOwns;
@@ -162,13 +155,13 @@ public class ConstraintPropertyType implements Serializable, Cloneable, CopyTo2,
         if (this == object) {
             return true;
         }
-        final ConstraintPropertyType that = ((ConstraintPropertyType) object);
+        final DataPolicyPropertyType that = ((DataPolicyPropertyType) object);
         {
-            JAXBElement<? extends ConstraintType> lhsConstraint;
-            lhsConstraint = this.getConstraint();
-            JAXBElement<? extends ConstraintType> rhsConstraint;
-            rhsConstraint = that.getConstraint();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "constraint", lhsConstraint), LocatorUtils.property(thatLocator, "constraint", rhsConstraint), lhsConstraint, rhsConstraint, this.isSetConstraint(), that.isSetConstraint())) {
+            DataPolicyType lhsDataPolicy;
+            lhsDataPolicy = this.getDataPolicy();
+            DataPolicyType rhsDataPolicy;
+            rhsDataPolicy = that.getDataPolicy();
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "dataPolicy", lhsDataPolicy), LocatorUtils.property(thatLocator, "dataPolicy", rhsDataPolicy), lhsDataPolicy, rhsDataPolicy, this.isSetDataPolicy(), that.isSetDataPolicy())) {
                 return false;
             }
         }
@@ -192,9 +185,9 @@ public class ConstraintPropertyType implements Serializable, Cloneable, CopyTo2,
     public int hashCode(ObjectLocator locator, HashCodeStrategy2 strategy) {
         int currentHashCode = 1;
         {
-            JAXBElement<? extends ConstraintType> theConstraint;
-            theConstraint = this.getConstraint();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "constraint", theConstraint), currentHashCode, theConstraint, this.isSetConstraint());
+            DataPolicyType theDataPolicy;
+            theDataPolicy = this.getDataPolicy();
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "dataPolicy", theDataPolicy), currentHashCode, theDataPolicy, this.isSetDataPolicy());
         }
         {
             boolean theOwns;
@@ -220,19 +213,18 @@ public class ConstraintPropertyType implements Serializable, Cloneable, CopyTo2,
 
     public Object copyTo(ObjectLocator locator, Object target, CopyStrategy2 strategy) {
         final Object draftCopy = ((target == null)?createNewInstance():target);
-        if (draftCopy instanceof ConstraintPropertyType) {
-            final ConstraintPropertyType copy = ((ConstraintPropertyType) draftCopy);
+        if (draftCopy instanceof DataPolicyPropertyType) {
+            final DataPolicyPropertyType copy = ((DataPolicyPropertyType) draftCopy);
             {
-                Boolean constraintShouldBeCopiedAndSet = strategy.shouldBeCopiedAndSet(locator, this.isSetConstraint());
-                if (constraintShouldBeCopiedAndSet == Boolean.TRUE) {
-                    JAXBElement<? extends ConstraintType> sourceConstraint;
-                    sourceConstraint = this.getConstraint();
-                    @SuppressWarnings("unchecked")
-                    JAXBElement<? extends ConstraintType> copyConstraint = ((JAXBElement<? extends ConstraintType> ) strategy.copy(LocatorUtils.property(locator, "constraint", sourceConstraint), sourceConstraint, this.isSetConstraint()));
-                    copy.setConstraint(copyConstraint);
+                Boolean dataPolicyShouldBeCopiedAndSet = strategy.shouldBeCopiedAndSet(locator, this.isSetDataPolicy());
+                if (dataPolicyShouldBeCopiedAndSet == Boolean.TRUE) {
+                    DataPolicyType sourceDataPolicy;
+                    sourceDataPolicy = this.getDataPolicy();
+                    DataPolicyType copyDataPolicy = ((DataPolicyType) strategy.copy(LocatorUtils.property(locator, "dataPolicy", sourceDataPolicy), sourceDataPolicy, this.isSetDataPolicy()));
+                    copy.setDataPolicy(copyDataPolicy);
                 } else {
-                    if (constraintShouldBeCopiedAndSet == Boolean.FALSE) {
-                        copy.constraint = null;
+                    if (dataPolicyShouldBeCopiedAndSet == Boolean.FALSE) {
+                        copy.dataPolicy = null;
                     }
                 }
             }
@@ -254,7 +246,7 @@ public class ConstraintPropertyType implements Serializable, Cloneable, CopyTo2,
     }
 
     public Object createNewInstance() {
-        return new ConstraintPropertyType();
+        return new DataPolicyPropertyType();
     }
 
 }
