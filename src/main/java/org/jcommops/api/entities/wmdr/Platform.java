@@ -196,76 +196,71 @@ public class Platform {
 		Agency agency;
 		if(agencyId != null){
 			agency = Cayenne.objectForPK(this.cayenneContext, Agency.class, agencyId); 
-		}
-		else{
-			agencyId = Utils.JCOMMOPS_AGENCY_ID;
-			agency = Cayenne.objectForPK(this.cayenneContext, Agency.class, Utils.JCOMMOPS_AGENCY_ID); 
-		}
 		
-		responsibleParty.setId("responsibleparty-" + agencyId.toString() + "-" + ciResponsiblePartyCounter.toString());
-		if(agency.getRef() != null)
-			responsibleParty.setUuid(agency.getRef());
-		
-		CharacterStringPropertyType organisationName = this.gcoOF.createCharacterStringPropertyType();
-		organisationName.setCharacterString(this.gcoOF.createCharacterString(agency.getName()));
-		CIContactPropertyType contactInfo = this.gmdOF.createCIContactPropertyType();
-		CIContactType contact = this.gmdOF.createCIContactType();
-		ArrayList<CharacterStringPropertyType> list = new ArrayList<CharacterStringPropertyType>();;
-		CharacterStringPropertyType value;
-		CITelephonePropertyType phoneProperty = this.gmdOF.createCITelephonePropertyType();
-		CITelephoneType phone = this.gmdOF.createCITelephoneType();
-		CIAddressPropertyType addressProperty = this.gmdOF.createCIAddressPropertyType();
-		CIAddressType address = this.gmdOF.createCIAddressType();
-		if(agency.getTel() != null){
-			value = this.gcoOF.createCharacterStringPropertyType();
-			value.setCharacterString(this.gcoOF.createCharacterString(agency.getTel()));
-			list.add(value);
-			phone.setVoice(list);
-			phoneProperty.setCITelephone(phone);
+			responsibleParty.setId("responsibleparty-" + agencyId.toString() + "-" + ciResponsiblePartyCounter.toString());
+			if(agency.getRef() != null)
+				responsibleParty.setUuid(agency.getRef());
+			
+			CharacterStringPropertyType organisationName = this.gcoOF.createCharacterStringPropertyType();
+			organisationName.setCharacterString(this.gcoOF.createCharacterString(agency.getName()));
+			CIContactPropertyType contactInfo = this.gmdOF.createCIContactPropertyType();
+			CIContactType contact = this.gmdOF.createCIContactType();
+			ArrayList<CharacterStringPropertyType> list = new ArrayList<CharacterStringPropertyType>();;
+			CharacterStringPropertyType value;
+			CITelephonePropertyType phoneProperty = this.gmdOF.createCITelephonePropertyType();
+			CITelephoneType phone = this.gmdOF.createCITelephoneType();
+			CIAddressPropertyType addressProperty = this.gmdOF.createCIAddressPropertyType();
+			CIAddressType address = this.gmdOF.createCIAddressType();
+			if(agency.getTel() != null){
+				value = this.gcoOF.createCharacterStringPropertyType();
+				value.setCharacterString(this.gcoOF.createCharacterString(agency.getTel()));
+				list.add(value);
+				phone.setVoice(list);
+				phoneProperty.setCITelephone(phone);
+			}
+			if(agency.getAddress() != null){
+				list.clear();
+				value = this.gcoOF.createCharacterStringPropertyType();
+				value.setCharacterString(this.gcoOF.createCharacterString(agency.getAddress()));
+				list.add(value);
+				address.setDeliveryPoint(list);
+			}
+			if(agency.getEmail() != null){
+				list.clear();
+				value = this.gcoOF.createCharacterStringPropertyType();
+				value.setCharacterString(this.gcoOF.createCharacterString(agency.getEmail()));
+				list.add(value);
+				address.setElectronicMailAddress(list);
+			}
+			if(agency.getCountry() != null){
+				value = this.gcoOF.createCharacterStringPropertyType();
+				value.setCharacterString(this.gcoOF.createCharacterString(agency.getCountry().getNameLong()));
+				address.setCountry(value);
+			}
+			
+			addressProperty.setCIAddress(address);	
+			
+			CIOnlineResourcePropertyType onlineRsrcProperty = this.gmdOF.createCIOnlineResourcePropertyType();
+			CIOnlineResourceType onlineRsrc = this.gmdOF.createCIOnlineResourceType();
+			URLPropertyType urlProperty = this.gmdOF.createURLPropertyType();
+			urlProperty.setURL(agency.getWeblink().getUrl());
+			onlineRsrc.setLinkage(urlProperty);
+			onlineRsrcProperty.setCIOnlineResource(onlineRsrc);
+			
+			contact.setPhone(phoneProperty);
+			contact.setAddress(addressProperty);
+			contact.setOnlineResource(onlineRsrcProperty);
+			contactInfo.setCIContact(contact);
+			
+			responsibleParty.setContactInfo(contactInfo);
+			responsibleParty.setOrganisationName(organisationName);
+			CIRoleCodePropertyType roleCodeProperty = this.gmdOF.createCIRoleCodePropertyType();
+			CodeListValueType codeListValue = this.gcoOF.createCodeListValueType();
+			codeListValue.setCodeList("http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode");
+			codeListValue.setCodeListValue(ciRoleCode != null ? ciRoleCode : "custodian");
+			roleCodeProperty.setCIRoleCode(codeListValue);
+			responsibleParty.setRole(roleCodeProperty);
 		}
-		if(agency.getAddress() != null){
-			list.clear();
-			value = this.gcoOF.createCharacterStringPropertyType();
-			value.setCharacterString(this.gcoOF.createCharacterString(agency.getAddress()));
-			list.add(value);
-			address.setDeliveryPoint(list);
-		}
-		if(agency.getEmail() != null){
-			list.clear();
-			value = this.gcoOF.createCharacterStringPropertyType();
-			value.setCharacterString(this.gcoOF.createCharacterString(agency.getEmail()));
-			list.add(value);
-			address.setElectronicMailAddress(list);
-		}
-		if(agency.getCountry() != null){
-			value = this.gcoOF.createCharacterStringPropertyType();
-			value.setCharacterString(this.gcoOF.createCharacterString(agency.getCountry().getNameLong()));
-			address.setCountry(value);
-		}
-		
-		addressProperty.setCIAddress(address);	
-		
-		CIOnlineResourcePropertyType onlineRsrcProperty = this.gmdOF.createCIOnlineResourcePropertyType();
-		CIOnlineResourceType onlineRsrc = this.gmdOF.createCIOnlineResourceType();
-		URLPropertyType urlProperty = this.gmdOF.createURLPropertyType();
-		urlProperty.setURL(agency.getWeblink().getUrl());
-		onlineRsrc.setLinkage(urlProperty);
-		onlineRsrcProperty.setCIOnlineResource(onlineRsrc);
-		
-		contact.setPhone(phoneProperty);
-		contact.setAddress(addressProperty);
-		contact.setOnlineResource(onlineRsrcProperty);
-		contactInfo.setCIContact(contact);
-		
-		responsibleParty.setContactInfo(contactInfo);
-		responsibleParty.setOrganisationName(organisationName);
-		CIRoleCodePropertyType roleCodeProperty = this.gmdOF.createCIRoleCodePropertyType();
-		CodeListValueType codeListValue = this.gcoOF.createCodeListValueType();
-		codeListValue.setCodeList("http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode");
-		codeListValue.setCodeListValue(ciRoleCode != null ? ciRoleCode : "custodian");
-		roleCodeProperty.setCIRoleCode(codeListValue);
-		responsibleParty.setRole(roleCodeProperty);
-
 		return responsibleParty;
 	}
 	
@@ -600,8 +595,10 @@ public class Platform {
 					agencyID = String.valueOf(prAgency.getAgencyId());
 			}
 			
-			if(agencyID == null)
+			if(agencyID != null)
 				rp.setCIResponsibleParty(this.getCIResponsibleParty(Integer.parseInt(ptf.getProgram().getAgencies().get(0).getObjectId().getIdSnapshot().get("ID").toString()), "custodian"));
+			else
+				rp.setCIResponsibleParty(this.getCIResponsibleParty(null, null));
 		}
 		else
 			rp.setCIResponsibleParty(this.getCIResponsibleParty(null, null));
