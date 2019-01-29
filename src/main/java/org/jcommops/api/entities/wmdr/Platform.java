@@ -19,6 +19,7 @@ import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.query.SelectById;
 import org.jcommops.api.Utils;
 import org.jcommops.api.orm.Agency;
+import org.jcommops.api.orm.NetworkPtf;
 import org.jcommops.api.orm.ProgramAgency;
 import org.jcommops.api.orm.Ptf;
 import org.jcommops.api.orm.PtfDeployment;
@@ -196,71 +197,76 @@ public class Platform {
 		Agency agency;
 		if(agencyId != null){
 			agency = Cayenne.objectForPK(this.cayenneContext, Agency.class, agencyId); 
-		
-			responsibleParty.setId("responsibleparty-" + agencyId.toString() + "-" + ciResponsiblePartyCounter.toString());
-			if(agency.getRef() != null)
-				responsibleParty.setUuid(agency.getRef());
-			
-			CharacterStringPropertyType organisationName = this.gcoOF.createCharacterStringPropertyType();
-			organisationName.setCharacterString(this.gcoOF.createCharacterString(agency.getName()));
-			CIContactPropertyType contactInfo = this.gmdOF.createCIContactPropertyType();
-			CIContactType contact = this.gmdOF.createCIContactType();
-			ArrayList<CharacterStringPropertyType> list = new ArrayList<CharacterStringPropertyType>();;
-			CharacterStringPropertyType value;
-			CITelephonePropertyType phoneProperty = this.gmdOF.createCITelephonePropertyType();
-			CITelephoneType phone = this.gmdOF.createCITelephoneType();
-			CIAddressPropertyType addressProperty = this.gmdOF.createCIAddressPropertyType();
-			CIAddressType address = this.gmdOF.createCIAddressType();
-			if(agency.getTel() != null){
-				value = this.gcoOF.createCharacterStringPropertyType();
-				value.setCharacterString(this.gcoOF.createCharacterString(agency.getTel()));
-				list.add(value);
-				phone.setVoice(list);
-				phoneProperty.setCITelephone(phone);
-			}
-			if(agency.getAddress() != null){
-				list.clear();
-				value = this.gcoOF.createCharacterStringPropertyType();
-				value.setCharacterString(this.gcoOF.createCharacterString(agency.getAddress()));
-				list.add(value);
-				address.setDeliveryPoint(list);
-			}
-			if(agency.getEmail() != null){
-				list.clear();
-				value = this.gcoOF.createCharacterStringPropertyType();
-				value.setCharacterString(this.gcoOF.createCharacterString(agency.getEmail()));
-				list.add(value);
-				address.setElectronicMailAddress(list);
-			}
-			if(agency.getCountry() != null){
-				value = this.gcoOF.createCharacterStringPropertyType();
-				value.setCharacterString(this.gcoOF.createCharacterString(agency.getCountry().getNameLong()));
-				address.setCountry(value);
-			}
-			
-			addressProperty.setCIAddress(address);	
-			
-			CIOnlineResourcePropertyType onlineRsrcProperty = this.gmdOF.createCIOnlineResourcePropertyType();
-			CIOnlineResourceType onlineRsrc = this.gmdOF.createCIOnlineResourceType();
-			URLPropertyType urlProperty = this.gmdOF.createURLPropertyType();
-			urlProperty.setURL(agency.getWeblink().getUrl());
-			onlineRsrc.setLinkage(urlProperty);
-			onlineRsrcProperty.setCIOnlineResource(onlineRsrc);
-			
-			contact.setPhone(phoneProperty);
-			contact.setAddress(addressProperty);
-			contact.setOnlineResource(onlineRsrcProperty);
-			contactInfo.setCIContact(contact);
-			
-			responsibleParty.setContactInfo(contactInfo);
-			responsibleParty.setOrganisationName(organisationName);
-			CIRoleCodePropertyType roleCodeProperty = this.gmdOF.createCIRoleCodePropertyType();
-			CodeListValueType codeListValue = this.gcoOF.createCodeListValueType();
-			codeListValue.setCodeList("http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode");
-			codeListValue.setCodeListValue(ciRoleCode != null ? ciRoleCode : "custodian");
-			roleCodeProperty.setCIRoleCode(codeListValue);
-			responsibleParty.setRole(roleCodeProperty);
 		}
+		else{
+			agencyId = Utils.JCOMMOPS_AGENCY_ID;
+			agency = Cayenne.objectForPK(this.cayenneContext, Agency.class, Utils.JCOMMOPS_AGENCY_ID); 
+		}
+		
+		responsibleParty.setId("responsibleparty-" + agencyId.toString() + "-" + ciResponsiblePartyCounter.toString());
+		if(agency.getRef() != null)
+			responsibleParty.setUuid(agency.getRef());
+		
+		CharacterStringPropertyType organisationName = this.gcoOF.createCharacterStringPropertyType();
+		organisationName.setCharacterString(this.gcoOF.createCharacterString(agency.getName()));
+		CIContactPropertyType contactInfo = this.gmdOF.createCIContactPropertyType();
+		CIContactType contact = this.gmdOF.createCIContactType();
+		ArrayList<CharacterStringPropertyType> list = new ArrayList<CharacterStringPropertyType>();;
+		CharacterStringPropertyType value;
+		CITelephonePropertyType phoneProperty = this.gmdOF.createCITelephonePropertyType();
+		CITelephoneType phone = this.gmdOF.createCITelephoneType();
+		CIAddressPropertyType addressProperty = this.gmdOF.createCIAddressPropertyType();
+		CIAddressType address = this.gmdOF.createCIAddressType();
+		if(agency.getTel() != null){
+			value = this.gcoOF.createCharacterStringPropertyType();
+			value.setCharacterString(this.gcoOF.createCharacterString(agency.getTel()));
+			list.add(value);
+			phone.setVoice(list);
+			phoneProperty.setCITelephone(phone);
+		}
+		if(agency.getAddress() != null){
+			list.clear();
+			value = this.gcoOF.createCharacterStringPropertyType();
+			value.setCharacterString(this.gcoOF.createCharacterString(agency.getAddress()));
+			list.add(value);
+			address.setDeliveryPoint(list);
+		}
+		if(agency.getEmail() != null){
+			list.clear();
+			value = this.gcoOF.createCharacterStringPropertyType();
+			value.setCharacterString(this.gcoOF.createCharacterString(agency.getEmail()));
+			list.add(value);
+			address.setElectronicMailAddress(list);
+		}
+		if(agency.getCountry() != null){
+			value = this.gcoOF.createCharacterStringPropertyType();
+			value.setCharacterString(this.gcoOF.createCharacterString(agency.getCountry().getNameLong()));
+			address.setCountry(value);
+		}
+		
+		addressProperty.setCIAddress(address);	
+		
+		CIOnlineResourcePropertyType onlineRsrcProperty = this.gmdOF.createCIOnlineResourcePropertyType();
+		CIOnlineResourceType onlineRsrc = this.gmdOF.createCIOnlineResourceType();
+		URLPropertyType urlProperty = this.gmdOF.createURLPropertyType();
+		urlProperty.setURL(agency.getWeblink().getUrl());
+		onlineRsrc.setLinkage(urlProperty);
+		onlineRsrcProperty.setCIOnlineResource(onlineRsrc);
+		
+		contact.setPhone(phoneProperty);
+		contact.setAddress(addressProperty);
+		contact.setOnlineResource(onlineRsrcProperty);
+		contactInfo.setCIContact(contact);
+		
+		responsibleParty.setContactInfo(contactInfo);
+		responsibleParty.setOrganisationName(organisationName);
+		CIRoleCodePropertyType roleCodeProperty = this.gmdOF.createCIRoleCodePropertyType();
+		CodeListValueType codeListValue = this.gcoOF.createCodeListValueType();
+		codeListValue.setCodeList("http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode");
+		codeListValue.setCodeListValue(ciRoleCode != null ? ciRoleCode : "custodian");
+		roleCodeProperty.setCIRoleCode(codeListValue);
+		responsibleParty.setRole(roleCodeProperty);
+
 		return responsibleParty;
 	}
 	
@@ -595,10 +601,8 @@ public class Platform {
 					agencyID = String.valueOf(prAgency.getAgencyId());
 			}
 			
-			if(agencyID != null)
+			if(agencyID == null)
 				rp.setCIResponsibleParty(this.getCIResponsibleParty(Integer.parseInt(ptf.getProgram().getAgencies().get(0).getObjectId().getIdSnapshot().get("ID").toString()), "custodian"));
-			else
-				rp.setCIResponsibleParty(this.getCIResponsibleParty(null, null));
 		}
 		else
 			rp.setCIResponsibleParty(this.getCIResponsibleParty(null, null));
@@ -625,13 +629,9 @@ public class Platform {
 		o.getTerritory().add(territory);
 
 		// TODO : check WMO code tables
-		ProgramAffiliation progAffiliation = this.wmdrOF.createObservingFacilityTypeProgramAffiliation();
-		ProgramAffiliationType progAffiliationType = this.wmdrOF.createProgramAffiliationType();
-		refType = this.gmlOF.createReferenceType();
-		refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/" + ptf.getProgram().getNetwork().getName());
-		progAffiliationType.setProgramAffiliation(refType);
 		ReportingStatus reportingStatus = null;
 		ReportingStatusType reportingStatusType = null;
+		ArrayList<ReportingStatus> reportingStatuses = new ArrayList();
 		int count = 1;
 		for(PtfPtfStatus ptfPtfStatus: ptf.getPtfPtfStatuses()){
 			reportingStatus = this.wmdrOF.createProgramAffiliationTypeReportingStatus();
@@ -652,17 +652,35 @@ public class Platform {
 			
 			reportingStatusType.setValidPeriod(timePeriodProperty);
 			reportingStatus.setReportingStatus(reportingStatusType);
-			progAffiliationType.getReportingStatus().add(reportingStatus);
+			reportingStatuses.add(reportingStatus);
+			//progAffiliationType.getReportingStatus().add(reportingStatus);
 			count++;
 		}
-		progAffiliation.setProgramAffiliation(progAffiliationType);
-		o.getProgramAffiliation().add(progAffiliation);
+		ProgramAffiliation progAffiliation;
+		ProgramAffiliationType progAffiliationType;
+		for(NetworkPtf netPtf: ptf.getNetworkPtfs()) {
+			if(netPtf.getNetwork().getRank() == 0) {
+				progAffiliation = this.wmdrOF.createObservingFacilityTypeProgramAffiliation();
+				progAffiliationType = this.wmdrOF.createProgramAffiliationType();
+				refType = this.gmlOF.createReferenceType();
+				refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/" + netPtf.getNetwork().getName());
+				progAffiliationType.setProgramAffiliation(refType);
+				for(int i = 0; i < reportingStatuses.size() ; i++) {
+					progAffiliationType.getReportingStatus().add(reportingStatuses.get(i));
+				}
+				progAffiliation.setProgramAffiliation(progAffiliationType);
+				o.getProgramAffiliation().add(progAffiliation);
+			}
+		}
 		
 		progAffiliation = this.wmdrOF.createObservingFacilityTypeProgramAffiliation();
 		progAffiliationType = this.wmdrOF.createProgramAffiliationType();
 		refType = this.gmlOF.createReferenceType();
 		refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/" + ptf.getProgram().getName());
 		progAffiliationType.setProgramAffiliation(refType);
+		for(int i = 0; i < reportingStatuses.size() ; i++) {
+			progAffiliationType.getReportingStatus().add(reportingStatuses.get(i));
+		}
 		progAffiliation.setProgramAffiliation(progAffiliationType);
 		o.getProgramAffiliation().add(progAffiliation);
 
