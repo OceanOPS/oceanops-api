@@ -1,1 +1,298 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><wmdr:WIGOSMetadataRecord gml:id="WMDR-0-22000-0-DXPLU3Z" xmlns:sams="http://www.opengis.net/samplingSpatial/2.0" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:opm="http://def.wmo.int/opm/2013" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:metce="http://def.wmo.int/metce/2013" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:wmdr="http://def.wmo.int/wmdr/2017" xmlns:gmx="http://www.isotc211.org/2005/gmx" xmlns:sam="http://www.opengis.net/sampling/2.0" xmlns:om="http://www.opengis.net/om/2.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gmd="http://www.isotc211.org/2005/gmd"><gml:description/><gml:identifier codeSpace="http://data.wmo.int/">http://data.wmo.int/0-22000-0-DXPLU3Z</gml:identifier><gml:boundedBy xsi:nil="true"/><wmdr:headerInformation><wmdr:Header><wmdr:fileDateTime>2018-10-09T10:57:14.000+02:00</wmdr:fileDateTime><wmdr:recordOwner><gmd:CI_ResponsibleParty id="responsibleparty-61-1"><gmd:organisationName><gco:CharacterString>JCOMM in-situ Observations Programme Support Centre </gco:CharacterString></gmd:organisationName><gmd:contactInfo><gmd:CI_Contact><gmd:phone><gmd:CI_Telephone><gmd:voice><gco:CharacterString>+33 2 29 00 85 86</gco:CharacterString></gmd:voice></gmd:CI_Telephone></gmd:phone><gmd:address><gmd:CI_Address><gmd:deliveryPoint><gco:CharacterString>JCOMMOPS&lt;br /&gt;Technopôle Brest Iroise&lt;br /&gt;Campus Ifremer&lt;br /&gt;1625 route de Sainte Anne&lt;br /&gt;Z.I. Pointe du Diable&lt;br /&gt;Plouzané - FRANCE&lt;br /&gt;</gco:CharacterString></gmd:deliveryPoint><gmd:country><gco:CharacterString>United Nations</gco:CharacterString></gmd:country><gmd:electronicMailAddress><gco:CharacterString>support@jcommops.org</gco:CharacterString></gmd:electronicMailAddress></gmd:CI_Address></gmd:address><gmd:onlineResource><gmd:CI_OnlineResource><gmd:linkage><gmd:URL>http://www.jcommops.org</gmd:URL></gmd:linkage></gmd:CI_OnlineResource></gmd:onlineResource></gmd:CI_Contact></gmd:contactInfo><gmd:role><gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="custodian"/></gmd:role></gmd:CI_ResponsibleParty></wmdr:recordOwner></wmdr:Header></wmdr:headerInformation><wmdr:facility><wmdr:ObservingFacility gml:id="http://data.wmo.int/0-22000-0-DXPLU3Z"><gml:description/><gml:identifier codeSpace="http://data.wmo.int">http://data.wmo.int/0-22000-0-DXPLU3Z</gml:identifier><gml:name>DXPLU3Z</gml:name><gml:boundedBy xsi:nil="true"/><wmdr:responsibleParty><wmdr:ResponsibleParty><wmdr:responsibleParty><gmd:CI_ResponsibleParty id="responsibleparty-6062-2"><gmd:organisationName><gco:CharacterString>Deutscher Wetterdienst</gco:CharacterString></gmd:organisationName><gmd:contactInfo><gmd:CI_Contact><gmd:phone/><gmd:address><gmd:CI_Address><gmd:country><gco:CharacterString>Germany</gco:CharacterString></gmd:country></gmd:CI_Address></gmd:address><gmd:onlineResource><gmd:CI_OnlineResource><gmd:linkage><gmd:URL>http://www.dwd.de/e_dwd_home.html</gmd:URL></gmd:linkage></gmd:CI_OnlineResource></gmd:onlineResource></gmd:CI_Contact></gmd:contactInfo><gmd:role><gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="custodian"/></gmd:role></gmd:CI_ResponsibleParty></wmdr:responsibleParty></wmdr:ResponsibleParty></wmdr:responsibleParty><wmdr:geospatialLocation><wmdr:GeospatialLocation><wmdr:geoLocation><gml:Point srsName="http://www.opengis.net/def/crs/EPSG/0/4979" gml:id="http://data.wmo.int/0-22000-0-DXPLU3Z-LatestLocationGeometry"><gml:pos>30.16 -55.1 0.0</gml:pos></gml:Point></wmdr:geoLocation><wmdr:geopositioningMethod xlink:href="http://codes.wmo.int/common/wmdr/GeopositioningMethod/"/><wmdr:validPeriod><gml:TimePeriod gml:id="http://data.wmo.int/0-22000-0-DXPLU3Z-LatestLocationTimePeriod"><gml:beginPosition>2018-05-02T00:00:00Z</gml:beginPosition><gml:endPosition/></gml:TimePeriod></wmdr:validPeriod></wmdr:GeospatialLocation></wmdr:geospatialLocation><wmdr:onlineResource><gmd:CI_OnlineResource><gmd:linkage><gmd:URL>http://www.jcommops.org/board/wa/Platform?ref=DXPLU3Z</gmd:URL></gmd:linkage></gmd:CI_OnlineResource></wmdr:onlineResource><wmdr:facilityType xlink:href="http://codes.wmo.int/common/wmdr/FacilityType/15 - Selected (AWS)"/><wmdr:dateEstablished>2018-10-09+02:00</wmdr:dateEstablished><wmdr:dateClosed>2018-05-02+02:00</wmdr:dateClosed><wmdr:wmoRegion xlink:href="http://codes.wmo.int/common/wmdr/WMORegion/"/><wmdr:territory><wmdr:Territory><wmdr:territoryName xlink:href="http://codes.wmo.int/common/wmdr/TerritoryName/"/></wmdr:Territory></wmdr:territory><wmdr:programAffiliation><wmdr:ProgramAffiliation><wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/SOT"/><wmdr:reportingStatus><wmdr:ReportingStatus><wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/INACTIVE"/><wmdr:validPeriod><gml:TimePeriod gml:id="http://data.wmo.int/0-22000-0-DXPLU3Z-StatusChangingDateTimePeriod-1"><gml:beginPosition>2016-11-19T08:04:22Z</gml:beginPosition><gml:endPosition/></gml:TimePeriod></wmdr:validPeriod></wmdr:ReportingStatus></wmdr:reportingStatus><wmdr:reportingStatus><wmdr:ReportingStatus><wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/INACTIVE"/><wmdr:validPeriod><gml:TimePeriod gml:id="http://data.wmo.int/0-22000-0-DXPLU3Z-StatusChangingDateTimePeriod-2"><gml:beginPosition>2018-09-21T11:13:32Z</gml:beginPosition><gml:endPosition/></gml:TimePeriod></wmdr:validPeriod></wmdr:ReportingStatus></wmdr:reportingStatus><wmdr:reportingStatus><wmdr:ReportingStatus><wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/CLOSED"/><wmdr:validPeriod><gml:TimePeriod gml:id="http://data.wmo.int/0-22000-0-DXPLU3Z-StatusChangingDateTimePeriod-3"><gml:beginPosition>2018-05-02T00:00:00Z</gml:beginPosition><gml:endPosition/></gml:TimePeriod></wmdr:validPeriod></wmdr:ReportingStatus></wmdr:reportingStatus><wmdr:reportingStatus><wmdr:ReportingStatus><wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/OPERATIONAL"/><wmdr:validPeriod><gml:TimePeriod gml:id="http://data.wmo.int/0-22000-0-DXPLU3Z-StatusChangingDateTimePeriod-4"><gml:beginPosition>2016-11-19T09:04:13Z</gml:beginPosition><gml:endPosition/></gml:TimePeriod></wmdr:validPeriod></wmdr:ReportingStatus></wmdr:reportingStatus></wmdr:ProgramAffiliation></wmdr:programAffiliation><wmdr:programAffiliation><wmdr:ProgramAffiliation><wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/VOS-DE"/><wmdr:reportingStatus><wmdr:ReportingStatus><wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/INACTIVE"/><wmdr:validPeriod><gml:TimePeriod gml:id="http://data.wmo.int/0-22000-0-DXPLU3Z-StatusChangingDateTimePeriod-1"><gml:beginPosition>2016-11-19T08:04:22Z</gml:beginPosition><gml:endPosition/></gml:TimePeriod></wmdr:validPeriod></wmdr:ReportingStatus></wmdr:reportingStatus><wmdr:reportingStatus><wmdr:ReportingStatus><wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/INACTIVE"/><wmdr:validPeriod><gml:TimePeriod gml:id="http://data.wmo.int/0-22000-0-DXPLU3Z-StatusChangingDateTimePeriod-2"><gml:beginPosition>2018-09-21T11:13:32Z</gml:beginPosition><gml:endPosition/></gml:TimePeriod></wmdr:validPeriod></wmdr:ReportingStatus></wmdr:reportingStatus><wmdr:reportingStatus><wmdr:ReportingStatus><wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/CLOSED"/><wmdr:validPeriod><gml:TimePeriod gml:id="http://data.wmo.int/0-22000-0-DXPLU3Z-StatusChangingDateTimePeriod-3"><gml:beginPosition>2018-05-02T00:00:00Z</gml:beginPosition><gml:endPosition/></gml:TimePeriod></wmdr:validPeriod></wmdr:ReportingStatus></wmdr:reportingStatus><wmdr:reportingStatus><wmdr:ReportingStatus><wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/OPERATIONAL"/><wmdr:validPeriod><gml:TimePeriod gml:id="http://data.wmo.int/0-22000-0-DXPLU3Z-StatusChangingDateTimePeriod-4"><gml:beginPosition>2016-11-19T09:04:13Z</gml:beginPosition><gml:endPosition/></gml:TimePeriod></wmdr:validPeriod></wmdr:ReportingStatus></wmdr:reportingStatus></wmdr:ProgramAffiliation></wmdr:programAffiliation><wmdr:equipment><wmdr:Equipment gml:id="subequipment-2069"><gml:description/><gml:name>VAISALA_PTB330</gml:name><gml:boundedBy xsi:nil="true"/><wmdr:responsibleParty><wmdr:ResponsibleParty><wmdr:responsibleParty><gmd:CI_ResponsibleParty id="responsibleparty-61-3"><gmd:organisationName><gco:CharacterString>JCOMM in-situ Observations Programme Support Centre </gco:CharacterString></gmd:organisationName><gmd:contactInfo><gmd:CI_Contact><gmd:phone><gmd:CI_Telephone><gmd:voice><gco:CharacterString>+33 2 29 00 85 86</gco:CharacterString></gmd:voice></gmd:CI_Telephone></gmd:phone><gmd:address><gmd:CI_Address><gmd:deliveryPoint><gco:CharacterString>JCOMMOPS&lt;br /&gt;Technopôle Brest Iroise&lt;br /&gt;Campus Ifremer&lt;br /&gt;1625 route de Sainte Anne&lt;br /&gt;Z.I. Pointe du Diable&lt;br /&gt;Plouzané - FRANCE&lt;br /&gt;</gco:CharacterString></gmd:deliveryPoint><gmd:country><gco:CharacterString>United Nations</gco:CharacterString></gmd:country><gmd:electronicMailAddress><gco:CharacterString>support@jcommops.org</gco:CharacterString></gmd:electronicMailAddress></gmd:CI_Address></gmd:address><gmd:onlineResource><gmd:CI_OnlineResource><gmd:linkage><gmd:URL>http://www.jcommops.org</gmd:URL></gmd:linkage></gmd:CI_OnlineResource></gmd:onlineResource></gmd:CI_Contact></gmd:contactInfo><gmd:role><gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="custodian"/></gmd:role></gmd:CI_ResponsibleParty></wmdr:responsibleParty></wmdr:ResponsibleParty></wmdr:responsibleParty><wmdr:observingMethod xlink:href="http://codes.wmo.int/common/wmdr/ObservingMethod/"/></wmdr:Equipment></wmdr:equipment></wmdr:ObservingFacility></wmdr:facility><wmdr:deployment><wmdr:Deployment gml:id="http://data.wmo.int/0-22000-0-DXPLU3Z-depl"><gml:boundedBy xsi:nil="true"/><gml:location><gml:Point srsName="http://www.opengis.net/def/crs/EPSG/0/4979" gml:id="http://data.wmo.int/0-22000-0-DXPLU3Z-depl-location"><gml:pos>30.16 -55.1 0.0</gml:pos></gml:Point></gml:location><wmdr:deployedEquipment/><wmdr:dataGeneration/><wmdr:validPeriod><gml:TimePeriod gml:id="http://data.wmo.int/0-22000-0-DXPLU3Z-depl-date"><gml:beginPosition>2006-10-26T00:00:00Z</gml:beginPosition><gml:endPosition/></gml:TimePeriod></wmdr:validPeriod><wmdr:heightAboveLocalReferenceSurface uom="m">32.0</wmdr:heightAboveLocalReferenceSurface><wmdr:localReferenceSurface/><wmdr:applicationArea/><wmdr:sourceOfObservation/></wmdr:Deployment></wmdr:deployment></wmdr:WIGOSMetadataRecord>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<wmdr:WIGOSMetadataRecord gml:id="record_0-22000-0-DXPLU3Z" xsi:schemaLocation="http://def.wmo.int/wmdr/2017 http://schemas.wmo.int/wmdr/1.0RC9/wmdr.xsd" xmlns:sams="http://www.opengis.net/samplingSpatial/2.0" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:opm="http://def.wmo.int/opm/2013" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:metce="http://def.wmo.int/metce/2013" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:wmdr="http://def.wmo.int/wmdr/2017" xmlns:gmx="http://www.isotc211.org/2005/gmx" xmlns:sam="http://www.opengis.net/sampling/2.0" xmlns:om="http://www.opengis.net/om/2.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gmd="http://www.isotc211.org/2005/gmd">
+    <gml:description/>
+    <gml:identifier codeSpace="http://data.wmo.int/">_0-22000-0-DXPLU3Z</gml:identifier>
+    <gml:boundedBy xsi:nil="true"/>
+    <wmdr:headerInformation>
+        <wmdr:Header>
+            <wmdr:fileDateTime>2018-10-09T10:57:14.000+02:00</wmdr:fileDateTime>
+            <wmdr:recordOwner>
+                <gmd:CI_ResponsibleParty id="responsibleparty-61-1">
+                    <gmd:organisationName>
+                        <gco:CharacterString>JCOMM in-situ Observations Programme Support Centre </gco:CharacterString>
+                    </gmd:organisationName>
+                    <gmd:contactInfo>
+                        <gmd:CI_Contact>
+                            <gmd:phone>
+                                <gmd:CI_Telephone>
+                                    <gmd:voice>
+                                        <gco:CharacterString>+33 2 29 00 85 85</gco:CharacterString>
+                                    </gmd:voice>
+                                </gmd:CI_Telephone>
+                            </gmd:phone>
+                            <gmd:address>
+                                <gmd:CI_Address>
+                                    <gmd:deliveryPoint>
+                                        <gco:CharacterString>JCOMMOPS&lt;br /&gt;Technopôle Brest Iroise&lt;br /&gt;Campus Ifremer&lt;br /&gt;1625 route de Sainte Anne&lt;br /&gt;Z.I. Pointe du Diable&lt;br /&gt;Plouzané - FRANCE&lt;br /&gt;</gco:CharacterString>
+                                    </gmd:deliveryPoint>
+                                    <gmd:country>
+                                        <gco:CharacterString>United Nations</gco:CharacterString>
+                                    </gmd:country>
+                                    <gmd:electronicMailAddress>
+                                        <gco:CharacterString>support@jcommops.org</gco:CharacterString>
+                                    </gmd:electronicMailAddress>
+                                </gmd:CI_Address>
+                            </gmd:address>
+                            <gmd:onlineResource>
+                                <gmd:CI_OnlineResource>
+                                    <gmd:linkage>
+                                        <gmd:URL>http://www.jcommops.org</gmd:URL>
+                                    </gmd:linkage>
+                                </gmd:CI_OnlineResource>
+                            </gmd:onlineResource>
+                        </gmd:CI_Contact>
+                    </gmd:contactInfo>
+                    <gmd:role>
+                        <gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="custodian"/>
+                    </gmd:role>
+                </gmd:CI_ResponsibleParty>
+            </wmdr:recordOwner>
+        </wmdr:Header>
+    </wmdr:headerInformation>
+    <wmdr:facility>
+        <wmdr:ObservingFacility gml:id="_0-22000-0-DXPLU3Z">
+            <gml:description/>
+            <gml:identifier codeSpace="http://data.wmo.int">_0-22000-0-DXPLU3Z</gml:identifier>
+            <gml:name>DXPLU3Z</gml:name>
+            <gml:boundedBy xsi:nil="true"/>
+            <wmdr:responsibleParty>
+                <wmdr:ResponsibleParty>
+                    <wmdr:responsibleParty>
+                        <gmd:CI_ResponsibleParty id="responsibleparty-6062-2">
+                            <gmd:organisationName>
+                                <gco:CharacterString>Deutscher Wetterdienst</gco:CharacterString>
+                            </gmd:organisationName>
+                            <gmd:contactInfo>
+                                <gmd:CI_Contact>
+                                    <gmd:phone/>
+                                    <gmd:address>
+                                        <gmd:CI_Address>
+                                            <gmd:country>
+                                                <gco:CharacterString>Germany</gco:CharacterString>
+                                            </gmd:country>
+                                        </gmd:CI_Address>
+                                    </gmd:address>
+                                    <gmd:onlineResource>
+                                        <gmd:CI_OnlineResource>
+                                            <gmd:linkage>
+                                                <gmd:URL>http://www.dwd.de/e_dwd_home.html</gmd:URL>
+                                            </gmd:linkage>
+                                        </gmd:CI_OnlineResource>
+                                    </gmd:onlineResource>
+                                </gmd:CI_Contact>
+                            </gmd:contactInfo>
+                            <gmd:role>
+                                <gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="custodian"/>
+                            </gmd:role>
+                        </gmd:CI_ResponsibleParty>
+                    </wmdr:responsibleParty>
+                </wmdr:ResponsibleParty>
+            </wmdr:responsibleParty>
+            <wmdr:geospatialLocation>
+                <wmdr:GeospatialLocation>
+                    <wmdr:geoLocation>
+                        <gml:Point srsName="http://www.opengis.net/def/crs/EPSG/0/4979" gml:id="_0-22000-0-DXPLU3Z-LatestLocationGeometry">
+                            <gml:pos>30.16 -55.1 0.0</gml:pos>
+                        </gml:Point>
+                    </wmdr:geoLocation>
+                    <wmdr:geopositioningMethod xlink:href="http://codes.wmo.int/common/wmdr/GeopositioningMethod/"/>
+                    <wmdr:validPeriod>
+                        <gml:TimePeriod gml:id="_0-22000-0-DXPLU3Z-LatestLocationTimePeriod">
+                            <gml:beginPosition>2018-05-02T00:00:00Z</gml:beginPosition>
+                            <gml:endPosition/>
+                        </gml:TimePeriod>
+                    </wmdr:validPeriod>
+                </wmdr:GeospatialLocation>
+            </wmdr:geospatialLocation>
+            <wmdr:onlineResource>
+                <gmd:CI_OnlineResource>
+                    <gmd:linkage>
+                        <gmd:URL>http://www.jcommops.org/board/wa/Platform?ref=DXPLU3Z</gmd:URL>
+                    </gmd:linkage>
+                </gmd:CI_OnlineResource>
+            </wmdr:onlineResource>
+            <wmdr:facilityType xlink:href="http://codes.wmo.int/common/wmdr/FacilityType/15 - Selected (AWS)"/>
+            <wmdr:dateEstablished>2018-10-09+02:00</wmdr:dateEstablished>
+            <wmdr:dateClosed>2018-05-02+02:00</wmdr:dateClosed>
+            <wmdr:wmoRegion xlink:href="http://codes.wmo.int/common/wmdr/WMORegion/"/>
+            <wmdr:territory>
+                <wmdr:Territory>
+                    <wmdr:territoryName xlink:href="http://codes.wmo.int/common/wmdr/TerritoryName/"/>
+                </wmdr:Territory>
+            </wmdr:territory>
+            <wmdr:programAffiliation>
+                <wmdr:ProgramAffiliation>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/SOT"/>
+                    <wmdr:reportingStatus>
+                        <wmdr:ReportingStatus>
+                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/INACTIVE"/>
+                            <wmdr:validPeriod>
+                                <gml:TimePeriod gml:id="_0-22000-0-DXPLU3Z-StatusChangingDateTimePeriod-1">
+                                    <gml:beginPosition>2016-11-19T08:04:22Z</gml:beginPosition>
+                                    <gml:endPosition/>
+                                </gml:TimePeriod>
+                            </wmdr:validPeriod>
+                        </wmdr:ReportingStatus>
+                    </wmdr:reportingStatus>
+                    <wmdr:reportingStatus>
+                        <wmdr:ReportingStatus>
+                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/INACTIVE"/>
+                            <wmdr:validPeriod>
+                                <gml:TimePeriod gml:id="_0-22000-0-DXPLU3Z-StatusChangingDateTimePeriod-2">
+                                    <gml:beginPosition>2018-09-21T11:13:32Z</gml:beginPosition>
+                                    <gml:endPosition/>
+                                </gml:TimePeriod>
+                            </wmdr:validPeriod>
+                        </wmdr:ReportingStatus>
+                    </wmdr:reportingStatus>
+                    <wmdr:reportingStatus>
+                        <wmdr:ReportingStatus>
+                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/CLOSED"/>
+                            <wmdr:validPeriod>
+                                <gml:TimePeriod gml:id="_0-22000-0-DXPLU3Z-StatusChangingDateTimePeriod-3">
+                                    <gml:beginPosition>2018-05-02T00:00:00Z</gml:beginPosition>
+                                    <gml:endPosition/>
+                                </gml:TimePeriod>
+                            </wmdr:validPeriod>
+                        </wmdr:ReportingStatus>
+                    </wmdr:reportingStatus>
+                    <wmdr:reportingStatus>
+                        <wmdr:ReportingStatus>
+                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/OPERATIONAL"/>
+                            <wmdr:validPeriod>
+                                <gml:TimePeriod gml:id="_0-22000-0-DXPLU3Z-StatusChangingDateTimePeriod-4">
+                                    <gml:beginPosition>2016-11-19T09:04:13Z</gml:beginPosition>
+                                    <gml:endPosition/>
+                                </gml:TimePeriod>
+                            </wmdr:validPeriod>
+                        </wmdr:ReportingStatus>
+                    </wmdr:reportingStatus>
+                </wmdr:ProgramAffiliation>
+            </wmdr:programAffiliation>
+            <wmdr:programAffiliation>
+                <wmdr:ProgramAffiliation>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/VOS-DE"/>
+                    <wmdr:reportingStatus>
+                        <wmdr:ReportingStatus>
+                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/INACTIVE"/>
+                            <wmdr:validPeriod>
+                                <gml:TimePeriod gml:id="_0-22000-0-DXPLU3Z-StatusChangingDateTimePeriod-5">
+                                    <gml:beginPosition>2016-11-19T08:04:22Z</gml:beginPosition>
+                                    <gml:endPosition/>
+                                </gml:TimePeriod>
+                            </wmdr:validPeriod>
+                        </wmdr:ReportingStatus>
+                    </wmdr:reportingStatus>
+                    <wmdr:reportingStatus>
+                        <wmdr:ReportingStatus>
+                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/INACTIVE"/>
+                            <wmdr:validPeriod>
+                                <gml:TimePeriod gml:id="_0-22000-0-DXPLU3Z-StatusChangingDateTimePeriod-6">
+                                    <gml:beginPosition>2018-09-21T11:13:32Z</gml:beginPosition>
+                                    <gml:endPosition/>
+                                </gml:TimePeriod>
+                            </wmdr:validPeriod>
+                        </wmdr:ReportingStatus>
+                    </wmdr:reportingStatus>
+                    <wmdr:reportingStatus>
+                        <wmdr:ReportingStatus>
+                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/CLOSED"/>
+                            <wmdr:validPeriod>
+                                <gml:TimePeriod gml:id="_0-22000-0-DXPLU3Z-StatusChangingDateTimePeriod-7">
+                                    <gml:beginPosition>2018-05-02T00:00:00Z</gml:beginPosition>
+                                    <gml:endPosition/>
+                                </gml:TimePeriod>
+                            </wmdr:validPeriod>
+                        </wmdr:ReportingStatus>
+                    </wmdr:reportingStatus>
+                    <wmdr:reportingStatus>
+                        <wmdr:ReportingStatus>
+                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/OPERATIONAL"/>
+                            <wmdr:validPeriod>
+                                <gml:TimePeriod gml:id="_0-22000-0-DXPLU3Z-StatusChangingDateTimePeriod-8">
+                                    <gml:beginPosition>2016-11-19T09:04:13Z</gml:beginPosition>
+                                    <gml:endPosition/>
+                                </gml:TimePeriod>
+                            </wmdr:validPeriod>
+                        </wmdr:ReportingStatus>
+                    </wmdr:reportingStatus>
+                </wmdr:ProgramAffiliation>
+            </wmdr:programAffiliation>
+            <wmdr:equipment>
+                <wmdr:Equipment gml:id="subequipment-2069">
+                    <gml:description/>
+                    <gml:name>VAISALA_PTB330</gml:name>
+                    <gml:boundedBy xsi:nil="true"/>
+                    <wmdr:responsibleParty>
+                        <wmdr:ResponsibleParty>
+                            <wmdr:responsibleParty>
+                                <gmd:CI_ResponsibleParty id="responsibleparty-61-3">
+                                    <gmd:organisationName>
+                                        <gco:CharacterString>JCOMM in-situ Observations Programme Support Centre </gco:CharacterString>
+                                    </gmd:organisationName>
+                                    <gmd:contactInfo>
+                                        <gmd:CI_Contact>
+                                            <gmd:phone>
+                                                <gmd:CI_Telephone>
+                                                    <gmd:voice>
+                                                        <gco:CharacterString>+33 2 29 00 85 85</gco:CharacterString>
+                                                    </gmd:voice>
+                                                </gmd:CI_Telephone>
+                                            </gmd:phone>
+                                            <gmd:address>
+                                                <gmd:CI_Address>
+                                                    <gmd:deliveryPoint>
+                                                        <gco:CharacterString>JCOMMOPS&lt;br /&gt;Technopôle Brest Iroise&lt;br /&gt;Campus Ifremer&lt;br /&gt;1625 route de Sainte Anne&lt;br /&gt;Z.I. Pointe du Diable&lt;br /&gt;Plouzané - FRANCE&lt;br /&gt;</gco:CharacterString>
+                                                    </gmd:deliveryPoint>
+                                                    <gmd:country>
+                                                        <gco:CharacterString>United Nations</gco:CharacterString>
+                                                    </gmd:country>
+                                                    <gmd:electronicMailAddress>
+                                                        <gco:CharacterString>support@jcommops.org</gco:CharacterString>
+                                                    </gmd:electronicMailAddress>
+                                                </gmd:CI_Address>
+                                            </gmd:address>
+                                            <gmd:onlineResource>
+                                                <gmd:CI_OnlineResource>
+                                                    <gmd:linkage>
+                                                        <gmd:URL>http://www.jcommops.org</gmd:URL>
+                                                    </gmd:linkage>
+                                                </gmd:CI_OnlineResource>
+                                            </gmd:onlineResource>
+                                        </gmd:CI_Contact>
+                                    </gmd:contactInfo>
+                                    <gmd:role>
+                                        <gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="custodian"/>
+                                    </gmd:role>
+                                </gmd:CI_ResponsibleParty>
+                            </wmdr:responsibleParty>
+                        </wmdr:ResponsibleParty>
+                    </wmdr:responsibleParty>
+                    <wmdr:observingMethod xlink:href="http://codes.wmo.int/common/wmdr/ObservingMethod/"/>
+                </wmdr:Equipment>
+            </wmdr:equipment>
+        </wmdr:ObservingFacility>
+    </wmdr:facility>
+    <wmdr:deployment>
+        <wmdr:Deployment gml:id="_0-22000-0-DXPLU3Z-depl">
+            <gml:boundedBy xsi:nil="true"/>
+            <gml:location>
+                <gml:Point srsName="http://www.opengis.net/def/crs/EPSG/0/4979" gml:id="_0-22000-0-DXPLU3Z-depl-location">
+                    <gml:pos>30.16 -55.1 0.0</gml:pos>
+                </gml:Point>
+            </gml:location>
+            <wmdr:deployedEquipment/>
+            <wmdr:dataGeneration/>
+            <wmdr:validPeriod>
+                <gml:TimePeriod gml:id="_0-22000-0-DXPLU3Z-depl-date">
+                    <gml:beginPosition>2006-10-26T00:00:00Z</gml:beginPosition>
+                    <gml:endPosition/>
+                </gml:TimePeriod>
+            </wmdr:validPeriod>
+            <wmdr:heightAboveLocalReferenceSurface uom="m">32.0</wmdr:heightAboveLocalReferenceSurface>
+            <wmdr:localReferenceSurface/>
+            <wmdr:applicationArea/>
+            <wmdr:sourceOfObservation/>
+        </wmdr:Deployment>
+    </wmdr:deployment>
+</wmdr:WIGOSMetadataRecord>
