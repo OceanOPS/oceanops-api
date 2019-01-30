@@ -12,6 +12,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.datatype.DatatypeConfigurationException;
 
 import org.apache.cayenne.Cayenne;
@@ -783,6 +784,9 @@ public class Platform {
 		
 		try {
 			m = this.jaxbContext.createMarshaller();
+		    m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		    m.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
+		    m.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "http://def.wmo.int/wmdr/2017 http://schemas.wmo.int/wmdr/1.0RC9/wmdr.xsd");
 			m.marshal(this.rootElement, sw);
 		} catch (JAXBException e) {
 			sw.write(e.getMessage());
