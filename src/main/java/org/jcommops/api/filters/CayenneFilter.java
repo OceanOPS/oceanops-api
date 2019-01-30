@@ -15,7 +15,7 @@ public class CayenneFilter implements Filter {
 
 	@Override
 	public void destroy() {
-		
+		Utils.getCayenneRuntime().shutdown();
 	}
 
 	@Override
@@ -23,7 +23,6 @@ public class CayenneFilter implements Filter {
 			throws IOException, ServletException {
 		Utils.initCayenneRuntime();
 		chain.doFilter(request, response);
-		Utils.getCayenneRuntime().shutdown();
 	}
 
 	@Override
