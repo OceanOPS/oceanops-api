@@ -12,7 +12,6 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.datatype.DatatypeConfigurationException;
 
 import org.apache.cayenne.Cayenne;
@@ -167,12 +166,12 @@ public class Platform {
 		String wigosRef = this.getWIGOSIdentifier(ptf.getRef());
 		
 		CodeWithAuthorityType identifier = new CodeWithAuthorityType();
-		identifier.setValue("http://data.wmo.int/" + wigosRef);
+		identifier.setValue("_" + wigosRef);
 		identifier.setCodeSpace("http://data.wmo.int/");
 		
 		StringOrRefType description = new StringOrRefType();
 		description.setValue(ptf.getDescription());
-		this.rootElementType.setId("WMDR-" + wigosRef);
+		this.rootElementType.setId("record_" + wigosRef);
 		this.rootElementType.setDescription(description);
 		this.rootElementType.setIdentifier(identifier);
 		this.rootElementType.setName(new ArrayList<CodeType>());
@@ -303,7 +302,7 @@ public class Platform {
 		PtfDeployment depl = ptf.getPtfDepl();
 		ArrayList<WIGOSMetadataRecordType.Deployment> depls =  new ArrayList<>();
 		
-		String ptfId = "http://data.wmo.int/" + getWIGOSIdentifier(ptf.getRef());
+		String ptfId = "_" + getWIGOSIdentifier(ptf.getRef());
 		
 		Deployment d = new Deployment();
 		DeploymentType dt = new DeploymentType();
@@ -518,9 +517,9 @@ public class Platform {
 	private ObservingFacilityType getObservingFacilityType(Ptf ptf) throws DatatypeConfigurationException {
 		ObservingFacilityType o = this.wmdrOF.createObservingFacilityType();
 		String wigosID = getWIGOSIdentifier(ptf.getRef());
-		o.setId("http://data.wmo.int/" + wigosID);
+		o.setId("_" + wigosID);
 		CodeWithAuthorityType value = new CodeWithAuthorityType();
-		value.setValue("http://data.wmo.int/" + wigosID);
+		value.setValue("_" + wigosID);
 		value.setCodeSpace("http://data.wmo.int");
 		o.setIdentifier(value);
 		CodeType name = new CodeType();
@@ -630,10 +629,53 @@ public class Platform {
 		o.getTerritory().add(territory);
 
 		// TODO : check WMO code tables
+		
+		ProgramAffiliation progAffiliation;
+		ProgramAffiliationType progAffiliationType;
+		int count = 1;
+		for(NetworkPtf netPtf: ptf.getNetworkPtfs()) {
+			if(netPtf.getNetwork().getRank() == 0) {
+				progAffiliation = this.wmdrOF.createObservingFacilityTypeProgramAffiliation();
+				progAffiliationType = this.wmdrOF.createProgramAffiliationType();
+				refType = this.gmlOF.createReferenceType();
+				refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/" + netPtf.getNetwork().getName());
+				progAffiliationType.setProgramAffiliation(refType);
+				ReportingStatus reportingStatus = null;
+				ReportingStatusType reportingStatusType = null;
+				for(PtfPtfStatus ptfPtfStatus: ptf.getPtfPtfStatuses()){
+					reportingStatus = this.wmdrOF.createProgramAffiliationTypeReportingStatus();
+					reportingStatusType = this.wmdrOF.createReportingStatusType();
+					// TODO : check WMO code tables
+					refType = new ReferenceType();
+					refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + ptfPtfStatus.getPtfStatus().getName());
+					reportingStatusType.setReportingStatus(refType);
+					
+					timePeriodProperty = new TimePeriodPropertyType();
+					timePeriod = new TimePeriodType();
+					timePosition = new TimePositionType();
+					timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(ptfPtfStatus.getChangingDate())));
+					timePeriod.setId(o.getId() + "-StatusChangingDateTimePeriod-" + count);
+					timePeriod.setBeginPosition(timePosition);
+					timePeriod.setEndPosition(new TimePositionType());
+					timePeriodProperty.setTimePeriod(timePeriod);
+					
+					reportingStatusType.setValidPeriod(timePeriodProperty);
+					reportingStatus.setReportingStatus(reportingStatusType);
+					progAffiliationType.getReportingStatus().add(reportingStatus);
+					count++;
+				}
+				progAffiliation.setProgramAffiliation(progAffiliationType);
+				o.getProgramAffiliation().add(progAffiliation);
+			}
+		}
+		
+		progAffiliation = this.wmdrOF.createObservingFacilityTypeProgramAffiliation();
+		progAffiliationType = this.wmdrOF.createProgramAffiliationType();
+		refType = this.gmlOF.createReferenceType();
+		refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/" + ptf.getProgram().getName());
+		progAffiliationType.setProgramAffiliation(refType);
 		ReportingStatus reportingStatus = null;
 		ReportingStatusType reportingStatusType = null;
-		ArrayList<ReportingStatus> reportingStatuses = new ArrayList();
-		int count = 1;
 		for(PtfPtfStatus ptfPtfStatus: ptf.getPtfPtfStatuses()){
 			reportingStatus = this.wmdrOF.createProgramAffiliationTypeReportingStatus();
 			reportingStatusType = this.wmdrOF.createReportingStatusType();
@@ -653,34 +695,8 @@ public class Platform {
 			
 			reportingStatusType.setValidPeriod(timePeriodProperty);
 			reportingStatus.setReportingStatus(reportingStatusType);
-			reportingStatuses.add(reportingStatus);
-			//progAffiliationType.getReportingStatus().add(reportingStatus);
+			progAffiliationType.getReportingStatus().add(reportingStatus);
 			count++;
-		}
-		ProgramAffiliation progAffiliation;
-		ProgramAffiliationType progAffiliationType;
-		for(NetworkPtf netPtf: ptf.getNetworkPtfs()) {
-			if(netPtf.getNetwork().getRank() == 0) {
-				progAffiliation = this.wmdrOF.createObservingFacilityTypeProgramAffiliation();
-				progAffiliationType = this.wmdrOF.createProgramAffiliationType();
-				refType = this.gmlOF.createReferenceType();
-				refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/" + netPtf.getNetwork().getName());
-				progAffiliationType.setProgramAffiliation(refType);
-				for(int i = 0; i < reportingStatuses.size() ; i++) {
-					progAffiliationType.getReportingStatus().add(reportingStatuses.get(i));
-				}
-				progAffiliation.setProgramAffiliation(progAffiliationType);
-				o.getProgramAffiliation().add(progAffiliation);
-			}
-		}
-		
-		progAffiliation = this.wmdrOF.createObservingFacilityTypeProgramAffiliation();
-		progAffiliationType = this.wmdrOF.createProgramAffiliationType();
-		refType = this.gmlOF.createReferenceType();
-		refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/" + ptf.getProgram().getName());
-		progAffiliationType.setProgramAffiliation(refType);
-		for(int i = 0; i < reportingStatuses.size() ; i++) {
-			progAffiliationType.getReportingStatus().add(reportingStatuses.get(i));
 		}
 		progAffiliation.setProgramAffiliation(progAffiliationType);
 		o.getProgramAffiliation().add(progAffiliation);
