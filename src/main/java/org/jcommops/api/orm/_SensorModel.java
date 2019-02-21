@@ -33,7 +33,7 @@ public abstract class _SensorModel extends CayenneDataObject {
     public static final Property<Image> IMAGE = Property.create("image", Image.class);
     public static final Property<List<PtfSensorModel>> PTF_SENSOR_MODELS = Property.create("ptfSensorModels", List.class);
     public static final Property<List<SensorModelNetwork>> SENSOR_MODEL_NETWORKS = Property.create("sensorModelNetworks", List.class);
-    public static final Property<List<SensorType>> SENSOR_TYPES = Property.create("sensorTypes", List.class);
+    public static final Property<List<SensorModelSensorType>> SENSOR_MODEL_SENSOR_TYPES = Property.create("sensorModelSensorTypes", List.class);
     public static final Property<List<Service>> SERVICES = Property.create("services", List.class);
     public static final Property<Weblink> WEBLINK = Property.create("weblink", Weblink.class);
 
@@ -173,15 +173,15 @@ public abstract class _SensorModel extends CayenneDataObject {
     }
 
 
-    public void addToSensorTypes(SensorType obj) {
-        addToManyTarget("sensorTypes", obj, true);
+    public void addToSensorModelSensorTypes(SensorModelSensorType obj) {
+        addToManyTarget("sensorModelSensorTypes", obj, true);
     }
-    public void removeFromSensorTypes(SensorType obj) {
-        removeToManyTarget("sensorTypes", obj, true);
+    public void removeFromSensorModelSensorTypes(SensorModelSensorType obj) {
+        removeToManyTarget("sensorModelSensorTypes", obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<SensorType> getSensorTypes() {
-        return (List<SensorType>)readProperty("sensorTypes");
+    public List<SensorModelSensorType> getSensorModelSensorTypes() {
+        return (List<SensorModelSensorType>)readProperty("sensorModelSensorTypes");
     }
 
 
