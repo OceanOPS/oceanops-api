@@ -3,12 +3,14 @@ package org.jcommops.api;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -311,5 +313,19 @@ public class Utils {
 		if(Utils.cayenneContext == null)
 			Utils.cayenneContext = Utils.getCayenneRuntime().newContext();
 		return Utils.cayenneContext;
+	}
+	
+	/**
+	 * Formats a number to string while adding a tailing 0-padding
+	 * @param decimals	total number of decimals
+	 * @param number	the original number to format
+	 * @return	then umber formatted as a String
+	 */
+	public static String formatNumber(int decimals, double number) {
+	    
+	    NumberFormat formatter = NumberFormat.getInstance(Locale.US);
+	    formatter.setMinimumFractionDigits(decimals);
+	    formatter.setMaximumFractionDigits(decimals);
+	    return formatter.format(number);
 	}
 }
