@@ -52,6 +52,7 @@ import _int.wmo.def.wmdr._2017.WIGOSMetadataRecordType;
 import _int.wmo.def.wmdr._2017.WIGOSMetadataRecordType.Deployment;
 import net.opengis.gml.v_3_2_1.CodeType;
 import net.opengis.gml.v_3_2_1.CodeWithAuthorityType;
+import net.opengis.gml.v_3_2_1.CoordinatesType;
 import net.opengis.gml.v_3_2_1.DirectPositionType;
 import net.opengis.gml.v_3_2_1.GeometryPropertyType;
 import net.opengis.gml.v_3_2_1.LocationPropertyType;
@@ -319,12 +320,9 @@ public class Platform {
 
 		PointType geom = new PointType();
 		geom.setId(ptfId + "-depl-location");
-		DirectPositionType pos = new DirectPositionType();
-		pos.setValue(Arrays.asList(ptf.getLastLoc().getLat().doubleValue(), ptf.getLastLoc().getLon().doubleValue(), ptf.getLastLoc().getElevation() == null ? 0: ptf.getLastLoc().getElevation().doubleValue()));
-		geom.setPos(pos);
-		/*CoordinatesType coords = new CoordinatesType();
-		coords.setValue(ptf.getLastLoc().getLon() + "," + ptf.getLastLoc().getLat());
-		geom.setCoordinates(coords);*/
+		CoordinatesType coordsType = this.gmlOF.createCoordinatesType();
+		coordsType.setValue(Utils.formatNumber(4, ptf.getLastLoc().getLat().doubleValue()) + " " + Utils.formatNumber(4, ptf.getLastLoc().getLon().doubleValue()) + " " + "0.0000");
+		geom.setCoordinates(coordsType);
 		geom.setSrsName("http://www.opengis.net/def/crs/EPSG/0/4979");
 
 		GeometryPropertyType geomProperty = new GeometryPropertyType();
@@ -567,9 +565,9 @@ public class Platform {
 		
 		PointType geom = new PointType();
 		geom.setId(o.getId() + "-LatestLocationGeometry");
-		DirectPositionType pos = new DirectPositionType();
-		pos.setValue(Arrays.asList(ptf.getLastLoc().getLat().doubleValue(), ptf.getLastLoc().getLon().doubleValue(), ptf.getLastLoc().getElevation() == null ? 0: ptf.getLastLoc().getElevation().doubleValue()));
-		geom.setPos(pos);
+		CoordinatesType coordsType = this.gmlOF.createCoordinatesType();
+		coordsType.setValue(Utils.formatNumber(4, ptf.getLastLoc().getLat().doubleValue()) + " " + Utils.formatNumber(4, ptf.getLastLoc().getLon().doubleValue()) + " " + "0.0000");
+		geom.setCoordinates(coordsType);
 		geom.setSrsName("http://www.opengis.net/def/crs/EPSG/0/4979");
 
 		GeometryPropertyType geomProperty = new GeometryPropertyType();
