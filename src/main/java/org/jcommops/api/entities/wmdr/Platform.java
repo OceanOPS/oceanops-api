@@ -383,11 +383,9 @@ public class Platform {
 		
 		currentEquipmentType.setId("equipment-" + pm.getObjectId().getIdSnapshot().get("ID").toString());
 		
-		ArrayList<CodeType> names = new ArrayList<CodeType>();
-		CodeType name = new CodeType();
-		name.setValue(pm.getName());
-		names.add(name);
-		currentEquipmentType.setName(names);
+		currentEquipmentType.setModel(pm.getName());
+		if(pm.getAgency() != null)
+			currentEquipmentType.setManufacturer(pm.getAgency().getName());
 		StringOrRefType value = new StringOrRefType();
 		value.setValue(pm.getDescription());
 		currentEquipmentType.setDescription(value);
@@ -453,12 +451,10 @@ public class Platform {
 			currentEquipmentType = this.wmdrOF.createEquipmentType();
 			
 			currentEquipmentType.setId("subequipment-" + sm.getObjectId().getIdSnapshot().get("ID").toString());
-			
-			ArrayList<CodeType> names = new ArrayList<CodeType>();
-			CodeType name = new CodeType();
-			name.setValue(sm.getName());
-			names.add(name);
-			currentEquipmentType.setName(names);
+
+			currentEquipmentType.setModel(sm.getName());
+			if(sm.getAgency() != null)
+				currentEquipmentType.setManufacturer(sm.getAgency().getName());
 			StringOrRefType value = new StringOrRefType();
 			value.setValue(sm.getDescription());
 			currentEquipmentType.setDescription(value);
