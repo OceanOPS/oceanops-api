@@ -27,6 +27,8 @@ import org.jcommops.api.orm.PtfModel;
 import org.jcommops.api.orm.PtfPtfStatus;
 import org.jcommops.api.orm.PtfSensorModel;
 import org.jcommops.api.orm.SensorModel;
+import org.jcommops.api.orm.SensorModelSensorType;
+import org.jcommops.api.orm.SensorType;
 import org.jcommops.api.orm.Weblink;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,9 +42,12 @@ import _int.wmo.def.wmdr._2017.EquipmentPropertyType;
 import _int.wmo.def.wmdr._2017.EquipmentType;
 import _int.wmo.def.wmdr._2017.GeospatialLocationType;
 import _int.wmo.def.wmdr._2017.HeaderType;
+import _int.wmo.def.wmdr._2017.ObservingCapabilityPropertyType;
+import _int.wmo.def.wmdr._2017.ObservingCapabilityType;
 import _int.wmo.def.wmdr._2017.ObservingFacilityType;
 import _int.wmo.def.wmdr._2017.ObservingFacilityType.ProgramAffiliation;
 import _int.wmo.def.wmdr._2017.ObservingFacilityType.Territory;
+import _int.wmo.def.wmdr._2017.ProcessType;
 import _int.wmo.def.wmdr._2017.ProgramAffiliationType;
 import _int.wmo.def.wmdr._2017.ProgramAffiliationType.ReportingStatus;
 import _int.wmo.def.wmdr._2017.ReportingStatusType;
@@ -76,7 +81,11 @@ import net.opengis.iso19139.gmd.v_20070417.CIRoleCodePropertyType;
 import net.opengis.iso19139.gmd.v_20070417.CITelephonePropertyType;
 import net.opengis.iso19139.gmd.v_20070417.CITelephoneType;
 import net.opengis.iso19139.gmd.v_20070417.URLPropertyType;
+import net.opengis.om.v_2_0.NamedValuePropertyType;
+import net.opengis.om.v_2_0.NamedValueType;
 import net.opengis.om.v_2_0.OMObservationPropertyType;
+import net.opengis.om.v_2_0.OMObservationType;
+import net.opengis.om.v_2_0.OMProcessPropertyType;
 
 /**
  * @author Anthonin Lizé
@@ -703,10 +712,8 @@ public class Platform {
 		List<EquipmentPropertyType> equipmentList = this.getSubEquipements(ptf);
 		equipments.addAll(equipmentList);
 		
-		/*FacilityLogPropertyType facilityLogProperty = this.wmdrOF.createFacilityLogPropertyType();
-		FacilityLogType facilityLog = this.wmdrOF.createFacilityLogType();
-		facilityLogProperty.setFacilityLog(facilityLog);
-		o.setFacilityLog(facilityLogProperty);*/
+		// OM_Observations
+		List<ObservingCapabilityPropertyType> obss = o.getObservation();
 				
 		return o;
 	}
@@ -716,70 +723,42 @@ public class Platform {
 	 * @param ptf  The Ptf entity object from which data should be extracted
 	 * @return the OMObservationPropertyType of the platform
 	 */
-	private List<OMObservationPropertyType> getObservations(Ptf ptf){
-		List<OMObservationPropertyType> result = new ArrayList<OMObservationPropertyType>();
+	private List<ObservingCapabilityPropertyType> getObservations(Ptf ptf){
+		List<ObservingCapabilityPropertyType> result = new ArrayList<ObservingCapabilityPropertyType>();
+		ObservingCapabilityPropertyType ocp;
+		ObservingCapabilityType oc;
 		
-		/*Expression qual = ExpressionFactory.matchExp("ptfId", Integer.parseInt(ptf.getObjectId().getIdSnapshot().get("ID").toString()));
-		SelectQuery query = new SelectQuery(Obs.class, qual);
-		List<Obs> observations = cayenneContext.performQuery(query);
-		
-		OMObservationPropertyType currentObsType;
-		OMObservationType currentObs;
-		for(Obs obs: observations){
-			currentObsType = this.omOF.createOMObservationPropertyType();
-			currentObs = this.omOF.createOMObservationType();
+		for(PtfSensorModel psm: ptf.getPtfSensorModels()) {
+			SensorModel sm = psm.getSensorModel();
+			for(SensorModelSensorType smst: sm.getSensorModelSensorTypes()) {
+				SensorType st = smst.getSensorType();
+				ocp = this.wmdrOF.createObservingCapabilityPropertyType();
+				oc = this.wmdrOF.createObservingCapabilityType();
+				OMObservationPropertyType omobsp = this.omOF.createOMObservationPropertyType();
+				OMObservationType omobs = this.omOF.createOMObservationType();
+				
+				
+				/*List<NamedValuePropertyType> value = new ArrayList<NamedValuePropertyType>();
+				NamedValuePropertyType nameValueP = this.omOF.createNamedValuePropertyType();
+				NamedValueType nameValue = this.omOF.createNamedValueType();
+				ReferenceType refType = this.gmlOF.createReferenceType();
+				refType.set
+				nameValue.s
+				nameValueP.setNamedValue(nameValue);
+				value.add(nameValueP)
+				omobs.setParameter(value);*/
+				
+				ProcessType process = this.wmdrOF.createProcessType();
+				JAXBElement<ProcessType> omProcessP = this.wmdrOF.createProcess(process);
+				//omobs.setProcedure(process);
 			
-			currentObs.setId("obs-" + obs.getObjectId().getIdSnapshot().get("ID").toString());
-			
-			TimeObjectPropertyType timeObj = this.omOF.createTimeObjectPropertyType();
-			TimePeriodType timePeriod = this.gmlOF.createTimePeriodType();
-			TimePositionType timePosition = this.gmlOF.createTimePositionType();
-			timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(obs.getObsDate())));
-			timePeriod.setId("obs-" + obs.getObjectId().getIdSnapshot().get("ID").toString() + "-date");
-			timePeriod.setBeginPosition(timePosition);
-			timePeriod.setEndPosition(this.gmlOF.createTimePositionType());
-			timeObj.setAbstractTimeObject(this.gmlOF.createTimePeriod(timePeriod));
-			currentObs.setPhenomenonTime(timeObj);
-			
-			currentObs.setResultTime(this.gmlOF.createTimeInstantPropertyType());
-			currentObs.setValidTime(this.gmlOF.createTimePeriodPropertyType());
-			
-			PointType geom = this.gmlOF.createPointType();
-			DirectPositionType pos = this.gmlOF.createDirectPositionType();
-			pos.setValue(Arrays.asList(obs.getPtfLoc().getLat().doubleValue(), obs.getPtfLoc().getLon().doubleValue(), obs.getPtfLoc().getElevation() == null ? 0: obs.getPtfLoc().getElevation().doubleValue()));
-			geom.setId("obs-" + obs.getObjectId().getIdSnapshot().get("ID").toString() + "-geometry-" + obs.getPtfLoc().getObjectId().getIdSnapshot().get("ID").toString());
-			geom.setPos(pos);
-			geom.setSrsName("http://www.opengis.net/def/crs/EPSG/0/4979");
-			ShapeType shape = this.samsOF.createShapeType();
-			shape.setAbstractGeometry(this.gmlOF.createPoint(geom));
-			SFSpatialSamplingFeatureType samplFeature = this.samsOF.createSFSpatialSamplingFeatureType();
-			samplFeature.setId("obs-" + obs.getObjectId().getIdSnapshot().get("ID").toString() + "-samplingfeature");
-			
-			List<FeaturePropertyType> sampledFeatures = samplFeature.getSampledFeature();
-			sampledFeatures.add(this.gmlOF.createFeaturePropertyType());
-			samplFeature.setSampledFeature(sampledFeatures);
-			samplFeature.setShape(shape);
-			FeaturePropertyType featureProp = this.gmlOF.createFeaturePropertyType();
-			featureProp.setAbstractFeature(this.samsOF.createSFSpatialSamplingFeature(samplFeature));
-			currentObs.setFeatureOfInterest(featureProp);
-			
-			ArrayList<ResultSetType> results = new ArrayList<>();
-			Marshaller m;
-			StringWriter sw = new StringWriter();
-			
-			try {
-				m = this.jaxbContext.createMarshaller();
-				m.marshal(results, sw);
-			} catch (JAXBException e) {
-				sw.write(e.getMessage());
+				
+				//omobs.setProcedure(omProcessP);
+				
+				omobsp.setOMObservation(omobs);						
+				ocp.setObservingCapability(oc);
 			}
-			
-			currentObs.setResult("");
-			
-			currentObsType.setOMObservation(currentObs);
-			
-			result.add(currentObsType);
-		}*/
+		}
 		
 		return result;
 	}
