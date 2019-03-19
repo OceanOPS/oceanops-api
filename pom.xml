@@ -60,6 +60,7 @@
 							<!-- Updates the package-info with the namespace prefixes, defined 
 								in the binding file -->
 							<arg>-Xnamespace-prefix</arg>
+							<arg>-Xinheritance</arg>
 						</args>
 						<generateDirectory>src/main/java/</generateDirectory>
 						<!-- Uses episode files contained in the dependency jars -->
@@ -121,20 +122,20 @@
 			<version>1.7.25</version>
 		</dependency>
 		<dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jul-to-slf4j</artifactId>
-            <version>1.7.2</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.0.7</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-            <version>1.0.7</version>
-        </dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jul-to-slf4j</artifactId>
+			<version>1.7.2</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.0.7</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>1.0.7</version>
+		</dependency>
 		<dependency>
 			<groupId>org.glassfish.jersey.containers</groupId>
 			<!-- <artifactId>jersey-container-servlet-core</artifactId> -->
@@ -145,6 +146,10 @@
 		<dependency>
 			<groupId>org.glassfish.jersey.core</groupId>
 			<artifactId>jersey-server</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.glassfish.jersey.inject</groupId>
+		    <artifactId>jersey-hk2</artifactId>
 		</dependency>
 
 
@@ -188,14 +193,34 @@
 			<artifactId>cayenne-di</artifactId>
 			<version>4.0</version>
 		</dependency>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-core</artifactId>
+			<version>2.3.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>2.3.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jvnet.jaxb2_commons</groupId>
+			<artifactId>jaxb-xjc</artifactId>
+			<version>2.1.10.1</version>
+		</dependency>
 	</dependencies>
 	<properties>
-		<jersey.version>2.16</jersey.version>
+		<jersey.version>2.28</jersey.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<helpEditionDate>2017-11-30</helpEditionDate>
 		<versionQualifier>alpha</versionQualifier>
 		<project.scm.id>jcommops-scm-server</project.scm.id>
-		<java.version>1.8</java.version>
+		<java.version>11</java.version>
 	</properties>
 	<url>www.jcommops.org/data/api/${project.version}/</url>
 </project>
