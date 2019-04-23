@@ -792,7 +792,7 @@ public class Platform {
 			m = this.jaxbContext.createMarshaller();
 		    m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 		    m.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
-		    m.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "http://def.wmo.int/wmdr/2017 http://schemas.wmo.int/wmdr/1.0/wmdr.xsd");
+		    m.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "http://def.wmo.int/wmdr/1.0 http://schemas.wmo.int/wmdr/1.0/wmdr.xsd");
 			m.marshal(this.rootElement, sw);
 		} catch (JAXBException e) {
 			sw.write(e.getMessage());
