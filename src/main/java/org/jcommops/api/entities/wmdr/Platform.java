@@ -37,6 +37,7 @@ import _int.wmo.def.wmdr._2017.AbstractEnvironmentalMonitoringFacilityType;
 import _int.wmo.def.wmdr._2017.AbstractEnvironmentalMonitoringFacilityType.GeospatialLocation;
 import _int.wmo.def.wmdr._2017.AbstractEnvironmentalMonitoringFacilityType.OnlineResource;
 import _int.wmo.def.wmdr._2017.DataGenerationPropertyType;
+import _int.wmo.def.wmdr._2017.DeploymentPropertyType;
 import _int.wmo.def.wmdr._2017.DeploymentType;
 import _int.wmo.def.wmdr._2017.EquipmentPropertyType;
 import _int.wmo.def.wmdr._2017.EquipmentType;
@@ -186,7 +187,6 @@ public class Platform {
 		this.rootElementType.setIdentifier(identifier);
 		this.rootElementType.setName(new ArrayList<CodeType>());
 		this.rootElementType.setHeaderInformation(this.getHeaderInformation(ptf));
-		this.rootElementType.getDeployment().addAll(this.getDeployments(ptf));
 		List<WIGOSMetadataRecordType.Facility> facilities = this.rootElementType.getFacility();
 		WIGOSMetadataRecordType.Facility facility = this.wmdrOF.createWIGOSMetadataRecordTypeFacility();
 		ObservingFacilityType observingFacilityType = this.getObservingFacilityType(ptf);
@@ -259,7 +259,8 @@ public class Platform {
 		CIOnlineResourcePropertyType onlineRsrcProperty = this.gmdOF.createCIOnlineResourcePropertyType();
 		CIOnlineResourceType onlineRsrc = this.gmdOF.createCIOnlineResourceType();
 		URLPropertyType urlProperty = this.gmdOF.createURLPropertyType();
-		urlProperty.setURL(agency.getWeblink().getUrl());
+		if(agency.getWeblink() != null)
+			urlProperty.setURL(agency.getWeblink().getUrl());
 		onlineRsrc.setLinkage(urlProperty);
 		onlineRsrcProperty.setCIOnlineResource(onlineRsrc);
 		
@@ -453,62 +454,69 @@ public class Platform {
 		ArrayList<EquipmentPropertyType> equipements = new ArrayList<>();
 		
 		EquipmentPropertyType currentEquipment;
-		EquipmentType currentEquipmentType;
 		for(PtfSensorModel ptfSM: ptfSensorModels){
-			SensorModel sm = ptfSM.getSensorModel();
-			currentEquipment = this.wmdrOF.createEquipmentPropertyType();
-			currentEquipmentType = this.wmdrOF.createEquipmentType();
-			
-			currentEquipmentType.setId("subequipment-" + sm.getObjectId().getIdSnapshot().get("ID").toString());
-
-			currentEquipmentType.setModel(sm.getName());
-			if(sm.getAgency() != null)
-				currentEquipmentType.setManufacturer(sm.getAgency().getName());
-			StringOrRefType value = new StringOrRefType();
-			value.setValue(sm.getDescription());
-			currentEquipmentType.setDescription(value);
-			
-			currentEquipmentType.setSerialNumber(ptfSM.getSerialNo());
-			
-			if(sm.getWeblink() != null){
-				OnlineResource or = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeOnlineResource();
-				CIOnlineResourceType onlineRsrc = this.gmdOF.createCIOnlineResourceType();
-				URLPropertyType urlProperty = this.gmdOF.createURLPropertyType();
-				urlProperty.setURL(sm.getWeblink().getUrl());
-				onlineRsrc.setLinkage(urlProperty);
-				or.setCIOnlineResource(onlineRsrc);
-				currentEquipmentType.getOnlineResource().add(or);
-			}
-						
-			ReferenceType refType = this.gmlOF.createReferenceType();
-			refType.setHref("http://codes.wmo.int/common/wmdr/GeopositioningMethod/");
-			//currentEquipmentType.setGeopositioningMethod(refType);
-
-			AbstractEnvironmentalMonitoringFacilityType.ResponsibleParty responsibleParty = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeResponsibleParty();
-			ResponsiblePartyType responsiblePartyType = this.wmdrOF.createResponsiblePartyType();
-			ResponsiblePartyType.ResponsibleParty rp = this.wmdrOF.createResponsiblePartyTypeResponsibleParty();
-			if(sm.getAgency() != null){
-				rp.setCIResponsibleParty(this.getCIResponsibleParty(Integer.parseInt(sm.getAgency().getObjectId().getIdSnapshot().get("ID").toString()), "custodian"));
-				
-				currentEquipmentType.setManufacturer(sm.getAgency().getName());
-			}
-			else
-				rp.setCIResponsibleParty(this.getCIResponsibleParty(null, null));
-			
-			responsiblePartyType.setResponsibleParty(rp);
-			responsibleParty.setResponsibleParty(responsiblePartyType);
-			currentEquipmentType.getResponsibleParty().add(responsibleParty);
-			
-
-			refType = this.gmlOF.createReferenceType();
-			refType.setHref("http://codes.wmo.int/common/wmdr/ObservingMethod/");
-			currentEquipmentType.setObservingMethod(refType);
-			
-			currentEquipment.setEquipment(currentEquipmentType);
+			currentEquipment = this.getEquipmentPropertyType(ptfSM);
 			equipements.add(currentEquipment);
 		}
 		
 		return equipements;
+	}
+	
+	private EquipmentPropertyType getEquipmentPropertyType(PtfSensorModel ptfSM) {
+		EquipmentPropertyType currentEquipment;
+		EquipmentType currentEquipmentType;
+		SensorModel sm = ptfSM.getSensorModel();
+		currentEquipment = this.wmdrOF.createEquipmentPropertyType();
+		currentEquipmentType = this.wmdrOF.createEquipmentType();
+		
+		currentEquipmentType.setId("subequipment-" + sm.getObjectId().getIdSnapshot().get("ID").toString());
+
+		currentEquipmentType.setModel(sm.getName());
+		if(sm.getAgency() != null)
+			currentEquipmentType.setManufacturer(sm.getAgency().getName());
+		StringOrRefType value = new StringOrRefType();
+		value.setValue(sm.getDescription());
+		currentEquipmentType.setDescription(value);
+		
+		currentEquipmentType.setSerialNumber(ptfSM.getSerialNo());
+		
+		if(sm.getWeblink() != null){
+			OnlineResource or = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeOnlineResource();
+			CIOnlineResourceType onlineRsrc = this.gmdOF.createCIOnlineResourceType();
+			URLPropertyType urlProperty = this.gmdOF.createURLPropertyType();
+			urlProperty.setURL(sm.getWeblink().getUrl());
+			onlineRsrc.setLinkage(urlProperty);
+			or.setCIOnlineResource(onlineRsrc);
+			currentEquipmentType.getOnlineResource().add(or);
+		}
+					
+		ReferenceType refType = this.gmlOF.createReferenceType();
+		refType.setHref("http://codes.wmo.int/common/wmdr/GeopositioningMethod/");
+		//currentEquipmentType.setGeopositioningMethod(refType);
+
+		AbstractEnvironmentalMonitoringFacilityType.ResponsibleParty responsibleParty = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeResponsibleParty();
+		ResponsiblePartyType responsiblePartyType = this.wmdrOF.createResponsiblePartyType();
+		ResponsiblePartyType.ResponsibleParty rp = this.wmdrOF.createResponsiblePartyTypeResponsibleParty();
+		if(sm.getAgency() != null){
+			rp.setCIResponsibleParty(this.getCIResponsibleParty(Integer.parseInt(sm.getAgency().getObjectId().getIdSnapshot().get("ID").toString()), "custodian"));
+			
+			currentEquipmentType.setManufacturer(sm.getAgency().getName());
+		}
+		else
+			rp.setCIResponsibleParty(this.getCIResponsibleParty(null, null));
+		
+		responsiblePartyType.setResponsibleParty(rp);
+		responsibleParty.setResponsibleParty(responsiblePartyType);
+		currentEquipmentType.getResponsibleParty().add(responsibleParty);
+		
+
+		refType = this.gmlOF.createReferenceType();
+		refType.setHref("http://codes.wmo.int/common/wmdr/ObservingMethod/");
+		currentEquipmentType.setObservingMethod(refType);
+		
+		currentEquipment.setEquipment(currentEquipmentType);
+		
+		return currentEquipment;
 	}
 	
 	/**
@@ -708,12 +716,13 @@ public class Platform {
 		refType.setHref("http://codes.wmo.int/common/wmdr/FacilityType/" + ptf.getPtfModel().getName());
 		o.setFacilityType(refType);
 				
-		List<EquipmentPropertyType> equipments = o.getEquipment();
+		/*List<EquipmentPropertyType> equipments = o.getEquipment();
 		List<EquipmentPropertyType> equipmentList = this.getSubEquipements(ptf);
-		equipments.addAll(equipmentList);
+		equipments.addAll(equipmentList);*/
 		
 		// OM_Observations
 		List<ObservingCapabilityPropertyType> obss = o.getObservation();
+		obss.addAll(this.getObservations(ptf));
 				
 		return o;
 	}
@@ -737,26 +746,34 @@ public class Platform {
 				OMObservationPropertyType omobsp = this.omOF.createOMObservationPropertyType();
 				OMObservationType omobs = this.omOF.createOMObservationType();
 				
-				
-				/*List<NamedValuePropertyType> value = new ArrayList<NamedValuePropertyType>();
-				NamedValuePropertyType nameValueP = this.omOF.createNamedValuePropertyType();
-				NamedValueType nameValue = this.omOF.createNamedValueType();
+
+				NamedValuePropertyType nameP = this.omOF.createNamedValuePropertyType();
+				NamedValueType name = this.omOF.createNamedValueType();
 				ReferenceType refType = this.gmlOF.createReferenceType();
-				refType.set
-				nameValue.s
-				nameValueP.setNamedValue(nameValue);
-				value.add(nameValueP)
-				omobs.setParameter(value);*/
+				refType.setHref(st.getVariable().getName());
+				name.setName(refType);
+				nameP.setNamedValue(name);
+				List<NamedValuePropertyType> nameList = new ArrayList<>();
+				nameList.add(nameP);
+				omobs.setParameter(nameList);
 				
 				ProcessType process = this.wmdrOF.createProcessType();
-				JAXBElement<ProcessType> omProcessP = this.wmdrOF.createProcess(process);
-				//omobs.setProcedure(process);
-			
 				
-				//omobs.setProcedure(omProcessP);
+				DeploymentPropertyType deplP = this.wmdrOF.createDeploymentPropertyType();
+				DeploymentType depl = this.wmdrOF.createDeploymentType();
+				depl.setDeployedEquipment(this.getEquipmentPropertyType(psm));
 				
-				omobsp.setOMObservation(omobs);						
+				deplP.setDeployment(depl);
+				process.setDeployment(deplP);
+				
+				omobs.setProcedure(process);
+				
+				omobsp.setOMObservation(omobs);		
+				
+				oc.getObservation().add(omobsp);
 				ocp.setObservingCapability(oc);
+				
+				result.add(ocp);
 			}
 		}
 		
