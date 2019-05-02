@@ -30,9 +30,9 @@ import org.jcommops.api.orm.Ptf;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import _int.wmo.def.wmdr._1.HeaderType;
-import _int.wmo.def.wmdr._1.ResultSetType;
-import _int.wmo.def.wmdr._1.WIGOSMetadataRecordType;
+import _int.wmo.def.wmdr._2017.HeaderType;
+import _int.wmo.def.wmdr._2017.ResultSetType;
+import _int.wmo.def.wmdr._2017.WIGOSMetadataRecordType;
 import net.opengis.gml.v_3_2_1.CodeType;
 import net.opengis.gml.v_3_2_1.CodeWithAuthorityType;
 import net.opengis.gml.v_3_2_1.DirectPositionType;
@@ -69,7 +69,7 @@ public class PlatformObservations {
 	private final Logger logger = LoggerFactory.getLogger(NotFoundMapper.class);
 	private ObjectContext cayenneContext;
 	private JAXBContext jaxbContext;
-	private _int.wmo.def.wmdr._1.ObjectFactory wmdrOF;
+	private _int.wmo.def.wmdr._2017.ObjectFactory wmdrOF;
 	private net.opengis.samplingspatial.v_2_0.ObjectFactory samsOF;
 	private net.opengis.om.v_2_0.ObjectFactory omOF;
 	private net.opengis.gml.v_3_2_1.ObjectFactory gmlOF;
@@ -86,8 +86,8 @@ public class PlatformObservations {
 	 */
 	public PlatformObservations() throws JAXBException{
 		this.cayenneContext = Utils.getCayenneContext();
-		this.jaxbContext = JAXBContext.newInstance( "_int.wmo.def.wmdr._1:_int.wmo.def.metce._2013:_int.wmo.def.opm._2013:net.opengis.gml.v_3_2_1:net.opengis.om.v_2_0:net.opengis.sampling.v_2_0:net.opengis.samplingspatial.v_2_0" );
-		this.wmdrOF = new _int.wmo.def.wmdr._1.ObjectFactory();
+		this.jaxbContext = JAXBContext.newInstance( "_int.wmo.def.wmdr._2017:_int.wmo.def.metce._2013:_int.wmo.def.opm._2013:net.opengis.gml.v_3_2_1:net.opengis.om.v_2_0:net.opengis.sampling.v_2_0:net.opengis.samplingspatial.v_2_0" );
+		this.wmdrOF = new _int.wmo.def.wmdr._2017.ObjectFactory();
 		new _int.wmo.def.opm._2013.ObjectFactory();
 		new _int.wmo.def.metce._2013.ObjectFactory();
 		new net.opengis.sampling.v_2_0.ObjectFactory();
