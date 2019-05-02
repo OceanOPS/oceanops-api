@@ -58,7 +58,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
     _int.wmo.def.wmdr._1.ProcessType.class
 })
 public class ProcessType
-    extends net.opengis.om.v_2_0.OMProcessPropertyType
+    extends net.opengis.gml.v_3_2_1.AbstractFeatureType
     implements Serializable, Cloneable, CopyTo2, Equals2, HashCode2, ToString2
 {
 

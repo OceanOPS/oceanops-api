@@ -56,6 +56,7 @@ import _int.wmo.def.wmdr._1.ResponsiblePartyType;
 import _int.wmo.def.wmdr._1.TerritoryType;
 import _int.wmo.def.wmdr._1.WIGOSMetadataRecordType;
 import _int.wmo.def.wmdr._1.WIGOSMetadataRecordType.Deployment;
+import net.opengis.gml.v_3_2_1.AbstractTimeObjectType;
 import net.opengis.gml.v_3_2_1.CodeType;
 import net.opengis.gml.v_3_2_1.CodeWithAuthorityType;
 import net.opengis.gml.v_3_2_1.CoordinatesType;
@@ -66,6 +67,8 @@ import net.opengis.gml.v_3_2_1.MeasureType;
 import net.opengis.gml.v_3_2_1.PointType;
 import net.opengis.gml.v_3_2_1.ReferenceType;
 import net.opengis.gml.v_3_2_1.StringOrRefType;
+import net.opengis.gml.v_3_2_1.TimeInstantPropertyType;
+import net.opengis.gml.v_3_2_1.TimeInstantType;
 import net.opengis.gml.v_3_2_1.TimePeriodPropertyType;
 import net.opengis.gml.v_3_2_1.TimePeriodType;
 import net.opengis.gml.v_3_2_1.TimePositionType;
@@ -81,12 +84,14 @@ import net.opengis.iso19139.gmd.v_20070417.CIResponsiblePartyType;
 import net.opengis.iso19139.gmd.v_20070417.CIRoleCodePropertyType;
 import net.opengis.iso19139.gmd.v_20070417.CITelephonePropertyType;
 import net.opengis.iso19139.gmd.v_20070417.CITelephoneType;
+import net.opengis.iso19139.gmd.v_20070417.DQElementPropertyType;
 import net.opengis.iso19139.gmd.v_20070417.URLPropertyType;
 import net.opengis.om.v_2_0.NamedValuePropertyType;
 import net.opengis.om.v_2_0.NamedValueType;
 import net.opengis.om.v_2_0.OMObservationPropertyType;
 import net.opengis.om.v_2_0.OMObservationType;
 import net.opengis.om.v_2_0.OMProcessPropertyType;
+import net.opengis.om.v_2_0.TimeObjectPropertyType;
 
 /**
  * @author Anthonin Lizé
@@ -463,13 +468,20 @@ public class Platform {
 	}
 	
 	private EquipmentPropertyType getEquipmentPropertyType(PtfSensorModel ptfSM) {
+		return getEquipmentPropertyType(ptfSM, 0);
+	}
+	
+	private EquipmentPropertyType getEquipmentPropertyType(PtfSensorModel ptfSM, int increment) {
 		EquipmentPropertyType currentEquipment;
 		EquipmentType currentEquipmentType;
 		SensorModel sm = ptfSM.getSensorModel();
 		currentEquipment = this.wmdrOF.createEquipmentPropertyType();
 		currentEquipmentType = this.wmdrOF.createEquipmentType();
 		
-		currentEquipmentType.setId("subequipment-" + sm.getObjectId().getIdSnapshot().get("ID").toString());
+		if(increment == 0)
+			currentEquipmentType.setId("subequipment-" + ptfSM.getObjectId().getIdSnapshot().get("ID").toString());
+		else
+			currentEquipmentType.setId("subequipment-" + ptfSM.getObjectId().getIdSnapshot().get("ID").toString() + "-" + String.valueOf(increment));
 
 		currentEquipmentType.setModel(sm.getName());
 		if(sm.getAgency() != null)
@@ -739,39 +751,80 @@ public class Platform {
 		
 		for(PtfSensorModel psm: ptf.getPtfSensorModels()) {
 			SensorModel sm = psm.getSensorModel();
+			int sensorIncrement = 0;
 			for(SensorModelSensorType smst: sm.getSensorModelSensorTypes()) {
 				SensorType st = smst.getSensorType();
 				ocp = this.wmdrOF.createObservingCapabilityPropertyType();
 				oc = this.wmdrOF.createObservingCapabilityType();
 				OMObservationPropertyType omobsp = this.omOF.createOMObservationPropertyType();
 				OMObservationType omobs = this.omOF.createOMObservationType();
-				
-
-				NamedValuePropertyType nameP = this.omOF.createNamedValuePropertyType();
-				NamedValueType name = this.omOF.createNamedValueType();
+				omobsp.setOMObservation(omobs);		
+			
 				ReferenceType refType = this.gmlOF.createReferenceType();
 				refType.setHref(st.getVariable().getName());
-				name.setName(refType);
-				nameP.setNamedValue(name);
-				List<NamedValuePropertyType> nameList = new ArrayList<>();
-				nameList.add(nameP);
-				omobs.setParameter(nameList);
+				omobs.setObservedProperty(refType);
 				
 				ProcessType process = this.wmdrOF.createProcessType();
 				
 				DeploymentPropertyType deplP = this.wmdrOF.createDeploymentPropertyType();
 				DeploymentType depl = this.wmdrOF.createDeploymentType();
-				depl.setDeployedEquipment(this.getEquipmentPropertyType(psm));
+				depl.setDeployedEquipment(this.getEquipmentPropertyType(psm, sensorIncrement));
+				sensorIncrement++;
+				
+				MeasureType mt = this.gmlOF.createMeasureType();
+				mt.setUom("m");
+				if(psm.getHeight() != null)
+					mt.setValue(psm.getHeight().doubleValue());
+				depl.setHeightAboveLocalReferenceSurface(mt);
+				depl.setLocalReferenceSurface(this.gmlOF.createReferenceType());
+				
+				depl.getApplicationArea().add(this.gmlOF.createReferenceType());
+				depl.setSourceOfObservation(this.gmlOF.createReferenceType());
+				
 				
 				deplP.setDeployment(depl);
 				process.setDeployment(deplP);
 				
-				omobs.setProcedure(process);
+				OMProcessPropertyType omProcessType = this.omOF.createOMProcessPropertyType();
+				omobs.setProcedure(omProcessType);
+				JAXBElement<ProcessType> processList = this.wmdrOF.createProcess(process);
+				omobsp.getOMObservation().getProcedure().setAny(processList);
 				
-				omobsp.setOMObservation(omobs);		
+				refType = this.gmlOF.createReferenceType();
+				refType.setHref("http://codes.wmo.int/wmdr/featureOfInterest/point");
+				omobs.setType(refType);
+				
+				TimeObjectPropertyType topt = this.omOF.createTimeObjectPropertyType();
+				TimePeriodType atotype = this.gmlOF.createTimePeriodType();
+				TimePositionType tptype = this.gmlOF.createTimePositionType();
+				ArrayList<String> beginT = new ArrayList<String>();
+				beginT.add(Utils.GetIsoDate(ptf.getPtfDepl().getDeplDate()));
+				tptype.setValue(beginT);
+				atotype.setBeginPosition(tptype);
+				atotype.setEndPosition(this.gmlOF.createTimePositionType());
+				topt.setAbstractTimeObject(this.gmlOF.createTimePeriod(atotype));
+				omobs.setPhenomenonTime(topt);
+				
+				TimePeriodPropertyType tppt = this.gmlOF.createTimePeriodPropertyType();
+				tppt.setTimePeriod(atotype);
+				depl.setValidPeriod(tppt);
+				depl.getDataGeneration().add(new DataGenerationPropertyType());
+				
+				
+				omobs.setResultTime(this.gmlOF.createTimeInstantPropertyType());
+				omobs.setValidTime(this.gmlOF.createTimePeriodPropertyType());
+				omobs.getResultQuality().add(new DQElementPropertyType());
+				omobs.setResult(this.wmdrOF.createResultSetType());
+				
+				
 				
 				oc.getObservation().add(omobsp);
+				refType = this.gmlOF.createReferenceType();
+				refType.setHref(getWIGOSIdentifier(ptf.getRef()));
+				oc.setFacility(refType);
+				
 				ocp.setObservingCapability(oc);
+				
 				
 				result.add(ocp);
 			}

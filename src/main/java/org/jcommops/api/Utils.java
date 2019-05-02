@@ -300,9 +300,10 @@ public class Utils {
 	}
 	
 	public static XMLGregorianCalendar getDateAsXmlGregCal(LocalDateTime localDateTime){
-		GregorianCalendar c = GregorianCalendar.from(localDateTime.atZone(ZoneId.systemDefault()));
 		try {
-			XMLGregorianCalendar date = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+			XMLGregorianCalendar date = DatatypeFactory.newInstance().newXMLGregorianCalendar(localDateTime.getYear(),
+					localDateTime.getMonthValue(), localDateTime.getDayOfMonth(), localDateTime.getHour(), localDateTime.getMinute(),
+					localDateTime.getSecond(), 0, 0);
 			return date;
 		} catch (DatatypeConfigurationException e) {
 			return null;
