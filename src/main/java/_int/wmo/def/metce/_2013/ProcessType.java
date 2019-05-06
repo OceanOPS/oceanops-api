@@ -55,7 +55,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
     "context"
 })
 @XmlSeeAlso({
-    _int.wmo.def.wmdr._1.ProcessType.class
+    _int.wmo.def.wmdr._2017.ProcessType.class
 })
 public class ProcessType
     extends net.opengis.gml.v_3_2_1.AbstractFeatureType

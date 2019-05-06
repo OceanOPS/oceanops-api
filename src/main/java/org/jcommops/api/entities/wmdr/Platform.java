@@ -618,14 +618,16 @@ public class Platform {
 		ResponsiblePartyType responsiblePartyType = this.wmdrOF.createResponsiblePartyType();
 		ResponsiblePartyType.ResponsibleParty rp = this.wmdrOF.createResponsiblePartyTypeResponsibleParty();
 		if(ptf.getProgram().getAgencies().size() > 0){
-			String agencyID = null;
+			Integer agencyID = null;
 			for(ProgramAgency prAgency: ptf.getProgram().getProgramAgencies()){
 				if(prAgency.getLead() == 1)
-					agencyID = String.valueOf(prAgency.getAgencyId());
+					agencyID = prAgency.getAgencyId();
 			}
 			
 			if(agencyID == null)
 				rp.setCIResponsibleParty(this.getCIResponsibleParty(Integer.parseInt(ptf.getProgram().getAgencies().get(0).getObjectId().getIdSnapshot().get("ID").toString()), "custodian"));
+			else
+				rp.setCIResponsibleParty(this.getCIResponsibleParty(agencyID, "custodian"));
 		}
 		else
 			rp.setCIResponsibleParty(this.getCIResponsibleParty(null, null));
@@ -756,18 +758,22 @@ public class Platform {
 				SensorType st = smst.getSensorType();
 				ocp = this.wmdrOF.createObservingCapabilityPropertyType();
 				oc = this.wmdrOF.createObservingCapabilityType();
+				oc.setId("oc-" + sm.getId() + "-" + st.getId());
 				OMObservationPropertyType omobsp = this.omOF.createOMObservationPropertyType();
 				OMObservationType omobs = this.omOF.createOMObservationType();
-				omobsp.setOMObservation(omobs);		
+				omobsp.setOMObservation(omobs);
+				omobs.setId("omobs-" + sm.getId() + "-" + st.getId());
 			
 				ReferenceType refType = this.gmlOF.createReferenceType();
 				refType.setHref(st.getVariable().getName());
 				omobs.setObservedProperty(refType);
 				
 				ProcessType process = this.wmdrOF.createProcessType();
+				process.setId("process-" + sm.getId() + "-" + st.getId());
 				
 				DeploymentPropertyType deplP = this.wmdrOF.createDeploymentPropertyType();
 				DeploymentType depl = this.wmdrOF.createDeploymentType();
+				depl.setId("process-depl-" + sm.getId() + "-" + st.getId());
 				depl.setDeployedEquipment(this.getEquipmentPropertyType(psm, sensorIncrement));
 				sensorIncrement++;
 				
@@ -800,12 +806,21 @@ public class Platform {
 				ArrayList<String> beginT = new ArrayList<String>();
 				beginT.add(Utils.GetIsoDate(ptf.getPtfDepl().getDeplDate()));
 				tptype.setValue(beginT);
+				atotype.setId("omobs-timeperiod-" + sm.getId() + "-" + st.getId());
 				atotype.setBeginPosition(tptype);
 				atotype.setEndPosition(this.gmlOF.createTimePositionType());
 				topt.setAbstractTimeObject(this.gmlOF.createTimePeriod(atotype));
 				omobs.setPhenomenonTime(topt);
 				
 				TimePeriodPropertyType tppt = this.gmlOF.createTimePeriodPropertyType();
+				atotype = this.gmlOF.createTimePeriodType();
+				tptype = this.gmlOF.createTimePositionType();
+				beginT = new ArrayList<String>();
+				beginT.add(Utils.GetIsoDate(ptf.getPtfDepl().getDeplDate()));
+				tptype.setValue(beginT);
+				atotype.setId("omobs-timeperiod-validperiod-" + sm.getId() + "-" + st.getId());
+				atotype.setBeginPosition(tptype);
+				atotype.setEndPosition(this.gmlOF.createTimePositionType());
 				tppt.setTimePeriod(atotype);
 				depl.setValidPeriod(tppt);
 				depl.getDataGeneration().add(new DataGenerationPropertyType());
@@ -822,6 +837,15 @@ public class Platform {
 				refType = this.gmlOF.createReferenceType();
 				refType.setHref(getWIGOSIdentifier(ptf.getRef()));
 				oc.setFacility(refType);
+				
+				for(NetworkPtf netPtf: ptf.getNetworkPtfs()) {
+					if(netPtf.getNetwork().getRank() == 0) {
+						refType = this.gmlOF.createReferenceType();
+						refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/" + netPtf.getNetwork().getName());
+						
+						oc.getProgramAffiliation().add(refType);
+					}
+				}
 				
 				ocp.setObservingCapability(oc);
 				
