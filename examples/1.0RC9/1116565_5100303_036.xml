@@ -1,0 +1,1388 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<wmdr:WIGOSMetadataRecord gml:id="record_0-22000-36-5100303" xsi:schemaLocation="http://def.wmo.int/wmdr/2017 http://schemas.wmo.int/wmdr/1.0RC9/wmdr.xsd" xmlns:sams="http://www.opengis.net/samplingSpatial/2.0" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:opm="http://def.wmo.int/opm/2013" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:metce="http://def.wmo.int/metce/2013" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:wmdr="http://def.wmo.int/wmdr/2017" xmlns:gmx="http://www.isotc211.org/2005/gmx" xmlns:sam="http://www.opengis.net/sampling/2.0" xmlns:om="http://www.opengis.net/om/2.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gmd="http://www.isotc211.org/2005/gmd">
+    <gml:description/>
+    <gml:identifier codeSpace="http://data.wmo.int/">_0-22000-36-5100303</gml:identifier>
+    <gml:boundedBy xsi:nil="true"/>
+    <wmdr:headerInformation>
+        <wmdr:Header>
+            <wmdr:fileDateTime>2019-02-27T14:58:28.000Z</wmdr:fileDateTime>
+            <wmdr:recordOwner>
+                <gmd:CI_ResponsibleParty id="responsibleparty-61-1">
+                    <gmd:organisationName>
+                        <gco:CharacterString>JCOMM in-situ Observations Programme Support Centre </gco:CharacterString>
+                    </gmd:organisationName>
+                    <gmd:contactInfo>
+                        <gmd:CI_Contact>
+                            <gmd:phone>
+                                <gmd:CI_Telephone>
+                                    <gmd:voice>
+                                        <gco:CharacterString>+33 2 29 00 85 85</gco:CharacterString>
+                                    </gmd:voice>
+                                </gmd:CI_Telephone>
+                            </gmd:phone>
+                            <gmd:address>
+                                <gmd:CI_Address>
+                                    <gmd:deliveryPoint>
+                                        <gco:CharacterString>JCOMMOPS&lt;br /&gt;Technopôle Brest Iroise&lt;br /&gt;Campus Ifremer&lt;br /&gt;1625 route de Sainte Anne&lt;br /&gt;Z.I. Pointe du Diable&lt;br /&gt;Plouzané - FRANCE&lt;br /&gt;</gco:CharacterString>
+                                    </gmd:deliveryPoint>
+                                    <gmd:country>
+                                        <gco:CharacterString>United Nations</gco:CharacterString>
+                                    </gmd:country>
+                                    <gmd:electronicMailAddress>
+                                        <gco:CharacterString>support@jcommops.org</gco:CharacterString>
+                                    </gmd:electronicMailAddress>
+                                </gmd:CI_Address>
+                            </gmd:address>
+                            <gmd:onlineResource>
+                                <gmd:CI_OnlineResource>
+                                    <gmd:linkage>
+                                        <gmd:URL>http://www.jcommops.org</gmd:URL>
+                                    </gmd:linkage>
+                                </gmd:CI_OnlineResource>
+                            </gmd:onlineResource>
+                        </gmd:CI_Contact>
+                    </gmd:contactInfo>
+                    <gmd:role>
+                        <gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="custodian"/>
+                    </gmd:role>
+                </gmd:CI_ResponsibleParty>
+            </wmdr:recordOwner>
+        </wmdr:Header>
+    </wmdr:headerInformation>
+    <wmdr:facility>
+        <wmdr:ObservingFacility gml:id="_0-22000-36-5100303">
+            <gml:description/>
+            <gml:identifier codeSpace="http://data.wmo.int">_0-22000-36-5100303</gml:identifier>
+            <gml:name>5N170W</gml:name>
+            <gml:boundedBy xsi:nil="true"/>
+            <wmdr:responsibleParty>
+                <wmdr:ResponsibleParty>
+                    <wmdr:responsibleParty>
+                        <gmd:CI_ResponsibleParty id="responsibleparty-5853-2" uuid="1463">
+                            <gmd:organisationName>
+                                <gco:CharacterString>NOAA / National Data Buoy Centre</gco:CharacterString>
+                            </gmd:organisationName>
+                            <gmd:contactInfo>
+                                <gmd:CI_Contact>
+                                    <gmd:phone/>
+                                    <gmd:address>
+                                        <gmd:CI_Address>
+                                            <gmd:country>
+                                                <gco:CharacterString>United States</gco:CharacterString>
+                                            </gmd:country>
+                                        </gmd:CI_Address>
+                                    </gmd:address>
+                                    <gmd:onlineResource>
+                                        <gmd:CI_OnlineResource>
+                                            <gmd:linkage>
+                                                <gmd:URL>http://ndbc.noaa.gov</gmd:URL>
+                                            </gmd:linkage>
+                                        </gmd:CI_OnlineResource>
+                                    </gmd:onlineResource>
+                                </gmd:CI_Contact>
+                            </gmd:contactInfo>
+                            <gmd:role>
+                                <gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="custodian"/>
+                            </gmd:role>
+                        </gmd:CI_ResponsibleParty>
+                    </wmdr:responsibleParty>
+                </wmdr:ResponsibleParty>
+            </wmdr:responsibleParty>
+            <wmdr:geospatialLocation>
+                <wmdr:GeospatialLocation>
+                    <wmdr:geoLocation>
+                        <gml:Point srsName="http://www.opengis.net/def/crs/EPSG/0/4979" gml:id="_0-22000-36-5100303-LatestLocationGeometry">
+                            <gml:coordinates>5.0000 -170.0000 0.0000</gml:coordinates>
+                        </gml:Point>
+                    </wmdr:geoLocation>
+                    <wmdr:geopositioningMethod xlink:href="http://codes.wmo.int/common/wmdr/GeopositioningMethod/"/>
+                    <wmdr:validPeriod>
+                        <gml:TimePeriod gml:id="_0-22000-36-5100303-LatestLocationTimePeriod">
+                            <gml:beginPosition>2019-05-05T23:00:00Z</gml:beginPosition>
+                            <gml:endPosition/>
+                        </gml:TimePeriod>
+                    </wmdr:validPeriod>
+                </wmdr:GeospatialLocation>
+            </wmdr:geospatialLocation>
+            <wmdr:onlineResource>
+                <gmd:CI_OnlineResource>
+                    <gmd:linkage>
+                        <gmd:URL>http://www.jcommops.org/board/wa/Platform?ref=5100303_036</gmd:URL>
+                    </gmd:linkage>
+                </gmd:CI_OnlineResource>
+            </wmdr:onlineResource>
+            <wmdr:facilityType xlink:href="http://codes.wmo.int/common/wmdr/FacilityType/TAO_REFRESH"/>
+            <wmdr:dateEstablished>2019-02-27Z</wmdr:dateEstablished>
+            <wmdr:wmoRegion xlink:href="http://codes.wmo.int/common/wmdr/WMORegion/"/>
+            <wmdr:territory>
+                <wmdr:Territory>
+                    <wmdr:territoryName xlink:href="http://codes.wmo.int/common/wmdr/TerritoryName/"/>
+                </wmdr:Territory>
+            </wmdr:territory>
+            <wmdr:programAffiliation>
+                <wmdr:ProgramAffiliation>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/OceanSITES"/>
+                    <wmdr:reportingStatus>
+                        <wmdr:ReportingStatus>
+                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/REGISTERED"/>
+                            <wmdr:validPeriod>
+                                <gml:TimePeriod gml:id="_0-22000-36-5100303-StatusChangingDateTimePeriod-1">
+                                    <gml:beginPosition>2018-08-08T07:37:17Z</gml:beginPosition>
+                                    <gml:endPosition/>
+                                </gml:TimePeriod>
+                            </wmdr:validPeriod>
+                        </wmdr:ReportingStatus>
+                    </wmdr:reportingStatus>
+                    <wmdr:reportingStatus>
+                        <wmdr:ReportingStatus>
+                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/OPERATIONAL"/>
+                            <wmdr:validPeriod>
+                                <gml:TimePeriod gml:id="_0-22000-36-5100303-StatusChangingDateTimePeriod-2">
+                                    <gml:beginPosition>2018-08-09T04:08:19Z</gml:beginPosition>
+                                    <gml:endPosition/>
+                                </gml:TimePeriod>
+                            </wmdr:validPeriod>
+                        </wmdr:ReportingStatus>
+                    </wmdr:reportingStatus>
+                </wmdr:ProgramAffiliation>
+            </wmdr:programAffiliation>
+            <wmdr:programAffiliation>
+                <wmdr:ProgramAffiliation>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/DBCP"/>
+                    <wmdr:reportingStatus>
+                        <wmdr:ReportingStatus>
+                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/REGISTERED"/>
+                            <wmdr:validPeriod>
+                                <gml:TimePeriod gml:id="_0-22000-36-5100303-StatusChangingDateTimePeriod-3">
+                                    <gml:beginPosition>2018-08-08T07:37:17Z</gml:beginPosition>
+                                    <gml:endPosition/>
+                                </gml:TimePeriod>
+                            </wmdr:validPeriod>
+                        </wmdr:ReportingStatus>
+                    </wmdr:reportingStatus>
+                    <wmdr:reportingStatus>
+                        <wmdr:ReportingStatus>
+                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/OPERATIONAL"/>
+                            <wmdr:validPeriod>
+                                <gml:TimePeriod gml:id="_0-22000-36-5100303-StatusChangingDateTimePeriod-4">
+                                    <gml:beginPosition>2018-08-09T04:08:19Z</gml:beginPosition>
+                                    <gml:endPosition/>
+                                </gml:TimePeriod>
+                            </wmdr:validPeriod>
+                        </wmdr:ReportingStatus>
+                    </wmdr:reportingStatus>
+                </wmdr:ProgramAffiliation>
+            </wmdr:programAffiliation>
+            <wmdr:programAffiliation>
+                <wmdr:ProgramAffiliation>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/NDBC-MB"/>
+                    <wmdr:reportingStatus>
+                        <wmdr:ReportingStatus>
+                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/REGISTERED"/>
+                            <wmdr:validPeriod>
+                                <gml:TimePeriod gml:id="_0-22000-36-5100303-StatusChangingDateTimePeriod-5">
+                                    <gml:beginPosition>2018-08-08T07:37:17Z</gml:beginPosition>
+                                    <gml:endPosition/>
+                                </gml:TimePeriod>
+                            </wmdr:validPeriod>
+                        </wmdr:ReportingStatus>
+                    </wmdr:reportingStatus>
+                    <wmdr:reportingStatus>
+                        <wmdr:ReportingStatus>
+                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/OPERATIONAL"/>
+                            <wmdr:validPeriod>
+                                <gml:TimePeriod gml:id="_0-22000-36-5100303-StatusChangingDateTimePeriod-6">
+                                    <gml:beginPosition>2018-08-09T04:08:19Z</gml:beginPosition>
+                                    <gml:endPosition/>
+                                </gml:TimePeriod>
+                            </wmdr:validPeriod>
+                        </wmdr:ReportingStatus>
+                    </wmdr:reportingStatus>
+                </wmdr:ProgramAffiliation>
+            </wmdr:programAffiliation>
+            <wmdr:observation>
+                <wmdr:ObservingCapability gml:id="oc-2387-450">
+                    <gml:boundedBy xsi:nil="true"/>
+                    <wmdr:facility xlink:href="0-22000-36-5100303"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/OceanSITES"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/DBCP"/>
+                    <wmdr:observation>
+                        <om:OM_Observation gml:id="omobs-2387-450">
+                            <gml:boundedBy xsi:nil="true"/>
+                            <om:type xlink:href="http://codes.wmo.int/wmdr/featureOfInterest/point"/>
+                            <om:phenomenonTime>
+                                <gml:TimePeriod gml:id="omobs-timeperiod-2387-450">
+                                    <gml:beginPosition>2017-09-13T10:50:00Z</gml:beginPosition>
+                                    <gml:endPosition/>
+                                </gml:TimePeriod>
+                            </om:phenomenonTime>
+                            <om:resultTime/>
+                            <om:validTime/>
+                            <om:procedure>
+                                <wmdr:Process gml:id="process-2387-450">
+                                    <gml:boundedBy xsi:nil="true"/>
+                                    <wmdr:deployment>
+                                        <wmdr:Deployment gml:id="process-depl-2387-450">
+                                            <gml:boundedBy xsi:nil="true"/>
+                                            <wmdr:deployedEquipment>
+                                                <wmdr:Equipment gml:id="subequipment-104400">
+                                                    <gml:description/>
+                                                    <gml:boundedBy xsi:nil="true"/>
+                                                    <wmdr:responsibleParty>
+                                                        <wmdr:ResponsibleParty>
+                                                            <wmdr:responsibleParty>
+                                                                <gmd:CI_ResponsibleParty id="responsibleparty-1000797-3">
+                                                                    <gmd:organisationName>
+                                                                        <gco:CharacterString>RM YOUNG</gco:CharacterString>
+                                                                    </gmd:organisationName>
+                                                                    <gmd:contactInfo>
+                                                                        <gmd:CI_Contact>
+                                                                            <gmd:phone/>
+                                                                            <gmd:address>
+                                                                                <gmd:CI_Address/>
+                                                                            </gmd:address>
+                                                                            <gmd:onlineResource>
+                                                                                <gmd:CI_OnlineResource>
+                                                                                    <gmd:linkage/>
+                                                                                </gmd:CI_OnlineResource>
+                                                                            </gmd:onlineResource>
+                                                                        </gmd:CI_Contact>
+                                                                    </gmd:contactInfo>
+                                                                    <gmd:role>
+                                                                        <gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="custodian"/>
+                                                                    </gmd:role>
+                                                                </gmd:CI_ResponsibleParty>
+                                                            </wmdr:responsibleParty>
+                                                        </wmdr:ResponsibleParty>
+                                                    </wmdr:responsibleParty>
+                                                    <wmdr:manufacturer>RM YOUNG</wmdr:manufacturer>
+                                                    <wmdr:model>RMYoung 50203-34</wmdr:model>
+                                                    <wmdr:observingMethod xlink:href="http://codes.wmo.int/common/wmdr/ObservingMethod/"/>
+                                                </wmdr:Equipment>
+                                            </wmdr:deployedEquipment>
+                                            <wmdr:dataGeneration/>
+                                            <wmdr:validPeriod>
+                                                <gml:TimePeriod gml:id="omobs-timeperiod-validperiod-2387-450">
+                                                    <gml:beginPosition>2017-09-13T10:50:00Z</gml:beginPosition>
+                                                    <gml:endPosition/>
+                                                </gml:TimePeriod>
+                                            </wmdr:validPeriod>
+                                            <wmdr:heightAboveLocalReferenceSurface uom="m">0.0</wmdr:heightAboveLocalReferenceSurface>
+                                            <wmdr:localReferenceSurface/>
+                                            <wmdr:applicationArea/>
+                                            <wmdr:sourceOfObservation/>
+                                        </wmdr:Deployment>
+                                    </wmdr:deployment>
+                                </wmdr:Process>
+                            </om:procedure>
+                            <om:observedProperty xlink:href="CTD packge"/>
+                            <om:featureOfInterest xsi:nil="true"/>
+                            <om:resultQuality/>
+                            <om:result xsi:type="wmdr:ResultSetType"/>
+                        </om:OM_Observation>
+                    </wmdr:observation>
+                </wmdr:ObservingCapability>
+            </wmdr:observation>
+            <wmdr:observation>
+                <wmdr:ObservingCapability gml:id="oc-2105-418">
+                    <gml:boundedBy xsi:nil="true"/>
+                    <wmdr:facility xlink:href="0-22000-36-5100303"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/OceanSITES"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/DBCP"/>
+                    <wmdr:observation>
+                        <om:OM_Observation gml:id="omobs-2105-418">
+                            <gml:boundedBy xsi:nil="true"/>
+                            <om:type xlink:href="http://codes.wmo.int/wmdr/featureOfInterest/point"/>
+                            <om:phenomenonTime>
+                                <gml:TimePeriod gml:id="omobs-timeperiod-2105-418">
+                                    <gml:beginPosition>2017-09-13T10:50:00Z</gml:beginPosition>
+                                    <gml:endPosition/>
+                                </gml:TimePeriod>
+                            </om:phenomenonTime>
+                            <om:resultTime/>
+                            <om:validTime/>
+                            <om:procedure>
+                                <wmdr:Process gml:id="process-2105-418">
+                                    <gml:boundedBy xsi:nil="true"/>
+                                    <wmdr:deployment>
+                                        <wmdr:Deployment gml:id="process-depl-2105-418">
+                                            <gml:boundedBy xsi:nil="true"/>
+                                            <wmdr:deployedEquipment>
+                                                <wmdr:Equipment gml:id="subequipment-104637">
+                                                    <gml:description/>
+                                                    <gml:boundedBy xsi:nil="true"/>
+                                                    <wmdr:responsibleParty>
+                                                        <wmdr:ResponsibleParty>
+                                                            <wmdr:responsibleParty>
+                                                                <gmd:CI_ResponsibleParty id="responsibleparty-1000797-4">
+                                                                    <gmd:organisationName>
+                                                                        <gco:CharacterString>RM YOUNG</gco:CharacterString>
+                                                                    </gmd:organisationName>
+                                                                    <gmd:contactInfo>
+                                                                        <gmd:CI_Contact>
+                                                                            <gmd:phone/>
+                                                                            <gmd:address>
+                                                                                <gmd:CI_Address/>
+                                                                            </gmd:address>
+                                                                            <gmd:onlineResource>
+                                                                                <gmd:CI_OnlineResource>
+                                                                                    <gmd:linkage/>
+                                                                                </gmd:CI_OnlineResource>
+                                                                            </gmd:onlineResource>
+                                                                        </gmd:CI_Contact>
+                                                                    </gmd:contactInfo>
+                                                                    <gmd:role>
+                                                                        <gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="custodian"/>
+                                                                    </gmd:role>
+                                                                </gmd:CI_ResponsibleParty>
+                                                            </wmdr:responsibleParty>
+                                                        </wmdr:ResponsibleParty>
+                                                    </wmdr:responsibleParty>
+                                                    <wmdr:manufacturer>RM YOUNG</wmdr:manufacturer>
+                                                    <wmdr:model>RM_YOUNG_05103</wmdr:model>
+                                                    <wmdr:observingMethod xlink:href="http://codes.wmo.int/common/wmdr/ObservingMethod/"/>
+                                                </wmdr:Equipment>
+                                            </wmdr:deployedEquipment>
+                                            <wmdr:dataGeneration/>
+                                            <wmdr:validPeriod>
+                                                <gml:TimePeriod gml:id="omobs-timeperiod-validperiod-2105-418">
+                                                    <gml:beginPosition>2017-09-13T10:50:00Z</gml:beginPosition>
+                                                    <gml:endPosition/>
+                                                </gml:TimePeriod>
+                                            </wmdr:validPeriod>
+                                            <wmdr:heightAboveLocalReferenceSurface uom="m">0.0</wmdr:heightAboveLocalReferenceSurface>
+                                            <wmdr:localReferenceSurface/>
+                                            <wmdr:applicationArea/>
+                                            <wmdr:sourceOfObservation/>
+                                        </wmdr:Deployment>
+                                    </wmdr:deployment>
+                                </wmdr:Process>
+                            </om:procedure>
+                            <om:observedProperty xlink:href="Wind speed and wind direction"/>
+                            <om:featureOfInterest xsi:nil="true"/>
+                            <om:resultQuality/>
+                            <om:result xsi:type="wmdr:ResultSetType"/>
+                        </om:OM_Observation>
+                    </wmdr:observation>
+                </wmdr:ObservingCapability>
+            </wmdr:observation>
+            <wmdr:observation>
+                <wmdr:ObservingCapability gml:id="oc-2282-329">
+                    <gml:boundedBy xsi:nil="true"/>
+                    <wmdr:facility xlink:href="0-22000-36-5100303"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/OceanSITES"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/DBCP"/>
+                    <wmdr:observation>
+                        <om:OM_Observation gml:id="omobs-2282-329">
+                            <gml:boundedBy xsi:nil="true"/>
+                            <om:type xlink:href="http://codes.wmo.int/wmdr/featureOfInterest/point"/>
+                            <om:phenomenonTime>
+                                <gml:TimePeriod gml:id="omobs-timeperiod-2282-329">
+                                    <gml:beginPosition>2017-09-13T10:50:00Z</gml:beginPosition>
+                                    <gml:endPosition/>
+                                </gml:TimePeriod>
+                            </om:phenomenonTime>
+                            <om:resultTime/>
+                            <om:validTime/>
+                            <om:procedure>
+                                <wmdr:Process gml:id="process-2282-329">
+                                    <gml:boundedBy xsi:nil="true"/>
+                                    <wmdr:deployment>
+                                        <wmdr:Deployment gml:id="process-depl-2282-329">
+                                            <gml:boundedBy xsi:nil="true"/>
+                                            <wmdr:deployedEquipment>
+                                                <wmdr:Equipment gml:id="subequipment-104874">
+                                                    <gml:description/>
+                                                    <gml:boundedBy xsi:nil="true"/>
+                                                    <wmdr:responsibleParty>
+                                                        <wmdr:ResponsibleParty>
+                                                            <wmdr:responsibleParty>
+                                                                <gmd:CI_ResponsibleParty id="responsibleparty-5981-5">
+                                                                    <gmd:organisationName>
+                                                                        <gco:CharacterString>Sea-Bird Electronics, Inc.</gco:CharacterString>
+                                                                    </gmd:organisationName>
+                                                                    <gmd:contactInfo>
+                                                                        <gmd:CI_Contact>
+                                                                            <gmd:phone>
+                                                                                <gmd:CI_Telephone>
+                                                                                    <gmd:voice>
+                                                                                        <gco:CharacterString>425-643-9866 </gco:CharacterString>
+                                                                                    </gmd:voice>
+                                                                                </gmd:CI_Telephone>
+                                                                            </gmd:phone>
+                                                                            <gmd:address>
+                                                                                <gmd:CI_Address>
+                                                                                    <gmd:deliveryPoint>
+                                                                                        <gco:CharacterString>1808 136th Place NE&lt;br&gt;
+Bellevue, Washington  98005 &lt;br&gt;
+USA</gco:CharacterString>
+                                                                                    </gmd:deliveryPoint>
+                                                                                    <gmd:country>
+                                                                                        <gco:CharacterString>United States</gco:CharacterString>
+                                                                                    </gmd:country>
+                                                                                    <gmd:electronicMailAddress>
+                                                                                        <gco:CharacterString>seabird@seabird.com</gco:CharacterString>
+                                                                                    </gmd:electronicMailAddress>
+                                                                                </gmd:CI_Address>
+                                                                            </gmd:address>
+                                                                            <gmd:onlineResource>
+                                                                                <gmd:CI_OnlineResource>
+                                                                                    <gmd:linkage>
+                                                                                        <gmd:URL>http://www.seabird.com</gmd:URL>
+                                                                                    </gmd:linkage>
+                                                                                </gmd:CI_OnlineResource>
+                                                                            </gmd:onlineResource>
+                                                                        </gmd:CI_Contact>
+                                                                    </gmd:contactInfo>
+                                                                    <gmd:role>
+                                                                        <gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="custodian"/>
+                                                                    </gmd:role>
+                                                                </gmd:CI_ResponsibleParty>
+                                                            </wmdr:responsibleParty>
+                                                        </wmdr:ResponsibleParty>
+                                                    </wmdr:responsibleParty>
+                                                    <wmdr:manufacturer>Sea-Bird Electronics, Inc.</wmdr:manufacturer>
+                                                    <wmdr:model>SBE37_SM</wmdr:model>
+                                                    <wmdr:observingMethod xlink:href="http://codes.wmo.int/common/wmdr/ObservingMethod/"/>
+                                                </wmdr:Equipment>
+                                            </wmdr:deployedEquipment>
+                                            <wmdr:dataGeneration/>
+                                            <wmdr:validPeriod>
+                                                <gml:TimePeriod gml:id="omobs-timeperiod-validperiod-2282-329">
+                                                    <gml:beginPosition>2017-09-13T10:50:00Z</gml:beginPosition>
+                                                    <gml:endPosition/>
+                                                </gml:TimePeriod>
+                                            </wmdr:validPeriod>
+                                            <wmdr:heightAboveLocalReferenceSurface uom="m">0.0</wmdr:heightAboveLocalReferenceSurface>
+                                            <wmdr:localReferenceSurface/>
+                                            <wmdr:applicationArea/>
+                                            <wmdr:sourceOfObservation/>
+                                        </wmdr:Deployment>
+                                    </wmdr:deployment>
+                                </wmdr:Process>
+                            </om:procedure>
+                            <om:observedProperty xlink:href="Subsurface Salinity"/>
+                            <om:featureOfInterest xsi:nil="true"/>
+                            <om:resultQuality/>
+                            <om:result xsi:type="wmdr:ResultSetType"/>
+                        </om:OM_Observation>
+                    </wmdr:observation>
+                </wmdr:ObservingCapability>
+            </wmdr:observation>
+            <wmdr:observation>
+                <wmdr:ObservingCapability gml:id="oc-2282-330">
+                    <gml:boundedBy xsi:nil="true"/>
+                    <wmdr:facility xlink:href="0-22000-36-5100303"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/OceanSITES"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/DBCP"/>
+                    <wmdr:observation>
+                        <om:OM_Observation gml:id="omobs-2282-330">
+                            <gml:boundedBy xsi:nil="true"/>
+                            <om:type xlink:href="http://codes.wmo.int/wmdr/featureOfInterest/point"/>
+                            <om:phenomenonTime>
+                                <gml:TimePeriod gml:id="omobs-timeperiod-2282-330">
+                                    <gml:beginPosition>2017-09-13T10:50:00Z</gml:beginPosition>
+                                    <gml:endPosition/>
+                                </gml:TimePeriod>
+                            </om:phenomenonTime>
+                            <om:resultTime/>
+                            <om:validTime/>
+                            <om:procedure>
+                                <wmdr:Process gml:id="process-2282-330">
+                                    <gml:boundedBy xsi:nil="true"/>
+                                    <wmdr:deployment>
+                                        <wmdr:Deployment gml:id="process-depl-2282-330">
+                                            <gml:boundedBy xsi:nil="true"/>
+                                            <wmdr:deployedEquipment>
+                                                <wmdr:Equipment gml:id="subequipment-104874-1">
+                                                    <gml:description/>
+                                                    <gml:boundedBy xsi:nil="true"/>
+                                                    <wmdr:responsibleParty>
+                                                        <wmdr:ResponsibleParty>
+                                                            <wmdr:responsibleParty>
+                                                                <gmd:CI_ResponsibleParty id="responsibleparty-5981-6">
+                                                                    <gmd:organisationName>
+                                                                        <gco:CharacterString>Sea-Bird Electronics, Inc.</gco:CharacterString>
+                                                                    </gmd:organisationName>
+                                                                    <gmd:contactInfo>
+                                                                        <gmd:CI_Contact>
+                                                                            <gmd:phone>
+                                                                                <gmd:CI_Telephone>
+                                                                                    <gmd:voice>
+                                                                                        <gco:CharacterString>425-643-9866 </gco:CharacterString>
+                                                                                    </gmd:voice>
+                                                                                </gmd:CI_Telephone>
+                                                                            </gmd:phone>
+                                                                            <gmd:address>
+                                                                                <gmd:CI_Address>
+                                                                                    <gmd:deliveryPoint>
+                                                                                        <gco:CharacterString>1808 136th Place NE&lt;br&gt;
+Bellevue, Washington  98005 &lt;br&gt;
+USA</gco:CharacterString>
+                                                                                    </gmd:deliveryPoint>
+                                                                                    <gmd:country>
+                                                                                        <gco:CharacterString>United States</gco:CharacterString>
+                                                                                    </gmd:country>
+                                                                                    <gmd:electronicMailAddress>
+                                                                                        <gco:CharacterString>seabird@seabird.com</gco:CharacterString>
+                                                                                    </gmd:electronicMailAddress>
+                                                                                </gmd:CI_Address>
+                                                                            </gmd:address>
+                                                                            <gmd:onlineResource>
+                                                                                <gmd:CI_OnlineResource>
+                                                                                    <gmd:linkage>
+                                                                                        <gmd:URL>http://www.seabird.com</gmd:URL>
+                                                                                    </gmd:linkage>
+                                                                                </gmd:CI_OnlineResource>
+                                                                            </gmd:onlineResource>
+                                                                        </gmd:CI_Contact>
+                                                                    </gmd:contactInfo>
+                                                                    <gmd:role>
+                                                                        <gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="custodian"/>
+                                                                    </gmd:role>
+                                                                </gmd:CI_ResponsibleParty>
+                                                            </wmdr:responsibleParty>
+                                                        </wmdr:ResponsibleParty>
+                                                    </wmdr:responsibleParty>
+                                                    <wmdr:manufacturer>Sea-Bird Electronics, Inc.</wmdr:manufacturer>
+                                                    <wmdr:model>SBE37_SM</wmdr:model>
+                                                    <wmdr:observingMethod xlink:href="http://codes.wmo.int/common/wmdr/ObservingMethod/"/>
+                                                </wmdr:Equipment>
+                                            </wmdr:deployedEquipment>
+                                            <wmdr:dataGeneration/>
+                                            <wmdr:validPeriod>
+                                                <gml:TimePeriod gml:id="omobs-timeperiod-validperiod-2282-330">
+                                                    <gml:beginPosition>2017-09-13T10:50:00Z</gml:beginPosition>
+                                                    <gml:endPosition/>
+                                                </gml:TimePeriod>
+                                            </wmdr:validPeriod>
+                                            <wmdr:heightAboveLocalReferenceSurface uom="m">0.0</wmdr:heightAboveLocalReferenceSurface>
+                                            <wmdr:localReferenceSurface/>
+                                            <wmdr:applicationArea/>
+                                            <wmdr:sourceOfObservation/>
+                                        </wmdr:Deployment>
+                                    </wmdr:deployment>
+                                </wmdr:Process>
+                            </om:procedure>
+                            <om:observedProperty xlink:href="Subsurface Temperature"/>
+                            <om:featureOfInterest xsi:nil="true"/>
+                            <om:resultQuality/>
+                            <om:result xsi:type="wmdr:ResultSetType"/>
+                        </om:OM_Observation>
+                    </wmdr:observation>
+                </wmdr:ObservingCapability>
+            </wmdr:observation>
+            <wmdr:observation>
+                <wmdr:ObservingCapability gml:id="oc-2409-330">
+                    <gml:boundedBy xsi:nil="true"/>
+                    <wmdr:facility xlink:href="0-22000-36-5100303"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/OceanSITES"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/DBCP"/>
+                    <wmdr:observation>
+                        <om:OM_Observation gml:id="omobs-2409-330">
+                            <gml:boundedBy xsi:nil="true"/>
+                            <om:type xlink:href="http://codes.wmo.int/wmdr/featureOfInterest/point"/>
+                            <om:phenomenonTime>
+                                <gml:TimePeriod gml:id="omobs-timeperiod-2409-330">
+                                    <gml:beginPosition>2017-09-13T10:50:00Z</gml:beginPosition>
+                                    <gml:endPosition/>
+                                </gml:TimePeriod>
+                            </om:phenomenonTime>
+                            <om:resultTime/>
+                            <om:validTime/>
+                            <om:procedure>
+                                <wmdr:Process gml:id="process-2409-330">
+                                    <gml:boundedBy xsi:nil="true"/>
+                                    <wmdr:deployment>
+                                        <wmdr:Deployment gml:id="process-depl-2409-330">
+                                            <gml:boundedBy xsi:nil="true"/>
+                                            <wmdr:deployedEquipment>
+                                                <wmdr:Equipment gml:id="subequipment-105111">
+                                                    <gml:description/>
+                                                    <gml:boundedBy xsi:nil="true"/>
+                                                    <wmdr:responsibleParty>
+                                                        <wmdr:ResponsibleParty>
+                                                            <wmdr:responsibleParty>
+                                                                <gmd:CI_ResponsibleParty id="responsibleparty-5981-7">
+                                                                    <gmd:organisationName>
+                                                                        <gco:CharacterString>Sea-Bird Electronics, Inc.</gco:CharacterString>
+                                                                    </gmd:organisationName>
+                                                                    <gmd:contactInfo>
+                                                                        <gmd:CI_Contact>
+                                                                            <gmd:phone>
+                                                                                <gmd:CI_Telephone>
+                                                                                    <gmd:voice>
+                                                                                        <gco:CharacterString>425-643-9866 </gco:CharacterString>
+                                                                                    </gmd:voice>
+                                                                                </gmd:CI_Telephone>
+                                                                            </gmd:phone>
+                                                                            <gmd:address>
+                                                                                <gmd:CI_Address>
+                                                                                    <gmd:deliveryPoint>
+                                                                                        <gco:CharacterString>1808 136th Place NE&lt;br&gt;
+Bellevue, Washington  98005 &lt;br&gt;
+USA</gco:CharacterString>
+                                                                                    </gmd:deliveryPoint>
+                                                                                    <gmd:country>
+                                                                                        <gco:CharacterString>United States</gco:CharacterString>
+                                                                                    </gmd:country>
+                                                                                    <gmd:electronicMailAddress>
+                                                                                        <gco:CharacterString>seabird@seabird.com</gco:CharacterString>
+                                                                                    </gmd:electronicMailAddress>
+                                                                                </gmd:CI_Address>
+                                                                            </gmd:address>
+                                                                            <gmd:onlineResource>
+                                                                                <gmd:CI_OnlineResource>
+                                                                                    <gmd:linkage>
+                                                                                        <gmd:URL>http://www.seabird.com</gmd:URL>
+                                                                                    </gmd:linkage>
+                                                                                </gmd:CI_OnlineResource>
+                                                                            </gmd:onlineResource>
+                                                                        </gmd:CI_Contact>
+                                                                    </gmd:contactInfo>
+                                                                    <gmd:role>
+                                                                        <gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="custodian"/>
+                                                                    </gmd:role>
+                                                                </gmd:CI_ResponsibleParty>
+                                                            </wmdr:responsibleParty>
+                                                        </wmdr:ResponsibleParty>
+                                                    </wmdr:responsibleParty>
+                                                    <wmdr:manufacturer>Sea-Bird Electronics, Inc.</wmdr:manufacturer>
+                                                    <wmdr:model>SBE39_IM</wmdr:model>
+                                                    <wmdr:observingMethod xlink:href="http://codes.wmo.int/common/wmdr/ObservingMethod/"/>
+                                                </wmdr:Equipment>
+                                            </wmdr:deployedEquipment>
+                                            <wmdr:dataGeneration/>
+                                            <wmdr:validPeriod>
+                                                <gml:TimePeriod gml:id="omobs-timeperiod-validperiod-2409-330">
+                                                    <gml:beginPosition>2017-09-13T10:50:00Z</gml:beginPosition>
+                                                    <gml:endPosition/>
+                                                </gml:TimePeriod>
+                                            </wmdr:validPeriod>
+                                            <wmdr:heightAboveLocalReferenceSurface uom="m">0.0</wmdr:heightAboveLocalReferenceSurface>
+                                            <wmdr:localReferenceSurface/>
+                                            <wmdr:applicationArea/>
+                                            <wmdr:sourceOfObservation/>
+                                        </wmdr:Deployment>
+                                    </wmdr:deployment>
+                                </wmdr:Process>
+                            </om:procedure>
+                            <om:observedProperty xlink:href="Subsurface Temperature"/>
+                            <om:featureOfInterest xsi:nil="true"/>
+                            <om:resultQuality/>
+                            <om:result xsi:type="wmdr:ResultSetType"/>
+                        </om:OM_Observation>
+                    </wmdr:observation>
+                </wmdr:ObservingCapability>
+            </wmdr:observation>
+            <wmdr:observation>
+                <wmdr:ObservingCapability gml:id="oc-2390-395">
+                    <gml:boundedBy xsi:nil="true"/>
+                    <wmdr:facility xlink:href="0-22000-36-5100303"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/OceanSITES"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/DBCP"/>
+                    <wmdr:observation>
+                        <om:OM_Observation gml:id="omobs-2390-395">
+                            <gml:boundedBy xsi:nil="true"/>
+                            <om:type xlink:href="http://codes.wmo.int/wmdr/featureOfInterest/point"/>
+                            <om:phenomenonTime>
+                                <gml:TimePeriod gml:id="omobs-timeperiod-2390-395">
+                                    <gml:beginPosition>2017-09-13T10:50:00Z</gml:beginPosition>
+                                    <gml:endPosition/>
+                                </gml:TimePeriod>
+                            </om:phenomenonTime>
+                            <om:resultTime/>
+                            <om:validTime/>
+                            <om:procedure>
+                                <wmdr:Process gml:id="process-2390-395">
+                                    <gml:boundedBy xsi:nil="true"/>
+                                    <wmdr:deployment>
+                                        <wmdr:Deployment gml:id="process-depl-2390-395">
+                                            <gml:boundedBy xsi:nil="true"/>
+                                            <wmdr:deployedEquipment>
+                                                <wmdr:Equipment gml:id="subequipment-104163">
+                                                    <gml:description/>
+                                                    <gml:boundedBy xsi:nil="true"/>
+                                                    <wmdr:responsibleParty>
+                                                        <wmdr:ResponsibleParty>
+                                                            <wmdr:responsibleParty>
+                                                                <gmd:CI_ResponsibleParty id="responsibleparty-61-8">
+                                                                    <gmd:organisationName>
+                                                                        <gco:CharacterString>JCOMM in-situ Observations Programme Support Centre </gco:CharacterString>
+                                                                    </gmd:organisationName>
+                                                                    <gmd:contactInfo>
+                                                                        <gmd:CI_Contact>
+                                                                            <gmd:phone>
+                                                                                <gmd:CI_Telephone>
+                                                                                    <gmd:voice>
+                                                                                        <gco:CharacterString>+33 2 29 00 85 85</gco:CharacterString>
+                                                                                    </gmd:voice>
+                                                                                </gmd:CI_Telephone>
+                                                                            </gmd:phone>
+                                                                            <gmd:address>
+                                                                                <gmd:CI_Address>
+                                                                                    <gmd:deliveryPoint>
+                                                                                        <gco:CharacterString>JCOMMOPS&lt;br /&gt;Technopôle Brest Iroise&lt;br /&gt;Campus Ifremer&lt;br /&gt;1625 route de Sainte Anne&lt;br /&gt;Z.I. Pointe du Diable&lt;br /&gt;Plouzané - FRANCE&lt;br /&gt;</gco:CharacterString>
+                                                                                    </gmd:deliveryPoint>
+                                                                                    <gmd:country>
+                                                                                        <gco:CharacterString>United Nations</gco:CharacterString>
+                                                                                    </gmd:country>
+                                                                                    <gmd:electronicMailAddress>
+                                                                                        <gco:CharacterString>support@jcommops.org</gco:CharacterString>
+                                                                                    </gmd:electronicMailAddress>
+                                                                                </gmd:CI_Address>
+                                                                            </gmd:address>
+                                                                            <gmd:onlineResource>
+                                                                                <gmd:CI_OnlineResource>
+                                                                                    <gmd:linkage>
+                                                                                        <gmd:URL>http://www.jcommops.org</gmd:URL>
+                                                                                    </gmd:linkage>
+                                                                                </gmd:CI_OnlineResource>
+                                                                            </gmd:onlineResource>
+                                                                        </gmd:CI_Contact>
+                                                                    </gmd:contactInfo>
+                                                                    <gmd:role>
+                                                                        <gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="custodian"/>
+                                                                    </gmd:role>
+                                                                </gmd:CI_ResponsibleParty>
+                                                            </wmdr:responsibleParty>
+                                                        </wmdr:ResponsibleParty>
+                                                    </wmdr:responsibleParty>
+                                                    <wmdr:model>Paroscientific MET1-2</wmdr:model>
+                                                    <wmdr:observingMethod xlink:href="http://codes.wmo.int/common/wmdr/ObservingMethod/"/>
+                                                </wmdr:Equipment>
+                                            </wmdr:deployedEquipment>
+                                            <wmdr:dataGeneration/>
+                                            <wmdr:validPeriod>
+                                                <gml:TimePeriod gml:id="omobs-timeperiod-validperiod-2390-395">
+                                                    <gml:beginPosition>2017-09-13T10:50:00Z</gml:beginPosition>
+                                                    <gml:endPosition/>
+                                                </gml:TimePeriod>
+                                            </wmdr:validPeriod>
+                                            <wmdr:heightAboveLocalReferenceSurface uom="m">0.0</wmdr:heightAboveLocalReferenceSurface>
+                                            <wmdr:localReferenceSurface/>
+                                            <wmdr:applicationArea/>
+                                            <wmdr:sourceOfObservation/>
+                                        </wmdr:Deployment>
+                                    </wmdr:deployment>
+                                </wmdr:Process>
+                            </om:procedure>
+                            <om:observedProperty xlink:href="Air Pressure"/>
+                            <om:featureOfInterest xsi:nil="true"/>
+                            <om:resultQuality/>
+                            <om:result xsi:type="wmdr:ResultSetType"/>
+                        </om:OM_Observation>
+                    </wmdr:observation>
+                </wmdr:ObservingCapability>
+            </wmdr:observation>
+            <wmdr:observation>
+                <wmdr:ObservingCapability gml:id="oc-2484-484">
+                    <gml:boundedBy xsi:nil="true"/>
+                    <wmdr:facility xlink:href="0-22000-36-5100303"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/OceanSITES"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/DBCP"/>
+                    <wmdr:observation>
+                        <om:OM_Observation gml:id="omobs-2484-484">
+                            <gml:boundedBy xsi:nil="true"/>
+                            <om:type xlink:href="http://codes.wmo.int/wmdr/featureOfInterest/point"/>
+                            <om:phenomenonTime>
+                                <gml:TimePeriod gml:id="omobs-timeperiod-2484-484">
+                                    <gml:beginPosition>2017-09-13T10:50:00Z</gml:beginPosition>
+                                    <gml:endPosition/>
+                                </gml:TimePeriod>
+                            </om:phenomenonTime>
+                            <om:resultTime/>
+                            <om:validTime/>
+                            <om:procedure>
+                                <wmdr:Process gml:id="process-2484-484">
+                                    <gml:boundedBy xsi:nil="true"/>
+                                    <wmdr:deployment>
+                                        <wmdr:Deployment gml:id="process-depl-2484-484">
+                                            <gml:boundedBy xsi:nil="true"/>
+                                            <wmdr:deployedEquipment>
+                                                <wmdr:Equipment gml:id="subequipment-105348">
+                                                    <gml:description/>
+                                                    <gml:boundedBy xsi:nil="true"/>
+                                                    <wmdr:responsibleParty>
+                                                        <wmdr:ResponsibleParty>
+                                                            <wmdr:responsibleParty>
+                                                                <gmd:CI_ResponsibleParty id="responsibleparty-61-9">
+                                                                    <gmd:organisationName>
+                                                                        <gco:CharacterString>JCOMM in-situ Observations Programme Support Centre </gco:CharacterString>
+                                                                    </gmd:organisationName>
+                                                                    <gmd:contactInfo>
+                                                                        <gmd:CI_Contact>
+                                                                            <gmd:phone>
+                                                                                <gmd:CI_Telephone>
+                                                                                    <gmd:voice>
+                                                                                        <gco:CharacterString>+33 2 29 00 85 85</gco:CharacterString>
+                                                                                    </gmd:voice>
+                                                                                </gmd:CI_Telephone>
+                                                                            </gmd:phone>
+                                                                            <gmd:address>
+                                                                                <gmd:CI_Address>
+                                                                                    <gmd:deliveryPoint>
+                                                                                        <gco:CharacterString>JCOMMOPS&lt;br /&gt;Technopôle Brest Iroise&lt;br /&gt;Campus Ifremer&lt;br /&gt;1625 route de Sainte Anne&lt;br /&gt;Z.I. Pointe du Diable&lt;br /&gt;Plouzané - FRANCE&lt;br /&gt;</gco:CharacterString>
+                                                                                    </gmd:deliveryPoint>
+                                                                                    <gmd:country>
+                                                                                        <gco:CharacterString>United Nations</gco:CharacterString>
+                                                                                    </gmd:country>
+                                                                                    <gmd:electronicMailAddress>
+                                                                                        <gco:CharacterString>support@jcommops.org</gco:CharacterString>
+                                                                                    </gmd:electronicMailAddress>
+                                                                                </gmd:CI_Address>
+                                                                            </gmd:address>
+                                                                            <gmd:onlineResource>
+                                                                                <gmd:CI_OnlineResource>
+                                                                                    <gmd:linkage>
+                                                                                        <gmd:URL>http://www.jcommops.org</gmd:URL>
+                                                                                    </gmd:linkage>
+                                                                                </gmd:CI_OnlineResource>
+                                                                            </gmd:onlineResource>
+                                                                        </gmd:CI_Contact>
+                                                                    </gmd:contactInfo>
+                                                                    <gmd:role>
+                                                                        <gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="custodian"/>
+                                                                    </gmd:role>
+                                                                </gmd:CI_ResponsibleParty>
+                                                            </wmdr:responsibleParty>
+                                                        </wmdr:ResponsibleParty>
+                                                    </wmdr:responsibleParty>
+                                                    <wmdr:model>SPARTON_SP3003D</wmdr:model>
+                                                    <wmdr:observingMethod xlink:href="http://codes.wmo.int/common/wmdr/ObservingMethod/"/>
+                                                </wmdr:Equipment>
+                                            </wmdr:deployedEquipment>
+                                            <wmdr:dataGeneration/>
+                                            <wmdr:validPeriod>
+                                                <gml:TimePeriod gml:id="omobs-timeperiod-validperiod-2484-484">
+                                                    <gml:beginPosition>2017-09-13T10:50:00Z</gml:beginPosition>
+                                                    <gml:endPosition/>
+                                                </gml:TimePeriod>
+                                            </wmdr:validPeriod>
+                                            <wmdr:heightAboveLocalReferenceSurface uom="m">0.0</wmdr:heightAboveLocalReferenceSurface>
+                                            <wmdr:localReferenceSurface/>
+                                            <wmdr:applicationArea/>
+                                            <wmdr:sourceOfObservation/>
+                                        </wmdr:Deployment>
+                                    </wmdr:deployment>
+                                </wmdr:Process>
+                            </om:procedure>
+                            <om:observedProperty xlink:href="Platform Orientation"/>
+                            <om:featureOfInterest xsi:nil="true"/>
+                            <om:resultQuality/>
+                            <om:result xsi:type="wmdr:ResultSetType"/>
+                        </om:OM_Observation>
+                    </wmdr:observation>
+                </wmdr:ObservingCapability>
+            </wmdr:observation>
+            <wmdr:observation>
+                <wmdr:ObservingCapability gml:id="oc-2483-467">
+                    <gml:boundedBy xsi:nil="true"/>
+                    <wmdr:facility xlink:href="0-22000-36-5100303"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/OceanSITES"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/DBCP"/>
+                    <wmdr:observation>
+                        <om:OM_Observation gml:id="omobs-2483-467">
+                            <gml:boundedBy xsi:nil="true"/>
+                            <om:type xlink:href="http://codes.wmo.int/wmdr/featureOfInterest/point"/>
+                            <om:phenomenonTime>
+                                <gml:TimePeriod gml:id="omobs-timeperiod-2483-467">
+                                    <gml:beginPosition>2017-09-13T10:50:00Z</gml:beginPosition>
+                                    <gml:endPosition/>
+                                </gml:TimePeriod>
+                            </om:phenomenonTime>
+                            <om:resultTime/>
+                            <om:validTime/>
+                            <om:procedure>
+                                <wmdr:Process gml:id="process-2483-467">
+                                    <gml:boundedBy xsi:nil="true"/>
+                                    <wmdr:deployment>
+                                        <wmdr:Deployment gml:id="process-depl-2483-467">
+                                            <gml:boundedBy xsi:nil="true"/>
+                                            <wmdr:deployedEquipment>
+                                                <wmdr:Equipment gml:id="subequipment-105585">
+                                                    <gml:description/>
+                                                    <gml:boundedBy xsi:nil="true"/>
+                                                    <wmdr:responsibleParty>
+                                                        <wmdr:ResponsibleParty>
+                                                            <wmdr:responsibleParty>
+                                                                <gmd:CI_ResponsibleParty id="responsibleparty-61-10">
+                                                                    <gmd:organisationName>
+                                                                        <gco:CharacterString>JCOMM in-situ Observations Programme Support Centre </gco:CharacterString>
+                                                                    </gmd:organisationName>
+                                                                    <gmd:contactInfo>
+                                                                        <gmd:CI_Contact>
+                                                                            <gmd:phone>
+                                                                                <gmd:CI_Telephone>
+                                                                                    <gmd:voice>
+                                                                                        <gco:CharacterString>+33 2 29 00 85 85</gco:CharacterString>
+                                                                                    </gmd:voice>
+                                                                                </gmd:CI_Telephone>
+                                                                            </gmd:phone>
+                                                                            <gmd:address>
+                                                                                <gmd:CI_Address>
+                                                                                    <gmd:deliveryPoint>
+                                                                                        <gco:CharacterString>JCOMMOPS&lt;br /&gt;Technopôle Brest Iroise&lt;br /&gt;Campus Ifremer&lt;br /&gt;1625 route de Sainte Anne&lt;br /&gt;Z.I. Pointe du Diable&lt;br /&gt;Plouzané - FRANCE&lt;br /&gt;</gco:CharacterString>
+                                                                                    </gmd:deliveryPoint>
+                                                                                    <gmd:country>
+                                                                                        <gco:CharacterString>United Nations</gco:CharacterString>
+                                                                                    </gmd:country>
+                                                                                    <gmd:electronicMailAddress>
+                                                                                        <gco:CharacterString>support@jcommops.org</gco:CharacterString>
+                                                                                    </gmd:electronicMailAddress>
+                                                                                </gmd:CI_Address>
+                                                                            </gmd:address>
+                                                                            <gmd:onlineResource>
+                                                                                <gmd:CI_OnlineResource>
+                                                                                    <gmd:linkage>
+                                                                                        <gmd:URL>http://www.jcommops.org</gmd:URL>
+                                                                                    </gmd:linkage>
+                                                                                </gmd:CI_OnlineResource>
+                                                                            </gmd:onlineResource>
+                                                                        </gmd:CI_Contact>
+                                                                    </gmd:contactInfo>
+                                                                    <gmd:role>
+                                                                        <gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="custodian"/>
+                                                                    </gmd:role>
+                                                                </gmd:CI_ResponsibleParty>
+                                                            </wmdr:responsibleParty>
+                                                        </wmdr:ResponsibleParty>
+                                                    </wmdr:responsibleParty>
+                                                    <wmdr:model>SONTEK_ARGONAUT_MD</wmdr:model>
+                                                    <wmdr:observingMethod xlink:href="http://codes.wmo.int/common/wmdr/ObservingMethod/"/>
+                                                </wmdr:Equipment>
+                                            </wmdr:deployedEquipment>
+                                            <wmdr:dataGeneration/>
+                                            <wmdr:validPeriod>
+                                                <gml:TimePeriod gml:id="omobs-timeperiod-validperiod-2483-467">
+                                                    <gml:beginPosition>2017-09-13T10:50:00Z</gml:beginPosition>
+                                                    <gml:endPosition/>
+                                                </gml:TimePeriod>
+                                            </wmdr:validPeriod>
+                                            <wmdr:heightAboveLocalReferenceSurface uom="m">0.0</wmdr:heightAboveLocalReferenceSurface>
+                                            <wmdr:localReferenceSurface/>
+                                            <wmdr:applicationArea/>
+                                            <wmdr:sourceOfObservation/>
+                                        </wmdr:Deployment>
+                                    </wmdr:deployment>
+                                </wmdr:Process>
+                            </om:procedure>
+                            <om:observedProperty xlink:href="Subsurface Current Speed"/>
+                            <om:featureOfInterest xsi:nil="true"/>
+                            <om:resultQuality/>
+                            <om:result xsi:type="wmdr:ResultSetType"/>
+                        </om:OM_Observation>
+                    </wmdr:observation>
+                </wmdr:ObservingCapability>
+            </wmdr:observation>
+            <wmdr:observation>
+                <wmdr:ObservingCapability gml:id="oc-2480-377">
+                    <gml:boundedBy xsi:nil="true"/>
+                    <wmdr:facility xlink:href="0-22000-36-5100303"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/OceanSITES"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/DBCP"/>
+                    <wmdr:observation>
+                        <om:OM_Observation gml:id="omobs-2480-377">
+                            <gml:boundedBy xsi:nil="true"/>
+                            <om:type xlink:href="http://codes.wmo.int/wmdr/featureOfInterest/point"/>
+                            <om:phenomenonTime>
+                                <gml:TimePeriod gml:id="omobs-timeperiod-2480-377">
+                                    <gml:beginPosition>2017-09-13T10:50:00Z</gml:beginPosition>
+                                    <gml:endPosition/>
+                                </gml:TimePeriod>
+                            </om:phenomenonTime>
+                            <om:resultTime/>
+                            <om:validTime/>
+                            <om:procedure>
+                                <wmdr:Process gml:id="process-2480-377">
+                                    <gml:boundedBy xsi:nil="true"/>
+                                    <wmdr:deployment>
+                                        <wmdr:Deployment gml:id="process-depl-2480-377">
+                                            <gml:boundedBy xsi:nil="true"/>
+                                            <wmdr:deployedEquipment>
+                                                <wmdr:Equipment gml:id="subequipment-105822">
+                                                    <gml:description/>
+                                                    <gml:boundedBy xsi:nil="true"/>
+                                                    <wmdr:responsibleParty>
+                                                        <wmdr:ResponsibleParty>
+                                                            <wmdr:responsibleParty>
+                                                                <gmd:CI_ResponsibleParty id="responsibleparty-14725-11">
+                                                                    <gmd:organisationName>
+                                                                        <gco:CharacterString>Rotonics Buoy Manufacture</gco:CharacterString>
+                                                                    </gmd:organisationName>
+                                                                    <gmd:contactInfo>
+                                                                        <gmd:CI_Contact>
+                                                                            <gmd:phone>
+                                                                                <gmd:CI_Telephone>
+                                                                                    <gmd:voice>
+                                                                                        <gco:CharacterString>(+1) 325-646-1566 </gco:CharacterString>
+                                                                                    </gmd:voice>
+                                                                                </gmd:CI_Telephone>
+                                                                            </gmd:phone>
+                                                                            <gmd:address>
+                                                                                <gmd:CI_Address>
+                                                                                    <gmd:deliveryPoint>
+                                                                                        <gco:CharacterString>2807 Stephen F. Austin Road&lt;br&gt;&#13;
+Brownwood, TX 76801&lt;br&gt;&#13;
+USA&#13;
+</gco:CharacterString>
+                                                                                    </gmd:deliveryPoint>
+                                                                                    <gmd:country>
+                                                                                        <gco:CharacterString>United States</gco:CharacterString>
+                                                                                    </gmd:country>
+                                                                                    <gmd:electronicMailAddress>
+                                                                                        <gco:CharacterString>jo.segura@rotonics.com</gco:CharacterString>
+                                                                                    </gmd:electronicMailAddress>
+                                                                                </gmd:CI_Address>
+                                                                            </gmd:address>
+                                                                            <gmd:onlineResource>
+                                                                                <gmd:CI_OnlineResource>
+                                                                                    <gmd:linkage>
+                                                                                        <gmd:URL>http://www.rotonics.com</gmd:URL>
+                                                                                    </gmd:linkage>
+                                                                                </gmd:CI_OnlineResource>
+                                                                            </gmd:onlineResource>
+                                                                        </gmd:CI_Contact>
+                                                                    </gmd:contactInfo>
+                                                                    <gmd:role>
+                                                                        <gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="custodian"/>
+                                                                    </gmd:role>
+                                                                </gmd:CI_ResponsibleParty>
+                                                            </wmdr:responsibleParty>
+                                                        </wmdr:ResponsibleParty>
+                                                    </wmdr:responsibleParty>
+                                                    <wmdr:manufacturer>Rotonics Buoy Manufacture</wmdr:manufacturer>
+                                                    <wmdr:model>ROTRONIC_MP101A</wmdr:model>
+                                                    <wmdr:observingMethod xlink:href="http://codes.wmo.int/common/wmdr/ObservingMethod/"/>
+                                                </wmdr:Equipment>
+                                            </wmdr:deployedEquipment>
+                                            <wmdr:dataGeneration/>
+                                            <wmdr:validPeriod>
+                                                <gml:TimePeriod gml:id="omobs-timeperiod-validperiod-2480-377">
+                                                    <gml:beginPosition>2017-09-13T10:50:00Z</gml:beginPosition>
+                                                    <gml:endPosition/>
+                                                </gml:TimePeriod>
+                                            </wmdr:validPeriod>
+                                            <wmdr:heightAboveLocalReferenceSurface uom="m">0.0</wmdr:heightAboveLocalReferenceSurface>
+                                            <wmdr:localReferenceSurface/>
+                                            <wmdr:applicationArea/>
+                                            <wmdr:sourceOfObservation/>
+                                        </wmdr:Deployment>
+                                    </wmdr:deployment>
+                                </wmdr:Process>
+                            </om:procedure>
+                            <om:observedProperty xlink:href="Relative Humidity"/>
+                            <om:featureOfInterest xsi:nil="true"/>
+                            <om:resultQuality/>
+                            <om:result xsi:type="wmdr:ResultSetType"/>
+                        </om:OM_Observation>
+                    </wmdr:observation>
+                </wmdr:ObservingCapability>
+            </wmdr:observation>
+            <wmdr:observation>
+                <wmdr:ObservingCapability gml:id="oc-2480-378">
+                    <gml:boundedBy xsi:nil="true"/>
+                    <wmdr:facility xlink:href="0-22000-36-5100303"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/OceanSITES"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/DBCP"/>
+                    <wmdr:observation>
+                        <om:OM_Observation gml:id="omobs-2480-378">
+                            <gml:boundedBy xsi:nil="true"/>
+                            <om:type xlink:href="http://codes.wmo.int/wmdr/featureOfInterest/point"/>
+                            <om:phenomenonTime>
+                                <gml:TimePeriod gml:id="omobs-timeperiod-2480-378">
+                                    <gml:beginPosition>2017-09-13T10:50:00Z</gml:beginPosition>
+                                    <gml:endPosition/>
+                                </gml:TimePeriod>
+                            </om:phenomenonTime>
+                            <om:resultTime/>
+                            <om:validTime/>
+                            <om:procedure>
+                                <wmdr:Process gml:id="process-2480-378">
+                                    <gml:boundedBy xsi:nil="true"/>
+                                    <wmdr:deployment>
+                                        <wmdr:Deployment gml:id="process-depl-2480-378">
+                                            <gml:boundedBy xsi:nil="true"/>
+                                            <wmdr:deployedEquipment>
+                                                <wmdr:Equipment gml:id="subequipment-105822-1">
+                                                    <gml:description/>
+                                                    <gml:boundedBy xsi:nil="true"/>
+                                                    <wmdr:responsibleParty>
+                                                        <wmdr:ResponsibleParty>
+                                                            <wmdr:responsibleParty>
+                                                                <gmd:CI_ResponsibleParty id="responsibleparty-14725-12">
+                                                                    <gmd:organisationName>
+                                                                        <gco:CharacterString>Rotonics Buoy Manufacture</gco:CharacterString>
+                                                                    </gmd:organisationName>
+                                                                    <gmd:contactInfo>
+                                                                        <gmd:CI_Contact>
+                                                                            <gmd:phone>
+                                                                                <gmd:CI_Telephone>
+                                                                                    <gmd:voice>
+                                                                                        <gco:CharacterString>(+1) 325-646-1566 </gco:CharacterString>
+                                                                                    </gmd:voice>
+                                                                                </gmd:CI_Telephone>
+                                                                            </gmd:phone>
+                                                                            <gmd:address>
+                                                                                <gmd:CI_Address>
+                                                                                    <gmd:deliveryPoint>
+                                                                                        <gco:CharacterString>2807 Stephen F. Austin Road&lt;br&gt;&#13;
+Brownwood, TX 76801&lt;br&gt;&#13;
+USA&#13;
+</gco:CharacterString>
+                                                                                    </gmd:deliveryPoint>
+                                                                                    <gmd:country>
+                                                                                        <gco:CharacterString>United States</gco:CharacterString>
+                                                                                    </gmd:country>
+                                                                                    <gmd:electronicMailAddress>
+                                                                                        <gco:CharacterString>jo.segura@rotonics.com</gco:CharacterString>
+                                                                                    </gmd:electronicMailAddress>
+                                                                                </gmd:CI_Address>
+                                                                            </gmd:address>
+                                                                            <gmd:onlineResource>
+                                                                                <gmd:CI_OnlineResource>
+                                                                                    <gmd:linkage>
+                                                                                        <gmd:URL>http://www.rotonics.com</gmd:URL>
+                                                                                    </gmd:linkage>
+                                                                                </gmd:CI_OnlineResource>
+                                                                            </gmd:onlineResource>
+                                                                        </gmd:CI_Contact>
+                                                                    </gmd:contactInfo>
+                                                                    <gmd:role>
+                                                                        <gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="custodian"/>
+                                                                    </gmd:role>
+                                                                </gmd:CI_ResponsibleParty>
+                                                            </wmdr:responsibleParty>
+                                                        </wmdr:ResponsibleParty>
+                                                    </wmdr:responsibleParty>
+                                                    <wmdr:manufacturer>Rotonics Buoy Manufacture</wmdr:manufacturer>
+                                                    <wmdr:model>ROTRONIC_MP101A</wmdr:model>
+                                                    <wmdr:observingMethod xlink:href="http://codes.wmo.int/common/wmdr/ObservingMethod/"/>
+                                                </wmdr:Equipment>
+                                            </wmdr:deployedEquipment>
+                                            <wmdr:dataGeneration/>
+                                            <wmdr:validPeriod>
+                                                <gml:TimePeriod gml:id="omobs-timeperiod-validperiod-2480-378">
+                                                    <gml:beginPosition>2017-09-13T10:50:00Z</gml:beginPosition>
+                                                    <gml:endPosition/>
+                                                </gml:TimePeriod>
+                                            </wmdr:validPeriod>
+                                            <wmdr:heightAboveLocalReferenceSurface uom="m">0.0</wmdr:heightAboveLocalReferenceSurface>
+                                            <wmdr:localReferenceSurface/>
+                                            <wmdr:applicationArea/>
+                                            <wmdr:sourceOfObservation/>
+                                        </wmdr:Deployment>
+                                    </wmdr:deployment>
+                                </wmdr:Process>
+                            </om:procedure>
+                            <om:observedProperty xlink:href="Air Temperature"/>
+                            <om:featureOfInterest xsi:nil="true"/>
+                            <om:resultQuality/>
+                            <om:result xsi:type="wmdr:ResultSetType"/>
+                        </om:OM_Observation>
+                    </wmdr:observation>
+                </wmdr:ObservingCapability>
+            </wmdr:observation>
+            <wmdr:observation>
+                <wmdr:ObservingCapability gml:id="oc-2482-455">
+                    <gml:boundedBy xsi:nil="true"/>
+                    <wmdr:facility xlink:href="0-22000-36-5100303"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/OceanSITES"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/DBCP"/>
+                    <wmdr:observation>
+                        <om:OM_Observation gml:id="omobs-2482-455">
+                            <gml:boundedBy xsi:nil="true"/>
+                            <om:type xlink:href="http://codes.wmo.int/wmdr/featureOfInterest/point"/>
+                            <om:phenomenonTime>
+                                <gml:TimePeriod gml:id="omobs-timeperiod-2482-455">
+                                    <gml:beginPosition>2017-09-13T10:50:00Z</gml:beginPosition>
+                                    <gml:endPosition/>
+                                </gml:TimePeriod>
+                            </om:phenomenonTime>
+                            <om:resultTime/>
+                            <om:validTime/>
+                            <om:procedure>
+                                <wmdr:Process gml:id="process-2482-455">
+                                    <gml:boundedBy xsi:nil="true"/>
+                                    <wmdr:deployment>
+                                        <wmdr:Deployment gml:id="process-depl-2482-455">
+                                            <gml:boundedBy xsi:nil="true"/>
+                                            <wmdr:deployedEquipment>
+                                                <wmdr:Equipment gml:id="subequipment-106059">
+                                                    <gml:description/>
+                                                    <gml:boundedBy xsi:nil="true"/>
+                                                    <wmdr:responsibleParty>
+                                                        <wmdr:ResponsibleParty>
+                                                            <wmdr:responsibleParty>
+                                                                <gmd:CI_ResponsibleParty id="responsibleparty-61-13">
+                                                                    <gmd:organisationName>
+                                                                        <gco:CharacterString>JCOMM in-situ Observations Programme Support Centre </gco:CharacterString>
+                                                                    </gmd:organisationName>
+                                                                    <gmd:contactInfo>
+                                                                        <gmd:CI_Contact>
+                                                                            <gmd:phone>
+                                                                                <gmd:CI_Telephone>
+                                                                                    <gmd:voice>
+                                                                                        <gco:CharacterString>+33 2 29 00 85 85</gco:CharacterString>
+                                                                                    </gmd:voice>
+                                                                                </gmd:CI_Telephone>
+                                                                            </gmd:phone>
+                                                                            <gmd:address>
+                                                                                <gmd:CI_Address>
+                                                                                    <gmd:deliveryPoint>
+                                                                                        <gco:CharacterString>JCOMMOPS&lt;br /&gt;Technopôle Brest Iroise&lt;br /&gt;Campus Ifremer&lt;br /&gt;1625 route de Sainte Anne&lt;br /&gt;Z.I. Pointe du Diable&lt;br /&gt;Plouzané - FRANCE&lt;br /&gt;</gco:CharacterString>
+                                                                                    </gmd:deliveryPoint>
+                                                                                    <gmd:country>
+                                                                                        <gco:CharacterString>United Nations</gco:CharacterString>
+                                                                                    </gmd:country>
+                                                                                    <gmd:electronicMailAddress>
+                                                                                        <gco:CharacterString>support@jcommops.org</gco:CharacterString>
+                                                                                    </gmd:electronicMailAddress>
+                                                                                </gmd:CI_Address>
+                                                                            </gmd:address>
+                                                                            <gmd:onlineResource>
+                                                                                <gmd:CI_OnlineResource>
+                                                                                    <gmd:linkage>
+                                                                                        <gmd:URL>http://www.jcommops.org</gmd:URL>
+                                                                                    </gmd:linkage>
+                                                                                </gmd:CI_OnlineResource>
+                                                                            </gmd:onlineResource>
+                                                                        </gmd:CI_Contact>
+                                                                    </gmd:contactInfo>
+                                                                    <gmd:role>
+                                                                        <gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="custodian"/>
+                                                                    </gmd:role>
+                                                                </gmd:CI_ResponsibleParty>
+                                                            </wmdr:responsibleParty>
+                                                        </wmdr:ResponsibleParty>
+                                                    </wmdr:responsibleParty>
+                                                    <wmdr:model>EPPLEY_PSP_W</wmdr:model>
+                                                    <wmdr:observingMethod xlink:href="http://codes.wmo.int/common/wmdr/ObservingMethod/"/>
+                                                </wmdr:Equipment>
+                                            </wmdr:deployedEquipment>
+                                            <wmdr:dataGeneration/>
+                                            <wmdr:validPeriod>
+                                                <gml:TimePeriod gml:id="omobs-timeperiod-validperiod-2482-455">
+                                                    <gml:beginPosition>2017-09-13T10:50:00Z</gml:beginPosition>
+                                                    <gml:endPosition/>
+                                                </gml:TimePeriod>
+                                            </wmdr:validPeriod>
+                                            <wmdr:heightAboveLocalReferenceSurface uom="m">0.0</wmdr:heightAboveLocalReferenceSurface>
+                                            <wmdr:localReferenceSurface/>
+                                            <wmdr:applicationArea/>
+                                            <wmdr:sourceOfObservation/>
+                                        </wmdr:Deployment>
+                                    </wmdr:deployment>
+                                </wmdr:Process>
+                            </om:procedure>
+                            <om:observedProperty xlink:href="CTD packge"/>
+                            <om:featureOfInterest xsi:nil="true"/>
+                            <om:resultQuality/>
+                            <om:result xsi:type="wmdr:ResultSetType"/>
+                        </om:OM_Observation>
+                    </wmdr:observation>
+                </wmdr:ObservingCapability>
+            </wmdr:observation>
+            <wmdr:observation>
+                <wmdr:ObservingCapability gml:id="oc-2481-352">
+                    <gml:boundedBy xsi:nil="true"/>
+                    <wmdr:facility xlink:href="0-22000-36-5100303"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/OceanSITES"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/DBCP"/>
+                    <wmdr:observation>
+                        <om:OM_Observation gml:id="omobs-2481-352">
+                            <gml:boundedBy xsi:nil="true"/>
+                            <om:type xlink:href="http://codes.wmo.int/wmdr/featureOfInterest/point"/>
+                            <om:phenomenonTime>
+                                <gml:TimePeriod gml:id="omobs-timeperiod-2481-352">
+                                    <gml:beginPosition>2017-09-13T10:50:00Z</gml:beginPosition>
+                                    <gml:endPosition/>
+                                </gml:TimePeriod>
+                            </om:phenomenonTime>
+                            <om:resultTime/>
+                            <om:validTime/>
+                            <om:procedure>
+                                <wmdr:Process gml:id="process-2481-352">
+                                    <gml:boundedBy xsi:nil="true"/>
+                                    <wmdr:deployment>
+                                        <wmdr:Deployment gml:id="process-depl-2481-352">
+                                            <gml:boundedBy xsi:nil="true"/>
+                                            <wmdr:deployedEquipment>
+                                                <wmdr:Equipment gml:id="subequipment-106296">
+                                                    <gml:description/>
+                                                    <gml:boundedBy xsi:nil="true"/>
+                                                    <wmdr:responsibleParty>
+                                                        <wmdr:ResponsibleParty>
+                                                            <wmdr:responsibleParty>
+                                                                <gmd:CI_ResponsibleParty id="responsibleparty-61-14">
+                                                                    <gmd:organisationName>
+                                                                        <gco:CharacterString>JCOMM in-situ Observations Programme Support Centre </gco:CharacterString>
+                                                                    </gmd:organisationName>
+                                                                    <gmd:contactInfo>
+                                                                        <gmd:CI_Contact>
+                                                                            <gmd:phone>
+                                                                                <gmd:CI_Telephone>
+                                                                                    <gmd:voice>
+                                                                                        <gco:CharacterString>+33 2 29 00 85 85</gco:CharacterString>
+                                                                                    </gmd:voice>
+                                                                                </gmd:CI_Telephone>
+                                                                            </gmd:phone>
+                                                                            <gmd:address>
+                                                                                <gmd:CI_Address>
+                                                                                    <gmd:deliveryPoint>
+                                                                                        <gco:CharacterString>JCOMMOPS&lt;br /&gt;Technopôle Brest Iroise&lt;br /&gt;Campus Ifremer&lt;br /&gt;1625 route de Sainte Anne&lt;br /&gt;Z.I. Pointe du Diable&lt;br /&gt;Plouzané - FRANCE&lt;br /&gt;</gco:CharacterString>
+                                                                                    </gmd:deliveryPoint>
+                                                                                    <gmd:country>
+                                                                                        <gco:CharacterString>United Nations</gco:CharacterString>
+                                                                                    </gmd:country>
+                                                                                    <gmd:electronicMailAddress>
+                                                                                        <gco:CharacterString>support@jcommops.org</gco:CharacterString>
+                                                                                    </gmd:electronicMailAddress>
+                                                                                </gmd:CI_Address>
+                                                                            </gmd:address>
+                                                                            <gmd:onlineResource>
+                                                                                <gmd:CI_OnlineResource>
+                                                                                    <gmd:linkage>
+                                                                                        <gmd:URL>http://www.jcommops.org</gmd:URL>
+                                                                                    </gmd:linkage>
+                                                                                </gmd:CI_OnlineResource>
+                                                                            </gmd:onlineResource>
+                                                                        </gmd:CI_Contact>
+                                                                    </gmd:contactInfo>
+                                                                    <gmd:role>
+                                                                        <gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="custodian"/>
+                                                                    </gmd:role>
+                                                                </gmd:CI_ResponsibleParty>
+                                                            </wmdr:responsibleParty>
+                                                        </wmdr:ResponsibleParty>
+                                                    </wmdr:responsibleParty>
+                                                    <wmdr:model>PAROSCIENTIFIC_MET1</wmdr:model>
+                                                    <wmdr:observingMethod xlink:href="http://codes.wmo.int/common/wmdr/ObservingMethod/"/>
+                                                </wmdr:Equipment>
+                                            </wmdr:deployedEquipment>
+                                            <wmdr:dataGeneration/>
+                                            <wmdr:validPeriod>
+                                                <gml:TimePeriod gml:id="omobs-timeperiod-validperiod-2481-352">
+                                                    <gml:beginPosition>2017-09-13T10:50:00Z</gml:beginPosition>
+                                                    <gml:endPosition/>
+                                                </gml:TimePeriod>
+                                            </wmdr:validPeriod>
+                                            <wmdr:heightAboveLocalReferenceSurface uom="m">0.0</wmdr:heightAboveLocalReferenceSurface>
+                                            <wmdr:localReferenceSurface/>
+                                            <wmdr:applicationArea/>
+                                            <wmdr:sourceOfObservation/>
+                                        </wmdr:Deployment>
+                                    </wmdr:deployment>
+                                </wmdr:Process>
+                            </om:procedure>
+                            <om:observedProperty xlink:href="Air Pressure"/>
+                            <om:featureOfInterest xsi:nil="true"/>
+                            <om:resultQuality/>
+                            <om:result xsi:type="wmdr:ResultSetType"/>
+                        </om:OM_Observation>
+                    </wmdr:observation>
+                </wmdr:ObservingCapability>
+            </wmdr:observation>
+        </wmdr:ObservingFacility>
+    </wmdr:facility>
+</wmdr:WIGOSMetadataRecord>
