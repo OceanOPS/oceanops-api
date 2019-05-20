@@ -182,7 +182,7 @@ public class Platform {
 		String wigosRef = this.getWIGOSIdentifier(ptf.getRef());
 		
 		CodeWithAuthorityType identifier = new CodeWithAuthorityType();
-		identifier.setValue("_" + wigosRef);
+		identifier.setValue(wigosRef);
 		identifier.setCodeSpace("http://data.wmo.int/");
 		
 		StringOrRefType description = new StringOrRefType();
@@ -255,7 +255,7 @@ public class Platform {
 		}
 		if(agency.getCountry() != null){
 			value = this.gcoOF.createCharacterStringPropertyType();
-			value.setCharacterString(this.gcoOF.createCharacterString(agency.getCountry().getNameLong()));
+			value.setCharacterString(this.gcoOF.createCharacterString(agency.getCountry().getCode3()));
 			address.setCountry(value);
 		}
 		
@@ -542,7 +542,7 @@ public class Platform {
 		String wigosID = getWIGOSIdentifier(ptf.getRef());
 		o.setId("_" + wigosID);
 		CodeWithAuthorityType value = new CodeWithAuthorityType();
-		value.setValue("_" + wigosID);
+		value.setValue(wigosID);
 		value.setCodeSpace("http://data.wmo.int");
 		o.setIdentifier(value);
 		CodeType name = new CodeType();
@@ -642,13 +642,13 @@ public class Platform {
 		}
 		
 		refType = this.gmlOF.createReferenceType();
-		refType.setHref("http://codes.wmo.int/common/wmdr/WMORegion/");
+		//refType.setHref("http://codes.wmo.int/common/wmdr/WMORegion/");
 		o.setWmoRegion(refType);
 		
 		Territory territory = new Territory();
 		TerritoryType territoryType = new TerritoryType();
 		refType = this.gmlOF.createReferenceType();
-		refType.setHref("http://codes.wmo.int/common/wmdr/TerritoryName/");
+		//refType.setHref("http://codes.wmo.int/common/wmdr/TerritoryName/");
 		territoryType.setTerritoryName(refType);
 		territory.setTerritory(territoryType);
 		o.getTerritory().add(territory);
@@ -727,7 +727,7 @@ public class Platform {
 		o.getProgramAffiliation().add(progAffiliation);
 
 		refType = new ReferenceType();
-		refType.setHref("http://codes.wmo.int/common/wmdr/FacilityType/" + ptf.getPtfModel().getName());
+		refType.setHref("http://codes.wmo.int/common/wmdr/FacilityType/" + ptf.getPtfModel().getPtfType().getWigosCode());
 		o.setFacilityType(refType);
 				
 		/*List<EquipmentPropertyType> equipments = o.getEquipment();
