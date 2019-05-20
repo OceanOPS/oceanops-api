@@ -29,7 +29,7 @@ public abstract class _Variable extends CayenneDataObject {
     public static final Property<String> NAME_SHORT = Property.create("nameShort", String.class);
     public static final Property<String> P01REF = Property.create("p01Ref", String.class);
     public static final Property<String> QC_REF = Property.create("qcRef", String.class);
-    public static final Property<Integer> WIGOS_REF = Property.create("wigosRef", Integer.class);
+    public static final Property<String> WIGOS_CODE = Property.create("wigosCode", String.class);
     public static final Property<List<CruiseVariable>> CRUISE_VARIABLES = Property.create("cruiseVariables", List.class);
     public static final Property<List<ObsVariable>> OBS_VARIABLES = Property.create("obsVariables", List.class);
     public static final Property<List<PtfVariable>> PTF_VARIABLES = Property.create("ptfVariables", List.class);
@@ -125,12 +125,11 @@ public abstract class _Variable extends CayenneDataObject {
         return (String)readProperty("qcRef");
     }
 
-    public void setWigosRef(int wigosRef) {
-        writeProperty("wigosRef", wigosRef);
+    public void setWigosCode(String wigosCode) {
+        writeProperty("wigosCode", wigosCode);
     }
-    public int getWigosRef() {
-        Object value = readProperty("wigosRef");
-        return (value != null) ? (Integer) value : 0;
+    public String getWigosCode() {
+        return (String)readProperty("wigosCode");
     }
 
     public void addToCruiseVariables(CruiseVariable obj) {
