@@ -19,7 +19,7 @@ public class VariableEntity implements Serializable{
 	private String nameShort;
 	private String cfRef;
 	private String argoRef;
-	private Integer wigosRef;
+	private String wigosCode;
 	private String p01Ref;
 
 	
@@ -36,7 +36,7 @@ public class VariableEntity implements Serializable{
 		this.setName(var.getName());
 		this.setNameShort(var.getNameShort());
 		this.setP01Ref(var.getP01Ref());
-		this.setWigosRef(var.getWigosRef());
+		this.setWigosCode(var.getWigosCode());
 	}
 	
 	@XmlElement
@@ -60,13 +60,13 @@ public class VariableEntity implements Serializable{
 	}
 
 	@XmlElement
-	public Integer getWigosRef() {
-		return wigosRef;
+	public String getWigosCode() {
+		return wigosCode;
 	}
 
 
-	public void setWigosRef(Integer wigosRef) {
-		this.wigosRef = wigosRef;
+	public void setWigosCode(String wigosCode) {
+		this.wigosCode = wigosCode;
 	}
 
 	@XmlElement
