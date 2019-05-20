@@ -438,7 +438,7 @@ public class Platform {
 		
 
 		refType = this.gmlOF.createReferenceType();
-		refType.setHref("http://codes.wmo.int/common/wmdr/ObservingMethod/");
+		refType.setHref("http://codes.wmo.int/common/wmdr/ObservingMethod/" + "341");
 		currentEquipmentType.setObservingMethod(refType);
 		
 		
@@ -523,7 +523,7 @@ public class Platform {
 		
 
 		refType = this.gmlOF.createReferenceType();
-		refType.setHref("http://codes.wmo.int/common/wmdr/ObservingMethod/");
+		refType.setHref("http://codes.wmo.int/common/wmdr/ObservingMethod/" + "341");
 		currentEquipmentType.setObservingMethod(refType);
 		
 		currentEquipment.setEquipment(currentEquipmentType);
@@ -765,7 +765,7 @@ public class Platform {
 				omobs.setId("omobs-" + sm.getId() + "-" + st.getId());
 			
 				ReferenceType refType = this.gmlOF.createReferenceType();
-				refType.setHref(st.getVariable().getName());
+				refType.setHref("http://codes.wmo.int/wmdr/ObservedVariable/" + st.getVariable().getWigosCode());
 				omobs.setObservedProperty(refType);
 				
 				ProcessType process = this.wmdrOF.createProcessType();
