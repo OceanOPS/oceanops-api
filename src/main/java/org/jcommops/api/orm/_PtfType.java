@@ -21,6 +21,7 @@ public abstract class _PtfType extends CayenneDataObject {
     public static final Property<Integer> ID = Property.create("id", Integer.class);
     public static final Property<String> NAME = Property.create("name", String.class);
     public static final Property<String> NAME_SHORT = Property.create("nameShort", String.class);
+    public static final Property<String> WIGOS_CODE = Property.create("wigosCode", String.class);
     public static final Property<Image> IMAGE = Property.create("image", Image.class);
     public static final Property<PtfFamily> PTF_FAMILY = Property.create("ptfFamily", PtfFamily.class);
     public static final Property<List<PtfModel>> PTF_MODELS = Property.create("ptfModels", List.class);
@@ -53,6 +54,13 @@ public abstract class _PtfType extends CayenneDataObject {
     }
     public String getNameShort() {
         return (String)readProperty("nameShort");
+    }
+
+    public void setWigosCode(String wigosCode) {
+        writeProperty("wigosCode", wigosCode);
+    }
+    public String getWigosCode() {
+        return (String)readProperty("wigosCode");
     }
 
     public void setImage(Image image) {
