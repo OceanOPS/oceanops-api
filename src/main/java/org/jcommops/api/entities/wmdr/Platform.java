@@ -635,7 +635,7 @@ public class Platform {
 		responsibleParty.setResponsibleParty(responsiblePartyType);
 		o.getResponsibleParty().add(responsibleParty);
 
-		o.setDateEstablished(Utils.getDateAsXmlGregCal(ptf.getUpdateDate()));
+		o.setDateEstablished(Utils.getDateAsXmlGregCal(ptf.getPtfDepl().getDeplDate()));
 		
 		if(ptf.getEndingDate() != null){
 			o.setDateClosed(Utils.getDateAsXmlGregCal(ptf.getEndingDate()));
