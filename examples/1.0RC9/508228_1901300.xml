@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <wmdr:WIGOSMetadataRecord gml:id="record_0-22000-0-1901300" xsi:schemaLocation="http://def.wmo.int/wmdr/2017 http://schemas.wmo.int/wmdr/1.0RC9/wmdr.xsd" xmlns:sams="http://www.opengis.net/samplingSpatial/2.0" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:opm="http://def.wmo.int/opm/2013" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:metce="http://def.wmo.int/metce/2013" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:wmdr="http://def.wmo.int/wmdr/2017" xmlns:gmx="http://www.isotc211.org/2005/gmx" xmlns:sam="http://www.opengis.net/sampling/2.0" xmlns:om="http://www.opengis.net/om/2.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gmd="http://www.isotc211.org/2005/gmd">
     <gml:description/>
-    <gml:identifier codeSpace="http://data.wmo.int/">_0-22000-0-1901300</gml:identifier>
+    <gml:identifier codeSpace="http://data.wmo.int/">0-22000-0-1901300</gml:identifier>
     <gml:boundedBy xsi:nil="true"/>
     <wmdr:headerInformation>
         <wmdr:Header>
-            <wmdr:fileDateTime>2019-04-29T23:37:08.000Z</wmdr:fileDateTime>
+            <wmdr:fileDateTime>2019-05-19T20:36:50.000Z</wmdr:fileDateTime>
             <wmdr:recordOwner>
                 <gmd:CI_ResponsibleParty id="responsibleparty-61-1">
                     <gmd:organisationName>
@@ -26,7 +26,7 @@
                                         <gco:CharacterString>JCOMMOPS&lt;br /&gt;Technopôle Brest Iroise&lt;br /&gt;Campus Ifremer&lt;br /&gt;1625 route de Sainte Anne&lt;br /&gt;Z.I. Pointe du Diable&lt;br /&gt;Plouzané - FRANCE&lt;br /&gt;</gco:CharacterString>
                                     </gmd:deliveryPoint>
                                     <gmd:country>
-                                        <gco:CharacterString>United Nations</gco:CharacterString>
+                                        <gco:CharacterString xsi:nil="true"/>
                                     </gmd:country>
                                     <gmd:electronicMailAddress>
                                         <gco:CharacterString>support@jcommops.org</gco:CharacterString>
@@ -52,7 +52,7 @@
     <wmdr:facility>
         <wmdr:ObservingFacility gml:id="_0-22000-0-1901300">
             <gml:description/>
-            <gml:identifier codeSpace="http://data.wmo.int">_0-22000-0-1901300</gml:identifier>
+            <gml:identifier codeSpace="http://data.wmo.int">0-22000-0-1901300</gml:identifier>
             <gml:name>1901300</gml:name>
             <gml:boundedBy xsi:nil="true"/>
             <wmdr:responsibleParty>
@@ -79,7 +79,7 @@ FitzRoy Road Exeter Devon EX1 3PB&lt;br&gt;&#13;
 United Kingdom&lt;br&gt;</gco:CharacterString>
                                             </gmd:deliveryPoint>
                                             <gmd:country>
-                                                <gco:CharacterString>United Kingdom</gco:CharacterString>
+                                                <gco:CharacterString>GBR</gco:CharacterString>
                                             </gmd:country>
                                         </gmd:CI_Address>
                                     </gmd:address>
@@ -103,13 +103,13 @@ United Kingdom&lt;br&gt;</gco:CharacterString>
                 <wmdr:GeospatialLocation>
                     <wmdr:geoLocation>
                         <gml:Point srsName="http://www.opengis.net/def/crs/EPSG/0/4979" gml:id="_0-22000-0-1901300-LatestLocationGeometry">
-                            <gml:coordinates>-38.7171 36.1426 0.0000</gml:coordinates>
+                            <gml:coordinates>-38.1792 39.1480 0.0000</gml:coordinates>
                         </gml:Point>
                     </wmdr:geoLocation>
                     <wmdr:geopositioningMethod xlink:href="http://codes.wmo.int/common/wmdr/GeopositioningMethod/OBSERVATIONS"/>
                     <wmdr:validPeriod>
                         <gml:TimePeriod gml:id="_0-22000-0-1901300-LatestLocationTimePeriod">
-                            <gml:beginPosition>2019-04-30T00:03:30Z</gml:beginPosition>
+                            <gml:beginPosition>2019-05-20T01:06:56Z</gml:beginPosition>
                             <gml:endPosition/>
                         </gml:TimePeriod>
                     </wmdr:validPeriod>
@@ -122,12 +122,12 @@ United Kingdom&lt;br&gt;</gco:CharacterString>
                     </gmd:linkage>
                 </gmd:CI_OnlineResource>
             </wmdr:onlineResource>
-            <wmdr:facilityType xlink:href="http://codes.wmo.int/common/wmdr/FacilityType/APEX"/>
-            <wmdr:dateEstablished>2019-04-29Z</wmdr:dateEstablished>
-            <wmdr:wmoRegion xlink:href="http://codes.wmo.int/common/wmdr/WMORegion/"/>
+            <wmdr:facilityType xlink:href="http://codes.wmo.int/common/wmdr/FacilityType/underwaterMobile"/>
+            <wmdr:dateEstablished>2013-03-20Z</wmdr:dateEstablished>
+            <wmdr:wmoRegion/>
             <wmdr:territory>
                 <wmdr:Territory>
-                    <wmdr:territoryName xlink:href="http://codes.wmo.int/common/wmdr/TerritoryName/"/>
+                    <wmdr:territoryName/>
                 </wmdr:Territory>
             </wmdr:territory>
             <wmdr:programAffiliation>
@@ -135,7 +135,7 @@ United Kingdom&lt;br&gt;</gco:CharacterString>
                     <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/Argo"/>
                     <wmdr:reportingStatus>
                         <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/REGISTERED"/>
+                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/preOperational"/>
                             <wmdr:validPeriod>
                                 <gml:TimePeriod gml:id="_0-22000-0-1901300-StatusChangingDateTimePeriod-1">
                                     <gml:beginPosition>2013-04-08T13:52:23Z</gml:beginPosition>
@@ -146,7 +146,7 @@ United Kingdom&lt;br&gt;</gco:CharacterString>
                     </wmdr:reportingStatus>
                     <wmdr:reportingStatus>
                         <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/INACTIVE"/>
+                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/nonReporting"/>
                             <wmdr:validPeriod>
                                 <gml:TimePeriod gml:id="_0-22000-0-1901300-StatusChangingDateTimePeriod-2">
                                     <gml:beginPosition>2013-03-21T16:13:36Z</gml:beginPosition>
@@ -157,7 +157,7 @@ United Kingdom&lt;br&gt;</gco:CharacterString>
                     </wmdr:reportingStatus>
                     <wmdr:reportingStatus>
                         <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/INACTIVE"/>
+                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/nonReporting"/>
                             <wmdr:validPeriod>
                                 <gml:TimePeriod gml:id="_0-22000-0-1901300-StatusChangingDateTimePeriod-3">
                                     <gml:beginPosition>2016-01-20T00:45:53Z</gml:beginPosition>
@@ -168,7 +168,7 @@ United Kingdom&lt;br&gt;</gco:CharacterString>
                     </wmdr:reportingStatus>
                     <wmdr:reportingStatus>
                         <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/OPERATIONAL"/>
+                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/operational"/>
                             <wmdr:validPeriod>
                                 <gml:TimePeriod gml:id="_0-22000-0-1901300-StatusChangingDateTimePeriod-4">
                                     <gml:beginPosition>2013-03-21T16:13:36Z</gml:beginPosition>
@@ -179,7 +179,7 @@ United Kingdom&lt;br&gt;</gco:CharacterString>
                     </wmdr:reportingStatus>
                     <wmdr:reportingStatus>
                         <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/OPERATIONAL"/>
+                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/operational"/>
                             <wmdr:validPeriod>
                                 <gml:TimePeriod gml:id="_0-22000-0-1901300-StatusChangingDateTimePeriod-5">
                                     <gml:beginPosition>2015-11-07T00:28:52Z</gml:beginPosition>
@@ -190,7 +190,7 @@ United Kingdom&lt;br&gt;</gco:CharacterString>
                     </wmdr:reportingStatus>
                     <wmdr:reportingStatus>
                         <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/OPERATIONAL"/>
+                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/operational"/>
                             <wmdr:validPeriod>
                                 <gml:TimePeriod gml:id="_0-22000-0-1901300-StatusChangingDateTimePeriod-6">
                                     <gml:beginPosition>2016-01-26T09:26:40Z</gml:beginPosition>
@@ -206,7 +206,7 @@ United Kingdom&lt;br&gt;</gco:CharacterString>
                     <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/Argo UK"/>
                     <wmdr:reportingStatus>
                         <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/REGISTERED"/>
+                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/preOperational"/>
                             <wmdr:validPeriod>
                                 <gml:TimePeriod gml:id="_0-22000-0-1901300-StatusChangingDateTimePeriod-7">
                                     <gml:beginPosition>2013-04-08T13:52:23Z</gml:beginPosition>
@@ -217,7 +217,7 @@ United Kingdom&lt;br&gt;</gco:CharacterString>
                     </wmdr:reportingStatus>
                     <wmdr:reportingStatus>
                         <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/INACTIVE"/>
+                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/nonReporting"/>
                             <wmdr:validPeriod>
                                 <gml:TimePeriod gml:id="_0-22000-0-1901300-StatusChangingDateTimePeriod-8">
                                     <gml:beginPosition>2013-03-21T16:13:36Z</gml:beginPosition>
@@ -228,7 +228,7 @@ United Kingdom&lt;br&gt;</gco:CharacterString>
                     </wmdr:reportingStatus>
                     <wmdr:reportingStatus>
                         <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/INACTIVE"/>
+                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/nonReporting"/>
                             <wmdr:validPeriod>
                                 <gml:TimePeriod gml:id="_0-22000-0-1901300-StatusChangingDateTimePeriod-9">
                                     <gml:beginPosition>2016-01-20T00:45:53Z</gml:beginPosition>
@@ -239,7 +239,7 @@ United Kingdom&lt;br&gt;</gco:CharacterString>
                     </wmdr:reportingStatus>
                     <wmdr:reportingStatus>
                         <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/OPERATIONAL"/>
+                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/operational"/>
                             <wmdr:validPeriod>
                                 <gml:TimePeriod gml:id="_0-22000-0-1901300-StatusChangingDateTimePeriod-10">
                                     <gml:beginPosition>2013-03-21T16:13:36Z</gml:beginPosition>
@@ -250,7 +250,7 @@ United Kingdom&lt;br&gt;</gco:CharacterString>
                     </wmdr:reportingStatus>
                     <wmdr:reportingStatus>
                         <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/OPERATIONAL"/>
+                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/operational"/>
                             <wmdr:validPeriod>
                                 <gml:TimePeriod gml:id="_0-22000-0-1901300-StatusChangingDateTimePeriod-11">
                                     <gml:beginPosition>2015-11-07T00:28:52Z</gml:beginPosition>
@@ -261,7 +261,7 @@ United Kingdom&lt;br&gt;</gco:CharacterString>
                     </wmdr:reportingStatus>
                     <wmdr:reportingStatus>
                         <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/OPERATIONAL"/>
+                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/operational"/>
                             <wmdr:validPeriod>
                                 <gml:TimePeriod gml:id="_0-22000-0-1901300-StatusChangingDateTimePeriod-12">
                                     <gml:beginPosition>2016-01-26T09:26:40Z</gml:beginPosition>
@@ -323,7 +323,7 @@ Bellevue, Washington  98005 &lt;br&gt;
 USA</gco:CharacterString>
                                                                                     </gmd:deliveryPoint>
                                                                                     <gmd:country>
-                                                                                        <gco:CharacterString>United States</gco:CharacterString>
+                                                                                        <gco:CharacterString>USA</gco:CharacterString>
                                                                                     </gmd:country>
                                                                                     <gmd:electronicMailAddress>
                                                                                         <gco:CharacterString>seabird@seabird.com</gco:CharacterString>
@@ -349,7 +349,7 @@ USA</gco:CharacterString>
                                                     <wmdr:manufacturer>Sea-Bird Electronics, Inc.</wmdr:manufacturer>
                                                     <wmdr:model>SBE41</wmdr:model>
                                                     <wmdr:serialNumber>5346</wmdr:serialNumber>
-                                                    <wmdr:observingMethod xlink:href="http://codes.wmo.int/common/wmdr/ObservingMethod/"/>
+                                                    <wmdr:observingMethod xlink:href="http://codes.wmo.int/common/wmdr/ObservingMethod/341"/>
                                                 </wmdr:Equipment>
                                             </wmdr:deployedEquipment>
                                             <wmdr:dataGeneration/>
@@ -367,7 +367,7 @@ USA</gco:CharacterString>
                                     </wmdr:deployment>
                                 </wmdr:Process>
                             </om:procedure>
-                            <om:observedProperty xlink:href="Subsurface Pressure"/>
+                            <om:observedProperty xlink:href="http://codes.wmo.int/wmdr/ObservedVariable/18"/>
                             <om:featureOfInterest xsi:nil="true"/>
                             <om:resultQuality/>
                             <om:result xsi:type="wmdr:ResultSetType"/>
@@ -426,7 +426,7 @@ Bellevue, Washington  98005 &lt;br&gt;
 USA</gco:CharacterString>
                                                                                     </gmd:deliveryPoint>
                                                                                     <gmd:country>
-                                                                                        <gco:CharacterString>United States</gco:CharacterString>
+                                                                                        <gco:CharacterString>USA</gco:CharacterString>
                                                                                     </gmd:country>
                                                                                     <gmd:electronicMailAddress>
                                                                                         <gco:CharacterString>seabird@seabird.com</gco:CharacterString>
@@ -452,7 +452,7 @@ USA</gco:CharacterString>
                                                     <wmdr:manufacturer>Sea-Bird Electronics, Inc.</wmdr:manufacturer>
                                                     <wmdr:model>SBE41</wmdr:model>
                                                     <wmdr:serialNumber>5346</wmdr:serialNumber>
-                                                    <wmdr:observingMethod xlink:href="http://codes.wmo.int/common/wmdr/ObservingMethod/"/>
+                                                    <wmdr:observingMethod xlink:href="http://codes.wmo.int/common/wmdr/ObservingMethod/341"/>
                                                 </wmdr:Equipment>
                                             </wmdr:deployedEquipment>
                                             <wmdr:dataGeneration/>
@@ -470,7 +470,7 @@ USA</gco:CharacterString>
                                     </wmdr:deployment>
                                 </wmdr:Process>
                             </om:procedure>
-                            <om:observedProperty xlink:href="Subsurface Salinity"/>
+                            <om:observedProperty xlink:href="http://codes.wmo.int/wmdr/ObservedVariable/91"/>
                             <om:featureOfInterest xsi:nil="true"/>
                             <om:resultQuality/>
                             <om:result xsi:type="wmdr:ResultSetType"/>
@@ -529,7 +529,7 @@ Bellevue, Washington  98005 &lt;br&gt;
 USA</gco:CharacterString>
                                                                                     </gmd:deliveryPoint>
                                                                                     <gmd:country>
-                                                                                        <gco:CharacterString>United States</gco:CharacterString>
+                                                                                        <gco:CharacterString>USA</gco:CharacterString>
                                                                                     </gmd:country>
                                                                                     <gmd:electronicMailAddress>
                                                                                         <gco:CharacterString>seabird@seabird.com</gco:CharacterString>
@@ -555,7 +555,7 @@ USA</gco:CharacterString>
                                                     <wmdr:manufacturer>Sea-Bird Electronics, Inc.</wmdr:manufacturer>
                                                     <wmdr:model>SBE41</wmdr:model>
                                                     <wmdr:serialNumber>5346</wmdr:serialNumber>
-                                                    <wmdr:observingMethod xlink:href="http://codes.wmo.int/common/wmdr/ObservingMethod/"/>
+                                                    <wmdr:observingMethod xlink:href="http://codes.wmo.int/common/wmdr/ObservingMethod/341"/>
                                                 </wmdr:Equipment>
                                             </wmdr:deployedEquipment>
                                             <wmdr:dataGeneration/>
@@ -573,7 +573,7 @@ USA</gco:CharacterString>
                                     </wmdr:deployment>
                                 </wmdr:Process>
                             </om:procedure>
-                            <om:observedProperty xlink:href="Subsurface Temperature"/>
+                            <om:observedProperty xlink:href="http://codes.wmo.int/wmdr/ObservedVariable/94"/>
                             <om:featureOfInterest xsi:nil="true"/>
                             <om:resultQuality/>
                             <om:result xsi:type="wmdr:ResultSetType"/>
