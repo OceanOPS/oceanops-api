@@ -672,7 +672,7 @@ public class Platform {
 					reportingStatusType = this.wmdrOF.createReportingStatusType();
 					// TODO : check WMO code tables
 					refType = new ReferenceType();
-					refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + ptfPtfStatus.getPtfStatus().getName());
+					refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + ptfPtfStatus.getPtfStatus().getWigosCode());
 					reportingStatusType.setReportingStatus(refType);
 					
 					timePeriodProperty = new TimePeriodPropertyType();
@@ -706,7 +706,7 @@ public class Platform {
 			reportingStatusType = this.wmdrOF.createReportingStatusType();
 			// TODO : check WMO code tables
 			refType = new ReferenceType();
-			refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + ptfPtfStatus.getPtfStatus().getName());
+			refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + ptfPtfStatus.getPtfStatus().getWigosCode());
 			reportingStatusType.setReportingStatus(refType);
 			
 			timePeriodProperty = new TimePeriodPropertyType();

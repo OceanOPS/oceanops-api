@@ -22,6 +22,7 @@ public abstract class _PtfStatus extends CayenneDataObject {
     public static final Property<String> NAME = Property.create("name", String.class);
     public static final Property<String> NAME_SHORT = Property.create("nameShort", String.class);
     public static final Property<Integer> RANK = Property.create("rank", Integer.class);
+    public static final Property<String> WIGOS_CODE = Property.create("wigosCode", String.class);
     public static final Property<List<Ptf>> PTFS = Property.create("ptfs", List.class);
 
     public void setDescription(String description) {
@@ -59,6 +60,13 @@ public abstract class _PtfStatus extends CayenneDataObject {
     public int getRank() {
         Object value = readProperty("rank");
         return (value != null) ? (Integer) value : 0;
+    }
+
+    public void setWigosCode(String wigosCode) {
+        writeProperty("wigosCode", wigosCode);
+    }
+    public String getWigosCode() {
+        return (String)readProperty("wigosCode");
     }
 
     public void addToPtfs(Ptf obj) {
