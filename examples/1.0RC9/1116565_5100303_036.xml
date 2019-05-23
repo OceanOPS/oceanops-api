@@ -7,7 +7,7 @@
         <wmdr:Header>
             <wmdr:fileDateTime>2019-02-27T14:58:28.000Z</wmdr:fileDateTime>
             <wmdr:recordOwner>
-                <gmd:CI_ResponsibleParty id="responsibleparty-61-1">
+                <gmd:CI_ResponsibleParty id="responsibleparty-61-1" uuid="4588">
                     <gmd:organisationName>
                         <gco:CharacterString>JCOMM in-situ Observations Programme Support Centre </gco:CharacterString>
                     </gmd:organisationName>
@@ -23,10 +23,10 @@
                             <gmd:address>
                                 <gmd:CI_Address>
                                     <gmd:deliveryPoint>
-                                        <gco:CharacterString>JCOMMOPS&lt;br /&gt;Technopôle Brest Iroise&lt;br /&gt;Campus Ifremer&lt;br /&gt;1625 route de Sainte Anne&lt;br /&gt;Z.I. Pointe du Diable&lt;br /&gt;Plouzané - FRANCE&lt;br /&gt;</gco:CharacterString>
+                                        <gco:CharacterString>JCOMMOPS - Technopôle Brest Iroise - Campus Ifremer - 1625 route de Sainte Anne - Z.I. Pointe du Diable - Plouzané - FRANCE - </gco:CharacterString>
                                     </gmd:deliveryPoint>
                                     <gmd:country>
-                                        <gco:CharacterString xsi:nil="true"/>
+                                        <gco:CharacterString>FRA</gco:CharacterString>
                                     </gmd:country>
                                     <gmd:electronicMailAddress>
                                         <gco:CharacterString>support@jcommops.org</gco:CharacterString>
@@ -36,7 +36,7 @@
                             <gmd:onlineResource>
                                 <gmd:CI_OnlineResource>
                                     <gmd:linkage>
-                                        <gmd:URL>http://www.jcommops.org</gmd:URL>
+                                        <gmd:URL>https://www.jcommops.org</gmd:URL>
                                     </gmd:linkage>
                                 </gmd:CI_OnlineResource>
                             </gmd:onlineResource>
@@ -98,7 +98,7 @@
                     <wmdr:geopositioningMethod xlink:href="http://codes.wmo.int/common/wmdr/GeopositioningMethod/"/>
                     <wmdr:validPeriod>
                         <gml:TimePeriod gml:id="_0-22000-36-5100303-LatestLocationTimePeriod">
-                            <gml:beginPosition>2019-05-12T23:00:00Z</gml:beginPosition>
+                            <gml:beginPosition>2019-05-22T23:00:00Z</gml:beginPosition>
                             <gml:endPosition/>
                         </gml:TimePeriod>
                     </wmdr:validPeriod>
@@ -413,8 +413,8 @@
                                                                             <gmd:address>
                                                                                 <gmd:CI_Address>
                                                                                     <gmd:deliveryPoint>
-                                                                                        <gco:CharacterString>1808 136th Place NE&lt;br&gt;
-Bellevue, Washington  98005 &lt;br&gt;
+                                                                                        <gco:CharacterString>1808 136th Place NE - 
+Bellevue, Washington  98005  - 
 USA</gco:CharacterString>
                                                                                     </gmd:deliveryPoint>
                                                                                     <gmd:country>
@@ -516,8 +516,8 @@ USA</gco:CharacterString>
                                                                             <gmd:address>
                                                                                 <gmd:CI_Address>
                                                                                     <gmd:deliveryPoint>
-                                                                                        <gco:CharacterString>1808 136th Place NE&lt;br&gt;
-Bellevue, Washington  98005 &lt;br&gt;
+                                                                                        <gco:CharacterString>1808 136th Place NE - 
+Bellevue, Washington  98005  - 
 USA</gco:CharacterString>
                                                                                     </gmd:deliveryPoint>
                                                                                     <gmd:country>
@@ -619,8 +619,8 @@ USA</gco:CharacterString>
                                                                             <gmd:address>
                                                                                 <gmd:CI_Address>
                                                                                     <gmd:deliveryPoint>
-                                                                                        <gco:CharacterString>1808 136th Place NE&lt;br&gt;
-Bellevue, Washington  98005 &lt;br&gt;
+                                                                                        <gco:CharacterString>1808 136th Place NE - 
+Bellevue, Washington  98005  - 
 USA</gco:CharacterString>
                                                                                     </gmd:deliveryPoint>
                                                                                     <gmd:country>
@@ -706,7 +706,7 @@ USA</gco:CharacterString>
                                                     <wmdr:responsibleParty>
                                                         <wmdr:ResponsibleParty>
                                                             <wmdr:responsibleParty>
-                                                                <gmd:CI_ResponsibleParty id="responsibleparty-61-8">
+                                                                <gmd:CI_ResponsibleParty id="responsibleparty-61-8" uuid="4588">
                                                                     <gmd:organisationName>
                                                                         <gco:CharacterString>JCOMM in-situ Observations Programme Support Centre </gco:CharacterString>
                                                                     </gmd:organisationName>
@@ -722,10 +722,10 @@ USA</gco:CharacterString>
                                                                             <gmd:address>
                                                                                 <gmd:CI_Address>
                                                                                     <gmd:deliveryPoint>
-                                                                                        <gco:CharacterString>JCOMMOPS&lt;br /&gt;Technopôle Brest Iroise&lt;br /&gt;Campus Ifremer&lt;br /&gt;1625 route de Sainte Anne&lt;br /&gt;Z.I. Pointe du Diable&lt;br /&gt;Plouzané - FRANCE&lt;br /&gt;</gco:CharacterString>
+                                                                                        <gco:CharacterString>JCOMMOPS - Technopôle Brest Iroise - Campus Ifremer - 1625 route de Sainte Anne - Z.I. Pointe du Diable - Plouzané - FRANCE - </gco:CharacterString>
                                                                                     </gmd:deliveryPoint>
                                                                                     <gmd:country>
-                                                                                        <gco:CharacterString xsi:nil="true"/>
+                                                                                        <gco:CharacterString>FRA</gco:CharacterString>
                                                                                     </gmd:country>
                                                                                     <gmd:electronicMailAddress>
                                                                                         <gco:CharacterString>support@jcommops.org</gco:CharacterString>
@@ -735,7 +735,7 @@ USA</gco:CharacterString>
                                                                             <gmd:onlineResource>
                                                                                 <gmd:CI_OnlineResource>
                                                                                     <gmd:linkage>
-                                                                                        <gmd:URL>http://www.jcommops.org</gmd:URL>
+                                                                                        <gmd:URL>https://www.jcommops.org</gmd:URL>
                                                                                     </gmd:linkage>
                                                                                 </gmd:CI_OnlineResource>
                                                                             </gmd:onlineResource>
@@ -806,7 +806,7 @@ USA</gco:CharacterString>
                                                     <wmdr:responsibleParty>
                                                         <wmdr:ResponsibleParty>
                                                             <wmdr:responsibleParty>
-                                                                <gmd:CI_ResponsibleParty id="responsibleparty-61-9">
+                                                                <gmd:CI_ResponsibleParty id="responsibleparty-61-9" uuid="4588">
                                                                     <gmd:organisationName>
                                                                         <gco:CharacterString>JCOMM in-situ Observations Programme Support Centre </gco:CharacterString>
                                                                     </gmd:organisationName>
@@ -822,10 +822,10 @@ USA</gco:CharacterString>
                                                                             <gmd:address>
                                                                                 <gmd:CI_Address>
                                                                                     <gmd:deliveryPoint>
-                                                                                        <gco:CharacterString>JCOMMOPS&lt;br /&gt;Technopôle Brest Iroise&lt;br /&gt;Campus Ifremer&lt;br /&gt;1625 route de Sainte Anne&lt;br /&gt;Z.I. Pointe du Diable&lt;br /&gt;Plouzané - FRANCE&lt;br /&gt;</gco:CharacterString>
+                                                                                        <gco:CharacterString>JCOMMOPS - Technopôle Brest Iroise - Campus Ifremer - 1625 route de Sainte Anne - Z.I. Pointe du Diable - Plouzané - FRANCE - </gco:CharacterString>
                                                                                     </gmd:deliveryPoint>
                                                                                     <gmd:country>
-                                                                                        <gco:CharacterString xsi:nil="true"/>
+                                                                                        <gco:CharacterString>FRA</gco:CharacterString>
                                                                                     </gmd:country>
                                                                                     <gmd:electronicMailAddress>
                                                                                         <gco:CharacterString>support@jcommops.org</gco:CharacterString>
@@ -835,7 +835,7 @@ USA</gco:CharacterString>
                                                                             <gmd:onlineResource>
                                                                                 <gmd:CI_OnlineResource>
                                                                                     <gmd:linkage>
-                                                                                        <gmd:URL>http://www.jcommops.org</gmd:URL>
+                                                                                        <gmd:URL>https://www.jcommops.org</gmd:URL>
                                                                                     </gmd:linkage>
                                                                                 </gmd:CI_OnlineResource>
                                                                             </gmd:onlineResource>
@@ -906,7 +906,7 @@ USA</gco:CharacterString>
                                                     <wmdr:responsibleParty>
                                                         <wmdr:ResponsibleParty>
                                                             <wmdr:responsibleParty>
-                                                                <gmd:CI_ResponsibleParty id="responsibleparty-61-10">
+                                                                <gmd:CI_ResponsibleParty id="responsibleparty-61-10" uuid="4588">
                                                                     <gmd:organisationName>
                                                                         <gco:CharacterString>JCOMM in-situ Observations Programme Support Centre </gco:CharacterString>
                                                                     </gmd:organisationName>
@@ -922,10 +922,10 @@ USA</gco:CharacterString>
                                                                             <gmd:address>
                                                                                 <gmd:CI_Address>
                                                                                     <gmd:deliveryPoint>
-                                                                                        <gco:CharacterString>JCOMMOPS&lt;br /&gt;Technopôle Brest Iroise&lt;br /&gt;Campus Ifremer&lt;br /&gt;1625 route de Sainte Anne&lt;br /&gt;Z.I. Pointe du Diable&lt;br /&gt;Plouzané - FRANCE&lt;br /&gt;</gco:CharacterString>
+                                                                                        <gco:CharacterString>JCOMMOPS - Technopôle Brest Iroise - Campus Ifremer - 1625 route de Sainte Anne - Z.I. Pointe du Diable - Plouzané - FRANCE - </gco:CharacterString>
                                                                                     </gmd:deliveryPoint>
                                                                                     <gmd:country>
-                                                                                        <gco:CharacterString xsi:nil="true"/>
+                                                                                        <gco:CharacterString>FRA</gco:CharacterString>
                                                                                     </gmd:country>
                                                                                     <gmd:electronicMailAddress>
                                                                                         <gco:CharacterString>support@jcommops.org</gco:CharacterString>
@@ -935,7 +935,7 @@ USA</gco:CharacterString>
                                                                             <gmd:onlineResource>
                                                                                 <gmd:CI_OnlineResource>
                                                                                     <gmd:linkage>
-                                                                                        <gmd:URL>http://www.jcommops.org</gmd:URL>
+                                                                                        <gmd:URL>https://www.jcommops.org</gmd:URL>
                                                                                     </gmd:linkage>
                                                                                 </gmd:CI_OnlineResource>
                                                                             </gmd:onlineResource>
@@ -1022,8 +1022,8 @@ USA</gco:CharacterString>
                                                                             <gmd:address>
                                                                                 <gmd:CI_Address>
                                                                                     <gmd:deliveryPoint>
-                                                                                        <gco:CharacterString>2807 Stephen F. Austin Road&lt;br&gt;&#13;
-Brownwood, TX 76801&lt;br&gt;&#13;
+                                                                                        <gco:CharacterString>2807 Stephen F. Austin Road - &#13;
+Brownwood, TX 76801 - &#13;
 USA&#13;
 </gco:CharacterString>
                                                                                     </gmd:deliveryPoint>
@@ -1126,8 +1126,8 @@ USA&#13;
                                                                             <gmd:address>
                                                                                 <gmd:CI_Address>
                                                                                     <gmd:deliveryPoint>
-                                                                                        <gco:CharacterString>2807 Stephen F. Austin Road&lt;br&gt;&#13;
-Brownwood, TX 76801&lt;br&gt;&#13;
+                                                                                        <gco:CharacterString>2807 Stephen F. Austin Road - &#13;
+Brownwood, TX 76801 - &#13;
 USA&#13;
 </gco:CharacterString>
                                                                                     </gmd:deliveryPoint>
@@ -1214,7 +1214,7 @@ USA&#13;
                                                     <wmdr:responsibleParty>
                                                         <wmdr:ResponsibleParty>
                                                             <wmdr:responsibleParty>
-                                                                <gmd:CI_ResponsibleParty id="responsibleparty-61-13">
+                                                                <gmd:CI_ResponsibleParty id="responsibleparty-61-13" uuid="4588">
                                                                     <gmd:organisationName>
                                                                         <gco:CharacterString>JCOMM in-situ Observations Programme Support Centre </gco:CharacterString>
                                                                     </gmd:organisationName>
@@ -1230,10 +1230,10 @@ USA&#13;
                                                                             <gmd:address>
                                                                                 <gmd:CI_Address>
                                                                                     <gmd:deliveryPoint>
-                                                                                        <gco:CharacterString>JCOMMOPS&lt;br /&gt;Technopôle Brest Iroise&lt;br /&gt;Campus Ifremer&lt;br /&gt;1625 route de Sainte Anne&lt;br /&gt;Z.I. Pointe du Diable&lt;br /&gt;Plouzané - FRANCE&lt;br /&gt;</gco:CharacterString>
+                                                                                        <gco:CharacterString>JCOMMOPS - Technopôle Brest Iroise - Campus Ifremer - 1625 route de Sainte Anne - Z.I. Pointe du Diable - Plouzané - FRANCE - </gco:CharacterString>
                                                                                     </gmd:deliveryPoint>
                                                                                     <gmd:country>
-                                                                                        <gco:CharacterString xsi:nil="true"/>
+                                                                                        <gco:CharacterString>FRA</gco:CharacterString>
                                                                                     </gmd:country>
                                                                                     <gmd:electronicMailAddress>
                                                                                         <gco:CharacterString>support@jcommops.org</gco:CharacterString>
@@ -1243,7 +1243,7 @@ USA&#13;
                                                                             <gmd:onlineResource>
                                                                                 <gmd:CI_OnlineResource>
                                                                                     <gmd:linkage>
-                                                                                        <gmd:URL>http://www.jcommops.org</gmd:URL>
+                                                                                        <gmd:URL>https://www.jcommops.org</gmd:URL>
                                                                                     </gmd:linkage>
                                                                                 </gmd:CI_OnlineResource>
                                                                             </gmd:onlineResource>
@@ -1314,7 +1314,7 @@ USA&#13;
                                                     <wmdr:responsibleParty>
                                                         <wmdr:ResponsibleParty>
                                                             <wmdr:responsibleParty>
-                                                                <gmd:CI_ResponsibleParty id="responsibleparty-61-14">
+                                                                <gmd:CI_ResponsibleParty id="responsibleparty-61-14" uuid="4588">
                                                                     <gmd:organisationName>
                                                                         <gco:CharacterString>JCOMM in-situ Observations Programme Support Centre </gco:CharacterString>
                                                                     </gmd:organisationName>
@@ -1330,10 +1330,10 @@ USA&#13;
                                                                             <gmd:address>
                                                                                 <gmd:CI_Address>
                                                                                     <gmd:deliveryPoint>
-                                                                                        <gco:CharacterString>JCOMMOPS&lt;br /&gt;Technopôle Brest Iroise&lt;br /&gt;Campus Ifremer&lt;br /&gt;1625 route de Sainte Anne&lt;br /&gt;Z.I. Pointe du Diable&lt;br /&gt;Plouzané - FRANCE&lt;br /&gt;</gco:CharacterString>
+                                                                                        <gco:CharacterString>JCOMMOPS - Technopôle Brest Iroise - Campus Ifremer - 1625 route de Sainte Anne - Z.I. Pointe du Diable - Plouzané - FRANCE - </gco:CharacterString>
                                                                                     </gmd:deliveryPoint>
                                                                                     <gmd:country>
-                                                                                        <gco:CharacterString xsi:nil="true"/>
+                                                                                        <gco:CharacterString>FRA</gco:CharacterString>
                                                                                     </gmd:country>
                                                                                     <gmd:electronicMailAddress>
                                                                                         <gco:CharacterString>support@jcommops.org</gco:CharacterString>
@@ -1343,7 +1343,7 @@ USA&#13;
                                                                             <gmd:onlineResource>
                                                                                 <gmd:CI_OnlineResource>
                                                                                     <gmd:linkage>
-                                                                                        <gmd:URL>http://www.jcommops.org</gmd:URL>
+                                                                                        <gmd:URL>https://www.jcommops.org</gmd:URL>
                                                                                     </gmd:linkage>
                                                                                 </gmd:CI_OnlineResource>
                                                                             </gmd:onlineResource>
