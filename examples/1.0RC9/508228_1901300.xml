@@ -7,7 +7,7 @@
         <wmdr:Header>
             <wmdr:fileDateTime>2019-05-19T20:36:50.000Z</wmdr:fileDateTime>
             <wmdr:recordOwner>
-                <gmd:CI_ResponsibleParty id="responsibleparty-61-1">
+                <gmd:CI_ResponsibleParty id="responsibleparty-61-1" uuid="4588">
                     <gmd:organisationName>
                         <gco:CharacterString>JCOMM in-situ Observations Programme Support Centre </gco:CharacterString>
                     </gmd:organisationName>
@@ -23,10 +23,10 @@
                             <gmd:address>
                                 <gmd:CI_Address>
                                     <gmd:deliveryPoint>
-                                        <gco:CharacterString>JCOMMOPS&lt;br /&gt;Technopôle Brest Iroise&lt;br /&gt;Campus Ifremer&lt;br /&gt;1625 route de Sainte Anne&lt;br /&gt;Z.I. Pointe du Diable&lt;br /&gt;Plouzané - FRANCE&lt;br /&gt;</gco:CharacterString>
+                                        <gco:CharacterString>JCOMMOPS - Technopôle Brest Iroise - Campus Ifremer - 1625 route de Sainte Anne - Z.I. Pointe du Diable - Plouzané - FRANCE - </gco:CharacterString>
                                     </gmd:deliveryPoint>
                                     <gmd:country>
-                                        <gco:CharacterString xsi:nil="true"/>
+                                        <gco:CharacterString>FRA</gco:CharacterString>
                                     </gmd:country>
                                     <gmd:electronicMailAddress>
                                         <gco:CharacterString>support@jcommops.org</gco:CharacterString>
@@ -36,7 +36,7 @@
                             <gmd:onlineResource>
                                 <gmd:CI_OnlineResource>
                                     <gmd:linkage>
-                                        <gmd:URL>http://www.jcommops.org</gmd:URL>
+                                        <gmd:URL>https://www.jcommops.org</gmd:URL>
                                     </gmd:linkage>
                                 </gmd:CI_OnlineResource>
                             </gmd:onlineResource>
@@ -74,9 +74,9 @@
                                     <gmd:address>
                                         <gmd:CI_Address>
                                             <gmd:deliveryPoint>
-                                                <gco:CharacterString>Met Office&lt;br&gt;&#13;
-FitzRoy Road Exeter Devon EX1 3PB&lt;br&gt;&#13;
-United Kingdom&lt;br&gt;</gco:CharacterString>
+                                                <gco:CharacterString>Met Office - &#13;
+FitzRoy Road Exeter Devon EX1 3PB - &#13;
+United Kingdom - </gco:CharacterString>
                                             </gmd:deliveryPoint>
                                             <gmd:country>
                                                 <gco:CharacterString>GBR</gco:CharacterString>
@@ -318,8 +318,8 @@ United Kingdom&lt;br&gt;</gco:CharacterString>
                                                                             <gmd:address>
                                                                                 <gmd:CI_Address>
                                                                                     <gmd:deliveryPoint>
-                                                                                        <gco:CharacterString>1808 136th Place NE&lt;br&gt;
-Bellevue, Washington  98005 &lt;br&gt;
+                                                                                        <gco:CharacterString>1808 136th Place NE - 
+Bellevue, Washington  98005  - 
 USA</gco:CharacterString>
                                                                                     </gmd:deliveryPoint>
                                                                                     <gmd:country>
@@ -421,8 +421,8 @@ USA</gco:CharacterString>
                                                                             <gmd:address>
                                                                                 <gmd:CI_Address>
                                                                                     <gmd:deliveryPoint>
-                                                                                        <gco:CharacterString>1808 136th Place NE&lt;br&gt;
-Bellevue, Washington  98005 &lt;br&gt;
+                                                                                        <gco:CharacterString>1808 136th Place NE - 
+Bellevue, Washington  98005  - 
 USA</gco:CharacterString>
                                                                                     </gmd:deliveryPoint>
                                                                                     <gmd:country>
@@ -524,8 +524,8 @@ USA</gco:CharacterString>
                                                                             <gmd:address>
                                                                                 <gmd:CI_Address>
                                                                                     <gmd:deliveryPoint>
-                                                                                        <gco:CharacterString>1808 136th Place NE&lt;br&gt;
-Bellevue, Washington  98005 &lt;br&gt;
+                                                                                        <gco:CharacterString>1808 136th Place NE - 
+Bellevue, Washington  98005  - 
 USA</gco:CharacterString>
                                                                                     </gmd:deliveryPoint>
                                                                                     <gmd:country>

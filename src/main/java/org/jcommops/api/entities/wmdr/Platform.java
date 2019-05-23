@@ -242,7 +242,7 @@ public class Platform {
 		if(agency.getAddress() != null){
 			list.clear();
 			value = this.gcoOF.createCharacterStringPropertyType();
-			value.setCharacterString(this.gcoOF.createCharacterString(agency.getAddress()));
+			value.setCharacterString(this.gcoOF.createCharacterString(agency.getAddress().replaceAll("<br />|<br>"," - ").replaceAll("\\<.*?>","") ));
 			list.add(value);
 			address.setDeliveryPoint(list);
 		}
@@ -256,6 +256,8 @@ public class Platform {
 		if(agency.getCountry() != null){
 			value = this.gcoOF.createCharacterStringPropertyType();
 			value.setCharacterString(this.gcoOF.createCharacterString(agency.getCountry().getCode3()));
+			if(agencyId == Utils.JCOMMOPS_AGENCY_ID)
+				value.setCharacterString(this.gcoOF.createCharacterString("FRA"));
 			address.setCountry(value);
 		}
 		
