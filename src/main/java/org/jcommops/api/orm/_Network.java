@@ -23,6 +23,7 @@ public abstract class _Network extends CayenneDataObject {
     public static final Property<String> NAME_SHORT = Property.create("nameShort", String.class);
     public static final Property<Integer> PARENT_NETWORK_ID = Property.create("parentNetworkId", Integer.class);
     public static final Property<Integer> RANK = Property.create("rank", Integer.class);
+    public static final Property<String> WIGOS_CODE = Property.create("wigosCode", String.class);
     public static final Property<List<AgencyDacType>> AGENCY_DAC_TYPES = Property.create("agencyDacTypes", List.class);
     public static final Property<List<CountryCommitment>> COUNTRY_COMMITMENTS = Property.create("countryCommitments", List.class);
     public static final Property<List<Doc>> DOCS = Property.create("docs", List.class);
@@ -85,6 +86,13 @@ public abstract class _Network extends CayenneDataObject {
     public int getRank() {
         Object value = readProperty("rank");
         return (value != null) ? (Integer) value : 0;
+    }
+
+    public void setWigosCode(String wigosCode) {
+        writeProperty("wigosCode", wigosCode);
+    }
+    public String getWigosCode() {
+        return (String)readProperty("wigosCode");
     }
 
     public void addToAgencyDacTypes(AgencyDacType obj) {

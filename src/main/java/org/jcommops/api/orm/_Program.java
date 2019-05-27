@@ -22,6 +22,7 @@ public abstract class _Program extends CayenneDataObject {
     public static final Property<Integer> ID = Property.create("id", Integer.class);
     public static final Property<String> NAME = Property.create("name", String.class);
     public static final Property<String> NAME_SHORT = Property.create("nameShort", String.class);
+    public static final Property<String> WIGOS_CODE = Property.create("wigosCode", String.class);
     public static final Property<List<Agency>> AGENCIES = Property.create("agencies", List.class);
     public static final Property<Country> COUNTRY = Property.create("country", Country.class);
     public static final Property<List<CruiseProgram>> CRUISE_PROGRAMS = Property.create("cruisePrograms", List.class);
@@ -71,6 +72,13 @@ public abstract class _Program extends CayenneDataObject {
     }
     public String getNameShort() {
         return (String)readProperty("nameShort");
+    }
+
+    public void setWigosCode(String wigosCode) {
+        writeProperty("wigosCode", wigosCode);
+    }
+    public String getWigosCode() {
+        return (String)readProperty("wigosCode");
     }
 
     public void addToAgencies(Agency obj) {

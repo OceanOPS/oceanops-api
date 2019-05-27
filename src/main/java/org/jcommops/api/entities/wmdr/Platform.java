@@ -56,10 +56,8 @@ import _int.wmo.def.wmdr._2017.ResponsiblePartyType;
 import _int.wmo.def.wmdr._2017.TerritoryType;
 import _int.wmo.def.wmdr._2017.WIGOSMetadataRecordType;
 import _int.wmo.def.wmdr._2017.WIGOSMetadataRecordType.Deployment;
-import net.opengis.gml.v_3_2_1.AbstractTimeObjectType;
 import net.opengis.gml.v_3_2_1.CodeType;
 import net.opengis.gml.v_3_2_1.CodeWithAuthorityType;
-import net.opengis.gml.v_3_2_1.CoordinatesType;
 import net.opengis.gml.v_3_2_1.DirectPositionType;
 import net.opengis.gml.v_3_2_1.GeometryPropertyType;
 import net.opengis.gml.v_3_2_1.LocationPropertyType;
@@ -67,8 +65,6 @@ import net.opengis.gml.v_3_2_1.MeasureType;
 import net.opengis.gml.v_3_2_1.PointType;
 import net.opengis.gml.v_3_2_1.ReferenceType;
 import net.opengis.gml.v_3_2_1.StringOrRefType;
-import net.opengis.gml.v_3_2_1.TimeInstantPropertyType;
-import net.opengis.gml.v_3_2_1.TimeInstantType;
 import net.opengis.gml.v_3_2_1.TimePeriodPropertyType;
 import net.opengis.gml.v_3_2_1.TimePeriodType;
 import net.opengis.gml.v_3_2_1.TimePositionType;
@@ -86,8 +82,6 @@ import net.opengis.iso19139.gmd.v_20070417.CITelephonePropertyType;
 import net.opengis.iso19139.gmd.v_20070417.CITelephoneType;
 import net.opengis.iso19139.gmd.v_20070417.DQElementPropertyType;
 import net.opengis.iso19139.gmd.v_20070417.URLPropertyType;
-import net.opengis.om.v_2_0.NamedValuePropertyType;
-import net.opengis.om.v_2_0.NamedValueType;
 import net.opengis.om.v_2_0.OMObservationPropertyType;
 import net.opengis.om.v_2_0.OMObservationType;
 import net.opengis.om.v_2_0.OMProcessPropertyType;
@@ -337,9 +331,13 @@ public class Platform {
 
 		PointType geom = new PointType();
 		geom.setId(ptfId + "-depl-location");
-		CoordinatesType coordsType = this.gmlOF.createCoordinatesType();
-		coordsType.setValue(Utils.formatNumber(4, ptf.getLastLoc().getLat().doubleValue()) + " " + Utils.formatNumber(4, ptf.getLastLoc().getLon().doubleValue()) + " " + "0.0000");
-		geom.setCoordinates(coordsType);
+		DirectPositionType posType = this.gmlOF.createDirectPositionType();
+		ArrayList<Double> coords = new ArrayList<Double>();
+		coords.add(ptf.getLastLoc().getLat().doubleValue());
+		coords.add(ptf.getLastLoc().getLon().doubleValue());
+		coords.add(0.0);
+		posType.setValue(coords);
+		geom.setPos(posType);
 		geom.setSrsName("http://www.opengis.net/def/crs/EPSG/0/4979");
 
 		GeometryPropertyType geomProperty = new GeometryPropertyType();
@@ -418,10 +416,6 @@ public class Platform {
 			or.setCIOnlineResource(onlineRsrc);
 			currentEquipmentType.getOnlineResource().add(or);
 		}
-					
-		ReferenceType refType = this.gmlOF.createReferenceType();
-		refType.setHref("http://codes.wmo.int/common/wmdr/GeopositioningMethod/");
-		//currentEquipmentType.setGeopositioningMethod(refType);
 
 		AbstractEnvironmentalMonitoringFacilityType.ResponsibleParty responsibleParty = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeResponsibleParty();
 		ResponsiblePartyType responsiblePartyType = this.wmdrOF.createResponsiblePartyType();
@@ -439,7 +433,7 @@ public class Platform {
 		currentEquipmentType.getResponsibleParty().add(responsibleParty);
 		
 
-		refType = this.gmlOF.createReferenceType();
+		ReferenceType refType = this.gmlOF.createReferenceType();
 		refType.setHref("http://codes.wmo.int/common/wmdr/ObservingMethod/" + "341");
 		currentEquipmentType.setObservingMethod(refType);
 		
@@ -503,10 +497,6 @@ public class Platform {
 			or.setCIOnlineResource(onlineRsrc);
 			currentEquipmentType.getOnlineResource().add(or);
 		}
-					
-		ReferenceType refType = this.gmlOF.createReferenceType();
-		refType.setHref("http://codes.wmo.int/common/wmdr/GeopositioningMethod/");
-		//currentEquipmentType.setGeopositioningMethod(refType);
 
 		AbstractEnvironmentalMonitoringFacilityType.ResponsibleParty responsibleParty = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeResponsibleParty();
 		ResponsiblePartyType responsiblePartyType = this.wmdrOF.createResponsiblePartyType();
@@ -524,7 +514,7 @@ public class Platform {
 		currentEquipmentType.getResponsibleParty().add(responsibleParty);
 		
 
-		refType = this.gmlOF.createReferenceType();
+		ReferenceType refType = this.gmlOF.createReferenceType();
 		refType.setHref("http://codes.wmo.int/common/wmdr/ObservingMethod/" + "341");
 		currentEquipmentType.setObservingMethod(refType);
 		
@@ -592,20 +582,23 @@ public class Platform {
 		
 		PointType geom = new PointType();
 		geom.setId(o.getId() + "-LatestLocationGeometry");
-		CoordinatesType coordsType = this.gmlOF.createCoordinatesType();
-		coordsType.setValue(Utils.formatNumber(4, ptf.getLastLoc().getLat().doubleValue()) + " " + Utils.formatNumber(4, ptf.getLastLoc().getLon().doubleValue()) + " " + "0.0000");
-		geom.setCoordinates(coordsType);
+		DirectPositionType posType = this.gmlOF.createDirectPositionType();
+		ArrayList<Double> coords = new ArrayList<Double>();
+		coords.add(ptf.getLastLoc().getLat().doubleValue());
+		coords.add(ptf.getLastLoc().getLon().doubleValue());
+		coords.add(0.0);
+		posType.setValue(coords);
+		geom.setPos(posType);
 		geom.setSrsName("http://www.opengis.net/def/crs/EPSG/0/4979");
 
 		GeometryPropertyType geomProperty = new GeometryPropertyType();
 		geomProperty.setAbstractGeometry(this.gmlOF.createPoint(geom));
 		
-		// TODO Check WMO code tables
 		ReferenceType refType = this.gmlOF.createReferenceType();
 		if(ptf.getTrackingSystem() != null)
-			refType.setHref("http://codes.wmo.int/common/wmdr/GeopositioningMethod/" + ptf.getTrackingSystem().getName());
+			refType.setHref("http://codes.wmo.int/common/wmdr/GeopositioningMethod/" + ptf.getTrackingSystem().getWigosCode());
 		else
-			refType.setHref("http://codes.wmo.int/common/wmdr/GeopositioningMethod/");
+			refType.setHref("http://codes.wmo.int/common/wmdr/GeopositioningMethod/unknown");
 		
 		gsLocType.setGeopositioningMethod(refType);
 		gsLocType.setGeoLocation(geomProperty);
@@ -650,7 +643,7 @@ public class Platform {
 		Territory territory = new Territory();
 		TerritoryType territoryType = new TerritoryType();
 		refType = this.gmlOF.createReferenceType();
-		//refType.setHref("http://codes.wmo.int/common/wmdr/TerritoryName/");
+		refType.setHref("http://codes.wmo.int/common/wmdr/TerritoryName/" + "NA");
 		territoryType.setTerritoryName(refType);
 		territory.setTerritory(territoryType);
 		o.getTerritory().add(territory);
@@ -665,7 +658,7 @@ public class Platform {
 				progAffiliation = this.wmdrOF.createObservingFacilityTypeProgramAffiliation();
 				progAffiliationType = this.wmdrOF.createProgramAffiliationType();
 				refType = this.gmlOF.createReferenceType();
-				refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/" + netPtf.getNetwork().getName());
+				refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/" + netPtf.getNetwork().getWigosCode());
 				progAffiliationType.setProgramAffiliation(refType);
 				ReportingStatus reportingStatus = null;
 				ReportingStatusType reportingStatusType = null;
@@ -699,7 +692,7 @@ public class Platform {
 		progAffiliation = this.wmdrOF.createObservingFacilityTypeProgramAffiliation();
 		progAffiliationType = this.wmdrOF.createProgramAffiliationType();
 		refType = this.gmlOF.createReferenceType();
-		refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/" + ptf.getProgram().getName());
+		refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/" + ptf.getProgram().getWigosCode());
 		progAffiliationType.setProgramAffiliation(refType);
 		ReportingStatus reportingStatus = null;
 		ReportingStatusType reportingStatusType = null;
@@ -843,7 +836,7 @@ public class Platform {
 				for(NetworkPtf netPtf: ptf.getNetworkPtfs()) {
 					if(netPtf.getNetwork().getRank() == 0) {
 						refType = this.gmlOF.createReferenceType();
-						refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/" + netPtf.getNetwork().getName());
+						refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/" + netPtf.getNetwork().getWigosCode());
 						
 						oc.getProgramAffiliation().add(refType);
 					}

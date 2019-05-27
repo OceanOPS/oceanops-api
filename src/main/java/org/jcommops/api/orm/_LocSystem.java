@@ -1,7 +1,5 @@
 package org.jcommops.api.orm;
 
-import java.util.List;
-
 import org.apache.cayenne.CayenneDataObject;
 import org.apache.cayenne.exp.Property;
 
@@ -20,9 +18,7 @@ public abstract class _LocSystem extends CayenneDataObject {
     public static final Property<Integer> ID = Property.create("id", Integer.class);
     public static final Property<String> NAME = Property.create("name", String.class);
     public static final Property<String> NAME_SHORT = Property.create("nameShort", String.class);
-    public static final Property<List<PtfLoc>> PTF_LOCS = Property.create("ptfLocs", List.class);
-    public static final Property<List<Ptf>> PTFS = Property.create("ptfs", List.class);
-    public static final Property<List<Ptf>> PTFS1 = Property.create("ptfs1", List.class);
+    public static final Property<String> WIGOS_CODE = Property.create("wigosCode", String.class);
 
     public void setId(int id) {
         writeProperty("id", id);
@@ -46,40 +42,11 @@ public abstract class _LocSystem extends CayenneDataObject {
         return (String)readProperty("nameShort");
     }
 
-    public void addToPtfLocs(PtfLoc obj) {
-        addToManyTarget("ptfLocs", obj, true);
+    public void setWigosCode(String wigosCode) {
+        writeProperty("wigosCode", wigosCode);
     }
-    public void removeFromPtfLocs(PtfLoc obj) {
-        removeToManyTarget("ptfLocs", obj, true);
+    public String getWigosCode() {
+        return (String)readProperty("wigosCode");
     }
-    @SuppressWarnings("unchecked")
-    public List<PtfLoc> getPtfLocs() {
-        return (List<PtfLoc>)readProperty("ptfLocs");
-    }
-
-
-    public void addToPtfs(Ptf obj) {
-        addToManyTarget("ptfs", obj, true);
-    }
-    public void removeFromPtfs(Ptf obj) {
-        removeToManyTarget("ptfs", obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<Ptf> getPtfs() {
-        return (List<Ptf>)readProperty("ptfs");
-    }
-
-
-    public void addToPtfs1(Ptf obj) {
-        addToManyTarget("ptfs1", obj, true);
-    }
-    public void removeFromPtfs1(Ptf obj) {
-        removeToManyTarget("ptfs1", obj, true);
-    }
-    @SuppressWarnings("unchecked")
-    public List<Ptf> getPtfs1() {
-        return (List<Ptf>)readProperty("ptfs1");
-    }
-
 
 }
