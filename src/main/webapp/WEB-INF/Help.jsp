@@ -53,6 +53,10 @@
 				<h2 class="title-border-bottom">About the API</h2>
 				<div class="container-fluid">
 					<%@include file="help/about.jsp" %>
+				</div>		
+				<h2 class="title-border-bottom">v<%=version%> details</h2>
+				<div class="container-fluid">
+					<%@include file="help/versionSpecifics.jsp" %>
 				</div>
 				<h2 class="title-border-bottom">Vocabulary</h2>
 				<div class="container-fluid">
