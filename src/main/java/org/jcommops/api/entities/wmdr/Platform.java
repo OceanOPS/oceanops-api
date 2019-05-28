@@ -892,6 +892,9 @@ public class Platform {
 						oc.getProgramAffiliation().add(refType);
 					}
 				}
+				refType = this.gmlOF.createReferenceType();
+				refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/" + ptf.getProgram().getWigosCode());
+				oc.getProgramAffiliation().add(refType);
 				
 				ocp.setObservingCapability(oc);
 				
