@@ -643,7 +643,7 @@ public class Platform {
 		Territory territory = new Territory();
 		TerritoryType territoryType = new TerritoryType();
 		refType = this.gmlOF.createReferenceType();
-		refType.setHref("http://codes.wmo.int/common/wmdr/TerritoryName/" + "NA");
+		refType.setHref("http://codes.wmo.int/common/wmdr/TerritoryName/" + "inapplicable");
 		territoryType.setTerritoryName(refType);
 		territory.setTerritory(territoryType);
 		o.getTerritory().add(territory);
