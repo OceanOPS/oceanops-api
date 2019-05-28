@@ -352,7 +352,7 @@ public class PlatformAccessor {
 	 */
 	public HashMap<Integer, String> getPtfbySelectedParam(String ptfStatus, String ptfFamily, String ptfType,
 			String ptfModel, String program, String network, String masterProg, String variable, String sensorModel,
-			String sensorType, String ship, String country, String updateDate, String insertDate) {
+			String sensorType, String ship, String country, String wigosReady, String updateDate, String insertDate) {
 		
 		// Sanitize all parameters
 		ptfStatus = Utils.basicSanitize(ptfStatus);
@@ -367,6 +367,7 @@ public class PlatformAccessor {
 		sensorType = Utils.basicSanitize(sensorType);
 		ship = Utils.basicSanitize(ship);
 		country = Utils.basicSanitize(country);
+		wigosReady = Utils.basicSanitize(wigosReady);
 		updateDate = Utils.basicSanitize(updateDate);
 		insertDate = Utils.basicSanitize(insertDate);
 
@@ -375,6 +376,7 @@ public class PlatformAccessor {
 		StringBuilder query = new StringBuilder("select ptf.id, ptf.ref from ptf where 1=1");
 		StringBuilder whereClause = new StringBuilder();
 		boolean usingID = false;
+		boolean wigos = false;
 		
 		// Dates
 		if(updateDate != null){
@@ -382,6 +384,11 @@ public class PlatformAccessor {
 		}
 		if(insertDate != null){
 			whereClause.append(buildWhereClauseForDateParam(insertDate, "ptf.insert_date"));
+		}
+		
+		// WIGOS filtering
+		if(wigosReady != null) {
+			whereClause.append(" and (select wigos_ref from ptf_identifiers ptfid where ptfid.wigos_ref is not null and ptfid.id = ptf.ptf_identifiers_id) is not null");
 		}
 
 
