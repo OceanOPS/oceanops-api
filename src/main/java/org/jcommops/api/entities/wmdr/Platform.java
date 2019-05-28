@@ -662,7 +662,7 @@ public class Platform {
 				progAffiliationType.setProgramAffiliation(refType);
 				ReportingStatus reportingStatus = null;
 				ReportingStatusType reportingStatusType = null;
-				for(PtfPtfStatus ptfPtfStatus: ptf.getPtfPtfStatuses()){
+				/*for(PtfPtfStatus ptfPtfStatus: ptf.getPtfPtfStatuses()){
 					reportingStatus = this.wmdrOF.createProgramAffiliationTypeReportingStatus();
 					reportingStatusType = this.wmdrOF.createReportingStatusType();
 					// TODO : check WMO code tables
@@ -683,7 +683,32 @@ public class Platform {
 					reportingStatus.setReportingStatus(reportingStatusType);
 					progAffiliationType.getReportingStatus().add(reportingStatus);
 					count++;
+				}*/
+				
+				PtfPtfStatus latestStatus = null;
+				for(PtfPtfStatus ptfPtfStatus: ptf.getPtfPtfStatuses()){
+					if(latestStatus == null || (latestStatus != null && latestStatus.getChangingDate().isBefore(ptfPtfStatus.getChangingDate())))
+						latestStatus = ptfPtfStatus;
 				}
+				reportingStatus = this.wmdrOF.createProgramAffiliationTypeReportingStatus();
+				reportingStatusType = this.wmdrOF.createReportingStatusType();
+				// TODO : check WMO code tables
+				refType = new ReferenceType();
+				refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + latestStatus.getPtfStatus().getWigosCode());
+				reportingStatusType.setReportingStatus(refType);
+				
+				timePeriodProperty = new TimePeriodPropertyType();
+				timePeriod = new TimePeriodType();
+				timePosition = new TimePositionType();
+				timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(latestStatus.getChangingDate())));
+				timePeriod.setId(o.getId() + "-StatusChangingDateTimePeriod-" + count);
+				timePeriod.setBeginPosition(timePosition);
+				timePeriod.setEndPosition(new TimePositionType());
+				timePeriodProperty.setTimePeriod(timePeriod);
+				
+				reportingStatusType.setValidPeriod(timePeriodProperty);
+				reportingStatus.setReportingStatus(reportingStatusType);
+				progAffiliationType.getReportingStatus().add(reportingStatus);
 				progAffiliation.setProgramAffiliation(progAffiliationType);
 				o.getProgramAffiliation().add(progAffiliation);
 			}
@@ -696,7 +721,7 @@ public class Platform {
 		progAffiliationType.setProgramAffiliation(refType);
 		ReportingStatus reportingStatus = null;
 		ReportingStatusType reportingStatusType = null;
-		for(PtfPtfStatus ptfPtfStatus: ptf.getPtfPtfStatuses()){
+		/*for(PtfPtfStatus ptfPtfStatus: ptf.getPtfPtfStatuses()){
 			reportingStatus = this.wmdrOF.createProgramAffiliationTypeReportingStatus();
 			reportingStatusType = this.wmdrOF.createReportingStatusType();
 			// TODO : check WMO code tables
@@ -718,6 +743,32 @@ public class Platform {
 			progAffiliationType.getReportingStatus().add(reportingStatus);
 			count++;
 		}
+		progAffiliation.setProgramAffiliation(progAffiliationType);
+		o.getProgramAffiliation().add(progAffiliation);*/
+		PtfPtfStatus latestStatus = null;
+		for(PtfPtfStatus ptfPtfStatus: ptf.getPtfPtfStatuses()){
+			if(latestStatus == null || (latestStatus != null && latestStatus.getChangingDate().isBefore(ptfPtfStatus.getChangingDate())))
+				latestStatus = ptfPtfStatus;
+		}
+		reportingStatus = this.wmdrOF.createProgramAffiliationTypeReportingStatus();
+		reportingStatusType = this.wmdrOF.createReportingStatusType();
+		// TODO : check WMO code tables
+		refType = new ReferenceType();
+		refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + latestStatus.getPtfStatus().getWigosCode());
+		reportingStatusType.setReportingStatus(refType);
+		
+		timePeriodProperty = new TimePeriodPropertyType();
+		timePeriod = new TimePeriodType();
+		timePosition = new TimePositionType();
+		timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(latestStatus.getChangingDate())));
+		timePeriod.setId(o.getId() + "-StatusChangingDateTimePeriod-" + count);
+		timePeriod.setBeginPosition(timePosition);
+		timePeriod.setEndPosition(new TimePositionType());
+		timePeriodProperty.setTimePeriod(timePeriod);
+		
+		reportingStatusType.setValidPeriod(timePeriodProperty);
+		reportingStatus.setReportingStatus(reportingStatusType);
+		progAffiliationType.getReportingStatus().add(reportingStatus);
 		progAffiliation.setProgramAffiliation(progAffiliationType);
 		o.getProgramAffiliation().add(progAffiliation);
 
