@@ -709,6 +709,7 @@ public class Platform {
 				reportingStatusType.setValidPeriod(timePeriodProperty);
 				reportingStatus.setReportingStatus(reportingStatusType);
 				progAffiliationType.getReportingStatus().add(reportingStatus);
+				count++;
 				progAffiliation.setProgramAffiliation(progAffiliationType);
 				o.getProgramAffiliation().add(progAffiliation);
 			}
@@ -769,6 +770,7 @@ public class Platform {
 		reportingStatusType.setValidPeriod(timePeriodProperty);
 		reportingStatus.setReportingStatus(reportingStatusType);
 		progAffiliationType.getReportingStatus().add(reportingStatus);
+		count++;
 		progAffiliation.setProgramAffiliation(progAffiliationType);
 		o.getProgramAffiliation().add(progAffiliation);
 
