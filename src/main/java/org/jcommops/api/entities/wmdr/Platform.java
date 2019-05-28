@@ -140,6 +140,15 @@ public class Platform {
 		
 		return wigosID.toString();
 	}
+	/**
+	 * Builds the final WIGOS identifier, based on the platform reference.
+	 * @param ptfRef String Platform's reference
+	 * @return String The full WIGOS identifier
+	 */
+	private String getWIGOSIdentifier(Ptf ptf){
+		
+		return ptf.getPtfIdentifiers().getWigosRef();
+	}
 	
 	/**
 	 * Constructor of this class. Initializes all the context variables. Should not be used directly.
@@ -173,7 +182,7 @@ public class Platform {
 	public Platform(Integer ptfId) throws JAXBException, DatatypeConfigurationException{
 		this();
 		Ptf ptf = SelectById.query(Ptf.class, ptfId).selectOne(this.cayenneContext);
-		String wigosRef = this.getWIGOSIdentifier(ptf.getRef());
+		String wigosRef = this.getWIGOSIdentifier(ptf);
 		
 		CodeWithAuthorityType identifier = new CodeWithAuthorityType();
 		identifier.setValue(wigosRef);
@@ -314,7 +323,7 @@ public class Platform {
 		PtfDeployment depl = ptf.getPtfDepl();
 		ArrayList<WIGOSMetadataRecordType.Deployment> depls =  new ArrayList<>();
 		
-		String ptfId = "_" + getWIGOSIdentifier(ptf.getRef());
+		String ptfId = "_" + getWIGOSIdentifier(ptf);
 		
 		Deployment d = new Deployment();
 		DeploymentType dt = new DeploymentType();
@@ -531,7 +540,7 @@ public class Platform {
 	 */
 	private ObservingFacilityType getObservingFacilityType(Ptf ptf) throws DatatypeConfigurationException {
 		ObservingFacilityType o = this.wmdrOF.createObservingFacilityType();
-		String wigosID = getWIGOSIdentifier(ptf.getRef());
+		String wigosID = getWIGOSIdentifier(ptf);
 		o.setId("_" + wigosID);
 		CodeWithAuthorityType value = new CodeWithAuthorityType();
 		value.setValue(wigosID);
@@ -883,7 +892,7 @@ public class Platform {
 				
 				oc.getObservation().add(omobsp);
 				refType = this.gmlOF.createReferenceType();
-				refType.setHref(getWIGOSIdentifier(ptf.getRef()));
+				refType.setHref(getWIGOSIdentifier(ptf));
 				oc.setFacility(refType);
 				
 				for(NetworkPtf netPtf: ptf.getNetworkPtfs()) {

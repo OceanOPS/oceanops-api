@@ -65,12 +65,12 @@ public class WebServiceManager {
 			@QueryParam("program") String program, @QueryParam("network") String network,
 			@QueryParam("masterProgram") String masterprg, @QueryParam("variable") String variable,
 			@QueryParam("sensorModel") String sensormod, @QueryParam("sensorType") String sensortyp,
-			@QueryParam("ship") String ship, @QueryParam("country") String country, 
+			@QueryParam("ship") String ship, @QueryParam("country") String country, @QueryParam("wigosReady") String wigosReady, 
 			@QueryParam("updateDate") String updateDate, @QueryParam("insertDate") String insertDate) {
 
 		PlatformAccessor m = new PlatformAccessor();
 		HashMap<Integer, String> foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program,
-				network, masterprg, variable, sensormod, sensortyp, ship, country, updateDate, insertDate);
+				network, masterprg, variable, sensormod, sensortyp, ship, country, wigosReady, updateDate, insertDate);
 		
 		ArrayList<PlatformEntity> result = new ArrayList<PlatformEntity>();
 		for (Integer id : foundPlatforms.keySet()) {
@@ -90,7 +90,7 @@ public class WebServiceManager {
 			@QueryParam("network") String network, @QueryParam("masterProgram") String masterprg,
 			@QueryParam("variable") String variable, @QueryParam("sensorModel") String sensormod,
 			@QueryParam("sensorType") String sensortyp, @QueryParam("ship") String ship,
-			@QueryParam("country") String country, 
+			@QueryParam("country") String country, @QueryParam("wigosReady") String wigosReady, 
 			@QueryParam("updateDate") String updateDate, @QueryParam("insertDate") String insertDate) {
 
 		PlatformAccessor m = new PlatformAccessor();
@@ -99,7 +99,7 @@ public class WebServiceManager {
 		StringBuilder csv = new StringBuilder();
 
 		foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable,
-				sensormod, sensortyp, ship, country, updateDate, insertDate);
+				sensormod, sensortyp, ship, country, wigosReady, updateDate, insertDate);
 
 		csv.append("id" + Utils.CSV_SEPARATOR + "ref");
 		for (Integer id : foundPlatforms.keySet()) {
