@@ -5,7 +5,7 @@
     <gml:boundedBy xsi:nil="true"/>
     <wmdr:headerInformation>
         <wmdr:Header>
-            <wmdr:fileDateTime>2019-05-19T20:36:50.000Z</wmdr:fileDateTime>
+            <wmdr:fileDateTime>2019-06-03T13:17:08.000Z</wmdr:fileDateTime>
             <wmdr:recordOwner>
                 <gmd:CI_ResponsibleParty id="responsibleparty-61-1" uuid="4588">
                     <gmd:organisationName>
@@ -103,13 +103,13 @@ United Kingdom - </gco:CharacterString>
                 <wmdr:GeospatialLocation>
                     <wmdr:geoLocation>
                         <gml:Point srsName="http://www.opengis.net/def/crs/EPSG/0/4979" gml:id="_0-22000-0-1901300-LatestLocationGeometry">
-                            <gml:coordinates>-38.1792 39.1480 0.0000</gml:coordinates>
+                            <gml:pos>-37.689 39.8126 0.0</gml:pos>
                         </gml:Point>
                     </wmdr:geoLocation>
-                    <wmdr:geopositioningMethod xlink:href="http://codes.wmo.int/common/wmdr/GeopositioningMethod/OBSERVATIONS"/>
+                    <wmdr:geopositioningMethod xlink:href="http://codes.wmo.int/common/wmdr/GeopositioningMethod/unknown"/>
                     <wmdr:validPeriod>
                         <gml:TimePeriod gml:id="_0-22000-0-1901300-LatestLocationTimePeriod">
-                            <gml:beginPosition>2019-05-20T01:06:56Z</gml:beginPosition>
+                            <gml:beginPosition>2019-05-30T00:51:48Z</gml:beginPosition>
                             <gml:endPosition/>
                         </gml:TimePeriod>
                     </wmdr:validPeriod>
@@ -127,72 +127,17 @@ United Kingdom - </gco:CharacterString>
             <wmdr:wmoRegion/>
             <wmdr:territory>
                 <wmdr:Territory>
-                    <wmdr:territoryName/>
+                    <wmdr:territoryName xlink:href="http://codes.wmo.int/common/wmdr/TerritoryName/inapplicable"/>
                 </wmdr:Territory>
             </wmdr:territory>
             <wmdr:programAffiliation>
                 <wmdr:ProgramAffiliation>
-                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/Argo"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/argo"/>
                     <wmdr:reportingStatus>
                         <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/preOperational"/>
+                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/operational"/>
                             <wmdr:validPeriod>
                                 <gml:TimePeriod gml:id="_0-22000-0-1901300-StatusChangingDateTimePeriod-1">
-                                    <gml:beginPosition>2013-04-08T13:52:23Z</gml:beginPosition>
-                                    <gml:endPosition/>
-                                </gml:TimePeriod>
-                            </wmdr:validPeriod>
-                        </wmdr:ReportingStatus>
-                    </wmdr:reportingStatus>
-                    <wmdr:reportingStatus>
-                        <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/nonReporting"/>
-                            <wmdr:validPeriod>
-                                <gml:TimePeriod gml:id="_0-22000-0-1901300-StatusChangingDateTimePeriod-2">
-                                    <gml:beginPosition>2013-03-21T16:13:36Z</gml:beginPosition>
-                                    <gml:endPosition/>
-                                </gml:TimePeriod>
-                            </wmdr:validPeriod>
-                        </wmdr:ReportingStatus>
-                    </wmdr:reportingStatus>
-                    <wmdr:reportingStatus>
-                        <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/nonReporting"/>
-                            <wmdr:validPeriod>
-                                <gml:TimePeriod gml:id="_0-22000-0-1901300-StatusChangingDateTimePeriod-3">
-                                    <gml:beginPosition>2016-01-20T00:45:53Z</gml:beginPosition>
-                                    <gml:endPosition/>
-                                </gml:TimePeriod>
-                            </wmdr:validPeriod>
-                        </wmdr:ReportingStatus>
-                    </wmdr:reportingStatus>
-                    <wmdr:reportingStatus>
-                        <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/operational"/>
-                            <wmdr:validPeriod>
-                                <gml:TimePeriod gml:id="_0-22000-0-1901300-StatusChangingDateTimePeriod-4">
-                                    <gml:beginPosition>2013-03-21T16:13:36Z</gml:beginPosition>
-                                    <gml:endPosition/>
-                                </gml:TimePeriod>
-                            </wmdr:validPeriod>
-                        </wmdr:ReportingStatus>
-                    </wmdr:reportingStatus>
-                    <wmdr:reportingStatus>
-                        <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/operational"/>
-                            <wmdr:validPeriod>
-                                <gml:TimePeriod gml:id="_0-22000-0-1901300-StatusChangingDateTimePeriod-5">
-                                    <gml:beginPosition>2015-11-07T00:28:52Z</gml:beginPosition>
-                                    <gml:endPosition/>
-                                </gml:TimePeriod>
-                            </wmdr:validPeriod>
-                        </wmdr:ReportingStatus>
-                    </wmdr:reportingStatus>
-                    <wmdr:reportingStatus>
-                        <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/operational"/>
-                            <wmdr:validPeriod>
-                                <gml:TimePeriod gml:id="_0-22000-0-1901300-StatusChangingDateTimePeriod-6">
                                     <gml:beginPosition>2016-01-26T09:26:40Z</gml:beginPosition>
                                     <gml:endPosition/>
                                 </gml:TimePeriod>
@@ -203,67 +148,12 @@ United Kingdom - </gco:CharacterString>
             </wmdr:programAffiliation>
             <wmdr:programAffiliation>
                 <wmdr:ProgramAffiliation>
-                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/Argo UK"/>
-                    <wmdr:reportingStatus>
-                        <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/preOperational"/>
-                            <wmdr:validPeriod>
-                                <gml:TimePeriod gml:id="_0-22000-0-1901300-StatusChangingDateTimePeriod-7">
-                                    <gml:beginPosition>2013-04-08T13:52:23Z</gml:beginPosition>
-                                    <gml:endPosition/>
-                                </gml:TimePeriod>
-                            </wmdr:validPeriod>
-                        </wmdr:ReportingStatus>
-                    </wmdr:reportingStatus>
-                    <wmdr:reportingStatus>
-                        <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/nonReporting"/>
-                            <wmdr:validPeriod>
-                                <gml:TimePeriod gml:id="_0-22000-0-1901300-StatusChangingDateTimePeriod-8">
-                                    <gml:beginPosition>2013-03-21T16:13:36Z</gml:beginPosition>
-                                    <gml:endPosition/>
-                                </gml:TimePeriod>
-                            </wmdr:validPeriod>
-                        </wmdr:ReportingStatus>
-                    </wmdr:reportingStatus>
-                    <wmdr:reportingStatus>
-                        <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/nonReporting"/>
-                            <wmdr:validPeriod>
-                                <gml:TimePeriod gml:id="_0-22000-0-1901300-StatusChangingDateTimePeriod-9">
-                                    <gml:beginPosition>2016-01-20T00:45:53Z</gml:beginPosition>
-                                    <gml:endPosition/>
-                                </gml:TimePeriod>
-                            </wmdr:validPeriod>
-                        </wmdr:ReportingStatus>
-                    </wmdr:reportingStatus>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/argoUK"/>
                     <wmdr:reportingStatus>
                         <wmdr:ReportingStatus>
                             <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/operational"/>
                             <wmdr:validPeriod>
-                                <gml:TimePeriod gml:id="_0-22000-0-1901300-StatusChangingDateTimePeriod-10">
-                                    <gml:beginPosition>2013-03-21T16:13:36Z</gml:beginPosition>
-                                    <gml:endPosition/>
-                                </gml:TimePeriod>
-                            </wmdr:validPeriod>
-                        </wmdr:ReportingStatus>
-                    </wmdr:reportingStatus>
-                    <wmdr:reportingStatus>
-                        <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/operational"/>
-                            <wmdr:validPeriod>
-                                <gml:TimePeriod gml:id="_0-22000-0-1901300-StatusChangingDateTimePeriod-11">
-                                    <gml:beginPosition>2015-11-07T00:28:52Z</gml:beginPosition>
-                                    <gml:endPosition/>
-                                </gml:TimePeriod>
-                            </wmdr:validPeriod>
-                        </wmdr:ReportingStatus>
-                    </wmdr:reportingStatus>
-                    <wmdr:reportingStatus>
-                        <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/operational"/>
-                            <wmdr:validPeriod>
-                                <gml:TimePeriod gml:id="_0-22000-0-1901300-StatusChangingDateTimePeriod-12">
+                                <gml:TimePeriod gml:id="_0-22000-0-1901300-StatusChangingDateTimePeriod-2">
                                     <gml:beginPosition>2016-01-26T09:26:40Z</gml:beginPosition>
                                     <gml:endPosition/>
                                 </gml:TimePeriod>
@@ -276,7 +166,8 @@ United Kingdom - </gco:CharacterString>
                 <wmdr:ObservingCapability gml:id="oc-2004-328">
                     <gml:boundedBy xsi:nil="true"/>
                     <wmdr:facility xlink:href="0-22000-0-1901300"/>
-                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/Argo"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/argo"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/argoUK"/>
                     <wmdr:observation>
                         <om:OM_Observation gml:id="omobs-2004-328">
                             <gml:boundedBy xsi:nil="true"/>
@@ -379,7 +270,8 @@ USA</gco:CharacterString>
                 <wmdr:ObservingCapability gml:id="oc-2004-329">
                     <gml:boundedBy xsi:nil="true"/>
                     <wmdr:facility xlink:href="0-22000-0-1901300"/>
-                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/Argo"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/argo"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/argoUK"/>
                     <wmdr:observation>
                         <om:OM_Observation gml:id="omobs-2004-329">
                             <gml:boundedBy xsi:nil="true"/>
@@ -482,7 +374,8 @@ USA</gco:CharacterString>
                 <wmdr:ObservingCapability gml:id="oc-2004-330">
                     <gml:boundedBy xsi:nil="true"/>
                     <wmdr:facility xlink:href="0-22000-0-1901300"/>
-                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/Argo"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/argo"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/argoUK"/>
                     <wmdr:observation>
                         <om:OM_Observation gml:id="omobs-2004-330">
                             <gml:boundedBy xsi:nil="true"/>
