@@ -18,10 +18,11 @@ JCOMMOPS tries to harmonize and integrate different vocabularies and ontologies.
 				All that can be deployed and can measure parameters (an observing entity) is considered as a "Platform" at JCOMMOPS:
 				<ul>
 					<li>Argo: float;</li>
-					<li>DBCP: drifting buoy, moored buoy, fixed platform, tsunameter;</li>
+					<li>DBCP: drifting buoy, moored buoy (more specifically, a deployment), fixed platform, tsunameter;</li>
 					<li>SOT: VOS weather station, ASAP balloon, XBT profiler;</li>
-					<li>OceanSITES: mooring line;</li>
+					<li>OceanSITES: mooring line (more specifically, a deployment);</li>
 					<li>GO-SHIP: not applicable;</li>
+					<li>OceanGliders: a glider (more specifically, a deployment);</li>
 					<li>GLOSS: tide gauge.</li>
 				</ul>
 				</td>
@@ -36,14 +37,6 @@ JCOMMOPS tries to harmonize and integrate different vocabularies and ontologies.
 				<td>Platform&nbsp;(ICES)</td>
 			</tr>
 			<tr>
-				<td>Master program</td>
-				<td>
-					A master program is a core network that contribute to JCOMM and then act as a pillar to JCOMMOPS. It is a key entity in all JCOMMOPS products and usually defines the main categorization that can be encoutered.
-					Currently, there are 6 of them: Argo, DBCP, SOT, OceanSITES, GO-SHIP and GLOSS.
-				</td>
-				<td>Network</td>
-			</tr>
-			<tr>
 				<td>Platform status</td>
 				<td>
 					JCOMMOPS defines several statuses, which are used to track a platform during its lifecycle. They are automatically set, depending on the metadata we received at the registration (deployment plans) and in real time (through observations, i.e. GTS/GDAC).
@@ -51,7 +44,6 @@ JCOMMOPS tries to harmonize and integrate different vocabularies and ontologies.
 						<li><strong>Probable</strong>: starting status for some platforms, when there is only a few metadata available, like rough deployment location and date. The platform may be deployed;</li>
 						<li><strong>Confirmed</strong>: automatically set when a ship is attached to the deployment information. The platform is ready to be deployed, deployment is planned;</li>
 						<li><strong>Registered</strong>: starting status for most of the networks, when deployment planning is not done. The deployment is certain, and a notification has been sent via the JCOMMOPS system;</li>
-						<li><strong>Active</strong>: automatically set when the platform is emitting a pulse within a certain time interval (a location is received, independently from the observation);</li>
 						<li><strong>Operational</strong>: automatically set when the platform is emitting a pulse and observations are distributed within a certain time interval;</li>
 						<li><strong>Inactive</strong>: the platform is not emitting a pulse since a certain time;</li>
 						<li><strong>Closed</strong>: the platform is not emitting a pulse since a long time, it is considered as dead.</li>
@@ -82,21 +74,21 @@ JCOMMOPS tries to harmonize and integrate different vocabularies and ontologies.
 			<tr>
 				<td>Program</td>
 				<td>
-					A program defines a group of platforms or cruises managed by the same operator. A program is bound to one country and to one agency. 
-					It is usually a national/agency-implementation of the master programme.
+					A program defines a group of platforms or cruises managed by the same operator. A program is bound to one country and to one/several agency(ies). 
+					It is usually a national/agency-implementation of the observing system.
 					<br>Examples: Argo ITALY, E-SURFMAR DB, VOS-CA, etc..</td>
 				<td>-</td>
 			</tr>
 			<tr>
 				<td>Country</td>
 				<td>The country list used by JCOMMOPS is a union of the member state lists of the IOC-UNESCO and the WMO. <a href="https://fr.wikipedia.org/wiki/ISO_3166-1" target="_blank">ISO 3166-1</a> is used to identify them.</td>
-				<td>Member State (IOC-UNESCO, WMO)</td>
+				<td>Member State (IOC-UNESCO), Member Territory (WMO)</td>
 			</tr>
 			<tr>
 				<td>Network</td>
 				<td>
-					A network is a regroupment of platforms, more precise than the master program but crosses the boundaries of the program. It is usually virtual and represents a common effort or way to measure data.<br>
-					Examples: E-SURFMAR, GDP, BGC-Argo, VOS, etc..
+					A network is a regroupment of platforms, crossing the boundaries of the program. It is usually virtual and represents a common effort or way to measure data.<br>
+					Examples: Argo, DBCP, GLOSS, E-SURFMAR, GDP, BGC-Argo, VOS, etc..
 				</td>
 				<td>-</td>
 			</tr>

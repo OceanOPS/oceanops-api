@@ -94,13 +94,6 @@
 						href="?param=country" role="button">Get countries</a></td>
 				</tr>
 				<tr>
-					<td>masterProgram</td>
-					<td>The affiliation master program(s) of the platform</td>
-					<td><a class="btn btn-default btn-block" target="_blank"
-						href="?param=masterProgram" role="button">Get master
-							programs</a></td>
-				</tr>
-				<tr>
 					<td>network</td>
 					<td>The affiliation network of the platform</td>
 					<td><a class="btn btn-default btn-block" target="_blank"
@@ -145,7 +138,7 @@
 		<p id="date-based-params-details">
 			(**) a date based parameter uses the interval syntax: <code>[</code> or <code>]</code> at the beginning, <code>]</code> or <code>[</code> at the end (respectively inclusive and exclusive behaviors).
 			One can provide one or two dates (comma separated) within the parameter. If the interval symbols are ommited, the inclusive behavior will be considered.<br>
-			A date should be given in UTC and match the following pattern: YYYY-MM-DDTHH:MI:SS (ISO 8601), e.g. 2017-11-07T09:55:42.<br>
+			A date should be given in UTC and match the following pattern: YYYY-MM-DDTHH:MI:SS (ISO 8601), e.g. 2019-02-22T22:30:25.<br>
 			Interval syntax examples:
 			<ul>
 				<li><code>[date1</code>: all records where the database value is posterior or equal to date1</li>
