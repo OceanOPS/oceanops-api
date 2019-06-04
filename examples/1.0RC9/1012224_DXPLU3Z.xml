@@ -92,10 +92,10 @@
                 <wmdr:GeospatialLocation>
                     <wmdr:geoLocation>
                         <gml:Point srsName="http://www.opengis.net/def/crs/EPSG/0/4979" gml:id="_0-22000-0-DXPLU3Z-LatestLocationGeometry">
-                            <gml:coordinates>30.1600 -55.1000 0.0000</gml:coordinates>
+                            <gml:pos>30.16 -55.1 0.0</gml:pos>
                         </gml:Point>
                     </wmdr:geoLocation>
-                    <wmdr:geopositioningMethod xlink:href="http://codes.wmo.int/common/wmdr/GeopositioningMethod/"/>
+                    <wmdr:geopositioningMethod xlink:href="http://codes.wmo.int/common/wmdr/GeopositioningMethod/unknown"/>
                     <wmdr:validPeriod>
                         <gml:TimePeriod gml:id="_0-22000-0-DXPLU3Z-LatestLocationTimePeriod">
                             <gml:beginPosition>2018-05-02T00:00:00Z</gml:beginPosition>
@@ -117,7 +117,7 @@
             <wmdr:wmoRegion/>
             <wmdr:territory>
                 <wmdr:Territory>
-                    <wmdr:territoryName/>
+                    <wmdr:territoryName xlink:href="http://codes.wmo.int/common/wmdr/TerritoryName/inapplicable"/>
                 </wmdr:Territory>
             </wmdr:territory>
             <wmdr:programAffiliation>
@@ -128,40 +128,7 @@
                             <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/nonReporting"/>
                             <wmdr:validPeriod>
                                 <gml:TimePeriod gml:id="_0-22000-0-DXPLU3Z-StatusChangingDateTimePeriod-1">
-                                    <gml:beginPosition>2016-11-19T08:04:22Z</gml:beginPosition>
-                                    <gml:endPosition/>
-                                </gml:TimePeriod>
-                            </wmdr:validPeriod>
-                        </wmdr:ReportingStatus>
-                    </wmdr:reportingStatus>
-                    <wmdr:reportingStatus>
-                        <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/nonReporting"/>
-                            <wmdr:validPeriod>
-                                <gml:TimePeriod gml:id="_0-22000-0-DXPLU3Z-StatusChangingDateTimePeriod-2">
                                     <gml:beginPosition>2018-09-21T11:13:32Z</gml:beginPosition>
-                                    <gml:endPosition/>
-                                </gml:TimePeriod>
-                            </wmdr:validPeriod>
-                        </wmdr:ReportingStatus>
-                    </wmdr:reportingStatus>
-                    <wmdr:reportingStatus>
-                        <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/closed"/>
-                            <wmdr:validPeriod>
-                                <gml:TimePeriod gml:id="_0-22000-0-DXPLU3Z-StatusChangingDateTimePeriod-3">
-                                    <gml:beginPosition>2018-05-02T00:00:00Z</gml:beginPosition>
-                                    <gml:endPosition/>
-                                </gml:TimePeriod>
-                            </wmdr:validPeriod>
-                        </wmdr:ReportingStatus>
-                    </wmdr:reportingStatus>
-                    <wmdr:reportingStatus>
-                        <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/operational"/>
-                            <wmdr:validPeriod>
-                                <gml:TimePeriod gml:id="_0-22000-0-DXPLU3Z-StatusChangingDateTimePeriod-4">
-                                    <gml:beginPosition>2016-11-19T09:04:13Z</gml:beginPosition>
                                     <gml:endPosition/>
                                 </gml:TimePeriod>
                             </wmdr:validPeriod>
@@ -171,46 +138,13 @@
             </wmdr:programAffiliation>
             <wmdr:programAffiliation>
                 <wmdr:ProgramAffiliation>
-                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/VOS-DE"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/VOSDE"/>
                     <wmdr:reportingStatus>
                         <wmdr:ReportingStatus>
                             <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/nonReporting"/>
                             <wmdr:validPeriod>
-                                <gml:TimePeriod gml:id="_0-22000-0-DXPLU3Z-StatusChangingDateTimePeriod-5">
-                                    <gml:beginPosition>2016-11-19T08:04:22Z</gml:beginPosition>
-                                    <gml:endPosition/>
-                                </gml:TimePeriod>
-                            </wmdr:validPeriod>
-                        </wmdr:ReportingStatus>
-                    </wmdr:reportingStatus>
-                    <wmdr:reportingStatus>
-                        <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/nonReporting"/>
-                            <wmdr:validPeriod>
-                                <gml:TimePeriod gml:id="_0-22000-0-DXPLU3Z-StatusChangingDateTimePeriod-6">
+                                <gml:TimePeriod gml:id="_0-22000-0-DXPLU3Z-StatusChangingDateTimePeriod-2">
                                     <gml:beginPosition>2018-09-21T11:13:32Z</gml:beginPosition>
-                                    <gml:endPosition/>
-                                </gml:TimePeriod>
-                            </wmdr:validPeriod>
-                        </wmdr:ReportingStatus>
-                    </wmdr:reportingStatus>
-                    <wmdr:reportingStatus>
-                        <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/closed"/>
-                            <wmdr:validPeriod>
-                                <gml:TimePeriod gml:id="_0-22000-0-DXPLU3Z-StatusChangingDateTimePeriod-7">
-                                    <gml:beginPosition>2018-05-02T00:00:00Z</gml:beginPosition>
-                                    <gml:endPosition/>
-                                </gml:TimePeriod>
-                            </wmdr:validPeriod>
-                        </wmdr:ReportingStatus>
-                    </wmdr:reportingStatus>
-                    <wmdr:reportingStatus>
-                        <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/operational"/>
-                            <wmdr:validPeriod>
-                                <gml:TimePeriod gml:id="_0-22000-0-DXPLU3Z-StatusChangingDateTimePeriod-8">
-                                    <gml:beginPosition>2016-11-19T09:04:13Z</gml:beginPosition>
                                     <gml:endPosition/>
                                 </gml:TimePeriod>
                             </wmdr:validPeriod>
@@ -223,6 +157,7 @@
                     <gml:boundedBy xsi:nil="true"/>
                     <wmdr:facility xlink:href="0-22000-0-DXPLU3Z"/>
                     <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/SOT"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/VOSDE"/>
                     <wmdr:observation>
                         <om:OM_Observation gml:id="omobs-2188-395">
                             <gml:boundedBy xsi:nil="true"/>
@@ -305,6 +240,7 @@
                     <gml:boundedBy xsi:nil="true"/>
                     <wmdr:facility xlink:href="0-22000-0-DXPLU3Z"/>
                     <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/SOT"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/VOSDE"/>
                     <wmdr:observation>
                         <om:OM_Observation gml:id="omobs-2188-491">
                             <gml:boundedBy xsi:nil="true"/>

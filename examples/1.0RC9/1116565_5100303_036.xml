@@ -92,13 +92,13 @@
                 <wmdr:GeospatialLocation>
                     <wmdr:geoLocation>
                         <gml:Point srsName="http://www.opengis.net/def/crs/EPSG/0/4979" gml:id="_0-22000-36-5100303-LatestLocationGeometry">
-                            <gml:coordinates>5.0000 -170.0000 0.0000</gml:coordinates>
+                            <gml:pos>5.0 -170.0 0.0</gml:pos>
                         </gml:Point>
                     </wmdr:geoLocation>
-                    <wmdr:geopositioningMethod xlink:href="http://codes.wmo.int/common/wmdr/GeopositioningMethod/"/>
+                    <wmdr:geopositioningMethod xlink:href="http://codes.wmo.int/common/wmdr/GeopositioningMethod/unknown"/>
                     <wmdr:validPeriod>
                         <gml:TimePeriod gml:id="_0-22000-36-5100303-LatestLocationTimePeriod">
-                            <gml:beginPosition>2019-05-22T23:00:00Z</gml:beginPosition>
+                            <gml:beginPosition>2019-06-02T23:00:00Z</gml:beginPosition>
                             <gml:endPosition/>
                         </gml:TimePeriod>
                     </wmdr:validPeriod>
@@ -116,23 +116,28 @@
             <wmdr:wmoRegion/>
             <wmdr:territory>
                 <wmdr:Territory>
-                    <wmdr:territoryName/>
+                    <wmdr:territoryName xlink:href="http://codes.wmo.int/common/wmdr/TerritoryName/inapplicable"/>
                 </wmdr:Territory>
             </wmdr:territory>
             <wmdr:programAffiliation>
                 <wmdr:ProgramAffiliation>
-                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/OceanSITES"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/oceanSITES"/>
                     <wmdr:reportingStatus>
                         <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/preOperational"/>
+                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/operational"/>
                             <wmdr:validPeriod>
                                 <gml:TimePeriod gml:id="_0-22000-36-5100303-StatusChangingDateTimePeriod-1">
-                                    <gml:beginPosition>2018-08-08T07:37:17Z</gml:beginPosition>
+                                    <gml:beginPosition>2018-08-09T04:08:19Z</gml:beginPosition>
                                     <gml:endPosition/>
                                 </gml:TimePeriod>
                             </wmdr:validPeriod>
                         </wmdr:ReportingStatus>
                     </wmdr:reportingStatus>
+                </wmdr:ProgramAffiliation>
+            </wmdr:programAffiliation>
+            <wmdr:programAffiliation>
+                <wmdr:ProgramAffiliation>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/DBCP"/>
                     <wmdr:reportingStatus>
                         <wmdr:ReportingStatus>
                             <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/operational"/>
@@ -148,50 +153,12 @@
             </wmdr:programAffiliation>
             <wmdr:programAffiliation>
                 <wmdr:ProgramAffiliation>
-                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/DBCP"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/NDBCMB"/>
                     <wmdr:reportingStatus>
                         <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/preOperational"/>
+                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/operational"/>
                             <wmdr:validPeriod>
                                 <gml:TimePeriod gml:id="_0-22000-36-5100303-StatusChangingDateTimePeriod-3">
-                                    <gml:beginPosition>2018-08-08T07:37:17Z</gml:beginPosition>
-                                    <gml:endPosition/>
-                                </gml:TimePeriod>
-                            </wmdr:validPeriod>
-                        </wmdr:ReportingStatus>
-                    </wmdr:reportingStatus>
-                    <wmdr:reportingStatus>
-                        <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/operational"/>
-                            <wmdr:validPeriod>
-                                <gml:TimePeriod gml:id="_0-22000-36-5100303-StatusChangingDateTimePeriod-4">
-                                    <gml:beginPosition>2018-08-09T04:08:19Z</gml:beginPosition>
-                                    <gml:endPosition/>
-                                </gml:TimePeriod>
-                            </wmdr:validPeriod>
-                        </wmdr:ReportingStatus>
-                    </wmdr:reportingStatus>
-                </wmdr:ProgramAffiliation>
-            </wmdr:programAffiliation>
-            <wmdr:programAffiliation>
-                <wmdr:ProgramAffiliation>
-                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/NDBC-MB"/>
-                    <wmdr:reportingStatus>
-                        <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/preOperational"/>
-                            <wmdr:validPeriod>
-                                <gml:TimePeriod gml:id="_0-22000-36-5100303-StatusChangingDateTimePeriod-5">
-                                    <gml:beginPosition>2018-08-08T07:37:17Z</gml:beginPosition>
-                                    <gml:endPosition/>
-                                </gml:TimePeriod>
-                            </wmdr:validPeriod>
-                        </wmdr:ReportingStatus>
-                    </wmdr:reportingStatus>
-                    <wmdr:reportingStatus>
-                        <wmdr:ReportingStatus>
-                            <wmdr:reportingStatus xlink:href="http://codes.wmo.int/common/wmdr/ReportingStatus/operational"/>
-                            <wmdr:validPeriod>
-                                <gml:TimePeriod gml:id="_0-22000-36-5100303-StatusChangingDateTimePeriod-6">
                                     <gml:beginPosition>2018-08-09T04:08:19Z</gml:beginPosition>
                                     <gml:endPosition/>
                                 </gml:TimePeriod>
@@ -204,8 +171,9 @@
                 <wmdr:ObservingCapability gml:id="oc-2387-450">
                     <gml:boundedBy xsi:nil="true"/>
                     <wmdr:facility xlink:href="0-22000-36-5100303"/>
-                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/OceanSITES"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/oceanSITES"/>
                     <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/DBCP"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/NDBCMB"/>
                     <wmdr:observation>
                         <om:OM_Observation gml:id="omobs-2387-450">
                             <gml:boundedBy xsi:nil="true"/>
@@ -287,8 +255,9 @@
                 <wmdr:ObservingCapability gml:id="oc-2105-418">
                     <gml:boundedBy xsi:nil="true"/>
                     <wmdr:facility xlink:href="0-22000-36-5100303"/>
-                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/OceanSITES"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/oceanSITES"/>
                     <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/DBCP"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/NDBCMB"/>
                     <wmdr:observation>
                         <om:OM_Observation gml:id="omobs-2105-418">
                             <gml:boundedBy xsi:nil="true"/>
@@ -370,8 +339,9 @@
                 <wmdr:ObservingCapability gml:id="oc-2282-329">
                     <gml:boundedBy xsi:nil="true"/>
                     <wmdr:facility xlink:href="0-22000-36-5100303"/>
-                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/OceanSITES"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/oceanSITES"/>
                     <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/DBCP"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/NDBCMB"/>
                     <wmdr:observation>
                         <om:OM_Observation gml:id="omobs-2282-329">
                             <gml:boundedBy xsi:nil="true"/>
@@ -473,8 +443,9 @@ USA</gco:CharacterString>
                 <wmdr:ObservingCapability gml:id="oc-2282-330">
                     <gml:boundedBy xsi:nil="true"/>
                     <wmdr:facility xlink:href="0-22000-36-5100303"/>
-                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/OceanSITES"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/oceanSITES"/>
                     <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/DBCP"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/NDBCMB"/>
                     <wmdr:observation>
                         <om:OM_Observation gml:id="omobs-2282-330">
                             <gml:boundedBy xsi:nil="true"/>
@@ -576,8 +547,9 @@ USA</gco:CharacterString>
                 <wmdr:ObservingCapability gml:id="oc-2409-330">
                     <gml:boundedBy xsi:nil="true"/>
                     <wmdr:facility xlink:href="0-22000-36-5100303"/>
-                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/OceanSITES"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/oceanSITES"/>
                     <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/DBCP"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/NDBCMB"/>
                     <wmdr:observation>
                         <om:OM_Observation gml:id="omobs-2409-330">
                             <gml:boundedBy xsi:nil="true"/>
@@ -679,8 +651,9 @@ USA</gco:CharacterString>
                 <wmdr:ObservingCapability gml:id="oc-2390-395">
                     <gml:boundedBy xsi:nil="true"/>
                     <wmdr:facility xlink:href="0-22000-36-5100303"/>
-                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/OceanSITES"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/oceanSITES"/>
                     <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/DBCP"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/NDBCMB"/>
                     <wmdr:observation>
                         <om:OM_Observation gml:id="omobs-2390-395">
                             <gml:boundedBy xsi:nil="true"/>
@@ -779,8 +752,9 @@ USA</gco:CharacterString>
                 <wmdr:ObservingCapability gml:id="oc-2484-484">
                     <gml:boundedBy xsi:nil="true"/>
                     <wmdr:facility xlink:href="0-22000-36-5100303"/>
-                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/OceanSITES"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/oceanSITES"/>
                     <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/DBCP"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/NDBCMB"/>
                     <wmdr:observation>
                         <om:OM_Observation gml:id="omobs-2484-484">
                             <gml:boundedBy xsi:nil="true"/>
@@ -879,8 +853,9 @@ USA</gco:CharacterString>
                 <wmdr:ObservingCapability gml:id="oc-2483-467">
                     <gml:boundedBy xsi:nil="true"/>
                     <wmdr:facility xlink:href="0-22000-36-5100303"/>
-                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/OceanSITES"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/oceanSITES"/>
                     <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/DBCP"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/NDBCMB"/>
                     <wmdr:observation>
                         <om:OM_Observation gml:id="omobs-2483-467">
                             <gml:boundedBy xsi:nil="true"/>
@@ -979,8 +954,9 @@ USA</gco:CharacterString>
                 <wmdr:ObservingCapability gml:id="oc-2480-377">
                     <gml:boundedBy xsi:nil="true"/>
                     <wmdr:facility xlink:href="0-22000-36-5100303"/>
-                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/OceanSITES"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/oceanSITES"/>
                     <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/DBCP"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/NDBCMB"/>
                     <wmdr:observation>
                         <om:OM_Observation gml:id="omobs-2480-377">
                             <gml:boundedBy xsi:nil="true"/>
@@ -1083,8 +1059,9 @@ USA&#13;
                 <wmdr:ObservingCapability gml:id="oc-2480-378">
                     <gml:boundedBy xsi:nil="true"/>
                     <wmdr:facility xlink:href="0-22000-36-5100303"/>
-                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/OceanSITES"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/oceanSITES"/>
                     <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/DBCP"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/NDBCMB"/>
                     <wmdr:observation>
                         <om:OM_Observation gml:id="omobs-2480-378">
                             <gml:boundedBy xsi:nil="true"/>
@@ -1187,8 +1164,9 @@ USA&#13;
                 <wmdr:ObservingCapability gml:id="oc-2482-455">
                     <gml:boundedBy xsi:nil="true"/>
                     <wmdr:facility xlink:href="0-22000-36-5100303"/>
-                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/OceanSITES"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/oceanSITES"/>
                     <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/DBCP"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/NDBCMB"/>
                     <wmdr:observation>
                         <om:OM_Observation gml:id="omobs-2482-455">
                             <gml:boundedBy xsi:nil="true"/>
@@ -1287,8 +1265,9 @@ USA&#13;
                 <wmdr:ObservingCapability gml:id="oc-2481-352">
                     <gml:boundedBy xsi:nil="true"/>
                     <wmdr:facility xlink:href="0-22000-36-5100303"/>
-                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/OceanSITES"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/oceanSITES"/>
                     <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/DBCP"/>
+                    <wmdr:programAffiliation xlink:href="http://codes.wmo.int/common/wmdr/ProgramAffiliation/NDBCMB"/>
                     <wmdr:observation>
                         <om:OM_Observation gml:id="omobs-2481-352">
                             <gml:boundedBy xsi:nil="true"/>
