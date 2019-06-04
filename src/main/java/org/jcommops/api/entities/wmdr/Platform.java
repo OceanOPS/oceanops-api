@@ -16,7 +16,9 @@ import javax.xml.datatype.DatatypeConfigurationException;
 
 import org.apache.cayenne.Cayenne;
 import org.apache.cayenne.ObjectContext;
+import org.apache.cayenne.exp.ExpressionFactory;
 import org.apache.cayenne.query.SelectById;
+import org.apache.cayenne.query.SelectQuery;
 import org.jcommops.api.Utils;
 import org.jcommops.api.orm.Agency;
 import org.jcommops.api.orm.NetworkPtf;
@@ -171,17 +173,17 @@ public class Platform {
 		this.rootElement = wmdrOF.createWIGOSMetadataRecord(this.rootElementType);
 	}
 	
+	
 	/**
-	 * Main constructor of this class. It will instanciate the WMDR for the given platform ID.
+	 * Main constructor of this class. It will instanciate the WMDR for the given platform
 	 * 
-	 * @param ptfId  The platform database identifier from which data will be retrieved
+	 * @param ptf  An instance of a platform
 	 * 
 	 * @throws JAXBException
 	 * @throws DatatypeConfigurationException
 	 */
-	public Platform(Integer ptfId) throws JAXBException, DatatypeConfigurationException{
+	public Platform(Ptf ptf) throws JAXBException, DatatypeConfigurationException{
 		this();
-		Ptf ptf = SelectById.query(Ptf.class, ptfId).selectOne(this.cayenneContext);
 		String wigosRef = this.getWIGOSIdentifier(ptf);
 		
 		CodeWithAuthorityType identifier = new CodeWithAuthorityType();
