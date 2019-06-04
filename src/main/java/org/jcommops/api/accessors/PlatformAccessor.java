@@ -14,6 +14,7 @@ import org.apache.cayenne.Cayenne;
 import org.apache.cayenne.DataRow;
 import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.query.SQLTemplate;
+import org.apache.cayenne.query.SelectById;
 import org.apache.cayenne.query.SelectQuery;
 import org.jcommops.api.Utils;
 import org.jcommops.api.entities.CountryEntity;
@@ -48,6 +49,30 @@ public class PlatformAccessor {
 	public PlatformAccessor() {
 		this.context = Utils.getCayenneContext();
 	}
+	
+
+	/**
+	 * Query the database to retrieve a platform's details, based on its database ID.
+	 * @param id	long	The database identifier
+	 * @return	A ORM Ptf object 
+	 */
+	public Ptf getPtfbyID(long id) {// Platform's details by ID
+		// Find the platform
+		Ptf ptf = SelectById.query(Ptf.class, id).selectOne(this.context);
+		return ptf;
+	}
+	
+	/**
+	 * Query the database to retrieve a platform's details, based on its database ID.
+	 * @param id	long	The database identifier
+	 * @return	A ORM Ptf object 
+	 */
+	public Ptf getPtfbyRef(String ref) {// Platform's details by ID
+		// Find the platform
+		Ptf ptf = SelectQuery.query(Ptf.class, Ptf.REF.eq(ref)).selectOne(this.context);
+		return ptf;
+	}
+
 
 	/**
 	 * Build the list of platform IDs/REFs.
@@ -316,7 +341,7 @@ public class PlatformAccessor {
 	 * @param id	long	The database identifier
 	 * @return	A PlatformEntity object, filled with database information 
 	 */
-	public PlatformEntity getPtfbyID(long id) {// Platform's details by ID
+	public PlatformEntity getPlatformEntitybyID(long id) {// Platform's details by ID
 		// Find the platform
 		Ptf platform = Cayenne.objectForPK(context, Ptf.class, id); 
 		
@@ -791,7 +816,7 @@ public class PlatformAccessor {
 	public String WritePtfCSV(long id) throws NullPointerException {
 		String csv = null;
 		
-		PlatformEntity ptfm = getPtfbyID(id);
+		PlatformEntity ptfm = getPlatformEntitybyID(id);
 		csv = ptfm.toCSV();
 		
 		return csv;

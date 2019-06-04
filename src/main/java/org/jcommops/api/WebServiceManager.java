@@ -112,7 +112,18 @@ public class WebServiceManager {
 	@Path("platforms.xml/{id}")
 	@Produces(MediaType.APPLICATION_XML)
 	public String getPlatformWmdrById(@PathParam("id") String id) throws JAXBException, NumberFormatException, DatatypeConfigurationException {
-		Platform wmdr = new Platform(Integer.parseInt(id));
+		PlatformAccessor m = new PlatformAccessor();
+		Platform wmdr = new Platform(m.getPtfbyID(Integer.parseInt(id)));
+		
+		return wmdr.toString();
+	}
+	
+	@GET
+	@Path("platforms.xml/ref/{ref}")
+	@Produces(MediaType.APPLICATION_XML)
+	public String getPlatformWmdrByRef(@PathParam("ref") String ref) throws JAXBException, NumberFormatException, DatatypeConfigurationException {
+		PlatformAccessor m = new PlatformAccessor();
+		Platform wmdr = new Platform(m.getPtfbyRef(ref));
 		
 		return wmdr.toString();
 	}
@@ -133,7 +144,7 @@ public class WebServiceManager {
 	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	public PlatformEntity getPtfbyIdJSON(@PathParam("id") long id) {
 		PlatformAccessor m = new PlatformAccessor();
-		PlatformEntity ptfm = m.getPtfbyID(id);
+		PlatformEntity ptfm = m.getPlatformEntitybyID(id);
 
 		if (ptfm == null) {
 			throw new NotFoundException("No platform found for ID = " + id);
@@ -147,7 +158,7 @@ public class WebServiceManager {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getPtfbyIdCSV(@PathParam("id") long id) {
 		PlatformAccessor m = new PlatformAccessor();
-		PlatformEntity ptfm = m.getPtfbyID(id);
+		PlatformEntity ptfm = m.getPlatformEntitybyID(id);
 		StringBuilder csv = new StringBuilder();
 
 		if (ptfm == null) {
