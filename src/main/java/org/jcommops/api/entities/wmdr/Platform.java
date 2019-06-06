@@ -261,8 +261,16 @@ public class Platform {
 		if(agency.getCountry() != null){
 			value = this.gcoOF.createCharacterStringPropertyType();
 			value.setCharacterString(this.gcoOF.createCharacterString(agency.getCountry().getCode3()));
-			if(agencyId == Utils.JCOMMOPS_AGENCY_ID)
+			// Exception for international agencies
+			if(agencyId == Utils.JCOMMOPS_AGENCY_ID || agencyId == 1000540) // JCOMMOPS, EuroArgo
 				value.setCharacterString(this.gcoOF.createCharacterString("FRA"));
+			else if(agencyId == 14300) // EUMETNET
+				value.setCharacterString(this.gcoOF.createCharacterString("BEL"));
+			else if(agencyId == 14938) // EU-THOR
+				value.setCharacterString(this.gcoOF.createCharacterString("DEU"));
+			else if(agencyId == 6886 || agencyId == 14666) //  USA				
+				value.setCharacterString(this.gcoOF.createCharacterString("USA"));
+			
 			address.setCountry(value);
 		}
 		
