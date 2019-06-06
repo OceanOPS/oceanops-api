@@ -817,22 +817,22 @@ public class Platform {
 				SensorType st = smst.getSensorType();
 				ocp = this.wmdrOF.createObservingCapabilityPropertyType();
 				oc = this.wmdrOF.createObservingCapabilityType();
-				oc.setId("oc-" + sm.getId() + "-" + st.getId());
+				oc.setId("oc-" + psm.getId() + "-" + st.getId());
 				OMObservationPropertyType omobsp = this.omOF.createOMObservationPropertyType();
 				OMObservationType omobs = this.omOF.createOMObservationType();
 				omobsp.setOMObservation(omobs);
-				omobs.setId("omobs-" + sm.getId() + "-" + st.getId());
+				omobs.setId("omobs-" + psm.getId() + "-" + st.getId());
 			
 				ReferenceType refType = this.gmlOF.createReferenceType();
 				refType.setHref("http://codes.wmo.int/wmdr/ObservedVariable/" + st.getVariable().getWigosCode());
 				omobs.setObservedProperty(refType);
 				
 				ProcessType process = this.wmdrOF.createProcessType();
-				process.setId("process-" + sm.getId() + "-" + st.getId());
+				process.setId("process-" + psm.getId() + "-" + st.getId());
 				
 				DeploymentPropertyType deplP = this.wmdrOF.createDeploymentPropertyType();
 				DeploymentType depl = this.wmdrOF.createDeploymentType();
-				depl.setId("process-depl-" + sm.getId() + "-" + st.getId());
+				depl.setId("process-depl-" + psm.getId() + "-" + st.getId());
 				depl.setDeployedEquipment(this.getEquipmentPropertyType(psm, sensorIncrement));
 				sensorIncrement++;
 				
@@ -865,7 +865,7 @@ public class Platform {
 				ArrayList<String> beginT = new ArrayList<String>();
 				beginT.add(Utils.GetIsoDate(ptf.getPtfDepl().getDeplDate()));
 				tptype.setValue(beginT);
-				atotype.setId("omobs-timeperiod-" + sm.getId() + "-" + st.getId());
+				atotype.setId("omobs-timeperiod-" + psm.getId() + "-" + st.getId());
 				atotype.setBeginPosition(tptype);
 				atotype.setEndPosition(this.gmlOF.createTimePositionType());
 				topt.setAbstractTimeObject(this.gmlOF.createTimePeriod(atotype));
@@ -877,7 +877,7 @@ public class Platform {
 				beginT = new ArrayList<String>();
 				beginT.add(Utils.GetIsoDate(ptf.getPtfDepl().getDeplDate()));
 				tptype.setValue(beginT);
-				atotype.setId("omobs-timeperiod-validperiod-" + sm.getId() + "-" + st.getId());
+				atotype.setId("omobs-timeperiod-validperiod-" + psm.getId() + "-" + st.getId());
 				atotype.setBeginPosition(tptype);
 				atotype.setEndPosition(this.gmlOF.createTimePositionType());
 				tppt.setTimePeriod(atotype);
