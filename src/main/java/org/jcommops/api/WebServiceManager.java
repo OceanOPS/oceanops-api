@@ -152,6 +152,21 @@ public class WebServiceManager {
 
 		return ptfm;
 	}
+	
+
+	@GET
+	@Path("platforms.json/ref/{ref}")
+	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
+	public PlatformEntity getPlatformJSONByRef(@PathParam("ref") String ref) throws JAXBException, NumberFormatException, DatatypeConfigurationException {
+		PlatformAccessor m = new PlatformAccessor();
+		PlatformEntity ptfm = m.getPlatformEntitybyRef(ref);
+
+		if (ptfm == null) {
+			throw new NotFoundException("No platform found for ref = " + ref);
+		}
+
+		return ptfm;
+	}
 
 	@GET
 	@Path("platforms.csv/{id}")

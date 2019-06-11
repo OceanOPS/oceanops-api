@@ -107,9 +107,9 @@ public class ProgramEntity implements Serializable{
         return agencies;
     }
 
-    public void setAgencies(ArrayList<AgencyEntity> agencies) {
-        this.agencies = agencies;
-    }
+	public void setAgencies(List<AgencyEntity> agencies) {
+		this.agencies = agencies;
+	}
 
 	public CountryEntity getCountry() {
 		return country;
