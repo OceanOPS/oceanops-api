@@ -355,6 +355,24 @@ public class PlatformAccessor {
 	}
 
 	/**
+	 * Query the database to retrieve a platform's details, based on its reference.
+	 * @param ref	String	The reference
+	 * @return	A PlatformEntity object, filled with database information 
+	 */
+	public PlatformEntity getPlatformEntitybyRef(String ref) {
+		// Find the platform
+		Ptf platform = SelectQuery.query(Ptf.class, Ptf.REF.eq(ref)).selectOne(this.context);
+		
+		PlatformEntity ptf = null;
+		// Create and select the attributes and or object to "platform"
+		if(platform != null)
+			ptf = new PlatformEntity(platform);
+
+		return ptf;
+
+	}
+
+	/**
 	 * Filters and returns a subset of platform based on the given parameters.
 	 * Parameters can be multi-valued. For and intersection, "." symbol will be
 	 * used. For an union, "," symbol will be used (where applicable)
