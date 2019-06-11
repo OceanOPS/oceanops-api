@@ -713,13 +713,19 @@ public class Platform {
 				reportingStatusType = this.wmdrOF.createReportingStatusType();
 				// TODO : check WMO code tables
 				refType = new ReferenceType();
-				refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + latestStatus.getPtfStatus().getWigosCode());
+				if(latestStatus != null)
+					refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + latestStatus.getPtfStatus().getWigosCode());
+				else
+					refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + ptf.getPtfStatus().getWigosCode());
 				reportingStatusType.setReportingStatus(refType);
 				
 				timePeriodProperty = new TimePeriodPropertyType();
 				timePeriod = new TimePeriodType();
 				timePosition = new TimePositionType();
-				timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(latestStatus.getChangingDate())));
+				if(latestStatus != null)
+					timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(latestStatus.getChangingDate())));
+				else
+					timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(ptf.getPtfDepl().getDeplDate())));
 				timePeriod.setId(o.getId() + "-StatusChangingDateTimePeriod-" + count);
 				timePeriod.setBeginPosition(timePosition);
 				timePeriod.setEndPosition(new TimePositionType());
@@ -774,13 +780,19 @@ public class Platform {
 		reportingStatusType = this.wmdrOF.createReportingStatusType();
 		// TODO : check WMO code tables
 		refType = new ReferenceType();
-		refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + latestStatus.getPtfStatus().getWigosCode());
+		if(latestStatus != null)
+			refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + latestStatus.getPtfStatus().getWigosCode());
+		else
+			refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + ptf.getPtfStatus().getWigosCode());
 		reportingStatusType.setReportingStatus(refType);
 		
 		timePeriodProperty = new TimePeriodPropertyType();
 		timePeriod = new TimePeriodType();
 		timePosition = new TimePositionType();
-		timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(latestStatus.getChangingDate())));
+		if(latestStatus != null)
+			timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(latestStatus.getChangingDate())));
+		else
+			timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(ptf.getPtfDepl().getDeplDate())));
 		timePeriod.setId(o.getId() + "-StatusChangingDateTimePeriod-" + count);
 		timePeriod.setBeginPosition(timePosition);
 		timePeriod.setEndPosition(new TimePositionType());
