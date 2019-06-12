@@ -136,7 +136,7 @@
 			The values that can each parameter take are listed in the corresponding links in table 1 ("Get parameter" button).
 		</p>
 		<p id="date-based-params-details">
-			(**) a date based parameter uses the interval syntax: <code>[</code> or <code>]</code> at the beginning, <code>]</code> or <code>[</code> at the end (respectively inclusive and exclusive behaviors).
+			(**) a date based parameter uses the interval syntax: <code>[</code> (HTML URL code: %5B) or <code>]</code> (HTML URL code: %5D) at the beginning, <code>]</code> or <code>[</code> at the end (respectively inclusive and exclusive behaviors).
 			One can provide one or two dates (comma separated) within the parameter. If the interval symbols are ommited, the inclusive behavior will be considered.<br>
 			A date should be given in UTC and match the following pattern: YYYY-MM-DDTHH:MI:SS (ISO 8601), e.g. 2019-02-22T22:30:25.<br>
 			Interval syntax examples:
