@@ -393,7 +393,7 @@ public class PlatformAccessor {
 	 * @param updateDate 
 	 * @return A HashMap containing the database identifiers as keys, the JCOMMOPS reference as values
 	 */
-	public HashMap<Integer, String> getPtfbySelectedParam(String ptfStatus, String ptfFamily, String ptfType,
+	public HashMap<Integer, HashMap<String, String>> getPtfbySelectedParam(String ptfStatus, String ptfFamily, String ptfType,
 			String ptfModel, String program, String network, String masterProg, String variable, String sensorModel,
 			String sensorType, String ship, String country, String wigosReady, String updateDate, String insertDate) {
 		
@@ -416,7 +416,7 @@ public class PlatformAccessor {
 
 		// QUERY PARAMETERS
 		String intersectionSymbol = ".", unionSymbol = ",";
-		StringBuilder query = new StringBuilder("select ptf.id, ptf.ref from ptf where 1=1");
+		StringBuilder query = new StringBuilder("select ptf.id, ptf.ref, ptfids.wigos_ref from ptf left join ptf_identifiers ptfids on (ptfids.id = ptf.ptf_identifiers_id) where 1=1");
 		StringBuilder whereClause = new StringBuilder();
 		boolean usingID = false;
 		boolean wigos = false;
@@ -431,7 +431,7 @@ public class PlatformAccessor {
 		
 		// WIGOS filtering
 		if(wigosReady != null) {
-			whereClause.append(" and (select wigos_ref from ptf_identifiers ptfid where ptfid.wigos_ref is not null and ptfid.id = ptf.ptf_identifiers_id) is not null");
+			whereClause.append(" and (ptfids.wigos_ref is not null)");
 		}
 
 
@@ -819,13 +819,21 @@ public class PlatformAccessor {
 		query_search.setFetchingDataRows(true);
 		List<DataRow> rows = context.performQuery(query_search);
 
-		HashMap<Integer, String> ptfList = new HashMap<Integer, String>();
+		HashMap<Integer, HashMap<String, String>> ptfList = new HashMap<>();
 
 		Iterator<DataRow> ptf_itr = rows.iterator();
 
 		while (ptf_itr.hasNext()) {
+			HashMap<String, String> ptfIds = new HashMap<String, String>();
 			DataRow row = ptf_itr.next();
-			ptfList.put((Integer) row.get("ID"), (String) row.get("REF"));
+			ptfIds.put("ref", (String)row.get("REF"));
+			if(row.get("WIGOS_REF") != null)
+				ptfIds.put("wigos_ref", (String)row.get("WIGOS_REF"));
+			else
+				ptfIds.put("wigos_ref", "");
+				
+				
+			ptfList.put((Integer) row.get("ID"), ptfIds);
 		}
 
 		return ptfList;
