@@ -69,14 +69,15 @@ public class WebServiceManager {
 			@QueryParam("updateDate") String updateDate, @QueryParam("insertDate") String insertDate) {
 
 		PlatformAccessor m = new PlatformAccessor();
-		HashMap<Integer, String> foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program,
+		HashMap<Integer, HashMap<String, String>> foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program,
 				network, masterprg, variable, sensormod, sensortyp, ship, country, wigosReady, updateDate, insertDate);
 		
 		ArrayList<PlatformEntity> result = new ArrayList<PlatformEntity>();
 		for (Integer id : foundPlatforms.keySet()) {
 			PlatformEntity ptf = new PlatformEntity();
 			ptf.setId(id);
-			ptf.setJcommopsRef(foundPlatforms.get(id));
+			ptf.setJcommopsRef(foundPlatforms.get(id).get("ref"));
+			ptf.setWigosRef(foundPlatforms.get(id).get("wigos_ref"));
 			result.add(ptf);
 		}
 		return result;
@@ -94,16 +95,16 @@ public class WebServiceManager {
 			@QueryParam("updateDate") String updateDate, @QueryParam("insertDate") String insertDate) {
 
 		PlatformAccessor m = new PlatformAccessor();
-		HashMap<Integer, String> foundPlatforms = null;
+		HashMap<Integer, HashMap<String, String>> foundPlatforms = null;
 
 		StringBuilder csv = new StringBuilder();
 
 		foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable,
 				sensormod, sensortyp, ship, country, wigosReady, updateDate, insertDate);
 
-		csv.append("id" + Utils.CSV_SEPARATOR + "ref");
+		csv.append("id" + Utils.CSV_SEPARATOR + "ref" + Utils.CSV_SEPARATOR + "wigos_ref");
 		for (Integer id : foundPlatforms.keySet()) {
-			csv.append("\n" + id + Utils.CSV_SEPARATOR + foundPlatforms.get(id));
+			csv.append("\n" + id + Utils.CSV_SEPARATOR + foundPlatforms.get(id).get("ref") + Utils.CSV_SEPARATOR + foundPlatforms.get(id).get("wigos_ref"));
 		}
 		return csv.toString();
 	}

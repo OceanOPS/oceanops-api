@@ -23,6 +23,7 @@ public class PlatformEntity implements Serializable{
 	private static final long serialVersionUID = -754408337242938591L;
 	private Integer id;
 	private String jcommopsRef;
+	private String wigosRef;
 	private TelecomEntity telecom;
 	private String internalRef;
 	private String serialRef;
@@ -387,6 +388,15 @@ public class PlatformEntity implements Serializable{
 
 	public void setJcommopsDBInsertDate(String jcommopsDBInsertDate) {
 		this.jcommopsDBInsertDate = jcommopsDBInsertDate;
+	}
+
+	@XmlElement
+	public String getWigosRef() {
+		return wigosRef;
+	}
+
+	public void setWigosRef(String wigosRef) {
+		this.wigosRef = wigosRef;
 	}
 
 }
