@@ -586,45 +586,47 @@ public class Platform {
 	
 		
 		// BEGIN - Latest location
-		List<GeospatialLocation> geospatialLocs = o.getGeospatialLocation();
-		GeospatialLocation gsLoc = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeGeospatialLocation();
-		GeospatialLocationType gsLocType = this.wmdrOF.createGeospatialLocationType();
-		
 		TimePeriodPropertyType timePeriodProperty = new TimePeriodPropertyType();
 		TimePeriodType timePeriod = new TimePeriodType();
 		TimePositionType timePosition = new TimePositionType();
-		timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(ptf.getLastLoc().getLocDate())));
-		timePeriod.setId(o.getId() + "-LatestLocationTimePeriod");
-		timePeriod.setBeginPosition(timePosition);
-		timePeriod.setEndPosition(new TimePositionType());
-		timePeriodProperty.setTimePeriod(timePeriod);
-		
-		PointType geom = new PointType();
-		geom.setId(o.getId() + "-LatestLocationGeometry");
-		DirectPositionType posType = this.gmlOF.createDirectPositionType();
-		ArrayList<Double> coords = new ArrayList<Double>();
-		coords.add(ptf.getLastLoc().getLat().doubleValue());
-		coords.add(ptf.getLastLoc().getLon().doubleValue());
-		coords.add(0.0);
-		posType.setValue(coords);
-		geom.setPos(posType);
-		geom.setSrsName("http://www.opengis.net/def/crs/EPSG/0/4979");
-
-		GeometryPropertyType geomProperty = new GeometryPropertyType();
-		geomProperty.setAbstractGeometry(this.gmlOF.createPoint(geom));
-		
 		ReferenceType refType = this.gmlOF.createReferenceType();
-		if(ptf.getTrackingSystem() != null)
-			refType.setHref("http://codes.wmo.int/common/wmdr/GeopositioningMethod/" + ptf.getTrackingSystem().getWigosCode());
-		else
-			refType.setHref("http://codes.wmo.int/common/wmdr/GeopositioningMethod/unknown");
+		if(ptf.getLastLoc() != null) {
+			List<GeospatialLocation> geospatialLocs = o.getGeospatialLocation();
+			GeospatialLocation gsLoc = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeGeospatialLocation();
+			GeospatialLocationType gsLocType = this.wmdrOF.createGeospatialLocationType();
+	
+			timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(ptf.getLastLoc().getLocDate())));
+			timePeriod.setId(o.getId() + "-LatestLocationTimePeriod");
+			timePeriod.setBeginPosition(timePosition);
+			timePeriod.setEndPosition(new TimePositionType());
+			timePeriodProperty.setTimePeriod(timePeriod);
+			
+			PointType geom = new PointType();
+			geom.setId(o.getId() + "-LatestLocationGeometry");
+			DirectPositionType posType = this.gmlOF.createDirectPositionType();
+			ArrayList<Double> coords = new ArrayList<Double>();
+			coords.add(ptf.getLastLoc().getLat().doubleValue());
+			coords.add(ptf.getLastLoc().getLon().doubleValue());
+			coords.add(0.0);
+			posType.setValue(coords);
+			geom.setPos(posType);
+			geom.setSrsName("http://www.opengis.net/def/crs/EPSG/0/4979");
+	
+			GeometryPropertyType geomProperty = new GeometryPropertyType();
+			geomProperty.setAbstractGeometry(this.gmlOF.createPoint(geom));
 		
-		gsLocType.setGeopositioningMethod(refType);
-		gsLocType.setGeoLocation(geomProperty);
-		gsLocType.setValidPeriod(timePeriodProperty);
-		
-		gsLoc.setGeospatialLocation(gsLocType);
-		geospatialLocs.add(gsLoc);
+			if(ptf.getTrackingSystem() != null)
+				refType.setHref("http://codes.wmo.int/common/wmdr/GeopositioningMethod/" + ptf.getTrackingSystem().getWigosCode());
+			else
+				refType.setHref("http://codes.wmo.int/common/wmdr/GeopositioningMethod/unknown");
+			
+			gsLocType.setGeopositioningMethod(refType);
+			gsLocType.setGeoLocation(geomProperty);
+			gsLocType.setValidPeriod(timePeriodProperty);
+			
+			gsLoc.setGeospatialLocation(gsLocType);
+			geospatialLocs.add(gsLoc);
+		}
 		// END - Latest location
 		
 		
