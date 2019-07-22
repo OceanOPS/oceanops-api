@@ -51,6 +51,7 @@ public abstract class _Ptf extends CayenneDataObject {
     public static final Property<EndingCause> ENDING_CAUSE = Property.create("endingCause", EndingCause.class);
     public static final Property<PtfLoc> LAST_LOC = Property.create("lastLoc", PtfLoc.class);
     public static final Property<Obs> LAST_OBS = Property.create("lastObs", Obs.class);
+    public static final Property<ObsLatest> LATEST_OBS = Property.create("latestObs", ObsLatest.class);
     public static final Property<List<MzmsPtfCountry>> MZMS_PTF_COUNTRIES = Property.create("mzmsPtfCountries", List.class);
     public static final Property<List<NcNotification>> NC_NOTIFICATIONS = Property.create("ncNotifications", List.class);
     public static final Property<List<NcSubscription>> NC_SUBSCRIPTIONS = Property.create("ncSubscriptions", List.class);
@@ -346,6 +347,15 @@ public abstract class _Ptf extends CayenneDataObject {
 
     public Obs getLastObs() {
         return (Obs)readProperty("lastObs");
+    }
+
+
+    public void setLatestObs(ObsLatest latestObs) {
+        setToOneTarget("latestObs", latestObs, true);
+    }
+
+    public ObsLatest getLatestObs() {
+        return (ObsLatest)readProperty("latestObs");
     }
 
 
