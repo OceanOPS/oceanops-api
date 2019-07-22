@@ -352,8 +352,8 @@ public class Platform {
 		geom.setId(ptfId + "-depl-location");
 		DirectPositionType posType = this.gmlOF.createDirectPositionType();
 		ArrayList<Double> coords = new ArrayList<Double>();
-		coords.add(ptf.getLastLoc().getLat().doubleValue());
-		coords.add(ptf.getLastLoc().getLon().doubleValue());
+		coords.add(ptf.getLatestObs().getLat().doubleValue());
+		coords.add(ptf.getLatestObs().getLon().doubleValue());
 		coords.add(0.0);
 		posType.setValue(coords);
 		geom.setPos(posType);
@@ -590,12 +590,12 @@ public class Platform {
 		TimePeriodType timePeriod = new TimePeriodType();
 		TimePositionType timePosition = new TimePositionType();
 		ReferenceType refType = this.gmlOF.createReferenceType();
-		if(ptf.getLastLoc() != null) {
+		if(ptf.getLatestObs() != null) {
 			List<GeospatialLocation> geospatialLocs = o.getGeospatialLocation();
 			GeospatialLocation gsLoc = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeGeospatialLocation();
 			GeospatialLocationType gsLocType = this.wmdrOF.createGeospatialLocationType();
 	
-			timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(ptf.getLastLoc().getLocDate())));
+			timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(ptf.getLatestObs().getObsDate())));
 			timePeriod.setId(o.getId() + "-LatestLocationTimePeriod");
 			timePeriod.setBeginPosition(timePosition);
 			timePeriod.setEndPosition(new TimePositionType());
@@ -605,8 +605,8 @@ public class Platform {
 			geom.setId(o.getId() + "-LatestLocationGeometry");
 			DirectPositionType posType = this.gmlOF.createDirectPositionType();
 			ArrayList<Double> coords = new ArrayList<Double>();
-			coords.add(ptf.getLastLoc().getLat().doubleValue());
-			coords.add(ptf.getLastLoc().getLon().doubleValue());
+			coords.add(ptf.getLatestObs().getLat().doubleValue());
+			coords.add(ptf.getLatestObs().getLon().doubleValue());
 			coords.add(0.0);
 			posType.setValue(coords);
 			geom.setPos(posType);
