@@ -294,7 +294,7 @@ public class Platform {
 		CIRoleCodePropertyType roleCodeProperty = this.gmdOF.createCIRoleCodePropertyType();
 		CodeListValueType codeListValue = this.gcoOF.createCodeListValueType();
 		codeListValue.setCodeList("http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode");
-		codeListValue.setCodeListValue(ciRoleCode != null ? ciRoleCode : "custodian");
+		codeListValue.setCodeListValue(ciRoleCode != null ? ciRoleCode : "pointOfContact");
 		roleCodeProperty.setCIRoleCode(codeListValue);
 		responsibleParty.setRole(roleCodeProperty);
 
