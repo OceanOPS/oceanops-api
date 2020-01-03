@@ -25,9 +25,9 @@
 	<link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.css">
 	<script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.js"></script>
 	
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/main.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/toc.css">
-	<script src="${pageContext.request.contextPath}/scripts/main.js"></script>
+	<link rel="stylesheet" href="../styles/main.css">
+	<link rel="stylesheet" href="../styles/toc.css">
+	<script src="../scripts/main.js"></script>
 </head>	
 <body data-spy="scroll" data-target="#toc">
 	<nav class="navbar navbar-default">
