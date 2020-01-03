@@ -58,13 +58,14 @@
 				<div class="container-fluid">
 					<%@include file="help/versionSpecifics.jsp" %>
 				</div>
-				<h2 class="title-border-bottom">Vocabulary</h2>
+				<h2 class="title-border-bottom">Concepts</h2>
 				<div class="container-fluid">
-					<%@include file="help/vocab.jsp" %>
+					<%@include file="help/concepts.jsp" %>
 				</div>
-				<h2 class="title-border-bottom">Reference tables</h2>
+				<h2 class="title-border-bottom">Vocabularies</h2>
 				<div class="container-fluid">
-					<%@include file="help/referenceTables.jsp" %>
+					<!-- <%@include file="help/referenceTables.jsp" %>  -->
+					To be done.
 				</div>
 				<h2 class="title-border-bottom">Platforms</h2>				
 				<div class="container-fluid">
@@ -73,7 +74,7 @@
 				
 				<h2 class="title-border-bottom">Cruises</h2>
 				<div class="container-fluid">
-				$$TBD
+					To be done.
 				</div>
 			</div>
 		</div>
