@@ -1,5 +1,5 @@
 <p>
-As the number of information systems is growing as well as networks metadata specifications are defined, it is important to clearly define the vocabulary being used within the JCOMMOPS' scope.
+As the number of information systems is growing as well as networks metadata specifications are defined, it is important to clearly define the concepts being used within the JCOMMOPS' scope.
 JCOMMOPS tries to harmonize and integrate different vocabularies and ontologies. Hence, you might not be familiar with all the terms used and how they are used by this API, so please read carefully this section. 
 </p>
 <div class="table-responsive">
@@ -22,7 +22,7 @@ JCOMMOPS tries to harmonize and integrate different vocabularies and ontologies.
 					<li>SOT: VOS weather station, ASAP balloon, XBT profiler;</li>
 					<li>OceanSITES: mooring line (more specifically, a deployment);</li>
 					<li>GO-SHIP: not applicable;</li>
-					<li>OceanGliders: a glider (more specifically, a deployment);</li>
+					<li>OceanGliders: a glider (more specifically, a mission);</li>
 					<li>GLOSS: tide gauge.</li>
 				</ul>
 				</td>
