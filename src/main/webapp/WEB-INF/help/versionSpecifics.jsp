@@ -3,6 +3,6 @@
 <ul>
 	<li>JSON: a JSON format, flexible and subject to evolve;</li>
 	<li>CSV: historical format, easy to read but containing less information than the JSON one;</li>
-	<li>XML: WIGOS Metadata and Data Representation compliant XML file, version <a href='http://schemas.wmo.int/wmdr/index.php?dir=/1.0RC9' target='_blank'>1.0RC9</a>.</li>
+	<li>XML: WIGOS Metadata and Data Representation compliant XML file, version <a href='http://schemas.wmo.int/wmdr/1.0RC9' target='_blank'>1.0RC9</a>.</li>
 </ul>
 </p>
