@@ -182,7 +182,7 @@
 
 		<dependency>
 			<groupId>com.oracle.ojdbc</groupId>
-			<artifactId>ojdbc8</artifactId>
+			<artifactId>ojdbc10</artifactId>
 			<version>19.3.0.0</version>
 		</dependency>
 
