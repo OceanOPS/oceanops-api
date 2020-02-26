@@ -116,38 +116,6 @@ public class Platform {
 	private Integer ciResponsiblePartyCounter = 0;
 	private final Logger logger = LoggerFactory.getLogger(Platform.class);
 
-	/**
-	 * Builds the final WIGOS identifier, based on the platform reference.
-	 * 
-	 * @param ptfRef
-	 *            String Platform's reference
-	 * @return String The full WIGOS identifier
-	 */
-	private String getWIGOSIdentifier(String ptfRef) {
-		StringBuilder wigosID = new StringBuilder();
-		// TODO: review this identifier when specs are finalized
-		int issuerOfIdentifier = 22000;
-		String identifier = ptfRef;
-		int issueNumber = 0;
-		if (identifier.contains("_")) {
-			String[] parts = identifier.split("_");
-			identifier = parts[0];
-			if (parts[1] != null) {
-				issueNumber = Integer.parseInt(parts[1]);
-			}
-		}
-
-		// Building WIGOS ID
-		wigosID.append("0");
-		wigosID.append("-");
-		wigosID.append(String.valueOf(issuerOfIdentifier));
-		wigosID.append("-");
-		wigosID.append(String.valueOf(issueNumber));
-		wigosID.append("-");
-		wigosID.append(identifier);
-
-		return wigosID.toString();
-	}
 
 	/**
 	 * Builds the final WIGOS identifier, based on the platform reference.
