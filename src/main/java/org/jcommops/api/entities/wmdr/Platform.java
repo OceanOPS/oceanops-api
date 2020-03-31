@@ -207,11 +207,10 @@ public class Platform {
 			responsibleParty.setUuid(agency.getRef());
 
 		CharacterStringPropertyType organisationName = this.gcoOF.createCharacterStringPropertyType();
-		organisationName.setCharacterString(this.gcoOF.createCharacterString(agency.getName()));
+		organisationName.setCharacterString(this.gcoOF.createCharacterString(agency.getNameShort()));
 		CIContactPropertyType contactInfo = this.gmdOF.createCIContactPropertyType();
 		CIContactType contact = this.gmdOF.createCIContactType();
 		ArrayList<CharacterStringPropertyType> list = new ArrayList<CharacterStringPropertyType>();
-		;
 		CharacterStringPropertyType value;
 		CITelephonePropertyType phoneProperty = this.gmdOF.createCITelephonePropertyType();
 		CITelephoneType phone = this.gmdOF.createCITelephoneType();
@@ -410,7 +409,7 @@ public class Platform {
 
 		currentEquipmentType.setModel(pm.getName());
 		if (pm.getAgency() != null)
-			currentEquipmentType.setManufacturer(pm.getAgency().getName());
+			currentEquipmentType.setManufacturer(pm.getAgency().getNameShort());
 		StringOrRefType value = new StringOrRefType();
 		value.setValue(pm.getDescription());
 		currentEquipmentType.setDescription(value);
@@ -433,7 +432,7 @@ public class Platform {
 		if (pm.getAgency() != null) {
 			rp.setCIResponsibleParty(this.getCIResponsibleParty(Integer.parseInt(pm.getAgency().getObjectId().getIdSnapshot().get("ID").toString()), "pointOfContact"));
 
-			currentEquipmentType.setManufacturer(pm.getAgency().getName());
+			currentEquipmentType.setManufacturer(pm.getAgency().getNameShort());
 		} else
 			rp.setCIResponsibleParty(this.getCIResponsibleParty(null, null));
 
@@ -489,7 +488,7 @@ public class Platform {
 
 		currentEquipmentType.setModel(sm.getName());
 		if (sm.getAgency() != null)
-			currentEquipmentType.setManufacturer(sm.getAgency().getName());
+			currentEquipmentType.setManufacturer(sm.getAgency().getNameShort());
 		StringOrRefType value = new StringOrRefType();
 		value.setValue(sm.getDescription());
 		currentEquipmentType.setDescription(value);
@@ -512,7 +511,7 @@ public class Platform {
 		if (sm.getAgency() != null) {
 			rp.setCIResponsibleParty(this.getCIResponsibleParty(Integer.parseInt(sm.getAgency().getObjectId().getIdSnapshot().get("ID").toString()), "pointOfContact"));
 
-			currentEquipmentType.setManufacturer(sm.getAgency().getName());
+			currentEquipmentType.setManufacturer(sm.getAgency().getNameShort());
 		} else
 			rp.setCIResponsibleParty(this.getCIResponsibleParty(null, null));
 
