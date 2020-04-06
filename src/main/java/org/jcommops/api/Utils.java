@@ -34,6 +34,7 @@ public class Utils {
 	private static boolean betaVersion;
 	public static final String CSV_SEPARATOR = ";";
 	public static final DateTimeFormatter ISO_DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
+	public static final DateTimeFormatter ISO_DATE_NO_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	public static final Integer JCOMMOPS_AGENCY_ID = 61;
 
 	private Utils() {
@@ -110,6 +111,13 @@ public class Utils {
 		String dateISO = null;
 		if (localDateTime != null)
 			dateISO = ISO_DATE_FORMAT.format(localDateTime);
+		return dateISO;
+	}
+	
+	public static String GetIsoDateNoTime(LocalDateTime localDateTime) {
+		String dateISO = null;
+		if (localDateTime != null)
+			dateISO = ISO_DATE_NO_TIME_FORMAT.format(localDateTime);
 		return dateISO;
 	}
 
