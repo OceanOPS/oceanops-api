@@ -822,6 +822,8 @@ public class Platform {
 		reportingStatusType.setValidPeriod(timePeriodProperty);
 		reportingStatus.setReportingStatus(reportingStatusType);
 		progAffiliationType.getReportingStatus().add(reportingStatus);
+		if(ptf.getLatestWmo() != null)
+			progAffiliationType.setProgramSpecificFacilityId(ptf.getLatestWmo());
 		count++;
 		progAffiliation.setProgramAffiliation(progAffiliationType);
 		o.getProgramAffiliation().add(progAffiliation);
