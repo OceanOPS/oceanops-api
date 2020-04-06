@@ -76,17 +76,22 @@ import net.opengis.gml.v_3_2_1.TimePeriodType;
 import net.opengis.gml.v_3_2_1.TimePositionType;
 import net.opengis.iso19139.gco.v_20070417.CharacterStringPropertyType;
 import net.opengis.iso19139.gco.v_20070417.CodeListValueType;
+import net.opengis.iso19139.gco.v_20070417.DatePropertyType;
 import net.opengis.iso19139.gmd.v_20070417.CIAddressPropertyType;
 import net.opengis.iso19139.gmd.v_20070417.CIAddressType;
 import net.opengis.iso19139.gmd.v_20070417.CIContactPropertyType;
 import net.opengis.iso19139.gmd.v_20070417.CIContactType;
 import net.opengis.iso19139.gmd.v_20070417.CIOnlineResourcePropertyType;
 import net.opengis.iso19139.gmd.v_20070417.CIOnlineResourceType;
+import net.opengis.iso19139.gmd.v_20070417.CIResponsiblePartyPropertyType;
 import net.opengis.iso19139.gmd.v_20070417.CIResponsiblePartyType;
 import net.opengis.iso19139.gmd.v_20070417.CIRoleCodePropertyType;
 import net.opengis.iso19139.gmd.v_20070417.CITelephonePropertyType;
 import net.opengis.iso19139.gmd.v_20070417.CITelephoneType;
 import net.opengis.iso19139.gmd.v_20070417.DQElementPropertyType;
+import net.opengis.iso19139.gmd.v_20070417.MDCharacterSetCodePropertyType;
+import net.opengis.iso19139.gmd.v_20070417.MDMetadataPropertyType;
+import net.opengis.iso19139.gmd.v_20070417.MDMetadataType;
 import net.opengis.iso19139.gmd.v_20070417.URLPropertyType;
 import net.opengis.om.v_2_0.OMObservationPropertyType;
 import net.opengis.om.v_2_0.OMObservationType;
@@ -480,12 +485,16 @@ public class Platform {
 		SensorModel sm = ptfSM.getSensorModel();
 		currentEquipment = this.wmdrOF.createEquipmentPropertyType();
 		currentEquipmentType = this.wmdrOF.createEquipmentType();
-
+		String id;
 		if (increment == 0)
-			currentEquipmentType.setId("subequipment-" + ptfSM.getObjectId().getIdSnapshot().get("ID").toString());
+			id = "subequipment-" + ptfSM.getObjectId().getIdSnapshot().get("ID").toString();
 		else
-			currentEquipmentType.setId("subequipment-" + ptfSM.getObjectId().getIdSnapshot().get("ID").toString() + "-" + String.valueOf(increment));
-
+			id = "subequipment-" + ptfSM.getObjectId().getIdSnapshot().get("ID").toString() + "-" + String.valueOf(increment);
+		currentEquipmentType.setId(id);
+		CodeWithAuthorityType code = this.gmlOF.createCodeWithAuthorityType();
+		code.setCodeSpace("https://www.jcommops.org/");
+		code.setValue(id);
+		currentEquipmentType.setIdentifier(code);
 		currentEquipmentType.setModel(sm.getName());
 		if (sm.getAgency() != null)
 			currentEquipmentType.setManufacturer(sm.getAgency().getNameShort());
@@ -503,7 +512,12 @@ public class Platform {
 			onlineRsrc.setLinkage(urlProperty);
 			or.setCIOnlineResource(onlineRsrc);
 			currentEquipmentType.getOnlineResource().add(or);
+			currentEquipmentType.setSpecificationLink(sm.getWeblink().getUrl());
 		}
+		else {
+			currentEquipmentType.setSpecificationLink("unknown");
+		}
+		
 
 		AbstractEnvironmentalMonitoringFacilityType.ResponsibleParty responsibleParty = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeResponsibleParty();
 		ResponsiblePartyType responsiblePartyType = this.wmdrOF.createResponsiblePartyType();
@@ -543,48 +557,12 @@ public class Platform {
 		value.setCodeSpace("http://data.wmo.int");
 		o.setIdentifier(value);
 		CodeType name = new CodeType();
-		List<Wmo> wmos = ptf.getWmoes();
-		if(wmos.size() > 1) {
-			// if several WMOs, taking the latest one
-			Collections.sort(wmos, new Comparator<Wmo>() {
-				 public int compare(Wmo o1, Wmo o2) {
-				
-				 int v = o2.getStartDate().compareTo(o1.getStartDate());
-				 // Bad metadata management
-				 if(o2.getStartDate().equals(o1.getStartDate())) {
-					 // comparing on the end date if start dates are equal - should not happen
-					 o2.getEndDate().compareTo(o1.getEndDate());
-					 // if at least one of them has a null end date, taking it
-					 if(o2.getEndDate() == null) {
-						 return 1;
-					 }
-					 else {
-						 if(o1.getEndDate() == null) {
-							 return -1;
-						 }
-					 }
-				 }
-				
-				 return v;           
-				 	}
-	        	}    
-			);
-			if(wmos.get(0).getWmo().equals(ptf.getRef()))
-				name.setValue(ptf.getRef());
-			else
-				name.setValue(ptf.getRef() + "-" + wmos.get(0).getWmo());
-		}
-		else if(wmos.size() == 1) {
-			// if only one WMO
-			if(wmos.get(0).getWmo() != null && wmos.get(0).getWmo().equals(ptf.getRef()))
-				name.setValue(ptf.getRef());
-			else
-				name.setValue(ptf.getRef() + "-" + wmos.get(0).getWmo());
-		}
-		else {
-			// If no WMO
+		String latestWmo = ptf.getLatestWmo();
+		// if only one WMO
+		if(latestWmo == null || (latestWmo != null && latestWmo.equals(ptf.getRef())))
 			name.setValue(ptf.getRef());
-		}
+		else
+			name.setValue(ptf.getRef() + "-" + latestWmo);
 		List<CodeType> nameList = new ArrayList<>();
 		nameList.add(name);
 		o.setName(nameList);
@@ -752,7 +730,6 @@ public class Platform {
 					}
 					reportingStatus = this.wmdrOF.createProgramAffiliationTypeReportingStatus();
 					reportingStatusType = this.wmdrOF.createReportingStatusType();
-					// TODO : check WMO code tables
 					refType = new ReferenceType();
 					if(latestStatus != null)
 						refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + latestStatus.getPtfStatus().getWigosCode());
@@ -774,6 +751,8 @@ public class Platform {
 					
 					reportingStatusType.setValidPeriod(timePeriodProperty);
 					reportingStatus.setReportingStatus(reportingStatusType);
+					if(ptf.getLatestWmo() != null)
+						progAffiliationType.setProgramSpecificFacilityId(ptf.getLatestWmo());
 					progAffiliationType.getReportingStatus().add(reportingStatus);
 					count++;
 					progAffiliation.setProgramAffiliation(progAffiliationType);
@@ -887,6 +866,40 @@ public class Platform {
 						OMObservationType omobs = this.omOF.createOMObservationType();
 						omobsp.setOMObservation(omobs);
 						omobs.setId("omobs-" + psm.getId() + "-" + st.getId());
+						
+						/*MDMetadataPropertyType mdmetadataprop = this.gmdOF.createMDMetadataPropertyType();
+						MDMetadataType mdmetadata = this.gmdOF.createMDMetadataType();
+						CharacterStringPropertyType value = this.gcoOF.createCharacterStringPropertyType();
+						value.setCharacterString(this.gcoOF.createCharacterString("omobs-" + psm.getId() + "-" + st.getId()));
+						mdmetadata.setFileIdentifier(value);
+						
+						value = this.gcoOF.createCharacterStringPropertyType();
+						value.setCharacterString(this.gcoOF.createCharacterString("EN"));
+						mdmetadata.setLanguage(value);
+						
+						MDCharacterSetCodePropertyType charSetCodeProp = this.gmdOF.createMDCharacterSetCodePropertyType();
+						CodeListValueType codeListValue = this.gcoOF.createCodeListValueType();
+						codeListValue.setValue("UTF-8");
+						codeListValue.setCodeSpace("https://www.ansi.org");
+						charSetCodeProp.setMDCharacterSetCode(codeListValue);
+						codeListValue.setCodeList("UTF-8");
+						codeListValue.setCodeListValue("UTF-8");
+						mdmetadata.setCharacterSet(charSetCodeProp);
+						
+						value = this.gcoOF.createCharacterStringPropertyType();
+						value.setCharacterString(this.gcoOF.createCharacterString("unkown"));
+						mdmetadata.setParentIdentifier(value);
+						
+						CIResponsiblePartyPropertyType ciResponsiblePartyProp = this.gmdOF.createCIResponsiblePartyPropertyType();
+						ciResponsiblePartyProp.setCIResponsibleParty(this.getCIResponsibleParty(null, null));
+						mdmetadata.getContact().add(ciResponsiblePartyProp);
+						
+						DatePropertyType dateStampValue = this.gcoOF.createDatePropertyType();
+						dateStampValue.setDate(Utils.GetIsoDateNoTime(ptf.getPtfDepl().getDeplDate()));
+						mdmetadata.setDateStamp(dateStampValue );
+						
+						mdmetadataprop.setMDMetadata(mdmetadata);
+						omobs.setMetadata(mdmetadataprop);*/
 
 						ReferenceType refType = this.gmlOF.createReferenceType();
 						refType.setHref("http://codes.wmo.int/wmdr/ObservedVariable/" + st.getVariable().getWigosCode());
