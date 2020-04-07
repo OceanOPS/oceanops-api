@@ -36,6 +36,7 @@ public class Utils {
 	public static final DateTimeFormatter ISO_DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
 	public static final DateTimeFormatter ISO_DATE_NO_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	public static final Integer JCOMMOPS_AGENCY_ID = 61;
+	public static final Integer SOT_NETWORK_ID = 1000622;
 
 	private Utils() {
 	}
