@@ -751,8 +751,12 @@ public class Platform {
 					
 					reportingStatusType.setValidPeriod(timePeriodProperty);
 					reportingStatus.setReportingStatus(reportingStatusType);
-					if(ptf.getLatestWmo() != null)
+					
+					if(netPtf.getNetwork().getId() == Utils.SOT_NETWORK_ID)
+						progAffiliationType.setProgramSpecificFacilityId(ptf.getRef());
+					else if(ptf.getLatestWmo() != null)
 						progAffiliationType.setProgramSpecificFacilityId(ptf.getLatestWmo());
+					
 					progAffiliationType.getReportingStatus().add(reportingStatus);
 					count++;
 					progAffiliation.setProgramAffiliation(progAffiliationType);
@@ -760,26 +764,89 @@ public class Platform {
 				}
 			}
 		}
+		List<Wmo> wmos = ptf.getWmoes();
+		// if several WMOs, ordering
+		if(wmos.size() > 0) {
+			for(Wmo wmo: wmos) {
+				progAffiliation = this.wmdrOF.createObservingFacilityTypeProgramAffiliation();
+				progAffiliationType = this.wmdrOF.createProgramAffiliationType();
+				refType = this.gmlOF.createReferenceType();
+				refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/" + ptf.getProgram().getWigosCode());
+				progAffiliationType.setProgramAffiliation(refType);
+				ReportingStatus reportingStatus = null;
+				ReportingStatusType reportingStatusType = null;
+				PtfPtfStatus latestStatus = null;
+				for(PtfPtfStatus ptfPtfStatus: ptf.getPtfPtfStatuses()){
+					if(latestStatus == null || (latestStatus != null && latestStatus.getChangingDate().isBefore(ptfPtfStatus.getChangingDate())))
+						latestStatus = ptfPtfStatus;
+				}
+				reportingStatus = this.wmdrOF.createProgramAffiliationTypeReportingStatus();
+				reportingStatusType = this.wmdrOF.createReportingStatusType();
+				refType = new ReferenceType();
+				if(latestStatus != null)
+					refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + latestStatus.getPtfStatus().getWigosCode());
+				else
+					refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + ptf.getPtfStatus().getWigosCode());
+				reportingStatusType.setReportingStatus(refType);
+				
+				timePeriodProperty = new TimePeriodPropertyType();
+				timePeriod = new TimePeriodType();
+				timePosition = new TimePositionType();
+				if(wmo.getStartDate()!= null)
+					timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(wmo.getStartDate())));
+				else
+					timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(ptf.getPtfDepl().getDeplDate())));
+				timePeriod.setId(o.getId() + "-StatusChangingDateTimePeriod-" + count);
+				timePeriod.setBeginPosition(timePosition);
+
+				timePosition = new TimePositionType();
+				if(wmo.getEndDate()!= null)
+					timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(wmo.getEndDate())));
+				timePeriod.setEndPosition(timePosition);
+				timePeriodProperty.setTimePeriod(timePeriod);
+				
+				reportingStatusType.setValidPeriod(timePeriodProperty);
+				reportingStatus.setReportingStatus(reportingStatusType);
+				progAffiliationType.getReportingStatus().add(reportingStatus);
+				progAffiliationType.setProgramSpecificFacilityId(wmo.getWmo());
+				count++;
+				progAffiliation.setProgramAffiliation(progAffiliationType);
+				o.getProgramAffiliation().add(progAffiliation);
 		
-		progAffiliation = this.wmdrOF.createObservingFacilityTypeProgramAffiliation();
-		progAffiliationType = this.wmdrOF.createProgramAffiliationType();
-		refType = this.gmlOF.createReferenceType();
-		refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/" + ptf.getProgram().getWigosCode());
-		progAffiliationType.setProgramAffiliation(refType);
-		ReportingStatus reportingStatus = null;
-		ReportingStatusType reportingStatusType = null;
-		/*for(PtfPtfStatus ptfPtfStatus: ptf.getPtfPtfStatuses()){
+				refType = new ReferenceType();
+				refType.setHref("http://codes.wmo.int/common/wmdr/FacilityType/" + ptf.getPtfModel().getPtfType().getWigosCode());
+				o.setFacilityType(refType);
+			}
+		}
+		else {
+			progAffiliation = this.wmdrOF.createObservingFacilityTypeProgramAffiliation();
+			progAffiliationType = this.wmdrOF.createProgramAffiliationType();
+			refType = this.gmlOF.createReferenceType();
+			refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/" + ptf.getProgram().getWigosCode());
+			progAffiliationType.setProgramAffiliation(refType);
+			ReportingStatus reportingStatus = null;
+			ReportingStatusType reportingStatusType = null;
+			PtfPtfStatus latestStatus = null;
+			for(PtfPtfStatus ptfPtfStatus: ptf.getPtfPtfStatuses()){
+				if(latestStatus == null || (latestStatus != null && latestStatus.getChangingDate().isBefore(ptfPtfStatus.getChangingDate())))
+					latestStatus = ptfPtfStatus;
+			}
 			reportingStatus = this.wmdrOF.createProgramAffiliationTypeReportingStatus();
 			reportingStatusType = this.wmdrOF.createReportingStatusType();
-			// TODO : check WMO code tables
 			refType = new ReferenceType();
-			refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + ptfPtfStatus.getPtfStatus().getWigosCode());
+			if(latestStatus != null)
+				refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + latestStatus.getPtfStatus().getWigosCode());
+			else
+				refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + ptf.getPtfStatus().getWigosCode());
 			reportingStatusType.setReportingStatus(refType);
 			
 			timePeriodProperty = new TimePeriodPropertyType();
 			timePeriod = new TimePeriodType();
 			timePosition = new TimePositionType();
-			timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(ptfPtfStatus.getChangingDate())));
+			if(latestStatus != null)
+				timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(latestStatus.getChangingDate())));
+			else
+				timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(ptf.getPtfDepl().getDeplDate())));
 			timePeriod.setId(o.getId() + "-StatusChangingDateTimePeriod-" + count);
 			timePeriod.setBeginPosition(timePosition);
 			timePeriod.setEndPosition(new TimePositionType());
@@ -789,48 +856,13 @@ public class Platform {
 			reportingStatus.setReportingStatus(reportingStatusType);
 			progAffiliationType.getReportingStatus().add(reportingStatus);
 			count++;
+			progAffiliation.setProgramAffiliation(progAffiliationType);
+			o.getProgramAffiliation().add(progAffiliation);
+	
+			refType = new ReferenceType();
+			refType.setHref("http://codes.wmo.int/common/wmdr/FacilityType/" + ptf.getPtfModel().getPtfType().getWigosCode());
+			o.setFacilityType(refType);
 		}
-		progAffiliation.setProgramAffiliation(progAffiliationType);
-		o.getProgramAffiliation().add(progAffiliation);*/
-		PtfPtfStatus latestStatus = null;
-		for(PtfPtfStatus ptfPtfStatus: ptf.getPtfPtfStatuses()){
-			if(latestStatus == null || (latestStatus != null && latestStatus.getChangingDate().isBefore(ptfPtfStatus.getChangingDate())))
-				latestStatus = ptfPtfStatus;
-		}
-		reportingStatus = this.wmdrOF.createProgramAffiliationTypeReportingStatus();
-		reportingStatusType = this.wmdrOF.createReportingStatusType();
-		// TODO : check WMO code tables
-		refType = new ReferenceType();
-		if(latestStatus != null)
-			refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + latestStatus.getPtfStatus().getWigosCode());
-		else
-			refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + ptf.getPtfStatus().getWigosCode());
-		reportingStatusType.setReportingStatus(refType);
-		
-		timePeriodProperty = new TimePeriodPropertyType();
-		timePeriod = new TimePeriodType();
-		timePosition = new TimePositionType();
-		if(latestStatus != null)
-			timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(latestStatus.getChangingDate())));
-		else
-			timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(ptf.getPtfDepl().getDeplDate())));
-		timePeriod.setId(o.getId() + "-StatusChangingDateTimePeriod-" + count);
-		timePeriod.setBeginPosition(timePosition);
-		timePeriod.setEndPosition(new TimePositionType());
-		timePeriodProperty.setTimePeriod(timePeriod);
-		
-		reportingStatusType.setValidPeriod(timePeriodProperty);
-		reportingStatus.setReportingStatus(reportingStatusType);
-		progAffiliationType.getReportingStatus().add(reportingStatus);
-		if(ptf.getLatestWmo() != null)
-			progAffiliationType.setProgramSpecificFacilityId(ptf.getLatestWmo());
-		count++;
-		progAffiliation.setProgramAffiliation(progAffiliationType);
-		o.getProgramAffiliation().add(progAffiliation);
-
-		refType = new ReferenceType();
-		refType.setHref("http://codes.wmo.int/common/wmdr/FacilityType/" + ptf.getPtfModel().getPtfType().getWigosCode());
-		o.setFacilityType(refType);
 				
 		/*List<EquipmentPropertyType> equipments = o.getEquipment();
 		List<EquipmentPropertyType> equipmentList = this.getSubEquipements(ptf);
