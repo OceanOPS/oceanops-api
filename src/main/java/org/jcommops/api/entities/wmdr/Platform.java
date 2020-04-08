@@ -125,8 +125,7 @@ public class Platform {
 	/**
 	 * Builds the final WIGOS identifier, based on the platform reference.
 	 * 
-	 * @param ptfRef
-	 *            String Platform's reference
+	 * @param ptfRef String Platform's reference
 	 * @return String The full WIGOS identifier
 	 */
 	private String getWIGOSIdentifier(Ptf ptf) {
@@ -159,8 +158,7 @@ public class Platform {
 	/**
 	 * Main constructor of this class. It will instanciate the WMDR for the given platform
 	 * 
-	 * @param ptf
-	 *            An instance of a platform
+	 * @param ptf An instance of a platform
 	 * 
 	 * @throws JAXBException
 	 * @throws DatatypeConfigurationException
@@ -190,10 +188,8 @@ public class Platform {
 	/**
 	 * Builds a CIResponsiblePartyType object from an agency database identifier and a given role.
 	 * 
-	 * @param agencyId
-	 *            The agency database identifier
-	 * @param ciRoleCode
-	 *            The role of this responsible party
+	 * @param agencyId The agency database identifier
+	 * @param ciRoleCode The role of this responsible party
 	 * @return the CIResponsiblePartyType representation of this agency
 	 */
 	private CIResponsiblePartyType getCIResponsibleParty(Integer agencyId, String ciRoleCode) {
@@ -288,8 +284,7 @@ public class Platform {
 	/**
 	 * Builds the HeaderInformation object for the given platform.
 	 * 
-	 * @param ptf
-	 *            The Ptf entity object from which data should be extracted
+	 * @param ptf The Ptf entity object from which data should be extracted
 	 * @return the header information
 	 * @throws DatatypeConfigurationException
 	 */
@@ -312,8 +307,7 @@ public class Platform {
 	/**
 	 * Builds the deployments list for the given platform.
 	 * 
-	 * @param ptf
-	 *            The Ptf entity object from which data should be extracted
+	 * @param ptf The Ptf entity object from which data should be extracted
 	 * @return the deployment list
 	 */
 	private List<WIGOSMetadataRecordType.Deployment> getDeployments(Ptf ptf) {
@@ -396,8 +390,7 @@ public class Platform {
 	/**
 	 * Builds the Equipement list for the given platform. This correspond to the PlatformModel database entity.
 	 * 
-	 * @param ptf
-	 *            The Ptf entity object from which data should be extracted
+	 * @param ptf The Ptf entity object from which data should be extracted
 	 * @return the Equipement list
 	 */
 	private List<EquipmentPropertyType> getEquipements(Ptf ptf) {
@@ -458,8 +451,7 @@ public class Platform {
 	/**
 	 * Builds the SubEquipement list for the given platform. This correspond to the SensorModel database entity.
 	 * 
-	 * @param ptf
-	 *            The Ptf entity object from which data should be extracted
+	 * @param ptf The Ptf entity object from which data should be extracted
 	 * @return the Equipement list
 	 */
 	private List<EquipmentPropertyType> getSubEquipements(Ptf ptf) {
@@ -891,8 +883,7 @@ public class Platform {
 	/**
 	 * Builds the OMObservationPropertyType list for the given platform.
 	 * 
-	 * @param ptf
-	 *            The Ptf entity object from which data should be extracted
+	 * @param ptf The Ptf entity object from which data should be extracted
 	 * @return the OMObservationPropertyType of the platform
 	 */
 	private List<ObservingCapabilityPropertyType> getObservations(Ptf ptf) {
