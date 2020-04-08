@@ -498,11 +498,11 @@ public class Platform {
 			currentEquipmentType.setManufacturer(sm.getAgency().getNameShort());
 		else
 			currentEquipmentType.setManufacturer("unknown");
-		currentEquipmentType.setObservableRange("unkown");
-		currentEquipmentType.setSpecifiedAbsoluteUncertainty("unkown");
-		currentEquipmentType.setSpecifiedRelativeUncertainty("unkown");
-		currentEquipmentType.setDriftPerUnitTime("unkown");
-		currentEquipmentType.setObservableRange("unkown");
+		currentEquipmentType.setObservableRange("unknown");
+		currentEquipmentType.setSpecifiedAbsoluteUncertainty("unknown");
+		currentEquipmentType.setSpecifiedRelativeUncertainty("unknown");
+		currentEquipmentType.setDriftPerUnitTime("unknown");
+		currentEquipmentType.setObservableRange("unknown");
 		StringOrRefType value = new StringOrRefType();
 		value.setValue(sm.getDescription());
 		currentEquipmentType.setDescription(value);
@@ -925,7 +925,7 @@ public class Platform {
 						mdmetadata.setCharacterSet(charSetCodeProp);
 						
 						value = this.gcoOF.createCharacterStringPropertyType();
-						value.setCharacterString(this.gcoOF.createCharacterString("unkown"));
+						value.setCharacterString(this.gcoOF.createCharacterString("unknown"));
 						mdmetadata.setParentIdentifier(value);
 						
 						CIResponsiblePartyPropertyType ciResponsiblePartyProp = this.gmdOF.createCIResponsiblePartyPropertyType();
