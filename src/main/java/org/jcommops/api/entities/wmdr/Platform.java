@@ -476,10 +476,10 @@ public class Platform {
 	}
 
 	private EquipmentPropertyType getEquipmentPropertyType(PtfSensorModel ptfSM) {
-		return getEquipmentPropertyType(ptfSM, 0);
+		return getEquipmentPropertyType(ptfSM, 0, null);
 	}
 
-	private EquipmentPropertyType getEquipmentPropertyType(PtfSensorModel ptfSM, int increment) {
+	private EquipmentPropertyType getEquipmentPropertyType(PtfSensorModel ptfSM, int increment, Variable variable) {
 		EquipmentPropertyType currentEquipment;
 		EquipmentType currentEquipmentType;
 		SensorModel sm = ptfSM.getSensorModel();
@@ -492,12 +492,25 @@ public class Platform {
 			id = "subequipment-" + ptfSM.getObjectId().getIdSnapshot().get("ID").toString() + "-" + String.valueOf(increment);
 		currentEquipmentType.setId(id);
 		CodeWithAuthorityType code = this.gmlOF.createCodeWithAuthorityType();
-		code.setCodeSpace("https://www.jcommops.org/");
-		code.setValue(id);
+		if(variable != null && variable.getWigosCode() != null) {
+			code.setCodeSpace("http://codes.wmo.int/wmdr/ObservedVariable/" + variable.getWigosCode());
+			code.setValue(variable.getWigosCode());
+		}
+		else {
+			code.setCodeSpace("http://codes.wmo.int/wmdr/ObservedVariable/unknown");
+			code.setValue("unknown");
+		}
 		currentEquipmentType.setIdentifier(code);
 		currentEquipmentType.setModel(sm.getName());
 		if (sm.getAgency() != null)
 			currentEquipmentType.setManufacturer(sm.getAgency().getNameShort());
+		else
+			currentEquipmentType.setManufacturer("unknown");
+		currentEquipmentType.setObservableRange("unkown");
+		currentEquipmentType.setSpecifiedAbsoluteUncertainty("unkown");
+		currentEquipmentType.setSpecifiedRelativeUncertainty("unkown");
+		currentEquipmentType.setDriftPerUnitTime("unkown");
+		currentEquipmentType.setObservableRange("unkown");
 		StringOrRefType value = new StringOrRefType();
 		value.setValue(sm.getDescription());
 		currentEquipmentType.setDescription(value);
@@ -936,7 +949,10 @@ public class Platform {
 						omobs.setMetadata(mdmetadataprop);*/
 
 						ReferenceType refType = this.gmlOF.createReferenceType();
-						refType.setHref("http://codes.wmo.int/wmdr/ObservedVariable/" + st.getVariable().getWigosCode());
+						if(st.getVariable() != null && st.getVariable().getWigosCode() != null)
+							refType.setHref("http://codes.wmo.int/wmdr/ObservedVariable/" + st.getVariable().getWigosCode());
+						else
+							refType.setHref("http://codes.wmo.int/wmdr/ObservedVariable/unknown");
 						omobs.setObservedProperty(refType);
 
 						ProcessType process = this.wmdrOF.createProcessType();
@@ -945,7 +961,7 @@ public class Platform {
 						DeploymentPropertyType deplP = this.wmdrOF.createDeploymentPropertyType();
 						DeploymentType depl = this.wmdrOF.createDeploymentType();
 						depl.setId("process-depl-" + psm.getId() + "-" + st.getId());
-						depl.setDeployedEquipment(this.getEquipmentPropertyType(psm, sensorIncrement));
+						depl.setDeployedEquipment(this.getEquipmentPropertyType(psm, sensorIncrement, st.getVariable()));
 						sensorIncrement++;
 
 						MeasureType mt = this.gmlOF.createMeasureType();
