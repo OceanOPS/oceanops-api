@@ -735,10 +735,10 @@ public class Platform {
 				reportingStatus = this.wmdrOF.createProgramAffiliationTypeReportingStatus();
 				reportingStatusType = this.wmdrOF.createReportingStatusType();
 				refType = new ReferenceType();
-				if(latestStatus != null)
-					refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + latestStatus.getPtfStatus().getWigosCode());
-				else
-					refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + ptf.getPtfStatus().getWigosCode());
+				//if(latestStatus != null)
+				//	refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + latestStatus.getPtfStatus().getWigosCode());
+				//else
+				refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + ptf.getPtfStatus().getWigosCode());
 				reportingStatusType.setReportingStatus(refType);
 				
 				timePeriodProperty = new TimePeriodPropertyType();
@@ -786,10 +786,10 @@ public class Platform {
 				reportingStatus = this.wmdrOF.createProgramAffiliationTypeReportingStatus();
 				reportingStatusType = this.wmdrOF.createReportingStatusType();
 				refType = new ReferenceType();
-				if(latestStatus != null)
-					refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + latestStatus.getPtfStatus().getWigosCode());
-				else
-					refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + ptf.getPtfStatus().getWigosCode());
+				//if(latestStatus != null)
+				//	refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + latestStatus.getPtfStatus().getWigosCode());
+				//else
+				refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + ptf.getPtfStatus().getWigosCode());
 				reportingStatusType.setReportingStatus(refType);
 				
 				timePeriodProperty = new TimePeriodPropertyType();
@@ -839,10 +839,10 @@ public class Platform {
 			reportingStatus = this.wmdrOF.createProgramAffiliationTypeReportingStatus();
 			reportingStatusType = this.wmdrOF.createReportingStatusType();
 			refType = new ReferenceType();
-			if(latestStatus != null)
-				refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + latestStatus.getPtfStatus().getWigosCode());
-			else
-				refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + ptf.getPtfStatus().getWigosCode());
+			//if(latestStatus != null)
+			//	refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + latestStatus.getPtfStatus().getWigosCode());
+			//else
+			refType.setHref("http://codes.wmo.int/common/wmdr/ReportingStatus/" + ptf.getPtfStatus().getWigosCode());
 			reportingStatusType.setReportingStatus(refType);
 			
 			timePeriodProperty = new TimePeriodPropertyType();
