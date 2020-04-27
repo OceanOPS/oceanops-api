@@ -26,6 +26,7 @@ import org.jcommops.api.entities.SensorModelEntity;
 import org.jcommops.api.entities.SensorTypeEntity;
 import org.jcommops.api.entities.VariableEntity;
 import org.jcommops.api.entities.wmdr.Platform;
+import org.jcommops.exceptions.PtfNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,15 +40,15 @@ public class WebServiceManager {
 	public ArrayList<PlatformEntity> getAllPtfsJSON(@QueryParam("status") String status,
 			@QueryParam("family") String family, @QueryParam("type") String type, @QueryParam("model") String model,
 			@QueryParam("program") String program, @QueryParam("network") String network,
-			@QueryParam("variable") String variable,
-			@QueryParam("sensorModel") String sensormod, @QueryParam("sensorType") String sensortyp,
-			@QueryParam("ship") String ship, @QueryParam("country") String country, @QueryParam("wigosReady") String wigosReady, 
+			@QueryParam("variable") String variable, @QueryParam("sensorModel") String sensormod,
+			@QueryParam("sensorType") String sensortyp, @QueryParam("ship") String ship,
+			@QueryParam("country") String country, @QueryParam("wigosReady") String wigosReady,
 			@QueryParam("updateDate") String updateDate, @QueryParam("insertDate") String insertDate) {
 
 		PlatformAccessor m = new PlatformAccessor();
-		HashMap<Integer, HashMap<String, String>> foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program,
-				network, variable, sensormod, sensortyp, ship, country, wigosReady, updateDate, insertDate);
-		
+		HashMap<Integer, HashMap<String, String>> foundPlatforms = m.getPtfbySelectedParam(status, family, type, model,
+				program, network, variable, sensormod, sensortyp, ship, country, wigosReady, updateDate, insertDate);
+
 		ArrayList<PlatformEntity> result = new ArrayList<PlatformEntity>();
 		for (Integer id : foundPlatforms.keySet()) {
 			PlatformEntity ptf = new PlatformEntity();
@@ -64,43 +65,75 @@ public class WebServiceManager {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getSelectedPlatformsCSV(@QueryParam("status") String status, @QueryParam("family") String family,
 			@QueryParam("type") String type, @QueryParam("model") String model, @QueryParam("program") String program,
-			@QueryParam("network") String network, 
-			@QueryParam("variable") String variable, @QueryParam("sensorModel") String sensormod,
-			@QueryParam("sensorType") String sensortyp, @QueryParam("ship") String ship,
-			@QueryParam("country") String country, @QueryParam("wigosReady") String wigosReady, 
-			@QueryParam("updateDate") String updateDate, @QueryParam("insertDate") String insertDate) {
+			@QueryParam("network") String network, @QueryParam("variable") String variable,
+			@QueryParam("sensorModel") String sensormod, @QueryParam("sensorType") String sensortyp,
+			@QueryParam("ship") String ship, @QueryParam("country") String country,
+			@QueryParam("wigosReady") String wigosReady, @QueryParam("updateDate") String updateDate,
+			@QueryParam("insertDate") String insertDate) {
 
 		PlatformAccessor m = new PlatformAccessor();
 		HashMap<Integer, HashMap<String, String>> foundPlatforms = null;
 
 		StringBuilder csv = new StringBuilder();
 
-		foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, variable,
-				sensormod, sensortyp, ship, country, wigosReady, updateDate, insertDate);
+		foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, variable, sensormod,
+				sensortyp, ship, country, wigosReady, updateDate, insertDate);
 
 		csv.append("id" + Utils.CSV_SEPARATOR + "ref" + Utils.CSV_SEPARATOR + "wigos_ref");
 		for (Integer id : foundPlatforms.keySet()) {
-			csv.append("\n" + id + Utils.CSV_SEPARATOR + foundPlatforms.get(id).get("ref") + Utils.CSV_SEPARATOR + foundPlatforms.get(id).get("wigos_ref"));
+			csv.append("\n" + id + Utils.CSV_SEPARATOR + foundPlatforms.get(id).get("ref") + Utils.CSV_SEPARATOR
+					+ foundPlatforms.get(id).get("wigos_ref"));
 		}
 		return csv.toString();
 	}
-	
+
 	@GET
 	@Path("platforms.xml/{id}")
 	@Produces(MediaType.APPLICATION_XML)
-	public String getPlatformWmdrById(@PathParam("id") String id) throws JAXBException, NumberFormatException, DatatypeConfigurationException {
+	public String getPlatformWmdrById(@PathParam("id") String id)
+			throws JAXBException, NumberFormatException, DatatypeConfigurationException {
 		PlatformAccessor m = new PlatformAccessor();
-		Platform wmdr = new Platform(m.getPtfbyID(Integer.parseInt(id)));
-		
+		Platform wmdr;
+		try {
+			wmdr = new Platform(m.getPtfbyID(Integer.parseInt(id)));
+		} catch (PtfNotFoundException e) {
+			logger.trace("No platform found for ID = " + id);
+			throw new NotFoundException("No platform found for ID = " + id);
+		}
+
 		return wmdr.toString();
 	}
-	
+
 	@GET
 	@Path("platforms.xml/ref/{ref}")
 	@Produces(MediaType.APPLICATION_XML)
-	public String getPlatformWmdrByRef(@PathParam("ref") String ref) throws JAXBException, NumberFormatException, DatatypeConfigurationException {
+	public String getPlatformWmdrByRef(@PathParam("ref") String ref)
+			throws JAXBException, NumberFormatException, DatatypeConfigurationException {
 		PlatformAccessor m = new PlatformAccessor();
-		Platform wmdr = new Platform(m.getPtfbyRef(ref));
+		Platform wmdr;
+		try {
+			wmdr = new Platform(m.getPtfbyRef(ref));
+		} catch (PtfNotFoundException e) {
+			logger.trace("No platform found for ref = " + ref);
+			throw new NotFoundException("No platform found for ref = " + ref);
+		}
+
+		return wmdr.toString();
+	}
+
+	@GET
+	@Path("platforms.xml/wigosid/{wigosid}")
+	@Produces(MediaType.APPLICATION_XML)
+	public String getPlatformWmdrByWIGOSID(@PathParam("wigosid") String wigosid)
+			throws JAXBException, NumberFormatException, DatatypeConfigurationException {
+		PlatformAccessor m = new PlatformAccessor();
+		Platform wmdr;
+		try {
+			wmdr = new Platform(m.getPtfbyWigosID(wigosid));
+		} catch (PtfNotFoundException e) {
+			logger.trace("No platform found for WIGOS ID = " + wigosid);
+			throw new NotFoundException("No platform found for WIGOS ID = " + wigosid);
+		}
 		
 		return wmdr.toString();
 	}
@@ -122,9 +155,11 @@ public class WebServiceManager {
 	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	public PlatformEntity getPtfbyIdJSON(@PathParam("id") long id) {
 		PlatformAccessor m = new PlatformAccessor();
-		PlatformEntity ptfm = m.getPlatformEntitybyID(id);
+		PlatformEntity ptfm;
 
-		if (ptfm == null) {
+		try {
+			ptfm = new PlatformEntity(m.getPtfbyID(id));
+		} catch (PtfNotFoundException e) {
 			logger.trace("No platform found for ID = " + id);
 			throw new NotFoundException("No platform found for ID = " + id);
 		}
@@ -138,11 +173,28 @@ public class WebServiceManager {
 	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	public PlatformEntity getPlatformJSONByRef(@PathParam("ref") String ref) throws JAXBException, NumberFormatException, DatatypeConfigurationException {
 		PlatformAccessor m = new PlatformAccessor();
-		PlatformEntity ptfm = m.getPlatformEntitybyRef(ref);
-
-		if (ptfm == null) {
+		PlatformEntity ptfm;
+		try {
+			ptfm = new PlatformEntity(m.getPtfbyRef(ref));
+		} catch (PtfNotFoundException e) {
 			logger.trace("No platform found for ref = " + ref);
 			throw new NotFoundException("No platform found for ref = " + ref);
+		}
+
+		return ptfm;
+	}
+
+	@GET
+	@Path("platforms.json/wigosid/{wigosid}")
+	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
+	public PlatformEntity getPlatformJSONByWigosID(@PathParam("wigosid") String wigosid) throws JAXBException, NumberFormatException, DatatypeConfigurationException {
+		PlatformAccessor m = new PlatformAccessor();
+		PlatformEntity ptfm;
+		try {
+			ptfm = new PlatformEntity(m.getPtfbyWigosID(wigosid));
+		} catch (PtfNotFoundException e) {
+			logger.trace("No platform found for WIGOS ID = " + wigosid);
+			throw new NotFoundException("No platform found for WIGOS ID = " + wigosid);
 		}
 
 		return ptfm;
@@ -153,20 +205,57 @@ public class WebServiceManager {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getPtfbyIdCSV(@PathParam("id") long id) {
 		PlatformAccessor m = new PlatformAccessor();
-		PlatformEntity ptfm = m.getPlatformEntitybyID(id);
-		StringBuilder csv = new StringBuilder();
-
-		if (ptfm == null) {
+		PlatformEntity ptfm;
+		try {
+			ptfm = new PlatformEntity(m.getPtfbyID(id));
+		} catch (PtfNotFoundException e) {
 			logger.trace("No platform found for ID = " + id);
 			throw new NotFoundException("No platform found for ID = " + id);
-		} else {
-			csv.append(PlatformEntity.getCSVHeader());
-			csv.append("\n" + ptfm.toCSV());
 		}
+		StringBuilder csv = new StringBuilder();
+		csv.append(PlatformEntity.getCSVHeader());
+		csv.append("\n" + ptfm.toCSV());
 
 		return csv.toString();
 	}
 
+	@GET
+	@Path("platforms.csv/ref/{ref}")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getPlatformCSVByRef(@PathParam("ref") String ref) throws JAXBException, NumberFormatException, DatatypeConfigurationException {
+		PlatformAccessor m = new PlatformAccessor();
+		PlatformEntity ptfm;
+		try {
+			ptfm = new PlatformEntity(m.getPtfbyRef(ref));
+		} catch (PtfNotFoundException e) {
+			logger.trace("No platform found for ref = " + ref);
+			throw new NotFoundException("No platform found for ref = " + ref);
+		}
+		StringBuilder csv = new StringBuilder();
+		csv.append(PlatformEntity.getCSVHeader());
+		csv.append("\n" + ptfm.toCSV());
+
+		return csv.toString();
+	}
+
+	@GET
+	@Path("platforms.csv/wigosid/{wigosid}")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getPlatformCSVByWigosID(@PathParam("wigosid") String wigosid) throws JAXBException, NumberFormatException, DatatypeConfigurationException {
+		PlatformAccessor m = new PlatformAccessor();
+		PlatformEntity ptfm;
+		try {
+			ptfm = new PlatformEntity(m.getPtfbyWigosID(wigosid));
+		} catch (PtfNotFoundException e) {
+			logger.trace("No platform found for WIGOS ID = " + wigosid);
+			throw new NotFoundException("No platform found for WIGOS ID = " + wigosid);
+		}
+		StringBuilder csv = new StringBuilder();
+		csv.append(PlatformEntity.getCSVHeader());
+		csv.append("\n" + ptfm.toCSV());
+
+		return csv.toString();
+	}
 
 	@GET
 	@Path("ptf_statuses.xml")
