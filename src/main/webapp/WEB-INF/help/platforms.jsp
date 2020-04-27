@@ -1,4 +1,4 @@
-<p>The list of platforms includes platforms' database identifier, their corresponding JCOMMOPS reference and their WIGOS identifier when allocated.</p>
+<p>The index of platforms includes platforms' database identifier, their corresponding JCOMMOPS reference and their WIGOS identifier when already allocated.</p>
 			
 <h3>Getting an index of the platforms</h3>
 <p>
@@ -12,7 +12,7 @@
 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#listAllPtfExample" aria-expanded="false"	aria-controls="listAllPtfExample">Example</button>
 <div class="collapse" id="listAllPtfExample">
 	<div class="well">
-		To generate the global platforms list in json format, here the
+		To generate the global platforms index in json format, here the
 		dedicated URL:<br> <i><%=rootUrl%>platforms.json</i> <br>
 		Below is a truncated output of the example URL:
 		<pre>
@@ -34,9 +34,9 @@
 <br>
 
 
-<h3>Filtering the list using key parameters</h3>
+<h3>Filtering the index using key parameters</h3>
 <p>
-	A filtered list of platforms can be obtained with a GET request using this URL pattern:
+	A filtered index of platforms can be obtained with a GET request using this URL pattern:
 	<div class="text-center">
 		<span class="url"><%=rootUrl%>platforms.[format]?parm1=value1&parm2=value2&...</span>
 	</div>
@@ -165,7 +165,7 @@
 <div id="listFilteredPtfExample" class="collapse">
 	<div class="well">
 		<p>
-			To generate the list of <b>operational platforms</b> monitoring the <b>dissolved	oxygen (ID = 33)</b>, here the dedicated URL:
+			To generate the index of <b>operational platforms</b> monitoring the <b>dissolved	oxygen (ID = 33)</b>, here the dedicated URL:
 			<div class="text-center">
 				<span class="url"><%=rootUrl%>platforms.json?status=OPERATIONAL&variable=33</span>
 			</div>

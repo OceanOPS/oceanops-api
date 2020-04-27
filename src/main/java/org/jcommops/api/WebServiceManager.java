@@ -26,7 +26,7 @@ import org.jcommops.api.entities.SensorModelEntity;
 import org.jcommops.api.entities.SensorTypeEntity;
 import org.jcommops.api.entities.VariableEntity;
 import org.jcommops.api.entities.wmdr.Platform;
-import org.jcommops.exceptions.PtfNotFoundException;
+import org.jcommops.api.exceptions.PtfNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

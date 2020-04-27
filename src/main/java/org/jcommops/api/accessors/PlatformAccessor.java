@@ -40,7 +40,7 @@ import org.jcommops.api.orm.PtfType;
 import org.jcommops.api.orm.SensorModel;
 import org.jcommops.api.orm.SensorType;
 import org.jcommops.api.orm.Variable;
-import org.jcommops.exceptions.PtfNotFoundException;
+import org.jcommops.api.exceptions.PtfNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
