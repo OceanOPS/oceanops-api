@@ -71,11 +71,6 @@
 				<div class="container-fluid">
 					<%@include file="help/platforms.jsp" %>
 				</div>
-				
-				<h2 class="title-border-bottom">Cruises</h2>
-				<div class="container-fluid">
-					To be done.
-				</div>
 			</div>
 		</div>
 	</div>

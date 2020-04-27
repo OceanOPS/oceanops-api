@@ -57,6 +57,8 @@ public class Utils {
 						|| versionQualifier.length() > 0;
 				if (versionQualifier.length() == 0 && betaVersion)
 					versionQualifier = "preview";
+				if (betaVersion)
+					rootUrl = rootUrl.replace(projectVersion, "preview");
 			} catch (IOException e) {
 				projectVersion = "X.Y";
 				projectName = "ERROR";
