@@ -39,14 +39,14 @@ public class WebServiceManager {
 	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	public ArrayList<PlatformEntity> getAllPtfsJSON(@QueryParam("status") String status,
 			@QueryParam("family") String family, @QueryParam("type") String type, @QueryParam("model") String model,
-			@QueryParam("program") String program, @QueryParam("network") String network,
+			@QueryParam("program") String program, @QueryParam("network") String network, @QueryParam("gtsid") String gtsid,
 			@QueryParam("variable") String variable, @QueryParam("sensorModel") String sensormod,
 			@QueryParam("sensorType") String sensortyp, @QueryParam("ship") String ship,
 			@QueryParam("country") String country, @QueryParam("wigosReady") String wigosReady,
 			@QueryParam("updateDate") String updateDate, @QueryParam("insertDate") String insertDate) {
 
 		PlatformAccessor m = new PlatformAccessor();
-		HashMap<Integer, HashMap<String, String>> foundPlatforms = m.getPtfbySelectedParam(status, family, type, model,
+		HashMap<Integer, HashMap<String, String>> foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, gtsid,
 				program, network, variable, sensormod, sensortyp, ship, country, wigosReady, updateDate, insertDate);
 
 		ArrayList<PlatformEntity> result = new ArrayList<PlatformEntity>();
@@ -64,7 +64,7 @@ public class WebServiceManager {
 	@Path("platforms.csv")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getSelectedPlatformsCSV(@QueryParam("status") String status, @QueryParam("family") String family,
-			@QueryParam("type") String type, @QueryParam("model") String model, @QueryParam("program") String program,
+			@QueryParam("type") String type, @QueryParam("model") String model, @QueryParam("gtsid") String gtsid, @QueryParam("program") String program,
 			@QueryParam("network") String network, @QueryParam("variable") String variable,
 			@QueryParam("sensorModel") String sensormod, @QueryParam("sensorType") String sensortyp,
 			@QueryParam("ship") String ship, @QueryParam("country") String country,
@@ -76,7 +76,7 @@ public class WebServiceManager {
 
 		StringBuilder csv = new StringBuilder();
 
-		foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, variable, sensormod,
+		foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, gtsid, program, network, variable, sensormod,
 				sensortyp, ship, country, wigosReady, updateDate, insertDate);
 
 		csv.append("id" + Utils.CSV_SEPARATOR + "ref" + Utils.CSV_SEPARATOR + "wigos_ref");
