@@ -33,12 +33,14 @@ import org.jcommops.api.orm.Network;
 import org.jcommops.api.orm.Program;
 import org.jcommops.api.orm.Ptf;
 import org.jcommops.api.orm.PtfFamily;
+import org.jcommops.api.orm.PtfIdentifiers;
 import org.jcommops.api.orm.PtfModel;
 import org.jcommops.api.orm.PtfStatus;
 import org.jcommops.api.orm.PtfType;
 import org.jcommops.api.orm.SensorModel;
 import org.jcommops.api.orm.SensorType;
 import org.jcommops.api.orm.Variable;
+import org.jcommops.exceptions.PtfNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,24 +54,51 @@ public class PlatformAccessor {
 	
 
 	/**
-	 * Query the database to retrieve a platform's details, based on its database ID.
-	 * @param id	long	The database identifier
-	 * @return	A ORM Ptf object 
+	 * Query the database to retrieve a platform's details, based on its database
+	 * ID.
+	 * 
+	 * @param id long The database identifier
+	 * @return A ORM Ptf object
+	 * @throws PtfNotFoundException
 	 */
-	public Ptf getPtfbyID(long id) {// Platform's details by ID
+	public Ptf getPtfbyID(long id) throws PtfNotFoundException {
 		// Find the platform
 		Ptf ptf = SelectById.query(Ptf.class, id).selectOne(this.context);
+		if (ptf == null)
+			throw new PtfNotFoundException("No platform found for ID = " + String.valueOf(id));
 		return ptf;
 	}
 	
 	/**
-	 * Query the database to retrieve a platform's details, based on its database ID.
-	 * @param id	long	The database identifier
-	 * @return	A ORM Ptf object 
+	 * Query the database to retrieve a platform's details, based on its database
+	 * ID.
+	 * 
+	 * @param id long The database identifier
+	 * @return A ORM Ptf object
+	 * @throws PtfNotFoundException
 	 */
-	public Ptf getPtfbyRef(String ref) {// Platform's details by ID
+	public Ptf getPtfbyRef(String ref) throws PtfNotFoundException {
 		// Find the platform
 		Ptf ptf = SelectQuery.query(Ptf.class, Ptf.REF.eq(ref)).selectOne(this.context);
+		if (ptf == null)
+			throw new PtfNotFoundException("No platform found for ref = " + ref);
+		return ptf;
+	}
+
+	/**
+	 * Query the database to retrieve a platform's details, based on its WIGOS ID
+	 * 
+	 * @param wigosid the WIGOS identifier
+	 * @return A ORM Ptf object
+	 * @throws PtfNotFoundException
+	 */
+	public Ptf getPtfbyWigosID(String wigosid) throws PtfNotFoundException {
+		// Find the platform
+		Ptf ptf = SelectQuery.query(Ptf.class, Ptf.PTF_IDENTIFIERS.dot(PtfIdentifiers.WIGOS_REF).eq(wigosid)).selectOne(this.context);
+
+		if (ptf == null)
+			throw new PtfNotFoundException("No platform found for WIGOS ID = " + wigosid);
+		
 		return ptf;
 	}
 
@@ -333,42 +362,6 @@ public class PlatformAccessor {
 			countries_list.add(c);
 		}
 		return countries_list;
-
-	}
-
-	/**
-	 * Query the datanase to retrieve a platform's details, based on its database ID.
-	 * @param id	long	The database identifier
-	 * @return	A PlatformEntity object, filled with database information 
-	 */
-	public PlatformEntity getPlatformEntitybyID(long id) {// Platform's details by ID
-		// Find the platform
-		Ptf platform = Cayenne.objectForPK(context, Ptf.class, id); 
-		
-		PlatformEntity ptf = null;
-		// Create and select the attributes and or object to "platform"
-		if(platform != null)
-			ptf = new PlatformEntity(platform);
-
-		return ptf;
-
-	}
-
-	/**
-	 * Query the database to retrieve a platform's details, based on its reference.
-	 * @param ref	String	The reference
-	 * @return	A PlatformEntity object, filled with database information 
-	 */
-	public PlatformEntity getPlatformEntitybyRef(String ref) {
-		// Find the platform
-		Ptf platform = SelectQuery.query(Ptf.class, Ptf.REF.eq(ref)).selectOne(this.context);
-		
-		PlatformEntity ptf = null;
-		// Create and select the attributes and or object to "platform"
-		if(platform != null)
-			ptf = new PlatformEntity(platform);
-
-		return ptf;
 
 	}
 
@@ -812,10 +805,10 @@ public class PlatformAccessor {
 		return ptfList;
 	}
 
-	public String WritePtfCSV(long id) throws NullPointerException {
+	public String WritePtfCSV(long id) throws PtfNotFoundException {
 		String csv = null;
 		
-		PlatformEntity ptfm = getPlatformEntitybyID(id);
+		PlatformEntity ptfm = new PlatformEntity(getPtfbyID(id));
 		csv = ptfm.toCSV();
 		
 		return csv;
