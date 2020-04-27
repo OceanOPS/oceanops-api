@@ -386,7 +386,7 @@ public class PlatformAccessor {
 	 * @return A HashMap containing the database identifiers as keys, the JCOMMOPS reference as values
 	 */
 	public HashMap<Integer, HashMap<String, String>> getPtfbySelectedParam(String ptfStatus, String ptfFamily, String ptfType,
-			String ptfModel, String program, String network, String variable, String sensorModel,
+			String ptfModel, String gtsid, String program, String network, String variable, String sensorModel,
 			String sensorType, String ship, String country, String wigosReady, String updateDate, String insertDate) {
 		
 		// Sanitize all parameters
@@ -394,6 +394,7 @@ public class PlatformAccessor {
 		ptfFamily = Utils.basicSanitize(ptfFamily);
 		ptfType = Utils.basicSanitize(ptfType);
 		ptfModel = Utils.basicSanitize(ptfModel);
+		gtsid = Utils.basicSanitize(gtsid);
 		program = Utils.basicSanitize(program);
 		network = Utils.basicSanitize(network);
 		variable = Utils.basicSanitize(variable);
@@ -425,6 +426,12 @@ public class PlatformAccessor {
 			whereClause.append(" and (ptfids.wigos_ref is not null)");
 		}
 
+		// GTS ID
+		if(gtsid != null){
+			whereClause.append(" and (exists (select null from wmo where wmo.ptf_id = ptf.id and wmo.wmo = '");
+			whereClause.append(gtsid);
+			whereClause.append("'))");
+		}
 
 		// Platform status
 		if (ptfStatus != null && !ptfStatus.isEmpty()) {
