@@ -1,4 +1,4 @@
-package org.jcommops.exceptions;
+package org.jcommops.api.exceptions;
 
 public class PtfNotFoundException extends Exception{
 
