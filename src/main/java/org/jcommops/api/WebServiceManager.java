@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
-import javax.ws.rs.NotSupportedException;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -34,29 +33,6 @@ import org.slf4j.LoggerFactory;
 public class WebServiceManager {
 	private final Logger logger = LoggerFactory.getLogger(WebServiceManager.class);
 
-	@GET
-	@Path("platforms.xml")
-	public ArrayList<PlatformEntity> getAllPtfsXML(@QueryParam("status") String status,
-			@QueryParam("family") String family, @QueryParam("type") String type, @QueryParam("model") String model,
-			@QueryParam("program") String program, @QueryParam("network") String network,
-			@QueryParam("masterProgram") String masterprg, @QueryParam("variable") String variable,
-			@QueryParam("sensorModel") String sensormod, @QueryParam("sensorType") String sensortyp,
-			@QueryParam("ship") String ship, @QueryParam("country") String country) {
-
-		/*PlatformAccessor m = new PlatformAccessor();
-		HashMap<Integer, String> foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program,
-				network, masterprg, variable, sensormod, sensortyp, ship, country);
-		
-		ArrayList<PlatformEntity> result = new ArrayList<PlatformEntity>();
-		for (Integer id : foundPlatforms.keySet()) {
-			PlatformEntity ptf = new PlatformEntity();
-			ptf.setId(id);
-			ptf.setJcommopsRef(foundPlatforms.get(id));
-			result.add(ptf);
-		}
-		return result;*/
-		throw new NotFoundException("XML document is not yet supported");
-	}
 	@GET
 	@Path("platforms.json")
 	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
@@ -136,6 +112,7 @@ public class WebServiceManager {
 		/*PlatformObservations wmdr = new PlatformObservations(Integer.parseInt(id));
 		
 		return wmdr.toString();*/
+		logger.trace("XML document is not yet supported");
 		throw new NotFoundException("XML document is not yet supported");
 	}
 
@@ -148,6 +125,7 @@ public class WebServiceManager {
 		PlatformEntity ptfm = m.getPlatformEntitybyID(id);
 
 		if (ptfm == null) {
+			logger.trace("No platform found for ID = " + id);
 			throw new NotFoundException("No platform found for ID = " + id);
 		}
 
@@ -163,6 +141,7 @@ public class WebServiceManager {
 		PlatformEntity ptfm = m.getPlatformEntitybyRef(ref);
 
 		if (ptfm == null) {
+			logger.trace("No platform found for ref = " + ref);
 			throw new NotFoundException("No platform found for ref = " + ref);
 		}
 
@@ -178,6 +157,7 @@ public class WebServiceManager {
 		StringBuilder csv = new StringBuilder();
 
 		if (ptfm == null) {
+			logger.trace("No platform found for ID = " + id);
 			throw new NotFoundException("No platform found for ID = " + id);
 		} else {
 			csv.append(PlatformEntity.getCSVHeader());
@@ -196,12 +176,9 @@ public class WebServiceManager {
 		try {
 			List = m.getPtfStatuses();
 		} catch (CayenneRuntimeException CRE) {
-			PlatformStatusEntity ptf0 = new PlatformStatusEntity();
-			ptf0.setId(-1);
-			List.add(ptf0);
+			logger.error("Error while fetching information");
 		}
 		return List;
-		// http://localhost:8081/jcommops-api/api/rest/1.0/ptfStatuses.xml
 	}
 
 	@GET
@@ -213,12 +190,9 @@ public class WebServiceManager {
 		try {
 			List = m.getPtfStatuses();
 		} catch (CayenneRuntimeException CRE) {
-			PlatformStatusEntity ptf0 = new PlatformStatusEntity();
-			ptf0.setId(-1);
-			List.add(ptf0);
+			logger.error("Error while fetching information");
 		}
 		return List;
-		// http://localhost:8081/jcommops-api/api/rest/1.0/ptfStatuses.json
 	}
 
 	@GET
@@ -229,13 +203,9 @@ public class WebServiceManager {
 		try {
 			List = m.getPtfFamilies();
 		} catch (CayenneRuntimeException CRE) {
-			/*
-			 * PlatformFamily ptf0 = new PlatformFamily(); ptf0.setId(-1);
-			 * List.add(ptf0);
-			 */
+			logger.error("Error while fetching information");
 		}
 		return List;
-		// http://localhost:8081/jcommops-api/api/rest/1.0/ptfFamilies.xml
 	}
 
 	@GET
@@ -247,13 +217,9 @@ public class WebServiceManager {
 		try {
 			List = m.getPtfFamilies();
 		} catch (CayenneRuntimeException CRE) {
-			/*
-			 * PlatformFamily ptf0 = new PlatformFamily(); ptf0.setId(-1);
-			 * List.add(ptf0);
-			 */
+			logger.error("Error while fetching information");
 		}
 		return List;
-		// http://localhost:8081/jcommops-api/api/rest/1.0/ptfFamilies.json
 
 	}
 
@@ -265,13 +231,9 @@ public class WebServiceManager {
 		try {
 			List = m.getPtfTypes();
 		} catch (CayenneRuntimeException CRE) {
-			/*
-			 * PlatformType ptf0 = new PlatformType(); ptf0.setId(-1);
-			 * List.add(ptf0);
-			 */
+			logger.error("Error while fetching information");
 		}
 		return List;
-		// http://localhost:8081/jcommops-api/api/rest/1.0/ptfTypes.xml
 	}
 
 	@GET
@@ -283,14 +245,9 @@ public class WebServiceManager {
 		try {
 			List = m.getPtfTypes();
 		} catch (CayenneRuntimeException CRE) {
-			/*
-			 * PlatformType ptf0 = new PlatformType(); ptf0.setId(-1);
-			 * List.add(ptf0);
-			 */
+			logger.error("Error while fetching information");
 		}
 		return List;
-		// http://localhost:8081/jcommops-api/api/rest/1.0/ptfTypes.json
-
 	}
 
 	@GET
@@ -301,13 +258,9 @@ public class WebServiceManager {
 		try {
 			List = m.getPtfModels();
 		} catch (CayenneRuntimeException CRE) {
-			/*
-			 * PlatformModel ptf0 = new PlatformModel(); ptf0.setId(-1);
-			 * List.add(ptf0);
-			 */
+			logger.error("Error while fetching information");
 		}
 		return List;
-		// http://localhost:8081/jcommops-api/api/rest/1.0/ptfModels.xml
 	}
 
 	@GET
@@ -319,13 +272,9 @@ public class WebServiceManager {
 		try {
 			List = m.getPtfModels();
 		} catch (CayenneRuntimeException CRE) {
-			/*
-			 * PlatformModel ptf0 = new PlatformModel(); ptf0.setId(-1);
-			 * List.add(ptf0);
-			 */
+			logger.error("Error while fetching information");
 		}
 		return List;
-		// http://localhost:8081/jcommops-api/api/rest/1.0/ptfModels.json
 
 	}
 
@@ -337,12 +286,9 @@ public class WebServiceManager {
 		try {
 			List = m.getProgram();
 		} catch (CayenneRuntimeException CRE) {
-			/*
-			 * Program ptf0 = new Program(); ptf0.setId(-1); List.add(ptf0);
-			 */
+			logger.error("Error while fetching information");
 		}
 		return List;
-		// http://localhost:8081/jcommops-api/api/rest/1.0/programs.xml
 	}
 
 	@GET
@@ -354,12 +300,9 @@ public class WebServiceManager {
 		try {
 			List = m.getProgram();
 		} catch (CayenneRuntimeException CRE) {
-			/*
-			 * Program ptf0 = new Program(); ptf0.setId(-1); List.add(ptf0);
-			 */
+			logger.error("Error while fetching information");
 		}
 		return List;
-		// http://localhost:8081/jcommops-api/api/rest/1.0/programs.json
 	}
 
 	@GET
@@ -370,12 +313,9 @@ public class WebServiceManager {
 		try {
 			List = m.getPtfCountries();
 		} catch (CayenneRuntimeException CRE) {
-			/*
-			 * Country ptf0 = new Country(); ptf0.setId(-1); List.add(ptf0);
-			 */
+			logger.error("Error while fetching information");
 		}
 		return List;
-		// http://localhost:8081/jcommops-api/api/rest/1.0/countries.xml
 	}
 
 	@GET
@@ -387,12 +327,9 @@ public class WebServiceManager {
 		try {
 			List = m.getPtfCountries();
 		} catch (CayenneRuntimeException CRE) {
-			/*
-			 * Country ptf0 = new Country(); ptf0.setId(-1); List.add(ptf0);
-			 */
+			logger.error("Error while fetching information");
 		}
 		return List;
-		// http://localhost:8081/jcommops-api/api/rest/1.0/countries.json
 	}
 
 	@GET
@@ -403,13 +340,9 @@ public class WebServiceManager {
 		try {
 			List = m.getMasterNetworks();
 		} catch (CayenneRuntimeException CRE) {
-			/*
-			 * MasterProgram ptf0 = new MasterProgram(); ptf0.setId(-1);
-			 * List.add(ptf0);
-			 */
+			logger.error("Error while fetching information");
 		}
 		return List;
-		// http://localhost:8081/jcommops-api/api/rest/1.0/masterPrograms.xml
 	}
 
 	@GET
@@ -421,13 +354,9 @@ public class WebServiceManager {
 		try {
 			List = m.getMasterNetworks();
 		} catch (CayenneRuntimeException CRE) {
-			/*
-			 * MasterProgram ptf0 = new MasterProgram(); ptf0.setId(-1);
-			 * List.add(ptf0);
-			 */
+			logger.error("Error while fetching information");
 		}
 		return List;
-		// http://localhost:8081/jcommops-api/api/rest/1.0/masterPrograms.json
 	}
 
 	@GET
@@ -438,13 +367,9 @@ public class WebServiceManager {
 		try {
 			List = m.getPtfNetworks();
 		} catch (CayenneRuntimeException CRE) {
-			/*
-			 * NetworkPtf ptf0 = new NetworkPtf(); ptf0.setId(-1);
-			 * List.add(ptf0);
-			 */
+			logger.error("Error while fetching information");
 		}
 		return List;
-		// http://localhost:8081/jcommops-api/api/rest/1.0/PtfNetworks.xml
 	}
 
 	@GET
@@ -456,13 +381,9 @@ public class WebServiceManager {
 		try {
 			List = m.getPtfNetworks();
 		} catch (CayenneRuntimeException CRE) {
-			/*
-			 * NetworkPtf ptf0 = new NetworkPtf(); ptf0.setId(-1);
-			 * List.add(ptf0);
-			 */
+			logger.error("Error while fetching information");
 		}
 		return List;
-		// http://localhost:8081/jcommops-api/api/rest/1.0/network.json
 	}
 
 	@GET
@@ -473,12 +394,9 @@ public class WebServiceManager {
 		try {
 			List = m.getPtfSensorModel();
 		} catch (CayenneRuntimeException CRE) {
-			SensorModelEntity ptf0 = new SensorModelEntity();
-			ptf0.setId(-1);
-			List.add(ptf0);
+			logger.error("Error while fetching information");
 		}
 		return List;
-		// http://localhost:8081/jcommops-api/api/rest/1.0/sensorModels.xml
 	}
 
 	@GET
@@ -490,12 +408,9 @@ public class WebServiceManager {
 		try {
 			List = m.getPtfSensorModel();
 		} catch (CayenneRuntimeException CRE) {
-			SensorModelEntity ptf0 = new SensorModelEntity();
-			ptf0.setId(-1);
-			List.add(ptf0);
+			logger.error("Error while fetching information");
 		}
 		return List;
-		// http://localhost:8081/jcommops-api/api/rest/1.0/sensorModels.json
 	}
 
 	@GET
@@ -506,12 +421,9 @@ public class WebServiceManager {
 		try {
 			List = m.getPtfSensorType();
 		} catch (CayenneRuntimeException CRE) {
-			SensorTypeEntity ptf0 = new SensorTypeEntity();
-			ptf0.setId(-1);
-			List.add(ptf0);
+			logger.error("Error while fetching information");
 		}
 		return List;
-		// http://localhost:8081/jcommops-api/api/rest/1.0/sensorTypes.xml
 	}
 
 	@GET
@@ -523,12 +435,9 @@ public class WebServiceManager {
 		try {
 			List = m.getPtfSensorType();
 		} catch (CayenneRuntimeException CRE) {
-			SensorTypeEntity ptf0 = new SensorTypeEntity();
-			ptf0.setId(-1);
-			List.add(ptf0);
+			logger.error("Error while fetching information");
 		}
 		return List;
-		// http://localhost:8081/jcommops-api/api/rest/1.0/sensorTypes.json
 	}
 
 	@GET
@@ -539,12 +448,9 @@ public class WebServiceManager {
 		try {
 			List = m.getPtfVariables();
 		} catch (CayenneRuntimeException CRE) {
-			VariableEntity ptf0 = new VariableEntity();
-			ptf0.setId(-1);
-			List.add(ptf0);
+			logger.error("Error while fetching information");
 		}
 		return List;
-		// http://localhost:8081/jcommops-api/api/rest/1.0/variables.xml
 	}
 
 	@GET
@@ -556,12 +462,9 @@ public class WebServiceManager {
 		try {
 			List = m.getPtfVariables();
 		} catch (CayenneRuntimeException CRE) {
-			VariableEntity ptf0 = new VariableEntity();
-			ptf0.setId(-1);
-			List.add(ptf0);
+			logger.error("Error while fetching information");
 		}
 		return List;
-		// http://localhost:8081/jcommops-api/api/rest/1.0/variables.json
 	}
 
 }
