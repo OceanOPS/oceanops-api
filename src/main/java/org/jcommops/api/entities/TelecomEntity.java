@@ -19,7 +19,8 @@ public class TelecomEntity  implements Serializable{
 	
 	public TelecomEntity(org.jcommops.api.orm.Telecom tel) {
 		this.setTelecomNum(tel.getNum());
-		this.setTelecomType(tel.getTelecomType().getName());
+		if(tel.getTelecomType() != null)
+			this.setTelecomType(tel.getTelecomType().getName());
 	}
 
 	@XmlElement
