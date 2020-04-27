@@ -94,18 +94,10 @@ JCOMMOPS tries to harmonize and integrate different vocabularies and ontologies.
 			</tr>
 			<tr>
 				<td>Variable</td>
-				<td>Variables describe what is measured by a sensor on a platform. This entity contains simplified variables, to ease the later uses.$$examples</td>
+				<td>Variables describe what is measured by a sensor on a platform. This entity contains simplified variables, to ease the later uses.
+					<br>Examples: Air Temperature, Air Pressure, Chlorophyll, Bulk SST, etc..
+				</td>
 				<td>Parameter</td>
-			</tr>
-			<tr>
-				<td>Variable detailed/Sub variable</td>
-				<td>Sub-variables are detailed variable, used as needed and coming from reference datasets like CF.$$examples</td>
-				<td>Parameter</td>
-			</tr>
-			<tr>
-				<td>Variable Family</td>
-				<td>Variable families are a regroupment of variables, aiming to simplify and represent what is measured in an easy way.$$examples</td>
-				<td>EOV/ECV</td>
 			</tr>
 			<tr>
 				<td>Sensor model</td>
@@ -119,7 +111,7 @@ JCOMMOPS tries to harmonize and integrate different vocabularies and ontologies.
 				<td>Sensor type</td>
 				<td>
 					A sensor type is a high categorization level of sensor, performing one measurement.
-					<br>Examples: Barometer aneroid, SST radiation thermometer, Fluorometer Chla, etc.
+					<br>Examples: Barometer aneroid, SST radiation thermometer, Fluorometer Chla, etc..
 				</td>
 				<td>Sensor</td>
 			</tr>

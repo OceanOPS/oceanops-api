@@ -39,14 +39,14 @@ public class WebServiceManager {
 	public ArrayList<PlatformEntity> getAllPtfsJSON(@QueryParam("status") String status,
 			@QueryParam("family") String family, @QueryParam("type") String type, @QueryParam("model") String model,
 			@QueryParam("program") String program, @QueryParam("network") String network,
-			@QueryParam("masterProgram") String masterprg, @QueryParam("variable") String variable,
+			@QueryParam("variable") String variable,
 			@QueryParam("sensorModel") String sensormod, @QueryParam("sensorType") String sensortyp,
 			@QueryParam("ship") String ship, @QueryParam("country") String country, @QueryParam("wigosReady") String wigosReady, 
 			@QueryParam("updateDate") String updateDate, @QueryParam("insertDate") String insertDate) {
 
 		PlatformAccessor m = new PlatformAccessor();
 		HashMap<Integer, HashMap<String, String>> foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program,
-				network, masterprg, variable, sensormod, sensortyp, ship, country, wigosReady, updateDate, insertDate);
+				network, variable, sensormod, sensortyp, ship, country, wigosReady, updateDate, insertDate);
 		
 		ArrayList<PlatformEntity> result = new ArrayList<PlatformEntity>();
 		for (Integer id : foundPlatforms.keySet()) {
@@ -64,7 +64,7 @@ public class WebServiceManager {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getSelectedPlatformsCSV(@QueryParam("status") String status, @QueryParam("family") String family,
 			@QueryParam("type") String type, @QueryParam("model") String model, @QueryParam("program") String program,
-			@QueryParam("network") String network, @QueryParam("masterProgram") String masterprg,
+			@QueryParam("network") String network, 
 			@QueryParam("variable") String variable, @QueryParam("sensorModel") String sensormod,
 			@QueryParam("sensorType") String sensortyp, @QueryParam("ship") String ship,
 			@QueryParam("country") String country, @QueryParam("wigosReady") String wigosReady, 
@@ -75,7 +75,7 @@ public class WebServiceManager {
 
 		StringBuilder csv = new StringBuilder();
 
-		foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, masterprg, variable,
+		foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, program, network, variable,
 				sensormod, sensortyp, ship, country, wigosReady, updateDate, insertDate);
 
 		csv.append("id" + Utils.CSV_SEPARATOR + "ref" + Utils.CSV_SEPARATOR + "wigos_ref");

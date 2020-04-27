@@ -383,7 +383,6 @@ public class PlatformAccessor {
 	 * @param ptfModel
 	 * @param program
 	 * @param network
-	 * @param masterProg
 	 * @param variable
 	 * @param sensorModel
 	 * @param sensorType
@@ -394,7 +393,7 @@ public class PlatformAccessor {
 	 * @return A HashMap containing the database identifiers as keys, the JCOMMOPS reference as values
 	 */
 	public HashMap<Integer, HashMap<String, String>> getPtfbySelectedParam(String ptfStatus, String ptfFamily, String ptfType,
-			String ptfModel, String program, String network, String masterProg, String variable, String sensorModel,
+			String ptfModel, String program, String network, String variable, String sensorModel,
 			String sensorType, String ship, String country, String wigosReady, String updateDate, String insertDate) {
 		
 		// Sanitize all parameters
@@ -404,7 +403,6 @@ public class PlatformAccessor {
 		ptfModel = Utils.basicSanitize(ptfModel);
 		program = Utils.basicSanitize(program);
 		network = Utils.basicSanitize(network);
-		masterProg = Utils.basicSanitize(masterProg);
 		variable = Utils.basicSanitize(variable);
 		sensorModel = Utils.basicSanitize(sensorModel);
 		sensorType = Utils.basicSanitize(sensorType);
@@ -611,31 +609,6 @@ public class PlatformAccessor {
 				if (!usingID)
 					whereClause.append(")");
 			}
-		}
-
-		// Master Program
-		if (masterProg != null && !masterProg.isEmpty()) {
-			String[] parts = masterProg.split(unionSymbol);
-			// Testing if name or ID are used
-			usingID = Utils.isInt(parts[0]);
-			whereClause.append(" and (ptf.program_id in (select id from program where master_prog_id in (");
-			if (!usingID) {
-				whereClause.append("select id from master_prog where lower(name_short) in (");
-			}
-
-			for (int i = 0; i < parts.length; i++) {
-				if (i > 0) {
-					whereClause.append(",");
-				}
-				if (!usingID)
-					whereClause.append("'");
-				whereClause.append(parts[i].toLowerCase());
-				if (!usingID)
-					whereClause.append("'");
-			}
-			whereClause.append(")))");
-			if (!usingID)
-				whereClause.append(")");
 		}
 
 		// Variable
