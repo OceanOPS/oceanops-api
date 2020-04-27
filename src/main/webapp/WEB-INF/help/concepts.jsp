@@ -115,6 +115,13 @@ JCOMMOPS tries to harmonize and integrate different vocabularies and ontologies.
 				</td>
 				<td>Sensor</td>
 			</tr>
+			<tr>
+				<td>GTS ID</td>
+				<td>
+					The identifier used to tag data sent on the Global Telecommunication System
+				</td>
+				<td>WMO number/code/ID</td>
+			</tr>
 		</tbody>
 	</table>
 </div>

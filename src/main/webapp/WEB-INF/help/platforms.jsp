@@ -118,6 +118,11 @@
 						href="?param=sensorType" role="button">Get sensor types</a></td>
 				</tr>
 				<tr>
+					<td>gtsid</a></td>
+					<td>GTS identifier</td>
+					<td>Any 7-character string</td>
+				</tr>
+				<tr>
 					<td>Date fields<a href="#date-based-params-details">**</a></td>
 					<td>Date-based filtering fields</td>
 					<td>
