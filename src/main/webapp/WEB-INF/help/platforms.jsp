@@ -6,7 +6,7 @@
 	<div class="text-center">
 		<span class="url"><%=rootUrl%>platforms.[format]</span>
 	</div>
-	<br> Where "format" in "platforms.[format]" string path	represents the data output.
+	<br> Where "[format]" in "platforms.[format]" string path represents the data output.
 </p>
 
 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#listAllPtfExample" aria-expanded="false"	aria-controls="listAllPtfExample">Example</button>
@@ -123,6 +123,11 @@
 					<td>Any 7-character string</td>
 				</tr>
 				<tr>
+					<td>wigosReady</a></td>
+					<td>Is WIGOS ready (has a WIGOS ID allocated)</td>
+					<td>No value, just specify the parameter</td>
+				</tr>
+				<tr>
 					<td>Date fields<a href="#date-based-params-details">**</a></td>
 					<td>Date-based filtering fields</td>
 					<td>
@@ -198,10 +203,18 @@
 	The platform details include a number of essential metadata on that platform (only some of them are listed in table 1).
 	Platform details can be obtained with a GET request using the following dedicated URL pattern:
 	<div class="text-center">
-		<span class="url"><%=rootUrl%>platforms.format/[ID]</span><br>
+		<span class="url"><%=rootUrl%>platforms.[format]/[ID]</span><br>
+		<span class="url"><%=rootUrl%>platforms.[format]/ref/[REF]</span><br>
+		<span class="url"><%=rootUrl%>platforms.[format]/wigosid/[WIGOS ID]</span><br>
 	</div>
 	<br>
-	Where "[ID]" is the database identifier of the platform.
+	Where (replace the squared brackets as well "[]"): 
+	<ul>
+		<li>"[format]" is the desired output format;</li>
+		<li>"[ID]" is the database identifier of the platform;</li>
+		<li>"[REF]" is the JCOMMOPS' reference of the platform;</li>
+		<li>"[WIGOS ID]" is the WIGOS identifier of the platform.</li>
+	</ul>
 </p>
 
 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#detailsPtfExample" aria-expanded="false"	aria-controls="detailsPtfExample">Example</button>
@@ -213,6 +226,7 @@
 		<div class="text-center">
 			<span class="url"><%=rootUrl%>platforms.json/512263</span><br>
 			<span class="url"><%=rootUrl%>platforms.json/ref/6902545</span><br>
+			<span class="url"><%=rootUrl%>platforms.json/wigosid/0-22000-0-6902545</span><br>
 		</div>
 		Below is a formatted output of the example URL:<br>
 		<pre>
