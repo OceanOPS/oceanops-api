@@ -228,7 +228,7 @@
 		<helpEditionDate>2020-04-27</helpEditionDate>
 		<versionQualifier>beta</versionQualifier>
 		<project.scm.id>jcommops-scm-server</project.scm.id>
-		<java.version>13</java.version>
+		<java.version>14</java.version>
 	</properties>
 	<url>www.jcommops.org/api/${project.version}/</url>
 </project>
