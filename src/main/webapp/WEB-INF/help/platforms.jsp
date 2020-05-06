@@ -284,10 +284,10 @@
 					   "contacts":{
 						  "contact":[
 							 {
-								"id":10811,
-								"email":"katrin.latarius@awi.de",
-								"firstName":"Katrin",
-								"lastName":"Latarius",
+								"id":****,
+								"email":"***.***@***.***",
+								"firstName":"****",
+								"lastName":"****",
 								"roles":{
 								   "role":[
 									  {
@@ -299,10 +299,10 @@
 								}
 							 },
 							 {
-								"id":11508,
-								"email":"kjell.arne.mork@hi.no",
-								"firstName":"Kjell Arne",
-								"lastName":"Mork",
+								"id":****,
+								"email":"***.***@***.***",
+								"firstName":"****",
+								"lastName":"****",
 								"roles":{
 								   "role":[
 									  {
@@ -319,10 +319,10 @@
 								}
 							 },
 							 {
-								"id":1003741,
-								"email":"grigor.obolensky@euro-argo.eu",
-								"firstName":"Grigor",
-								"lastName":"OBOLENSKY",
+								"id":****,
+								"email":"***.***@***.***",
+								"firstName":"****",
+								"lastName":"****",
 								"roles":{
 								   "role":[
 									  {
@@ -334,10 +334,10 @@
 								}
 							 },
 							 {
-								"id":1003786,
-								"email":"romain.cancouet@euro-argo.eu",
-								"firstName":"Romain",
-								"lastName":"CANCOUËT ",
+								"id":****,
+								"email":"***.***@***.***",
+								"firstName":"****",
+								"lastName":"****",
 								"roles":{
 								   "role":[
 									  {
@@ -349,15 +349,15 @@
 								}
 							 },
 							 {
-								"id":1008110,
+								"id":*****,
 								"agency":{
 								   "description":"Institute of Marine Research",
 								   "name":"Institute of Marine Research",
 								   "nameShort":"IMR"
 								},
-								"email":"henrik.soiland@hi.no",
-								"firstName":"Henrik",
-								"lastName":"Søiland",
+								"email":"***.***@***.***",
+								"firstName":"****",
+								"lastName":"****",
 								"roles":{
 								   "role":[
 									  {
