@@ -55,6 +55,8 @@ public class WebServiceManager {
 			ptf.setId(id);
 			ptf.setJcommopsRef(foundPlatforms.get(id).get("ref"));
 			ptf.setWigosRef(foundPlatforms.get(id).get("wigos_ref"));
+			if(gtsid != null)
+				ptf.setRequestedGtsId(gtsid);
 			result.add(ptf);
 		}
 		return result;
@@ -79,10 +81,20 @@ public class WebServiceManager {
 		foundPlatforms = m.getPtfbySelectedParam(status, family, type, model, gtsid, program, network, variable, sensormod,
 				sensortyp, ship, country, wigosReady, updateDate, insertDate);
 
-		csv.append("id" + Utils.CSV_SEPARATOR + "ref" + Utils.CSV_SEPARATOR + "wigos_ref");
-		for (Integer id : foundPlatforms.keySet()) {
-			csv.append("\n" + id + Utils.CSV_SEPARATOR + foundPlatforms.get(id).get("ref") + Utils.CSV_SEPARATOR
-					+ foundPlatforms.get(id).get("wigos_ref"));
+		if(gtsid != null){
+			csv.append("id" + Utils.CSV_SEPARATOR + "ref" + Utils.CSV_SEPARATOR + "wigos_ref" + Utils.CSV_SEPARATOR + "requested_gtsid");
+			for (Integer id : foundPlatforms.keySet()) {
+				csv.append("\n" + id + Utils.CSV_SEPARATOR + foundPlatforms.get(id).get("ref") + Utils.CSV_SEPARATOR
+						+ foundPlatforms.get(id).get("wigos_ref") + Utils.CSV_SEPARATOR
+						+ gtsid);
+			}
+		}
+		else{			
+			csv.append("id" + Utils.CSV_SEPARATOR + "ref" + Utils.CSV_SEPARATOR + "wigos_ref");
+			for (Integer id : foundPlatforms.keySet()) {
+				csv.append("\n" + id + Utils.CSV_SEPARATOR + foundPlatforms.get(id).get("ref") + Utils.CSV_SEPARATOR
+						+ foundPlatforms.get(id).get("wigos_ref"));
+			}
 		}
 		return csv.toString();
 	}
