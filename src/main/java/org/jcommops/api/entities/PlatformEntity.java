@@ -24,6 +24,7 @@ public class PlatformEntity implements Serializable{
 	private Integer id;
 	private String jcommopsRef;
 	private String wigosRef;
+	private List<GtsIdEntity> gtsIds;
 	private TelecomEntity telecom;
 	private String internalRef;
 	private String serialRef;
@@ -76,7 +77,12 @@ public class PlatformEntity implements Serializable{
 		this.variables = new ArrayList<VariableEntity>();
     	for(int i = 0; i<ptf.getVariables().size();i++){
     		this.variables.add(new VariableEntity(ptf.getVariables().get(i)));
-    	}
+		}
+		
+		this.gtsIds = new ArrayList<GtsIdEntity>();
+    	for(int i = 0; i<ptf.getWmoes().size();i++){
+    		this.gtsIds.add(new GtsIdEntity(ptf.getWmoes().get(i)));
+		}
     	
     	this.setJcommopsDBInsertDate(Utils.GetIsoDate(ptf.getInsertDate()));
     	this.setJcommopsDBUpdateDate(Utils.GetIsoDate(ptf.getUpdateDate()));
@@ -99,6 +105,20 @@ public class PlatformEntity implements Serializable{
 	public void setJcommopsRef(String jcommopsRef) {
 		this.jcommopsRef = jcommopsRef;
 	}
+
+	@XmlElement
+	public List<GtsIdEntity> getGtsIds() {
+		return this.gtsIds;
+	}
+	
+	public void setGtsIds(List<GtsIdEntity> gtsIds) {
+		this.gtsIds = gtsIds;
+	}
+	public void setRequestedGtsId(String gtsid) {
+		this.gtsIds = new ArrayList<GtsIdEntity>();
+		this.gtsIds.add(new GtsIdEntity(gtsid));
+	}
+
 
 	@XmlElement
 	public TelecomEntity getTelecom() {
