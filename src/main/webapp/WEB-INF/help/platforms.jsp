@@ -118,7 +118,7 @@
 						href="?param=sensorType" role="button">Get sensor types</a></td>
 				</tr>
 				<tr>
-					<td>gtsid</a></td>
+					<td>gtsid<a href="#gtsid-param-details">**</a></a></td>
 					<td>GTS identifier</td>
 					<td>Any 7-character string</td>
 				</tr>
@@ -128,7 +128,7 @@
 					<td>No value, just specify the parameter</td>
 				</tr>
 				<tr>
-					<td>Date fields<a href="#date-based-params-details">**</a></td>
+					<td>Date fields<a href="#date-based-params-details">***</a></td>
 					<td>Date-based filtering fields</td>
 					<td>
 						<ul>
@@ -145,8 +145,13 @@
 			A search parameter's value corresponds to either an identification number (<b>ID</b>) or a string (such as <b>Short Name</b>). 
 			The values that can each parameter take are listed in the corresponding links in table 1 ("Get parameter" button).
 		</p>
+		<p id="gtsid-param-details">
+			(**) providing a GTS identifier to the request will result in including it in the response: 'requested_gtsid' in CSV, 'gtsid' in JSON. 
+			This request does not fetch details from the platforms themselves, but only rewrite the response to include the requested parameter.<br>
+			To get details about the GTS identifier(s) of a platform, one must fetch platform's details in the <b>JSON format</b> (multi-valued field, not included in the CSV format). See the <a href="#get-platform-details">dedicated section</a>.
+		</p>
 		<p id="date-based-params-details">
-			(**) a date based parameter uses the interval syntax: <code>[</code> (HTML URL code: %5B) or <code>]</code> (HTML URL code: %5D) at the beginning, <code>]</code> or <code>[</code> at the end (respectively inclusive and exclusive behaviors).
+			(***) a date based parameter uses the interval syntax: <code>[</code> (HTML URL code: %5B) or <code>]</code> (HTML URL code: %5D) at the beginning, <code>]</code> or <code>[</code> at the end (respectively inclusive and exclusive behaviors).
 			One can provide one or two dates (comma separated) within the parameter. If the interval symbols are ommited, the inclusive behavior will be considered.<br>
 			A date should be given in UTC and match the following pattern: YYYY-MM-DDTHH:MI:SS (ISO 8601), e.g. 2019-02-22T22:30:25.<br>
 			Interval syntax examples:
@@ -198,7 +203,7 @@
 	</div>
 </div>
 
-<h3>Getting the details of a referenced platform</h3>
+<h3 id="get-platform-details">Getting the details of a referenced platform</h3>
 <p>
 	The platform details include a number of essential metadata on that platform (only some of them are listed in table 1).
 	Platform details can be obtained with a GET request using the following dedicated URL pattern:
@@ -261,6 +266,11 @@
 						  "shipType":"Research Vessels"
 					   }
 					},
+					"gtsIds":[{
+						"id":325811,
+						"gtsid":"6902545",
+						"startDate":"2014-01-22T09:44:00Z"
+					}],
 					"jcommopsDBInsertDate":"2015-09-03T11:29:05Z",
 					"jcommopsDBUpdateDate":"2020-04-14T10:21:05Z",
 					"jcommopsRef":"6902545",
