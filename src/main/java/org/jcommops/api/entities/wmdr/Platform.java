@@ -425,7 +425,7 @@ public class Platform {
 			GeospatialLocationType gsLocType = this.wmdrOF.createGeospatialLocationType();
 	
 			timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(ptf.getLatestObs().getObsDate())));
-			timePeriod.setId(o.getId() + "-LatestLocationTimePeriod");
+			timePeriod.setId(o.getId() + "-LatestLocTimePeriod");
 			timePeriod.setBeginPosition(timePosition);
 			timePeriod.setEndPosition(new TimePositionType());
 			timePeriodProperty.setTimePeriod(timePeriod);
@@ -564,7 +564,7 @@ public class Platform {
 				timePeriod = new TimePeriodType();
 				timePosition = new TimePositionType();
 				timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(ptf.getPtfDepl().getDeplDate())));
-				timePeriod.setId(o.getId() + "-StatusChangingDateTimePeriod-" + count);
+				timePeriod.setId(o.getId() + "-SCDTimePeriod-" + count);
 				timePeriod.setBeginPosition(timePosition);
 				timePosition = new TimePositionType();
 				if(ptf.getEndingDate() != null)
@@ -618,7 +618,7 @@ public class Platform {
 					timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(wmo.getStartDate())));
 				else
 					timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(ptf.getPtfDepl().getDeplDate())));
-				timePeriod.setId(o.getId() + "-StatusChangingDateTimePeriod-" + count);
+				timePeriod.setId(o.getId() + "-SCDTimePeriod-" + count);
 				timePeriod.setBeginPosition(timePosition);
 
 				timePosition = new TimePositionType();
@@ -671,7 +671,7 @@ public class Platform {
 				timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(latestStatus.getChangingDate())));
 			else
 				timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(ptf.getPtfDepl().getDeplDate())));
-			timePeriod.setId(o.getId() + "-StatusChangingDateTimePeriod-" + count);
+			timePeriod.setId(o.getId() + "-SCDTimePeriod-" + count);
 			timePeriod.setBeginPosition(timePosition);
 			timePeriod.setEndPosition(new TimePositionType());
 			timePeriodProperty.setTimePeriod(timePeriod);
