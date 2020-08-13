@@ -5,12 +5,12 @@
 	<groupId>org.jcommops</groupId>
 	<artifactId>api</artifactId>
 	<packaging>war</packaging>
-	<version>1.0.0beta15-SNAPSHOT</version>
+	<version>1.0.0beta15</version>
 	<name>JCOMMOPS API</name>
 
 	<scm>
 		<developerConnection>scm:git:http://srv-front-jcomm.vlandata.cls.fr/git/jcommops/jcommops-api.git</developerConnection>
-		<tag>HEAD</tag>
+		<tag>v1.0.0beta15</tag>
 	</scm>
 
 	<build>
