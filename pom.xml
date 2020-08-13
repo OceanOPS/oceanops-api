@@ -9,7 +9,7 @@
 	<name>JCOMMOPS API</name>
 
 	<scm>
-		<developerConnection>scm:git:http://srv-front-jcomm.vlandata.cls.fr/git/jcommops/jcommops-api.git</developerConnection>
+		<developerConnection>scm:git:http://srv-main-jcomm.vlandata.cls.fr/git/jcommops/jcommops-api.git</developerConnection>
 		<tag>v1.0.0beta15</tag>
 	</scm>
 
