@@ -21,8 +21,6 @@ import org.jcommops.api.orm.Agency;
 import org.jcommops.api.orm.NetworkPtf;
 import org.jcommops.api.orm.ProgramAgency;
 import org.jcommops.api.orm.Ptf;
-import org.jcommops.api.orm.PtfDeployment;
-import org.jcommops.api.orm.PtfModel;
 import org.jcommops.api.orm.PtfPtfStatus;
 import org.jcommops.api.orm.PtfSensorModel;
 import org.jcommops.api.orm.SensorModel;
@@ -56,12 +54,10 @@ import _int.wmo.def.wmdr._2017.ReportingStatusType;
 import _int.wmo.def.wmdr._2017.ResponsiblePartyType;
 import _int.wmo.def.wmdr._2017.TerritoryType;
 import _int.wmo.def.wmdr._2017.WIGOSMetadataRecordType;
-import _int.wmo.def.wmdr._2017.WIGOSMetadataRecordType.Deployment;
 import net.opengis.gml.v_3_2_1.CodeType;
 import net.opengis.gml.v_3_2_1.CodeWithAuthorityType;
 import net.opengis.gml.v_3_2_1.DirectPositionType;
 import net.opengis.gml.v_3_2_1.GeometryPropertyType;
-import net.opengis.gml.v_3_2_1.LocationPropertyType;
 import net.opengis.gml.v_3_2_1.MeasureType;
 import net.opengis.gml.v_3_2_1.PointType;
 import net.opengis.gml.v_3_2_1.ReferenceType;
@@ -292,173 +288,6 @@ public class Platform {
 		headerInfo.setHeader(headerType);
 
 		return headerInfo;
-	}
-
-	/**
-	 * Builds the deployments list for the given platform.
-	 * 
-	 * @param ptf The Ptf entity object from which data should be extracted
-	 * @return the deployment list
-	 */
-	private List<WIGOSMetadataRecordType.Deployment> getDeployments(Ptf ptf) {
-		PtfDeployment depl = ptf.getPtfDepl();
-		ArrayList<WIGOSMetadataRecordType.Deployment> depls = new ArrayList<>();
-
-		String ptfId = "_" + getWIGOSIdentifier(ptf);
-
-		Deployment d = new Deployment();
-		DeploymentType dt = new DeploymentType();
-
-		dt.setId(ptfId + "-depl");
-
-		EquipmentPropertyType equipmentPropType = new EquipmentPropertyType();
-		dt.setDeployedEquipment(equipmentPropType);
-
-		DataGenerationPropertyType dataGenerationPropType = new DataGenerationPropertyType();
-		dt.getDataGeneration().add(dataGenerationPropType);
-
-		LocationPropertyType locationPropType = new LocationPropertyType();
-
-		PointType geom = new PointType();
-		geom.setId(ptfId + "-depl-location");
-		DirectPositionType posType = this.gmlOF.createDirectPositionType();
-		ArrayList<Double> coords = new ArrayList<Double>();
-		if (ptf.getLatestObs().getLat().doubleValue() == 0.0)
-			coords.add(0.0001);
-		else
-			coords.add(ptf.getLatestObs().getLat().doubleValue());
-		if (ptf.getLatestObs().getLon().doubleValue() == 0.0)
-			coords.add(0.0001);
-		else
-			coords.add(ptf.getLatestObs().getLon().doubleValue());
-		coords.add(0.0);
-		posType.setValue(coords);
-		geom.setPos(posType);
-		geom.setSrsName("http://www.opengis.net/def/crs/EPSG/0/4979");
-
-		GeometryPropertyType geomProperty = new GeometryPropertyType();
-		geomProperty.setAbstractGeometry(this.gmlOF.createPoint(geom));
-
-		locationPropType.setAbstractGeometry(this.gmlOF.createPoint(geom));
-		dt.setLocation(this.gmlOF.createLocation(locationPropType));
-
-		MeasureType measureType = new MeasureType();
-		measureType.setUom("m");
-		if (depl.getDeplHeight() != null) {
-			measureType.setValue(depl.getDeplHeight().doubleValue());
-		}
-		dt.setHeightAboveLocalReferenceSurface(measureType);
-
-		ReferenceType refType = new ReferenceType();
-		dt.setLocalReferenceSurface(refType);
-
-		refType = new ReferenceType();
-		dt.getApplicationArea().add(refType);
-
-		refType = new ReferenceType();
-		dt.setSourceOfObservation(refType);
-
-		if (depl.getDeplDate() != null) {
-			TimePeriodPropertyType timePeriodPropertyType = new TimePeriodPropertyType();
-			TimePeriodType timePeriodType = new TimePeriodType();
-			timePeriodType.setId(ptfId + "-depl-date");
-			TimePositionType timePositionType = new TimePositionType();
-			timePositionType.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(depl.getDeplDate())));
-			timePeriodType.setBeginPosition(timePositionType);
-			timePositionType = new TimePositionType();
-			timePeriodType.setEndPosition(timePositionType);
-			timePeriodPropertyType.setTimePeriod(timePeriodType);
-			dt.setValidPeriod(timePeriodPropertyType);
-		}
-
-		d.setDeployment(dt);
-		depls.add(d);
-
-		return depls;
-	}
-
-	/**
-	 * Builds the Equipement list for the given platform. This correspond to the PlatformModel database entity.
-	 * 
-	 * @param ptf The Ptf entity object from which data should be extracted
-	 * @return the Equipement list
-	 */
-	private List<EquipmentPropertyType> getEquipements(Ptf ptf) {
-		ArrayList<EquipmentPropertyType> equipements = new ArrayList<>();
-
-		EquipmentPropertyType currentEquipment;
-		EquipmentType currentEquipmentType;
-
-		PtfModel pm = ptf.getPtfModel();
-		currentEquipment = this.wmdrOF.createEquipmentPropertyType();
-		currentEquipmentType = this.wmdrOF.createEquipmentType();
-
-		currentEquipmentType.setId("equipment-" + pm.getObjectId().getIdSnapshot().get("ID").toString());
-
-		currentEquipmentType.setModel(pm.getName());
-		if (pm.getAgency() != null)
-			currentEquipmentType.setManufacturer(pm.getAgency().getNameShort());
-		StringOrRefType value = new StringOrRefType();
-		value.setValue(pm.getDescription());
-		currentEquipmentType.setDescription(value);
-
-		currentEquipmentType.setSerialNumber(ptf.getPtfHardware().getSerialRef());
-
-		if (pm.getWeblink() != null) {
-			OnlineResource or = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeOnlineResource();
-			CIOnlineResourceType onlineRsrc = this.gmdOF.createCIOnlineResourceType();
-			URLPropertyType urlProperty = this.gmdOF.createURLPropertyType();
-			urlProperty.setURL(pm.getWeblink().getUrl());
-			onlineRsrc.setLinkage(urlProperty);
-			or.setCIOnlineResource(onlineRsrc);
-			currentEquipmentType.getOnlineResource().add(or);
-		}
-
-		AbstractEnvironmentalMonitoringFacilityType.ResponsibleParty responsibleParty = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeResponsibleParty();
-		ResponsiblePartyType responsiblePartyType = this.wmdrOF.createResponsiblePartyType();
-		ResponsiblePartyType.ResponsibleParty rp = this.wmdrOF.createResponsiblePartyTypeResponsibleParty();
-		if (pm.getAgency() != null) {
-			rp.setCIResponsibleParty(this.getCIResponsibleParty(Integer.parseInt(pm.getAgency().getObjectId().getIdSnapshot().get("ID").toString()), "pointOfContact"));
-
-			currentEquipmentType.setManufacturer(pm.getAgency().getNameShort());
-		} else
-			rp.setCIResponsibleParty(this.getCIResponsibleParty(null, null));
-
-		responsiblePartyType.setResponsibleParty(rp);
-		responsibleParty.setResponsibleParty(responsiblePartyType);
-		currentEquipmentType.getResponsibleParty().add(responsibleParty);
-
-		ReferenceType refType = this.gmlOF.createReferenceType();
-		refType.setHref("http://codes.wmo.int/common/wmdr/ObservingMethod/" + "341");
-		currentEquipmentType.setObservingMethod(refType);
-
-		currentEquipment.setEquipment(currentEquipmentType);
-		equipements.add(currentEquipment);
-
-		return equipements;
-	}
-
-	/**
-	 * Builds the SubEquipement list for the given platform. This correspond to the SensorModel database entity.
-	 * 
-	 * @param ptf The Ptf entity object from which data should be extracted
-	 * @return the Equipement list
-	 */
-	private List<EquipmentPropertyType> getSubEquipements(Ptf ptf) {
-		List<PtfSensorModel> ptfSensorModels = ptf.getPtfSensorModels();
-		ArrayList<EquipmentPropertyType> equipements = new ArrayList<>();
-
-		EquipmentPropertyType currentEquipment;
-		for (PtfSensorModel ptfSM : ptfSensorModels) {
-			currentEquipment = this.getEquipmentPropertyType(ptfSM);
-			equipements.add(currentEquipment);
-		}
-
-		return equipements;
-	}
-
-	private EquipmentPropertyType getEquipmentPropertyType(PtfSensorModel ptfSM) {
-		return getEquipmentPropertyType(ptfSM, 0, null);
 	}
 
 	private EquipmentPropertyType getEquipmentPropertyType(PtfSensorModel ptfSM, int increment, Variable variable) {
@@ -1024,7 +853,6 @@ public class Platform {
 			}
 		} else {
 			for (Variable v : ptf.getVariables()) {
-				int varIncrement = 0;
 				ocp = this.wmdrOF.createObservingCapabilityPropertyType();
 				oc = this.wmdrOF.createObservingCapabilityType();
 				oc.setId("oc-var-" + v.getId());
