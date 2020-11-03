@@ -2,11 +2,11 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.jcommops</groupId>
+	<groupId>org.oceanops</groupId>
 	<artifactId>api</artifactId>
 	<packaging>war</packaging>
 	<version>1.0.0beta16-SNAPSHOT</version>
-	<name>JCOMMOPS API</name>
+	<name>OceanOPS API</name>
 
 	<scm>
 		<developerConnection>scm:git:http://srv-main-jcomm.vlandata.cls.fr/git/jcommops/jcommops-api.git</developerConnection>
@@ -14,7 +14,7 @@
 	</scm>
 
 	<build>
-		<finalName>jcommops-api</finalName>
+		<finalName>oceanops-api</finalName>
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -227,8 +227,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<helpEditionDate>2020-06-04</helpEditionDate>
 		<versionQualifier>beta</versionQualifier>
-		<project.scm.id>jcommops-scm-server</project.scm.id>
+		<project.scm.id>oceanops-scm-server</project.scm.id>
 		<java.version>14</java.version>
 	</properties>
-	<url>www.jcommops.org/api/${project.version}/</url>
+	<url>www.ocean-ops.org/api/${project.version}/</url>
 </project>
