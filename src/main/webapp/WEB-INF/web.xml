@@ -8,17 +8,17 @@
 		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
 		<init-param>
 			<param-name>jersey.config.server.provider.packages</param-name>
-			<param-value>org.jcommops.api</param-value>
+			<param-value>org.oceanops.api</param-value>
 		</init-param>
         <init-param>
             <param-name>javax.ws.rs.Application</param-name>
-            <param-value>org.jcommops.api.Application</param-value>
+            <param-value>org.oceanops.api.Application</param-value>
         </init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet>
 		<servlet-name>Help</servlet-name>
-		<servlet-class>org.jcommops.api.Help</servlet-class>
+		<servlet-class>org.oceanops.api.Help</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Help</servlet-name>
@@ -35,7 +35,7 @@
 
 	<filter>
 		<filter-name>CayenneFilter</filter-name>
-		<filter-class>org.jcommops.api.filters.CayenneFilter</filter-class>
+		<filter-class>org.oceanops.api.filters.CayenneFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>CayenneFilter</filter-name>

@@ -1,4 +1,4 @@
-<p>The index of platforms includes platforms' database identifier, their corresponding JCOMMOPS reference and their WIGOS identifier when already allocated.</p>
+<p>The index of platforms includes platforms' database identifier, their corresponding OceanOPS reference and their WIGOS identifier when already allocated.</p>
 			
 <h3>Getting an index of the platforms</h3>
 <p>
@@ -19,12 +19,12 @@
 		<code>
 			[
 			...,
-			{"id":1024171,"jcommopsRef":"5902435","wigosRef":"0-22000-0-5902435"},
-			{"id":1024170,"jcommopsRef":"5902434","wigosRef":"0-22000-0-5902434"},
-			{"id":1024168,"jcommopsRef":"5902433","wigosRef":"0-22000-0-5902433"},
-			{"id":1106132,"jcommopsRef":"1500608_101","wigosRef":"0-22000-101-1500608"},
-			{"id":1118420,"jcommopsRef":"5401638_100","wigosRef":"0-22000-100-5401638"},
-			{"id":512207,"jcommopsRef":"6200151","wigosRef":""},
+			{"id":1024171,"ref":"5902435","wigosRef":"0-22000-0-5902435"},
+			{"id":1024170,"ref":"5902434","wigosRef":"0-22000-0-5902434"},
+			{"id":1024168,"ref":"5902433","wigosRef":"0-22000-0-5902433"},
+			{"id":1106132,"ref":"1500608_101","wigosRef":"0-22000-101-1500608"},
+			{"id":1118420,"ref":"5401638_100","wigosRef":"0-22000-100-5401638"},
+			{"id":512207,"ref":"6200151","wigosRef":""},
 			...
 			]
 		</code>
@@ -132,8 +132,8 @@
 					<td>Date-based filtering fields</td>
 					<td>
 						<ul>
-							<li><code>updateDate</code>: JCOMMOPS' database update date</li>
-							<li><code>insertDate</code>: JCOMMOPS' database insert date</li>
+							<li><code>updateDate</code>: OceanOPS' database update date</li>
+							<li><code>insertDate</code>: OceanOPS' database insert date</li>
 						</ul>
 					</td>
 				</tr>
@@ -180,14 +180,14 @@
 		<pre>
 		<code>
 			[
-				{"id":1113620,"jcommopsRef":"5905379","wigosRef":"0-22000-0-5905379"},
-				{"id":1120793,"jcommopsRef":"6902905","wigosRef":"0-22000-0-6902905"},
-				{"id":1120795,"jcommopsRef":"5904847","wigosRef":"0-22000-0-5904847"},
-				{"id":1120797,"jcommopsRef":"5905993","wigosRef":"0-22000-0-5905993"},
-				{"id":1120796,"jcommopsRef":"5905992","wigosRef":"0-22000-0-5905992"},
-				{"id":1120799,"jcommopsRef":"5905995","wigosRef":"0-22000-0-5905995"},
-				{"id":1024000,"jcommopsRef":"5904660","wigosRef":"0-22000-0-5904660"},
-				{"id":1120798,"jcommopsRef":"5905994","wigosRef":"0-22000-0-5905994"}
+				{"id":1113620,"ref":"5905379","wigosRef":"0-22000-0-5905379"},
+				{"id":1120793,"ref":"6902905","wigosRef":"0-22000-0-6902905"},
+				{"id":1120795,"ref":"5904847","wigosRef":"0-22000-0-5904847"},
+				{"id":1120797,"ref":"5905993","wigosRef":"0-22000-0-5905993"},
+				{"id":1120796,"ref":"5905992","wigosRef":"0-22000-0-5905992"},
+				{"id":1120799,"ref":"5905995","wigosRef":"0-22000-0-5905995"},
+				{"id":1024000,"ref":"5904660","wigosRef":"0-22000-0-5904660"},
+				{"id":1120798,"ref":"5905994","wigosRef":"0-22000-0-5905994"}
 				...
 			]
 		</code>
@@ -217,7 +217,7 @@
 	<ul>
 		<li>"[format]" is the desired output format;</li>
 		<li>"[ID]" is the database identifier of the platform;</li>
-		<li>"[REF]" is the JCOMMOPS' reference of the platform;</li>
+		<li>"[REF]" is the OceanOPS' reference of the platform;</li>
 		<li>"[WIGOS ID]" is the WIGOS identifier of the platform.</li>
 	</ul>
 </p>
@@ -271,9 +271,9 @@
 						"gtsid":"6902545",
 						"startDate":"2014-01-22T09:44:00Z"
 					}],
-					"jcommopsDBInsertDate":"2015-09-03T11:29:05Z",
-					"jcommopsDBUpdateDate":"2020-04-14T10:21:05Z",
-					"jcommopsRef":"6902545",
+					"dbInsertDate":"2015-09-03T11:29:05Z",
+					"dbUpdateDate":"2020-04-14T10:21:05Z",
+					"ref":"6902545",
 					"latestLocation":{
 					   "date":"2020-01-30T02:28:27Z",
 					   "lat":67.377,

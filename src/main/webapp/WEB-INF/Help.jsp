@@ -33,7 +33,7 @@
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<h1><img src="//www.jcommops.org/static/images/jcommops/logos/jcommops-sm.png" alt="JCOMMOPS logo"/> API <small>documentation<%if(isBetaVersion){ %> <span class="label label-warning"><%=versionQualifier%></span><%}%></small></h1>
+				<h1><img src="//www.ocean-ops.org/static/images/oceanops/logos/oceanops-sm.png" alt="OceanOPS logo"/> API <small>documentation<%if(isBetaVersion){ %> <span class="label label-warning"><%=versionQualifier%></span><%}%></small></h1>
 			</div>
 			<p class="navbar-text navbar-right text-right">applicable version: <%=version%><br>last edited: <%=helpEditionDate%></p>
 		</div>

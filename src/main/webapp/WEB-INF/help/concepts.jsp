@@ -1,6 +1,6 @@
 <p>
-As the number of information systems is growing as well as networks metadata specifications are defined, it is important to clearly define the concepts being used within the JCOMMOPS' scope.
-JCOMMOPS tries to harmonize and integrate different vocabularies and ontologies. Hence, you might not be familiar with all the terms used and how they are used by this API, so please read carefully this section. 
+As the number of information systems is growing as well as networks metadata specifications are defined, it is important to clearly define the concepts being used within the OceanOPS' scope.
+OceanOPS tries to harmonize and integrate different vocabularies and ontologies. Hence, you might not be familiar with all the terms used and how they are used by this API, so please read carefully this section. 
 </p>
 <div class="table-responsive">
 	<table class="table">
@@ -15,7 +15,7 @@ JCOMMOPS tries to harmonize and integrate different vocabularies and ontologies.
 			<tr>
 				<td>Platform</td>
 				<td>
-				All that can be deployed and can measure parameters (an observing entity) is considered as a "Platform" at JCOMMOPS:
+				All that can be deployed and can measure parameters (an observing entity) is considered as a "Platform" at OceanOPS:
 				<ul>
 					<li>Argo: float;</li>
 					<li>DBCP: drifting buoy, moored buoy (more specifically, a deployment), fixed platform, tsunameter;</li>
@@ -39,11 +39,11 @@ JCOMMOPS tries to harmonize and integrate different vocabularies and ontologies.
 			<tr>
 				<td>Platform status</td>
 				<td>
-					JCOMMOPS defines several statuses, which are used to track a platform during its lifecycle. They are automatically set, depending on the metadata we received at the registration (deployment plans) and in real time (through observations, i.e. GTS/GDAC).
+					OceanOPS defines several statuses, which are used to track a platform during its lifecycle. They are automatically set, depending on the metadata we received at the registration (deployment plans) and in real time (through observations, i.e. GTS/GDAC).
 					<ul>
 						<li><strong>Probable</strong>: starting status for some platforms, when there is only a few metadata available, like rough deployment location and date. The platform may be deployed;</li>
 						<li><strong>Confirmed</strong>: automatically set when a ship is attached to the deployment information. The platform is ready to be deployed, deployment is planned;</li>
-						<li><strong>Registered</strong>: starting status for most of the networks, when deployment planning is not done. The deployment is certain, and a notification has been sent via the JCOMMOPS system;</li>
+						<li><strong>Registered</strong>: starting status for most of the networks, when deployment planning is not done. The deployment is certain, and a notification has been sent via the OceanOPS system;</li>
 						<li><strong>Operational</strong>: automatically set when the platform is emitting a pulse and observations are distributed within a certain time interval;</li>
 						<li><strong>Inactive</strong>: the platform is not emitting a pulse since a certain time;</li>
 						<li><strong>Closed</strong>: the platform is not emitting a pulse since a long time, it is considered as dead.</li>
@@ -81,7 +81,7 @@ JCOMMOPS tries to harmonize and integrate different vocabularies and ontologies.
 			</tr>
 			<tr>
 				<td>Country</td>
-				<td>The country list used by JCOMMOPS is a union of the member state lists of the IOC-UNESCO and the WMO. <a href="https://fr.wikipedia.org/wiki/ISO_3166-1" target="_blank">ISO 3166-1</a> is used to identify them.</td>
+				<td>The country list used by OceanOPS is a union of the member state lists of the IOC-UNESCO and the WMO. <a href="https://fr.wikipedia.org/wiki/ISO_3166-1" target="_blank">ISO 3166-1</a> is used to identify them.</td>
 				<td>Member State (IOC-UNESCO), Member Territory (WMO)</td>
 			</tr>
 			<tr>
