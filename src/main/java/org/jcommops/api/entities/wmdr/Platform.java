@@ -381,12 +381,7 @@ public class Platform {
 		value.setCodeSpace("http://data.wmo.int");
 		o.setIdentifier(value);
 		CodeType name = new CodeType();
-		String latestWmo = ptf.getLatestWmo();
-		// if only one WMO
-		if(latestWmo == null || (latestWmo != null && latestWmo.equals(ptf.getRef())))
-			name.setValue(ptf.getRef());
-		else
-			name.setValue(ptf.getRef() + "-" + latestWmo);
+		name.setValue(ptf.getRef());
 		List<CodeType> nameList = new ArrayList<>();
 		nameList.add(name);
 		o.setName(nameList);
