@@ -5,12 +5,12 @@
 	<groupId>org.oceanops</groupId>
 	<artifactId>api</artifactId>
 	<packaging>war</packaging>
-	<version>1.0.0beta16</version>
+	<version>1.0.0beta17-SNAPSHOT</version>
 	<name>OceanOPS API</name>
 
 	<scm>
 		<developerConnection>scm:git:http://srv-main-jcomm.vlandata.cls.fr/git/jcommops/jcommops-api.git</developerConnection>
-		<tag>v1.0.0beta16</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<build>
