@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.HashMap" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +12,7 @@
 		String helpEditionDate = (String) request.getAttribute("helpEditionDate");
 		boolean isBetaVersion = (boolean) request.getAttribute("betaVersion");
 		String versionQualifier = (String) request.getAttribute("versionQualifier");
+		ArrayList<HashMap<String, String>> concepts = (ArrayList<HashMap<String, String>>) request.getAttribute("concepts");
 	%>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -64,8 +66,7 @@
 				</div>
 				<h2 class="title-border-bottom">Vocabularies</h2>
 				<div class="container-fluid">
-					<!-- <%@include file="help/referenceTables.jsp" %>  -->
-					To be done.
+					<%@include file="help/referenceTables.jsp" %>
 				</div>
 				<h2 class="title-border-bottom">Platforms</h2>				
 				<div class="container-fluid">

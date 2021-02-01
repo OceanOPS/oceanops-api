@@ -35,8 +35,8 @@
 				success: function(data) {
 					var table = $("#parameterTableBody");
 					content = "";
-					$(data).each(function(index, value){
-						content += "<tr>"+"<td>"+value.isoCode2+"</td>"+"<td>"+value.nameShort+"</td>"+"<td>"+value.name+"</td>"+"</tr>";	
+					$(data.data).each(function(index, value){
+						content += "<tr>"+"<td>"+value.code2+"</td>"+"<td>"+value.nameShort+"</td>"+"<td>"+value.name+"</td>"+"</tr>";	
 					}); 	
 					table.html(content);
 					$("#loader").hide();

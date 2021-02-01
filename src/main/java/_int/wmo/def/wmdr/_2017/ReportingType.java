@@ -1103,7 +1103,7 @@ public class ReportingType implements Serializable, Cloneable, CopyTo2, Equals2,
     })
     public static class DataPolicy
         extends AbstractMemberType
-        implements Serializable, Cloneable, CopyTo2, Equals2, HashCode2, ToString2
+        implements Serializable
     {
 
         private final static long serialVersionUID = 1L;
@@ -1268,7 +1268,7 @@ public class ReportingType implements Serializable, Cloneable, CopyTo2, Equals2,
     })
     public static class ReferenceDatum
         extends AbstractMemberType
-        implements Serializable, Cloneable, CopyTo2, Equals2, HashCode2, ToString2
+        implements Serializable
     {
 
         private final static long serialVersionUID = 1L;

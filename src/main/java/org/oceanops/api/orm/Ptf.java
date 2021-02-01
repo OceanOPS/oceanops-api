@@ -1,10 +1,20 @@
 package org.oceanops.api.orm;
 
+import org.oceanops.api.orm.auto._Ptf;
+
+import io.agrest.annotation.ClientReadable;
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+@ClientReadable(id = true, value = {
+	"id","ref","refParent","endingDate","lastUpdate","activityCriterion","closureCriterion","validated","description","eNotificationDate","program",
+	"retrieval","ptfDepl","ptfHardware","ptfIdentifiers","endingCause","telecom","trackingSystem","backupTrackingSystem","ptfStatus","dataStatus","ptfModel",
+	"backupTelecom","insertDate","updateDate","nokReason","age","ageWeight","name","ptfAutomation","ptfInspection","ptfSoftware", "latestObs", 
+	"ptfPtfStatuses", "agencyPtfs", "networkPtfs", "lines"})
 public class Ptf extends _Ptf {
+	private static final long serialVersionUID = 1L;
 
 	public String getLatestWmo() {
 		String result = null;

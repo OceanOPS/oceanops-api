@@ -794,6 +794,7 @@ public class TimeObjectPropertyType implements Cloneable, CopyTo2, Equals2, Hash
                     lhsAbstractTimeObject = leftObject.getAbstractTimeObject();
                     JAXBElement<? extends AbstractTimeObjectType> rhsAbstractTimeObject;
                     rhsAbstractTimeObject = rightObject.getAbstractTimeObject();
+                    @SuppressWarnings("unchecked")
                     JAXBElement<AbstractTimeObjectType> mergedAbstractTimeObject = ((JAXBElement<AbstractTimeObjectType> ) strategy.merge(LocatorUtils.property(leftLocator, "abstractTimeObject", lhsAbstractTimeObject), LocatorUtils.property(rightLocator, "abstractTimeObject", rhsAbstractTimeObject), lhsAbstractTimeObject, rhsAbstractTimeObject, leftObject.isSetAbstractTimeObject(), rightObject.isSetAbstractTimeObject()));
                     target.setAbstractTimeObject(mergedAbstractTimeObject);
                 } else {
@@ -809,6 +810,7 @@ public class TimeObjectPropertyType implements Cloneable, CopyTo2, Equals2, Hash
                     lhsNilReason = (leftObject.isSetNilReason()?leftObject.getNilReason():null);
                     List<String> rhsNilReason;
                     rhsNilReason = (rightObject.isSetNilReason()?rightObject.getNilReason():null);
+                    @SuppressWarnings("unchecked")
                     List<String> mergedNilReason = ((List<String> ) strategy.merge(LocatorUtils.property(leftLocator, "nilReason", lhsNilReason), LocatorUtils.property(rightLocator, "nilReason", rhsNilReason), lhsNilReason, rhsNilReason, leftObject.isSetNilReason(), rightObject.isSetNilReason()));
                     target.unsetNilReason();
                     if (mergedNilReason!= null) {

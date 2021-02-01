@@ -35,7 +35,7 @@
 				success: function(data) {
 					var table = $("#parameterTableBody");
 					content = "";
-					$(data).each(function(index, value){
+					$(data.data).each(function(index, value){
 						content += "<tr>" 
 							+ "<td>" + value.id + "</td>" 
 							+ "<td>" + (value.cfRef ? value.cfRef : "") + "</td>"

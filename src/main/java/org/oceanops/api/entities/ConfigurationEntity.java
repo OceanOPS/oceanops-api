@@ -28,7 +28,7 @@ public class ConfigurationEntity implements Serializable {
     public ConfigurationEntity(Config config) {
     	this.setCycleTime(config.getCycleTime());
     	this.setDriftPressure(config.getDriftPress());
-    	this.setIceDetection(config.getIceDetection());
+    	//this.setIceDetection(config.getIceDetection());
     	this.setProfilePressure(config.getProfilePress());
     }
 

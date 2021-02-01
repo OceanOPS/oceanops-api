@@ -22,10 +22,8 @@ import org.oceanops.api.orm.NetworkPtf;
 import org.oceanops.api.orm.ProgramAgency;
 import org.oceanops.api.orm.Ptf;
 import org.oceanops.api.orm.PtfPtfStatus;
-import org.oceanops.api.orm.PtfSensorModel;
+import org.oceanops.api.orm.PtfVariable;
 import org.oceanops.api.orm.SensorModel;
-import org.oceanops.api.orm.SensorModelSensorType;
-import org.oceanops.api.orm.SensorType;
 import org.oceanops.api.orm.Variable;
 import org.oceanops.api.orm.Weblink;
 import org.oceanops.api.orm.Wmo;
@@ -291,17 +289,17 @@ public class Platform {
 		return headerInfo;
 	}
 
-	private EquipmentPropertyType getEquipmentPropertyType(PtfSensorModel ptfSM, int increment, Variable variable) {
+	private EquipmentPropertyType getEquipmentPropertyType(PtfVariable ptfV, int increment, Variable variable) {
 		EquipmentPropertyType currentEquipment;
 		EquipmentType currentEquipmentType;
-		SensorModel sm = ptfSM.getSensorModel();
+		SensorModel sm = ptfV.getSensorModel();
 		currentEquipment = this.wmdrOF.createEquipmentPropertyType();
 		currentEquipmentType = this.wmdrOF.createEquipmentType();
 		String id;
 		if (increment == 0)
-			id = "subequipment-" + ptfSM.getObjectId().getIdSnapshot().get("ID").toString();
+			id = "subequipment-" + ptfV.getObjectId().getIdSnapshot().get("ID").toString();
 		else
-			id = "subequipment-" + ptfSM.getObjectId().getIdSnapshot().get("ID").toString() + "-" + String.valueOf(increment);
+			id = "subequipment-" + ptfV.getObjectId().getIdSnapshot().get("ID").toString() + "-" + String.valueOf(increment);
 		currentEquipmentType.setId(id);
 		CodeWithAuthorityType code = this.gmlOF.createCodeWithAuthorityType();
 		if(variable != null && variable.getWigosCode() != null) {
@@ -327,7 +325,7 @@ public class Platform {
 		value.setValue(sm.getDescription());
 		currentEquipmentType.setDescription(value);
 
-		currentEquipmentType.setSerialNumber(ptfSM.getSerialNo());
+		currentEquipmentType.setSerialNumber(ptfV.getSerialNo());
 
 		if (sm.getWeblink() != null) {
 			OnlineResource or = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeOnlineResource();
@@ -464,15 +462,15 @@ public class Platform {
 		AbstractEnvironmentalMonitoringFacilityType.ResponsibleParty responsibleParty = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeResponsibleParty();
 		ResponsiblePartyType responsiblePartyType = this.wmdrOF.createResponsiblePartyType();
 		ResponsiblePartyType.ResponsibleParty rp = this.wmdrOF.createResponsiblePartyTypeResponsibleParty();
-		if(ptf.getProgram().getAgencies().size() > 0){
+		if(ptf.getProgram().getProgramAgencies().size() > 0){
 			Integer agencyID = null;
 			for(ProgramAgency prAgency: ptf.getProgram().getProgramAgencies()){
-				if(prAgency.getLead() == 1)
-					agencyID = prAgency.getAgencyId();
+				if(prAgency.getLead().intValue() == 1)
+					agencyID = prAgency.getAgency().getId().intValue();
 			}
 			
 			if(agencyID == null)
-				rp.setCIResponsibleParty(this.getCIResponsibleParty(Integer.parseInt(ptf.getProgram().getAgencies().get(0).getObjectId().getIdSnapshot().get("ID").toString()), "pointOfContact"));
+				rp.setCIResponsibleParty(this.getCIResponsibleParty(ptf.getProgram().getProgramAgencies().get(0).getAgency().getId().intValue(), "pointOfContact"));
 			else
 				rp.setCIResponsibleParty(this.getCIResponsibleParty(agencyID, "pointOfContact"));
 		}
@@ -511,7 +509,7 @@ public class Platform {
 		ProgramAffiliationType progAffiliationType;
 		int count = 1;
 		for(NetworkPtf netPtf: ptf.getNetworkPtfs()) {
-			if(netPtf.getNetwork().getRank() == 0) {
+			if(netPtf.getNetwork().getRank().intValue() == 0) {
 				progAffiliation = this.wmdrOF.createObservingFacilityTypeProgramAffiliation();
 				progAffiliationType = this.wmdrOF.createProgramAffiliationType();
 				refType = this.gmlOF.createReferenceType();
@@ -571,7 +569,7 @@ public class Platform {
 				reportingStatusType.setValidPeriod(timePeriodProperty);
 				reportingStatus.setReportingStatus(reportingStatusType);
 				
-				if(netPtf.getNetwork().getId() == Utils.SOT_NETWORK_ID)
+				if(netPtf.getNetwork().getId().intValue() == Utils.SOT_NETWORK_ID)
 					progAffiliationType.setProgramSpecificFacilityId(ptf.getRef());
 				else if(ptf.getLatestWmo() != null)
 					progAffiliationType.setProgramSpecificFacilityId(ptf.getLatestWmo());
@@ -705,172 +703,70 @@ public class Platform {
 		List<ObservingCapabilityPropertyType> result = new ArrayList<ObservingCapabilityPropertyType>();
 		ObservingCapabilityPropertyType ocp;
 		ObservingCapabilityType oc;
-		if (ptf.getPtfSensorModels().size() > 0) {
-			for (PtfSensorModel psm : ptf.getPtfSensorModels()) {
-				SensorModel sm = psm.getSensorModel();
-				int sensorIncrement = 0;
-				for (SensorModelSensorType smst : sm.getSensorModelSensorTypes()) {
-					SensorType st = smst.getSensorType();
-					if (st.getVariable().getWigosCode() != null) {
-						ocp = this.wmdrOF.createObservingCapabilityPropertyType();
-						oc = this.wmdrOF.createObservingCapabilityType();
-						oc.setId("oc-" + psm.getId() + "-" + st.getId());
-						OMObservationPropertyType omobsp = this.omOF.createOMObservationPropertyType();
-						OMObservationType omobs = this.omOF.createOMObservationType();
-						omobsp.setOMObservation(omobs);
-						omobs.setId("omobs-" + psm.getId() + "-" + st.getId());
-						
-						/*MDMetadataPropertyType mdmetadataprop = this.gmdOF.createMDMetadataPropertyType();
-						MDMetadataType mdmetadata = this.gmdOF.createMDMetadataType();
-						CharacterStringPropertyType value = this.gcoOF.createCharacterStringPropertyType();
-						value.setCharacterString(this.gcoOF.createCharacterString("omobs-" + psm.getId() + "-" + st.getId()));
-						mdmetadata.setFileIdentifier(value);
-						
-						value = this.gcoOF.createCharacterStringPropertyType();
-						value.setCharacterString(this.gcoOF.createCharacterString("EN"));
-						mdmetadata.setLanguage(value);
-						
-						MDCharacterSetCodePropertyType charSetCodeProp = this.gmdOF.createMDCharacterSetCodePropertyType();
-						CodeListValueType codeListValue = this.gcoOF.createCodeListValueType();
-						codeListValue.setValue("UTF-8");
-						codeListValue.setCodeSpace("https://www.ansi.org");
-						charSetCodeProp.setMDCharacterSetCode(codeListValue);
-						codeListValue.setCodeList("UTF-8");
-						codeListValue.setCodeListValue("UTF-8");
-						mdmetadata.setCharacterSet(charSetCodeProp);
-						
-						value = this.gcoOF.createCharacterStringPropertyType();
-						value.setCharacterString(this.gcoOF.createCharacterString("unknown"));
-						mdmetadata.setParentIdentifier(value);
-						
-						CIResponsiblePartyPropertyType ciResponsiblePartyProp = this.gmdOF.createCIResponsiblePartyPropertyType();
-						ciResponsiblePartyProp.setCIResponsibleParty(this.getCIResponsibleParty(null, null));
-						mdmetadata.getContact().add(ciResponsiblePartyProp);
-						
-						DatePropertyType dateStampValue = this.gcoOF.createDatePropertyType();
-						dateStampValue.setDate(Utils.GetIsoDateNoTime(ptf.getPtfDepl().getDeplDate()));
-						mdmetadata.setDateStamp(dateStampValue );
-						
-						mdmetadataprop.setMDMetadata(mdmetadata);
-						omobs.setMetadata(mdmetadataprop);*/
-
-						ReferenceType refType = this.gmlOF.createReferenceType();
-						if(st.getVariable() != null && st.getVariable().getWigosCode() != null)
-							refType.setHref("http://codes.wmo.int/wmdr/ObservedVariable/" + st.getVariable().getWigosCode());
-						else
-							refType.setHref("http://codes.wmo.int/wmdr/ObservedVariable/unknown");
-						omobs.setObservedProperty(refType);
-
-						ProcessType process = this.wmdrOF.createProcessType();
-						process.setId("process-" + psm.getId() + "-" + st.getId());
-
-						DeploymentPropertyType deplP = this.wmdrOF.createDeploymentPropertyType();
-						DeploymentType depl = this.wmdrOF.createDeploymentType();
-						depl.setId("process-depl-" + psm.getId() + "-" + st.getId());
-						depl.setDeployedEquipment(this.getEquipmentPropertyType(psm, sensorIncrement, st.getVariable()));
-						sensorIncrement++;
-
-						MeasureType mt = this.gmlOF.createMeasureType();
-						mt.setUom("m");
-						if (psm.getHeight() != null)
-							mt.setValue(psm.getHeight().doubleValue());
-						depl.setHeightAboveLocalReferenceSurface(mt);
-						depl.setLocalReferenceSurface(this.gmlOF.createReferenceType());
-
-						depl.getApplicationArea().add(this.gmlOF.createReferenceType());
-						depl.setSourceOfObservation(this.gmlOF.createReferenceType());
-
-						deplP.setDeployment(depl);
-						process.setDeployment(deplP);
-
-						OMProcessPropertyType omProcessType = this.omOF.createOMProcessPropertyType();
-						omobs.setProcedure(omProcessType);
-						JAXBElement<ProcessType> processList = this.wmdrOF.createProcess(process);
-						omobsp.getOMObservation().getProcedure().setAny(processList);
-
-						refType = this.gmlOF.createReferenceType();
-						refType.setHref("http://codes.wmo.int/wmdr/featureOfInterest/point");
-						omobs.setType(refType);
-
-						TimeObjectPropertyType topt = this.omOF.createTimeObjectPropertyType();
-						TimePeriodType atotype = this.gmlOF.createTimePeriodType();
-						TimePositionType tptype = this.gmlOF.createTimePositionType();
-						ArrayList<String> beginT = new ArrayList<String>();
-						beginT.add(Utils.GetIsoDate(ptf.getPtfDepl().getDeplDate()));
-						tptype.setValue(beginT);
-						atotype.setId("omobs-timeperiod-" + psm.getId() + "-" + st.getId());
-						atotype.setBeginPosition(tptype);
-						atotype.setEndPosition(this.gmlOF.createTimePositionType());
-						topt.setAbstractTimeObject(this.gmlOF.createTimePeriod(atotype));
-						omobs.setPhenomenonTime(topt);
-
-						TimePeriodPropertyType tppt = this.gmlOF.createTimePeriodPropertyType();
-						atotype = this.gmlOF.createTimePeriodType();
-						tptype = this.gmlOF.createTimePositionType();
-						beginT = new ArrayList<String>();
-						beginT.add(Utils.GetIsoDate(ptf.getPtfDepl().getDeplDate()));
-						tptype.setValue(beginT);
-						atotype.setId("omobs-timeperiod-validperiod-" + psm.getId() + "-" + st.getId());
-						atotype.setBeginPosition(tptype);
-						atotype.setEndPosition(this.gmlOF.createTimePositionType());
-						tppt.setTimePeriod(atotype);
-						depl.setValidPeriod(tppt);
-						depl.getDataGeneration().add(new DataGenerationPropertyType());
-
-						omobs.setResultTime(this.gmlOF.createTimeInstantPropertyType());
-						omobs.setValidTime(this.gmlOF.createTimePeriodPropertyType());
-						omobs.getResultQuality().add(new DQElementPropertyType());
-						omobs.setResult(this.wmdrOF.createResultSetType());
-
-						oc.getObservation().add(omobsp);
-						refType = this.gmlOF.createReferenceType();
-						refType.setHref(getWIGOSIdentifier(ptf));
-						oc.setFacility(refType);
-
-						for (NetworkPtf netPtf : ptf.getNetworkPtfs()) {
-							if (netPtf.getNetwork().getRank() == 0) {
-								if (!netPtf.getNetwork().getWigosCode().equals("DBCP")) {
-									refType = this.gmlOF.createReferenceType();
-									refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/" + netPtf.getNetwork().getWigosCode());
-
-									oc.getProgramAffiliation().add(refType);
-								}
-							}
-						}
-						refType = this.gmlOF.createReferenceType();
-						refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/" + ptf.getProgram().getWigosCode());
-						oc.getProgramAffiliation().add(refType);
-
-						ocp.setObservingCapability(oc);
-
-						result.add(ocp);
-					}
-				}
-			}
-		} else {
-			for (Variable v : ptf.getVariables()) {
+		for (PtfVariable pv : ptf.getPtfVariables()) {
+			Variable v = pv.getVariable();
+			SensorModel sm = pv.getSensorModel();
+			int sensorIncrement = 0;
+			if (sm != null && v.getWigosCode() != null) {
 				ocp = this.wmdrOF.createObservingCapabilityPropertyType();
 				oc = this.wmdrOF.createObservingCapabilityType();
-				oc.setId("oc-var-" + v.getId());
+				oc.setId("oc-" + pv.getId());
 				OMObservationPropertyType omobsp = this.omOF.createOMObservationPropertyType();
 				OMObservationType omobs = this.omOF.createOMObservationType();
 				omobsp.setOMObservation(omobs);
-				omobs.setId("omobs-var-" + v.getId());
+				omobs.setId("omobs-" + pv.getId());
+				
+				/*MDMetadataPropertyType mdmetadataprop = this.gmdOF.createMDMetadataPropertyType();
+				MDMetadataType mdmetadata = this.gmdOF.createMDMetadataType();
+				CharacterStringPropertyType value = this.gcoOF.createCharacterStringPropertyType();
+				value.setCharacterString(this.gcoOF.createCharacterString("omobs-" + psm.getId() + "-" + st.getId()));
+				mdmetadata.setFileIdentifier(value);
+				
+				value = this.gcoOF.createCharacterStringPropertyType();
+				value.setCharacterString(this.gcoOF.createCharacterString("EN"));
+				mdmetadata.setLanguage(value);
+				
+				MDCharacterSetCodePropertyType charSetCodeProp = this.gmdOF.createMDCharacterSetCodePropertyType();
+				CodeListValueType codeListValue = this.gcoOF.createCodeListValueType();
+				codeListValue.setValue("UTF-8");
+				codeListValue.setCodeSpace("https://www.ansi.org");
+				charSetCodeProp.setMDCharacterSetCode(codeListValue);
+				codeListValue.setCodeList("UTF-8");
+				codeListValue.setCodeListValue("UTF-8");
+				mdmetadata.setCharacterSet(charSetCodeProp);
+				
+				value = this.gcoOF.createCharacterStringPropertyType();
+				value.setCharacterString(this.gcoOF.createCharacterString("unknown"));
+				mdmetadata.setParentIdentifier(value);
+				
+				CIResponsiblePartyPropertyType ciResponsiblePartyProp = this.gmdOF.createCIResponsiblePartyPropertyType();
+				ciResponsiblePartyProp.setCIResponsibleParty(this.getCIResponsibleParty(null, null));
+				mdmetadata.getContact().add(ciResponsiblePartyProp);
+				
+				DatePropertyType dateStampValue = this.gcoOF.createDatePropertyType();
+				dateStampValue.setDate(Utils.GetIsoDateNoTime(ptf.getPtfDepl().getDeplDate()));
+				mdmetadata.setDateStamp(dateStampValue );
+				
+				mdmetadataprop.setMDMetadata(mdmetadata);
+				omobs.setMetadata(mdmetadataprop);*/
 
 				ReferenceType refType = this.gmlOF.createReferenceType();
 				refType.setHref("http://codes.wmo.int/wmdr/ObservedVariable/" + v.getWigosCode());
 				omobs.setObservedProperty(refType);
 
 				ProcessType process = this.wmdrOF.createProcessType();
-				process.setId("process-var-" + v.getId());
+				process.setId("process-" + pv.getId());
 
 				DeploymentPropertyType deplP = this.wmdrOF.createDeploymentPropertyType();
 				DeploymentType depl = this.wmdrOF.createDeploymentType();
-				depl.setId("process-depl-var-" + v.getId());
-				depl.setDeployedEquipment(this.wmdrOF.createEquipmentPropertyType());
+				depl.setId("process-depl-" + pv.getId());
+				depl.setDeployedEquipment(this.getEquipmentPropertyType(pv, sensorIncrement, v));
+				sensorIncrement++;
 
 				MeasureType mt = this.gmlOF.createMeasureType();
 				mt.setUom("m");
+				if (pv.getHeight() != null)
+					mt.setValue(pv.getHeight().doubleValue());
 				depl.setHeightAboveLocalReferenceSurface(mt);
 				depl.setLocalReferenceSurface(this.gmlOF.createReferenceType());
 
@@ -895,7 +791,7 @@ public class Platform {
 				ArrayList<String> beginT = new ArrayList<String>();
 				beginT.add(Utils.GetIsoDate(ptf.getPtfDepl().getDeplDate()));
 				tptype.setValue(beginT);
-				atotype.setId("omobs-timeperiod-var-" + v.getId());
+				atotype.setId("omobs-timeperiod-" + pv.getId());
 				atotype.setBeginPosition(tptype);
 				atotype.setEndPosition(this.gmlOF.createTimePositionType());
 				topt.setAbstractTimeObject(this.gmlOF.createTimePeriod(atotype));
@@ -907,7 +803,7 @@ public class Platform {
 				beginT = new ArrayList<String>();
 				beginT.add(Utils.GetIsoDate(ptf.getPtfDepl().getDeplDate()));
 				tptype.setValue(beginT);
-				atotype.setId("omobs-timeperiod-validperiod-var-" + v.getId());
+				atotype.setId("omobs-timeperiod-validperiod-" + pv.getId());
 				atotype.setBeginPosition(tptype);
 				atotype.setEndPosition(this.gmlOF.createTimePositionType());
 				tppt.setTimePeriod(atotype);
@@ -925,7 +821,7 @@ public class Platform {
 				oc.setFacility(refType);
 
 				for (NetworkPtf netPtf : ptf.getNetworkPtfs()) {
-					if (netPtf.getNetwork().getRank() == 0) {
+					if (netPtf.getNetwork().getRank().intValue() == 0) {
 						if (!netPtf.getNetwork().getWigosCode().equals("DBCP")) {
 							refType = this.gmlOF.createReferenceType();
 							refType.setHref("http://codes.wmo.int/common/wmdr/ProgramAffiliation/" + netPtf.getNetwork().getWigosCode());
@@ -941,7 +837,7 @@ public class Platform {
 				ocp.setObservingCapability(oc);
 
 				result.add(ocp);
-			}
+			}			
 		}
 
 		return result;

@@ -3,7 +3,6 @@ package org.oceanops.api.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
@@ -13,7 +12,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.oceanops.api.Utils;
 import org.oceanops.api.orm.Ptf;
-import org.oceanops.api.orm.PtfConfig;
 
 @XmlRootElement
 public class PlatformEntity implements Serializable{
@@ -55,29 +53,27 @@ public class PlatformEntity implements Serializable{
 			this.setInternalRef(ptf.getPtfIdentifiers().getInternalRef());
 		if(ptf.getPtfHardware() != null)
 			this.setSerialRef(ptf.getPtfHardware().getSerialRef());
-		this.setAge(ptf.getAge());
+		//this.setAge(ptf.getAge());
 		this.setPtfStatus(new PlatformStatusEntity(ptf.getPtfStatus()));
 		this.setPtfModel(new PlatformModelEntity(ptf.getPtfModel()));
 		this.setDeployment(new PlatformDeploymentEntity(ptf.getPtfDepl()));
 		this.setEndingDate(Utils.GetIsoDate(ptf.getEndingDate()));
-		if(ptf.getLastLoc() != null)
-			this.setLatestLocation(new PlatformLocEntity(ptf.getLastLoc()));
 		this.setProgram(new ProgramEntity(ptf.getProgram()));
 		this.setNotificationDate(Utils.GetIsoDate(ptf.getENotificationDate()));
 		
-		List<PtfConfig> ptfConfigs = ptf.getPtfConfigs().stream().filter(ptfConfig -> ptfConfig.getCycle() == -1).collect(Collectors.toList());
+		/*List<PtfConfig> ptfConfigs = ptf.getPtfConfigs().stream().filter(ptfConfig -> ptfConfig.getCycle() == -1).collect(Collectors.toList());
 		if(ptfConfigs != null && ptfConfigs.size() > 0)
-			this.setConfiguration(new ConfigurationEntity(ptfConfigs.get(0).getConfig()));
+			this.setConfiguration(new ConfigurationEntity(ptfConfigs.get(0).getConfig()));*/
 
-		this.sensorModels = new ArrayList<SensorModelEntity>();
+		/*this.sensorModels = new ArrayList<SensorModelEntity>();
     	for(int i = 0; i<ptf.getPtfSensorModels().size();i++){
     		this.sensorModels.add(new SensorModelEntity(ptf.getPtfSensorModels().get(i).getSensorModel()));
-    	}
+    	}*/
     	
 		this.variables = new ArrayList<VariableEntity>();
-    	for(int i = 0; i<ptf.getVariables().size();i++){
+    	/*for(int i = 0; i<ptf.getVariables().size();i++){
     		this.variables.add(new VariableEntity(ptf.getVariables().get(i)));
-		}
+		}*/
 		
 		this.gtsIds = new ArrayList<GtsIdEntity>();
     	for(int i = 0; i<ptf.getWmoes().size();i++){

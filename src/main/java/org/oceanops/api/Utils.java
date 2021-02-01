@@ -89,7 +89,7 @@ public class Utils {
 	public static void initCayenneRuntime() {
 		if (Utils.cayenneRuntime == null) {
 			Utils.cayenneRuntime = ServerRuntime.builder()
-                    .addConfig("cayenne-project.xml")
+                    .addConfig("cayenne-OceanOPS-API.xml")
                     .build();
 		}
 	}

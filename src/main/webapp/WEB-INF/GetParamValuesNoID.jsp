@@ -35,7 +35,7 @@
 				success: function(data) {
 					var table = $("#parameterTableBody");
 					content = "";
-					$(data).each(function(index, value){
+					$(data.data).each(function(index, value){
 						content += "<tr>"+"<td>"+value.nameShort+"</td>"+"<td>"+value.name+"</td>"+"<td>"+value.description+"</td>"+"</tr>";	
 					}); 	
 					table.html(content);

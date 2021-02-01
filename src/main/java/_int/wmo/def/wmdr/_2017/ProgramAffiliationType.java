@@ -357,7 +357,7 @@ public class ProgramAffiliationType implements Serializable, Cloneable, CopyTo2,
     })
     public static class ReportingStatus
         extends AbstractMemberType
-        implements Serializable, Cloneable, CopyTo2, Equals2, HashCode2, ToString2
+        implements Serializable
     {
 
         private final static long serialVersionUID = 1L;

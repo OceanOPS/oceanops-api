@@ -3,55 +3,105 @@ package org.oceanops.api.accessors;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.ws.rs.BadRequestException;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Configuration;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.UriInfo;
 
-import org.apache.cayenne.Cayenne;
 import org.apache.cayenne.DataRow;
 import org.apache.cayenne.ObjectContext;
-import org.apache.cayenne.query.SQLTemplate;
+import org.apache.cayenne.query.ObjectSelect;
+import org.apache.cayenne.query.SQLSelect;
 import org.apache.cayenne.query.SelectById;
-import org.apache.cayenne.query.SelectQuery;
+import org.oceanops.api.Authentication;
+import org.oceanops.api.Authorization;
 import org.oceanops.api.Utils;
-import org.oceanops.api.entities.CountryEntity;
-import org.oceanops.api.entities.NetworkEntity;
 import org.oceanops.api.entities.PlatformEntity;
-import org.oceanops.api.entities.PlatformFamilyEntity;
-import org.oceanops.api.entities.PlatformModelEntity;
-import org.oceanops.api.entities.PlatformStatusEntity;
-import org.oceanops.api.entities.PlatformTypeEntity;
-import org.oceanops.api.entities.ProgramEntity;
-import org.oceanops.api.entities.SensorModelEntity;
-import org.oceanops.api.entities.SensorTypeEntity;
-import org.oceanops.api.entities.VariableEntity;
-import org.oceanops.api.orm.Country;
-import org.oceanops.api.orm.Network;
-import org.oceanops.api.orm.Program;
 import org.oceanops.api.orm.Ptf;
-import org.oceanops.api.orm.PtfFamily;
 import org.oceanops.api.orm.PtfIdentifiers;
-import org.oceanops.api.orm.PtfModel;
-import org.oceanops.api.orm.PtfStatus;
-import org.oceanops.api.orm.PtfType;
-import org.oceanops.api.orm.SensorModel;
-import org.oceanops.api.orm.SensorType;
-import org.oceanops.api.orm.Variable;
-import org.oceanops.api.exceptions.PtfNotFoundException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+import io.agrest.Ag;
+import io.agrest.AgRequest;
+import io.agrest.DataResponse;
+import io.agrest.SelectBuilder;
+
+import org.oceanops.api.exceptions.EntityNotFoundException;
+
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
+@Path("/")
 public class PlatformAccessor {
-	private final Logger logger = LoggerFactory.getLogger(PlatformAccessor.class);
+	// private final Logger logger =
+	// LoggerFactory.getLogger(PlatformAccessor.class);
 	private ObjectContext context;
+	@Context
+	private Configuration config;
 
 	public PlatformAccessor() {
 		this.context = Utils.getCayenneContext();
 	}
+
+	@GET
+	@Path("platform")
+	@Produces(MediaType.APPLICATION_JSON + ";" + MediaType.CHARSET_PARAMETER + "=utf-8")
+	public DataResponse<Ptf> getAll(@Context UriInfo uriInfo) {
+		SelectBuilder<Ptf> sBuilder = Ag.select(Ptf.class, config);
+
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).get();
+	}
+
+	@GET
+	@Path("platform/{id}")
+	@Produces(MediaType.APPLICATION_JSON + ";" + MediaType.CHARSET_PARAMETER + "=utf-8")
+	public DataResponse<Ptf> getOne(@PathParam("id") int id, @Context UriInfo uriInfo) {
+		SelectBuilder<Ptf> sBuilder = Ag.select(Ptf.class, config).byId(id);
+		
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).getOne();
+	}
+
+	@GET
+	@Path("platform/ref/{ref}")
+	@Produces(MediaType.APPLICATION_JSON + ";" + MediaType.CHARSET_PARAMETER + "=utf-8")
+	public DataResponse<Ptf> getOneByRef(@PathParam("ref") String ref, @Context UriInfo uriInfo) {
+		SelectBuilder<Ptf> sBuilder = Ag.select(Ptf.class, config);
+
+		AgRequest agRequest = Ag.request(config).exp(Ptf.REF.eq(ref).toString()).build();
+		
+		Authorization.applySelectAuthorization(sBuilder);
+
+		sBuilder.request(agRequest);
+
+		return sBuilder.uri(uriInfo).getOne();
+	}
 	
+	@GET
+	@Path("platform/wigosid/{wigosid}")
+	@Produces(MediaType.APPLICATION_JSON + ";" + MediaType.CHARSET_PARAMETER + "=utf-8")
+	public DataResponse<Ptf> getOneByWigosId(@PathParam("wigosid") String wigosid, @Context UriInfo uriInfo){		
+		SelectBuilder<Ptf> sBuilder = Ag.select(Ptf.class, config);
+		
+		AgRequest agRequest = Ag.request(config).exp(
+			Ptf.PTF_IDENTIFIERS.dot(PtfIdentifiers.WIGOS_REF).eq(wigosid).toString()
+		).build(); 
+		
+		Authorization.applySelectAuthorization(sBuilder);
+		sBuilder.request(agRequest);
+
+		return sBuilder.uri(uriInfo).getOne();
+	}
 
 	/**
 	 * Query the database to retrieve a platform's details, based on its database
@@ -59,13 +109,13 @@ public class PlatformAccessor {
 	 * 
 	 * @param id long The database identifier
 	 * @return A ORM Ptf object
-	 * @throws PtfNotFoundException
+	 * @throws EntityNotFoundException
 	 */
-	public Ptf getPtfbyID(long id) throws PtfNotFoundException {
+	public Ptf getPtfbyID(long id) throws EntityNotFoundException {
 		// Find the platform
 		Ptf ptf = SelectById.query(Ptf.class, id).selectOne(this.context);
 		if (ptf == null)
-			throw new PtfNotFoundException("No platform found for ID = " + String.valueOf(id));
+			throw new EntityNotFoundException("No platform found for ID = " + String.valueOf(id));
 		return ptf;
 	}
 	
@@ -75,13 +125,13 @@ public class PlatformAccessor {
 	 * 
 	 * @param id long The database identifier
 	 * @return A ORM Ptf object
-	 * @throws PtfNotFoundException
+	 * @throws EntityNotFoundException
 	 */
-	public Ptf getPtfbyRef(String ref) throws PtfNotFoundException {
+	public Ptf getPtfbyRef(String ref) throws EntityNotFoundException {
 		// Find the platform
-		Ptf ptf = SelectQuery.query(Ptf.class, Ptf.REF.eq(ref)).selectOne(this.context);
+		Ptf ptf = ObjectSelect.query(Ptf.class, Ptf.REF.eq(ref)).selectOne(this.context);
 		if (ptf == null)
-			throw new PtfNotFoundException("No platform found for ref = " + ref);
+			throw new EntityNotFoundException("No platform found for ref = " + ref);
 		return ptf;
 	}
 
@@ -90,14 +140,14 @@ public class PlatformAccessor {
 	 * 
 	 * @param wigosid the WIGOS identifier
 	 * @return A ORM Ptf object
-	 * @throws PtfNotFoundException
+	 * @throws EntityNotFoundException
 	 */
-	public Ptf getPtfbyWigosID(String wigosid) throws PtfNotFoundException {
+	public Ptf getPtfbyWigosID(String wigosid) throws EntityNotFoundException {
 		// Find the platform
-		Ptf ptf = SelectQuery.query(Ptf.class, Ptf.PTF_IDENTIFIERS.dot(PtfIdentifiers.WIGOS_REF).eq(wigosid)).selectOne(this.context);
+		Ptf ptf = ObjectSelect.query(Ptf.class, Ptf.PTF_IDENTIFIERS.dot(PtfIdentifiers.WIGOS_REF).eq(wigosid)).selectOne(this.context);
 
 		if (ptf == null)
-			throw new PtfNotFoundException("No platform found for WIGOS ID = " + wigosid);
+			throw new EntityNotFoundException("No platform found for WIGOS ID = " + wigosid);
 		
 		return ptf;
 	}
@@ -109,259 +159,23 @@ public class PlatformAccessor {
 	 * @return The list of Platform objects, filled with ID and REF only.
 	 */
 	public ArrayList<PlatformEntity> getAllPtfIdsRefs() {
-		// Fetching row data to increase performance/memory consumption
-		SQLTemplate query = new SQLTemplate(Ptf.class, "select id, ref from PTF");
-		query.setFetchingDataRows(true);
-		List<DataRow> rows = context.performQuery(query);
+		ObjectSelect<Ptf> query = ObjectSelect.query(Ptf.class);
+		query.columns(Ptf.ID, Ptf.REF);
+		List<Ptf> rows = query.select(context);
 
 		ArrayList<PlatformEntity> ptfs_list = new ArrayList<PlatformEntity>();
 
-		Iterator<DataRow> ptf_itr = rows.iterator();
+		Iterator<Ptf> ptf_itr = rows.iterator();
 
 		while (ptf_itr.hasNext()) {
-			DataRow row = ptf_itr.next();
+			Ptf row = ptf_itr.next();
 			PlatformEntity ptf = new PlatformEntity();
-			ptf.setId((Integer) row.get("ID"));
-			ptf.setRef((String) row.get("REF"));
+			ptf.setId(row.getId().intValue());
+			ptf.setRef(row.getRef());
 			ptfs_list.add(ptf);
 		}
 
 		return ptfs_list;
-
-	}
-
-	/**
-	 * Build the reference list of statuses.
-	 * 
-	 * @return The list of PlatformStatus objects.
-	 */
-	public ArrayList<PlatformStatusEntity> getPtfStatuses() {
-		SelectQuery Status_query = new SelectQuery(PtfStatus.class);
-		List<PtfStatus> statuses = context.performQuery(Status_query);
-
-		ArrayList<PlatformStatusEntity> statuses_list = new ArrayList<PlatformStatusEntity>();
-
-		Iterator<PtfStatus> statuses_itr = statuses.iterator();
-
-		while (statuses_itr.hasNext()) {
-			PtfStatus a = statuses_itr.next();
-			PlatformStatusEntity status = new PlatformStatusEntity(a);
-			statuses_list.add(status);
-		}
-		return statuses_list;
-
-	}
-
-	/**
-	 * Query the database to retrieve all platform families
-	 * @return	The platform families list
-	 */
-	public ArrayList<PlatformFamilyEntity> getPtfFamilies() {
-		SelectQuery Family_query = new SelectQuery(PtfFamily.class);
-		List<PtfFamily> families = context.performQuery(Family_query);
-
-		ArrayList<PlatformFamilyEntity> families_list = new ArrayList<PlatformFamilyEntity>();
-
-		Iterator<PtfFamily> families_itr = families.iterator();
-
-		while (families_itr.hasNext()) {
-			PtfFamily a = families_itr.next();
-			PlatformFamilyEntity family = new PlatformFamilyEntity(a);
-			families_list.add(family);
-		}
-
-		return families_list;
-
-	}
-
-	/**
-	 * Query the database to retrieve all platform types
-	 * @return	The platform types list
-	 */
-	public ArrayList<PlatformTypeEntity> getPtfTypes() {
-		SelectQuery Type_query = new SelectQuery(PtfType.class);
-		List<PtfType> types = context.performQuery(Type_query);
-
-		ArrayList<PlatformTypeEntity> types_list = new ArrayList<PlatformTypeEntity>();
-
-		Iterator<PtfType> types_itr = types.iterator();
-
-		while (types_itr.hasNext()) {
-			PtfType a = types_itr.next();
-			PlatformTypeEntity type = new PlatformTypeEntity(a);
-			types_list.add(type);
-		}
-		return types_list;
-
-	}
-
-	/**
-	 * Query the database to retrieve all platform models
-	 * @return	The platform models list
-	 */
-	public ArrayList<PlatformModelEntity> getPtfModels() {
-		SelectQuery Model_query = new SelectQuery(PtfModel.class);
-		List<PtfModel> models = context.performQuery(Model_query);
-
-		ArrayList<PlatformModelEntity> models_list = new ArrayList<PlatformModelEntity>();
-
-		Iterator<PtfModel> models_itr = models.iterator();
-
-		while (models_itr.hasNext()) {
-			PtfModel a = models_itr.next();
-			PlatformModelEntity model = new PlatformModelEntity(a);
-			models_list.add(model);
-		}
-		return models_list;
-
-	}
-
-	/**
-	 * Query the database to retrieve all programs
-	 * @return	The programs list
-	 */
-	public ArrayList<ProgramEntity> getProgram() { 
-		SelectQuery ProgramPtf_query = new SelectQuery(Program.class);
-		List<Program> programs = context.performQuery(ProgramPtf_query);
-
-		ArrayList<ProgramEntity> programs_list = new ArrayList<ProgramEntity>();
-
-		Iterator<Program> programs_itr = programs.iterator();
-
-		while (programs_itr.hasNext()) {
-			Program a = programs_itr.next();
-			ProgramEntity program = new ProgramEntity(a);
-			programs_list.add(program);
-		}
-		return programs_list;
-
-	}
-
-	/**
-	 * Query the database to retrieve all master networks
-	 * @return	The master networks list
-	 */
-	public ArrayList<NetworkEntity> getMasterNetworks() {
-		SelectQuery Network_query = new SelectQuery(Network.class);
-		List<Network> networks = context.performQuery(Network_query);
-
-		ArrayList<NetworkEntity> nets_list = new ArrayList<NetworkEntity>();
-
-		Iterator<Network> networks_itr = networks.iterator();
-
-		while (networks_itr.hasNext()) {
-			Network a = networks_itr.next();
-			if(a.getRank() == 0) {
-				NetworkEntity net = new NetworkEntity(a);
-				nets_list.add(net);
-			}
-		}
-		return nets_list;
-
-	}
-
-	/**
-	 * Query the database to retrieve all networks
-	 * @return	The networks list
-	 */
-	public ArrayList<NetworkEntity> getPtfNetworks() {
-		SelectQuery Network_query = new SelectQuery(Network.class);
-		List<Network> networks = context.performQuery(Network_query);
-
-		ArrayList<NetworkEntity> networks_list = new ArrayList<NetworkEntity>();
-
-		Iterator<Network> networks_itr = networks.iterator();
-
-		while (networks_itr.hasNext()) {
-			Network a = networks_itr.next();
-			NetworkEntity network = new NetworkEntity(a);
-			networks_list.add(network);
-		}
-		return networks_list;
-
-	}
-
-	/**
-	 * Query the database to retrieve all sensor models
-	 * @return	The sensor models list
-	 */
-	public ArrayList<SensorModelEntity> getPtfSensorModel() {
-		SelectQuery SensModel_query = new SelectQuery(SensorModel.class);
-		List<SensorModel> SensModels = context.performQuery(SensModel_query);
-
-		ArrayList<SensorModelEntity> SensModels_list = new ArrayList<SensorModelEntity>();
-
-		Iterator<SensorModel> SensModels_itr = SensModels.iterator();
-
-		while (SensModels_itr.hasNext()) {
-			SensorModel a = SensModels_itr.next();
-			SensorModelEntity SensModel = new SensorModelEntity(a);
-			SensModels_list.add(SensModel);
-		}
-		return SensModels_list;
-
-	}
-
-	/**
-	 * Query the database to retrieve all sensor types
-	 * @return	The sensor types list
-	 */
-	public ArrayList<SensorTypeEntity> getPtfSensorType() { 
-		SelectQuery SensType_query = new SelectQuery(SensorType.class);
-		List<SensorType> SensTypes = context.performQuery(SensType_query);
-
-		ArrayList<SensorTypeEntity> SensTypes_list = new ArrayList<SensorTypeEntity>();
-
-		Iterator<SensorType> SensTypes_itr = SensTypes.iterator();
-
-		while (SensTypes_itr.hasNext()) {
-			SensorType a = SensTypes_itr.next();
-			SensorTypeEntity SensType = new SensorTypeEntity(a);
-			SensTypes_list.add(SensType);
-		}
-		return SensTypes_list;
-
-	}
-
-	/**
-	 * Query the database to retrieve all variables
-	 * @return	The variables list
-	 */
-	public ArrayList<VariableEntity> getPtfVariables() { 		
-		SQLTemplate select = new SQLTemplate(Variable.class, "select * from variable where exists (select null from ptf_variable where variable_id = variable.id) and name_short not like 'GEN%'"); 
-		List<Variable> Variables = context.performQuery(select);
-
-		ArrayList<VariableEntity> Variables_list = new ArrayList<VariableEntity>();
-
-		Iterator<Variable> Variables_itr = Variables.iterator();
-
-		while (Variables_itr.hasNext()) {
-			Variable a = Variables_itr.next();
-			VariableEntity var = new VariableEntity(a);
-			Variables_list.add(var);
-		}
-		return Variables_list;
-
-	}
-
-	/**
-	 * Query the database to retrieve all countries
-	 * @return	The countries list
-	 */
-	public ArrayList<CountryEntity> getPtfCountries() { 
-		SelectQuery Country_query = new SelectQuery(Country.class);
-		List<Country> countries = context.performQuery(Country_query);
-
-		ArrayList<CountryEntity> countries_list = new ArrayList<CountryEntity>();
-
-		Iterator<Country> countries_itr = countries.iterator();
-
-		while (countries_itr.hasNext()) {
-			Country a = countries_itr.next();
-			CountryEntity c = new CountryEntity(a);
-			countries_list.add(c);
-		}
-		return countries_list;
 
 	}
 
@@ -411,7 +225,6 @@ public class PlatformAccessor {
 		StringBuilder query = new StringBuilder("select ptf.id, ptf.ref, ptfids.wigos_ref from ptf left join ptf_identifiers ptfids on (ptfids.id = ptf.ptf_identifiers_id) where 1=1");
 		StringBuilder whereClause = new StringBuilder();
 		boolean usingID = false;
-		boolean wigos = false;
 		
 		// Dates
 		if(updateDate != null){
@@ -788,9 +601,12 @@ public class PlatformAccessor {
 
 		query.append(whereClause);
 		
-		SQLTemplate query_search = new SQLTemplate(Ptf.class, query.toString());
+		/*SQLTemplate query_search = new SQLTemplate(Ptf.class, query.toString());
 		query_search.setFetchingDataRows(true);
-		List<DataRow> rows = context.performQuery(query_search);
+		List<DataRow> rows = context.performQuery(query_search);*/
+
+		SQLSelect<DataRow> query_search = SQLSelect.dataRowQuery(query.toString());
+		List<DataRow> rows = query_search.select(context);
 
 		HashMap<Integer, HashMap<String, String>> ptfList = new HashMap<>();
 
@@ -812,7 +628,7 @@ public class PlatformAccessor {
 		return ptfList;
 	}
 
-	public String WritePtfCSV(long id) throws PtfNotFoundException {
+	public String WritePtfCSV(long id) throws EntityNotFoundException {
 		String csv = null;
 		
 		PlatformEntity ptfm = new PlatformEntity(getPtfbyID(id));
@@ -875,7 +691,7 @@ public class PlatformAccessor {
 			try{
 				// Tryinig to parse the date-s
 				if(updateDatesString.length == 1){
-					Date updateDateDate = dateFormatter.parse(updateDatesString[0]);
+					dateFormatter.parse(updateDatesString[0]);
 					if(sqlStartSymbol != null){
 						whereClause.append(" and (" + sqlParam + " ");
 						whereClause.append(sqlStartSymbol);
@@ -888,8 +704,8 @@ public class PlatformAccessor {
 					}
 				}
 				else if(updateDatesString.length == 2){
-					Date updateDateDate = dateFormatter.parse(updateDatesString[0]);
-					updateDateDate = dateFormatter.parse(updateDatesString[1]);
+					dateFormatter.parse(updateDatesString[0]);
+					dateFormatter.parse(updateDatesString[1]);
 					if(sqlStartSymbol != null){
 						whereClause.append(" and (" + sqlParam + " ");
 						whereClause.append(sqlStartSymbol);
