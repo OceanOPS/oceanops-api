@@ -8,20 +8,15 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
-import net.opengis.gml.v_3_2_1.AbstractFeatureType;
 import net.opengis.gml.v_3_2_1.ReferenceType;
 import net.opengis.om.v_2_0.NamedValuePropertyType;
 import org.jvnet.jaxb2_commons.lang.CopyStrategy2;
-import org.jvnet.jaxb2_commons.lang.CopyTo2;
-import org.jvnet.jaxb2_commons.lang.Equals2;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy2;
-import org.jvnet.jaxb2_commons.lang.HashCode2;
 import org.jvnet.jaxb2_commons.lang.HashCodeStrategy2;
 import org.jvnet.jaxb2_commons.lang.JAXBCopyStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBHashCodeStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBToStringStrategy;
-import org.jvnet.jaxb2_commons.lang.ToString2;
 import org.jvnet.jaxb2_commons.lang.ToStringStrategy2;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
@@ -59,7 +54,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 })
 public class ProcessType
     extends net.opengis.gml.v_3_2_1.AbstractFeatureType
-    implements Serializable, Cloneable, CopyTo2, Equals2, HashCode2, ToString2
+    implements Serializable
 {
 
     private final static long serialVersionUID = 1L;

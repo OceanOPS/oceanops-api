@@ -4,6 +4,7 @@
 <head>
 	<%
 		String uri = (String) request.getAttribute("uri");
+		String rootUrl = (String) request.getAttribute("rootUrl");
 		String version = (String) request.getAttribute("projectVersion");
 		String name = (String) request.getAttribute("projectName");
 		
@@ -35,7 +36,7 @@
 				success: function(data) {
 					var table = $("#parameterTableBody");
 					content = "";
-					$(data).each(function(index, value){
+					$(data.data).each(function(index, value){
 						content += "<tr>"+"<td>"+value.id+"</td>"+"<td>"+value.nameShort+"</td>"+"<td>"+value.name+"</td>"+"<td>"+value.description+"</td>"+"</tr>";	
 					}); 	
 					table.html(content);
@@ -56,6 +57,7 @@
 	<div class="container">
 		<div class="page-header">
 			<h1><%=parameter_name%></h1>
+			<p>JSON access here <%=rootUrl%><%=parameter%></p>
 		</div>
 		<div class="well">
 			<div class="table-responsive">

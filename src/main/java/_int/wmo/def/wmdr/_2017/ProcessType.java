@@ -30,16 +30,12 @@ import net.opengis.gml.v_3_2_1.AbstractMemberType;
 import net.opengis.gml.v_3_2_1.DefinitionType;
 import net.opengis.gml.v_3_2_1.VerticalDatumType;
 import org.jvnet.jaxb2_commons.lang.CopyStrategy2;
-import org.jvnet.jaxb2_commons.lang.CopyTo2;
-import org.jvnet.jaxb2_commons.lang.Equals2;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy2;
-import org.jvnet.jaxb2_commons.lang.HashCode2;
 import org.jvnet.jaxb2_commons.lang.HashCodeStrategy2;
 import org.jvnet.jaxb2_commons.lang.JAXBCopyStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBHashCodeStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBToStringStrategy;
-import org.jvnet.jaxb2_commons.lang.ToString2;
 import org.jvnet.jaxb2_commons.lang.ToStringStrategy2;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
@@ -82,7 +78,6 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 })
 public class ProcessType
     extends _int.wmo.def.metce._2013.ProcessType
-    implements Serializable, Cloneable, CopyTo2, Equals2, HashCode2, ToString2
 {
 
     private final static long serialVersionUID = 1L;
@@ -320,7 +315,7 @@ public class ProcessType
     })
     public static class Extension
         extends AbstractMemberType
-        implements Serializable, Cloneable, CopyTo2, Equals2, HashCode2, ToString2
+        implements Serializable
     {
 
         private final static long serialVersionUID = 1L;
@@ -555,7 +550,6 @@ public class ProcessType
                     if (abstractObjectShouldBeCopiedAndSet == Boolean.TRUE) {
                         JAXBElement<?> sourceAbstractObject;
                         sourceAbstractObject = this.getAbstractObject();
-                        @SuppressWarnings("unchecked")
                         JAXBElement<?> copyAbstractObject = ((JAXBElement<?> ) strategy.copy(LocatorUtils.property(locator, "abstractObject", sourceAbstractObject), sourceAbstractObject, this.isSetAbstractObject()));
                         copy.setAbstractObject(copyAbstractObject);
                     } else {

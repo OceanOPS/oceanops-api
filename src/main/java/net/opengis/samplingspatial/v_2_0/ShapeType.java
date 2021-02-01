@@ -791,6 +791,7 @@ public class ShapeType implements Cloneable, CopyTo2, Equals2, HashCode2, MergeF
                     lhsAbstractGeometry = leftObject.getAbstractGeometry();
                     JAXBElement<? extends AbstractGeometryType> rhsAbstractGeometry;
                     rhsAbstractGeometry = rightObject.getAbstractGeometry();
+                    @SuppressWarnings("unchecked")
                     JAXBElement<? extends AbstractGeometryType> mergedAbstractGeometry = ((JAXBElement<AbstractGeometryType> ) strategy.merge(LocatorUtils.property(leftLocator, "abstractGeometry", lhsAbstractGeometry), LocatorUtils.property(rightLocator, "abstractGeometry", rhsAbstractGeometry), lhsAbstractGeometry, rhsAbstractGeometry, leftObject.isSetAbstractGeometry(), rightObject.isSetAbstractGeometry()));
                     target.setAbstractGeometry(mergedAbstractGeometry);
                 } else {
@@ -806,6 +807,7 @@ public class ShapeType implements Cloneable, CopyTo2, Equals2, HashCode2, MergeF
                     lhsNilReason = (leftObject.isSetNilReason()?leftObject.getNilReason():null);
                     List<String> rhsNilReason;
                     rhsNilReason = (rightObject.isSetNilReason()?rightObject.getNilReason():null);
+                    @SuppressWarnings("unchecked")
                     List<String> mergedNilReason = ((List<String> ) strategy.merge(LocatorUtils.property(leftLocator, "nilReason", lhsNilReason), LocatorUtils.property(rightLocator, "nilReason", rhsNilReason), lhsNilReason, rhsNilReason, leftObject.isSetNilReason(), rightObject.isSetNilReason()));
                     target.unsetNilReason();
                     if (mergedNilReason!= null) {

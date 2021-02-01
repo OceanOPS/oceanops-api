@@ -10,7 +10,6 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.oceanops.api.orm.Role;
 
 
 @XmlRootElement
@@ -23,6 +22,7 @@ public class ProgramEntity implements Serializable{
 	private Integer id;
 	private String name;
 	private String nameShort;
+	private String wigosRef;
     private String description;
     private NetworkEntity network;
     private List<AgencyEntity> agencies;
@@ -36,11 +36,12 @@ public class ProgramEntity implements Serializable{
     public ProgramEntity(org.oceanops.api.orm.Program program) {
     	this.setId(Integer.parseInt(program.getObjectId().getIdSnapshot().get("ID").toString()));
     	this.setName(program.getName());
-    	this.setNameShort(program.getNameShort());
+		this.setNameShort(program.getNameShort());
+		this.setWigosRef(program.getWigosCode());
     	this.setDescription(program.getDescription());
     	this.setNetwork(new NetworkEntity(program.getNetwork()));
     	this.agencies = new ArrayList<AgencyEntity>();
-    	for(int i = 0; i<program.getAgencies().size();i++){
+    	/*for(int i = 0; i<program.getAgencies().size();i++){
     		this.agencies.add(new AgencyEntity(program.getAgencies().get(i)));
     	}
     	this.contacts = new ArrayList<ContactEntity>();
@@ -58,7 +59,7 @@ public class ProgramEntity implements Serializable{
     			}
         		this.contacts.add(new ContactEntity(program.getProgramContacts().get(i).getContact(), roles));
     		}
-    	}
+    	}*/
     	if(program.getCountry() != null)
     		this.setCountry(new CountryEntity(program.getCountry()));
     }
@@ -134,6 +135,15 @@ public class ProgramEntity implements Serializable{
 
 	public void setContacts(List<ContactEntity> contacts) {
 		this.contacts = contacts;
+	}
+
+    @XmlElement
+	public String getWigosRef() {
+		return wigosRef;
+	}
+
+	public void setWigosRef(String wigosRef) {
+		this.wigosRef = wigosRef;
 	}
 
 } 

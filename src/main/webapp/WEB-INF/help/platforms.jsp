@@ -46,7 +46,7 @@
 </p>
 <br><br>
 <b>Table 1.</b> Search parameters to specify in the URL.
-<form name="submitPramValues" method="POST">
+<form name="submitParamValues" method="POST">
 	<div class="table-responsive">
 		<table class="table">
 			<thead>

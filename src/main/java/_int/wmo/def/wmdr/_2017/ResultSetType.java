@@ -230,7 +230,7 @@ public class ResultSetType implements Serializable, Cloneable, CopyTo2, Equals2,
     })
     public static class DistributionInfo
         extends AbstractMetadataPropertyType
-        implements Serializable, Cloneable, CopyTo2, Equals2, HashCode2, ToString2
+        implements Serializable
     {
 
         private final static long serialVersionUID = 1L;

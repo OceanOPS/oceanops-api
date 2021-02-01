@@ -1,6 +1,6 @@
 package org.oceanops.api.orm;
 
-
+import org.oceanops.api.orm.auto._Datamap;
 
 public class Datamap extends _Datamap {
 

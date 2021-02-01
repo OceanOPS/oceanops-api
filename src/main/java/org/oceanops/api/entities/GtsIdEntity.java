@@ -24,7 +24,7 @@ public class GtsIdEntity implements Serializable{
 
     }
     public GtsIdEntity(Wmo wmo){
-        this.setId(wmo.getId());
+        //this.setId(wmo.getId());
         this.setGtsid(wmo.getWmo());
         this.setStartDate(Utils.GetIsoDate(wmo.getStartDate()));
         this.setEndDate(Utils.GetIsoDate(wmo.getEndDate()));
