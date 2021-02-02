@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.oceanops.api.Authentication;
 
-import io.agrest.runtime.AgBuilder;
-
 public class AuthFilter implements Filter {
     
 	@Override
@@ -32,6 +30,9 @@ public class AuthFilter implements Filter {
 			String token = httpRequest.getHeader("X-OceanOPS-Metadata-Token");
 
 			new Authentication(id, token);
+		}
+		else{
+			Authentication.reset();
 		}
         
 		chain.doFilter(request, response);
