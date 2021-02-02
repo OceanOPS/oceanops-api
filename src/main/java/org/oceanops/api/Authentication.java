@@ -56,5 +56,9 @@ public class Authentication {
         }
     }
     
-    
+    public static void reset(){
+        Authentication.setUseToken(false);
+        Authentication.isAuthenticated = false;
+        Authentication.contact = null;
+    }
 }

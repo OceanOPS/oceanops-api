@@ -22,7 +22,6 @@ import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.query.ObjectSelect;
 import org.apache.cayenne.query.SQLSelect;
 import org.apache.cayenne.query.SelectById;
-import org.oceanops.api.Authentication;
 import org.oceanops.api.Authorization;
 import org.oceanops.api.Utils;
 import org.oceanops.api.entities.PlatformEntity;
