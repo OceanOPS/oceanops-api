@@ -135,7 +135,7 @@ public abstract class _Ptf extends BaseDataObject {
     public static final ListProperty<WebFrequentation> WEB_FREQUENTATIONS = PropertyFactory.createList("webFrequentations", WebFrequentation.class);
     public static final ListProperty<WeblinkPtf> WEBLINK_PTFS = PropertyFactory.createList("weblinkPtfs", WeblinkPtf.class);
     public static final ListProperty<Weblink> WEBLINKS = PropertyFactory.createList("weblinks", Weblink.class);
-    public static final ListProperty<Wmo> WMOES = PropertyFactory.createList("wmoes", Wmo.class);
+    public static final ListProperty<Wmo> WMOS = PropertyFactory.createList("wmos", Wmo.class);
 
     protected BigDecimal activityCriterion;
     protected BigDecimal age;
@@ -202,7 +202,7 @@ public abstract class _Ptf extends BaseDataObject {
     protected Object webFrequentations;
     protected Object weblinkPtfs;
     protected Object weblinks;
-    protected Object wmoes;
+    protected Object wmos;
 
     public void setActivityCriterion(BigDecimal activityCriterion) {
         beforePropertyWrite("activityCriterion", this.activityCriterion, activityCriterion);
@@ -887,17 +887,17 @@ public abstract class _Ptf extends BaseDataObject {
         return (List<Weblink>)readProperty("weblinks");
     }
 
-    public void addToWmoes(Wmo obj) {
-        addToManyTarget("wmoes", obj, true);
+    public void addToWmos(Wmo obj) {
+        addToManyTarget("wmos", obj, true);
     }
 
-    public void removeFromWmoes(Wmo obj) {
-        removeToManyTarget("wmoes", obj, true);
+    public void removeFromWmos(Wmo obj) {
+        removeToManyTarget("wmos", obj, true);
     }
 
     @SuppressWarnings("unchecked")
-    public List<Wmo> getWmoes() {
-        return (List<Wmo>)readProperty("wmoes");
+    public List<Wmo> getWmos() {
+        return (List<Wmo>)readProperty("wmos");
     }
 
     @Override
@@ -1035,8 +1035,8 @@ public abstract class _Ptf extends BaseDataObject {
                 return this.weblinkPtfs;
             case "weblinks":
                 return this.weblinks;
-            case "wmoes":
-                return this.wmoes;
+            case "wmos":
+                return this.wmos;
             default:
                 return super.readPropertyDirectly(propName);
         }
@@ -1241,8 +1241,8 @@ public abstract class _Ptf extends BaseDataObject {
             case "weblinks":
                 this.weblinks = val;
                 break;
-            case "wmoes":
-                this.wmoes = val;
+            case "wmos":
+                this.wmos = val;
                 break;
             default:
                 super.writePropertyDirectly(propName, val);
@@ -1324,7 +1324,7 @@ public abstract class _Ptf extends BaseDataObject {
         out.writeObject(this.webFrequentations);
         out.writeObject(this.weblinkPtfs);
         out.writeObject(this.weblinks);
-        out.writeObject(this.wmoes);
+        out.writeObject(this.wmos);
     }
 
     @Override
@@ -1394,7 +1394,7 @@ public abstract class _Ptf extends BaseDataObject {
         this.webFrequentations = in.readObject();
         this.weblinkPtfs = in.readObject();
         this.weblinks = in.readObject();
-        this.wmoes = in.readObject();
+        this.wmos = in.readObject();
     }
 
 }

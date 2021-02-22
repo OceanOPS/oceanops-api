@@ -12,13 +12,13 @@ import java.util.List;
 	"id","ref","refParent","endingDate","lastUpdate","activityCriterion","closureCriterion","validated","description","eNotificationDate","program",
 	"retrieval","ptfDepl","ptfHardware","ptfIdentifiers","endingCause","telecom","trackingSystem","backupTrackingSystem","ptfStatus","dataStatus","ptfModel",
 	"backupTelecom","insertDate","updateDate","nokReason","age","ageWeight","name","ptfAutomation","ptfInspection","ptfSoftware", "latestObs", 
-	"ptfPtfStatuses", "agencyPtfs", "networkPtfs", "lines"})
+	"ptfPtfStatuses", "agencyPtfs", "networkPtfs", "lines", "wmos"})
 public class Ptf extends _Ptf {
 	private static final long serialVersionUID = 1L;
 
 	public String getLatestWmo() {
 		String result = null;
-		List<Wmo> wmos = this.getWmoes();
+		List<Wmo> wmos = this.getWmos();
 		if(wmos.size() > 1) {
 			// if several WMOs, taking the latest one
 			Collections.sort(wmos, new Comparator<Wmo>() {

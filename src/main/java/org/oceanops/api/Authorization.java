@@ -49,14 +49,16 @@ public class Authorization {
             sBuilder.entityOverlay(new AgEntityOverlay<PtfDeployment>(PtfDeployment.class).redefineToOne(
                     PtfDeployment.SHIP.getName(), Ship.class,
                     eo -> {
-                        if(eo.getShip().getHideMetadata().intValue() == 1){
-                            return null;
+                        if(eo.getShip() != null){
+                            if(eo.getShip().getHideMetadata().intValue() == 1){
+                                return null;
+                            }
+                            else
+                                return eo.getShip();
                         }
-                        if(eo.getShip() != null)
-                            return eo.getShip();
                         else
-                            return null;
-                    }
+                            return null;       
+                    }             
                 )
             );
         }

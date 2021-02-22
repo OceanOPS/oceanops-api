@@ -1,221 +1,92 @@
-<p>The index of platforms includes platforms' database identifier, their corresponding OceanOPS reference and their WIGOS identifier when already allocated.</p>
-			
-<h3>Getting an index of the platforms</h3>
+<h3>JSON format</h3>
+<div class="well">
+URL endpoint: <code>/platform</code>
+</div>
 <p>
-	The total list of all the referenced platforms can be obtained with a GET request using the following URL pattern:
-	<div class="text-center">
-		<span class="url"><%=rootUrl%>platforms.[format]</span>
-	</div>
-	<br> Where "[format]" in "platforms.[format]" string path represents the data output.
+	Everything described in this area of the documentation is applicable to every JSON endpoints. 
+	The different capabilities will be described for the platform entity, but applicable to others.
 </p>
 
+<p>
+	This endpoint will display a list of platform JSON records including all the leaf-fields of the platform entity by default as well as the count of returned records.
+	<div class="text-center">
+		<span class="url"><%=rootUrl%>platform</span>
+	</div>
+</p>
 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#listAllPtfExample" aria-expanded="false"	aria-controls="listAllPtfExample">Example</button>
 <div class="collapse" id="listAllPtfExample">
 	<div class="well">
-		To generate the global platforms index in json format, here the
-		dedicated URL:<br> <i><%=rootUrl%>platforms.json</i> <br>
-		Below is a truncated output of the example URL:
+		URL to generate the global platforms list in JSON format:<br> <i><%=rootUrl%>platforms</i> <br>
+		Below is a truncated output:
 		<pre>
 		<code>
-			[
-			...,
-			{"id":1024171,"ref":"5902435","wigosRef":"0-22000-0-5902435"},
-			{"id":1024170,"ref":"5902434","wigosRef":"0-22000-0-5902434"},
-			{"id":1024168,"ref":"5902433","wigosRef":"0-22000-0-5902433"},
-			{"id":1106132,"ref":"1500608_101","wigosRef":"0-22000-101-1500608"},
-			{"id":1118420,"ref":"5401638_100","wigosRef":"0-22000-100-5401638"},
-			{"id":512207,"ref":"6200151","wigosRef":""},
-			...
-			]
+			{
+				"data":[
+				...
+				{"id":513482,"activityCriterion":30,"age":2430.9928,"ageWeight":0.64,"closureCriterion":1825,"description":null,"eNotificationDate":"2014-06-04T12:21:10", ...},
+				{"id":515591,"activityCriterion":30,"age":2331.4632,"ageWeight":0.64,"closureCriterion":1825,"description":"typo in deployment year fixed. (2104/2014)","eNotificationDate":"2015-02-12T09:59:02", ...},
+				{"id":514158,"activityCriterion":30,"age":2390.8477,"ageWeight":0.64,"closureCriterion":1825,"description":null,"eNotificationDate":"2014-07-21T13:26:25", ...},
+				...
+				]
+				"total": 154 
+			}
 		</code>
 	</pre>
 	</div>
 </div>
 <br>
-
-
-<h3>Filtering the index using key parameters</h3>
-<p>
-	A filtered index of platforms can be obtained with a GET request using this URL pattern:
-	<div class="text-center">
-		<span class="url"><%=rootUrl%>platforms.[format]?parm1=value1&parm2=value2&...</span>
-	</div>
-	<br>
-	Where parm1, parm2...param(i) respresent the query parameters and value1, value2...value(i) represent the corresponding values respectively. 
-	Note also that for multiple values selection, each parameter can assign several values separated by comma ",".
-</p>
-<br><br>
-<b>Table 1.</b> Search parameters to specify in the URL.
-<form name="submitParamValues" method="POST">
-	<div class="table-responsive">
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Parameter<a href="#params-details">*</a></th>
-					<th>Description</th>
-					<th>Values</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>status</td>
-					<td>The status of the platform</td>
-					<td><a class="btn btn-default btn-block" target="_blank"
-						href="?param=status" role="button">Get statuses</a></td>
-				</tr>
-				<tr>
-					<td>model</td>
-					<td>The model of the platform</td>
-					<td><a class="btn btn-default btn-block" target="_blank"
-						href="?param=model" role="button">Get models</a></td>
-				</tr>
-				<tr>
-					<td>type</td>
-					<td>The type of the platform</td>
-					<td><a class="btn btn-default btn-block" target="_blank"
-						href="?param=type" role="button">Get types</a></td>
-				</tr>
-				<tr>
-					<td>family</td>
-					<td>The family of the platform</td>
-					<td><a class="btn btn-default btn-block" target="_blank"
-						href="?param=family" role="button">Get families</a></td>
-				</tr>
-				<tr>
-					<td>program</td>
-					<td>The affiliation program(s) of the platform</td>
-					<td><a class="btn btn-default btn-block" target="_blank"
-						href="?param=program" role="button">Get programs</a></td>
-				</tr>
-				<tr>
-					<td>country</td>
-					<td>The country involved in the platform-program</td>
-					<td><a class="btn btn-default btn-block" target="_blank"
-						href="?param=country" role="button">Get countries</a></td>
-				</tr>
-				<tr>
-					<td>network</td>
-					<td>The affiliation network of the platform</td>
-					<td><a class="btn btn-default btn-block" target="_blank"
-						href="?param=network" role="button">Get networks</a></td>
-				</tr>
-				<tr>
-					<td>variable</td>
-					<td>The variable(s) monitored by the platform's sensor(s)</td>
-					<td><a class="btn btn-default btn-block" target="_blank"
-						href="?param=variable" role="button">Get variables</a></td>
-				</tr>
-				<tr>
-					<td>sensorModel</td>
-					<td>The platform's sensor(s) model(s)</td>
-					<td><a class="btn btn-default btn-block" target="_blank"
-						href="?param=sensorModel" role="button">Get sensor models</a></td>
-				</tr>
-				<tr>
-					<td>sensorType</td>
-					<td>The platform's sensor(s) type(s)</td>
-					<td><a class="btn btn-default btn-block" target="_blank"
-						href="?param=sensorType" role="button">Get sensor types</a></td>
-				</tr>
-				<tr>
-					<td>gtsid<a href="#gtsid-param-details">**</a></a></td>
-					<td>GTS identifier</td>
-					<td>Any 7-character string</td>
-				</tr>
-				<tr>
-					<td>wigosReady</a></td>
-					<td>Is WIGOS ready (has a WIGOS ID allocated)</td>
-					<td>No value, just specify the parameter</td>
-				</tr>
-				<tr>
-					<td>Date fields<a href="#date-based-params-details">***</a></td>
-					<td>Date-based filtering fields</td>
-					<td>
-						<ul>
-							<li><code>updateDate</code>: OceanOPS' database update date</li>
-							<li><code>insertDate</code>: OceanOPS' database insert date</li>
-						</ul>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		<p id="params-details">
-			(*) by convention all the parameters' acronym are in small caps for single word parameters, 
-			and in lower camel case for acronyms of compound words.<br><br> 
-			A search parameter's value corresponds to either an identification number (<b>ID</b>) or a string (such as <b>Short Name</b>). 
-			The values that can each parameter take are listed in the corresponding links in table 1 ("Get parameter" button).
-		</p>
-		<p id="gtsid-param-details">
-			(**) providing a GTS identifier to the request will result in including it in the response: 'requested_gtsid' in CSV, 'gtsid' in JSON. 
-			This request does not fetch details from the platforms themselves, but only rewrite the response to include the requested parameter.<br>
-			To get details about the GTS identifier(s) of a platform, one must fetch platform's details in the <b>JSON format</b> (multi-valued field, not included in the CSV format). See the <a href="#get-platform-details">dedicated section</a>.
-		</p>
-		<p id="date-based-params-details">
-			(***) a date based parameter uses the interval syntax: <code>[</code> (HTML URL code: %5B) or <code>]</code> (HTML URL code: %5D) at the beginning, <code>]</code> or <code>[</code> at the end (respectively inclusive and exclusive behaviors).
-			One can provide one or two dates (comma separated) within the parameter. If the interval symbols are ommited, the inclusive behavior will be considered.<br>
-			A date should be given in UTC and match the following pattern: YYYY-MM-DDTHH:MI:SS (ISO 8601), e.g. 2019-02-22T22:30:25.<br>
-			Interval syntax examples:
-			<ul>
-				<li><code>[date1</code>: all records where the database value is posterior or equal to date1</li>
-				<li><code>]date1</code>: all records where the database value is stricly posterior to date1</li>
-				<li><code>[date1,date2]</code>: all records where the database value is between date1 and date2 (included)</li>
-				<li><code>[date1,date2[</code>: all records where the database value is between date1 (included) and date2 (excluded)</li>
-			</ul>
-		</p>
-	</div>
-</form>
 <br>
 
+<h4>Filtering the list using an expression</h4>
+<p>
+	A filtered index of platforms can be obtained with a GET request using the <code>exp</code> query parameter:
+	<div class="text-center">
+		<span class="url"><%=rootUrl%>platform?exp=["field1 = 'value' and field2.subfield='anotherValue'"]</span>
+	</div>
+	<br>
+	Where field1 respresents a leaf field of the platform entity and field2.subfield a field accessed through a related entity.
+	The <code>exp</code> query parameter should specify a SQL like where clause, using the leaf fields or relationships. 
+</p>
 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#listFilteredPtfExample" aria-expanded="false" aria-controls="listFilteredPtfExample">Example</button>
 <div id="listFilteredPtfExample" class="collapse">
 	<div class="well">
 		<p>
-			To generate the index of <b>operational platforms</b> monitoring the <b>dissolved	oxygen (ID = 33)</b>, here the dedicated URL:
+			To generate the index of <b>operational platforms</b> monitoring the <b>dissolved oxygen (ID = 33)</b>, here is the dedicated URL:
 			<div class="text-center">
-				<span class="url"><%=rootUrl%>platforms.json?status=OPERATIONAL&variable=33</span>
+				<span class="url"><%=rootUrl%>platform?exp=["ptfStatus.name='OPERATIONAL' and ptfVariables.variable.nameShort='DOXY'"]</span>
 			</div>
+			<br>
+			In the URL of the example above the parameter "<b>ptfStatus.name</b>" has the value of "<b>OPERATIONAL</b>" standing for an "<b>operational platform</b>" 
+			and the parameter "<b>ptfVariables.variable.nameShort</b>" has the value of "<b>DOXY</b>" standing for "<b>dissolved oxygen</b>". The previous URL is equivalent to:
+			<div class="text-center">
+				<span class="url"><%=rootUrl%>platform?exp=["ptfStatus.id=6 and ptfVariables.variable.id=33"]</span>
+			</div>
+			Where in this URL we replaced the short name value of the status ("OPERATIONAL") by its corresponding ID ("6") and the short name value 'DOXY' by its corresponding ID ("33").
 		</p>
-		<br><br>
-		Below is a truncated output of the example URL:<br>
-		<pre>
-		<code>
-			[
-				{"id":1113620,"ref":"5905379","wigosRef":"0-22000-0-5905379"},
-				{"id":1120793,"ref":"6902905","wigosRef":"0-22000-0-6902905"},
-				{"id":1120795,"ref":"5904847","wigosRef":"0-22000-0-5904847"},
-				{"id":1120797,"ref":"5905993","wigosRef":"0-22000-0-5905993"},
-				{"id":1120796,"ref":"5905992","wigosRef":"0-22000-0-5905992"},
-				{"id":1120799,"ref":"5905995","wigosRef":"0-22000-0-5905995"},
-				{"id":1024000,"ref":"5904660","wigosRef":"0-22000-0-5904660"},
-				{"id":1120798,"ref":"5905994","wigosRef":"0-22000-0-5905994"}
-				...
-			]
-		</code>
-	</pre>
 		<p>
-			In the URL of the example above the parameter "<b>status</b>" has the value of "<b>OPERATIONAL</b>" standing for an "<b>operational platform</b>" 
-			and the parameter "<b>variable</b>" has the value of "<b>33</b>" standing for "<b>dissolved oxygen</b>". The previous URL is equivalent to:
-		<div class="text-center">
-			<span class="url"><%=rootUrl%>platforms.json?status=6&variable=33</span>
-		</div>
-		Where in this URL we replaced the short name value of the status ("OPERATIONAL") by its corresponding ID ("6").
+			To generate the index of <b>operational platforms</b> monitoring under the <b>VOS programme</b>, here is the dedicated URL:
+			<div class="text-center">
+				<span class="url"><%=rootUrl%>platform?exp=["ptfStatus.name='OPERATIONAL' and networkPtfs.network.name='VOS'"]</span>
+			</div>
 		</p>
 	</div>
 </div>
+<br>
+<br>
 
-<h3 id="get-platform-details">Getting the details of a referenced platform</h3>
+<h4 id="get-platform-details">Getting the details of a referenced platform</h4>
 <p>
-	The platform details include a number of essential metadata on that platform (only some of them are listed in table 1).
-	Platform details can be obtained with a GET request using the following dedicated URL pattern:
+	The list of platform could be reduced to one record, making it a direct access to a single entity.
+	There is however shortcut URLs to access platform's details.
+	Platform's details can be obtained with a GET request using the following dedicated URL pattern:
 	<div class="text-center">
-		<span class="url"><%=rootUrl%>platforms.[format]/[ID]</span><br>
-		<span class="url"><%=rootUrl%>platforms.[format]/ref/[REF]</span><br>
-		<span class="url"><%=rootUrl%>platforms.[format]/wigosid/[WIGOS ID]</span><br>
+		<span class="url"><%=rootUrl%>platform/[ID]</span><br>
+		<span class="url"><%=rootUrl%>platform/ref/[REF]</span><br>
+		<span class="url"><%=rootUrl%>platform/wigosid/[WIGOS ID]</span><br>
 	</div>
 	<br>
 	Where (replace the squared brackets as well "[]"): 
 	<ul>
-		<li>"[format]" is the desired output format;</li>
 		<li>"[ID]" is the database identifier of the platform;</li>
 		<li>"[REF]" is the OceanOPS' reference of the platform;</li>
 		<li>"[WIGOS ID]" is the WIGOS identifier of the platform.</li>
@@ -225,361 +96,275 @@
 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#detailsPtfExample" aria-expanded="false"	aria-controls="detailsPtfExample">Example</button>
 <div id="detailsPtfExample" class="collapse">
 	<div class="well">
-		To generate the details information of platform (id=512263) in json	format. 
-		This platform was identified in the previous section's example as "<b>operational</b>" 
-		and including a sensor measuring "<b>dissolved oxygen</b>". Here the dedicated URLs for this example:
+		To generate the details information of platform (id=512263) in json	format. Here the dedicated URLs for this example:
 		<div class="text-center">
-			<span class="url"><%=rootUrl%>platforms.json/512263</span><br>
-			<span class="url"><%=rootUrl%>platforms.json/ref/6902545</span><br>
-			<span class="url"><%=rootUrl%>platforms.json/wigosid/0-22000-0-6902545</span><br>
+			<span class="url"><%=rootUrl%>platform/512263</span><br>
+			<span class="url"><%=rootUrl%>platform/ref/6902545</span><br>
+			<span class="url"><%=rootUrl%>platform/wigosid/0-22000-0-6902545</span><br>
 		</div>
-		Below is a formatted output of the example URL:<br>
-		<pre>
-			<code>
+	</div>
+</div>
+<br>
+<br>
+
+<h4>Formatting</h4>
+<p>
+	<em>The include/exclude query parameters</em> can be used to specify which leaf field or related object should be included/excluded in the result.
+	Specify one or several leaf fields in the include parameter will restrict the result to what is specified. 
+	If specifying only a related object, the relation will be added to all the leaf fields.
+</p>
+<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#includeExcludeExample" aria-expanded="false"	aria-controls="includeExcludeExample">Example</button>
+<div id="includeExcludeExample" class="collapse">
+	<div class="well">
+		To generate the details information of platform (ref=6902545) including only the deployment ship, its status and the reference:
+		<div class="text-center">
+			<span class="url"><%=rootUrl%>platform/ref/6902545?include=["ptfDepl.ship.name", "ref", "ptfStatus.name"]</span>
+			<pre>
+				<code>
 				{
-					"id":512263,
-					"age":2278,
-					"configuration":{
-					   "cycleTime":120,
-					   "driftPressure":1200,
-					   "iceDetection":0,
-					   "profilePressure":2000
-					},
-					"deployment":{
-					   "cruiseName":"2014201",
-					   "deploymentDate":"2014-01-22T09:44:00Z",
-					   "lat":69.13,
-					   "lon":7.31,
-					   "ship":{
-						  "callSign":"LDGJ",
-						  "commissionedDate":"1991-01-01T00:00:00Z",
-						  "country":{
-							 "id":243,
-							 "isoCode2":"NO",
-							 "isoCode3":"NOR",
-							 "name":"Norway",
-							 "nameShort":"NORWAY"
-						  },
-						  "imo":"8915768",
-						  "name":"JOHAN HJORT",
-						  "ref":"58J3",
-						  "shipType":"Research Vessels"
-					   }
-					},
-					"gtsIds":[{
-						"id":325811,
-						"gtsid":"6902545",
-						"startDate":"2014-01-22T09:44:00Z"
-					}],
-					"dbInsertDate":"2015-09-03T11:29:05Z",
-					"dbUpdateDate":"2020-04-14T10:21:05Z",
-					"ref":"6902545",
-					"latestLocation":{
-					   "date":"2020-01-30T02:28:27Z",
-					   "lat":67.377,
-					   "lon":3.16
-					},
-					"notificationDate":"2014-01-28T12:51:17Z",
-					"program":{
-					   "id":5891,
-					   "agencies":{
-						  "agency":[
-							 {
-								"description":"Institute of Marine Research",
-								"name":"Institute of Marine Research",
-								"nameShort":"IMR"
-							 }
-						  ]
-					   },
-					   "contacts":{
-						  "contact":[
-							 {
-								"id":****,
-								"email":"***.***@***.***",
-								"firstName":"****",
-								"lastName":"****",
-								"roles":{
-								   "role":[
-									  {
-										 "id":210,
-										 "name":"Delayed-Mode Operator",
-										 "nameShort":"DM"
-									  }
-								   ]
+					"data": [
+						{
+							"ptfDepl": {
+								"ship": {
+									"name": "JOHAN HJORT",
 								}
-							 },
-							 {
-								"id":****,
-								"email":"***.***@***.***",
-								"firstName":"****",
-								"lastName":"****",
-								"roles":{
-								   "role":[
-									  {
-										 "id":5,
-										 "name":"Principal Investigator",
-										 "nameShort":"PI"
-									  },
-									  {
-										 "id":62,
-										 "name":"Program Manager",
-										 "nameShort":"PM"
-									  }
-								   ]
-								}
-							 },
-							 {
-								"id":****,
-								"email":"***.***@***.***",
-								"firstName":"****",
-								"lastName":"****",
-								"roles":{
-								   "role":[
-									  {
-										 "id":230,
-										 "name":"Operations Manager",
-										 "nameShort":"OP"
-									  }
-								   ]
-								}
-							 },
-							 {
-								"id":****,
-								"email":"***.***@***.***",
-								"firstName":"****",
-								"lastName":"****",
-								"roles":{
-								   "role":[
-									  {
-										 "id":230,
-										 "name":"Operations Manager",
-										 "nameShort":"OP"
-									  }
-								   ]
-								}
-							 },
-							 {
-								"id":*****,
-								"agency":{
-								   "description":"Institute of Marine Research",
-								   "name":"Institute of Marine Research",
-								   "nameShort":"IMR"
-								},
-								"email":"***.***@***.***",
-								"firstName":"****",
-								"lastName":"****",
-								"roles":{
-								   "role":[
-									  {
-										 "id":230,
-										 "name":"Operations Manager",
-										 "nameShort":"OP"
-									  }
-								   ]
-								}
-							 }
-						  ]
-					   },
-					   "country":{
-						  "id":243,
-						  "isoCode2":"NO",
-						  "isoCode3":"NOR",
-						  "name":"Norway",
-						  "nameShort":"NORWAY"
-					   },
-					   "description":"&lt;span style=\"color: rgb(51, 51, 51); font-family: arial, verdana, helvetica, sans-serif; font-size: 12px;\"&gt;Argo Norway represents the Norwegian contribution to the global Argo program, and is financed by the project NorArgo, A Norwegian Argo Infrastructure - a part of the European and Global Argo infrastructure, funded by the&nbsp;&lt;/span&gt;&lt;a href=\"http://www.forskningsradet.no/\" style=\"color: rgb(127, 136, 0); outline: none; font-family: arial, verdana, helvetica, sans-serif; font-size: 12px;\"&gt;Norwegian Research Council&lt;/a&gt;&lt;span style=\"color: rgb(51, 51, 51); font-family: arial, verdana, helvetica, sans-serif; font-size: 12px;\"&gt;&nbsp;and the&nbsp;&lt;/span&gt;&lt;a href=\"http://www.imr.no/\" style=\"color: rgb(127, 136, 0); outline: none; font-family: arial, verdana, helvetica, sans-serif; font-size: 12px;\"&gt;Institute of Marine Research (IMR)&lt;/a&gt;",
-					   "name":"Argo NORWAY",
-					   "nameShort":"Argo_NORWAY",
-					   "network":{
-						  "id":1000620,
-						  "description":"Argo (GOOS/JCOMM)",
-						  "name":"Argo",
-						  "nameShort":"Argo"
-					   }
-					},
-					"ptfModel":{
-					   "id":3,
-					   "manufacturer":{
-						  "name":"Teledyne Webb Research",
-						  "nameShort":"TWR"
-					   },
-					   "name":"APEX",
-					   "nameShort":"APEX",
-					   "platformType":{
-						  "id":26,
-						  "description":"Profiling float",
-						  "name":"Float",
-						  "nameShort":"FLOAT",
-						  "platformFamily":{
-							 "id":2,
-							 "description":"Subsurface profilers",
-							 "name":"Subsurface Profiler",
-							 "nameShort":"SUB_P"
-						  }
-					   }
-					},
-					"ptfStatus":{
-					   "id":6,
-					   "description":"The platform is emitting a pulse and observations are distributed",
-					   "name":"OPERATIONAL",
-					   "nameShort":"OPERATIONAL"
-					},
-					"sensorModel":[
-					   {
-						  "id":2007,
-						  "name":"SBE41CP",
-						  "sensorTypes":{
-							 "sensorType":[
-								{
-								   "id":328,
-								   "description":"CTD Pressure Sensor",
-								   "name":"CTD_PRES",
-								   "nameShort":"PRES"
-								},
-								{
-								   "id":329,
-								   "description":"CTD Conductivity Sensor",
-								   "name":"CTD_CNDC",
-								   "nameShort":"CNDC"
-								},
-								{
-								   "id":330,
-								   "description":"CTD Temperature Sensor",
-								   "name":"CTD_TEMP",
-								   "nameShort":"TEMP"
-								}
-							 ]
-						  }
-					   },
-					   {
-						  "id":2025,
-						  "name":"AANDERAA_OPTODE_4330",
-						  "nameShort":"OPTODE",
-						  "sensorTypes":{
-							 "sensorType":[
-								{
-								   "id":332,
-								   "description":"Dissolved Oxygen OPTODE Sensor",
-								   "name":"DOXY_OPTODE",
-								   "nameShort":"OPTODE_DOXY"
-								}
-							 ]
-						  }
-					   },
-					   {
-						  "id":2060,
-						  "description":"WETLABS optical sensor packages",
-						  "name":"ECO_FLBB",
-						  "sensorTypes":{
-							 "sensorType":[
-								{
-								   "id":344,
-								   "description":"Fluorometer ChLa Sensor",
-								   "name":"FLUOROMETER_CHLA",
-								   "nameShort":"FLUOROMETER_CHLA"
-								},
-								{
-								   "id":347,
-								   "description":"Scatterometer BBP Sensor",
-								   "name":"BACKSCATTERINGMETER_BBP<nnn>",
-								   "nameShort":"BACKSCATTERINGMETER_BBP<nnn>"
-								}
-							 ]
-						  }
-					   }
+							},
+							"ptfStatus": {
+								"name": "INACTIVE"
+							},
+							"ref": "6902545"
+						}
 					],
-					"serialRef":"6807",
-					"telecom":{
-					   "telecomNum":"8980",
-					   "telecomType":"IRIDIUM"
-					},
-					"variables":{
-					   "variable":[
-						  {
-							 "id":12235,
-							 "argoRef":"RPHASE_DOXY",
-							 "name":"Rphase Doxy",
-							 "p01Ref":"SDN:P01::OXYCPHAR"
-						  },
-						  {
-							 "id":1,
-							 "argoRef":"PSAL",
-							 "cfRef":"sea_water_salinity",
-							 "name":"Subsurface Salinity",
-							 "nameShort":"SUB_SAL",
-							 "wigosCode":"91"
-						  },
-						  {
-							 "id":12244,
-							 "argoRef":"TEMP_CPU_CHLA",
-							 "name":"Temp Cpu Chla",
-							 "p01Ref":"SDN:P01::TCNTICPU"
-						  },
-						  {
-							 "id":3,
-							 "argoRef":"PRES",
-							 "cfRef":"sea_water_pressure",
-							 "name":"Subsurface Pressure",
-							 "nameShort":"SUB_PRESS",
-							 "wigosCode":"18"
-						  },
-						  {
-							 "id":4222,
-							 "argoRef":"CHLA",
-							 "cfRef":"mass_concentration_of_chlorophyll_a_in_sea_water",
-							 "name":"Chlorophyll A",
-							 "nameShort":"CHLA"
-						  },
-						  {
-							 "id":12184,
-							 "argoRef":"TEMP_DOXY",
-							 "cfRef":"temperature_of_sensor_for_oxygen_in_sea_water",
-							 "name":"Temperature Of Sensor For Oxygen In Sea Water"
-						  },
-						  {
-							 "id":33,
-							 "argoRef":"DOXY",
-							 "cfRef":"moles_of_oxygen_per_unit_mass_in_sea_water",
-							 "name":"Oxygen",
-							 "nameShort":"DOXY",
-							 "wigosCode":"87"
-						  },
-						  {
-							 "id":12229,
-							 "argoRef":"TPHASE_DOXY",
-							 "name":"Tphase Doxy",
-							 "p01Ref":"SDN:P01::OXYCPHAC"
-						  },
-						  {
-							 "id":31,
-							 "argoRef":"TEMP",
-							 "cfRef":"sea_water_temperature",
-							 "name":"Subsurface Temperature",
-							 "nameShort":"SUB_T",
-							 "wigosCode":"94"
-						  },
-						  {
-							 "id":12242,
-							 "argoRef":"BETA_BACKSCATTERING700",
-							 "name":"Beta Backscattering700",
-							 "p01Ref":"SDN:P01::NVLTOBS1"
-						  },
-						  {
-							 "id":12243,
-							 "argoRef":"FLUORESCENCE_CHLA",
-							 "name":"Fluorescence Chla",
-							 "p01Ref":"SDN:P01::FCNTRW01"
-						  },
-						  {
-							 "id":12252,
-							 "argoRef":"BBP700",
-							 "name":"Bbp700",
-							 "p01Ref":"SDN:P01::BB117NIR"
-						  }
-					   ]
+					"total": 1
+				}
+				</code>
+			</pre>
+		</div>
+	</div>
+</div>
+<p>
+	More details on the <a href="https://agrest.io/protocol/#shaping-collection-with-include-exclude" target="_blank">AgRest documentation</a>.
+</p>
+<br>
+<p>
+	<em>The mapBy query parameter</em> can by used to group the result by a given parameter.
+</p>
+<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#mapByExample" aria-expanded="false"	aria-controls="mapByExample">Example</button>
+<div id="mapByExample" class="collapse">
+	<div class="well">
+		To generate the list of Italian operational platforms and group them by their programme name:
+		<div class="text-center">
+			<span class="url"><%=rootUrl%>platform/?exp=["ptfStatus.name='OPERATIONAL' and program.country.code2='IT'"]&include=["ref", "ptfStatus.name"]&mapBy=program.name</span>
+			<pre>
+				<code>
+					{
+						"data": {
+							"Argo ITALY": [
+							...
+							],
+							"ITALY-OGS": [
+							...
+							],
+							"MOCCA-IT": [
+								{
+									"ptfStatus": {
+										"name": "OPERATIONAL"
+									},
+									"ref": "3901849"
+								},
+								{
+									"ptfStatus": {
+										"name": "OPERATIONAL"
+									},
+									"ref": "3901978"
+								},
+								{
+									"ptfStatus": {
+										"name": "OPERATIONAL"
+									},
+									"ref": "3901908"
+								}
+							],
+							"ITALY DB": [
+								{
+									"ptfStatus": {
+										"name": "OPERATIONAL"
+									},
+									"ref": "1701600_100"
+								},
+								{
+									"ptfStatus": {
+										"name": "OPERATIONAL"
+									},
+									"ref": "5501611_100"
+								}
+							],
+							"HF Italy": [
+								{
+									"ptfStatus": {
+										"name": "OPERATIONAL"
+									},
+									"ref": "TMP-1320837742"
+								},
+								{
+									"ptfStatus": {
+										"name": "OPERATIONAL"
+									},
+									"ref": "TMP-1127214070"
+								},
+								{
+									"ptfStatus": {
+										"name": "OPERATIONAL"
+									},
+									"ref": "TMP-1033284844"
+								}
+							],
+							"OS-OGS": [
+								{
+									"ptfStatus": {
+										"name": "OPERATIONAL"
+									},
+									"ref": "6100278_015"
+								}
+							],
+							"OS-CNR": [
+								{
+									"ptfStatus": {
+										"name": "OPERATIONAL"
+									},
+									"ref": "TMP7KEUQKZPI3"
+								}
+							]
+						},
+						"total": 97
 					}
-				 }
-			</code>
+				</code>
+			</pre>
+		</div>
+	</div>
+</div>
+<p>
+	More details on the <a href="https://agrest.io/protocol/#structuring-collection-with-mapby" target="_blank">AgRest documentation</a>.
+</p>
+<br>
+
+<h4>Frequent queries</h4>
+<ul>
+	<li>
+		All operational Argo floats:
+		<div class="text-center" data-toggle="collapse" data-target="#frequentQuery1" role="button">
+			<span class="url"><%=rootUrl%>platform/?exp=["ptfStatus.name='OPERATIONAL' and networkPtfs.network.name='Argo'"]</span>
+		</div>
+		<div id="frequentQuery1" class="collapse">
+			<pre>
+				{"data":[
+					...
+					],
+				"total": 3904}
+			</pre>
+		</div>
+	</li>
+	<li>
+		All inactive DBCP surface drifters:
+		<div class="text-center" data-toggle="collapse" data-target="#frequentQuery2" role="button">
+			<span class="url"><%=rootUrl%>platform?exp=["ptfStatus.name='INACTIVE' and networkPtfs.network.nameShort='DBCP' and ptfModel.ptfType.ptfFamily.name = 'Drifting Buoy'"]</span>
+		</div>
+		<div id="frequentQuery2" class="collapse">
+			<pre>
+				{"data":[
+					...
+					],
+				"total": 214}
+			</pre>
+		</div>
+	</li>
+	<li>
+		All elements having 'CFO383' as GTS identifier (WMO code/ID), resulting only the platform reference, and their opened GTS identifier record (no end date, if any):
+		<div class="text-center" data-toggle="collapse" data-target="#frequentQuery3" role="button">
+			<span class="url"><%=rootUrl%>platform?exp=["wmos.wmo = 'CFO383'"]&include=["ref",{"path":"wmos","exp":"endDate = null"},{"wmos":["wmo","startDate", "endDate"]}]</span>
+		</div>
+		<div id="frequentQuery3" class="collapse">
+		<pre>
+			{"data":[
+				{"ref":"VJBZNCR","wmos":[]},
+				{"ref":"WUV7B3M","wmos":[]},
+				{"ref":"MMVY6VS","wmos":[
+					{"endDate":null,"startDate":"2014-10-14T00:00:00","wmo":"CFO383"}
+					]
+				}
+			],"total":3}
 		</pre>
+		</div>
+	</li>
+	<li>
+		All elements matching '2900' in the beginning of their reference, including the reference and the country name in the output:
+		<div class="text-center" data-toggle="collapse" data-target="#frequentQuery4" role="button">
+			<span class="url"><%=rootUrl%>platform?exp=["ref like '2900%'"]&include=["ref","program.country.name"]</span>
+		</div>
+		<div id="frequentQuery4" class="collapse">
+		<pre>
+			{"data":[
+			{"program":{"country":{"name":"Japan"}},"ref":"2900000"},
+			{"program":{"country":{"name":"Japan"}},"ref":"2900001"},
+			{"program":{"country":{"name":"Japan"}},"ref":"2900002"},
+			...
+			],"total":922}
+		</pre>
+		</div>
+	</li>
+	<li>
+		All elements deployed after February 1st, 2021 and having a status 'OPERATIONAL' or 'REGISTERED', fetching the reference only:
+		<div class="text-center" data-toggle="collapse" data-target="#frequentQuery5" role="button">
+			<span class="url"><%=rootUrl%>platform/?exp=["ptfStatus.name in ('REGISTERED','OPERATIONAL') and ptfDepl.deplDate>$d","2021-02-01 00:00:00"]&include=["ref"]</span>
+		</div>
+		<div id="frequentQuery5" class="collapse">
+		<pre>
+			{"data":[
+				{"ref":"6904093"},{"ref":"1901927"},{"ref":"6801598_001"},{"ref":"6904132"},{"ref":"6904122"},
+				...
+			], "total":52}
+		</pre>
+		</div>
+	</li>
+</ul>
+<br>
+<br>
+
+<h3>XML format</h3>
+<div class="well">
+	URL endpoint: <code>/platform/wmdr/</code>
+</div>
+<p>
+	This service provides a XML WMDR-compliant output on a per platform based request.
+</p>
+<br>
+<h4 id="get-platform-details">Getting the details of a referenced platform</h4>
+<p>
+	The list of platform could be reduced to one record, making it a direct access to a single entity.
+	There is however shortcut URLs to access platform's details.
+	Platform's details can be obtained with a GET request using the following dedicated URL pattern:
+	<div class="text-center">
+		<span class="url"><%=rootUrl%>platform/wmdr/[ID]</span><br>
+		<span class="url"><%=rootUrl%>platform/ref/wmdr/[REF]</span><br>
+		<span class="url"><%=rootUrl%>platform/wigosid/wmdr/[WIGOS ID]</span><br>
+	</div>
+	<br>
+	Where (replace the squared brackets as well "[]"): 
+	<ul>
+		<li>"[ID]" is the database identifier of the platform;</li>
+		<li>"[REF]" is the OceanOPS' reference of the platform;</li>
+		<li>"[WIGOS ID]" is the WIGOS identifier of the platform.</li>
+	</ul>
+</p>
+
+<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#detailsPtfWMDRExample" aria-expanded="false"	aria-controls="detailsPtfWMDRExample">Example</button>
+<div id="detailsPtfWMDRExample" class="collapse">
+	<div class="well">
+		To generate the details information of platform (id=512263) in json	format. Here the dedicated URLs for this example:
+		<div class="text-center">
+			<span class="url"><%=rootUrl%>platform/wmdr/512263</span><br>
+			<span class="url"><%=rootUrl%>platform/wmdr/ref/6902545</span><br>
+			<span class="url"><%=rootUrl%>platform/wmdr/wigosid/0-22000-0-6902545</span><br>
+		</div>
 	</div>
 </div>

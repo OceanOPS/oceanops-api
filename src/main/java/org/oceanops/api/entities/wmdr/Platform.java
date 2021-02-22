@@ -580,7 +580,7 @@ public class Platform {
 				o.getProgramAffiliation().add(progAffiliation);
 			}
 		}
-		List<Wmo> wmos = ptf.getWmoes();
+		List<Wmo> wmos = ptf.getWmos();
 		// if several WMOs, ordering
 		if(wmos.size() > 0) {
 			for(Wmo wmo: wmos) {
