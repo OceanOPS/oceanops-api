@@ -5,12 +5,12 @@
 	<groupId>org.oceanops</groupId>
 	<artifactId>api</artifactId>
 	<packaging>war</packaging>
-	<version>1.0.0beta17-SNAPSHOT</version>
+	<version>1.0.0beta17</version>
 	<name>OceanOPS API</name>
 
 	<scm>
 		<developerConnection>scm:git:http://srv-main-jcomm.vlandata.cls.fr/git/jcommops/jcommops-api.git</developerConnection>
-		<tag>HEAD</tag>
+		<tag>v1.0.0beta17</tag>
 	</scm>
 
 	<build>
@@ -113,10 +113,10 @@
 						<map>${project.basedir}/src/main/resources/datamap.map.xml</map>
 						<cayenneProject>${project.basedir}/src/main/resources/cayenne-OceanOPS-API.xml</cayenneProject>
 						<data-source>
-							<driver value="oracle.jdbc.OracleDriver"/>
-							<url value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=commun-oracle1.vlandata.cls.fr)(PORT=1521))(ADDRESS=(PROTOCOL=TCP)(HOST=commun-oracle2.vlandata.cls.fr)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=JCOMMOPS_PROD)))"/>
-							<connectionPool min="1" max="1"/>
-							<login userName="JCOMMOPS_B" password="JCOMMOPS_B"/>
+							<driver value="oracle.jdbc.OracleDriver" />
+							<url value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=commun-oracle1.vlandata.cls.fr)(PORT=1521))(ADDRESS=(PROTOCOL=TCP)(HOST=commun-oracle2.vlandata.cls.fr)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=JCOMMOPS_PROD)))" />
+							<connectionPool min="1" max="1" />
+							<login userName="JCOMMOPS_B" password="JCOMMOPS_B" />
 						</data-source>
 					</configuration>
 				</plugin>
