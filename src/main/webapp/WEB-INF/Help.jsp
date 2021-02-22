@@ -60,7 +60,7 @@
 				<div class="container-fluid">
 					<%@include file="help/versionSpecifics.jsp" %>
 				</div>
-				<h2 class="title-border-bottom">Concepts</h2>
+				<h2 class="title-border-bottom">Concepts & API organisation</h2>
 				<div class="container-fluid">
 					<%@include file="help/concepts.jsp" %>
 				</div>

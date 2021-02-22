@@ -26,7 +26,7 @@
 	<link rel="stylesheet" href="../styles/loader-vertical-bars.css">	
 	<script>
 		$(document).ready(function(){
-			var parameter_uri="<%=parameter%>";
+			var parameter_uri='<%=parameter%>';
 			
 			$.ajax({
 				url: parameter_uri,
@@ -34,10 +34,20 @@
 				type: 'get',
 				cache: false,
 				success: function(data) {
-					var table = $("#parameterTableBody");
-					content = "";
+					var table = $("#parameterTable");
+					var firstObject = data.data[0];
+					var content = "<tr>";
+					for(strName in firstObject){
+						content += "<th>" + strName;
+						content += "</th>";
+					}
+					content += "</tr>";
 					$(data.data).each(function(index, value){
-						content += "<tr>"+"<td>"+value.id+"</td>"+"<td>"+value.nameShort+"</td>"+"<td>"+value.name+"</td>"+"<td>"+value.description+"</td>"+"</tr>";	
+						content += "<tr>";
+						for(strName in value){
+							content += "<td>"+ JSON.stringify(value[strName]) + "</td>";
+						}
+						content += "</tr>";
 					}); 	
 					table.html(content);
 					$("#loader").hide();
@@ -61,25 +71,10 @@
 		</div>
 		<div class="well">
 			<div class="table-responsive">
-				<table class="table" id="table">
-					<thead>
-						<tr>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<th>ID*</th>
-							<th>Short Name*</th>
-							<th>Name</th>
-							<th>Description</th>
-						</tr>
-					</thead>
-					<tbody id="parameterTableBody">
-					</tbody>
+				<table class="table" id="parameterTable">
 				</table>
 			</div>
 		</div>
-		<p>(*) Parameters used in the search URL</p>
 	</div>
 </body>
 </html>

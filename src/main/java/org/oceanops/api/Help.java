@@ -22,22 +22,22 @@ public class Help extends HttpServlet {
 		super();
 		HashMap<String, String> concept = new HashMap<String, String>();
 		concept.put("name", "Platform status");
-		concept.put("urlParam", "status");
+		concept.put("urlParam", "platformstatus");
 		concept.put("jsonUrl", "platformstatus");
 		concepts.add(concept);
 		concept = new HashMap<String, String>();
 		concept.put("name", "Platform model");
-		concept.put("urlParam", "model");
-		concept.put("jsonUrl", "platformmodel");
+		concept.put("urlParam", "platformmodel?include=[\"id\",\"name\",\"nameShort\",\"weblink.url\"]");
+		concept.put("jsonUrl", "platformmodel?include=[\"id\",\"name\",\"nameShort\",\"weblink.url\"]");
 		concepts.add(concept);
 		concept = new HashMap<String, String>();
 		concept.put("name", "Platform type");
-		concept.put("urlParam", "type");
+		concept.put("urlParam", "platformtype");
 		concept.put("jsonUrl", "platformtype");
 		concepts.add(concept);
 		concept = new HashMap<String, String>();
 		concept.put("name", "Platform family");
-		concept.put("urlParam", "family");
+		concept.put("urlParam", "platformfamily");
 		concept.put("jsonUrl", "platformfamily");
 		concepts.add(concept);
 		concept = new HashMap<String, String>();
@@ -62,12 +62,12 @@ public class Help extends HttpServlet {
 		concepts.add(concept);
 		concept = new HashMap<String, String>();
 		concept.put("name", "Sensor model");
-		concept.put("urlParam", "sensorModel");
+		concept.put("urlParam", "sensormodel");
 		concept.put("jsonUrl", "sensormodel");
 		concepts.add(concept);
 		concept = new HashMap<String, String>();
 		concept.put("name", "Sensor type");
-		concept.put("urlParam", "sensorType");
+		concept.put("urlParam", "sensortype");
 		concept.put("jsonUrl", "sensortype");
 		concepts.add(concept);
 	}
@@ -89,57 +89,8 @@ public class Help extends HttpServlet {
 		
 		if (request.getParameter("param") != null) {
 			jspName = "GetParamValues.jsp";
-			switch (request.getParameter("param")) {
-			case "status":
-				request.setAttribute("parameter", "platformstatus");
-				request.setAttribute("parameter_name", "Platform statuses");
-				break;
-			case "model":
-				request.setAttribute("parameter", "platformmodel");
-				request.setAttribute("parameter_name", "Platform models");
-				break;
-			case "type":
-				request.setAttribute("parameter", "platformtype");
-				request.setAttribute("parameter_name", "Platform types");
-				break;
-			case "family":
-				request.setAttribute("parameter", "platformfamily");
-				request.setAttribute("parameter_name", "Platform families");
-				break;
-			case "network":
-				request.setAttribute("parameter", "network");
-				request.setAttribute("parameter_name", "Networks");
-				break;
-			case "program":
-				request.setAttribute("parameter", "program");
-				request.setAttribute("parameter_name", "Programs");
-				jspName = "GetParamValuesWIGOS.jsp";
-				break;
-			case "masterProgram":
-				request.setAttribute("parameter", "observingnetwork");
-				request.setAttribute("parameter_name", "Observing networks");
-				break;
-			case "variable":
-				request.setAttribute("parameter", "variable");
-				request.setAttribute("parameter_name", "Variables");
-				jspName = "GetVariableValues.jsp";
-				break;
-			case "sensorModel":
-				request.setAttribute("parameter", "sensormodel");
-				request.setAttribute("parameter_name", "Sensor models");
-				break;
-			case "sensorType":
-				request.setAttribute("parameter", "sensortype");
-				request.setAttribute("parameter_name", "Sensor types");
-				break;
-			case "country":
-				request.setAttribute("parameter", "country");
-				request.setAttribute("parameter_name", "Countries");
-				jspName = "GetCountryValues.jsp";
-				break;
-			default:
-				break;
-			}
+			request.setAttribute("parameter", request.getParameter("param"));
+			request.setAttribute("parameter_name", "Entity values");
 		} else{
 			jspName = "Help.jsp";
 		}

@@ -76,8 +76,8 @@ public class PlatformEntity implements Serializable{
 		}*/
 		
 		this.gtsIds = new ArrayList<GtsIdEntity>();
-    	for(int i = 0; i<ptf.getWmoes().size();i++){
-    		this.gtsIds.add(new GtsIdEntity(ptf.getWmoes().get(i)));
+    	for(int i = 0; i<ptf.getWmos().size();i++){
+    		this.gtsIds.add(new GtsIdEntity(ptf.getWmos().get(i)));
 		}
     	
     	this.setDBInsertDate(Utils.GetIsoDate(ptf.getInsertDate()));
