@@ -38,4 +38,5 @@
 <p>Release notes can be consulted <a href="https://trello.com/c/eI7YS3wp" target="_blank">here</a>.</p>
 <h3>Development progress</h3>
 <p>A public <a href="https://trello.com" target="_blank">Trello</a> board is available <a href="https://trello.com/b/d5BstHHd" target="_blank">here</a> to follow our progress in improving this API.</p>
-<p>The source code of this project is available in the following GitHub repository <a href="https://github.com/OceanOPS/oceanops-api/" target="_blank">https://github.com/OceanOPS/oceanops-api/</a> ($$TBD license).</p>
+<p>The source code of this project is available in the following GitHub repository <a href="https://github.com/OceanOPS/oceanops-api/" target="_blank">https://github.com/OceanOPS/oceanops-api/</a>.</p>
+<p>This work is licensed under <a target="_blank" rel="license" href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>.</p>
