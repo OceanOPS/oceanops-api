@@ -345,8 +345,8 @@ URL endpoint: <code>/platform</code>
 	Platform's details can be obtained with a GET request using the following dedicated URL pattern:
 	<div class="text-center">
 		<span class="url"><%=rootUrl%>platform/wmdr/[ID]</span><br>
-		<span class="url"><%=rootUrl%>platform/ref/wmdr/[REF]</span><br>
-		<span class="url"><%=rootUrl%>platform/wigosid/wmdr/[WIGOS ID]</span><br>
+		<span class="url"><%=rootUrl%>platform/wmdr/ref/[REF]</span><br>
+		<span class="url"><%=rootUrl%>platform/wmdr/wigosid/[WIGOS ID]</span><br>
 	</div>
 	<br>
 	Where (replace the squared brackets as well "[]"): 
