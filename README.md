@@ -2,7 +2,7 @@
 OceanOPS Web Service API is a REST API designed to distribute metadata, in interoperable and ready-to-use formats.
 
 ## General information
-OceanOPS Web Service API is a REST API designed to distribute metadata, in interoperable and ready-to-use formats, to integrate other software (usually under machine to machine schema). The metadata distributed by this API version (V1.0.0beta12) are in three common data formats: .json, .xml (WMDR compliant) and .csv.
+OceanOPS Web Service API is a REST API designed to distribute metadata, in interoperable and ready-to-use formats, to integrate other software (usually under machine to machine schema). The metadata distributed by this API are available in two common data formats: .json, and .xml (WMDR compliant).
 
 ## Terms of use
 This API is primarily dedicated to the GOOS community and further to research and operational, oceanographic and meteorological communities, not to the large public.
@@ -18,4 +18,4 @@ Release notes can be consulted [here](https://trello.com/c/eI7YS3wp).
 
 A public Trello board is available [here](https://trello.com/b/d5BstHHd) to follow our progress in improving this API.
 
-License TBD
+This work is licensed under [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0).
