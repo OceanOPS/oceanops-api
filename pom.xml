@@ -99,7 +99,7 @@
 				<plugin>
 					<groupId>org.apache.cayenne.plugins</groupId>
 					<artifactId>cayenne-maven-plugin</artifactId>
-					<version>4.2.M2</version>
+					<version>${cayenne.version}</version>
 				
 					<dependencies>
 						<dependency>
