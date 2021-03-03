@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
+import org.apache.cayenne.exp.property.NumericIdProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.oceanops.api.orm.Contact;
@@ -23,30 +24,19 @@ public abstract class _ContactPtfRole extends BaseDataObject {
 
     private static final long serialVersionUID = 1L;
 
+    public static final NumericIdProperty<BigDecimal> ID_PK_PROPERTY = PropertyFactory.createNumericId("ID", "ContactPtfRole", BigDecimal.class);
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
     public static final NumericProperty<BigDecimal> SENSOR_MODEL_ID = PropertyFactory.createNumeric("sensorModelId", BigDecimal.class);
     public static final EntityProperty<Contact> CONTACT = PropertyFactory.createEntity("contact", Contact.class);
     public static final EntityProperty<Ptf> PTF = PropertyFactory.createEntity("ptf", Ptf.class);
     public static final EntityProperty<Role> ROLE = PropertyFactory.createEntity("role", Role.class);
 
-    protected BigDecimal id;
     protected BigDecimal sensorModelId;
 
     protected Object contact;
     protected Object ptf;
     protected Object role;
-
-    public void setId(BigDecimal id) {
-        beforePropertyWrite("id", this.id, id);
-        this.id = id;
-    }
-
-    public BigDecimal getId() {
-        beforePropertyRead("id");
-        return this.id;
-    }
 
     public void setSensorModelId(BigDecimal sensorModelId) {
         beforePropertyWrite("sensorModelId", this.sensorModelId, sensorModelId);
@@ -89,8 +79,6 @@ public abstract class _ContactPtfRole extends BaseDataObject {
         }
 
         switch(propName) {
-            case "id":
-                return this.id;
             case "sensorModelId":
                 return this.sensorModelId;
             case "contact":
@@ -111,9 +99,6 @@ public abstract class _ContactPtfRole extends BaseDataObject {
         }
 
         switch (propName) {
-            case "id":
-                this.id = (BigDecimal)val;
-                break;
             case "sensorModelId":
                 this.sensorModelId = (BigDecimal)val;
                 break;
@@ -142,7 +127,6 @@ public abstract class _ContactPtfRole extends BaseDataObject {
     @Override
     protected void writeState(ObjectOutputStream out) throws IOException {
         super.writeState(out);
-        out.writeObject(this.id);
         out.writeObject(this.sensorModelId);
         out.writeObject(this.contact);
         out.writeObject(this.ptf);
@@ -152,7 +136,6 @@ public abstract class _ContactPtfRole extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.id = (BigDecimal)in.readObject();
         this.sensorModelId = (BigDecimal)in.readObject();
         this.contact = in.readObject();
         this.ptf = in.readObject();

@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
-import org.apache.cayenne.exp.property.NumericProperty;
+import org.apache.cayenne.exp.property.NumericIdProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.oceanops.api.orm.Agency;
 import org.oceanops.api.orm.AgencyRole;
@@ -25,32 +25,21 @@ public abstract class _AgencyPtf extends BaseDataObject {
 
     private static final long serialVersionUID = 1L;
 
+    public static final NumericIdProperty<BigDecimal> ID_PK_PROPERTY = PropertyFactory.createNumericId("ID", "AgencyPtf", BigDecimal.class);
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
     public static final EntityProperty<Agency> AGENCY = PropertyFactory.createEntity("agency", Agency.class);
     public static final EntityProperty<AgencyRole> AGENCY_ROLE = PropertyFactory.createEntity("agencyRole", AgencyRole.class);
     public static final EntityProperty<AssemblyType> ASSEMBLY_TYPE = PropertyFactory.createEntity("assemblyType", AssemblyType.class);
     public static final EntityProperty<DacType> DAC_TYPE = PropertyFactory.createEntity("dacType", DacType.class);
     public static final EntityProperty<Ptf> PTF = PropertyFactory.createEntity("ptf", Ptf.class);
 
-    protected BigDecimal id;
 
     protected Object agency;
     protected Object agencyRole;
     protected Object assemblyType;
     protected Object dacType;
     protected Object ptf;
-
-    public void setId(BigDecimal id) {
-        beforePropertyWrite("id", this.id, id);
-        this.id = id;
-    }
-
-    public BigDecimal getId() {
-        beforePropertyRead("id");
-        return this.id;
-    }
 
     public void setAgency(Agency agency) {
         setToOneTarget("agency", agency, true);
@@ -99,8 +88,6 @@ public abstract class _AgencyPtf extends BaseDataObject {
         }
 
         switch(propName) {
-            case "id":
-                return this.id;
             case "agency":
                 return this.agency;
             case "agencyRole":
@@ -123,9 +110,6 @@ public abstract class _AgencyPtf extends BaseDataObject {
         }
 
         switch (propName) {
-            case "id":
-                this.id = (BigDecimal)val;
-                break;
             case "agency":
                 this.agency = val;
                 break;
@@ -157,7 +141,6 @@ public abstract class _AgencyPtf extends BaseDataObject {
     @Override
     protected void writeState(ObjectOutputStream out) throws IOException {
         super.writeState(out);
-        out.writeObject(this.id);
         out.writeObject(this.agency);
         out.writeObject(this.agencyRole);
         out.writeObject(this.assemblyType);
@@ -168,7 +151,6 @@ public abstract class _AgencyPtf extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.id = (BigDecimal)in.readObject();
         this.agency = in.readObject();
         this.agencyRole = in.readObject();
         this.assemblyType = in.readObject();

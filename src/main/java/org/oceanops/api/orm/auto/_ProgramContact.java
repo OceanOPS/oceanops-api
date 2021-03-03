@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
+import org.apache.cayenne.exp.property.NumericIdProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.oceanops.api.orm.Contact;
@@ -23,38 +24,21 @@ public abstract class _ProgramContact extends BaseDataObject {
 
     private static final long serialVersionUID = 1L;
 
-    public static final String CONTACT_ID_PK_COLUMN = "CONTACT_ID";
-    public static final String PROGRAM_ID_PK_COLUMN = "PROGRAM_ID";
-    public static final String ROLE_ID_PK_COLUMN = "ROLE_ID";
+    public static final NumericIdProperty<BigDecimal> ID_PK_PROPERTY = PropertyFactory.createNumericId("ID", "ProgramContact", BigDecimal.class);
+    public static final String ID_PK_COLUMN = "ID";
 
-    public static final NumericProperty<BigDecimal> CONTACT_ID = PropertyFactory.createNumeric("contactId", BigDecimal.class);
     public static final NumericProperty<BigDecimal> MZMS_AUTO_CHECK = PropertyFactory.createNumeric("mzmsAutoCheck", BigDecimal.class);
     public static final NumericProperty<BigDecimal> MZMS_WARNING_ENABLED = PropertyFactory.createNumeric("mzmsWarningEnabled", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> PROGRAM_ID = PropertyFactory.createNumeric("programId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> ROLE_ID = PropertyFactory.createNumeric("roleId", BigDecimal.class);
     public static final EntityProperty<Contact> CONTACT = PropertyFactory.createEntity("contact", Contact.class);
     public static final EntityProperty<Program> PROGRAM = PropertyFactory.createEntity("program", Program.class);
     public static final EntityProperty<Role> ROLE = PropertyFactory.createEntity("role", Role.class);
 
-    protected BigDecimal contactId;
     protected BigDecimal mzmsAutoCheck;
     protected BigDecimal mzmsWarningEnabled;
-    protected BigDecimal programId;
-    protected BigDecimal roleId;
 
     protected Object contact;
     protected Object program;
     protected Object role;
-
-    public void setContactId(BigDecimal contactId) {
-        beforePropertyWrite("contactId", this.contactId, contactId);
-        this.contactId = contactId;
-    }
-
-    public BigDecimal getContactId() {
-        beforePropertyRead("contactId");
-        return this.contactId;
-    }
 
     public void setMzmsAutoCheck(BigDecimal mzmsAutoCheck) {
         beforePropertyWrite("mzmsAutoCheck", this.mzmsAutoCheck, mzmsAutoCheck);
@@ -74,26 +58,6 @@ public abstract class _ProgramContact extends BaseDataObject {
     public BigDecimal getMzmsWarningEnabled() {
         beforePropertyRead("mzmsWarningEnabled");
         return this.mzmsWarningEnabled;
-    }
-
-    public void setProgramId(BigDecimal programId) {
-        beforePropertyWrite("programId", this.programId, programId);
-        this.programId = programId;
-    }
-
-    public BigDecimal getProgramId() {
-        beforePropertyRead("programId");
-        return this.programId;
-    }
-
-    public void setRoleId(BigDecimal roleId) {
-        beforePropertyWrite("roleId", this.roleId, roleId);
-        this.roleId = roleId;
-    }
-
-    public BigDecimal getRoleId() {
-        beforePropertyRead("roleId");
-        return this.roleId;
     }
 
     public void setContact(Contact contact) {
@@ -127,16 +91,10 @@ public abstract class _ProgramContact extends BaseDataObject {
         }
 
         switch(propName) {
-            case "contactId":
-                return this.contactId;
             case "mzmsAutoCheck":
                 return this.mzmsAutoCheck;
             case "mzmsWarningEnabled":
                 return this.mzmsWarningEnabled;
-            case "programId":
-                return this.programId;
-            case "roleId":
-                return this.roleId;
             case "contact":
                 return this.contact;
             case "program":
@@ -155,20 +113,11 @@ public abstract class _ProgramContact extends BaseDataObject {
         }
 
         switch (propName) {
-            case "contactId":
-                this.contactId = (BigDecimal)val;
-                break;
             case "mzmsAutoCheck":
                 this.mzmsAutoCheck = (BigDecimal)val;
                 break;
             case "mzmsWarningEnabled":
                 this.mzmsWarningEnabled = (BigDecimal)val;
-                break;
-            case "programId":
-                this.programId = (BigDecimal)val;
-                break;
-            case "roleId":
-                this.roleId = (BigDecimal)val;
                 break;
             case "contact":
                 this.contact = val;
@@ -195,11 +144,8 @@ public abstract class _ProgramContact extends BaseDataObject {
     @Override
     protected void writeState(ObjectOutputStream out) throws IOException {
         super.writeState(out);
-        out.writeObject(this.contactId);
         out.writeObject(this.mzmsAutoCheck);
         out.writeObject(this.mzmsWarningEnabled);
-        out.writeObject(this.programId);
-        out.writeObject(this.roleId);
         out.writeObject(this.contact);
         out.writeObject(this.program);
         out.writeObject(this.role);
@@ -208,11 +154,8 @@ public abstract class _ProgramContact extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.contactId = (BigDecimal)in.readObject();
         this.mzmsAutoCheck = (BigDecimal)in.readObject();
         this.mzmsWarningEnabled = (BigDecimal)in.readObject();
-        this.programId = (BigDecimal)in.readObject();
-        this.roleId = (BigDecimal)in.readObject();
         this.contact = in.readObject();
         this.program = in.readObject();
         this.role = in.readObject();
