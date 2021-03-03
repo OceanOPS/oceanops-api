@@ -1,15 +1,12 @@
 package org.oceanops.api;
 
 import java.io.IOException;
-import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.GregorianCalendar;
-import java.util.Iterator;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.regex.Matcher;
@@ -22,8 +19,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.configuration.server.ServerRuntime;
-import org.oceanops.api.entities.SensorTypeEntity;
-import org.oceanops.api.entities.VariableEntity;
 
 public class Utils {
 	private static ServerRuntime cayenneRuntime;
@@ -128,39 +123,6 @@ public class Utils {
 		return String.valueOf(date.getYear());
 	}
 
-	public static String GetVariablesListToString(ArrayList<VariableEntity> Arr) {
-		// method used to access ArrayList to produce csv (case one to many)
-		StringWriter strW = new StringWriter();
-		try {
-			Iterator<VariableEntity> var_itr = Arr.iterator();
-			while (var_itr.hasNext()) {
-				VariableEntity a = var_itr.next();
-				strW.write("{" + a.getNameShort() + "}");
-			}
-		} catch (NullPointerException e) {
-			strW.write("");
-		}
-		String str = strW.toString();
-		return str;
-
-	}
-
-	public static String GetSensorTypesListToString(ArrayList<SensorTypeEntity> Arr) {
-		// method used to access ArrayList to produce csv (case one to many)
-		StringWriter strW = new StringWriter();
-		try {
-			Iterator<SensorTypeEntity> senstype_itr = Arr.iterator();
-			while (senstype_itr.hasNext()) {
-				SensorTypeEntity a = senstype_itr.next();
-				strW.write("{" + a.getNameShort() + "}");
-			}
-		} catch (NullPointerException e) {
-			strW.write("");
-		}
-		String str = strW.toString();
-		return str;
-
-	}
 
 	public static String StrValueForSql(String str) {
 		String SqlValueString = str.trim().replace(",", "','");
