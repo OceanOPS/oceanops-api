@@ -251,7 +251,7 @@
 			<groupId>io.agrest</groupId>
 			<artifactId>agrest-cayenne</artifactId>
 			<version>${agrest.version}</version>
-		</dependency>		
+		</dependency>
 		<dependency>
 			<groupId>io.agrest</groupId>
 			<artifactId>agrest-annotations</artifactId>
@@ -265,7 +265,7 @@
 		<versionQualifier>beta</versionQualifier>
 		<project.scm.id>oceanops-scm-server</project.scm.id>
 		<java.version>14</java.version>
-		<agrest.version>4.3</agrest.version>
+		<agrest.version>4.4</agrest.version>
 		<cayenne.version>4.2.M2</cayenne.version>
 	</properties>
 	<url>www.ocean-ops.org/api/${project.version}/</url>

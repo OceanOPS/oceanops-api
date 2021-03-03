@@ -77,7 +77,7 @@ public class PlatformAccessor {
 	public DataResponse<Ptf> getOneByRef(@PathParam("ref") String ref, @Context UriInfo uriInfo) {
 		SelectBuilder<Ptf> sBuilder = Ag.select(Ptf.class, config);
 
-		AgRequest agRequest = Ag.request(config).exp(Ptf.REF.eq(ref).toString()).build();
+		AgRequest agRequest = Ag.request(config).andExp(Ptf.REF.eq(ref).toString()).build();
 		
 		Authorization.applySelectAuthorization(sBuilder);
 
@@ -92,7 +92,7 @@ public class PlatformAccessor {
 	public DataResponse<Ptf> getOneByWigosId(@PathParam("wigosid") String wigosid, @Context UriInfo uriInfo){		
 		SelectBuilder<Ptf> sBuilder = Ag.select(Ptf.class, config);
 		
-		AgRequest agRequest = Ag.request(config).exp(
+		AgRequest agRequest = Ag.request(config).andExp(
 			Ptf.PTF_IDENTIFIERS.dot(PtfIdentifiers.WIGOS_REF).eq(wigosid).toString()
 		).build(); 
 		

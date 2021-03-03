@@ -121,7 +121,7 @@ public class VocabAccessor {
 	@Produces(MediaType.APPLICATION_JSON + ";" + MediaType.CHARSET_PARAMETER + "=utf-8")
     public DataResponse<Network> getObservingNetworks(@Context UriInfo uriInfo) {
 		SelectBuilder<Network> select = Ag.select(Network.class, config);
-		AgRequest agRequest = Ag.request(config).exp(Network.RANK.eq(new BigDecimal(0)).toString()).build(); 
+		AgRequest agRequest = Ag.request(config).andExp(Network.RANK.eq(new BigDecimal(0)).toString()).build(); 
 		select.request(agRequest);
 		
 		return select.uri(uriInfo).get();
@@ -162,7 +162,7 @@ public class VocabAccessor {
     public DataResponse<Variable> getVariables(@Context UriInfo uriInfo) {
 		SelectBuilder<Variable> sBuilder = Ag.select(Variable.class, config);
 		
-		AgRequest agRequest = Ag.request(config).exp(
+		AgRequest agRequest = Ag.request(config).andExp(
 			Variable.ID.in(ObjectSelect.columnQuery(PtfVariable.class, PtfVariable.VARIABLE.dot(Variable.ID)).distinct().select(context))
 				.andExp(Variable.NAME.nlike("GEN%"))
 				.toString()
