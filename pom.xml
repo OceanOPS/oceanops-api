@@ -96,24 +96,6 @@
 						</plugins>
 					</configuration>
 				</plugin>
-				<plugin>
-					<groupId>org.apache.cayenne.plugins</groupId>
-					<artifactId>cayenne-maven-plugin</artifactId>
-					<version>${cayenne.version}</version>
-				
-					<dependencies>
-						<dependency>
-							<groupId>com.oracle.database.jdbc</groupId>
-							<artifactId>ojdbc10</artifactId>
-							<version>19.8.0.0</version>
-						</dependency>
-					</dependencies>
-				
-					<configuration>
-						<map>${project.basedir}/src/main/resources/datamap.map.xml</map>
-						<cayenneProject>${project.basedir}/src/main/resources/cayenne-OceanOPS-API.xml</cayenneProject>
-					</configuration>
-				</plugin>
 			</plugins>
 		</pluginManagement>
 		<resources>
@@ -130,6 +112,13 @@
 				<groupId>org.glassfish.jersey</groupId>
 				<artifactId>jersey-bom</artifactId>
 				<version>${jersey.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>			
+			<dependency>
+				<groupId>io.agrest</groupId>
+				<artifactId>agrest-bom</artifactId>
+				<version>${agrest.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -240,22 +229,17 @@
 			<artifactId>jaxb-xjc</artifactId>
 			<version>2.1.10.1</version>
 		</dependency>
-		
-
 		<dependency>
 			<groupId>io.agrest</groupId>
 			<artifactId>agrest-engine</artifactId>
-			<version>${agrest.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.agrest</groupId>
 			<artifactId>agrest-cayenne</artifactId>
-			<version>${agrest.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.agrest</groupId>
 			<artifactId>agrest-annotations</artifactId>
-			<version>${agrest.version}</version>
 		</dependency>
 	</dependencies>
 	<properties>
@@ -266,7 +250,6 @@
 		<project.scm.id>oceanops-scm-server</project.scm.id>
 		<java.version>14</java.version>
 		<agrest.version>4.4</agrest.version>
-		<cayenne.version>4.2.M2</cayenne.version>
 	</properties>
 	<url>www.ocean-ops.org/api/${project.version}/</url>
 </project>
