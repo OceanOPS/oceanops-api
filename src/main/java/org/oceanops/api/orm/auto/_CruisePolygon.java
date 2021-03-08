@@ -10,6 +10,7 @@ import org.apache.cayenne.exp.property.BaseProperty;
 import org.apache.cayenne.exp.property.EntityProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
+import org.apache.cayenne.value.Wkt;
 import org.oceanops.api.orm.Cruise;
 
 /**
@@ -25,11 +26,11 @@ public abstract class _CruisePolygon extends BaseDataObject {
     public static final String CRUISE_ID_PK_COLUMN = "CRUISE_ID";
 
     public static final NumericProperty<BigDecimal> CRUISE_ID = PropertyFactory.createNumeric("cruiseId", BigDecimal.class);
-    public static final BaseProperty<byte[]> SHAPE = PropertyFactory.createBase("shape", byte[].class);
+    public static final BaseProperty<Wkt> SHAPE = PropertyFactory.createBase("shape", Wkt.class);
     public static final EntityProperty<Cruise> CRUISE = PropertyFactory.createEntity("cruise", Cruise.class);
 
     protected BigDecimal cruiseId;
-    protected byte[] shape;
+    protected Wkt shape;
 
     protected Object cruise;
 
@@ -43,12 +44,12 @@ public abstract class _CruisePolygon extends BaseDataObject {
         return this.cruiseId;
     }
 
-    public void setShape(byte[] shape) {
+    public void setShape(Wkt shape) {
         beforePropertyWrite("shape", this.shape, shape);
         this.shape = shape;
     }
 
-    public byte[] getShape() {
+    public Wkt getShape() {
         beforePropertyRead("shape");
         return this.shape;
     }
@@ -90,7 +91,7 @@ public abstract class _CruisePolygon extends BaseDataObject {
                 this.cruiseId = (BigDecimal)val;
                 break;
             case "shape":
-                this.shape = (byte[])val;
+                this.shape = (Wkt)val;
                 break;
             case "cruise":
                 this.cruise = val;
@@ -120,7 +121,7 @@ public abstract class _CruisePolygon extends BaseDataObject {
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
         this.cruiseId = (BigDecimal)in.readObject();
-        this.shape = (byte[])in.readObject();
+        this.shape = (Wkt)in.readObject();
         this.cruise = in.readObject();
     }
 

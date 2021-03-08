@@ -96,6 +96,14 @@
 						</plugins>
 					</configuration>
 				</plugin>
+				<plugin>
+					<groupId>org.apache.cayenne.plugins</groupId>
+					<artifactId>cayenne-modeler-maven-plugin</artifactId>
+					<version>${cayenne.version}</version>
+					<configuration>
+						<modelFile>${project.basedir}/src/main/resources/cayenne-OceanOPS-API.xml</modelFile>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 		<resources>
@@ -250,6 +258,7 @@
 		<project.scm.id>oceanops-scm-server</project.scm.id>
 		<java.version>14</java.version>
 		<agrest.version>4.4</agrest.version>
+		<cayenne.version>4.2.M2</cayenne.version>
 	</properties>
 	<url>www.ocean-ops.org/api/${project.version}/</url>
 </project>

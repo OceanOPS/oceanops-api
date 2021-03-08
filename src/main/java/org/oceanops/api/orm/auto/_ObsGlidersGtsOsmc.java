@@ -15,6 +15,7 @@ import org.apache.cayenne.exp.property.ListProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
+import org.apache.cayenne.value.Wkt;
 import org.oceanops.api.orm.ObsDataStatus;
 import org.oceanops.api.orm.ObsGlidersGtsOsmcVariable;
 import org.oceanops.api.orm.Ptf;
@@ -36,7 +37,7 @@ public abstract class _ObsGlidersGtsOsmc extends BaseDataObject {
     public static final DateProperty<LocalDateTime> INSERT_DATE = PropertyFactory.createDate("insertDate", LocalDateTime.class);
     public static final DateProperty<LocalDateTime> LATEST_DISTRIBUTION_DATE = PropertyFactory.createDate("latestDistributionDate", LocalDateTime.class);
     public static final DateProperty<LocalDateTime> OBS_DATE = PropertyFactory.createDate("obsDate", LocalDateTime.class);
-    public static final BaseProperty<byte[]> SHAPE = PropertyFactory.createBase("shape", byte[].class);
+    public static final BaseProperty<Wkt> SHAPE = PropertyFactory.createBase("shape", Wkt.class);
     public static final DateProperty<LocalDateTime> UPDATE_DATE = PropertyFactory.createDate("updateDate", LocalDateTime.class);
     public static final StringProperty<String> WMO = PropertyFactory.createString("wmo", String.class);
     public static final EntityProperty<ObsDataStatus> OBS_DATA_STATUS = PropertyFactory.createEntity("obsDataStatus", ObsDataStatus.class);
@@ -48,7 +49,7 @@ public abstract class _ObsGlidersGtsOsmc extends BaseDataObject {
     protected LocalDateTime insertDate;
     protected LocalDateTime latestDistributionDate;
     protected LocalDateTime obsDate;
-    protected byte[] shape;
+    protected Wkt shape;
     protected LocalDateTime updateDate;
     protected String wmo;
 
@@ -106,12 +107,12 @@ public abstract class _ObsGlidersGtsOsmc extends BaseDataObject {
         return this.obsDate;
     }
 
-    public void setShape(byte[] shape) {
+    public void setShape(Wkt shape) {
         beforePropertyWrite("shape", this.shape, shape);
         this.shape = shape;
     }
 
-    public byte[] getShape() {
+    public Wkt getShape() {
         beforePropertyRead("shape");
         return this.shape;
     }
@@ -222,7 +223,7 @@ public abstract class _ObsGlidersGtsOsmc extends BaseDataObject {
                 this.obsDate = (LocalDateTime)val;
                 break;
             case "shape":
-                this.shape = (byte[])val;
+                this.shape = (Wkt)val;
                 break;
             case "updateDate":
                 this.updateDate = (LocalDateTime)val;
@@ -276,7 +277,7 @@ public abstract class _ObsGlidersGtsOsmc extends BaseDataObject {
         this.insertDate = (LocalDateTime)in.readObject();
         this.latestDistributionDate = (LocalDateTime)in.readObject();
         this.obsDate = (LocalDateTime)in.readObject();
-        this.shape = (byte[])in.readObject();
+        this.shape = (Wkt)in.readObject();
         this.updateDate = (LocalDateTime)in.readObject();
         this.wmo = (String)in.readObject();
         this.obsDataStatus = in.readObject();

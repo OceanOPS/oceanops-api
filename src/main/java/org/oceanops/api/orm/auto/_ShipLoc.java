@@ -12,6 +12,7 @@ import org.apache.cayenne.exp.property.DateProperty;
 import org.apache.cayenne.exp.property.EntityProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
+import org.apache.cayenne.value.Wkt;
 import org.oceanops.api.orm.Ship;
 
 /**
@@ -30,16 +31,16 @@ public abstract class _ShipLoc extends BaseDataObject {
     public static final DateProperty<LocalDateTime> LOC_DATE = PropertyFactory.createDate("locDate", LocalDateTime.class);
     public static final NumericProperty<BigDecimal> LOC_QUALITY = PropertyFactory.createNumeric("locQuality", BigDecimal.class);
     public static final NumericProperty<BigDecimal> LOC_SYSTEM_ID = PropertyFactory.createNumeric("locSystemId", BigDecimal.class);
-    public static final BaseProperty<byte[]> SHAPE = PropertyFactory.createBase("shape", byte[].class);
-    public static final BaseProperty<byte[]> SHAPE_IMG = PropertyFactory.createBase("shapeImg", byte[].class);
+    public static final BaseProperty<Wkt> SHAPE = PropertyFactory.createBase("shape", Wkt.class);
+    public static final BaseProperty<Wkt> SHAPE_IMG = PropertyFactory.createBase("shapeImg", Wkt.class);
     public static final EntityProperty<Ship> SHIP = PropertyFactory.createEntity("ship", Ship.class);
 
     protected BigDecimal id;
     protected LocalDateTime locDate;
     protected BigDecimal locQuality;
     protected BigDecimal locSystemId;
-    protected byte[] shape;
-    protected byte[] shapeImg;
+    protected Wkt shape;
+    protected Wkt shapeImg;
 
     protected Object ship;
 
@@ -83,22 +84,22 @@ public abstract class _ShipLoc extends BaseDataObject {
         return this.locSystemId;
     }
 
-    public void setShape(byte[] shape) {
+    public void setShape(Wkt shape) {
         beforePropertyWrite("shape", this.shape, shape);
         this.shape = shape;
     }
 
-    public byte[] getShape() {
+    public Wkt getShape() {
         beforePropertyRead("shape");
         return this.shape;
     }
 
-    public void setShapeImg(byte[] shapeImg) {
+    public void setShapeImg(Wkt shapeImg) {
         beforePropertyWrite("shapeImg", this.shapeImg, shapeImg);
         this.shapeImg = shapeImg;
     }
 
-    public byte[] getShapeImg() {
+    public Wkt getShapeImg() {
         beforePropertyRead("shapeImg");
         return this.shapeImg;
     }
@@ -157,10 +158,10 @@ public abstract class _ShipLoc extends BaseDataObject {
                 this.locSystemId = (BigDecimal)val;
                 break;
             case "shape":
-                this.shape = (byte[])val;
+                this.shape = (Wkt)val;
                 break;
             case "shapeImg":
-                this.shapeImg = (byte[])val;
+                this.shapeImg = (Wkt)val;
                 break;
             case "ship":
                 this.ship = val;
@@ -197,8 +198,8 @@ public abstract class _ShipLoc extends BaseDataObject {
         this.locDate = (LocalDateTime)in.readObject();
         this.locQuality = (BigDecimal)in.readObject();
         this.locSystemId = (BigDecimal)in.readObject();
-        this.shape = (byte[])in.readObject();
-        this.shapeImg = (byte[])in.readObject();
+        this.shape = (Wkt)in.readObject();
+        this.shapeImg = (Wkt)in.readObject();
         this.ship = in.readObject();
     }
 

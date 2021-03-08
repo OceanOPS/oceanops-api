@@ -13,6 +13,7 @@ import org.apache.cayenne.exp.property.ListProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
+import org.apache.cayenne.value.Wkt;
 import org.oceanops.api.orm.AgencyDacType;
 import org.oceanops.api.orm.AgencyPtf;
 import org.oceanops.api.orm.AgencySiteRole;
@@ -57,7 +58,7 @@ public abstract class _Agency extends BaseDataObject {
     public static final NumericProperty<BigDecimal> POGO_MEMBER = PropertyFactory.createNumeric("pogoMember", BigDecimal.class);
     public static final NumericProperty<BigDecimal> PURCHASER = PropertyFactory.createNumeric("purchaser", BigDecimal.class);
     public static final StringProperty<String> REF = PropertyFactory.createString("ref", String.class);
-    public static final BaseProperty<byte[]> SHAPE = PropertyFactory.createBase("shape", byte[].class);
+    public static final BaseProperty<Wkt> SHAPE = PropertyFactory.createBase("shape", Wkt.class);
     public static final StringProperty<String> TEL = PropertyFactory.createString("tel", String.class);
     public static final ListProperty<AgencyDacType> AGENCY_DAC_TYPES = PropertyFactory.createList("agencyDacTypes", AgencyDacType.class);
     public static final ListProperty<AgencyPtf> AGENCY_PTFS = PropertyFactory.createList("agencyPtfs", AgencyPtf.class);
@@ -93,7 +94,7 @@ public abstract class _Agency extends BaseDataObject {
     protected BigDecimal pogoMember;
     protected BigDecimal purchaser;
     protected String ref;
-    protected byte[] shape;
+    protected Wkt shape;
     protected String tel;
 
     protected Object agencyDacTypes;
@@ -238,12 +239,12 @@ public abstract class _Agency extends BaseDataObject {
         return this.ref;
     }
 
-    public void setShape(byte[] shape) {
+    public void setShape(Wkt shape) {
         beforePropertyWrite("shape", this.shape, shape);
         this.shape = shape;
     }
 
-    public byte[] getShape() {
+    public Wkt getShape() {
         beforePropertyRead("shape");
         return this.shape;
     }
@@ -642,7 +643,7 @@ public abstract class _Agency extends BaseDataObject {
                 this.ref = (String)val;
                 break;
             case "shape":
-                this.shape = (byte[])val;
+                this.shape = (Wkt)val;
                 break;
             case "tel":
                 this.tel = (String)val;
@@ -778,7 +779,7 @@ public abstract class _Agency extends BaseDataObject {
         this.pogoMember = (BigDecimal)in.readObject();
         this.purchaser = (BigDecimal)in.readObject();
         this.ref = (String)in.readObject();
-        this.shape = (byte[])in.readObject();
+        this.shape = (Wkt)in.readObject();
         this.tel = (String)in.readObject();
         this.agencyDacTypes = in.readObject();
         this.agencyPtfs = in.readObject();

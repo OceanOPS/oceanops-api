@@ -13,6 +13,7 @@ import org.apache.cayenne.exp.property.ListProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
+import org.apache.cayenne.value.Wkt;
 import org.oceanops.api.orm.NetworkSite;
 import org.oceanops.api.orm.SiteFamily;
 import org.oceanops.api.orm.SitePtf;
@@ -34,7 +35,7 @@ public abstract class _Site extends BaseDataObject {
     public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> NAME_SHORT = PropertyFactory.createString("nameShort", String.class);
-    public static final BaseProperty<byte[]> SHAPE = PropertyFactory.createBase("shape", byte[].class);
+    public static final BaseProperty<Wkt> SHAPE = PropertyFactory.createBase("shape", Wkt.class);
     public static final NumericProperty<BigDecimal> TARGETED_OCCUPATION = PropertyFactory.createNumeric("targetedOccupation", BigDecimal.class);
     public static final StringProperty<String> WKT = PropertyFactory.createString("wkt", String.class);
     public static final ListProperty<NetworkSite> NETWORK_SITES = PropertyFactory.createList("networkSites", NetworkSite.class);
@@ -46,7 +47,7 @@ public abstract class _Site extends BaseDataObject {
     protected BigDecimal id;
     protected String name;
     protected String nameShort;
-    protected byte[] shape;
+    protected Wkt shape;
     protected BigDecimal targetedOccupation;
     protected String wkt;
 
@@ -95,12 +96,12 @@ public abstract class _Site extends BaseDataObject {
         return this.nameShort;
     }
 
-    public void setShape(byte[] shape) {
+    public void setShape(Wkt shape) {
         beforePropertyWrite("shape", this.shape, shape);
         this.shape = shape;
     }
 
-    public byte[] getShape() {
+    public Wkt getShape() {
         beforePropertyRead("shape");
         return this.shape;
     }
@@ -221,7 +222,7 @@ public abstract class _Site extends BaseDataObject {
                 this.nameShort = (String)val;
                 break;
             case "shape":
-                this.shape = (byte[])val;
+                this.shape = (Wkt)val;
                 break;
             case "targetedOccupation":
                 this.targetedOccupation = (BigDecimal)val;
@@ -277,7 +278,7 @@ public abstract class _Site extends BaseDataObject {
         this.id = (BigDecimal)in.readObject();
         this.name = (String)in.readObject();
         this.nameShort = (String)in.readObject();
-        this.shape = (byte[])in.readObject();
+        this.shape = (Wkt)in.readObject();
         this.targetedOccupation = (BigDecimal)in.readObject();
         this.wkt = (String)in.readObject();
         this.networkSites = in.readObject();

@@ -14,6 +14,7 @@ import org.apache.cayenne.exp.property.ListProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
+import org.apache.cayenne.value.Wkt;
 import org.oceanops.api.orm.ObsGlidersGdacDs;
 import org.oceanops.api.orm.ObsGlidersGdacVariable;
 
@@ -44,7 +45,7 @@ public abstract class _ObsGlidersGdac extends BaseDataObject {
     public static final NumericProperty<BigDecimal> OBS_DATA_STATUS_ID = PropertyFactory.createNumeric("obsDataStatusId", BigDecimal.class);
     public static final DateProperty<LocalDateTime> OBS_DATE = PropertyFactory.createDate("obsDate", LocalDateTime.class);
     public static final NumericProperty<BigDecimal> PTF_ID = PropertyFactory.createNumeric("ptfId", BigDecimal.class);
-    public static final BaseProperty<byte[]> SHAPE = PropertyFactory.createBase("shape", byte[].class);
+    public static final BaseProperty<Wkt> SHAPE = PropertyFactory.createBase("shape", Wkt.class);
     public static final DateProperty<LocalDateTime> UPDATE_DATE = PropertyFactory.createDate("updateDate", LocalDateTime.class);
     public static final StringProperty<String> WMO = PropertyFactory.createString("wmo", String.class);
     public static final ListProperty<ObsGlidersGdacDs> OBS_GLIDERS_GDAC_DSS = PropertyFactory.createList("obsGlidersGdacDss", ObsGlidersGdacDs.class);
@@ -65,7 +66,7 @@ public abstract class _ObsGlidersGdac extends BaseDataObject {
     protected BigDecimal obsDataStatusId;
     protected LocalDateTime obsDate;
     protected BigDecimal ptfId;
-    protected byte[] shape;
+    protected Wkt shape;
     protected LocalDateTime updateDate;
     protected String wmo;
 
@@ -222,12 +223,12 @@ public abstract class _ObsGlidersGdac extends BaseDataObject {
         return this.ptfId;
     }
 
-    public void setShape(byte[] shape) {
+    public void setShape(Wkt shape) {
         beforePropertyWrite("shape", this.shape, shape);
         this.shape = shape;
     }
 
-    public byte[] getShape() {
+    public Wkt getShape() {
         beforePropertyRead("shape");
         return this.shape;
     }
@@ -383,7 +384,7 @@ public abstract class _ObsGlidersGdac extends BaseDataObject {
                 this.ptfId = (BigDecimal)val;
                 break;
             case "shape":
-                this.shape = (byte[])val;
+                this.shape = (Wkt)val;
                 break;
             case "updateDate":
                 this.updateDate = (LocalDateTime)val;
@@ -453,7 +454,7 @@ public abstract class _ObsGlidersGdac extends BaseDataObject {
         this.obsDataStatusId = (BigDecimal)in.readObject();
         this.obsDate = (LocalDateTime)in.readObject();
         this.ptfId = (BigDecimal)in.readObject();
-        this.shape = (byte[])in.readObject();
+        this.shape = (Wkt)in.readObject();
         this.updateDate = (LocalDateTime)in.readObject();
         this.wmo = (String)in.readObject();
         this.obsGlidersGdacDss = in.readObject();

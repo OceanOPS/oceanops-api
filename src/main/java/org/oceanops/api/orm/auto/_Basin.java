@@ -13,6 +13,7 @@ import org.apache.cayenne.exp.property.ListProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
+import org.apache.cayenne.value.Wkt;
 import org.oceanops.api.orm.BasinType;
 import org.oceanops.api.orm.CountryCommitment;
 
@@ -34,7 +35,7 @@ public abstract class _Basin extends BaseDataObject {
     public static final StringProperty<String> NAME_SHORT = PropertyFactory.createString("nameShort", String.class);
     public static final StringProperty<String> OCEAN = PropertyFactory.createString("ocean", String.class);
     public static final NumericProperty<BigDecimal> RANK = PropertyFactory.createNumeric("rank", BigDecimal.class);
-    public static final BaseProperty<byte[]> SHAPE = PropertyFactory.createBase("shape", byte[].class);
+    public static final BaseProperty<Wkt> SHAPE = PropertyFactory.createBase("shape", Wkt.class);
     public static final StringProperty<String> SUBOCEAN = PropertyFactory.createString("subocean", String.class);
     public static final EntityProperty<BasinType> BASIN_TYPE = PropertyFactory.createEntity("basinType", BasinType.class);
     public static final ListProperty<CountryCommitment> COUNTRY_COMMITMENTS = PropertyFactory.createList("countryCommitments", CountryCommitment.class);
@@ -45,7 +46,7 @@ public abstract class _Basin extends BaseDataObject {
     protected String nameShort;
     protected String ocean;
     protected BigDecimal rank;
-    protected byte[] shape;
+    protected Wkt shape;
     protected String subocean;
 
     protected Object basinType;
@@ -111,12 +112,12 @@ public abstract class _Basin extends BaseDataObject {
         return this.rank;
     }
 
-    public void setShape(byte[] shape) {
+    public void setShape(Wkt shape) {
         beforePropertyWrite("shape", this.shape, shape);
         this.shape = shape;
     }
 
-    public byte[] getShape() {
+    public Wkt getShape() {
         beforePropertyRead("shape");
         return this.shape;
     }
@@ -210,7 +211,7 @@ public abstract class _Basin extends BaseDataObject {
                 this.rank = (BigDecimal)val;
                 break;
             case "shape":
-                this.shape = (byte[])val;
+                this.shape = (Wkt)val;
                 break;
             case "subocean":
                 this.subocean = (String)val;
@@ -258,7 +259,7 @@ public abstract class _Basin extends BaseDataObject {
         this.nameShort = (String)in.readObject();
         this.ocean = (String)in.readObject();
         this.rank = (BigDecimal)in.readObject();
-        this.shape = (byte[])in.readObject();
+        this.shape = (Wkt)in.readObject();
         this.subocean = (String)in.readObject();
         this.basinType = in.readObject();
         this.countryCommitments = in.readObject();
