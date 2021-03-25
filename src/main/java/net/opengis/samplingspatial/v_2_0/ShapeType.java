@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import net.opengis.gml.v_3_2_1.AbstractGeometryType;
+import net.opengis.gml.v_3_2.AbstractGeometryType;
 import org.hisrc.w3c.xlink.v_1_0.ActuateType;
 import org.hisrc.w3c.xlink.v_1_0.ShowType;
 import org.hisrc.w3c.xlink.v_1_0.TypeType;

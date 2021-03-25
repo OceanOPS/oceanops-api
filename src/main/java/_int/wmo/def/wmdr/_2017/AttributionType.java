@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import net.opengis.gml.v_3_2_1.AbstractMetadataPropertyType;
+import net.opengis.gml.v_3_2.AbstractMetadataPropertyType;
 import net.opengis.iso19139.gmd.v_20070417.CIOnlineResourceType;
 import net.opengis.iso19139.gmd.v_20070417.CIResponsiblePartyType;
 import org.jvnet.jaxb2_commons.lang.CopyStrategy2;

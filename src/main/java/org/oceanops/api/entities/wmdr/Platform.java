@@ -52,17 +52,17 @@ import _int.wmo.def.wmdr._2017.ReportingStatusType;
 import _int.wmo.def.wmdr._2017.ResponsiblePartyType;
 import _int.wmo.def.wmdr._2017.TerritoryType;
 import _int.wmo.def.wmdr._2017.WIGOSMetadataRecordType;
-import net.opengis.gml.v_3_2_1.CodeType;
-import net.opengis.gml.v_3_2_1.CodeWithAuthorityType;
-import net.opengis.gml.v_3_2_1.DirectPositionType;
-import net.opengis.gml.v_3_2_1.GeometryPropertyType;
-import net.opengis.gml.v_3_2_1.MeasureType;
-import net.opengis.gml.v_3_2_1.PointType;
-import net.opengis.gml.v_3_2_1.ReferenceType;
-import net.opengis.gml.v_3_2_1.StringOrRefType;
-import net.opengis.gml.v_3_2_1.TimePeriodPropertyType;
-import net.opengis.gml.v_3_2_1.TimePeriodType;
-import net.opengis.gml.v_3_2_1.TimePositionType;
+import net.opengis.gml.v_3_2.CodeType;
+import net.opengis.gml.v_3_2.CodeWithAuthorityType;
+import net.opengis.gml.v_3_2.DirectPositionType;
+import net.opengis.gml.v_3_2.GeometryPropertyType;
+import net.opengis.gml.v_3_2.MeasureType;
+import net.opengis.gml.v_3_2.PointType;
+import net.opengis.gml.v_3_2.ReferenceType;
+import net.opengis.gml.v_3_2.StringOrRefType;
+import net.opengis.gml.v_3_2.TimePeriodPropertyType;
+import net.opengis.gml.v_3_2.TimePeriodType;
+import net.opengis.gml.v_3_2.TimePositionType;
 import net.opengis.iso19139.gco.v_20070417.CharacterStringPropertyType;
 import net.opengis.iso19139.gco.v_20070417.CodeListValueType;
 import net.opengis.iso19139.gmd.v_20070417.CIAddressPropertyType;
@@ -96,7 +96,7 @@ public class Platform {
 	//private net.opengis.sampling.v_2_0.ObjectFactory samOF;
 	//private net.opengis.samplingspatial.v_2_0.ObjectFactory samsOF;
 	private net.opengis.om.v_2_0.ObjectFactory omOF;
-	private net.opengis.gml.v_3_2_1.ObjectFactory gmlOF;
+	private net.opengis.gml.v_3_2.ObjectFactory gmlOF;
 	private WIGOSMetadataRecordType rootElementType;
 	private JAXBElement<WIGOSMetadataRecordType> rootElement;
 	private net.opengis.iso19139.gmd.v_20070417.ObjectFactory gmdOF;
@@ -124,14 +124,14 @@ public class Platform {
 	 */
 	public Platform() throws JAXBException {
 		this.cayenneContext = Utils.getCayenneContext();
-		this.jaxbContext = JAXBContext.newInstance("_int.wmo.def.wmdr._2017:_int.wmo.def.metce._2013:_int.wmo.def.opm._2013:net.opengis.gml.v_3_2_1:net.opengis.om.v_2_0:net.opengis.sampling.v_2_0:net.opengis.samplingspatial.v_2_0");
+		this.jaxbContext = JAXBContext.newInstance("_int.wmo.def.wmdr._2017:_int.wmo.def.metce._2013:_int.wmo.def.opm._2013:net.opengis.gml.v_3_2:net.opengis.om.v_2_0:net.opengis.sampling.v_2_0:net.opengis.samplingspatial.v_2_0");
 		this.wmdrOF = new _int.wmo.def.wmdr._2017.ObjectFactory();
 		//this.opmOF = new _int.wmo.def.opm._2013.ObjectFactory();
 		//this.metceOF = new _int.wmo.def.metce._2013.ObjectFactory();
 		//this.samOF = new net.opengis.sampling.v_2_0.ObjectFactory();
 		//this.samsOF = new net.opengis.samplingspatial.v_2_0.ObjectFactory();
 		this.omOF = new net.opengis.om.v_2_0.ObjectFactory();
-		this.gmlOF = new net.opengis.gml.v_3_2_1.ObjectFactory();
+		this.gmlOF = new net.opengis.gml.v_3_2.ObjectFactory();
 		this.gmdOF = new net.opengis.iso19139.gmd.v_20070417.ObjectFactory();
 		this.gcoOF = new net.opengis.iso19139.gco.v_20070417.ObjectFactory();
 

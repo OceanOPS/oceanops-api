@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
-import net.opengis.gml.v_3_2_1.ReferenceType;
+import net.opengis.gml.v_3_2.ReferenceType;
 import net.opengis.om.v_2_0.NamedValuePropertyType;
 import org.jvnet.jaxb2_commons.lang.CopyStrategy2;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy2;
@@ -53,7 +53,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
     _int.wmo.def.wmdr._2017.ProcessType.class
 })
 public class ProcessType
-    extends net.opengis.gml.v_3_2_1.AbstractFeatureType
+    extends net.opengis.gml.v_3_2.AbstractFeatureType
     implements Serializable
 {
 
