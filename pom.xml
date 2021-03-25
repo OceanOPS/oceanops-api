@@ -257,8 +257,8 @@
 		<versionQualifier>beta</versionQualifier>
 		<project.scm.id>oceanops-scm-server</project.scm.id>
 		<java.version>14</java.version>
-		<agrest.version>4.4</agrest.version>
-		<cayenne.version>4.2.M2</cayenne.version>
+		<agrest.version>4.5</agrest.version>
+		<cayenne.version>4.2.M3</cayenne.version>
 	</properties>
 	<url>www.ocean-ops.org/api/${project.version}/</url>
 </project>
