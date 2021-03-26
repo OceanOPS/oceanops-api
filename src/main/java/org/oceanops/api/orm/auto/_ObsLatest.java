@@ -8,13 +8,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
-import org.apache.cayenne.exp.property.BaseProperty;
 import org.apache.cayenne.exp.property.DateProperty;
 import org.apache.cayenne.exp.property.ListProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
-import org.apache.cayenne.value.Wkt;
 import org.oceanops.api.orm.Ptf;
 
 /**
@@ -35,7 +33,6 @@ public abstract class _ObsLatest extends BaseDataObject {
     public static final DateProperty<LocalDateTime> OBS_DATE = PropertyFactory.createDate("obsDate", LocalDateTime.class);
     public static final NumericProperty<BigDecimal> ORIGIN_ID = PropertyFactory.createNumeric("originId", BigDecimal.class);
     public static final StringProperty<String> ORIGIN_TABLE = PropertyFactory.createString("originTable", String.class);
-    public static final BaseProperty<Wkt> SHAPE = PropertyFactory.createBase("shape", Wkt.class);
     public static final ListProperty<Ptf> PTFS = PropertyFactory.createList("ptfs", Ptf.class);
 
     protected BigDecimal id;
@@ -44,7 +41,6 @@ public abstract class _ObsLatest extends BaseDataObject {
     protected LocalDateTime obsDate;
     protected BigDecimal originId;
     protected String originTable;
-    protected Wkt shape;
 
     protected Object ptfs;
 
@@ -108,16 +104,6 @@ public abstract class _ObsLatest extends BaseDataObject {
         return this.originTable;
     }
 
-    public void setShape(Wkt shape) {
-        beforePropertyWrite("shape", this.shape, shape);
-        this.shape = shape;
-    }
-
-    public Wkt getShape() {
-        beforePropertyRead("shape");
-        return this.shape;
-    }
-
     public void addToPtfs(Ptf obj) {
         addToManyTarget("ptfs", obj, true);
     }
@@ -150,8 +136,6 @@ public abstract class _ObsLatest extends BaseDataObject {
                 return this.originId;
             case "originTable":
                 return this.originTable;
-            case "shape":
-                return this.shape;
             case "ptfs":
                 return this.ptfs;
             default:
@@ -184,9 +168,6 @@ public abstract class _ObsLatest extends BaseDataObject {
             case "originTable":
                 this.originTable = (String)val;
                 break;
-            case "shape":
-                this.shape = (Wkt)val;
-                break;
             case "ptfs":
                 this.ptfs = val;
                 break;
@@ -212,7 +193,6 @@ public abstract class _ObsLatest extends BaseDataObject {
         out.writeObject(this.obsDate);
         out.writeObject(this.originId);
         out.writeObject(this.originTable);
-        out.writeObject(this.shape);
         out.writeObject(this.ptfs);
     }
 
@@ -225,7 +205,6 @@ public abstract class _ObsLatest extends BaseDataObject {
         this.obsDate = (LocalDateTime)in.readObject();
         this.originId = (BigDecimal)in.readObject();
         this.originTable = (String)in.readObject();
-        this.shape = (Wkt)in.readObject();
         this.ptfs = in.readObject();
     }
 

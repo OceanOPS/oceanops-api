@@ -51,7 +51,6 @@ public abstract class _Variable extends BaseDataObject {
     public static final StringProperty<String> P01REF = PropertyFactory.createString("p01Ref", String.class);
     public static final StringProperty<String> QC_REF = PropertyFactory.createString("qcRef", String.class);
     public static final StringProperty<String> WIGOS_CODE = PropertyFactory.createString("wigosCode", String.class);
-    public static final NumericProperty<BigDecimal> WIGOS_REF = PropertyFactory.createNumeric("wigosRef", BigDecimal.class);
     public static final ListProperty<CruiseVariable> CRUISE_VARIABLES = PropertyFactory.createList("cruiseVariables", CruiseVariable.class);
     public static final ListProperty<ObsArgoGdacVariable> OBS_ARGO_GDAC_VARIABLES = PropertyFactory.createList("obsArgoGdacVariables", ObsArgoGdacVariable.class);
     public static final ListProperty<ObsGlidersGdacVariable> OBS_GLIDERS_GDAC_VARIABLES = PropertyFactory.createList("obsGlidersGdacVariables", ObsGlidersGdacVariable.class);
@@ -79,7 +78,6 @@ public abstract class _Variable extends BaseDataObject {
     protected String p01Ref;
     protected String qcRef;
     protected String wigosCode;
-    protected BigDecimal wigosRef;
 
     protected Object cruiseVariables;
     protected Object obsArgoGdacVariables;
@@ -223,16 +221,6 @@ public abstract class _Variable extends BaseDataObject {
     public String getWigosCode() {
         beforePropertyRead("wigosCode");
         return this.wigosCode;
-    }
-
-    public void setWigosRef(BigDecimal wigosRef) {
-        beforePropertyWrite("wigosRef", this.wigosRef, wigosRef);
-        this.wigosRef = wigosRef;
-    }
-
-    public BigDecimal getWigosRef() {
-        beforePropertyRead("wigosRef");
-        return this.wigosRef;
     }
 
     public void addToCruiseVariables(CruiseVariable obj) {
@@ -432,8 +420,6 @@ public abstract class _Variable extends BaseDataObject {
                 return this.qcRef;
             case "wigosCode":
                 return this.wigosCode;
-            case "wigosRef":
-                return this.wigosRef;
             case "cruiseVariables":
                 return this.cruiseVariables;
             case "obsArgoGdacVariables":
@@ -511,9 +497,6 @@ public abstract class _Variable extends BaseDataObject {
             case "wigosCode":
                 this.wigosCode = (String)val;
                 break;
-            case "wigosRef":
-                this.wigosRef = (BigDecimal)val;
-                break;
             case "cruiseVariables":
                 this.cruiseVariables = val;
                 break;
@@ -582,7 +565,6 @@ public abstract class _Variable extends BaseDataObject {
         out.writeObject(this.p01Ref);
         out.writeObject(this.qcRef);
         out.writeObject(this.wigosCode);
-        out.writeObject(this.wigosRef);
         out.writeObject(this.cruiseVariables);
         out.writeObject(this.obsArgoGdacVariables);
         out.writeObject(this.obsGlidersGdacVariables);
@@ -614,7 +596,6 @@ public abstract class _Variable extends BaseDataObject {
         this.p01Ref = (String)in.readObject();
         this.qcRef = (String)in.readObject();
         this.wigosCode = (String)in.readObject();
-        this.wigosRef = (BigDecimal)in.readObject();
         this.cruiseVariables = in.readObject();
         this.obsArgoGdacVariables = in.readObject();
         this.obsGlidersGdacVariables = in.readObject();

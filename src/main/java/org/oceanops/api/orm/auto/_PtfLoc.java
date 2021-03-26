@@ -8,13 +8,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
-import org.apache.cayenne.exp.property.BaseProperty;
 import org.apache.cayenne.exp.property.DateProperty;
 import org.apache.cayenne.exp.property.EntityProperty;
 import org.apache.cayenne.exp.property.ListProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
-import org.apache.cayenne.value.Wkt;
 import org.oceanops.api.orm.Doc;
 import org.oceanops.api.orm.LocSystem;
 import org.oceanops.api.orm.Obs;
@@ -37,12 +35,10 @@ public abstract class _PtfLoc extends BaseDataObject {
     public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
     public static final NumericProperty<BigDecimal> IMG_LAT = PropertyFactory.createNumeric("imgLat", BigDecimal.class);
     public static final NumericProperty<BigDecimal> IMG_LON = PropertyFactory.createNumeric("imgLon", BigDecimal.class);
-    public static final BaseProperty<Wkt> IMG_SHAPE = PropertyFactory.createBase("imgShape", Wkt.class);
     public static final NumericProperty<BigDecimal> LAT = PropertyFactory.createNumeric("lat", BigDecimal.class);
     public static final DateProperty<LocalDateTime> LOC_DATE = PropertyFactory.createDate("locDate", LocalDateTime.class);
     public static final NumericProperty<BigDecimal> LON = PropertyFactory.createNumeric("lon", BigDecimal.class);
     public static final NumericProperty<BigDecimal> QUALITY = PropertyFactory.createNumeric("quality", BigDecimal.class);
-    public static final BaseProperty<Wkt> SHAPE = PropertyFactory.createBase("shape", Wkt.class);
     public static final ListProperty<Doc> DOCS = PropertyFactory.createList("docs", Doc.class);
     public static final EntityProperty<LocSystem> LOC_SYSTEM = PropertyFactory.createEntity("locSystem", LocSystem.class);
     public static final ListProperty<Obs> OBSS = PropertyFactory.createList("obss", Obs.class);
@@ -53,12 +49,10 @@ public abstract class _PtfLoc extends BaseDataObject {
     protected BigDecimal id;
     protected BigDecimal imgLat;
     protected BigDecimal imgLon;
-    protected Wkt imgShape;
     protected BigDecimal lat;
     protected LocalDateTime locDate;
     protected BigDecimal lon;
     protected BigDecimal quality;
-    protected Wkt shape;
 
     protected Object docs;
     protected Object locSystem;
@@ -115,16 +109,6 @@ public abstract class _PtfLoc extends BaseDataObject {
         return this.imgLon;
     }
 
-    public void setImgShape(Wkt imgShape) {
-        beforePropertyWrite("imgShape", this.imgShape, imgShape);
-        this.imgShape = imgShape;
-    }
-
-    public Wkt getImgShape() {
-        beforePropertyRead("imgShape");
-        return this.imgShape;
-    }
-
     public void setLat(BigDecimal lat) {
         beforePropertyWrite("lat", this.lat, lat);
         this.lat = lat;
@@ -163,16 +147,6 @@ public abstract class _PtfLoc extends BaseDataObject {
     public BigDecimal getQuality() {
         beforePropertyRead("quality");
         return this.quality;
-    }
-
-    public void setShape(Wkt shape) {
-        beforePropertyWrite("shape", this.shape, shape);
-        this.shape = shape;
-    }
-
-    public Wkt getShape() {
-        beforePropertyRead("shape");
-        return this.shape;
     }
 
     public void addToDocs(Doc obj) {
@@ -234,8 +208,6 @@ public abstract class _PtfLoc extends BaseDataObject {
                 return this.imgLat;
             case "imgLon":
                 return this.imgLon;
-            case "imgShape":
-                return this.imgShape;
             case "lat":
                 return this.lat;
             case "locDate":
@@ -244,8 +216,6 @@ public abstract class _PtfLoc extends BaseDataObject {
                 return this.lon;
             case "quality":
                 return this.quality;
-            case "shape":
-                return this.shape;
             case "docs":
                 return this.docs;
             case "locSystem":
@@ -281,9 +251,6 @@ public abstract class _PtfLoc extends BaseDataObject {
             case "imgLon":
                 this.imgLon = (BigDecimal)val;
                 break;
-            case "imgShape":
-                this.imgShape = (Wkt)val;
-                break;
             case "lat":
                 this.lat = (BigDecimal)val;
                 break;
@@ -295,9 +262,6 @@ public abstract class _PtfLoc extends BaseDataObject {
                 break;
             case "quality":
                 this.quality = (BigDecimal)val;
-                break;
-            case "shape":
-                this.shape = (Wkt)val;
                 break;
             case "docs":
                 this.docs = val;
@@ -332,12 +296,10 @@ public abstract class _PtfLoc extends BaseDataObject {
         out.writeObject(this.id);
         out.writeObject(this.imgLat);
         out.writeObject(this.imgLon);
-        out.writeObject(this.imgShape);
         out.writeObject(this.lat);
         out.writeObject(this.locDate);
         out.writeObject(this.lon);
         out.writeObject(this.quality);
-        out.writeObject(this.shape);
         out.writeObject(this.docs);
         out.writeObject(this.locSystem);
         out.writeObject(this.obss);
@@ -352,12 +314,10 @@ public abstract class _PtfLoc extends BaseDataObject {
         this.id = (BigDecimal)in.readObject();
         this.imgLat = (BigDecimal)in.readObject();
         this.imgLon = (BigDecimal)in.readObject();
-        this.imgShape = (Wkt)in.readObject();
         this.lat = (BigDecimal)in.readObject();
         this.locDate = (LocalDateTime)in.readObject();
         this.lon = (BigDecimal)in.readObject();
         this.quality = (BigDecimal)in.readObject();
-        this.shape = (Wkt)in.readObject();
         this.docs = in.readObject();
         this.locSystem = in.readObject();
         this.obss = in.readObject();

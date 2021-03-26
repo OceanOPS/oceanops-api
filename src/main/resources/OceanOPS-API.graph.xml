@@ -178,7 +178,7 @@
 		<entity name="ObsTsunaGtsOsmcVariable" x="398.59" y="1517.33" width="150.0" height="66.0"/>
 		<entity name="NetworkEndingCause" x="1114.94" y="1153.73" width="121.0" height="66.0"/>
 		<entity name="Category" x="950.92" y="1053.34" width="61.0" height="98.0"/>
-		<entity name="Variable" x="1225.63" y="1015.88" width="75.0" height="258.0"/>
+		<entity name="Variable" x="1225.63" y="1015.88" width="75.0" height="242.0"/>
 		<entity name="Config" x="766.06" y="1228.4" width="68.0" height="178.0"/>
 		<entity name="GtsInstrumentType" x="820.28" y="1775.75" width="111.0" height="130.0"/>
 		<entity name="NetworkSite" x="619.73" y="1466.1" width="74.0" height="66.0"/>
@@ -229,7 +229,7 @@
 		<entity name="SHIP_TYPE" x="1492.36" y="507.99" width="108.0" height="114.0"/>
 		<entity name="LINE_DECADAL_STATUS" x="1653.51" y="593.18" width="135.0" height="82.0"/>
 		<entity name="ROLE" x="1049.92" y="406.02" width="78.0" height="130.0"/>
-		<entity name="VARIABLE" x="2201.26" y="792.92" width="116.0" height="274.0"/>
+		<entity name="VARIABLE" x="2201.26" y="792.92" width="116.0" height="258.0"/>
 		<entity name="AGENCY_SITE_ROLE" x="2389.84" y="1094.81" width="111.0" height="98.0"/>
 		<entity name="GTS_INSTRUMENT_TYPE" x="1938.51" y="923.22" width="139.0" height="130.0"/>
 		<entity name="QC_FEEDBACK_ERROR_TYPE" x="2244.49" y="951.09" width="157.0" height="98.0"/>

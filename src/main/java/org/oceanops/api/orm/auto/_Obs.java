@@ -8,14 +8,12 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
-import org.apache.cayenne.exp.property.BaseProperty;
 import org.apache.cayenne.exp.property.DateProperty;
 import org.apache.cayenne.exp.property.EntityProperty;
 import org.apache.cayenne.exp.property.ListProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
-import org.apache.cayenne.value.Wkt;
 import org.oceanops.api.orm.Agency;
 import org.oceanops.api.orm.DataFormat;
 import org.oceanops.api.orm.GtsCccc;
@@ -58,7 +56,6 @@ public abstract class _Obs extends BaseDataObject {
     public static final DateProperty<LocalDateTime> LATEST_DISTRIBUTION_DATE = PropertyFactory.createDate("latestDistributionDate", LocalDateTime.class);
     public static final DateProperty<LocalDateTime> OBS_DATE = PropertyFactory.createDate("obsDate", LocalDateTime.class);
     public static final DateProperty<LocalDateTime> OBS_END_DATE = PropertyFactory.createDate("obsEndDate", LocalDateTime.class);
-    public static final BaseProperty<Wkt> SHAPE = PropertyFactory.createBase("shape", Wkt.class);
     public static final DateProperty<LocalDateTime> UPDATE_DATE = PropertyFactory.createDate("updateDate", LocalDateTime.class);
     public static final StringProperty<String> WMO = PropertyFactory.createString("wmo", String.class);
     public static final EntityProperty<Agency> DAC = PropertyFactory.createEntity("dac", Agency.class);
@@ -92,7 +89,6 @@ public abstract class _Obs extends BaseDataObject {
     protected LocalDateTime latestDistributionDate;
     protected LocalDateTime obsDate;
     protected LocalDateTime obsEndDate;
-    protected Wkt shape;
     protected LocalDateTime updateDate;
     protected String wmo;
 
@@ -269,16 +265,6 @@ public abstract class _Obs extends BaseDataObject {
     public LocalDateTime getObsEndDate() {
         beforePropertyRead("obsEndDate");
         return this.obsEndDate;
-    }
-
-    public void setShape(Wkt shape) {
-        beforePropertyWrite("shape", this.shape, shape);
-        this.shape = shape;
-    }
-
-    public Wkt getShape() {
-        beforePropertyRead("shape");
-        return this.shape;
     }
 
     public void setUpdateDate(LocalDateTime updateDate) {
@@ -467,8 +453,6 @@ public abstract class _Obs extends BaseDataObject {
                 return this.obsDate;
             case "obsEndDate":
                 return this.obsEndDate;
-            case "shape":
-                return this.shape;
             case "updateDate":
                 return this.updateDate;
             case "wmo":
@@ -561,9 +545,6 @@ public abstract class _Obs extends BaseDataObject {
             case "obsEndDate":
                 this.obsEndDate = (LocalDateTime)val;
                 break;
-            case "shape":
-                this.shape = (Wkt)val;
-                break;
             case "updateDate":
                 this.updateDate = (LocalDateTime)val;
                 break;
@@ -644,7 +625,6 @@ public abstract class _Obs extends BaseDataObject {
         out.writeObject(this.latestDistributionDate);
         out.writeObject(this.obsDate);
         out.writeObject(this.obsEndDate);
-        out.writeObject(this.shape);
         out.writeObject(this.updateDate);
         out.writeObject(this.wmo);
         out.writeObject(this.dac);
@@ -682,7 +662,6 @@ public abstract class _Obs extends BaseDataObject {
         this.latestDistributionDate = (LocalDateTime)in.readObject();
         this.obsDate = (LocalDateTime)in.readObject();
         this.obsEndDate = (LocalDateTime)in.readObject();
-        this.shape = (Wkt)in.readObject();
         this.updateDate = (LocalDateTime)in.readObject();
         this.wmo = (String)in.readObject();
         this.dac = in.readObject();

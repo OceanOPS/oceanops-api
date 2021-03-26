@@ -8,14 +8,12 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
-import org.apache.cayenne.exp.property.BaseProperty;
 import org.apache.cayenne.exp.property.DateProperty;
 import org.apache.cayenne.exp.property.EntityProperty;
 import org.apache.cayenne.exp.property.ListProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
-import org.apache.cayenne.value.Wkt;
 import org.oceanops.api.orm.Agency;
 import org.oceanops.api.orm.Availability;
 import org.oceanops.api.orm.CruiseClass;
@@ -78,7 +76,6 @@ public abstract class _Cruise extends BaseDataObject {
     public static final StringProperty<String> REF_TMP = PropertyFactory.createString("refTmp", String.class);
     public static final NumericProperty<BigDecimal> ROUTE_PENDING = PropertyFactory.createNumeric("routePending", BigDecimal.class);
     public static final NumericProperty<BigDecimal> ROUTE_PRIVATE = PropertyFactory.createNumeric("routePrivate", BigDecimal.class);
-    public static final BaseProperty<Wkt> SHAPE = PropertyFactory.createBase("shape", Wkt.class);
     public static final NumericProperty<BigDecimal> SHIP_STOP = PropertyFactory.createNumeric("shipStop", BigDecimal.class);
     public static final NumericProperty<BigDecimal> STORAGE_CAPACITY = PropertyFactory.createNumeric("storageCapacity", BigDecimal.class);
     public static final NumericProperty<BigDecimal> UNOLS_ID = PropertyFactory.createNumeric("unolsId", BigDecimal.class);
@@ -135,7 +132,6 @@ public abstract class _Cruise extends BaseDataObject {
     protected String refTmp;
     protected BigDecimal routePending;
     protected BigDecimal routePrivate;
-    protected Wkt shape;
     protected BigDecimal shipStop;
     protected BigDecimal storageCapacity;
     protected BigDecimal unolsId;
@@ -416,16 +412,6 @@ public abstract class _Cruise extends BaseDataObject {
     public BigDecimal getRoutePrivate() {
         beforePropertyRead("routePrivate");
         return this.routePrivate;
-    }
-
-    public void setShape(Wkt shape) {
-        beforePropertyWrite("shape", this.shape, shape);
-        this.shape = shape;
-    }
-
-    public Wkt getShape() {
-        beforePropertyRead("shape");
-        return this.shape;
     }
 
     public void setShipStop(BigDecimal shipStop) {
@@ -797,8 +783,6 @@ public abstract class _Cruise extends BaseDataObject {
                 return this.routePending;
             case "routePrivate":
                 return this.routePrivate;
-            case "shape":
-                return this.shape;
             case "shipStop":
                 return this.shipStop;
             case "storageCapacity":
@@ -946,9 +930,6 @@ public abstract class _Cruise extends BaseDataObject {
             case "routePrivate":
                 this.routePrivate = (BigDecimal)val;
                 break;
-            case "shape":
-                this.shape = (Wkt)val;
-                break;
             case "shipStop":
                 this.shipStop = (BigDecimal)val;
                 break;
@@ -1080,7 +1061,6 @@ public abstract class _Cruise extends BaseDataObject {
         out.writeObject(this.refTmp);
         out.writeObject(this.routePending);
         out.writeObject(this.routePrivate);
-        out.writeObject(this.shape);
         out.writeObject(this.shipStop);
         out.writeObject(this.storageCapacity);
         out.writeObject(this.unolsId);
@@ -1141,7 +1121,6 @@ public abstract class _Cruise extends BaseDataObject {
         this.refTmp = (String)in.readObject();
         this.routePending = (BigDecimal)in.readObject();
         this.routePrivate = (BigDecimal)in.readObject();
-        this.shape = (Wkt)in.readObject();
         this.shipStop = (BigDecimal)in.readObject();
         this.storageCapacity = (BigDecimal)in.readObject();
         this.unolsId = (BigDecimal)in.readObject();

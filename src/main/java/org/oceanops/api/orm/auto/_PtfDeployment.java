@@ -7,13 +7,11 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.apache.cayenne.BaseDataObject;
-import org.apache.cayenne.exp.property.BaseProperty;
 import org.apache.cayenne.exp.property.DateProperty;
 import org.apache.cayenne.exp.property.EntityProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
-import org.apache.cayenne.value.Wkt;
 import org.oceanops.api.orm.Bufrcodeflag;
 import org.oceanops.api.orm.Contact;
 import org.oceanops.api.orm.Country;
@@ -51,7 +49,6 @@ public abstract class _PtfDeployment extends BaseDataObject {
     public static final NumericProperty<BigDecimal> NO_SITE = PropertyFactory.createNumeric("noSite", BigDecimal.class);
     public static final StringProperty<String> REF_STATION_ID = PropertyFactory.createString("refStationId", String.class);
     public static final NumericProperty<BigDecimal> SCORE = PropertyFactory.createNumeric("score", BigDecimal.class);
-    public static final BaseProperty<Wkt> SHAPE = PropertyFactory.createBase("shape", Wkt.class);
     public static final StringProperty<String> SHIP_NAME = PropertyFactory.createString("shipName", String.class);
     public static final NumericProperty<BigDecimal> WIND_SPEED = PropertyFactory.createNumeric("windSpeed", BigDecimal.class);
     public static final EntityProperty<Contact> CONTACT = PropertyFactory.createEntity("contact", Contact.class);
@@ -80,7 +77,6 @@ public abstract class _PtfDeployment extends BaseDataObject {
     protected BigDecimal noSite;
     protected String refStationId;
     protected BigDecimal score;
-    protected Wkt shape;
     protected String shipName;
     protected BigDecimal windSpeed;
 
@@ -254,16 +250,6 @@ public abstract class _PtfDeployment extends BaseDataObject {
         return this.score;
     }
 
-    public void setShape(Wkt shape) {
-        beforePropertyWrite("shape", this.shape, shape);
-        this.shape = shape;
-    }
-
-    public Wkt getShape() {
-        beforePropertyRead("shape");
-        return this.shape;
-    }
-
     public void setShipName(String shipName) {
         beforePropertyWrite("shipName", this.shipName, shipName);
         this.shipName = shipName;
@@ -395,8 +381,6 @@ public abstract class _PtfDeployment extends BaseDataObject {
                 return this.refStationId;
             case "score":
                 return this.score;
-            case "shape":
-                return this.shape;
             case "shipName":
                 return this.shipName;
             case "windSpeed":
@@ -479,9 +463,6 @@ public abstract class _PtfDeployment extends BaseDataObject {
             case "score":
                 this.score = (BigDecimal)val;
                 break;
-            case "shape":
-                this.shape = (Wkt)val;
-                break;
             case "shipName":
                 this.shipName = (String)val;
                 break;
@@ -547,7 +528,6 @@ public abstract class _PtfDeployment extends BaseDataObject {
         out.writeObject(this.noSite);
         out.writeObject(this.refStationId);
         out.writeObject(this.score);
-        out.writeObject(this.shape);
         out.writeObject(this.shipName);
         out.writeObject(this.windSpeed);
         out.writeObject(this.contact);
@@ -580,7 +560,6 @@ public abstract class _PtfDeployment extends BaseDataObject {
         this.noSite = (BigDecimal)in.readObject();
         this.refStationId = (String)in.readObject();
         this.score = (BigDecimal)in.readObject();
-        this.shape = (Wkt)in.readObject();
         this.shipName = (String)in.readObject();
         this.windSpeed = (BigDecimal)in.readObject();
         this.contact = in.readObject();

@@ -8,14 +8,12 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
-import org.apache.cayenne.exp.property.BaseProperty;
 import org.apache.cayenne.exp.property.DateProperty;
 import org.apache.cayenne.exp.property.EntityProperty;
 import org.apache.cayenne.exp.property.ListProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
-import org.apache.cayenne.value.Wkt;
 import org.oceanops.api.orm.ObsDataStatus;
 import org.oceanops.api.orm.ObsTsunaGtsOsmcVariable;
 import org.oceanops.api.orm.Ptf;
@@ -38,7 +36,6 @@ public abstract class _ObsTsunaGtsOsmc extends BaseDataObject {
     public static final DateProperty<LocalDateTime> INSERT_DATE = PropertyFactory.createDate("insertDate", LocalDateTime.class);
     public static final DateProperty<LocalDateTime> LATEST_DISTRIBUTION_DATE = PropertyFactory.createDate("latestDistributionDate", LocalDateTime.class);
     public static final DateProperty<LocalDateTime> OBS_DATE = PropertyFactory.createDate("obsDate", LocalDateTime.class);
-    public static final BaseProperty<Wkt> SHAPE = PropertyFactory.createBase("shape", Wkt.class);
     public static final DateProperty<LocalDateTime> UPDATE_DATE = PropertyFactory.createDate("updateDate", LocalDateTime.class);
     public static final StringProperty<String> WMO = PropertyFactory.createString("wmo", String.class);
     public static final EntityProperty<ObsDataStatus> OBS_DATA_STATUS = PropertyFactory.createEntity("obsDataStatus", ObsDataStatus.class);
@@ -51,7 +48,6 @@ public abstract class _ObsTsunaGtsOsmc extends BaseDataObject {
     protected LocalDateTime insertDate;
     protected LocalDateTime latestDistributionDate;
     protected LocalDateTime obsDate;
-    protected Wkt shape;
     protected LocalDateTime updateDate;
     protected String wmo;
 
@@ -117,16 +113,6 @@ public abstract class _ObsTsunaGtsOsmc extends BaseDataObject {
     public LocalDateTime getObsDate() {
         beforePropertyRead("obsDate");
         return this.obsDate;
-    }
-
-    public void setShape(Wkt shape) {
-        beforePropertyWrite("shape", this.shape, shape);
-        this.shape = shape;
-    }
-
-    public Wkt getShape() {
-        beforePropertyRead("shape");
-        return this.shape;
     }
 
     public void setUpdateDate(LocalDateTime updateDate) {
@@ -197,8 +183,6 @@ public abstract class _ObsTsunaGtsOsmc extends BaseDataObject {
                 return this.latestDistributionDate;
             case "obsDate":
                 return this.obsDate;
-            case "shape":
-                return this.shape;
             case "updateDate":
                 return this.updateDate;
             case "wmo":
@@ -239,9 +223,6 @@ public abstract class _ObsTsunaGtsOsmc extends BaseDataObject {
             case "obsDate":
                 this.obsDate = (LocalDateTime)val;
                 break;
-            case "shape":
-                this.shape = (Wkt)val;
-                break;
             case "updateDate":
                 this.updateDate = (LocalDateTime)val;
                 break;
@@ -279,7 +260,6 @@ public abstract class _ObsTsunaGtsOsmc extends BaseDataObject {
         out.writeObject(this.insertDate);
         out.writeObject(this.latestDistributionDate);
         out.writeObject(this.obsDate);
-        out.writeObject(this.shape);
         out.writeObject(this.updateDate);
         out.writeObject(this.wmo);
         out.writeObject(this.obsDataStatus);
@@ -296,7 +276,6 @@ public abstract class _ObsTsunaGtsOsmc extends BaseDataObject {
         this.insertDate = (LocalDateTime)in.readObject();
         this.latestDistributionDate = (LocalDateTime)in.readObject();
         this.obsDate = (LocalDateTime)in.readObject();
-        this.shape = (Wkt)in.readObject();
         this.updateDate = (LocalDateTime)in.readObject();
         this.wmo = (String)in.readObject();
         this.obsDataStatus = in.readObject();

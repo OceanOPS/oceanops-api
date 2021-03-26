@@ -12,7 +12,7 @@ import java.util.List;
 	"id","ref","refParent","endingDate","lastUpdate","activityCriterion","closureCriterion","validated","description","eNotificationDate","program",
 	"retrieval","ptfDepl","ptfHardware","ptfIdentifiers","endingCause","telecom","trackingSystem","backupTrackingSystem","ptfStatus","dataStatus","ptfModel",
 	"backupTelecom","insertDate","updateDate","nokReason","age","ageWeight","name","ptfAutomation","ptfInspection","ptfSoftware", "latestObs", 
-	"ptfPtfStatuses", "agencyPtfs", "networkPtfs", "lines", "wmos"})
+	"ptfPtfStatuses", "agencyPtfs", "networkPtfs", "lines", "wmos", "ptfVariables"})
 public class Ptf extends _Ptf {
 	private static final long serialVersionUID = 1L;
 

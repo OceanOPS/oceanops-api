@@ -7,13 +7,11 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
-import org.apache.cayenne.exp.property.BaseProperty;
 import org.apache.cayenne.exp.property.EntityProperty;
 import org.apache.cayenne.exp.property.ListProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
-import org.apache.cayenne.value.Wkt;
 import org.oceanops.api.orm.Cruise;
 import org.oceanops.api.orm.CruiseLine;
 import org.oceanops.api.orm.LineDecadalStatus;
@@ -40,7 +38,6 @@ public abstract class _Line extends BaseDataObject {
     public static final StringProperty<String> FROM_TO = PropertyFactory.createString("fromTo", String.class);
     public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
-    public static final BaseProperty<Wkt> SHAPE = PropertyFactory.createBase("shape", Wkt.class);
     public static final StringProperty<String> WKT = PropertyFactory.createString("wkt", String.class);
     public static final ListProperty<CruiseLine> CRUISE_LINES = PropertyFactory.createList("cruiseLines", CruiseLine.class);
     public static final ListProperty<Cruise> CRUISES = PropertyFactory.createList("cruises", Cruise.class);
@@ -56,7 +53,6 @@ public abstract class _Line extends BaseDataObject {
     protected String fromTo;
     protected BigDecimal id;
     protected String name;
-    protected Wkt shape;
     protected String wkt;
 
     protected Object cruiseLines;
@@ -98,16 +94,6 @@ public abstract class _Line extends BaseDataObject {
     public String getName() {
         beforePropertyRead("name");
         return this.name;
-    }
-
-    public void setShape(Wkt shape) {
-        beforePropertyWrite("shape", this.shape, shape);
-        this.shape = shape;
-    }
-
-    public Wkt getShape() {
-        beforePropertyRead("shape");
-        return this.shape;
     }
 
     public void setWkt(String wkt) {
@@ -248,8 +234,6 @@ public abstract class _Line extends BaseDataObject {
                 return this.id;
             case "name":
                 return this.name;
-            case "shape":
-                return this.shape;
             case "wkt":
                 return this.wkt;
             case "cruiseLines":
@@ -292,9 +276,6 @@ public abstract class _Line extends BaseDataObject {
                 break;
             case "name":
                 this.name = (String)val;
-                break;
-            case "shape":
-                this.shape = (Wkt)val;
                 break;
             case "wkt":
                 this.wkt = (String)val;
@@ -348,7 +329,6 @@ public abstract class _Line extends BaseDataObject {
         out.writeObject(this.fromTo);
         out.writeObject(this.id);
         out.writeObject(this.name);
-        out.writeObject(this.shape);
         out.writeObject(this.wkt);
         out.writeObject(this.cruiseLines);
         out.writeObject(this.cruises);
@@ -368,7 +348,6 @@ public abstract class _Line extends BaseDataObject {
         this.fromTo = (String)in.readObject();
         this.id = (BigDecimal)in.readObject();
         this.name = (String)in.readObject();
-        this.shape = (Wkt)in.readObject();
         this.wkt = (String)in.readObject();
         this.cruiseLines = in.readObject();
         this.cruises = in.readObject();
