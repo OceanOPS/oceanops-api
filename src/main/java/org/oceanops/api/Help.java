@@ -70,6 +70,16 @@ public class Help extends HttpServlet {
 		concept.put("urlParam", "sensortype");
 		concept.put("jsonUrl", "sensortype");
 		concepts.add(concept);
+		concept = new HashMap<String, String>();
+		concept.put("name", "Agency role");
+		concept.put("urlParam", "agencyrole");
+		concept.put("jsonUrl", "agencyrole");
+		concepts.add(concept);
+		concept = new HashMap<String, String>();
+		concept.put("name", "Contact role");
+		concept.put("urlParam", "contactrole");
+		concept.put("jsonUrl", "contactrole");
+		concepts.add(concept);
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

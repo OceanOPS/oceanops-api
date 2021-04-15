@@ -8,7 +8,7 @@
 <p>This API is primarily dedicated to the GOOS community and further to research and operational, oceanographic and meteorological communities, not to the large public.</p>
 <p>All rights reserved.</p>
 <p>
-	The information provided through this API may be freely used and copied for educational and other non-commercial purposes, provided that any reproduction of data (e.g. metadata, reference tables, etc.) be accompanied by an acknowledgement (credit, link) of JCOMMOPS as the source.
+	The information provided through this API may be freely used and copied for educational and other non-commercial purposes, provided that any reproduction of data (e.g. metadata, reference tables, etc.) be accompanied by an acknowledgement (credit, link) of OceanOPS as the source.
 	Any other use of the information requires permission from OceanOPS and requests should be directed to: support@ocean-ops.org.
 </p>
 <p>
