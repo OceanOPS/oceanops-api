@@ -288,8 +288,30 @@ public class Platform {
 
 		return headerInfo;
 	}
+	/**
+	 * Builds the SubEquipement list for the given platform. This correspond to the SensorModel database entity.
+	 * 
+	 * @param ptf The Ptf entity object from which data should be extracted
+	 * @return the Equipement list
+	 */
+	private List<EquipmentPropertyType> getSubEquipements(Ptf ptf) {
+		List<PtfVariable> ptfVariables = ptf.getPtfVariables();
+		ArrayList<EquipmentPropertyType> equipements = new ArrayList<>();
 
-	private EquipmentPropertyType getEquipmentPropertyType(PtfVariable ptfV, int increment, Variable variable) {
+		EquipmentPropertyType currentEquipment;
+		int sensorIncrement = 0;
+		for (PtfVariable pv : ptfVariables) {
+			if(pv.getSensorModel() != null && pv.getVariable().getWigosCode() != null){
+				currentEquipment = this. getEquipmentPropertyType(pv, sensorIncrement);
+				equipements.add(currentEquipment);
+			}
+		}
+
+		return equipements;
+	}
+
+	private EquipmentPropertyType getEquipmentPropertyType(PtfVariable ptfV, int increment) {
+		Variable variable = ptfV.getVariable();
 		EquipmentPropertyType currentEquipment;
 		EquipmentType currentEquipmentType;
 		SensorModel sm = ptfV.getSensorModel();
@@ -760,7 +782,7 @@ public class Platform {
 				DeploymentPropertyType deplP = this.wmdrOF.createDeploymentPropertyType();
 				DeploymentType depl = this.wmdrOF.createDeploymentType();
 				depl.setId("process-depl-" + pv.getId());
-				depl.setDeployedEquipment(this.getEquipmentPropertyType(pv, sensorIncrement, v));
+				depl.setDeployedEquipment(this.getEquipmentPropertyType(pv, sensorIncrement));
 				sensorIncrement++;
 
 				MeasureType mt = this.gmlOF.createMeasureType();
