@@ -294,6 +294,7 @@ public class Platform {
 	 * @param ptf The Ptf entity object from which data should be extracted
 	 * @return the Equipement list
 	 */
+	@SuppressWarnings("unused")
 	private List<EquipmentPropertyType> getSubEquipements(Ptf ptf) {
 		List<PtfVariable> ptfVariables = ptf.getPtfVariables();
 		ArrayList<EquipmentPropertyType> equipements = new ArrayList<>();
