@@ -9,10 +9,12 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.core.MediaType;
 
+import org.oceanops.api.Authorization;
 import org.oceanops.api.orm.Agency;
 import org.oceanops.api.orm.AgencyRole;
 
 import io.agrest.DataResponse;
+import io.agrest.SelectBuilder;
 import io.agrest.Ag;
 
 @Path("/")
@@ -24,19 +26,31 @@ public class AgencyAccessor {
 	@GET
     @Path("agency")
     public DataResponse<Agency> getAll(@Context UriInfo uriInfo) {
-        return Ag.select(Agency.class, config).uri(uriInfo).get();
+		SelectBuilder<Agency> sBuilder = Ag.select(Agency.class, config);
+
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).get();
     }
 	
     @GET
     @Path("agency/{id}")
 	public DataResponse<Agency> getOne(@PathParam("id") int id, @Context UriInfo uriInfo) {
-		return Ag.select(Agency.class, config).byId(id).uri(uriInfo).getOne();
+		SelectBuilder<Agency> sBuilder = Ag.select(Agency.class, config).byId(id);
+		
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).getOne();
 	}  
 
     
 	@GET
     @Path("agencyrole")
     public DataResponse<AgencyRole> getAllRoles(@Context UriInfo uriInfo) {
-        return Ag.select(AgencyRole.class, config).uri(uriInfo).get();
+		SelectBuilder<AgencyRole> sBuilder = Ag.select(AgencyRole.class, config);
+
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).get();
     }
 }

@@ -13,17 +13,11 @@ import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
 import org.oceanops.api.orm.CruiseVariable;
-import org.oceanops.api.orm.ObsArgoGdacVariable;
-import org.oceanops.api.orm.ObsGlidersGdacVariable;
-import org.oceanops.api.orm.ObsGlidersGtsOsmcVariable;
-import org.oceanops.api.orm.ObsTsunaGtsOsmcVariable;
-import org.oceanops.api.orm.ObsVariable;
 import org.oceanops.api.orm.PtfVariable;
 import org.oceanops.api.orm.QcFeedback;
 import org.oceanops.api.orm.QcFeedbackVariable;
 import org.oceanops.api.orm.SensorType;
 import org.oceanops.api.orm.VariableFamily;
-import org.oceanops.api.orm.VariableSub;
 import org.oceanops.api.orm.VariableVariableFamily;
 
 /**
@@ -52,17 +46,11 @@ public abstract class _Variable extends BaseDataObject {
     public static final StringProperty<String> QC_REF = PropertyFactory.createString("qcRef", String.class);
     public static final StringProperty<String> WIGOS_CODE = PropertyFactory.createString("wigosCode", String.class);
     public static final ListProperty<CruiseVariable> CRUISE_VARIABLES = PropertyFactory.createList("cruiseVariables", CruiseVariable.class);
-    public static final ListProperty<ObsArgoGdacVariable> OBS_ARGO_GDAC_VARIABLES = PropertyFactory.createList("obsArgoGdacVariables", ObsArgoGdacVariable.class);
-    public static final ListProperty<ObsGlidersGdacVariable> OBS_GLIDERS_GDAC_VARIABLES = PropertyFactory.createList("obsGlidersGdacVariables", ObsGlidersGdacVariable.class);
-    public static final ListProperty<ObsGlidersGtsOsmcVariable> OBS_GLIDERS_GTS_OSMC_VARIABLES = PropertyFactory.createList("obsGlidersGtsOsmcVariables", ObsGlidersGtsOsmcVariable.class);
-    public static final ListProperty<ObsTsunaGtsOsmcVariable> OBS_TSUNA_GTS_OSMC_VARIABLES = PropertyFactory.createList("obsTsunaGtsOsmcVariables", ObsTsunaGtsOsmcVariable.class);
-    public static final ListProperty<ObsVariable> OBS_VARIABLES = PropertyFactory.createList("obsVariables", ObsVariable.class);
     public static final ListProperty<PtfVariable> PTF_VARIABLES = PropertyFactory.createList("ptfVariables", PtfVariable.class);
     public static final ListProperty<QcFeedbackVariable> QC_FEEDBACK_VARIABLES = PropertyFactory.createList("qcFeedbackVariables", QcFeedbackVariable.class);
     public static final ListProperty<QcFeedback> QC_FEEDBACKS = PropertyFactory.createList("qcFeedbacks", QcFeedback.class);
     public static final ListProperty<SensorType> SENSOR_TYPES = PropertyFactory.createList("sensorTypes", SensorType.class);
     public static final EntityProperty<VariableFamily> VARIABLE_FAMILY = PropertyFactory.createEntity("variableFamily", VariableFamily.class);
-    public static final ListProperty<VariableSub> VARIABLE_SUBS = PropertyFactory.createList("variableSubs", VariableSub.class);
     public static final ListProperty<VariableVariableFamily> VARIABLE_VARIABLE_FAMILIES = PropertyFactory.createList("variableVariableFamilies", VariableVariableFamily.class);
 
     protected String argoRef;
@@ -80,17 +68,11 @@ public abstract class _Variable extends BaseDataObject {
     protected String wigosCode;
 
     protected Object cruiseVariables;
-    protected Object obsArgoGdacVariables;
-    protected Object obsGlidersGdacVariables;
-    protected Object obsGlidersGtsOsmcVariables;
-    protected Object obsTsunaGtsOsmcVariables;
-    protected Object obsVariables;
     protected Object ptfVariables;
     protected Object qcFeedbackVariables;
     protected Object qcFeedbacks;
     protected Object sensorTypes;
     protected Object variableFamily;
-    protected Object variableSubs;
     protected Object variableVariableFamilies;
 
     public void setArgoRef(String argoRef) {
@@ -236,71 +218,6 @@ public abstract class _Variable extends BaseDataObject {
         return (List<CruiseVariable>)readProperty("cruiseVariables");
     }
 
-    public void addToObsArgoGdacVariables(ObsArgoGdacVariable obj) {
-        addToManyTarget("obsArgoGdacVariables", obj, true);
-    }
-
-    public void removeFromObsArgoGdacVariables(ObsArgoGdacVariable obj) {
-        removeToManyTarget("obsArgoGdacVariables", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<ObsArgoGdacVariable> getObsArgoGdacVariables() {
-        return (List<ObsArgoGdacVariable>)readProperty("obsArgoGdacVariables");
-    }
-
-    public void addToObsGlidersGdacVariables(ObsGlidersGdacVariable obj) {
-        addToManyTarget("obsGlidersGdacVariables", obj, true);
-    }
-
-    public void removeFromObsGlidersGdacVariables(ObsGlidersGdacVariable obj) {
-        removeToManyTarget("obsGlidersGdacVariables", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<ObsGlidersGdacVariable> getObsGlidersGdacVariables() {
-        return (List<ObsGlidersGdacVariable>)readProperty("obsGlidersGdacVariables");
-    }
-
-    public void addToObsGlidersGtsOsmcVariables(ObsGlidersGtsOsmcVariable obj) {
-        addToManyTarget("obsGlidersGtsOsmcVariables", obj, true);
-    }
-
-    public void removeFromObsGlidersGtsOsmcVariables(ObsGlidersGtsOsmcVariable obj) {
-        removeToManyTarget("obsGlidersGtsOsmcVariables", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<ObsGlidersGtsOsmcVariable> getObsGlidersGtsOsmcVariables() {
-        return (List<ObsGlidersGtsOsmcVariable>)readProperty("obsGlidersGtsOsmcVariables");
-    }
-
-    public void addToObsTsunaGtsOsmcVariables(ObsTsunaGtsOsmcVariable obj) {
-        addToManyTarget("obsTsunaGtsOsmcVariables", obj, true);
-    }
-
-    public void removeFromObsTsunaGtsOsmcVariables(ObsTsunaGtsOsmcVariable obj) {
-        removeToManyTarget("obsTsunaGtsOsmcVariables", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<ObsTsunaGtsOsmcVariable> getObsTsunaGtsOsmcVariables() {
-        return (List<ObsTsunaGtsOsmcVariable>)readProperty("obsTsunaGtsOsmcVariables");
-    }
-
-    public void addToObsVariables(ObsVariable obj) {
-        addToManyTarget("obsVariables", obj, true);
-    }
-
-    public void removeFromObsVariables(ObsVariable obj) {
-        removeToManyTarget("obsVariables", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<ObsVariable> getObsVariables() {
-        return (List<ObsVariable>)readProperty("obsVariables");
-    }
-
     public void addToPtfVariables(PtfVariable obj) {
         addToManyTarget("ptfVariables", obj, true);
     }
@@ -361,19 +278,6 @@ public abstract class _Variable extends BaseDataObject {
         return (VariableFamily)readProperty("variableFamily");
     }
 
-    public void addToVariableSubs(VariableSub obj) {
-        addToManyTarget("variableSubs", obj, true);
-    }
-
-    public void removeFromVariableSubs(VariableSub obj) {
-        removeToManyTarget("variableSubs", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<VariableSub> getVariableSubs() {
-        return (List<VariableSub>)readProperty("variableSubs");
-    }
-
     public void addToVariableVariableFamilies(VariableVariableFamily obj) {
         addToManyTarget("variableVariableFamilies", obj, true);
     }
@@ -422,16 +326,6 @@ public abstract class _Variable extends BaseDataObject {
                 return this.wigosCode;
             case "cruiseVariables":
                 return this.cruiseVariables;
-            case "obsArgoGdacVariables":
-                return this.obsArgoGdacVariables;
-            case "obsGlidersGdacVariables":
-                return this.obsGlidersGdacVariables;
-            case "obsGlidersGtsOsmcVariables":
-                return this.obsGlidersGtsOsmcVariables;
-            case "obsTsunaGtsOsmcVariables":
-                return this.obsTsunaGtsOsmcVariables;
-            case "obsVariables":
-                return this.obsVariables;
             case "ptfVariables":
                 return this.ptfVariables;
             case "qcFeedbackVariables":
@@ -442,8 +336,6 @@ public abstract class _Variable extends BaseDataObject {
                 return this.sensorTypes;
             case "variableFamily":
                 return this.variableFamily;
-            case "variableSubs":
-                return this.variableSubs;
             case "variableVariableFamilies":
                 return this.variableVariableFamilies;
             default:
@@ -500,21 +392,6 @@ public abstract class _Variable extends BaseDataObject {
             case "cruiseVariables":
                 this.cruiseVariables = val;
                 break;
-            case "obsArgoGdacVariables":
-                this.obsArgoGdacVariables = val;
-                break;
-            case "obsGlidersGdacVariables":
-                this.obsGlidersGdacVariables = val;
-                break;
-            case "obsGlidersGtsOsmcVariables":
-                this.obsGlidersGtsOsmcVariables = val;
-                break;
-            case "obsTsunaGtsOsmcVariables":
-                this.obsTsunaGtsOsmcVariables = val;
-                break;
-            case "obsVariables":
-                this.obsVariables = val;
-                break;
             case "ptfVariables":
                 this.ptfVariables = val;
                 break;
@@ -529,9 +406,6 @@ public abstract class _Variable extends BaseDataObject {
                 break;
             case "variableFamily":
                 this.variableFamily = val;
-                break;
-            case "variableSubs":
-                this.variableSubs = val;
                 break;
             case "variableVariableFamilies":
                 this.variableVariableFamilies = val;
@@ -566,17 +440,11 @@ public abstract class _Variable extends BaseDataObject {
         out.writeObject(this.qcRef);
         out.writeObject(this.wigosCode);
         out.writeObject(this.cruiseVariables);
-        out.writeObject(this.obsArgoGdacVariables);
-        out.writeObject(this.obsGlidersGdacVariables);
-        out.writeObject(this.obsGlidersGtsOsmcVariables);
-        out.writeObject(this.obsTsunaGtsOsmcVariables);
-        out.writeObject(this.obsVariables);
         out.writeObject(this.ptfVariables);
         out.writeObject(this.qcFeedbackVariables);
         out.writeObject(this.qcFeedbacks);
         out.writeObject(this.sensorTypes);
         out.writeObject(this.variableFamily);
-        out.writeObject(this.variableSubs);
         out.writeObject(this.variableVariableFamilies);
     }
 
@@ -597,17 +465,11 @@ public abstract class _Variable extends BaseDataObject {
         this.qcRef = (String)in.readObject();
         this.wigosCode = (String)in.readObject();
         this.cruiseVariables = in.readObject();
-        this.obsArgoGdacVariables = in.readObject();
-        this.obsGlidersGdacVariables = in.readObject();
-        this.obsGlidersGtsOsmcVariables = in.readObject();
-        this.obsTsunaGtsOsmcVariables = in.readObject();
-        this.obsVariables = in.readObject();
         this.ptfVariables = in.readObject();
         this.qcFeedbackVariables = in.readObject();
         this.qcFeedbacks = in.readObject();
         this.sensorTypes = in.readObject();
         this.variableFamily = in.readObject();
-        this.variableSubs = in.readObject();
         this.variableVariableFamilies = in.readObject();
     }
 

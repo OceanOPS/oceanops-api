@@ -24,7 +24,6 @@ import org.oceanops.api.orm.GtsRecorderType;
 import org.oceanops.api.orm.ObsDataStatus;
 import org.oceanops.api.orm.ObsObsDataStatus;
 import org.oceanops.api.orm.ObsVariable;
-import org.oceanops.api.orm.ObsVariableSub;
 import org.oceanops.api.orm.Ptf;
 import org.oceanops.api.orm.PtfLoc;
 
@@ -68,7 +67,6 @@ public abstract class _Obs extends BaseDataObject {
     public static final EntityProperty<GtsRecorderType> GTS_RECORDER_TYPE = PropertyFactory.createEntity("gtsRecorderType", GtsRecorderType.class);
     public static final EntityProperty<ObsDataStatus> OBS_DATA_STATUS = PropertyFactory.createEntity("obsDataStatus", ObsDataStatus.class);
     public static final ListProperty<ObsObsDataStatus> OBS_OBS_DATA_STATUSES = PropertyFactory.createList("obsObsDataStatuses", ObsObsDataStatus.class);
-    public static final ListProperty<ObsVariableSub> OBS_VARIABLE_SUBS = PropertyFactory.createList("obsVariableSubs", ObsVariableSub.class);
     public static final ListProperty<ObsVariable> OBS_VARIABLES = PropertyFactory.createList("obsVariables", ObsVariable.class);
     public static final EntityProperty<Ptf> PTF = PropertyFactory.createEntity("ptf", Ptf.class);
     public static final EntityProperty<PtfLoc> PTF_LOC = PropertyFactory.createEntity("ptfLoc", PtfLoc.class);
@@ -102,7 +100,6 @@ public abstract class _Obs extends BaseDataObject {
     protected Object gtsRecorderType;
     protected Object obsDataStatus;
     protected Object obsObsDataStatuses;
-    protected Object obsVariableSubs;
     protected Object obsVariables;
     protected Object ptf;
     protected Object ptfLoc;
@@ -372,19 +369,6 @@ public abstract class _Obs extends BaseDataObject {
         return (List<ObsObsDataStatus>)readProperty("obsObsDataStatuses");
     }
 
-    public void addToObsVariableSubs(ObsVariableSub obj) {
-        addToManyTarget("obsVariableSubs", obj, true);
-    }
-
-    public void removeFromObsVariableSubs(ObsVariableSub obj) {
-        removeToManyTarget("obsVariableSubs", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<ObsVariableSub> getObsVariableSubs() {
-        return (List<ObsVariableSub>)readProperty("obsVariableSubs");
-    }
-
     public void addToObsVariables(ObsVariable obj) {
         addToManyTarget("obsVariables", obj, true);
     }
@@ -477,8 +461,6 @@ public abstract class _Obs extends BaseDataObject {
                 return this.obsDataStatus;
             case "obsObsDataStatuses":
                 return this.obsObsDataStatuses;
-            case "obsVariableSubs":
-                return this.obsVariableSubs;
             case "obsVariables":
                 return this.obsVariables;
             case "ptf":
@@ -581,9 +563,6 @@ public abstract class _Obs extends BaseDataObject {
             case "obsObsDataStatuses":
                 this.obsObsDataStatuses = val;
                 break;
-            case "obsVariableSubs":
-                this.obsVariableSubs = val;
-                break;
             case "obsVariables":
                 this.obsVariables = val;
                 break;
@@ -637,7 +616,6 @@ public abstract class _Obs extends BaseDataObject {
         out.writeObject(this.gtsRecorderType);
         out.writeObject(this.obsDataStatus);
         out.writeObject(this.obsObsDataStatuses);
-        out.writeObject(this.obsVariableSubs);
         out.writeObject(this.obsVariables);
         out.writeObject(this.ptf);
         out.writeObject(this.ptfLoc);
@@ -674,7 +652,6 @@ public abstract class _Obs extends BaseDataObject {
         this.gtsRecorderType = in.readObject();
         this.obsDataStatus = in.readObject();
         this.obsObsDataStatuses = in.readObject();
-        this.obsVariableSubs = in.readObject();
         this.obsVariables = in.readObject();
         this.ptf = in.readObject();
         this.ptfLoc = in.readObject();

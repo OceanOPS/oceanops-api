@@ -1,6 +1,9 @@
 package org.oceanops.api;
 
+import java.util.ArrayList;
+
 import org.oceanops.api.orm.Contact;
+import org.oceanops.api.orm.Cruise;
 import org.oceanops.api.orm.ProgramContact;
 import org.oceanops.api.orm.PtfDeployment;
 import org.oceanops.api.orm.Ship;
@@ -44,8 +47,9 @@ public class Authorization {
     }
 
     public static SelectBuilder<?> applySelectAuthorization(SelectBuilder<?> sBuilder){
-        // Overlaying PtfDeployment
+        // If the user is not authenticated as an administrator
         if(!(Authentication.isAuthenticated() && Authentication.getContact().getAdmin().intValue() == 1)){
+            // Overlaying PtfDeployment
             sBuilder.entityOverlay(new AgEntityOverlay<PtfDeployment>(PtfDeployment.class).redefineToOne(
                     PtfDeployment.SHIP.getName(), Ship.class,
                     eo -> {
@@ -61,6 +65,31 @@ public class Authorization {
                     }             
                 )
             );
+            
+            // Overlaying ship
+            sBuilder.entityOverlay(new AgEntityOverlay<Ship>(Ship.class).exclude(
+                Ship.CONTACT_SEA_EMAIL.getName(),
+                Ship.CONTACT_SHORE_EMAIL.getName(),
+                Ship.CONTACT_SHORE_NAME.getName()
+            ).redefineToMany(
+                Ship.PTF_DEPLOYMENTS.getName(), PtfDeployment.class,
+                eo -> {
+                    if(eo.getHideMetadata().intValue() == 1){
+                        return new ArrayList<PtfDeployment>();
+                    }
+                    else
+                        return eo.getPtfDeployments();     
+                }             
+            ).redefineToMany(
+                Ship.CRUISES.getName(), Cruise.class,
+                eo -> {
+                    if(eo.getHideMetadata().intValue() == 1){
+                        return new ArrayList<Cruise>();
+                    }
+                    else
+                        return eo.getCruises();     
+                }             
+            ));
         }
 
         return sBuilder;

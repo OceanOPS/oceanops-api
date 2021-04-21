@@ -11,6 +11,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
 
+import org.oceanops.api.Authorization;
 import org.oceanops.api.orm.Country;
 import org.oceanops.api.orm.Network;
 import org.oceanops.api.orm.Program;
@@ -43,62 +44,110 @@ public class VocabAccessor {
 	@GET
 	@Path("platformstatus")
     public DataResponse<PtfStatus> getPtfStatuses(@Context UriInfo uriInfo) {
-        return Ag.select(PtfStatus.class, config).uri(uriInfo).get();
+		SelectBuilder<PtfStatus> sBuilder = Ag.select(PtfStatus.class, config);
+
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).get();
 	}
 	@GET
 	@Path("platformstatus/{id}")
     public DataResponse<PtfStatus> getPtfStatus(@PathParam("id") int id, @Context UriInfo uriInfo) {
-        return Ag.select(PtfStatus.class, config).uri(uriInfo).getOne();
+		SelectBuilder<PtfStatus> sBuilder = Ag.select(PtfStatus.class, config).byId(id);
+		
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).getOne();
 	}
 	@GET
 	@Path("platformfamily")
     public DataResponse<PtfFamily> getPtfFamilies(@Context UriInfo uriInfo) {
-        return Ag.select(PtfFamily.class, config).uri(uriInfo).get();
+		SelectBuilder<PtfFamily> sBuilder = Ag.select(PtfFamily.class, config);
+
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).get();
 	}
 	@GET
 	@Path("platformfamily/{id}")
     public DataResponse<PtfFamily> getPtfFamily(@PathParam("id") int id, @Context UriInfo uriInfo) {
-        return Ag.select(PtfFamily.class, config).uri(uriInfo).getOne();
+		SelectBuilder<PtfFamily> sBuilder = Ag.select(PtfFamily.class, config).byId(id);
+		
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).getOne();
 	}
 	@GET
 	@Path("platformtype")
     public DataResponse<PtfType> getPtfTypes(@Context UriInfo uriInfo) {
-        return Ag.select(PtfType.class, config).uri(uriInfo).get();
+		SelectBuilder<PtfType> sBuilder = Ag.select(PtfType.class, config);
+
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).get();
 	}
 	@GET
 	@Path("platformtype/{id}")
     public DataResponse<PtfType> getPtfType(@PathParam("id") int id, @Context UriInfo uriInfo) {
-        return Ag.select(PtfType.class, config).uri(uriInfo).getOne();
+		SelectBuilder<PtfType> sBuilder = Ag.select(PtfType.class, config).byId(id);
+		
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).getOne();
 	}
 	@GET
 	@Path("platformmodel")
     public DataResponse<PtfModel> getPtfModels(@Context UriInfo uriInfo) {
-        return Ag.select(PtfModel.class, config).uri(uriInfo).get();
+		SelectBuilder<PtfModel> sBuilder = Ag.select(PtfModel.class, config);
+
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).get();
 	}
 	@GET
 	@Path("platformmodel/{id}")
     public DataResponse<PtfModel> getPtfModel(@PathParam("id") int id, @Context UriInfo uriInfo) {
-        return Ag.select(PtfModel.class, config).uri(uriInfo).getOne();
+		SelectBuilder<PtfModel> sBuilder = Ag.select(PtfModel.class, config).byId(id);
+		
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).getOne();
 	}
 	@GET
 	@Path("program")
     public DataResponse<Program> getPrograms(@Context UriInfo uriInfo) {
-        return Ag.select(Program.class, config).uri(uriInfo).get();
+		SelectBuilder<Program> sBuilder = Ag.select(Program.class, config);
+
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).get();
 	}
 	@GET
 	@Path("program/{id}")
     public DataResponse<Program> getProgram(@PathParam("id") int id, @Context UriInfo uriInfo) {
-        return Ag.select(Program.class, config).uri(uriInfo).getOne();
+		SelectBuilder<Program> sBuilder = Ag.select(Program.class, config).byId(id);
+		
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).getOne();
 	}
 	@GET
 	@Path("network")
     public DataResponse<Network> getNetworks(@Context UriInfo uriInfo) {
-        return Ag.select(Network.class, config).uri(uriInfo).get();
+		SelectBuilder<Network> sBuilder = Ag.select(Network.class, config);
+
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).get();
 	}
 	@GET
 	@Path("network/{id}")
     public DataResponse<Network> getNetwork(@PathParam("id") int id, @Context UriInfo uriInfo) {
-        return Ag.select(Network.class, config).uri(uriInfo).getOne();
+		SelectBuilder<Network> sBuilder = Ag.select(Network.class, config).byId(id);
+		
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).getOne();
 	}
 
 	@GET
@@ -106,6 +155,8 @@ public class VocabAccessor {
     public DataResponse<Network> getObservingNetworks(@Context UriInfo uriInfo) {
 		SelectBuilder<Network> select = Ag.select(Network.class, config);
 		AgRequest agRequest = Ag.request(config).andExp(Network.RANK.eq(new BigDecimal(0)).toString()).build(); 
+
+		Authorization.applySelectAuthorization(select);
 		select.request(agRequest);
 		
 		return select.uri(uriInfo).get();
@@ -113,36 +164,57 @@ public class VocabAccessor {
 	@GET
 	@Path("observingnetwork/{id}")
     public DataResponse<Network> getObservingNetwork(@PathParam("id") int id, @Context UriInfo uriInfo) {
-        return Ag.select(Network.class, config).uri(uriInfo).getOne();
+		SelectBuilder<Network> sBuilder = Ag.select(Network.class, config).byId(id);
+		
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).getOne();
 	}
 	@GET
 	@Path("sensormodel")
     public DataResponse<SensorModel> getSensorModels(@Context UriInfo uriInfo) {
-        return Ag.select(SensorModel.class, config).uri(uriInfo).get();
+		SelectBuilder<SensorModel> sBuilder = Ag.select(SensorModel.class, config);
+
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).get();
 	}
 	@GET
 	@Path("sensormodel/{id}")
     public DataResponse<SensorModel> getSensorModel(@PathParam("id") int id, @Context UriInfo uriInfo) {
-        return Ag.select(SensorModel.class, config).uri(uriInfo).getOne();
+		SelectBuilder<SensorModel> sBuilder = Ag.select(SensorModel.class, config).byId(id);
+		
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).getOne();
 	}
 	@GET
 	@Path("sensortype")
     public DataResponse<SensorType> getSensorTypes(@Context UriInfo uriInfo) {
-        return Ag.select(SensorType.class, config).uri(uriInfo).get();
+		SelectBuilder<SensorType> sBuilder = Ag.select(SensorType.class, config);
+
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).get();
 	}
 	@GET
 	@Path("sensortype/{id}")
     public DataResponse<SensorType> getSensorType(@PathParam("id") int id, @Context UriInfo uriInfo) {
-        return Ag.select(SensorType.class, config).uri(uriInfo).getOne();
+		SelectBuilder<SensorType> sBuilder = Ag.select(SensorType.class, config).byId(id);
+		
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).getOne();
 	}
 	@GET
 	@Path("variable")
     public DataResponse<Variable> getVariables(@Context UriInfo uriInfo) {
 		SelectBuilder<Variable> sBuilder = Ag.select(Variable.class, config);
-		
 		AgRequest agRequest = Ag.request(config).andExp(
 			Variable.WIGOS_CODE.isNotNull().toString()
 		).build(); 
+		
+		Authorization.applySelectAuthorization(sBuilder);
 		sBuilder.request(agRequest);
 
 		return sBuilder.uri(uriInfo).get();
@@ -150,27 +222,47 @@ public class VocabAccessor {
 	@GET
 	@Path("variable/{id}")
     public DataResponse<Variable> getVariable(@PathParam("id") int id, @Context UriInfo uriInfo) {
-        return Ag.select(Variable.class, config).uri(uriInfo).getOne();
+		SelectBuilder<Variable> sBuilder = Ag.select(Variable.class, config).byId(id);
+		
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).getOne();
 	}
 	@GET
 	@Path("country")
     public DataResponse<Country> getCountries(@Context UriInfo uriInfo) {
-        return Ag.select(Country.class, config).uri(uriInfo).get();
+		SelectBuilder<Country> sBuilder = Ag.select(Country.class, config);
+
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).get();
 	}
 	@GET
 	@Path("country/{id}")
     public DataResponse<Country> getCountry(@PathParam("id") int id, @Context UriInfo uriInfo) {
-        return Ag.select(Country.class, config).uri(uriInfo).getOne();
+		SelectBuilder<Country> sBuilder = Ag.select(Country.class, config).byId(id);
+		
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).getOne();
 	}
 
 	@GET
 	@Path("contactrole")
     public DataResponse<Role> getRoles(@Context UriInfo uriInfo) {
-        return Ag.select(Role.class, config).uri(uriInfo).get();
+		SelectBuilder<Role> sBuilder = Ag.select(Role.class, config);
+
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).get();
 	}
 	@GET
 	@Path("contactrole/{id}")
     public DataResponse<Role> getRole(@PathParam("id") int id, @Context UriInfo uriInfo) {
-        return Ag.select(Role.class, config).uri(uriInfo).getOne();
+		SelectBuilder<Role> sBuilder = Ag.select(Role.class, config).byId(id);
+		
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).getOne();
 	}
 }

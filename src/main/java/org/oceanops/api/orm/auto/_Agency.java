@@ -20,8 +20,6 @@ import org.oceanops.api.orm.Country;
 import org.oceanops.api.orm.Cruise;
 import org.oceanops.api.orm.GtsCccc;
 import org.oceanops.api.orm.Image;
-import org.oceanops.api.orm.Obs;
-import org.oceanops.api.orm.ObsArgoGdac;
 import org.oceanops.api.orm.ProgramAgency;
 import org.oceanops.api.orm.PtfFirmware;
 import org.oceanops.api.orm.PtfHullType;
@@ -66,9 +64,6 @@ public abstract class _Agency extends BaseDataObject {
     public static final ListProperty<GtsCccc> GTS_CCCCS = PropertyFactory.createList("gtsCcccs", GtsCccc.class);
     public static final EntityProperty<Image> IMAGE = PropertyFactory.createEntity("image", Image.class);
     public static final ListProperty<Image> IMAGES = PropertyFactory.createList("images", Image.class);
-    public static final ListProperty<ObsArgoGdac> OBS_ARGO_GDACS = PropertyFactory.createList("obsArgoGdacs", ObsArgoGdac.class);
-    public static final ListProperty<Obs> OBSS = PropertyFactory.createList("obss", Obs.class);
-    public static final ListProperty<Obs> OBSS1 = PropertyFactory.createList("obss1", Obs.class);
     public static final ListProperty<ProgramAgency> PROGRAM_AGENCIES = PropertyFactory.createList("programAgencies", ProgramAgency.class);
     public static final ListProperty<PtfFirmware> PTF_FIRMWARES = PropertyFactory.createList("ptfFirmwares", PtfFirmware.class);
     public static final ListProperty<PtfHullType> PTF_HULL_TYPES = PropertyFactory.createList("ptfHullTypes", PtfHullType.class);
@@ -102,9 +97,6 @@ public abstract class _Agency extends BaseDataObject {
     protected Object gtsCcccs;
     protected Object image;
     protected Object images;
-    protected Object obsArgoGdacs;
-    protected Object obss;
-    protected Object obss1;
     protected Object programAgencies;
     protected Object ptfFirmwares;
     protected Object ptfHullTypes;
@@ -352,45 +344,6 @@ public abstract class _Agency extends BaseDataObject {
         return (List<Image>)readProperty("images");
     }
 
-    public void addToObsArgoGdacs(ObsArgoGdac obj) {
-        addToManyTarget("obsArgoGdacs", obj, true);
-    }
-
-    public void removeFromObsArgoGdacs(ObsArgoGdac obj) {
-        removeToManyTarget("obsArgoGdacs", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<ObsArgoGdac> getObsArgoGdacs() {
-        return (List<ObsArgoGdac>)readProperty("obsArgoGdacs");
-    }
-
-    public void addToObss(Obs obj) {
-        addToManyTarget("obss", obj, true);
-    }
-
-    public void removeFromObss(Obs obj) {
-        removeToManyTarget("obss", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<Obs> getObss() {
-        return (List<Obs>)readProperty("obss");
-    }
-
-    public void addToObss1(Obs obj) {
-        addToManyTarget("obss1", obj, true);
-    }
-
-    public void removeFromObss1(Obs obj) {
-        removeToManyTarget("obss1", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<Obs> getObss1() {
-        return (List<Obs>)readProperty("obss1");
-    }
-
     public void addToProgramAgencies(ProgramAgency obj) {
         addToManyTarget("programAgencies", obj, true);
     }
@@ -554,12 +507,6 @@ public abstract class _Agency extends BaseDataObject {
                 return this.image;
             case "images":
                 return this.images;
-            case "obsArgoGdacs":
-                return this.obsArgoGdacs;
-            case "obss":
-                return this.obss;
-            case "obss1":
-                return this.obss1;
             case "programAgencies":
                 return this.programAgencies;
             case "ptfFirmwares":
@@ -656,15 +603,6 @@ public abstract class _Agency extends BaseDataObject {
             case "images":
                 this.images = val;
                 break;
-            case "obsArgoGdacs":
-                this.obsArgoGdacs = val;
-                break;
-            case "obss":
-                this.obss = val;
-                break;
-            case "obss1":
-                this.obss1 = val;
-                break;
             case "programAgencies":
                 this.programAgencies = val;
                 break;
@@ -730,9 +668,6 @@ public abstract class _Agency extends BaseDataObject {
         out.writeObject(this.gtsCcccs);
         out.writeObject(this.image);
         out.writeObject(this.images);
-        out.writeObject(this.obsArgoGdacs);
-        out.writeObject(this.obss);
-        out.writeObject(this.obss1);
         out.writeObject(this.programAgencies);
         out.writeObject(this.ptfFirmwares);
         out.writeObject(this.ptfHullTypes);
@@ -769,9 +704,6 @@ public abstract class _Agency extends BaseDataObject {
         this.gtsCcccs = in.readObject();
         this.image = in.readObject();
         this.images = in.readObject();
-        this.obsArgoGdacs = in.readObject();
-        this.obss = in.readObject();
-        this.obss1 = in.readObject();
         this.programAgencies = in.readObject();
         this.ptfFirmwares = in.readObject();
         this.ptfHullTypes = in.readObject();

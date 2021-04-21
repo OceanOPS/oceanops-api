@@ -16,7 +16,6 @@ import org.oceanops.api.orm.AgencyDacType;
 import org.oceanops.api.orm.CountryCommitment;
 import org.oceanops.api.orm.Doc;
 import org.oceanops.api.orm.Image;
-import org.oceanops.api.orm.Indicator;
 import org.oceanops.api.orm.MapTypeNetwork;
 import org.oceanops.api.orm.NetworkContact;
 import org.oceanops.api.orm.NetworkCountry;
@@ -54,8 +53,6 @@ public abstract class _Network extends BaseDataObject {
     public static final ListProperty<CountryCommitment> COUNTRY_COMMITMENTS = PropertyFactory.createList("countryCommitments", CountryCommitment.class);
     public static final ListProperty<Doc> DOCS = PropertyFactory.createList("docs", Doc.class);
     public static final ListProperty<Image> IMAGES = PropertyFactory.createList("images", Image.class);
-    public static final ListProperty<Indicator> INDICATORS = PropertyFactory.createList("indicators", Indicator.class);
-    public static final ListProperty<Indicator> INDICATORS1 = PropertyFactory.createList("indicators1", Indicator.class);
     public static final ListProperty<MapTypeNetwork> MAP_TYPE_NETWORKS = PropertyFactory.createList("mapTypeNetworks", MapTypeNetwork.class);
     public static final ListProperty<NetworkContact> NETWORK_CONTACTS = PropertyFactory.createList("networkContacts", NetworkContact.class);
     public static final ListProperty<NetworkCountry> NETWORK_COUNTRIES = PropertyFactory.createList("networkCountries", NetworkCountry.class);
@@ -82,8 +79,6 @@ public abstract class _Network extends BaseDataObject {
     protected Object countryCommitments;
     protected Object docs;
     protected Object images;
-    protected Object indicators;
-    protected Object indicators1;
     protected Object mapTypeNetworks;
     protected Object networkContacts;
     protected Object networkCountries;
@@ -218,32 +213,6 @@ public abstract class _Network extends BaseDataObject {
     @SuppressWarnings("unchecked")
     public List<Image> getImages() {
         return (List<Image>)readProperty("images");
-    }
-
-    public void addToIndicators(Indicator obj) {
-        addToManyTarget("indicators", obj, true);
-    }
-
-    public void removeFromIndicators(Indicator obj) {
-        removeToManyTarget("indicators", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<Indicator> getIndicators() {
-        return (List<Indicator>)readProperty("indicators");
-    }
-
-    public void addToIndicators1(Indicator obj) {
-        addToManyTarget("indicators1", obj, true);
-    }
-
-    public void removeFromIndicators1(Indicator obj) {
-        removeToManyTarget("indicators1", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<Indicator> getIndicators1() {
-        return (List<Indicator>)readProperty("indicators1");
     }
 
     public void addToMapTypeNetworks(MapTypeNetwork obj) {
@@ -439,10 +408,6 @@ public abstract class _Network extends BaseDataObject {
                 return this.docs;
             case "images":
                 return this.images;
-            case "indicators":
-                return this.indicators;
-            case "indicators1":
-                return this.indicators1;
             case "mapTypeNetworks":
                 return this.mapTypeNetworks;
             case "networkContacts":
@@ -514,12 +479,6 @@ public abstract class _Network extends BaseDataObject {
             case "images":
                 this.images = val;
                 break;
-            case "indicators":
-                this.indicators = val;
-                break;
-            case "indicators1":
-                this.indicators1 = val;
-                break;
             case "mapTypeNetworks":
                 this.mapTypeNetworks = val;
                 break;
@@ -586,8 +545,6 @@ public abstract class _Network extends BaseDataObject {
         out.writeObject(this.countryCommitments);
         out.writeObject(this.docs);
         out.writeObject(this.images);
-        out.writeObject(this.indicators);
-        out.writeObject(this.indicators1);
         out.writeObject(this.mapTypeNetworks);
         out.writeObject(this.networkContacts);
         out.writeObject(this.networkCountries);
@@ -617,8 +574,6 @@ public abstract class _Network extends BaseDataObject {
         this.countryCommitments = in.readObject();
         this.docs = in.readObject();
         this.images = in.readObject();
-        this.indicators = in.readObject();
-        this.indicators1 = in.readObject();
         this.mapTypeNetworks = in.readObject();
         this.networkContacts = in.readObject();
         this.networkCountries = in.readObject();

@@ -48,7 +48,6 @@ import org.oceanops.api.orm.PtfSoftware;
 import org.oceanops.api.orm.PtfStatistics;
 import org.oceanops.api.orm.PtfStatus;
 import org.oceanops.api.orm.PtfVariable;
-import org.oceanops.api.orm.PtfVariableSub;
 import org.oceanops.api.orm.QcFeedback;
 import org.oceanops.api.orm.Retrieval;
 import org.oceanops.api.orm.Service;
@@ -124,7 +123,6 @@ public abstract class _Ptf extends BaseDataObject {
     public static final EntityProperty<PtfSoftware> PTF_SOFTWARE = PropertyFactory.createEntity("ptfSoftware", PtfSoftware.class);
     public static final EntityProperty<PtfStatistics> PTF_STATISTICS = PropertyFactory.createEntity("ptfStatistics", PtfStatistics.class);
     public static final EntityProperty<PtfStatus> PTF_STATUS = PropertyFactory.createEntity("ptfStatus", PtfStatus.class);
-    public static final ListProperty<PtfVariableSub> PTF_VARIABLE_SUBS = PropertyFactory.createList("ptfVariableSubs", PtfVariableSub.class);
     public static final ListProperty<PtfVariable> PTF_VARIABLES = PropertyFactory.createList("ptfVariables", PtfVariable.class);
     public static final ListProperty<QcFeedback> QC_FEEDBACKS = PropertyFactory.createList("qcFeedbacks", QcFeedback.class);
     public static final EntityProperty<Retrieval> RETRIEVAL = PropertyFactory.createEntity("retrieval", Retrieval.class);
@@ -191,7 +189,6 @@ public abstract class _Ptf extends BaseDataObject {
     protected Object ptfSoftware;
     protected Object ptfStatistics;
     protected Object ptfStatus;
-    protected Object ptfVariableSubs;
     protected Object ptfVariables;
     protected Object qcFeedbacks;
     protected Object retrieval;
@@ -759,19 +756,6 @@ public abstract class _Ptf extends BaseDataObject {
         return (PtfStatus)readProperty("ptfStatus");
     }
 
-    public void addToPtfVariableSubs(PtfVariableSub obj) {
-        addToManyTarget("ptfVariableSubs", obj, true);
-    }
-
-    public void removeFromPtfVariableSubs(PtfVariableSub obj) {
-        removeToManyTarget("ptfVariableSubs", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<PtfVariableSub> getPtfVariableSubs() {
-        return (List<PtfVariableSub>)readProperty("ptfVariableSubs");
-    }
-
     public void addToPtfVariables(PtfVariable obj) {
         addToManyTarget("ptfVariables", obj, true);
     }
@@ -1013,8 +997,6 @@ public abstract class _Ptf extends BaseDataObject {
                 return this.ptfStatistics;
             case "ptfStatus":
                 return this.ptfStatus;
-            case "ptfVariableSubs":
-                return this.ptfVariableSubs;
             case "ptfVariables":
                 return this.ptfVariables;
             case "qcFeedbacks":
@@ -1208,9 +1190,6 @@ public abstract class _Ptf extends BaseDataObject {
             case "ptfStatus":
                 this.ptfStatus = val;
                 break;
-            case "ptfVariableSubs":
-                this.ptfVariableSubs = val;
-                break;
             case "ptfVariables":
                 this.ptfVariables = val;
                 break;
@@ -1313,7 +1292,6 @@ public abstract class _Ptf extends BaseDataObject {
         out.writeObject(this.ptfSoftware);
         out.writeObject(this.ptfStatistics);
         out.writeObject(this.ptfStatus);
-        out.writeObject(this.ptfVariableSubs);
         out.writeObject(this.ptfVariables);
         out.writeObject(this.qcFeedbacks);
         out.writeObject(this.retrieval);
@@ -1383,7 +1361,6 @@ public abstract class _Ptf extends BaseDataObject {
         this.ptfSoftware = in.readObject();
         this.ptfStatistics = in.readObject();
         this.ptfStatus = in.readObject();
-        this.ptfVariableSubs = in.readObject();
         this.ptfVariables = in.readObject();
         this.qcFeedbacks = in.readObject();
         this.retrieval = in.readObject();

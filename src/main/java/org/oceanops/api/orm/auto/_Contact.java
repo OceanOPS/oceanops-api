@@ -30,7 +30,6 @@ import org.oceanops.api.orm.PtfDeployment;
 import org.oceanops.api.orm.PtfModel;
 import org.oceanops.api.orm.QcFeedback;
 import org.oceanops.api.orm.Service;
-import org.oceanops.api.orm.ShipRecruitment;
 import org.oceanops.api.orm.TelecomFormat;
 import org.oceanops.api.orm.UserGroupContact;
 import org.oceanops.api.orm.WebConnection;
@@ -88,7 +87,6 @@ public abstract class _Contact extends BaseDataObject {
     public static final ListProperty<QcFeedback> QC_FEEDBACKS = PropertyFactory.createList("qcFeedbacks", QcFeedback.class);
     public static final ListProperty<QcFeedback> QC_FEEDBACKS1 = PropertyFactory.createList("qcFeedbacks1", QcFeedback.class);
     public static final ListProperty<Service> SERVICES = PropertyFactory.createList("services", Service.class);
-    public static final ListProperty<ShipRecruitment> SHIP_RECRUITMENTS = PropertyFactory.createList("shipRecruitments", ShipRecruitment.class);
     public static final ListProperty<TelecomFormat> TELECOM_FORMATS = PropertyFactory.createList("telecomFormats", TelecomFormat.class);
     public static final ListProperty<UserGroupContact> USER_GROUP_CONTACTS = PropertyFactory.createList("userGroupContacts", UserGroupContact.class);
     public static final ListProperty<WebConnection> WEB_CONNECTIONS = PropertyFactory.createList("webConnections", WebConnection.class);
@@ -135,7 +133,6 @@ public abstract class _Contact extends BaseDataObject {
     protected Object qcFeedbacks;
     protected Object qcFeedbacks1;
     protected Object services;
-    protected Object shipRecruitments;
     protected Object telecomFormats;
     protected Object userGroupContacts;
     protected Object webConnections;
@@ -532,19 +529,6 @@ public abstract class _Contact extends BaseDataObject {
         return (List<Service>)readProperty("services");
     }
 
-    public void addToShipRecruitments(ShipRecruitment obj) {
-        addToManyTarget("shipRecruitments", obj, true);
-    }
-
-    public void removeFromShipRecruitments(ShipRecruitment obj) {
-        removeToManyTarget("shipRecruitments", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<ShipRecruitment> getShipRecruitments() {
-        return (List<ShipRecruitment>)readProperty("shipRecruitments");
-    }
-
     public void addToTelecomFormats(TelecomFormat obj) {
         addToManyTarget("telecomFormats", obj, true);
     }
@@ -729,8 +713,6 @@ public abstract class _Contact extends BaseDataObject {
                 return this.qcFeedbacks1;
             case "services":
                 return this.services;
-            case "shipRecruitments":
-                return this.shipRecruitments;
             case "telecomFormats":
                 return this.telecomFormats;
             case "userGroupContacts":
@@ -866,9 +848,6 @@ public abstract class _Contact extends BaseDataObject {
             case "services":
                 this.services = val;
                 break;
-            case "shipRecruitments":
-                this.shipRecruitments = val;
-                break;
             case "telecomFormats":
                 this.telecomFormats = val;
                 break;
@@ -947,7 +926,6 @@ public abstract class _Contact extends BaseDataObject {
         out.writeObject(this.qcFeedbacks);
         out.writeObject(this.qcFeedbacks1);
         out.writeObject(this.services);
-        out.writeObject(this.shipRecruitments);
         out.writeObject(this.telecomFormats);
         out.writeObject(this.userGroupContacts);
         out.writeObject(this.webConnections);
@@ -997,7 +975,6 @@ public abstract class _Contact extends BaseDataObject {
         this.qcFeedbacks = in.readObject();
         this.qcFeedbacks1 = in.readObject();
         this.services = in.readObject();
-        this.shipRecruitments = in.readObject();
         this.telecomFormats = in.readObject();
         this.userGroupContacts = in.readObject();
         this.webConnections = in.readObject();

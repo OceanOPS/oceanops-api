@@ -21,8 +21,6 @@ import org.oceanops.api.orm.Image;
 import org.oceanops.api.orm.PtfDeployment;
 import org.oceanops.api.orm.Retrieval;
 import org.oceanops.api.orm.ShipHistory;
-import org.oceanops.api.orm.ShipLoc;
-import org.oceanops.api.orm.ShipRecruitment;
 import org.oceanops.api.orm.ShipStatus;
 import org.oceanops.api.orm.ShipType;
 import org.oceanops.api.orm.Weblink;
@@ -79,8 +77,6 @@ public abstract class _Ship extends BaseDataObject {
     public static final ListProperty<PtfDeployment> PTF_DEPLOYMENTS = PropertyFactory.createList("ptfDeployments", PtfDeployment.class);
     public static final ListProperty<Retrieval> RETRIEVALS = PropertyFactory.createList("retrievals", Retrieval.class);
     public static final ListProperty<ShipHistory> SHIP_HISTORIES = PropertyFactory.createList("shipHistories", ShipHistory.class);
-    public static final ListProperty<ShipLoc> SHIP_LOCS = PropertyFactory.createList("shipLocs", ShipLoc.class);
-    public static final ListProperty<ShipRecruitment> SHIP_RECRUITMENTS = PropertyFactory.createList("shipRecruitments", ShipRecruitment.class);
     public static final EntityProperty<ShipStatus> SHIP_STATUS = PropertyFactory.createEntity("shipStatus", ShipStatus.class);
     public static final EntityProperty<ShipType> SHIP_TYPE = PropertyFactory.createEntity("shipType", ShipType.class);
     public static final EntityProperty<Weblink> WEBLINK = PropertyFactory.createEntity("weblink", Weblink.class);
@@ -126,8 +122,6 @@ public abstract class _Ship extends BaseDataObject {
     protected Object ptfDeployments;
     protected Object retrievals;
     protected Object shipHistories;
-    protected Object shipLocs;
-    protected Object shipRecruitments;
     protected Object shipStatus;
     protected Object shipType;
     protected Object weblink;
@@ -548,32 +542,6 @@ public abstract class _Ship extends BaseDataObject {
         return (List<ShipHistory>)readProperty("shipHistories");
     }
 
-    public void addToShipLocs(ShipLoc obj) {
-        addToManyTarget("shipLocs", obj, true);
-    }
-
-    public void removeFromShipLocs(ShipLoc obj) {
-        removeToManyTarget("shipLocs", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<ShipLoc> getShipLocs() {
-        return (List<ShipLoc>)readProperty("shipLocs");
-    }
-
-    public void addToShipRecruitments(ShipRecruitment obj) {
-        addToManyTarget("shipRecruitments", obj, true);
-    }
-
-    public void removeFromShipRecruitments(ShipRecruitment obj) {
-        removeToManyTarget("shipRecruitments", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<ShipRecruitment> getShipRecruitments() {
-        return (List<ShipRecruitment>)readProperty("shipRecruitments");
-    }
-
     public void setShipStatus(ShipStatus shipStatus) {
         setToOneTarget("shipStatus", shipStatus, true);
     }
@@ -685,10 +653,6 @@ public abstract class _Ship extends BaseDataObject {
                 return this.retrievals;
             case "shipHistories":
                 return this.shipHistories;
-            case "shipLocs":
-                return this.shipLocs;
-            case "shipRecruitments":
-                return this.shipRecruitments;
             case "shipStatus":
                 return this.shipStatus;
             case "shipType":
@@ -827,12 +791,6 @@ public abstract class _Ship extends BaseDataObject {
             case "shipHistories":
                 this.shipHistories = val;
                 break;
-            case "shipLocs":
-                this.shipLocs = val;
-                break;
-            case "shipRecruitments":
-                this.shipRecruitments = val;
-                break;
             case "shipStatus":
                 this.shipStatus = val;
                 break;
@@ -898,8 +856,6 @@ public abstract class _Ship extends BaseDataObject {
         out.writeObject(this.ptfDeployments);
         out.writeObject(this.retrievals);
         out.writeObject(this.shipHistories);
-        out.writeObject(this.shipLocs);
-        out.writeObject(this.shipRecruitments);
         out.writeObject(this.shipStatus);
         out.writeObject(this.shipType);
         out.writeObject(this.weblink);
@@ -948,8 +904,6 @@ public abstract class _Ship extends BaseDataObject {
         this.ptfDeployments = in.readObject();
         this.retrievals = in.readObject();
         this.shipHistories = in.readObject();
-        this.shipLocs = in.readObject();
-        this.shipRecruitments = in.readObject();
         this.shipStatus = in.readObject();
         this.shipType = in.readObject();
         this.weblink = in.readObject();

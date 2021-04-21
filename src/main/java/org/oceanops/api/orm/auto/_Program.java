@@ -16,13 +16,11 @@ import org.oceanops.api.orm.Country;
 import org.oceanops.api.orm.CruiseProgram;
 import org.oceanops.api.orm.Image;
 import org.oceanops.api.orm.LineProgram;
-import org.oceanops.api.orm.NcSubscription;
 import org.oceanops.api.orm.Network;
 import org.oceanops.api.orm.ProgramAgency;
 import org.oceanops.api.orm.ProgramContact;
 import org.oceanops.api.orm.Ptf;
 import org.oceanops.api.orm.PtfVariable;
-import org.oceanops.api.orm.ShipRecruitment;
 import org.oceanops.api.orm.Weblink;
 
 /**
@@ -47,13 +45,11 @@ public abstract class _Program extends BaseDataObject {
     public static final ListProperty<CruiseProgram> CRUISE_PROGRAMS = PropertyFactory.createList("cruisePrograms", CruiseProgram.class);
     public static final ListProperty<Image> IMAGES = PropertyFactory.createList("images", Image.class);
     public static final ListProperty<LineProgram> LINE_PROGRAMS = PropertyFactory.createList("linePrograms", LineProgram.class);
-    public static final ListProperty<NcSubscription> NC_SUBSCRIPTIONS = PropertyFactory.createList("ncSubscriptions", NcSubscription.class);
     public static final EntityProperty<Network> NETWORK = PropertyFactory.createEntity("network", Network.class);
     public static final ListProperty<ProgramAgency> PROGRAM_AGENCIES = PropertyFactory.createList("programAgencies", ProgramAgency.class);
     public static final ListProperty<ProgramContact> PROGRAM_CONTACTS = PropertyFactory.createList("programContacts", ProgramContact.class);
     public static final ListProperty<PtfVariable> PTF_VARIABLES = PropertyFactory.createList("ptfVariables", PtfVariable.class);
     public static final ListProperty<Ptf> PTFS = PropertyFactory.createList("ptfs", Ptf.class);
-    public static final ListProperty<ShipRecruitment> SHIP_RECRUITMENTS = PropertyFactory.createList("shipRecruitments", ShipRecruitment.class);
     public static final ListProperty<Weblink> WEBLINKS = PropertyFactory.createList("weblinks", Weblink.class);
 
     protected BigDecimal active;
@@ -67,13 +63,11 @@ public abstract class _Program extends BaseDataObject {
     protected Object cruisePrograms;
     protected Object images;
     protected Object linePrograms;
-    protected Object ncSubscriptions;
     protected Object network;
     protected Object programAgencies;
     protected Object programContacts;
     protected Object ptfVariables;
     protected Object ptfs;
-    protected Object shipRecruitments;
     protected Object weblinks;
 
     public void setActive(BigDecimal active) {
@@ -183,19 +177,6 @@ public abstract class _Program extends BaseDataObject {
         return (List<LineProgram>)readProperty("linePrograms");
     }
 
-    public void addToNcSubscriptions(NcSubscription obj) {
-        addToManyTarget("ncSubscriptions", obj, true);
-    }
-
-    public void removeFromNcSubscriptions(NcSubscription obj) {
-        removeToManyTarget("ncSubscriptions", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<NcSubscription> getNcSubscriptions() {
-        return (List<NcSubscription>)readProperty("ncSubscriptions");
-    }
-
     public void setNetwork(Network network) {
         setToOneTarget("network", network, true);
     }
@@ -256,19 +237,6 @@ public abstract class _Program extends BaseDataObject {
         return (List<Ptf>)readProperty("ptfs");
     }
 
-    public void addToShipRecruitments(ShipRecruitment obj) {
-        addToManyTarget("shipRecruitments", obj, true);
-    }
-
-    public void removeFromShipRecruitments(ShipRecruitment obj) {
-        removeToManyTarget("shipRecruitments", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<ShipRecruitment> getShipRecruitments() {
-        return (List<ShipRecruitment>)readProperty("shipRecruitments");
-    }
-
     public void addToWeblinks(Weblink obj) {
         addToManyTarget("weblinks", obj, true);
     }
@@ -309,8 +277,6 @@ public abstract class _Program extends BaseDataObject {
                 return this.images;
             case "linePrograms":
                 return this.linePrograms;
-            case "ncSubscriptions":
-                return this.ncSubscriptions;
             case "network":
                 return this.network;
             case "programAgencies":
@@ -321,8 +287,6 @@ public abstract class _Program extends BaseDataObject {
                 return this.ptfVariables;
             case "ptfs":
                 return this.ptfs;
-            case "shipRecruitments":
-                return this.shipRecruitments;
             case "weblinks":
                 return this.weblinks;
             default:
@@ -367,9 +331,6 @@ public abstract class _Program extends BaseDataObject {
             case "linePrograms":
                 this.linePrograms = val;
                 break;
-            case "ncSubscriptions":
-                this.ncSubscriptions = val;
-                break;
             case "network":
                 this.network = val;
                 break;
@@ -384,9 +345,6 @@ public abstract class _Program extends BaseDataObject {
                 break;
             case "ptfs":
                 this.ptfs = val;
-                break;
-            case "shipRecruitments":
-                this.shipRecruitments = val;
                 break;
             case "weblinks":
                 this.weblinks = val;
@@ -417,13 +375,11 @@ public abstract class _Program extends BaseDataObject {
         out.writeObject(this.cruisePrograms);
         out.writeObject(this.images);
         out.writeObject(this.linePrograms);
-        out.writeObject(this.ncSubscriptions);
         out.writeObject(this.network);
         out.writeObject(this.programAgencies);
         out.writeObject(this.programContacts);
         out.writeObject(this.ptfVariables);
         out.writeObject(this.ptfs);
-        out.writeObject(this.shipRecruitments);
         out.writeObject(this.weblinks);
     }
 
@@ -440,13 +396,11 @@ public abstract class _Program extends BaseDataObject {
         this.cruisePrograms = in.readObject();
         this.images = in.readObject();
         this.linePrograms = in.readObject();
-        this.ncSubscriptions = in.readObject();
         this.network = in.readObject();
         this.programAgencies = in.readObject();
         this.programContacts = in.readObject();
         this.ptfVariables = in.readObject();
         this.ptfs = in.readObject();
-        this.shipRecruitments = in.readObject();
         this.weblinks = in.readObject();
     }
 
