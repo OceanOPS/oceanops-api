@@ -6,7 +6,7 @@ import io.agrest.annotation.ClientReadable;
 
 @ClientReadable(id = true, value = {
     "id", "name", "nameShort", "description", "active", "network", "wigosCode", "country", "cruisePrograms", "images", "linePrograms", "network",
-    "programAgencies", "programContacts", "ptfs", "shipRecruitments", "weblinks"    
+    "programAgencies", "programContacts", "ptfs", "weblinks"    
 })
 public class Program extends _Program {
 
