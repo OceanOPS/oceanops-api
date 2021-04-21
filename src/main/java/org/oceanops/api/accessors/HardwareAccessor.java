@@ -9,8 +9,8 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.core.MediaType;
 
-import org.bouncycastle.asn1.dvcs.ServiceType;
 import org.oceanops.api.Authorization;
+import org.oceanops.api.orm.DataProcessingMethod;
 import org.oceanops.api.orm.Latency;
 import org.oceanops.api.orm.PtfAutomation;
 import org.oceanops.api.orm.PtfBattery;
@@ -18,7 +18,9 @@ import org.oceanops.api.orm.PtfSoftwareType;
 import org.oceanops.api.orm.SensorExposure;
 import org.oceanops.api.orm.SensorLocation;
 import org.oceanops.api.orm.SensorModel;
+import org.oceanops.api.orm.SensorStatus;
 import org.oceanops.api.orm.SensorType;
+import org.oceanops.api.orm.ServiceType;
 import org.oceanops.api.orm.TelecomFormat;
 import org.oceanops.api.orm.TelecomService;
 import org.oceanops.api.orm.TelecomType;
@@ -100,6 +102,42 @@ public class HardwareAccessor {
 	@Path("sensorexposure/{id}")
     public DataResponse<SensorExposure> getSensorExposure(@PathParam("id") int id, @Context UriInfo uriInfo) {
 		SelectBuilder<SensorExposure> sBuilder = Ag.select(SensorExposure.class, config).byId(id);
+		
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).getOne();
+	}
+	@GET
+	@Path("sensorstatus")
+    public DataResponse<SensorStatus> getSensorStatuses(@Context UriInfo uriInfo) {
+		SelectBuilder<SensorStatus> sBuilder = Ag.select(SensorStatus.class, config);
+
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).get();
+	}
+	@GET
+	@Path("sensorstatus/{id}")
+    public DataResponse<SensorStatus> getSensorStatus(@PathParam("id") int id, @Context UriInfo uriInfo) {
+		SelectBuilder<SensorStatus> sBuilder = Ag.select(SensorStatus.class, config).byId(id);
+		
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).getOne();
+	}
+	@GET
+	@Path("dataprocessingmethod")
+    public DataResponse<DataProcessingMethod> getDataProcessingMethodes(@Context UriInfo uriInfo) {
+		SelectBuilder<DataProcessingMethod> sBuilder = Ag.select(DataProcessingMethod.class, config);
+
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).get();
+	}
+	@GET
+	@Path("dataprocessingmethod/{id}")
+    public DataResponse<DataProcessingMethod> getDataProcessingMethod(@PathParam("id") int id, @Context UriInfo uriInfo) {
+		SelectBuilder<DataProcessingMethod> sBuilder = Ag.select(DataProcessingMethod.class, config).byId(id);
 		
 		Authorization.applySelectAuthorization(sBuilder);
 
