@@ -12,6 +12,7 @@ import org.apache.cayenne.exp.property.EntityProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
+import org.oceanops.api.orm.Latency;
 import org.oceanops.api.orm.TelecomFormat;
 import org.oceanops.api.orm.TelecomService;
 import org.oceanops.api.orm.TelecomType;
@@ -35,6 +36,7 @@ public abstract class _Telecom extends BaseDataObject {
     public static final StringProperty<String> NUM = PropertyFactory.createString("num", String.class);
     public static final StringProperty<String> REF_PROG = PropertyFactory.createString("refProg", String.class);
     public static final DateProperty<LocalDateTime> START_DATE = PropertyFactory.createDate("startDate", LocalDateTime.class);
+    public static final EntityProperty<Latency> LATENCY = PropertyFactory.createEntity("latency", Latency.class);
     public static final EntityProperty<TelecomFormat> TELECOM_FORMAT = PropertyFactory.createEntity("telecomFormat", TelecomFormat.class);
     public static final EntityProperty<TelecomService> TELECOM_SERVICE = PropertyFactory.createEntity("telecomService", TelecomService.class);
     public static final EntityProperty<TelecomType> TELECOM_TYPE = PropertyFactory.createEntity("telecomType", TelecomType.class);
@@ -47,6 +49,7 @@ public abstract class _Telecom extends BaseDataObject {
     protected String refProg;
     protected LocalDateTime startDate;
 
+    protected Object latency;
     protected Object telecomFormat;
     protected Object telecomService;
     protected Object telecomType;
@@ -121,6 +124,14 @@ public abstract class _Telecom extends BaseDataObject {
         return this.startDate;
     }
 
+    public void setLatency(Latency latency) {
+        setToOneTarget("latency", latency, true);
+    }
+
+    public Latency getLatency() {
+        return (Latency)readProperty("latency");
+    }
+
     public void setTelecomFormat(TelecomFormat telecomFormat) {
         setToOneTarget("telecomFormat", telecomFormat, true);
     }
@@ -166,6 +177,8 @@ public abstract class _Telecom extends BaseDataObject {
                 return this.refProg;
             case "startDate":
                 return this.startDate;
+            case "latency":
+                return this.latency;
             case "telecomFormat":
                 return this.telecomFormat;
             case "telecomService":
@@ -205,6 +218,9 @@ public abstract class _Telecom extends BaseDataObject {
             case "startDate":
                 this.startDate = (LocalDateTime)val;
                 break;
+            case "latency":
+                this.latency = val;
+                break;
             case "telecomFormat":
                 this.telecomFormat = val;
                 break;
@@ -237,6 +253,7 @@ public abstract class _Telecom extends BaseDataObject {
         out.writeObject(this.num);
         out.writeObject(this.refProg);
         out.writeObject(this.startDate);
+        out.writeObject(this.latency);
         out.writeObject(this.telecomFormat);
         out.writeObject(this.telecomService);
         out.writeObject(this.telecomType);
@@ -252,6 +269,7 @@ public abstract class _Telecom extends BaseDataObject {
         this.num = (String)in.readObject();
         this.refProg = (String)in.readObject();
         this.startDate = (LocalDateTime)in.readObject();
+        this.latency = in.readObject();
         this.telecomFormat = in.readObject();
         this.telecomService = in.readObject();
         this.telecomType = in.readObject();

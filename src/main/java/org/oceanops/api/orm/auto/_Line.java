@@ -19,7 +19,6 @@ import org.oceanops.api.orm.LineFamily;
 import org.oceanops.api.orm.LineProgram;
 import org.oceanops.api.orm.LineSurvey;
 import org.oceanops.api.orm.Ptf;
-import org.oceanops.api.orm.Section;
 import org.oceanops.api.orm.WebFrequentation;
 import org.oceanops.api.orm.Weblink;
 
@@ -46,7 +45,6 @@ public abstract class _Line extends BaseDataObject {
     public static final ListProperty<LineProgram> LINE_PROGRAMS = PropertyFactory.createList("linePrograms", LineProgram.class);
     public static final ListProperty<LineSurvey> LINE_SURVEYS = PropertyFactory.createList("lineSurveys", LineSurvey.class);
     public static final ListProperty<Ptf> PTFS = PropertyFactory.createList("ptfs", Ptf.class);
-    public static final ListProperty<Section> SECTIONS = PropertyFactory.createList("sections", Section.class);
     public static final ListProperty<WebFrequentation> WEB_FREQUENTATIONS = PropertyFactory.createList("webFrequentations", WebFrequentation.class);
     public static final EntityProperty<Weblink> WEBLINK = PropertyFactory.createEntity("weblink", Weblink.class);
 
@@ -62,7 +60,6 @@ public abstract class _Line extends BaseDataObject {
     protected Object linePrograms;
     protected Object lineSurveys;
     protected Object ptfs;
-    protected Object sections;
     protected Object webFrequentations;
     protected Object weblink;
 
@@ -187,19 +184,6 @@ public abstract class _Line extends BaseDataObject {
         return (List<Ptf>)readProperty("ptfs");
     }
 
-    public void addToSections(Section obj) {
-        addToManyTarget("sections", obj, true);
-    }
-
-    public void removeFromSections(Section obj) {
-        removeToManyTarget("sections", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<Section> getSections() {
-        return (List<Section>)readProperty("sections");
-    }
-
     public void addToWebFrequentations(WebFrequentation obj) {
         addToManyTarget("webFrequentations", obj, true);
     }
@@ -250,8 +234,6 @@ public abstract class _Line extends BaseDataObject {
                 return this.lineSurveys;
             case "ptfs":
                 return this.ptfs;
-            case "sections":
-                return this.sections;
             case "webFrequentations":
                 return this.webFrequentations;
             case "weblink":
@@ -301,9 +283,6 @@ public abstract class _Line extends BaseDataObject {
             case "ptfs":
                 this.ptfs = val;
                 break;
-            case "sections":
-                this.sections = val;
-                break;
             case "webFrequentations":
                 this.webFrequentations = val;
                 break;
@@ -337,7 +316,6 @@ public abstract class _Line extends BaseDataObject {
         out.writeObject(this.linePrograms);
         out.writeObject(this.lineSurveys);
         out.writeObject(this.ptfs);
-        out.writeObject(this.sections);
         out.writeObject(this.webFrequentations);
         out.writeObject(this.weblink);
     }
@@ -356,7 +334,6 @@ public abstract class _Line extends BaseDataObject {
         this.linePrograms = in.readObject();
         this.lineSurveys = in.readObject();
         this.ptfs = in.readObject();
-        this.sections = in.readObject();
         this.webFrequentations = in.readObject();
         this.weblink = in.readObject();
     }

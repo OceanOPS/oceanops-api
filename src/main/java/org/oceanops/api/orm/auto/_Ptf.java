@@ -19,7 +19,6 @@ import org.oceanops.api.orm.ContactPtfRole;
 import org.oceanops.api.orm.DataStatus;
 import org.oceanops.api.orm.Doc;
 import org.oceanops.api.orm.EndingCause;
-import org.oceanops.api.orm.GliderThemePtf;
 import org.oceanops.api.orm.Line;
 import org.oceanops.api.orm.LocSystem;
 import org.oceanops.api.orm.MzmsPtfCountry;
@@ -96,7 +95,6 @@ public abstract class _Ptf extends BaseDataObject {
     public static final EntityProperty<Doc> DOC = PropertyFactory.createEntity("doc", Doc.class);
     public static final ListProperty<Doc> DOCS = PropertyFactory.createList("docs", Doc.class);
     public static final EntityProperty<EndingCause> ENDING_CAUSE = PropertyFactory.createEntity("endingCause", EndingCause.class);
-    public static final ListProperty<GliderThemePtf> GLIDER_THEME_PTFS = PropertyFactory.createList("gliderThemePtfs", GliderThemePtf.class);
     public static final EntityProperty<ObsLatest> LATEST_OBS = PropertyFactory.createEntity("latestObs", ObsLatest.class);
     public static final ListProperty<Line> LINES = PropertyFactory.createList("lines", Line.class);
     public static final ListProperty<MzmsPtfCountry> MZMS_PTF_COUNTRIES = PropertyFactory.createList("mzmsPtfCountries", MzmsPtfCountry.class);
@@ -162,7 +160,6 @@ public abstract class _Ptf extends BaseDataObject {
     protected Object doc;
     protected Object docs;
     protected Object endingCause;
-    protected Object gliderThemePtfs;
     protected Object latestObs;
     protected Object lines;
     protected Object mzmsPtfCountries;
@@ -458,19 +455,6 @@ public abstract class _Ptf extends BaseDataObject {
 
     public EndingCause getEndingCause() {
         return (EndingCause)readProperty("endingCause");
-    }
-
-    public void addToGliderThemePtfs(GliderThemePtf obj) {
-        addToManyTarget("gliderThemePtfs", obj, true);
-    }
-
-    public void removeFromGliderThemePtfs(GliderThemePtf obj) {
-        removeToManyTarget("gliderThemePtfs", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<GliderThemePtf> getGliderThemePtfs() {
-        return (List<GliderThemePtf>)readProperty("gliderThemePtfs");
     }
 
     public void setLatestObs(ObsLatest latestObs) {
@@ -943,8 +927,6 @@ public abstract class _Ptf extends BaseDataObject {
                 return this.docs;
             case "endingCause":
                 return this.endingCause;
-            case "gliderThemePtfs":
-                return this.gliderThemePtfs;
             case "latestObs":
                 return this.latestObs;
             case "lines":
@@ -1109,9 +1091,6 @@ public abstract class _Ptf extends BaseDataObject {
             case "endingCause":
                 this.endingCause = val;
                 break;
-            case "gliderThemePtfs":
-                this.gliderThemePtfs = val;
-                break;
             case "latestObs":
                 this.latestObs = val;
                 break;
@@ -1265,7 +1244,6 @@ public abstract class _Ptf extends BaseDataObject {
         out.writeObject(this.doc);
         out.writeObject(this.docs);
         out.writeObject(this.endingCause);
-        out.writeObject(this.gliderThemePtfs);
         out.writeObject(this.latestObs);
         out.writeObject(this.lines);
         out.writeObject(this.mzmsPtfCountries);
@@ -1334,7 +1312,6 @@ public abstract class _Ptf extends BaseDataObject {
         this.doc = in.readObject();
         this.docs = in.readObject();
         this.endingCause = in.readObject();
-        this.gliderThemePtfs = in.readObject();
         this.latestObs = in.readObject();
         this.lines = in.readObject();
         this.mzmsPtfCountries = in.readObject();

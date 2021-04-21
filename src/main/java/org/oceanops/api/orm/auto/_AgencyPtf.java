@@ -11,7 +11,6 @@ import org.apache.cayenne.exp.property.NumericIdProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.oceanops.api.orm.Agency;
 import org.oceanops.api.orm.AgencyRole;
-import org.oceanops.api.orm.AssemblyType;
 import org.oceanops.api.orm.DacType;
 import org.oceanops.api.orm.Ptf;
 
@@ -30,14 +29,12 @@ public abstract class _AgencyPtf extends BaseDataObject {
 
     public static final EntityProperty<Agency> AGENCY = PropertyFactory.createEntity("agency", Agency.class);
     public static final EntityProperty<AgencyRole> AGENCY_ROLE = PropertyFactory.createEntity("agencyRole", AgencyRole.class);
-    public static final EntityProperty<AssemblyType> ASSEMBLY_TYPE = PropertyFactory.createEntity("assemblyType", AssemblyType.class);
     public static final EntityProperty<DacType> DAC_TYPE = PropertyFactory.createEntity("dacType", DacType.class);
     public static final EntityProperty<Ptf> PTF = PropertyFactory.createEntity("ptf", Ptf.class);
 
 
     protected Object agency;
     protected Object agencyRole;
-    protected Object assemblyType;
     protected Object dacType;
     protected Object ptf;
 
@@ -55,14 +52,6 @@ public abstract class _AgencyPtf extends BaseDataObject {
 
     public AgencyRole getAgencyRole() {
         return (AgencyRole)readProperty("agencyRole");
-    }
-
-    public void setAssemblyType(AssemblyType assemblyType) {
-        setToOneTarget("assemblyType", assemblyType, true);
-    }
-
-    public AssemblyType getAssemblyType() {
-        return (AssemblyType)readProperty("assemblyType");
     }
 
     public void setDacType(DacType dacType) {
@@ -92,8 +81,6 @@ public abstract class _AgencyPtf extends BaseDataObject {
                 return this.agency;
             case "agencyRole":
                 return this.agencyRole;
-            case "assemblyType":
-                return this.assemblyType;
             case "dacType":
                 return this.dacType;
             case "ptf":
@@ -115,9 +102,6 @@ public abstract class _AgencyPtf extends BaseDataObject {
                 break;
             case "agencyRole":
                 this.agencyRole = val;
-                break;
-            case "assemblyType":
-                this.assemblyType = val;
                 break;
             case "dacType":
                 this.dacType = val;
@@ -143,7 +127,6 @@ public abstract class _AgencyPtf extends BaseDataObject {
         super.writeState(out);
         out.writeObject(this.agency);
         out.writeObject(this.agencyRole);
-        out.writeObject(this.assemblyType);
         out.writeObject(this.dacType);
         out.writeObject(this.ptf);
     }
@@ -153,7 +136,6 @@ public abstract class _AgencyPtf extends BaseDataObject {
         super.readState(in);
         this.agency = in.readObject();
         this.agencyRole = in.readObject();
-        this.assemblyType = in.readObject();
         this.dacType = in.readObject();
         this.ptf = in.readObject();
     }

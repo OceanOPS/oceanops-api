@@ -13,15 +13,17 @@ import javax.ws.rs.core.UriInfo;
 
 import org.oceanops.api.Authorization;
 import org.oceanops.api.orm.Country;
+import org.oceanops.api.orm.DeplMethod;
+import org.oceanops.api.orm.EndingCause;
 import org.oceanops.api.orm.Network;
 import org.oceanops.api.orm.Program;
 import org.oceanops.api.orm.PtfFamily;
 import org.oceanops.api.orm.PtfModel;
 import org.oceanops.api.orm.PtfStatus;
 import org.oceanops.api.orm.PtfType;
+import org.oceanops.api.orm.RetrievalStatus;
 import org.oceanops.api.orm.Role;
-import org.oceanops.api.orm.SensorModel;
-import org.oceanops.api.orm.SensorType;
+import org.oceanops.api.orm.Site;
 import org.oceanops.api.orm.Variable;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
@@ -171,41 +173,24 @@ public class VocabAccessor {
 		return sBuilder.uri(uriInfo).getOne();
 	}
 	@GET
-	@Path("sensormodel")
-    public DataResponse<SensorModel> getSensorModels(@Context UriInfo uriInfo) {
-		SelectBuilder<SensorModel> sBuilder = Ag.select(SensorModel.class, config);
+	@Path("site")
+    public DataResponse<Site> getSites(@Context UriInfo uriInfo) {
+		SelectBuilder<Site> sBuilder = Ag.select(Site.class, config);
 
 		Authorization.applySelectAuthorization(sBuilder);
 
 		return sBuilder.uri(uriInfo).get();
 	}
 	@GET
-	@Path("sensormodel/{id}")
-    public DataResponse<SensorModel> getSensorModel(@PathParam("id") int id, @Context UriInfo uriInfo) {
-		SelectBuilder<SensorModel> sBuilder = Ag.select(SensorModel.class, config).byId(id);
+	@Path("site/{id}")
+    public DataResponse<Site> getSite(@PathParam("id") int id, @Context UriInfo uriInfo) {
+		SelectBuilder<Site> sBuilder = Ag.select(Site.class, config).byId(id);
 		
 		Authorization.applySelectAuthorization(sBuilder);
 
 		return sBuilder.uri(uriInfo).getOne();
 	}
-	@GET
-	@Path("sensortype")
-    public DataResponse<SensorType> getSensorTypes(@Context UriInfo uriInfo) {
-		SelectBuilder<SensorType> sBuilder = Ag.select(SensorType.class, config);
-
-		Authorization.applySelectAuthorization(sBuilder);
-
-		return sBuilder.uri(uriInfo).get();
-	}
-	@GET
-	@Path("sensortype/{id}")
-    public DataResponse<SensorType> getSensorType(@PathParam("id") int id, @Context UriInfo uriInfo) {
-		SelectBuilder<SensorType> sBuilder = Ag.select(SensorType.class, config).byId(id);
-		
-		Authorization.applySelectAuthorization(sBuilder);
-
-		return sBuilder.uri(uriInfo).getOne();
-	}
+	
 	@GET
 	@Path("variable")
     public DataResponse<Variable> getVariables(@Context UriInfo uriInfo) {
@@ -260,6 +245,63 @@ public class VocabAccessor {
 	@Path("contactrole/{id}")
     public DataResponse<Role> getRole(@PathParam("id") int id, @Context UriInfo uriInfo) {
 		SelectBuilder<Role> sBuilder = Ag.select(Role.class, config).byId(id);
+		
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).getOne();
+	}
+
+	@GET
+	@Path("deploymentmethod")
+    public DataResponse<DeplMethod> getDeplMethods(@Context UriInfo uriInfo) {
+		SelectBuilder<DeplMethod> sBuilder = Ag.select(DeplMethod.class, config);
+
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).get();
+	}
+	@GET
+	@Path("deploymentmethod/{id}")
+    public DataResponse<DeplMethod> getDeplMethod(@PathParam("id") int id, @Context UriInfo uriInfo) {
+		SelectBuilder<DeplMethod> sBuilder = Ag.select(DeplMethod.class, config).byId(id);
+		
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).getOne();
+	}
+
+	@GET
+	@Path("retrievalstatus")
+    public DataResponse<RetrievalStatus> getRetrievalStatuses(@Context UriInfo uriInfo) {
+		SelectBuilder<RetrievalStatus> sBuilder = Ag.select(RetrievalStatus.class, config);
+
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).get();
+	}
+	@GET
+	@Path("retrievalstatus/{id}")
+    public DataResponse<RetrievalStatus> getRetrievalStatus(@PathParam("id") int id, @Context UriInfo uriInfo) {
+		SelectBuilder<RetrievalStatus> sBuilder = Ag.select(RetrievalStatus.class, config).byId(id);
+		
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).getOne();
+	}
+
+	@GET
+	@Path("endingcause")
+    public DataResponse<EndingCause> getEndingCauses(@Context UriInfo uriInfo) {
+		SelectBuilder<EndingCause> sBuilder = Ag.select(EndingCause.class, config);
+
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).get();
+	}
+	@GET
+	@Path("endingcause/{id}")
+    public DataResponse<EndingCause> getEndingCause(@PathParam("id") int id, @Context UriInfo uriInfo) {
+		SelectBuilder<EndingCause> sBuilder = Ag.select(EndingCause.class, config).byId(id);
 		
 		Authorization.applySelectAuthorization(sBuilder);
 

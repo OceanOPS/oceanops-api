@@ -45,7 +45,6 @@ public abstract class _PtfVariable extends BaseDataObject {
     public static final NumericProperty<BigDecimal> HEIGHT = PropertyFactory.createNumeric("height", BigDecimal.class);
     public static final NumericProperty<BigDecimal> HEIGHT_SECONDARY_REF_LEVEL = PropertyFactory.createNumeric("heightSecondaryRefLevel", BigDecimal.class);
     public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> IS_PRIMARY = PropertyFactory.createNumeric("isPrimary", BigDecimal.class);
     public static final DateProperty<LocalDateTime> LAST_MEASURED = PropertyFactory.createDate("lastMeasured", LocalDateTime.class);
     public static final DateProperty<LocalDateTime> MANUF_DATE = PropertyFactory.createDate("manufDate", LocalDateTime.class);
     public static final NumericProperty<BigDecimal> NB_OBS = PropertyFactory.createNumeric("nbObs", BigDecimal.class);
@@ -80,7 +79,6 @@ public abstract class _PtfVariable extends BaseDataObject {
     protected BigDecimal height;
     protected BigDecimal heightSecondaryRefLevel;
     protected BigDecimal id;
-    protected BigDecimal isPrimary;
     protected LocalDateTime lastMeasured;
     protected LocalDateTime manufDate;
     protected BigDecimal nbObs;
@@ -231,16 +229,6 @@ public abstract class _PtfVariable extends BaseDataObject {
     public BigDecimal getId() {
         beforePropertyRead("id");
         return this.id;
-    }
-
-    public void setIsPrimary(BigDecimal isPrimary) {
-        beforePropertyWrite("isPrimary", this.isPrimary, isPrimary);
-        this.isPrimary = isPrimary;
-    }
-
-    public BigDecimal getIsPrimary() {
-        beforePropertyRead("isPrimary");
-        return this.isPrimary;
     }
 
     public void setLastMeasured(LocalDateTime lastMeasured) {
@@ -462,8 +450,6 @@ public abstract class _PtfVariable extends BaseDataObject {
                 return this.heightSecondaryRefLevel;
             case "id":
                 return this.id;
-            case "isPrimary":
-                return this.isPrimary;
             case "lastMeasured":
                 return this.lastMeasured;
             case "manufDate":
@@ -555,9 +541,6 @@ public abstract class _PtfVariable extends BaseDataObject {
             case "id":
                 this.id = (BigDecimal)val;
                 break;
-            case "isPrimary":
-                this.isPrimary = (BigDecimal)val;
-                break;
             case "lastMeasured":
                 this.lastMeasured = (LocalDateTime)val;
                 break;
@@ -647,7 +630,6 @@ public abstract class _PtfVariable extends BaseDataObject {
         out.writeObject(this.height);
         out.writeObject(this.heightSecondaryRefLevel);
         out.writeObject(this.id);
-        out.writeObject(this.isPrimary);
         out.writeObject(this.lastMeasured);
         out.writeObject(this.manufDate);
         out.writeObject(this.nbObs);
@@ -686,7 +668,6 @@ public abstract class _PtfVariable extends BaseDataObject {
         this.height = (BigDecimal)in.readObject();
         this.heightSecondaryRefLevel = (BigDecimal)in.readObject();
         this.id = (BigDecimal)in.readObject();
-        this.isPrimary = (BigDecimal)in.readObject();
         this.lastMeasured = (LocalDateTime)in.readObject();
         this.manufDate = (LocalDateTime)in.readObject();
         this.nbObs = (BigDecimal)in.readObject();

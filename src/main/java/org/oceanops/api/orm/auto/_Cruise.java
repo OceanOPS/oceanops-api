@@ -15,7 +15,6 @@ import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
 import org.oceanops.api.orm.Agency;
-import org.oceanops.api.orm.Availability;
 import org.oceanops.api.orm.CruiseClass;
 import org.oceanops.api.orm.CruiseContact;
 import org.oceanops.api.orm.CruiseCountry;
@@ -32,7 +31,6 @@ import org.oceanops.api.orm.Line;
 import org.oceanops.api.orm.PtfCruise;
 import org.oceanops.api.orm.PtfDeployment;
 import org.oceanops.api.orm.Retrieval;
-import org.oceanops.api.orm.Section;
 import org.oceanops.api.orm.Service;
 import org.oceanops.api.orm.Ship;
 import org.oceanops.api.orm.Survey;
@@ -83,7 +81,6 @@ public abstract class _Cruise extends BaseDataObject {
     public static final NumericProperty<BigDecimal> VALIDATED = PropertyFactory.createNumeric("validated", BigDecimal.class);
     public static final StringProperty<String> WKT = PropertyFactory.createString("wkt", String.class);
     public static final EntityProperty<Agency> AGENCY = PropertyFactory.createEntity("agency", Agency.class);
-    public static final EntityProperty<Availability> CREW_AVAILABILITY = PropertyFactory.createEntity("crewAvailability", Availability.class);
     public static final EntityProperty<CruiseClass> CRUISE_CLASS = PropertyFactory.createEntity("cruiseClass", CruiseClass.class);
     public static final ListProperty<CruiseContact> CRUISE_CONTACTS = PropertyFactory.createList("cruiseContacts", CruiseContact.class);
     public static final ListProperty<CruiseCountry> CRUISE_COUNTRIES = PropertyFactory.createList("cruiseCountries", CruiseCountry.class);
@@ -100,7 +97,6 @@ public abstract class _Cruise extends BaseDataObject {
     public static final ListProperty<PtfCruise> PTF_CRUISES = PropertyFactory.createList("ptfCruises", PtfCruise.class);
     public static final ListProperty<PtfDeployment> PTF_DEPLOYMENTS = PropertyFactory.createList("ptfDeployments", PtfDeployment.class);
     public static final ListProperty<Retrieval> RETRIEVALS = PropertyFactory.createList("retrievals", Retrieval.class);
-    public static final ListProperty<Section> SECTIONS = PropertyFactory.createList("sections", Section.class);
     public static final ListProperty<Service> SERVICES = PropertyFactory.createList("services", Service.class);
     public static final EntityProperty<Ship> SHIP = PropertyFactory.createEntity("ship", Ship.class);
     public static final EntityProperty<Survey> SURVEY = PropertyFactory.createEntity("survey", Survey.class);
@@ -140,7 +136,6 @@ public abstract class _Cruise extends BaseDataObject {
     protected String wkt;
 
     protected Object agency;
-    protected Object crewAvailability;
     protected Object cruiseClass;
     protected Object cruiseContacts;
     protected Object cruiseCountries;
@@ -157,7 +152,6 @@ public abstract class _Cruise extends BaseDataObject {
     protected Object ptfCruises;
     protected Object ptfDeployments;
     protected Object retrievals;
-    protected Object sections;
     protected Object services;
     protected Object ship;
     protected Object survey;
@@ -482,14 +476,6 @@ public abstract class _Cruise extends BaseDataObject {
         return (Agency)readProperty("agency");
     }
 
-    public void setCrewAvailability(Availability crewAvailability) {
-        setToOneTarget("crewAvailability", crewAvailability, true);
-    }
-
-    public Availability getCrewAvailability() {
-        return (Availability)readProperty("crewAvailability");
-    }
-
     public void setCruiseClass(CruiseClass cruiseClass) {
         setToOneTarget("cruiseClass", cruiseClass, true);
     }
@@ -663,19 +649,6 @@ public abstract class _Cruise extends BaseDataObject {
         return (List<Retrieval>)readProperty("retrievals");
     }
 
-    public void addToSections(Section obj) {
-        addToManyTarget("sections", obj, true);
-    }
-
-    public void removeFromSections(Section obj) {
-        removeToManyTarget("sections", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<Section> getSections() {
-        return (List<Section>)readProperty("sections");
-    }
-
     public void addToServices(Service obj) {
         addToManyTarget("services", obj, true);
     }
@@ -797,8 +770,6 @@ public abstract class _Cruise extends BaseDataObject {
                 return this.wkt;
             case "agency":
                 return this.agency;
-            case "crewAvailability":
-                return this.crewAvailability;
             case "cruiseClass":
                 return this.cruiseClass;
             case "cruiseContacts":
@@ -831,8 +802,6 @@ public abstract class _Cruise extends BaseDataObject {
                 return this.ptfDeployments;
             case "retrievals":
                 return this.retrievals;
-            case "sections":
-                return this.sections;
             case "services":
                 return this.services;
             case "ship":
@@ -951,9 +920,6 @@ public abstract class _Cruise extends BaseDataObject {
             case "agency":
                 this.agency = val;
                 break;
-            case "crewAvailability":
-                this.crewAvailability = val;
-                break;
             case "cruiseClass":
                 this.cruiseClass = val;
                 break;
@@ -1001,9 +967,6 @@ public abstract class _Cruise extends BaseDataObject {
                 break;
             case "retrievals":
                 this.retrievals = val;
-                break;
-            case "sections":
-                this.sections = val;
                 break;
             case "services":
                 this.services = val;
@@ -1068,7 +1031,6 @@ public abstract class _Cruise extends BaseDataObject {
         out.writeObject(this.validated);
         out.writeObject(this.wkt);
         out.writeObject(this.agency);
-        out.writeObject(this.crewAvailability);
         out.writeObject(this.cruiseClass);
         out.writeObject(this.cruiseContacts);
         out.writeObject(this.cruiseCountries);
@@ -1085,7 +1047,6 @@ public abstract class _Cruise extends BaseDataObject {
         out.writeObject(this.ptfCruises);
         out.writeObject(this.ptfDeployments);
         out.writeObject(this.retrievals);
-        out.writeObject(this.sections);
         out.writeObject(this.services);
         out.writeObject(this.ship);
         out.writeObject(this.survey);
@@ -1128,7 +1089,6 @@ public abstract class _Cruise extends BaseDataObject {
         this.validated = (BigDecimal)in.readObject();
         this.wkt = (String)in.readObject();
         this.agency = in.readObject();
-        this.crewAvailability = in.readObject();
         this.cruiseClass = in.readObject();
         this.cruiseContacts = in.readObject();
         this.cruiseCountries = in.readObject();
@@ -1145,7 +1105,6 @@ public abstract class _Cruise extends BaseDataObject {
         this.ptfCruises = in.readObject();
         this.ptfDeployments = in.readObject();
         this.retrievals = in.readObject();
-        this.sections = in.readObject();
         this.services = in.readObject();
         this.ship = in.readObject();
         this.survey = in.readObject();

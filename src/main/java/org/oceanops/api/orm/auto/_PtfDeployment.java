@@ -12,7 +12,6 @@ import org.apache.cayenne.exp.property.EntityProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
-import org.oceanops.api.orm.Bufrcodeflag;
 import org.oceanops.api.orm.Contact;
 import org.oceanops.api.orm.Country;
 import org.oceanops.api.orm.Cruise;
@@ -57,9 +56,7 @@ public abstract class _PtfDeployment extends BaseDataObject {
     public static final EntityProperty<DeplMethod> DEPL_METHOD = PropertyFactory.createEntity("deplMethod", DeplMethod.class);
     public static final EntityProperty<DeplType> DEPL_TYPE = PropertyFactory.createEntity("deplType", DeplType.class);
     public static final EntityProperty<PackageType> PACK_TYPE = PropertyFactory.createEntity("packType", PackageType.class);
-    public static final EntityProperty<Bufrcodeflag> SEA_STATE = PropertyFactory.createEntity("seaState", Bufrcodeflag.class);
     public static final EntityProperty<Ship> SHIP = PropertyFactory.createEntity("ship", Ship.class);
-    public static final EntityProperty<Bufrcodeflag> WEATHER = PropertyFactory.createEntity("weather", Bufrcodeflag.class);
 
     protected String cruiseName;
     protected BigDecimal ctd;
@@ -86,9 +83,7 @@ public abstract class _PtfDeployment extends BaseDataObject {
     protected Object deplMethod;
     protected Object deplType;
     protected Object packType;
-    protected Object seaState;
     protected Object ship;
-    protected Object weather;
 
     public void setCruiseName(String cruiseName) {
         beforePropertyWrite("cruiseName", this.cruiseName, cruiseName);
@@ -318,28 +313,12 @@ public abstract class _PtfDeployment extends BaseDataObject {
         return (PackageType)readProperty("packType");
     }
 
-    public void setSeaState(Bufrcodeflag seaState) {
-        setToOneTarget("seaState", seaState, true);
-    }
-
-    public Bufrcodeflag getSeaState() {
-        return (Bufrcodeflag)readProperty("seaState");
-    }
-
     public void setShip(Ship ship) {
         setToOneTarget("ship", ship, true);
     }
 
     public Ship getShip() {
         return (Ship)readProperty("ship");
-    }
-
-    public void setWeather(Bufrcodeflag weather) {
-        setToOneTarget("weather", weather, true);
-    }
-
-    public Bufrcodeflag getWeather() {
-        return (Bufrcodeflag)readProperty("weather");
     }
 
     @Override
@@ -397,12 +376,8 @@ public abstract class _PtfDeployment extends BaseDataObject {
                 return this.deplType;
             case "packType":
                 return this.packType;
-            case "seaState":
-                return this.seaState;
             case "ship":
                 return this.ship;
-            case "weather":
-                return this.weather;
             default:
                 return super.readPropertyDirectly(propName);
         }
@@ -487,14 +462,8 @@ public abstract class _PtfDeployment extends BaseDataObject {
             case "packType":
                 this.packType = val;
                 break;
-            case "seaState":
-                this.seaState = val;
-                break;
             case "ship":
                 this.ship = val;
-                break;
-            case "weather":
-                this.weather = val;
                 break;
             default:
                 super.writePropertyDirectly(propName, val);
@@ -536,9 +505,7 @@ public abstract class _PtfDeployment extends BaseDataObject {
         out.writeObject(this.deplMethod);
         out.writeObject(this.deplType);
         out.writeObject(this.packType);
-        out.writeObject(this.seaState);
         out.writeObject(this.ship);
-        out.writeObject(this.weather);
     }
 
     @Override
@@ -568,9 +535,7 @@ public abstract class _PtfDeployment extends BaseDataObject {
         this.deplMethod = in.readObject();
         this.deplType = in.readObject();
         this.packType = in.readObject();
-        this.seaState = in.readObject();
         this.ship = in.readObject();
-        this.weather = in.readObject();
     }
 
 }
