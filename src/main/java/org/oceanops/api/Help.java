@@ -140,6 +140,36 @@ public class Help extends HttpServlet {
 		concept.put("urlParam", "contactrole");
 		concept.put("jsonUrl", "contactrole");
 		concepts.add(concept);
+		concept = new HashMap<String, String>();
+		concept.put("name", "Deployment method");
+		concept.put("urlParam", "deploymentmethod");
+		concept.put("jsonUrl", "deploymentmethod");
+		concepts.add(concept);
+		concept = new HashMap<String, String>();
+		concept.put("name", "Retrieval status");
+		concept.put("urlParam", "retrievalstatus");
+		concept.put("jsonUrl", "retrievalstatus");
+		concepts.add(concept);
+		concept = new HashMap<String, String>();
+		concept.put("name", "Post retrieval status");
+		concept.put("urlParam", "postretrievalstatus");
+		concept.put("jsonUrl", "postretrievalstatus");
+		concepts.add(concept);
+		concept = new HashMap<String, String>();
+		concept.put("name", "Ending cause");
+		concept.put("urlParam", "endingcause");
+		concept.put("jsonUrl", "endingcause");
+		concepts.add(concept);
+		concept = new HashMap<String, String>();
+		concept.put("name", "Topic");
+		concept.put("urlParam", "topic");
+		concept.put("jsonUrl", "topic");
+		concepts.add(concept);
+		concept = new HashMap<String, String>();
+		concept.put("name", "Tracking system");
+		concept.put("urlParam", "trackingsystem");
+		concept.put("jsonUrl", "trackingsystem");
+		concepts.add(concept);
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

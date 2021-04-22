@@ -16,6 +16,7 @@ import org.oceanops.api.orm.Country;
 import org.oceanops.api.orm.DeplMethod;
 import org.oceanops.api.orm.EndingCause;
 import org.oceanops.api.orm.Network;
+import org.oceanops.api.orm.PostRetrievalStatus;
 import org.oceanops.api.orm.Program;
 import org.oceanops.api.orm.PtfFamily;
 import org.oceanops.api.orm.PtfModel;
@@ -24,6 +25,7 @@ import org.oceanops.api.orm.PtfType;
 import org.oceanops.api.orm.RetrievalStatus;
 import org.oceanops.api.orm.Role;
 import org.oceanops.api.orm.Site;
+import org.oceanops.api.orm.Topic;
 import org.oceanops.api.orm.Variable;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
@@ -290,6 +292,25 @@ public class VocabAccessor {
 	}
 
 	@GET
+	@Path("postretrievalstatus")
+    public DataResponse<PostRetrievalStatus> getPostRetrievalStatuses(@Context UriInfo uriInfo) {
+		SelectBuilder<PostRetrievalStatus> sBuilder = Ag.select(PostRetrievalStatus.class, config);
+
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).get();
+	}
+	@GET
+	@Path("postretrievalstatus/{id}")
+    public DataResponse<PostRetrievalStatus> getPostRetrievalStatus(@PathParam("id") int id, @Context UriInfo uriInfo) {
+		SelectBuilder<PostRetrievalStatus> sBuilder = Ag.select(PostRetrievalStatus.class, config).byId(id);
+		
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).getOne();
+	}
+
+	@GET
 	@Path("endingcause")
     public DataResponse<EndingCause> getEndingCauses(@Context UriInfo uriInfo) {
 		SelectBuilder<EndingCause> sBuilder = Ag.select(EndingCause.class, config);
@@ -302,6 +323,24 @@ public class VocabAccessor {
 	@Path("endingcause/{id}")
     public DataResponse<EndingCause> getEndingCause(@PathParam("id") int id, @Context UriInfo uriInfo) {
 		SelectBuilder<EndingCause> sBuilder = Ag.select(EndingCause.class, config).byId(id);
+		
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).getOne();
+	}
+	@GET
+	@Path("topic")
+    public DataResponse<Topic> getTopics(@Context UriInfo uriInfo) {
+		SelectBuilder<Topic> sBuilder = Ag.select(Topic.class, config);
+
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).get();
+	}
+	@GET
+	@Path("topic/{id}")
+    public DataResponse<Topic> getTopic(@PathParam("id") int id, @Context UriInfo uriInfo) {
+		SelectBuilder<Topic> sBuilder = Ag.select(Topic.class, config).byId(id);
 		
 		Authorization.applySelectAuthorization(sBuilder);
 

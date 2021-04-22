@@ -24,6 +24,7 @@ import org.oceanops.api.orm.ServiceType;
 import org.oceanops.api.orm.TelecomFormat;
 import org.oceanops.api.orm.TelecomService;
 import org.oceanops.api.orm.TelecomType;
+import org.oceanops.api.orm.TrackingSystem;
 
 import io.agrest.DataResponse;
 import io.agrest.SelectBuilder;
@@ -282,6 +283,24 @@ public class HardwareAccessor {
 	@Path("platformsoftwaretype/{id}")
     public DataResponse<PtfSoftwareType> getPtfSoftwareType(@PathParam("id") int id, @Context UriInfo uriInfo) {
 		SelectBuilder<PtfSoftwareType> sBuilder = Ag.select(PtfSoftwareType.class, config).byId(id);
+		
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).getOne();
+	}
+	@GET
+	@Path("trackingsystem")
+    public DataResponse<TrackingSystem> getTrackingSystems(@Context UriInfo uriInfo) {
+		SelectBuilder<TrackingSystem> sBuilder = Ag.select(TrackingSystem.class, config);
+
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).get();
+	}
+	@GET
+	@Path("trackingsystem/{id}")
+    public DataResponse<TrackingSystem> getTrackingSystem(@PathParam("id") int id, @Context UriInfo uriInfo) {
+		SelectBuilder<TrackingSystem> sBuilder = Ag.select(TrackingSystem.class, config).byId(id);
 		
 		Authorization.applySelectAuthorization(sBuilder);
 
