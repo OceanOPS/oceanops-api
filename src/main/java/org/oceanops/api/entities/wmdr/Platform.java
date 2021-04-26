@@ -54,6 +54,7 @@ import _int.wmo.def.wmdr._2017.ObservingFacilityType.Territory;
 import _int.wmo.def.wmdr._2017.ProcessType;
 import _int.wmo.def.wmdr._2017.ProgramAffiliationType;
 import _int.wmo.def.wmdr._2017.ProgramAffiliationType.ReportingStatus;
+import _int.wmo.def.wmdr._2017.WIGOSMetadataRecordType.Deployment;
 import _int.wmo.def.wmdr._2017.ReportingStatusType;
 import _int.wmo.def.wmdr._2017.ResponsiblePartyType;
 import _int.wmo.def.wmdr._2017.TerritoryType;
@@ -109,6 +110,7 @@ public class Platform {
 	private net.opengis.iso19139.gco.v_20070417.ObjectFactory gcoOF;
 
 	private Integer ciResponsiblePartyCounter = 0;
+	private Integer sensorIncrement = 0;
 	private final Logger logger = LoggerFactory.getLogger(Platform.class);
 
 
@@ -174,6 +176,10 @@ public class Platform {
 		ObservingFacilityType observingFacilityType = this.getObservingFacilityType(ptf);
 		facility.setObservingFacility(observingFacilityType);
 		facilities.add(facility);
+
+		//List<WIGOSMetadataRecordType.Deployment> deployments = this.rootElementType.getDeployment();
+		//List<WIGOSMetadataRecordType.Deployment> depls = this.getDeployments(ptf);
+		//deployments.addAll(depls);
 	}
 
 	/**
@@ -306,29 +312,25 @@ public class Platform {
 		ArrayList<EquipmentPropertyType> equipements = new ArrayList<>();
 
 		EquipmentPropertyType currentEquipment;
-		int sensorIncrement = 0;
 		for (PtfVariable pv : ptfVariables) {
 			if(pv.getSensorModel() != null && pv.getVariable().getWigosCode() != null){
-				currentEquipment = this. getEquipmentPropertyType(pv, sensorIncrement);
+				currentEquipment = this. getEquipmentPropertyType(pv);
 				equipements.add(currentEquipment);
+				sensorIncrement++;
 			}
 		}
 
 		return equipements;
 	}
 
-	private EquipmentPropertyType getEquipmentPropertyType(PtfVariable ptfV, int increment) {
+	private EquipmentPropertyType getEquipmentPropertyType(PtfVariable ptfV) {
 		Variable variable = ptfV.getVariable();
 		EquipmentPropertyType currentEquipment;
 		EquipmentType currentEquipmentType;
 		SensorModel sm = ptfV.getSensorModel();
 		currentEquipment = this.wmdrOF.createEquipmentPropertyType();
 		currentEquipmentType = this.wmdrOF.createEquipmentType();
-		String id;
-		if (increment == 0)
-			id = "subequipment-" + ptfV.getObjectId().getIdSnapshot().get("ID").toString();
-		else
-			id = "subequipment-" + ptfV.getObjectId().getIdSnapshot().get("ID").toString() + "-" + String.valueOf(increment);
+		String id = "subequipment-" + ptfV.getId() + "-" + String.valueOf(sensorIncrement);
 		currentEquipmentType.setId(id);
 		CodeWithAuthorityType code = this.gmlOF.createCodeWithAuthorityType();
 		if(variable != null && variable.getWigosCode() != null) {
@@ -341,6 +343,9 @@ public class Platform {
 		}
 		currentEquipmentType.setIdentifier(code);
 		currentEquipmentType.setModel(sm.getName());
+		ReferenceType facilityLink = this.gmlOF.createReferenceType();
+		facilityLink.setHref("http://data.wmo.int/wigos/" + getWIGOSIdentifier(ptfV.getPtf()));
+		currentEquipmentType.setFacility(facilityLink);
 		if (sm.getAgency() != null)
 			currentEquipmentType.setManufacturer(sm.getAgency().getNameShort());
 		else
@@ -720,6 +725,73 @@ public class Platform {
 		return o;
 	}
 
+	private DeploymentType getDeploymentType(PtfVariable pv){
+		DeploymentType currentDeplType = this.wmdrOF.createDeploymentType();
+
+		currentDeplType.setId("depl-" + pv.getId() + "-" + sensorIncrement);
+		currentDeplType.setDeployedEquipment(this.getEquipmentPropertyType(pv));
+
+		TimePeriodType atotype = this.gmlOF.createTimePeriodType();
+		TimePositionType tptype = this.gmlOF.createTimePositionType();
+		ArrayList<String> datesString = new ArrayList<String>();
+		TimePeriodPropertyType tppt = this.gmlOF.createTimePeriodPropertyType();
+		if(pv.getStartDate() != null)
+			datesString.add(Utils.GetIsoDate(pv.getStartDate()));
+		else
+			datesString.add(Utils.GetIsoDate(pv.getPtf().getPtfDepl().getDeplDate()));
+		tptype.setValue(datesString);
+		atotype.setId("depl-timeperiod-validperiod-" + pv.getId() + "-" + sensorIncrement);
+		atotype.setBeginPosition(tptype);
+		
+		tptype = this.gmlOF.createTimePositionType();
+		datesString = new ArrayList<String>();
+		if(pv.getEndDate() != null)
+			datesString.add(Utils.GetIsoDate(pv.getEndDate()));
+		else if(pv.getPtf().getEndingDate() != null)
+			datesString.add(Utils.GetIsoDate(pv.getPtf().getEndingDate()));
+		tptype.setValue(datesString);
+		atotype.setEndPosition(tptype);
+
+		tppt.setTimePeriod(atotype);
+		currentDeplType.setValidPeriod(tppt);
+		currentDeplType.getDataGeneration().add(new DataGenerationPropertyType());
+
+		MeasureType mt = this.gmlOF.createMeasureType();
+		mt.setUom("m");
+		if (pv.getHeight() != null)
+			mt.setValue(pv.getHeight().doubleValue());
+		currentDeplType.setHeightAboveLocalReferenceSurface(mt);
+		currentDeplType.setLocalReferenceSurface(this.gmlOF.createReferenceType());
+
+		currentDeplType.getApplicationArea().add(this.gmlOF.createReferenceType());
+		currentDeplType.setSourceOfObservation(this.gmlOF.createReferenceType());
+
+
+		return currentDeplType;
+	}
+	
+	/**
+	 * Builds the list of deployments
+	 */
+	private List<Deployment> getDeployments(Ptf ptf) {
+		List<WIGOSMetadataRecordType.Deployment> result = new ArrayList<WIGOSMetadataRecordType.Deployment>();
+		DeploymentType currentDeplType = null;
+		WIGOSMetadataRecordType.Deployment currentDepl = null;
+		for (PtfVariable pv : ptf.getPtfVariables()) {
+			Variable v = pv.getVariable();
+			SensorModel sm = pv.getSensorModel();
+			if (sm != null && v.getWigosCode() != null) {
+				currentDepl = this.wmdrOF.createWIGOSMetadataRecordTypeDeployment();
+				currentDeplType = this.getDeploymentType(pv);
+				currentDepl.setDeployment(currentDeplType);
+				result.add(currentDepl);
+				sensorIncrement++;
+			}			
+		}
+
+		return result;
+	}
+
 	/**
 	 * Builds the OMObservationPropertyType list for the given platform.
 	 * 
@@ -733,7 +805,6 @@ public class Platform {
 		for (PtfVariable pv : ptf.getPtfVariables()) {
 			Variable v = pv.getVariable();
 			SensorModel sm = pv.getSensorModel();
-			int sensorIncrement = 0;
 			if (sm != null && v.getWigosCode() != null) {
 				ocp = this.wmdrOF.createObservingCapabilityPropertyType();
 				oc = this.wmdrOF.createObservingCapabilityType();
@@ -785,20 +856,8 @@ public class Platform {
 				process.setId("process-" + pv.getId());
 
 				DeploymentPropertyType deplP = this.wmdrOF.createDeploymentPropertyType();
-				DeploymentType depl = this.wmdrOF.createDeploymentType();
-				depl.setId("process-depl-" + pv.getId());
-				depl.setDeployedEquipment(this.getEquipmentPropertyType(pv, sensorIncrement));
-				sensorIncrement++;
-
-				MeasureType mt = this.gmlOF.createMeasureType();
-				mt.setUom("m");
-				if (pv.getHeight() != null)
-					mt.setValue(pv.getHeight().doubleValue());
-				depl.setHeightAboveLocalReferenceSurface(mt);
-				depl.setLocalReferenceSurface(this.gmlOF.createReferenceType());
-
-				depl.getApplicationArea().add(this.gmlOF.createReferenceType());
-				depl.setSourceOfObservation(this.gmlOF.createReferenceType());
+				DeploymentType depl = this.getDeploymentType(pv);
+				
 
 				deplP.setDeployment(depl);
 				process.setDeployment(deplP);
@@ -823,19 +882,6 @@ public class Platform {
 				atotype.setEndPosition(this.gmlOF.createTimePositionType());
 				topt.setAbstractTimeObject(this.gmlOF.createTimePeriod(atotype));
 				omobs.setPhenomenonTime(topt);
-
-				TimePeriodPropertyType tppt = this.gmlOF.createTimePeriodPropertyType();
-				atotype = this.gmlOF.createTimePeriodType();
-				tptype = this.gmlOF.createTimePositionType();
-				beginT = new ArrayList<String>();
-				beginT.add(Utils.GetIsoDate(ptf.getPtfDepl().getDeplDate()));
-				tptype.setValue(beginT);
-				atotype.setId("omobs-timeperiod-validperiod-" + pv.getId());
-				atotype.setBeginPosition(tptype);
-				atotype.setEndPosition(this.gmlOF.createTimePositionType());
-				tppt.setTimePeriod(atotype);
-				depl.setValidPeriod(tppt);
-				depl.getDataGeneration().add(new DataGenerationPropertyType());
 
 				omobs.setResultTime(this.gmlOF.createTimeInstantPropertyType());
 				omobs.setValidTime(this.gmlOF.createTimePeriodPropertyType());
@@ -864,6 +910,7 @@ public class Platform {
 				ocp.setObservingCapability(oc);
 
 				result.add(ocp);
+				sensorIncrement++;
 			}			
 		}
 
