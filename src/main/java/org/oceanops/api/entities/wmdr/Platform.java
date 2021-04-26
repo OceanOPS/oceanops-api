@@ -572,7 +572,7 @@ public class Platform {
 						String endDate = null;
 						if(i < ptfPtfStatuses.size() - 1){						
 							PtfPtfStatus nextPtfPtfStatus = ptfPtfStatuses.get(i+1);
-							endDate = Utils.ISO_DATE_FORMAT.format(nextPtfPtfStatus.getChangingDate());
+							endDate = Utils.ISO_DATE_FORMAT.format(nextPtfPtfStatus.getChangingDate().minusDays(1));
 						}
 						if(ptfPtfStatus.getPtfStatus().getId().intValue() == 5 && ptf.getEndingDate() != null)
 							startDate = Utils.ISO_DATE_FORMAT.format(ptf.getEndingDate());
