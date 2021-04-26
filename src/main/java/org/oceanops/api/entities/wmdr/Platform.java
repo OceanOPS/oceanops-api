@@ -391,7 +391,7 @@ public class Platform {
 		currentEquipmentType.getResponsibleParty().add(responsibleParty);
 
 		ReferenceType refType = this.gmlOF.createReferenceType();
-		refType.setHref("http://codes.wmo.int/common/wmdr/ObservingMethod/" + "341");
+		refType.setHref("http://codes.wmo.int/common/wmdr/ObservingMethod/" + "unknown");
 		currentEquipmentType.setObservingMethod(refType);
 
 		currentEquipment.setEquipment(currentEquipmentType);
