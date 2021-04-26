@@ -1,5 +1,7 @@
 /**
+ * @author Anthonin Lizé
  * 
+ * This code maps the different element of OceanOPS data model to the WMDR binding Java objects.
  */
 package org.oceanops.api.entities.wmdr;
 
