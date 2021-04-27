@@ -835,6 +835,7 @@ public class Platform {
 	/**
 	 * Builds the list of deployments
 	 */
+	@SuppressWarnings("unused")
 	private List<Deployment> getDeployments(Ptf ptf) {
 		List<WIGOSMetadataRecordType.Deployment> result = new ArrayList<WIGOSMetadataRecordType.Deployment>();
 		DeploymentType currentDeplType = null;
