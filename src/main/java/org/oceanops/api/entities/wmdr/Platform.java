@@ -445,15 +445,10 @@ public class Platform {
 			if(description.length() > 0)
 				description += "\n";
 			if(ptf.getPtfDepl().getShip().getHideMetadata().intValue() == 1){
-				description += "Ship: masked";
+				description += "Ship masked";
 			}
 			else{
-				description += "Ship: " + ptf.getPtfDepl().getShip().getName() + 
-					" (ICES code: " + (ptf.getPtfDepl().getShip().getRef() != null ? ptf.getPtfDepl().getShip().getRef() : "") + 
-					", IMO n°: " + (ptf.getPtfDepl().getShip().getImo() != null ? ptf.getPtfDepl().getShip().getImo() : "") +
-					", type: " + (ptf.getPtfDepl().getShip().getShipType() != null ? ptf.getPtfDepl().getShip().getShipType().getName() : "") +
-					(ptf.getPtfDepl().getShip().getCountry() != null ? " - " + ptf.getPtfDepl().getShip().getCountry().getCode3() : "") +
-					")";
+				description += (ptf.getPtfDepl().getShip().getShipType() != null ? ("Ship type: " + ptf.getPtfDepl().getShip().getShipType().getName()) : "");
 			}
 		}
 		List<Description> descriptions = o.getDescriptionList();
