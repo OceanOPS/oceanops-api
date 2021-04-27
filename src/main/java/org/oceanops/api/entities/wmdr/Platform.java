@@ -37,11 +37,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import _int.wmo.def.wmdr._2017.AbstractEnvironmentalMonitoringFacilityType;
+import _int.wmo.def.wmdr._2017.AbstractEnvironmentalMonitoringFacilityType.Description;
 import _int.wmo.def.wmdr._2017.AbstractEnvironmentalMonitoringFacilityType.GeospatialLocation;
 import _int.wmo.def.wmdr._2017.AbstractEnvironmentalMonitoringFacilityType.OnlineResource;
 import _int.wmo.def.wmdr._2017.DataGenerationPropertyType;
 import _int.wmo.def.wmdr._2017.DeploymentPropertyType;
 import _int.wmo.def.wmdr._2017.DeploymentType;
+import _int.wmo.def.wmdr._2017.DescriptionType;
 import _int.wmo.def.wmdr._2017.EquipmentPropertyType;
 import _int.wmo.def.wmdr._2017.EquipmentType;
 import _int.wmo.def.wmdr._2017.GeospatialLocationType;
@@ -205,7 +207,7 @@ public class Platform {
 			responsibleParty.setUuid(agency.getRef());
 
 		CharacterStringPropertyType organisationName = this.gcoOF.createCharacterStringPropertyType();
-		organisationName.setCharacterString(this.gcoOF.createCharacterString(agency.getNameShort()));
+		organisationName.setCharacterString(this.gcoOF.createCharacterString(agency.getName()));
 		CIContactPropertyType contactInfo = this.gmdOF.createCIContactPropertyType();
 		CIContactType contact = this.gmdOF.createCIContactType();
 		ArrayList<CharacterStringPropertyType> list = new ArrayList<CharacterStringPropertyType>();
@@ -418,14 +420,21 @@ public class Platform {
 		List<CodeType> nameList = new ArrayList<>();
 		nameList.add(name);
 		o.setName(nameList);
-		StringOrRefType value1 = new StringOrRefType();
+		
+		// Sorting WMO codes for that platform
+		List<Wmo> wmos = ptf.getWmos();
+		Comparator<Wmo> wmosRanking = Comparator.comparing(Wmo::getStartDate);
+		wmos.sort(wmosRanking);
+
 		String description = "";
 		if(ptf.getDescription() != null)
 			description = ptf.getDescription();
-		if(ptf.getWmos().size()>1){
-			description += "\nGTS identifier changes:\n";
-			for(Wmo wmo: ptf.getWmos()){
-				description += "* " + wmo.getWmo() + "(from " + Utils.GetIsoDateNoTime(wmo.getStartDate());
+		if(wmos.size()>1){
+			if(description.length() > 0)
+				description += "\n";
+			description += "GTS identifier changes:\n";
+			for(Wmo wmo: wmos){
+				description += "* " + wmo.getWmo() + " (from " + Utils.GetIsoDateNoTime(wmo.getStartDate());
 				if(wmo.getEndDate() != null){
 					description += " to " + Utils.GetIsoDateNoTime(wmo.getEndDate());
 				}
@@ -433,11 +442,13 @@ public class Platform {
 			}
 		}
 		if(ptf.getPtfDepl().getShip()!= null){
+			if(description.length() > 0)
+				description += "\n";
 			if(ptf.getPtfDepl().getShip().getHideMetadata().intValue() == 1){
-				description += "\nShip: masked";
+				description += "Ship: masked";
 			}
 			else{
-				description += "\nShip: " + ptf.getPtfDepl().getShip().getName() + 
+				description += "Ship: " + ptf.getPtfDepl().getShip().getName() + 
 					" (ICES code: " + (ptf.getPtfDepl().getShip().getRef() != null ? ptf.getPtfDepl().getShip().getRef() : "") + 
 					", IMO n°: " + (ptf.getPtfDepl().getShip().getImo() != null ? ptf.getPtfDepl().getShip().getImo() : "") +
 					", type: " + (ptf.getPtfDepl().getShip().getShipType() != null ? ptf.getPtfDepl().getShip().getShipType().getName() : "") +
@@ -445,9 +456,25 @@ public class Platform {
 					")";
 			}
 		}
-		value1.setValue(description);
-		o.setDescription(value1);
-		
+		List<Description> descriptions = o.getDescriptionList();
+		Description desc = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeDescription();
+		DescriptionType descType = this.wmdrOF.createDescriptionType();
+		descType.setDescription(description);
+		TimePeriodPropertyType descTimePeriodPropType = new TimePeriodPropertyType();
+		TimePeriodType descTimePeriod = new TimePeriodType();
+		TimePositionType descStartTimePosition = new TimePositionType();
+		TimePositionType descEndTimePosition = new TimePositionType();
+		descStartTimePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(ptf.getPtfDepl().getDeplDate())));
+		descTimePeriod.setId("desc-timePeriod-" + ptf.getId());
+		descTimePeriod.setBeginPosition(descStartTimePosition);
+		if(ptf.getPtfStatus().getId().intValue() == 5 && ptf.getEndingDate() != null)
+			descEndTimePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(ptf.getEndingDate())));
+		descTimePeriod.setEndPosition(descEndTimePosition);
+		descTimePeriodPropType.setTimePeriod(descTimePeriod);
+		descType.setValidPeriod(descTimePeriodPropType);
+		desc.setDescription(descType);
+		descriptions.add(desc);
+
 		List<OnlineResource> onlineResources = o.getOnlineResource();
 		OnlineResource or = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeOnlineResource();
 		CIOnlineResourceType onlineRsrc = this.gmdOF.createCIOnlineResourceType();
@@ -560,6 +587,18 @@ public class Platform {
 		}
 		refType.setHref("http://codes.wmo.int/common/wmdr/TerritoryName/" + country);
 		territoryType.setTerritoryName(refType);
+		TimePeriodPropertyType territoryTimePeriodPropType = new TimePeriodPropertyType();
+		TimePeriodType territoryTimePeriod = new TimePeriodType();
+		TimePositionType territoryStartTimePosition = new TimePositionType();
+		TimePositionType territoryEndTimePosition = new TimePositionType();
+		territoryStartTimePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(ptf.getPtfDepl().getDeplDate())));
+		territoryTimePeriod.setId("territory-timePeriod-" + ptf.getId());
+		territoryTimePeriod.setBeginPosition(territoryStartTimePosition);
+		if(ptf.getPtfStatus().getId().intValue() == 5 && ptf.getEndingDate() != null)
+			territoryEndTimePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(ptf.getEndingDate())));
+		territoryTimePeriod.setEndPosition(territoryEndTimePosition);
+		territoryTimePeriodPropType.setTimePeriod(territoryTimePeriod);
+		territoryType.setValidPeriod(territoryTimePeriodPropType);
 		territory.setTerritory(territoryType);
 		o.getTerritory().add(territory);
 
@@ -570,9 +609,6 @@ public class Platform {
 		ProgramAffiliation progAffiliation;
 		ProgramAffiliationType progAffiliationType;
 		int count = 1;
-		List<Wmo> wmos = ptf.getWmos();
-		Comparator<Wmo> wmosRanking = Comparator.comparing(Wmo::getStartDate);
-		wmos.sort(wmosRanking);
 		Comparator<PtfPtfStatus> ptfPtfStatusesRanking = Comparator.comparing(PtfPtfStatus::getChangingDate);
 		List<PtfPtfStatus> ptfPtfStatuses = ptf.getPtfPtfStatuses();
 		ptfPtfStatuses.sort(ptfPtfStatusesRanking);
