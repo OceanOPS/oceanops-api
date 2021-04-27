@@ -556,10 +556,13 @@ public class Platform {
 					agencyID = prAgency.getAgency().getId().intValue();
 			}
 			
-			if(agencyID == null)
+			if(agencyID == null && ptf.getProgram().getProgramAgencies().size() == 1){
 				rp.setCIResponsibleParty(this.getCIResponsibleParty(ptf.getProgram().getProgramAgencies().get(0).getAgency().getId().intValue(), "owner"));
-			else
+			}
+			else if(agencyID != null)
 				rp.setCIResponsibleParty(this.getCIResponsibleParty(agencyID, "owner"));
+			else
+				rp.setCIResponsibleParty(this.getCIResponsibleParty(null, null));
 		}
 		else
 			rp.setCIResponsibleParty(this.getCIResponsibleParty(null, null));
