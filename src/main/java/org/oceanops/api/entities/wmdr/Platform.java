@@ -419,7 +419,33 @@ public class Platform {
 		nameList.add(name);
 		o.setName(nameList);
 		StringOrRefType value1 = new StringOrRefType();
-		value1.setValue(ptf.getDescription());
+		String description = "";
+		if(ptf.getDescription() != null)
+			description = ptf.getDescription();
+		if(ptf.getWmos().size()>1){
+			description += "\nGTS identifier changes:\n";
+			for(Wmo wmo: ptf.getWmos()){
+				description += "* " + wmo.getWmo() + "(from " + Utils.GetIsoDateNoTime(wmo.getStartDate());
+				if(wmo.getEndDate() != null){
+					description += " to " + Utils.GetIsoDateNoTime(wmo.getEndDate());
+				}
+				description += ")\n";
+			}
+		}
+		if(ptf.getPtfDepl().getShip()!= null){
+			if(ptf.getPtfDepl().getShip().getHideMetadata().intValue() == 1){
+				description += "\nShip: masked";
+			}
+			else{
+				description += "\nShip: " + ptf.getPtfDepl().getShip().getName() + 
+					" (ICES code: " + (ptf.getPtfDepl().getShip().getRef() != null ? ptf.getPtfDepl().getShip().getRef() : "") + 
+					", IMO n°: " + (ptf.getPtfDepl().getShip().getImo() != null ? ptf.getPtfDepl().getShip().getImo() : "") +
+					", type: " + (ptf.getPtfDepl().getShip().getShipType() != null ? ptf.getPtfDepl().getShip().getShipType().getName() : "") +
+					(ptf.getPtfDepl().getShip().getCountry() != null ? " - " + ptf.getPtfDepl().getShip().getCountry().getCode3() : "") +
+					")";
+			}
+		}
+		value1.setValue(description);
 		o.setDescription(value1);
 		
 		List<OnlineResource> onlineResources = o.getOnlineResource();
