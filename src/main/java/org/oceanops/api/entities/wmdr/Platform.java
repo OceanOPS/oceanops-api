@@ -530,9 +530,9 @@ public class Platform {
 			}
 			
 			if(agencyID == null)
-				rp.setCIResponsibleParty(this.getCIResponsibleParty(ptf.getProgram().getProgramAgencies().get(0).getAgency().getId().intValue(), "pointOfContact"));
+				rp.setCIResponsibleParty(this.getCIResponsibleParty(ptf.getProgram().getProgramAgencies().get(0).getAgency().getId().intValue(), "owner"));
 			else
-				rp.setCIResponsibleParty(this.getCIResponsibleParty(agencyID, "pointOfContact"));
+				rp.setCIResponsibleParty(this.getCIResponsibleParty(agencyID, "owner"));
 		}
 		else
 			rp.setCIResponsibleParty(this.getCIResponsibleParty(null, null));
