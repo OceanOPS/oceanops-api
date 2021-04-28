@@ -59,6 +59,7 @@ public abstract class _PtfVariable extends BaseDataObject {
     public static final StringProperty<String> SIDE_INDICATOR = PropertyFactory.createString("sideIndicator", String.class);
     public static final DateProperty<LocalDateTime> START_DATE = PropertyFactory.createDate("startDate", LocalDateTime.class);
     public static final NumericProperty<BigDecimal> TIME_OFFSET = PropertyFactory.createNumeric("timeOffset", BigDecimal.class);
+    public static final NumericProperty<BigDecimal> VARIABLE_ID = PropertyFactory.createNumeric("variableId", BigDecimal.class);
     public static final EntityProperty<DataProcessingMethod> DATA_PROCESSING_METHOD = PropertyFactory.createEntity("dataProcessingMethod", DataProcessingMethod.class);
     public static final EntityProperty<Program> PROGRAM = PropertyFactory.createEntity("program", Program.class);
     public static final EntityProperty<Ptf> PTF = PropertyFactory.createEntity("ptf", Ptf.class);
@@ -94,6 +95,7 @@ public abstract class _PtfVariable extends BaseDataObject {
     protected String sideIndicator;
     protected LocalDateTime startDate;
     protected BigDecimal timeOffset;
+    protected BigDecimal variableId;
 
     protected Object dataProcessingMethod;
     protected Object program;
@@ -364,6 +366,16 @@ public abstract class _PtfVariable extends BaseDataObject {
         return this.timeOffset;
     }
 
+    public void setVariableId(BigDecimal variableId) {
+        beforePropertyWrite("variableId", this.variableId, variableId);
+        this.variableId = variableId;
+    }
+
+    public BigDecimal getVariableId() {
+        beforePropertyRead("variableId");
+        return this.variableId;
+    }
+
     public void setDataProcessingMethod(DataProcessingMethod dataProcessingMethod) {
         setToOneTarget("dataProcessingMethod", dataProcessingMethod, true);
     }
@@ -487,6 +499,8 @@ public abstract class _PtfVariable extends BaseDataObject {
                 return this.startDate;
             case "timeOffset":
                 return this.timeOffset;
+            case "variableId":
+                return this.variableId;
             case "dataProcessingMethod":
                 return this.dataProcessingMethod;
             case "program":
@@ -593,6 +607,9 @@ public abstract class _PtfVariable extends BaseDataObject {
             case "timeOffset":
                 this.timeOffset = (BigDecimal)val;
                 break;
+            case "variableId":
+                this.variableId = (BigDecimal)val;
+                break;
             case "dataProcessingMethod":
                 this.dataProcessingMethod = val;
                 break;
@@ -659,6 +676,7 @@ public abstract class _PtfVariable extends BaseDataObject {
         out.writeObject(this.sideIndicator);
         out.writeObject(this.startDate);
         out.writeObject(this.timeOffset);
+        out.writeObject(this.variableId);
         out.writeObject(this.dataProcessingMethod);
         out.writeObject(this.program);
         out.writeObject(this.ptf);
@@ -698,6 +716,7 @@ public abstract class _PtfVariable extends BaseDataObject {
         this.sideIndicator = (String)in.readObject();
         this.startDate = (LocalDateTime)in.readObject();
         this.timeOffset = (BigDecimal)in.readObject();
+        this.variableId = (BigDecimal)in.readObject();
         this.dataProcessingMethod = in.readObject();
         this.program = in.readObject();
         this.ptf = in.readObject();
