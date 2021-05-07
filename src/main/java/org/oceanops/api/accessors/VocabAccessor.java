@@ -16,6 +16,7 @@ import org.oceanops.api.orm.Country;
 import org.oceanops.api.orm.DeplMethod;
 import org.oceanops.api.orm.EndingCause;
 import org.oceanops.api.orm.Network;
+import org.oceanops.api.orm.NetworkType;
 import org.oceanops.api.orm.PostRetrievalStatus;
 import org.oceanops.api.orm.Program;
 import org.oceanops.api.orm.PtfFamily;
@@ -341,6 +342,24 @@ public class VocabAccessor {
 	@Path("topic/{id}")
     public DataResponse<Topic> getTopic(@PathParam("id") int id, @Context UriInfo uriInfo) {
 		SelectBuilder<Topic> sBuilder = Ag.select(Topic.class, config).byId(id);
+		
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).getOne();
+	}
+	@GET
+	@Path("networktype")
+    public DataResponse<NetworkType> getNetworkTypes(@Context UriInfo uriInfo) {
+		SelectBuilder<NetworkType> sBuilder = Ag.select(NetworkType.class, config);
+
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).get();
+	}
+	@GET
+	@Path("networktype/{id}")
+    public DataResponse<NetworkType> getNetworkType(@PathParam("id") int id, @Context UriInfo uriInfo) {
+		SelectBuilder<NetworkType> sBuilder = Ag.select(NetworkType.class, config).byId(id);
 		
 		Authorization.applySelectAuthorization(sBuilder);
 

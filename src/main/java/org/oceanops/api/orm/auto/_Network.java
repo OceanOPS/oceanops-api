@@ -22,6 +22,7 @@ import org.oceanops.api.orm.NetworkCountry;
 import org.oceanops.api.orm.NetworkEndingCause;
 import org.oceanops.api.orm.NetworkPtf;
 import org.oceanops.api.orm.NetworkSite;
+import org.oceanops.api.orm.NetworkType;
 import org.oceanops.api.orm.Program;
 import org.oceanops.api.orm.PtfModel;
 import org.oceanops.api.orm.SensorModelNetwork;
@@ -59,6 +60,7 @@ public abstract class _Network extends BaseDataObject {
     public static final ListProperty<NetworkEndingCause> NETWORK_ENDING_CAUSES = PropertyFactory.createList("networkEndingCauses", NetworkEndingCause.class);
     public static final ListProperty<NetworkPtf> NETWORK_PTFS = PropertyFactory.createList("networkPtfs", NetworkPtf.class);
     public static final ListProperty<NetworkSite> NETWORK_SITES = PropertyFactory.createList("networkSites", NetworkSite.class);
+    public static final EntityProperty<NetworkType> NETWORK_TYPE = PropertyFactory.createEntity("networkType", NetworkType.class);
     public static final ListProperty<Program> PROGRAMS = PropertyFactory.createList("programs", Program.class);
     public static final ListProperty<PtfModel> PTF_MODELS = PropertyFactory.createList("ptfModels", PtfModel.class);
     public static final ListProperty<SensorModelNetwork> SENSOR_MODEL_NETWORKS = PropertyFactory.createList("sensorModelNetworks", SensorModelNetwork.class);
@@ -85,6 +87,7 @@ public abstract class _Network extends BaseDataObject {
     protected Object networkEndingCauses;
     protected Object networkPtfs;
     protected Object networkSites;
+    protected Object networkType;
     protected Object programs;
     protected Object ptfModels;
     protected Object sensorModelNetworks;
@@ -293,6 +296,14 @@ public abstract class _Network extends BaseDataObject {
         return (List<NetworkSite>)readProperty("networkSites");
     }
 
+    public void setNetworkType(NetworkType networkType) {
+        setToOneTarget("networkType", networkType, true);
+    }
+
+    public NetworkType getNetworkType() {
+        return (NetworkType)readProperty("networkType");
+    }
+
     public void addToPrograms(Program obj) {
         addToManyTarget("programs", obj, true);
     }
@@ -420,6 +431,8 @@ public abstract class _Network extends BaseDataObject {
                 return this.networkPtfs;
             case "networkSites":
                 return this.networkSites;
+            case "networkType":
+                return this.networkType;
             case "programs":
                 return this.programs;
             case "ptfModels":
@@ -497,6 +510,9 @@ public abstract class _Network extends BaseDataObject {
             case "networkSites":
                 this.networkSites = val;
                 break;
+            case "networkType":
+                this.networkType = val;
+                break;
             case "programs":
                 this.programs = val;
                 break;
@@ -551,6 +567,7 @@ public abstract class _Network extends BaseDataObject {
         out.writeObject(this.networkEndingCauses);
         out.writeObject(this.networkPtfs);
         out.writeObject(this.networkSites);
+        out.writeObject(this.networkType);
         out.writeObject(this.programs);
         out.writeObject(this.ptfModels);
         out.writeObject(this.sensorModelNetworks);
@@ -580,6 +597,7 @@ public abstract class _Network extends BaseDataObject {
         this.networkEndingCauses = in.readObject();
         this.networkPtfs = in.readObject();
         this.networkSites = in.readObject();
+        this.networkType = in.readObject();
         this.programs = in.readObject();
         this.ptfModels = in.readObject();
         this.sensorModelNetworks = in.readObject();
