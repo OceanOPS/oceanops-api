@@ -56,6 +56,11 @@ public class Help extends HttpServlet {
 		concept.put("jsonUrl", "network");
 		concepts.add(concept);
 		concept = new HashMap<String, String>();
+		concept.put("name", "Network type");
+		concept.put("urlParam", "networktype");
+		concept.put("jsonUrl", "networktype");
+		concepts.add(concept);
+		concept = new HashMap<String, String>();
 		concept.put("name", "Variable");
 		concept.put("urlParam", "variable");
 		concept.put("jsonUrl", "variable");
