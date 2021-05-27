@@ -33,11 +33,13 @@ public abstract class _PtfVariable extends BaseDataObject {
 
     public static final String ID_PK_COLUMN = "ID";
 
+    public static final StringProperty<String> ACCURACY = PropertyFactory.createString("accuracy", String.class);
     public static final StringProperty<String> AVERAGING_METHOD = PropertyFactory.createString("averagingMethod", String.class);
     public static final NumericProperty<BigDecimal> AVERAGING_PERIOD = PropertyFactory.createNumeric("averagingPeriod", BigDecimal.class);
     public static final DateProperty<LocalDateTime> CALIB_DATE = PropertyFactory.createDate("calibDate", LocalDateTime.class);
     public static final DateProperty<LocalDateTime> CALIB_DATE_NEXT = PropertyFactory.createDate("calibDateNext", LocalDateTime.class);
     public static final StringProperty<String> COMMENTS = PropertyFactory.createString("comments", String.class);
+    public static final StringProperty<String> CONTROL_SCHEDULE = PropertyFactory.createString("controlSchedule", String.class);
     public static final NumericProperty<BigDecimal> DATA_PROCESSING_METHOD_ID = PropertyFactory.createNumeric("dataProcessingMethodId", BigDecimal.class);
     public static final NumericProperty<BigDecimal> DISTANCE_X = PropertyFactory.createNumeric("distanceX", BigDecimal.class);
     public static final NumericProperty<BigDecimal> DISTANCE_Y = PropertyFactory.createNumeric("distanceY", BigDecimal.class);
@@ -51,16 +53,19 @@ public abstract class _PtfVariable extends BaseDataObject {
     public static final NumericProperty<BigDecimal> NB_OBS = PropertyFactory.createNumeric("nbObs", BigDecimal.class);
     public static final StringProperty<String> OWNERSHIP = PropertyFactory.createString("ownership", String.class);
     public static final NumericProperty<BigDecimal> PACKAGE_N = PropertyFactory.createNumeric("packageN", BigDecimal.class);
+    public static final StringProperty<String> PRECISION = PropertyFactory.createString("precision", String.class);
+    public static final StringProperty<String> RANGE = PropertyFactory.createString("range", String.class);
+    public static final StringProperty<String> RESOLUTION = PropertyFactory.createString("resolution", String.class);
     public static final NumericProperty<BigDecimal> SAMPLING_RATE = PropertyFactory.createNumeric("samplingRate", BigDecimal.class);
     public static final NumericProperty<BigDecimal> SAMPLING_RATE_TOTAL = PropertyFactory.createNumeric("samplingRateTotal", BigDecimal.class);
     public static final NumericProperty<BigDecimal> SENSOR_STATUS_ID = PropertyFactory.createNumeric("sensorStatusId", BigDecimal.class);
     public static final StringProperty<String> SERIAL_NO = PropertyFactory.createString("serialNo", String.class);
-    public static final NumericProperty<BigDecimal> SERVICE_SCHEDULE_ID = PropertyFactory.createNumeric("serviceScheduleId", BigDecimal.class);
     public static final StringProperty<String> SIDE_INDICATOR = PropertyFactory.createString("sideIndicator", String.class);
     public static final DateProperty<LocalDateTime> START_DATE = PropertyFactory.createDate("startDate", LocalDateTime.class);
     public static final NumericProperty<BigDecimal> TIME_OFFSET = PropertyFactory.createNumeric("timeOffset", BigDecimal.class);
     public static final NumericProperty<BigDecimal> VARIABLE_ID = PropertyFactory.createNumeric("variableId", BigDecimal.class);
     public static final EntityProperty<DataProcessingMethod> DATA_PROCESSING_METHOD = PropertyFactory.createEntity("dataProcessingMethod", DataProcessingMethod.class);
+    public static final EntityProperty<Weblink> MANUF_WEBLINK = PropertyFactory.createEntity("manufWeblink", Weblink.class);
     public static final EntityProperty<Program> PROGRAM = PropertyFactory.createEntity("program", Program.class);
     public static final EntityProperty<Ptf> PTF = PropertyFactory.createEntity("ptf", Ptf.class);
     public static final EntityProperty<SensorExposure> SENSOR_EXPOSURE = PropertyFactory.createEntity("sensorExposure", SensorExposure.class);
@@ -69,11 +74,13 @@ public abstract class _PtfVariable extends BaseDataObject {
     public static final EntityProperty<Variable> VARIABLE = PropertyFactory.createEntity("variable", Variable.class);
     public static final EntityProperty<Weblink> WEBLINK = PropertyFactory.createEntity("weblink", Weblink.class);
 
+    protected String accuracy;
     protected String averagingMethod;
     protected BigDecimal averagingPeriod;
     protected LocalDateTime calibDate;
     protected LocalDateTime calibDateNext;
     protected String comments;
+    protected String controlSchedule;
     protected BigDecimal dataProcessingMethodId;
     protected BigDecimal distanceX;
     protected BigDecimal distanceY;
@@ -87,17 +94,20 @@ public abstract class _PtfVariable extends BaseDataObject {
     protected BigDecimal nbObs;
     protected String ownership;
     protected BigDecimal packageN;
+    protected String precision;
+    protected String range;
+    protected String resolution;
     protected BigDecimal samplingRate;
     protected BigDecimal samplingRateTotal;
     protected BigDecimal sensorStatusId;
     protected String serialNo;
-    protected BigDecimal serviceScheduleId;
     protected String sideIndicator;
     protected LocalDateTime startDate;
     protected BigDecimal timeOffset;
     protected BigDecimal variableId;
 
     protected Object dataProcessingMethod;
+    protected Object manufWeblink;
     protected Object program;
     protected Object ptf;
     protected Object sensorExposure;
@@ -105,6 +115,16 @@ public abstract class _PtfVariable extends BaseDataObject {
     protected Object sensorModel;
     protected Object variable;
     protected Object weblink;
+
+    public void setAccuracy(String accuracy) {
+        beforePropertyWrite("accuracy", this.accuracy, accuracy);
+        this.accuracy = accuracy;
+    }
+
+    public String getAccuracy() {
+        beforePropertyRead("accuracy");
+        return this.accuracy;
+    }
 
     public void setAveragingMethod(String averagingMethod) {
         beforePropertyWrite("averagingMethod", this.averagingMethod, averagingMethod);
@@ -154,6 +174,16 @@ public abstract class _PtfVariable extends BaseDataObject {
     public String getComments() {
         beforePropertyRead("comments");
         return this.comments;
+    }
+
+    public void setControlSchedule(String controlSchedule) {
+        beforePropertyWrite("controlSchedule", this.controlSchedule, controlSchedule);
+        this.controlSchedule = controlSchedule;
+    }
+
+    public String getControlSchedule() {
+        beforePropertyRead("controlSchedule");
+        return this.controlSchedule;
     }
 
     public void setDataProcessingMethodId(BigDecimal dataProcessingMethodId) {
@@ -286,6 +316,36 @@ public abstract class _PtfVariable extends BaseDataObject {
         return this.packageN;
     }
 
+    public void setPrecision(String precision) {
+        beforePropertyWrite("precision", this.precision, precision);
+        this.precision = precision;
+    }
+
+    public String getPrecision() {
+        beforePropertyRead("precision");
+        return this.precision;
+    }
+
+    public void setRange(String range) {
+        beforePropertyWrite("range", this.range, range);
+        this.range = range;
+    }
+
+    public String getRange() {
+        beforePropertyRead("range");
+        return this.range;
+    }
+
+    public void setResolution(String resolution) {
+        beforePropertyWrite("resolution", this.resolution, resolution);
+        this.resolution = resolution;
+    }
+
+    public String getResolution() {
+        beforePropertyRead("resolution");
+        return this.resolution;
+    }
+
     public void setSamplingRate(BigDecimal samplingRate) {
         beforePropertyWrite("samplingRate", this.samplingRate, samplingRate);
         this.samplingRate = samplingRate;
@@ -324,16 +384,6 @@ public abstract class _PtfVariable extends BaseDataObject {
     public String getSerialNo() {
         beforePropertyRead("serialNo");
         return this.serialNo;
-    }
-
-    public void setServiceScheduleId(BigDecimal serviceScheduleId) {
-        beforePropertyWrite("serviceScheduleId", this.serviceScheduleId, serviceScheduleId);
-        this.serviceScheduleId = serviceScheduleId;
-    }
-
-    public BigDecimal getServiceScheduleId() {
-        beforePropertyRead("serviceScheduleId");
-        return this.serviceScheduleId;
     }
 
     public void setSideIndicator(String sideIndicator) {
@@ -382,6 +432,14 @@ public abstract class _PtfVariable extends BaseDataObject {
 
     public DataProcessingMethod getDataProcessingMethod() {
         return (DataProcessingMethod)readProperty("dataProcessingMethod");
+    }
+
+    public void setManufWeblink(Weblink manufWeblink) {
+        setToOneTarget("manufWeblink", manufWeblink, true);
+    }
+
+    public Weblink getManufWeblink() {
+        return (Weblink)readProperty("manufWeblink");
     }
 
     public void setProgram(Program program) {
@@ -447,6 +505,8 @@ public abstract class _PtfVariable extends BaseDataObject {
         }
 
         switch(propName) {
+            case "accuracy":
+                return this.accuracy;
             case "averagingMethod":
                 return this.averagingMethod;
             case "averagingPeriod":
@@ -457,6 +517,8 @@ public abstract class _PtfVariable extends BaseDataObject {
                 return this.calibDateNext;
             case "comments":
                 return this.comments;
+            case "controlSchedule":
+                return this.controlSchedule;
             case "dataProcessingMethodId":
                 return this.dataProcessingMethodId;
             case "distanceX":
@@ -483,6 +545,12 @@ public abstract class _PtfVariable extends BaseDataObject {
                 return this.ownership;
             case "packageN":
                 return this.packageN;
+            case "precision":
+                return this.precision;
+            case "range":
+                return this.range;
+            case "resolution":
+                return this.resolution;
             case "samplingRate":
                 return this.samplingRate;
             case "samplingRateTotal":
@@ -491,8 +559,6 @@ public abstract class _PtfVariable extends BaseDataObject {
                 return this.sensorStatusId;
             case "serialNo":
                 return this.serialNo;
-            case "serviceScheduleId":
-                return this.serviceScheduleId;
             case "sideIndicator":
                 return this.sideIndicator;
             case "startDate":
@@ -503,6 +569,8 @@ public abstract class _PtfVariable extends BaseDataObject {
                 return this.variableId;
             case "dataProcessingMethod":
                 return this.dataProcessingMethod;
+            case "manufWeblink":
+                return this.manufWeblink;
             case "program":
                 return this.program;
             case "ptf":
@@ -529,6 +597,9 @@ public abstract class _PtfVariable extends BaseDataObject {
         }
 
         switch (propName) {
+            case "accuracy":
+                this.accuracy = (String)val;
+                break;
             case "averagingMethod":
                 this.averagingMethod = (String)val;
                 break;
@@ -543,6 +614,9 @@ public abstract class _PtfVariable extends BaseDataObject {
                 break;
             case "comments":
                 this.comments = (String)val;
+                break;
+            case "controlSchedule":
+                this.controlSchedule = (String)val;
                 break;
             case "dataProcessingMethodId":
                 this.dataProcessingMethodId = (BigDecimal)val;
@@ -583,6 +657,15 @@ public abstract class _PtfVariable extends BaseDataObject {
             case "packageN":
                 this.packageN = (BigDecimal)val;
                 break;
+            case "precision":
+                this.precision = (String)val;
+                break;
+            case "range":
+                this.range = (String)val;
+                break;
+            case "resolution":
+                this.resolution = (String)val;
+                break;
             case "samplingRate":
                 this.samplingRate = (BigDecimal)val;
                 break;
@@ -594,9 +677,6 @@ public abstract class _PtfVariable extends BaseDataObject {
                 break;
             case "serialNo":
                 this.serialNo = (String)val;
-                break;
-            case "serviceScheduleId":
-                this.serviceScheduleId = (BigDecimal)val;
                 break;
             case "sideIndicator":
                 this.sideIndicator = (String)val;
@@ -612,6 +692,9 @@ public abstract class _PtfVariable extends BaseDataObject {
                 break;
             case "dataProcessingMethod":
                 this.dataProcessingMethod = val;
+                break;
+            case "manufWeblink":
+                this.manufWeblink = val;
                 break;
             case "program":
                 this.program = val;
@@ -650,11 +733,13 @@ public abstract class _PtfVariable extends BaseDataObject {
     @Override
     protected void writeState(ObjectOutputStream out) throws IOException {
         super.writeState(out);
+        out.writeObject(this.accuracy);
         out.writeObject(this.averagingMethod);
         out.writeObject(this.averagingPeriod);
         out.writeObject(this.calibDate);
         out.writeObject(this.calibDateNext);
         out.writeObject(this.comments);
+        out.writeObject(this.controlSchedule);
         out.writeObject(this.dataProcessingMethodId);
         out.writeObject(this.distanceX);
         out.writeObject(this.distanceY);
@@ -668,16 +753,19 @@ public abstract class _PtfVariable extends BaseDataObject {
         out.writeObject(this.nbObs);
         out.writeObject(this.ownership);
         out.writeObject(this.packageN);
+        out.writeObject(this.precision);
+        out.writeObject(this.range);
+        out.writeObject(this.resolution);
         out.writeObject(this.samplingRate);
         out.writeObject(this.samplingRateTotal);
         out.writeObject(this.sensorStatusId);
         out.writeObject(this.serialNo);
-        out.writeObject(this.serviceScheduleId);
         out.writeObject(this.sideIndicator);
         out.writeObject(this.startDate);
         out.writeObject(this.timeOffset);
         out.writeObject(this.variableId);
         out.writeObject(this.dataProcessingMethod);
+        out.writeObject(this.manufWeblink);
         out.writeObject(this.program);
         out.writeObject(this.ptf);
         out.writeObject(this.sensorExposure);
@@ -690,11 +778,13 @@ public abstract class _PtfVariable extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
+        this.accuracy = (String)in.readObject();
         this.averagingMethod = (String)in.readObject();
         this.averagingPeriod = (BigDecimal)in.readObject();
         this.calibDate = (LocalDateTime)in.readObject();
         this.calibDateNext = (LocalDateTime)in.readObject();
         this.comments = (String)in.readObject();
+        this.controlSchedule = (String)in.readObject();
         this.dataProcessingMethodId = (BigDecimal)in.readObject();
         this.distanceX = (BigDecimal)in.readObject();
         this.distanceY = (BigDecimal)in.readObject();
@@ -708,16 +798,19 @@ public abstract class _PtfVariable extends BaseDataObject {
         this.nbObs = (BigDecimal)in.readObject();
         this.ownership = (String)in.readObject();
         this.packageN = (BigDecimal)in.readObject();
+        this.precision = (String)in.readObject();
+        this.range = (String)in.readObject();
+        this.resolution = (String)in.readObject();
         this.samplingRate = (BigDecimal)in.readObject();
         this.samplingRateTotal = (BigDecimal)in.readObject();
         this.sensorStatusId = (BigDecimal)in.readObject();
         this.serialNo = (String)in.readObject();
-        this.serviceScheduleId = (BigDecimal)in.readObject();
         this.sideIndicator = (String)in.readObject();
         this.startDate = (LocalDateTime)in.readObject();
         this.timeOffset = (BigDecimal)in.readObject();
         this.variableId = (BigDecimal)in.readObject();
         this.dataProcessingMethod = in.readObject();
+        this.manufWeblink = in.readObject();
         this.program = in.readObject();
         this.ptf = in.readObject();
         this.sensorExposure = in.readObject();

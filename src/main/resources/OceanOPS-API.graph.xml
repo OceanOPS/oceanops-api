@@ -76,7 +76,7 @@
 		<entity name="OBS_ARGO_GDAC_VARIABLE" x="10.0" y="10.0" width="164.0" height="146.0"/>
 		<entity name="LINE_TYPE" x="10.0" y="10.0" width="112.0" height="418.0"/>
 		<entity name="OBS_DATA_STATUS" x="10.0" y="10.0" width="113.0" height="66.0"/>
-		<entity name="PTF_VARIABLE" x="10.0" y="10.0" width="176.0" height="562.0"/>
+		<entity name="PTF_VARIABLE" x="10.0" y="10.0" width="176.0" height="642.0"/>
 		<entity name="QC_FEEDBACK_TYPE" x="10.0" y="10.0" width="113.0" height="114.0"/>
 		<entity name="STORY" x="868.0" y="36.0" width="70.0" height="194.0"/>
 		<entity name="PTF_SOFTWARE_TYPE" x="10.0" y="10.0" width="122.0" height="66.0"/>
@@ -253,7 +253,7 @@
 		<entity name="WebFrequentation" x="10.0" y="10.0" width="107.0" height="82.0"/>
 		<entity name="ObsStats" x="553.0" y="38.0" width="51.0" height="130.0"/>
 		<entity name="PtfStatistics" x="10.0" y="10.0" width="127.0" height="306.0"/>
-		<entity name="PtfVariable" x="10.0" y="10.0" width="135.0" height="466.0"/>
+		<entity name="PtfVariable" x="10.0" y="10.0" width="135.0" height="530.0"/>
 		<entity name="Site" x="10.0" y="10.0" width="108.0" height="130.0"/>
 		<entity name="CountryCommitment" x="10.0" y="10.0" width="120.0" height="98.0"/>
 		<entity name="NetworkContact" x="10.0" y="10.0" width="95.0" height="82.0"/>
