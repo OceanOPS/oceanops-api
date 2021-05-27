@@ -248,7 +248,7 @@
 		</dependency>		
 	</dependencies>
 	<properties>
-		<maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ss'Z'</maven.build.timestamp.format>
+		<maven.build.timestamp.format>yyyyMMdd-HHmm</maven.build.timestamp.format>
 		<timestamp>${maven.build.timestamp}</timestamp>
 		<jersey.version>2.33</jersey.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
