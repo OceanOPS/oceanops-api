@@ -1,1 +1,1 @@
-<% response.sendRedirect("rest/"); %>
+<% response.sendRedirect("help/"); %>

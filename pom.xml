@@ -5,7 +5,7 @@
 	<groupId>org.oceanops</groupId>
 	<artifactId>api</artifactId>
 	<packaging>war</packaging>
-	<version>1.0.0beta31-SNAPSHOT</version>
+	<version>1.0beta-SNAPSHOT</version>
 	<name>OceanOPS API</name>
 
 	<scm>
@@ -37,7 +37,7 @@
 					<artifactId>maven-release-plugin</artifactId>
 					<version>2.5.3</version>
 					<configuration>
-						<tagNameFormat>v@{project.version}</tagNameFormat>
+						<tagNameFormat>v@{project.version}.${timestamp}</tagNameFormat>
 					</configuration>
 				</plugin>
 				<plugin>
@@ -70,11 +70,11 @@
 						<useDependenciesAsEpisodes>true</useDependenciesAsEpisodes>
 						<!-- Uses extensions -->
 						<extension>true</extension>
-						<schemaDirectory>src/main/resources/</schemaDirectory>
+						<schemaDirectory>src/main/scripts/</schemaDirectory>
 						<schemaIncludes>
 							<schemaInclude>wmdr.xsd</schemaInclude>
 						</schemaIncludes>
-						<bindingDirectory>src/main/resources</bindingDirectory>
+						<bindingDirectory>src/main/scripts</bindingDirectory>
 						<bindingIncludes>
 							<include>*.xjb</include>
 						</bindingIncludes>
@@ -242,8 +242,14 @@
 			<groupId>io.agrest</groupId>
 			<artifactId>agrest-annotations</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>io.agrest</groupId>
+			<artifactId>agrest-openapi</artifactId>
+		</dependency>		
 	</dependencies>
 	<properties>
+		<maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ss'Z'</maven.build.timestamp.format>
+		<timestamp>${maven.build.timestamp}</timestamp>
 		<jersey.version>2.33</jersey.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<helpEditionDate>2021-05-07</helpEditionDate>

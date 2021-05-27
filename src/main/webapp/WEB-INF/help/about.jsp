@@ -16,20 +16,20 @@
 </p>
 <h3>Versionning</h3>
 <p>
-	The versionning pattern of this API is as follows: <code>X.Y.Z</code>.
+	The versionning pattern of this API is as follows: <code>Major.Minor</code>.
 	<ul>
-		<li><code>X</code> refers to a major version update. This typically refers to an update in the behavior of the API. This is highly subject to <strong>breaking changes</strong>.</li>
-		<li><code>Y</code> refers to a sub-major version update. This concerns mainly addition of entities, metadata, new formats. 
-		This might involve <strong>breaking changes</strong>, depending on what format the client is using and how flexible it is.</li>
-		<li><code>Z</code> refers to minor changes, such as bug fixes, typos, etc.. This is not subject to any breaking change.</li>
+		<li><code>Major</code> refers to a major version update. This typically refers to an update in the behavior of the API. This is highly subject to <strong>breaking changes</strong>.</li>
+		<li><code>Minor</code> refers to a minor version update. This concerns mainly addition of entities, metadata, new formats. 
+		This might involve <strong>breaking changes</strong>, depending on what format the client is using and how flexible it is.
 	</ul> 
+	Minor changes - such as bug fixes, typos, etc. - everything subject to a hot patch is not subject to any breaking change and does not increment the version.</li>
 </p>
 
 <p>
 	The latest version of the API can be reached at that URL (the link will redirect to the numbered version of the URL): 
-	<div class="text-center"><span class="url"><%=rootUrlNoVersion%>latest/</span></div>
+	<div class="text-center"><span class="url"><%=rootUrlNoVersion%></span></div>
 	<br>
-	On top of the latest version, two previous versions (major or sub-major) will be kept for backward compatibility.
+	On top of the latest version, two previous versions (major or minor) will be kept for backward compatibility.
 	<br><br>
 	Should you wish to follow our latest improvements, check out our latest preview version by going there:
 	<div class="text-center"><span class="url"><%=rootUrlNoVersion%>preview/</span></div>

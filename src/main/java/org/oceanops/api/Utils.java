@@ -32,6 +32,7 @@ public class Utils {
 	public static final DateTimeFormatter ISO_DATE_NO_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	public static final Integer OCEANOPS_AGENCY_ID = 61;
 	public static final Integer SOT_NETWORK_ID = 1000622;
+	public static final String entityPath = "data";
 
 	private Utils() {
 	}

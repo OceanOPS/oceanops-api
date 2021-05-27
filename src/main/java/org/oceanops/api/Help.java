@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class
  */
-@WebServlet("/help")
 public class Help extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ArrayList<HashMap<String, String>> concepts = new ArrayList<HashMap<String, String>>();
@@ -180,6 +178,7 @@ public class Help extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setAttribute("rootUrl", Utils.getRootUrl());
+		request.setAttribute("entityPath", Utils.entityPath);
 		if(Utils.isBetaVersion())
 			request.setAttribute("rootUrlNoVersion", Utils.getRootUrl().substring(0, Utils.getRootUrl().length() - "preview".length() - 1));
 		else

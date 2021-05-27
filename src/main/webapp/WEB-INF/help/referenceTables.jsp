@@ -18,7 +18,7 @@
 				<tr>
 					<td><%= c.get("name") %></td>
                     <td><a class="btn btn-default btn-block" target="_blank" href='?param=<%= c.get("urlParam") %>' role="button"><%= c.get("name") %></a></td>
-                    <td><%=rootUrl%><%= c.get("jsonUrl") %></td>
+                    <td><%=rootUrl%><%=entityPath%>/<%= c.get("jsonUrl") %></td>
                 </tr>
                 <%
                     }

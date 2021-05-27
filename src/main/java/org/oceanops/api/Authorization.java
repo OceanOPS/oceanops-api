@@ -27,13 +27,7 @@ public class Authorization {
 			Contact.IS_PRIVATE.getName(),
 			Contact.ADMIN.getName(),
 			Contact.GREETINGS.getName()
-		).redefineAttribute(Contact.EMAIL.getName(), String.class, ea -> ea.getIsPrivate().intValue() == 0 ? ea.getEmail(): null)
-			.redefineAttribute(Contact.EMAIL2.getName(), String.class, ea -> ea.getIsPrivate().intValue() == 0 ? ea.getEmail2(): null)
-			.redefineAttribute(Contact.TEL.getName(), String.class, ea -> ea.getIsPrivate().intValue() == 0 ? ea.getTel(): null)
-			.redefineAttribute(Contact.TEL2.getName(), String.class, ea -> ea.getIsPrivate().intValue() == 0 ? ea.getTel2(): null)
-			.redefineAttribute(Contact.ADDRESS.getName(), String.class, ea -> ea.getIsPrivate().intValue() == 0 ? ea.getAddress(): null)
-			.redefineAttribute(Contact.FAX.getName(), String.class, ea -> ea.getIsPrivate().intValue() == 0 ? ea.getFax(): null)
-		);
+		));
 
 		// ProgramContact MZMS exclusion
 		agBuilder.entityOverlay(new AgEntityOverlay<ProgramContact>(ProgramContact.class).exclude(
@@ -90,6 +84,25 @@ public class Authorization {
                         return eo.getCruises();     
                 }             
             ));
+
+            sBuilder.entityOverlay(new AgEntityOverlay<Contact>(Contact.class)
+                .redefineAttribute(Contact.EMAIL.getName(), String.class, ea -> ea.getIsPrivate().intValue() == 0 ? ea.getEmail(): null)
+                .redefineAttribute(Contact.EMAIL2.getName(), String.class, ea -> ea.getIsPrivate().intValue() == 0 ? ea.getEmail2(): null)
+                .redefineAttribute(Contact.TEL.getName(), String.class, ea -> ea.getIsPrivate().intValue() == 0 ? ea.getTel(): null)
+                .redefineAttribute(Contact.TEL2.getName(), String.class, ea -> ea.getIsPrivate().intValue() == 0 ? ea.getTel2(): null)
+                .redefineAttribute(Contact.ADDRESS.getName(), String.class, ea -> ea.getIsPrivate().intValue() == 0 ? ea.getAddress(): null)
+                .redefineAttribute(Contact.FAX.getName(), String.class, ea -> ea.getIsPrivate().intValue() == 0 ? ea.getFax(): null)
+                .exclude("ncNotifications","ncSubscriptions","webConnections","webContactModules",
+                    "webContactPreferences","webFrequentations","webQueries","webWorkspaces")
+            );
+            
+            sBuilder.entityOverlay(new AgEntityOverlay<ProgramContact>(ProgramContact.class)
+                .exclude("mzmsAutoCheck","mzmsWarningEnabled")
+            );
+        }
+
+        if(!(Authentication.isAuthenticated())){
+            // Non logged user filtering
         }
 
         return sBuilder;

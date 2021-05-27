@@ -17,20 +17,29 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet>
+		<servlet-name>OpenApiDefinition</servlet-name>
+		<servlet-class>org.oceanops.api.OpenApiDefinition</servlet-class>
+	</servlet>
+	<servlet>
 		<servlet-name>Help</servlet-name>
 		<servlet-class>org.oceanops.api.Help</servlet-class>
 	</servlet>
+
 	<servlet-mapping>
-		<servlet-name>Help</servlet-name>
-		<url-pattern>/rest/help</url-pattern>
+		<servlet-name>OpenApiDefinition</servlet-name>
+		<url-pattern>/oceanops-api.yaml</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>Help</servlet-name>
-		<url-pattern>/rest/</url-pattern>
+		<url-pattern>/help</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Help</servlet-name>
+		<url-pattern>/help/*</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>JerseyWebApplication</servlet-name>
-		<url-pattern>/rest/*</url-pattern>
+		<url-pattern>/data/*</url-pattern>
 	</servlet-mapping>
 
 	<filter>
@@ -39,7 +48,7 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>CayenneFilter</filter-name>
-		<url-pattern>/rest/*</url-pattern>
+		<url-pattern>/data/*</url-pattern>
 	</filter-mapping>
 	<filter>
 		<filter-name>AuthFilter</filter-name>
@@ -47,6 +56,6 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>AuthFilter</filter-name>
-		<url-pattern>/rest/*</url-pattern>
+		<url-pattern>/data/*</url-pattern>
 	</filter-mapping>
 </web-app>

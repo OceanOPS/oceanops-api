@@ -7,6 +7,7 @@
 		String rootUrl = (String) request.getAttribute("rootUrl");
 		String version = (String) request.getAttribute("projectVersion");
 		String name = (String) request.getAttribute("projectName");
+		String entityPath = (String) request.getAttribute("entityPath");
 		
 		String parameter= (String) request.getAttribute("parameter");
 		String parameter_name= (String) request.getAttribute("parameter_name");
@@ -26,7 +27,7 @@
 	<link rel="stylesheet" href="../styles/loader-vertical-bars.css">	
 	<script>
 		$(document).ready(function(){
-			var parameter_uri='<%=parameter%>';
+			var parameter_uri='../<%=entityPath%>/<%=parameter%>';
 			
 			$.ajax({
 				url: parameter_uri,
@@ -67,7 +68,7 @@
 	<div class="container">
 		<div class="page-header">
 			<h1><%=parameter_name%></h1>
-			<p>JSON access here <%=rootUrl%><%=parameter%></p>
+			<p>JSON access here <%=rootUrl%>data/<%=parameter%></p>
 		</div>
 		<div class="well">
 			<div class="table-responsive">

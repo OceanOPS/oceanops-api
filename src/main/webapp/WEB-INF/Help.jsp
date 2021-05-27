@@ -9,6 +9,7 @@
 		String rootUrlNoVersion = (String) request.getAttribute("rootUrlNoVersion");
 		String version = (String) request.getAttribute("projectVersion");
 		String name = (String) request.getAttribute("projectName");
+		String entityPath = (String) request.getAttribute("entityPath");
 		String helpEditionDate = (String) request.getAttribute("helpEditionDate");
 		boolean isBetaVersion = (boolean) request.getAttribute("betaVersion");
 		String versionQualifier = (String) request.getAttribute("versionQualifier");
@@ -37,7 +38,7 @@
 			<div class="navbar-header">
 				<h1><img src="//www.ocean-ops.org/static/images/oceanops/logos/oceanops-sm.png" alt="OceanOPS logo"/> API <small>documentation<%if(isBetaVersion){ %> <span class="label label-warning"><%=versionQualifier%></span><%}%></small></h1>
 			</div>
-			<p class="navbar-text navbar-right text-right">applicable version: <%=version%><br>last edited: <%=helpEditionDate%></p>
+			<p class="navbar-text navbar-right text-right">applicable version: <%=version%><br>last published: <%=helpEditionDate%></p>
 		</div>
 	</nav>
 	<div id="main-container" class="container-fluid">
@@ -68,9 +69,9 @@
 				<div class="container-fluid">
 					<%@include file="help/referenceTables.jsp" %>
 				</div>
-				<h2 class="title-border-bottom">Platforms</h2>				
+				<h2 class="title-border-bottom">Entities Access</h2>				
 				<div class="container-fluid">
-					<%@include file="help/platforms.jsp" %>
+					<%@include file="help/entitiesAccess.jsp" %>
 				</div>
 			</div>
 		</div>

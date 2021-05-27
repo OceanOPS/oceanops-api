@@ -18,8 +18,6 @@ import org.oceanops.api.orm.Agency;
 import org.oceanops.api.orm.CruiseClass;
 import org.oceanops.api.orm.CruiseContact;
 import org.oceanops.api.orm.CruiseCountry;
-import org.oceanops.api.orm.CruiseLine;
-import org.oceanops.api.orm.CruisePolygon;
 import org.oceanops.api.orm.CruiseProgram;
 import org.oceanops.api.orm.CruiseSensorModel;
 import org.oceanops.api.orm.CruiseStatus;
@@ -84,8 +82,6 @@ public abstract class _Cruise extends BaseDataObject {
     public static final EntityProperty<CruiseClass> CRUISE_CLASS = PropertyFactory.createEntity("cruiseClass", CruiseClass.class);
     public static final ListProperty<CruiseContact> CRUISE_CONTACTS = PropertyFactory.createList("cruiseContacts", CruiseContact.class);
     public static final ListProperty<CruiseCountry> CRUISE_COUNTRIES = PropertyFactory.createList("cruiseCountries", CruiseCountry.class);
-    public static final ListProperty<CruiseLine> CRUISE_LINES = PropertyFactory.createList("cruiseLines", CruiseLine.class);
-    public static final EntityProperty<CruisePolygon> CRUISE_POLYGON = PropertyFactory.createEntity("cruisePolygon", CruisePolygon.class);
     public static final ListProperty<CruiseProgram> CRUISE_PROGRAMS = PropertyFactory.createList("cruisePrograms", CruiseProgram.class);
     public static final ListProperty<CruiseSensorModel> CRUISE_SENSOR_MODELS = PropertyFactory.createList("cruiseSensorModels", CruiseSensorModel.class);
     public static final EntityProperty<CruiseStatus> CRUISE_STATUS = PropertyFactory.createEntity("cruiseStatus", CruiseStatus.class);
@@ -139,8 +135,6 @@ public abstract class _Cruise extends BaseDataObject {
     protected Object cruiseClass;
     protected Object cruiseContacts;
     protected Object cruiseCountries;
-    protected Object cruiseLines;
-    protected Object cruisePolygon;
     protected Object cruisePrograms;
     protected Object cruiseSensorModels;
     protected Object cruiseStatus;
@@ -510,27 +504,6 @@ public abstract class _Cruise extends BaseDataObject {
         return (List<CruiseCountry>)readProperty("cruiseCountries");
     }
 
-    public void addToCruiseLines(CruiseLine obj) {
-        addToManyTarget("cruiseLines", obj, true);
-    }
-
-    public void removeFromCruiseLines(CruiseLine obj) {
-        removeToManyTarget("cruiseLines", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<CruiseLine> getCruiseLines() {
-        return (List<CruiseLine>)readProperty("cruiseLines");
-    }
-
-    public void setCruisePolygon(CruisePolygon cruisePolygon) {
-        setToOneTarget("cruisePolygon", cruisePolygon, true);
-    }
-
-    public CruisePolygon getCruisePolygon() {
-        return (CruisePolygon)readProperty("cruisePolygon");
-    }
-
     public void addToCruisePrograms(CruiseProgram obj) {
         addToManyTarget("cruisePrograms", obj, true);
     }
@@ -776,10 +749,6 @@ public abstract class _Cruise extends BaseDataObject {
                 return this.cruiseContacts;
             case "cruiseCountries":
                 return this.cruiseCountries;
-            case "cruiseLines":
-                return this.cruiseLines;
-            case "cruisePolygon":
-                return this.cruisePolygon;
             case "cruisePrograms":
                 return this.cruisePrograms;
             case "cruiseSensorModels":
@@ -929,12 +898,6 @@ public abstract class _Cruise extends BaseDataObject {
             case "cruiseCountries":
                 this.cruiseCountries = val;
                 break;
-            case "cruiseLines":
-                this.cruiseLines = val;
-                break;
-            case "cruisePolygon":
-                this.cruisePolygon = val;
-                break;
             case "cruisePrograms":
                 this.cruisePrograms = val;
                 break;
@@ -1034,8 +997,6 @@ public abstract class _Cruise extends BaseDataObject {
         out.writeObject(this.cruiseClass);
         out.writeObject(this.cruiseContacts);
         out.writeObject(this.cruiseCountries);
-        out.writeObject(this.cruiseLines);
-        out.writeObject(this.cruisePolygon);
         out.writeObject(this.cruisePrograms);
         out.writeObject(this.cruiseSensorModels);
         out.writeObject(this.cruiseStatus);
@@ -1092,8 +1053,6 @@ public abstract class _Cruise extends BaseDataObject {
         this.cruiseClass = in.readObject();
         this.cruiseContacts = in.readObject();
         this.cruiseCountries = in.readObject();
-        this.cruiseLines = in.readObject();
-        this.cruisePolygon = in.readObject();
         this.cruisePrograms = in.readObject();
         this.cruiseSensorModels = in.readObject();
         this.cruiseStatus = in.readObject();

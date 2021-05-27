@@ -28,7 +28,6 @@ import org.oceanops.api.orm.NetworkContact;
 import org.oceanops.api.orm.ProgramContact;
 import org.oceanops.api.orm.PtfDeployment;
 import org.oceanops.api.orm.PtfModel;
-import org.oceanops.api.orm.QcFeedback;
 import org.oceanops.api.orm.Service;
 import org.oceanops.api.orm.TelecomFormat;
 import org.oceanops.api.orm.UserGroupContact;
@@ -84,8 +83,6 @@ public abstract class _Contact extends BaseDataObject {
     public static final ListProperty<ProgramContact> PROGRAM_CONTACTS = PropertyFactory.createList("programContacts", ProgramContact.class);
     public static final ListProperty<PtfDeployment> PTF_DEPLOYMENTS = PropertyFactory.createList("ptfDeployments", PtfDeployment.class);
     public static final ListProperty<PtfModel> PTF_MODELS = PropertyFactory.createList("ptfModels", PtfModel.class);
-    public static final ListProperty<QcFeedback> QC_FEEDBACKS = PropertyFactory.createList("qcFeedbacks", QcFeedback.class);
-    public static final ListProperty<QcFeedback> QC_FEEDBACKS1 = PropertyFactory.createList("qcFeedbacks1", QcFeedback.class);
     public static final ListProperty<Service> SERVICES = PropertyFactory.createList("services", Service.class);
     public static final ListProperty<TelecomFormat> TELECOM_FORMATS = PropertyFactory.createList("telecomFormats", TelecomFormat.class);
     public static final ListProperty<UserGroupContact> USER_GROUP_CONTACTS = PropertyFactory.createList("userGroupContacts", UserGroupContact.class);
@@ -130,8 +127,6 @@ public abstract class _Contact extends BaseDataObject {
     protected Object programContacts;
     protected Object ptfDeployments;
     protected Object ptfModels;
-    protected Object qcFeedbacks;
-    protected Object qcFeedbacks1;
     protected Object services;
     protected Object telecomFormats;
     protected Object userGroupContacts;
@@ -490,32 +485,6 @@ public abstract class _Contact extends BaseDataObject {
         return (List<PtfModel>)readProperty("ptfModels");
     }
 
-    public void addToQcFeedbacks(QcFeedback obj) {
-        addToManyTarget("qcFeedbacks", obj, true);
-    }
-
-    public void removeFromQcFeedbacks(QcFeedback obj) {
-        removeToManyTarget("qcFeedbacks", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<QcFeedback> getQcFeedbacks() {
-        return (List<QcFeedback>)readProperty("qcFeedbacks");
-    }
-
-    public void addToQcFeedbacks1(QcFeedback obj) {
-        addToManyTarget("qcFeedbacks1", obj, true);
-    }
-
-    public void removeFromQcFeedbacks1(QcFeedback obj) {
-        removeToManyTarget("qcFeedbacks1", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<QcFeedback> getQcFeedbacks1() {
-        return (List<QcFeedback>)readProperty("qcFeedbacks1");
-    }
-
     public void addToServices(Service obj) {
         addToManyTarget("services", obj, true);
     }
@@ -707,10 +676,6 @@ public abstract class _Contact extends BaseDataObject {
                 return this.ptfDeployments;
             case "ptfModels":
                 return this.ptfModels;
-            case "qcFeedbacks":
-                return this.qcFeedbacks;
-            case "qcFeedbacks1":
-                return this.qcFeedbacks1;
             case "services":
                 return this.services;
             case "telecomFormats":
@@ -839,12 +804,6 @@ public abstract class _Contact extends BaseDataObject {
             case "ptfModels":
                 this.ptfModels = val;
                 break;
-            case "qcFeedbacks":
-                this.qcFeedbacks = val;
-                break;
-            case "qcFeedbacks1":
-                this.qcFeedbacks1 = val;
-                break;
             case "services":
                 this.services = val;
                 break;
@@ -923,8 +882,6 @@ public abstract class _Contact extends BaseDataObject {
         out.writeObject(this.programContacts);
         out.writeObject(this.ptfDeployments);
         out.writeObject(this.ptfModels);
-        out.writeObject(this.qcFeedbacks);
-        out.writeObject(this.qcFeedbacks1);
         out.writeObject(this.services);
         out.writeObject(this.telecomFormats);
         out.writeObject(this.userGroupContacts);
@@ -972,8 +929,6 @@ public abstract class _Contact extends BaseDataObject {
         this.programContacts = in.readObject();
         this.ptfDeployments = in.readObject();
         this.ptfModels = in.readObject();
-        this.qcFeedbacks = in.readObject();
-        this.qcFeedbacks1 = in.readObject();
         this.services = in.readObject();
         this.telecomFormats = in.readObject();
         this.userGroupContacts = in.readObject();

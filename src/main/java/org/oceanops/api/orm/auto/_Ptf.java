@@ -22,19 +22,11 @@ import org.oceanops.api.orm.EndingCause;
 import org.oceanops.api.orm.Line;
 import org.oceanops.api.orm.LocSystem;
 import org.oceanops.api.orm.MzmsPtfCountry;
-import org.oceanops.api.orm.NcNotification;
-import org.oceanops.api.orm.NcSubscription;
 import org.oceanops.api.orm.NetworkPtf;
-import org.oceanops.api.orm.Obs;
-import org.oceanops.api.orm.ObsArgoGdac;
-import org.oceanops.api.orm.ObsGlidersGtsOsmc;
 import org.oceanops.api.orm.ObsLatest;
-import org.oceanops.api.orm.ObsTsunaGtsOsmc;
 import org.oceanops.api.orm.Program;
 import org.oceanops.api.orm.PtfAutomation;
-import org.oceanops.api.orm.PtfCategory;
 import org.oceanops.api.orm.PtfConfig;
-import org.oceanops.api.orm.PtfCruise;
 import org.oceanops.api.orm.PtfDeployment;
 import org.oceanops.api.orm.PtfHardware;
 import org.oceanops.api.orm.PtfIdentifiers;
@@ -44,7 +36,6 @@ import org.oceanops.api.orm.PtfLocStatus;
 import org.oceanops.api.orm.PtfModel;
 import org.oceanops.api.orm.PtfPtfStatus;
 import org.oceanops.api.orm.PtfSoftware;
-import org.oceanops.api.orm.PtfStatistics;
 import org.oceanops.api.orm.PtfStatus;
 import org.oceanops.api.orm.PtfVariable;
 import org.oceanops.api.orm.QcFeedback;
@@ -52,9 +43,7 @@ import org.oceanops.api.orm.Retrieval;
 import org.oceanops.api.orm.Service;
 import org.oceanops.api.orm.SitePtf;
 import org.oceanops.api.orm.Telecom;
-import org.oceanops.api.orm.WebFrequentation;
 import org.oceanops.api.orm.Weblink;
-import org.oceanops.api.orm.WeblinkPtf;
 import org.oceanops.api.orm.Wmo;
 
 /**
@@ -98,18 +87,10 @@ public abstract class _Ptf extends BaseDataObject {
     public static final EntityProperty<ObsLatest> LATEST_OBS = PropertyFactory.createEntity("latestObs", ObsLatest.class);
     public static final ListProperty<Line> LINES = PropertyFactory.createList("lines", Line.class);
     public static final ListProperty<MzmsPtfCountry> MZMS_PTF_COUNTRIES = PropertyFactory.createList("mzmsPtfCountries", MzmsPtfCountry.class);
-    public static final ListProperty<NcNotification> NC_NOTIFICATIONS = PropertyFactory.createList("ncNotifications", NcNotification.class);
-    public static final ListProperty<NcSubscription> NC_SUBSCRIPTIONS = PropertyFactory.createList("ncSubscriptions", NcSubscription.class);
     public static final ListProperty<NetworkPtf> NETWORK_PTFS = PropertyFactory.createList("networkPtfs", NetworkPtf.class);
-    public static final ListProperty<ObsArgoGdac> OBS_ARGO_GDACS = PropertyFactory.createList("obsArgoGdacs", ObsArgoGdac.class);
-    public static final ListProperty<ObsGlidersGtsOsmc> OBS_GLIDERS_GTS_OSMCS = PropertyFactory.createList("obsGlidersGtsOsmcs", ObsGlidersGtsOsmc.class);
-    public static final ListProperty<ObsTsunaGtsOsmc> OBS_TSUNA_GTS_OSMCS = PropertyFactory.createList("obsTsunaGtsOsmcs", ObsTsunaGtsOsmc.class);
-    public static final ListProperty<Obs> OBSS = PropertyFactory.createList("obss", Obs.class);
     public static final EntityProperty<Program> PROGRAM = PropertyFactory.createEntity("program", Program.class);
     public static final EntityProperty<PtfAutomation> PTF_AUTOMATION = PropertyFactory.createEntity("ptfAutomation", PtfAutomation.class);
-    public static final ListProperty<PtfCategory> PTF_CATEGORIES = PropertyFactory.createList("ptfCategories", PtfCategory.class);
     public static final ListProperty<PtfConfig> PTF_CONFIGS = PropertyFactory.createList("ptfConfigs", PtfConfig.class);
-    public static final ListProperty<PtfCruise> PTF_CRUISES = PropertyFactory.createList("ptfCruises", PtfCruise.class);
     public static final EntityProperty<PtfDeployment> PTF_DEPL = PropertyFactory.createEntity("ptfDepl", PtfDeployment.class);
     public static final EntityProperty<PtfHardware> PTF_HARDWARE = PropertyFactory.createEntity("ptfHardware", PtfHardware.class);
     public static final EntityProperty<PtfIdentifiers> PTF_IDENTIFIERS = PropertyFactory.createEntity("ptfIdentifiers", PtfIdentifiers.class);
@@ -119,7 +100,6 @@ public abstract class _Ptf extends BaseDataObject {
     public static final EntityProperty<PtfModel> PTF_MODEL = PropertyFactory.createEntity("ptfModel", PtfModel.class);
     public static final ListProperty<PtfPtfStatus> PTF_PTF_STATUSES = PropertyFactory.createList("ptfPtfStatuses", PtfPtfStatus.class);
     public static final EntityProperty<PtfSoftware> PTF_SOFTWARE = PropertyFactory.createEntity("ptfSoftware", PtfSoftware.class);
-    public static final EntityProperty<PtfStatistics> PTF_STATISTICS = PropertyFactory.createEntity("ptfStatistics", PtfStatistics.class);
     public static final EntityProperty<PtfStatus> PTF_STATUS = PropertyFactory.createEntity("ptfStatus", PtfStatus.class);
     public static final ListProperty<PtfVariable> PTF_VARIABLES = PropertyFactory.createList("ptfVariables", PtfVariable.class);
     public static final ListProperty<QcFeedback> QC_FEEDBACKS = PropertyFactory.createList("qcFeedbacks", QcFeedback.class);
@@ -128,8 +108,6 @@ public abstract class _Ptf extends BaseDataObject {
     public static final ListProperty<SitePtf> SITE_PTFS = PropertyFactory.createList("sitePtfs", SitePtf.class);
     public static final EntityProperty<Telecom> TELECOM = PropertyFactory.createEntity("telecom", Telecom.class);
     public static final EntityProperty<LocSystem> TRACKING_SYSTEM = PropertyFactory.createEntity("trackingSystem", LocSystem.class);
-    public static final ListProperty<WebFrequentation> WEB_FREQUENTATIONS = PropertyFactory.createList("webFrequentations", WebFrequentation.class);
-    public static final ListProperty<WeblinkPtf> WEBLINK_PTFS = PropertyFactory.createList("weblinkPtfs", WeblinkPtf.class);
     public static final ListProperty<Weblink> WEBLINKS = PropertyFactory.createList("weblinks", Weblink.class);
     public static final ListProperty<Wmo> WMOS = PropertyFactory.createList("wmos", Wmo.class);
 
@@ -163,18 +141,10 @@ public abstract class _Ptf extends BaseDataObject {
     protected Object latestObs;
     protected Object lines;
     protected Object mzmsPtfCountries;
-    protected Object ncNotifications;
-    protected Object ncSubscriptions;
     protected Object networkPtfs;
-    protected Object obsArgoGdacs;
-    protected Object obsGlidersGtsOsmcs;
-    protected Object obsTsunaGtsOsmcs;
-    protected Object obss;
     protected Object program;
     protected Object ptfAutomation;
-    protected Object ptfCategories;
     protected Object ptfConfigs;
-    protected Object ptfCruises;
     protected Object ptfDepl;
     protected Object ptfHardware;
     protected Object ptfIdentifiers;
@@ -184,7 +154,6 @@ public abstract class _Ptf extends BaseDataObject {
     protected Object ptfModel;
     protected Object ptfPtfStatuses;
     protected Object ptfSoftware;
-    protected Object ptfStatistics;
     protected Object ptfStatus;
     protected Object ptfVariables;
     protected Object qcFeedbacks;
@@ -193,8 +162,6 @@ public abstract class _Ptf extends BaseDataObject {
     protected Object sitePtfs;
     protected Object telecom;
     protected Object trackingSystem;
-    protected Object webFrequentations;
-    protected Object weblinkPtfs;
     protected Object weblinks;
     protected Object wmos;
 
@@ -491,32 +458,6 @@ public abstract class _Ptf extends BaseDataObject {
         return (List<MzmsPtfCountry>)readProperty("mzmsPtfCountries");
     }
 
-    public void addToNcNotifications(NcNotification obj) {
-        addToManyTarget("ncNotifications", obj, true);
-    }
-
-    public void removeFromNcNotifications(NcNotification obj) {
-        removeToManyTarget("ncNotifications", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<NcNotification> getNcNotifications() {
-        return (List<NcNotification>)readProperty("ncNotifications");
-    }
-
-    public void addToNcSubscriptions(NcSubscription obj) {
-        addToManyTarget("ncSubscriptions", obj, true);
-    }
-
-    public void removeFromNcSubscriptions(NcSubscription obj) {
-        removeToManyTarget("ncSubscriptions", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<NcSubscription> getNcSubscriptions() {
-        return (List<NcSubscription>)readProperty("ncSubscriptions");
-    }
-
     public void addToNetworkPtfs(NetworkPtf obj) {
         addToManyTarget("networkPtfs", obj, true);
     }
@@ -528,58 +469,6 @@ public abstract class _Ptf extends BaseDataObject {
     @SuppressWarnings("unchecked")
     public List<NetworkPtf> getNetworkPtfs() {
         return (List<NetworkPtf>)readProperty("networkPtfs");
-    }
-
-    public void addToObsArgoGdacs(ObsArgoGdac obj) {
-        addToManyTarget("obsArgoGdacs", obj, true);
-    }
-
-    public void removeFromObsArgoGdacs(ObsArgoGdac obj) {
-        removeToManyTarget("obsArgoGdacs", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<ObsArgoGdac> getObsArgoGdacs() {
-        return (List<ObsArgoGdac>)readProperty("obsArgoGdacs");
-    }
-
-    public void addToObsGlidersGtsOsmcs(ObsGlidersGtsOsmc obj) {
-        addToManyTarget("obsGlidersGtsOsmcs", obj, true);
-    }
-
-    public void removeFromObsGlidersGtsOsmcs(ObsGlidersGtsOsmc obj) {
-        removeToManyTarget("obsGlidersGtsOsmcs", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<ObsGlidersGtsOsmc> getObsGlidersGtsOsmcs() {
-        return (List<ObsGlidersGtsOsmc>)readProperty("obsGlidersGtsOsmcs");
-    }
-
-    public void addToObsTsunaGtsOsmcs(ObsTsunaGtsOsmc obj) {
-        addToManyTarget("obsTsunaGtsOsmcs", obj, true);
-    }
-
-    public void removeFromObsTsunaGtsOsmcs(ObsTsunaGtsOsmc obj) {
-        removeToManyTarget("obsTsunaGtsOsmcs", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<ObsTsunaGtsOsmc> getObsTsunaGtsOsmcs() {
-        return (List<ObsTsunaGtsOsmc>)readProperty("obsTsunaGtsOsmcs");
-    }
-
-    public void addToObss(Obs obj) {
-        addToManyTarget("obss", obj, true);
-    }
-
-    public void removeFromObss(Obs obj) {
-        removeToManyTarget("obss", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<Obs> getObss() {
-        return (List<Obs>)readProperty("obss");
     }
 
     public void setProgram(Program program) {
@@ -598,19 +487,6 @@ public abstract class _Ptf extends BaseDataObject {
         return (PtfAutomation)readProperty("ptfAutomation");
     }
 
-    public void addToPtfCategories(PtfCategory obj) {
-        addToManyTarget("ptfCategories", obj, true);
-    }
-
-    public void removeFromPtfCategories(PtfCategory obj) {
-        removeToManyTarget("ptfCategories", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<PtfCategory> getPtfCategories() {
-        return (List<PtfCategory>)readProperty("ptfCategories");
-    }
-
     public void addToPtfConfigs(PtfConfig obj) {
         addToManyTarget("ptfConfigs", obj, true);
     }
@@ -622,19 +498,6 @@ public abstract class _Ptf extends BaseDataObject {
     @SuppressWarnings("unchecked")
     public List<PtfConfig> getPtfConfigs() {
         return (List<PtfConfig>)readProperty("ptfConfigs");
-    }
-
-    public void addToPtfCruises(PtfCruise obj) {
-        addToManyTarget("ptfCruises", obj, true);
-    }
-
-    public void removeFromPtfCruises(PtfCruise obj) {
-        removeToManyTarget("ptfCruises", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<PtfCruise> getPtfCruises() {
-        return (List<PtfCruise>)readProperty("ptfCruises");
     }
 
     public void setPtfDepl(PtfDeployment ptfDepl) {
@@ -724,14 +587,6 @@ public abstract class _Ptf extends BaseDataObject {
         return (PtfSoftware)readProperty("ptfSoftware");
     }
 
-    public void setPtfStatistics(PtfStatistics ptfStatistics) {
-        setToOneTarget("ptfStatistics", ptfStatistics, true);
-    }
-
-    public PtfStatistics getPtfStatistics() {
-        return (PtfStatistics)readProperty("ptfStatistics");
-    }
-
     public void setPtfStatus(PtfStatus ptfStatus) {
         setToOneTarget("ptfStatus", ptfStatus, true);
     }
@@ -814,32 +669,6 @@ public abstract class _Ptf extends BaseDataObject {
 
     public LocSystem getTrackingSystem() {
         return (LocSystem)readProperty("trackingSystem");
-    }
-
-    public void addToWebFrequentations(WebFrequentation obj) {
-        addToManyTarget("webFrequentations", obj, true);
-    }
-
-    public void removeFromWebFrequentations(WebFrequentation obj) {
-        removeToManyTarget("webFrequentations", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<WebFrequentation> getWebFrequentations() {
-        return (List<WebFrequentation>)readProperty("webFrequentations");
-    }
-
-    public void addToWeblinkPtfs(WeblinkPtf obj) {
-        addToManyTarget("weblinkPtfs", obj, true);
-    }
-
-    public void removeFromWeblinkPtfs(WeblinkPtf obj) {
-        removeToManyTarget("weblinkPtfs", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<WeblinkPtf> getWeblinkPtfs() {
-        return (List<WeblinkPtf>)readProperty("weblinkPtfs");
     }
 
     public void addToWeblinks(Weblink obj) {
@@ -933,30 +762,14 @@ public abstract class _Ptf extends BaseDataObject {
                 return this.lines;
             case "mzmsPtfCountries":
                 return this.mzmsPtfCountries;
-            case "ncNotifications":
-                return this.ncNotifications;
-            case "ncSubscriptions":
-                return this.ncSubscriptions;
             case "networkPtfs":
                 return this.networkPtfs;
-            case "obsArgoGdacs":
-                return this.obsArgoGdacs;
-            case "obsGlidersGtsOsmcs":
-                return this.obsGlidersGtsOsmcs;
-            case "obsTsunaGtsOsmcs":
-                return this.obsTsunaGtsOsmcs;
-            case "obss":
-                return this.obss;
             case "program":
                 return this.program;
             case "ptfAutomation":
                 return this.ptfAutomation;
-            case "ptfCategories":
-                return this.ptfCategories;
             case "ptfConfigs":
                 return this.ptfConfigs;
-            case "ptfCruises":
-                return this.ptfCruises;
             case "ptfDepl":
                 return this.ptfDepl;
             case "ptfHardware":
@@ -975,8 +788,6 @@ public abstract class _Ptf extends BaseDataObject {
                 return this.ptfPtfStatuses;
             case "ptfSoftware":
                 return this.ptfSoftware;
-            case "ptfStatistics":
-                return this.ptfStatistics;
             case "ptfStatus":
                 return this.ptfStatus;
             case "ptfVariables":
@@ -993,10 +804,6 @@ public abstract class _Ptf extends BaseDataObject {
                 return this.telecom;
             case "trackingSystem":
                 return this.trackingSystem;
-            case "webFrequentations":
-                return this.webFrequentations;
-            case "weblinkPtfs":
-                return this.weblinkPtfs;
             case "weblinks":
                 return this.weblinks;
             case "wmos":
@@ -1100,26 +907,8 @@ public abstract class _Ptf extends BaseDataObject {
             case "mzmsPtfCountries":
                 this.mzmsPtfCountries = val;
                 break;
-            case "ncNotifications":
-                this.ncNotifications = val;
-                break;
-            case "ncSubscriptions":
-                this.ncSubscriptions = val;
-                break;
             case "networkPtfs":
                 this.networkPtfs = val;
-                break;
-            case "obsArgoGdacs":
-                this.obsArgoGdacs = val;
-                break;
-            case "obsGlidersGtsOsmcs":
-                this.obsGlidersGtsOsmcs = val;
-                break;
-            case "obsTsunaGtsOsmcs":
-                this.obsTsunaGtsOsmcs = val;
-                break;
-            case "obss":
-                this.obss = val;
                 break;
             case "program":
                 this.program = val;
@@ -1127,14 +916,8 @@ public abstract class _Ptf extends BaseDataObject {
             case "ptfAutomation":
                 this.ptfAutomation = val;
                 break;
-            case "ptfCategories":
-                this.ptfCategories = val;
-                break;
             case "ptfConfigs":
                 this.ptfConfigs = val;
-                break;
-            case "ptfCruises":
-                this.ptfCruises = val;
                 break;
             case "ptfDepl":
                 this.ptfDepl = val;
@@ -1163,9 +946,6 @@ public abstract class _Ptf extends BaseDataObject {
             case "ptfSoftware":
                 this.ptfSoftware = val;
                 break;
-            case "ptfStatistics":
-                this.ptfStatistics = val;
-                break;
             case "ptfStatus":
                 this.ptfStatus = val;
                 break;
@@ -1189,12 +969,6 @@ public abstract class _Ptf extends BaseDataObject {
                 break;
             case "trackingSystem":
                 this.trackingSystem = val;
-                break;
-            case "webFrequentations":
-                this.webFrequentations = val;
-                break;
-            case "weblinkPtfs":
-                this.weblinkPtfs = val;
                 break;
             case "weblinks":
                 this.weblinks = val;
@@ -1247,18 +1021,10 @@ public abstract class _Ptf extends BaseDataObject {
         out.writeObject(this.latestObs);
         out.writeObject(this.lines);
         out.writeObject(this.mzmsPtfCountries);
-        out.writeObject(this.ncNotifications);
-        out.writeObject(this.ncSubscriptions);
         out.writeObject(this.networkPtfs);
-        out.writeObject(this.obsArgoGdacs);
-        out.writeObject(this.obsGlidersGtsOsmcs);
-        out.writeObject(this.obsTsunaGtsOsmcs);
-        out.writeObject(this.obss);
         out.writeObject(this.program);
         out.writeObject(this.ptfAutomation);
-        out.writeObject(this.ptfCategories);
         out.writeObject(this.ptfConfigs);
-        out.writeObject(this.ptfCruises);
         out.writeObject(this.ptfDepl);
         out.writeObject(this.ptfHardware);
         out.writeObject(this.ptfIdentifiers);
@@ -1268,7 +1034,6 @@ public abstract class _Ptf extends BaseDataObject {
         out.writeObject(this.ptfModel);
         out.writeObject(this.ptfPtfStatuses);
         out.writeObject(this.ptfSoftware);
-        out.writeObject(this.ptfStatistics);
         out.writeObject(this.ptfStatus);
         out.writeObject(this.ptfVariables);
         out.writeObject(this.qcFeedbacks);
@@ -1277,8 +1042,6 @@ public abstract class _Ptf extends BaseDataObject {
         out.writeObject(this.sitePtfs);
         out.writeObject(this.telecom);
         out.writeObject(this.trackingSystem);
-        out.writeObject(this.webFrequentations);
-        out.writeObject(this.weblinkPtfs);
         out.writeObject(this.weblinks);
         out.writeObject(this.wmos);
     }
@@ -1315,18 +1078,10 @@ public abstract class _Ptf extends BaseDataObject {
         this.latestObs = in.readObject();
         this.lines = in.readObject();
         this.mzmsPtfCountries = in.readObject();
-        this.ncNotifications = in.readObject();
-        this.ncSubscriptions = in.readObject();
         this.networkPtfs = in.readObject();
-        this.obsArgoGdacs = in.readObject();
-        this.obsGlidersGtsOsmcs = in.readObject();
-        this.obsTsunaGtsOsmcs = in.readObject();
-        this.obss = in.readObject();
         this.program = in.readObject();
         this.ptfAutomation = in.readObject();
-        this.ptfCategories = in.readObject();
         this.ptfConfigs = in.readObject();
-        this.ptfCruises = in.readObject();
         this.ptfDepl = in.readObject();
         this.ptfHardware = in.readObject();
         this.ptfIdentifiers = in.readObject();
@@ -1336,7 +1091,6 @@ public abstract class _Ptf extends BaseDataObject {
         this.ptfModel = in.readObject();
         this.ptfPtfStatuses = in.readObject();
         this.ptfSoftware = in.readObject();
-        this.ptfStatistics = in.readObject();
         this.ptfStatus = in.readObject();
         this.ptfVariables = in.readObject();
         this.qcFeedbacks = in.readObject();
@@ -1345,8 +1099,6 @@ public abstract class _Ptf extends BaseDataObject {
         this.sitePtfs = in.readObject();
         this.telecom = in.readObject();
         this.trackingSystem = in.readObject();
-        this.webFrequentations = in.readObject();
-        this.weblinkPtfs = in.readObject();
         this.weblinks = in.readObject();
         this.wmos = in.readObject();
     }

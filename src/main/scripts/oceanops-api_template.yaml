@@ -1,0 +1,267 @@
+openapi: 3.0.3
+servers:
+  - url: https://www.ocean-ops.org/api/preview
+info:
+  title: OceanOPS API for metadata access
+  description: An API for interacting with OceanOPS metadata
+  version: preview
+contact:
+  name: API Support
+  url: https://ocean-ops.org/api
+  email: dev@ocean-ops.org
+license:
+  name: Apache 2.0
+  identifier: Apache-2.0
+  url: https://www.apache.org/licenses/LICENSE-2.0.html
+
+components:
+  securitySchemes:    
+    - type: apiKey
+      name: X-OceanOPS-Metadata-ID
+      in: header
+    - type: apiKey
+      name: X-OceanOPS-Metadata-Token
+      in: header
+  parameters:
+    ptfId:
+      name: ptfId
+      in: path
+      description: ID of Platform to fetch
+      required: true
+      schema:
+        type: integer
+        format: int32
+    ptfRef:
+      name: ptfRef
+      in: path
+      description: Reference of Platform to fetch
+      required: true
+      schema:
+        type: string
+    ptfWigosId:
+      name: ptfWigosId
+      in: path
+      description: Reference of Platform to fetch
+      required: true
+      schema:
+        type: string
+
+tags:
+  - name: Platform
+    description: |
+      This model represents a Platform entity and is used to retrieve a platform information (schema model named 'Ptf').
+  - name: Ship
+    description: |
+      This model represents a Ship entity and is used to retrieve a ship information (schema model named 'Ship').
+
+paths:
+  /ship:
+    get:
+      summary: Get list of all ships
+      tags:
+        - Ship
+      responses:
+        '200':
+          description: Success response.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                  total:
+                    type: number
+      parameters:
+        - $ref: '#/components/queryParams/Includes'
+        - $ref: '#/components/queryParams/Excludes'
+        - $ref: '#/components/queryParams/Exp'
+        - $ref: '#/components/queryParams/MapBy'
+        - $ref: '#/components/queryParams/Start'
+        - $ref: '#/components/queryParams/Limit'
+        - $ref: '#/components/queryParams/Sort'
+        - $ref: '#/components/queryParams/Dir'
+      security:
+        - X-OceanOPS-Metadata-ID
+        - X-OceanOPS-Metadata-Token
+  /ship/{shipId}:
+      get:
+        summary: Returns a particular Ship through its database identifier
+        description: Returns a particular Ship through its database identifier
+        tags:
+          - Ship
+        parameters:
+          - name: shipId
+            in: path
+            description: ID of Ship to fetch
+            required: true
+            schema:
+              type: integer
+              format: int32
+        security:
+          - X-OceanOPS-Metadata-ID
+          - X-OceanOPS-Metadata-Token
+        responses:
+          '200':
+            description: Success responce
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        type: object
+                    total:
+                      type: number
+  /platform:
+    get:
+      summary: Get list of all platforms
+      tags:
+        - Platform
+      responses:
+        '200':
+          description: Success response.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                  total:
+                    type: number
+      parameters:
+        - $ref: '#/components/queryParams/Includes'
+        - $ref: '#/components/queryParams/Excludes'
+        - $ref: '#/components/queryParams/Exp'
+        - $ref: '#/components/queryParams/MapBy'
+        - $ref: '#/components/queryParams/Start'
+        - $ref: '#/components/queryParams/Limit'
+        - $ref: '#/components/queryParams/Sort'
+        - $ref: '#/components/queryParams/Dir'
+      security:
+        - X-OceanOPS-Metadata-ID
+        - X-OceanOPS-Metadata-Token
+  /platform/{ptfId}:
+      get:
+        summary: Returns a particular Platform through its database identifier
+        description: Returns a particular Platform through its database identifier
+        tags:
+          - Platform
+        parameters:
+          - $ref: '#/components/parameters/ptfId'
+        security:
+          - X-OceanOPS-Metadata-ID
+          - X-OceanOPS-Metadata-Token
+        responses:
+          '200':
+            description: Success responce
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        type: object
+                    total:
+                      type: number
+  /platform/ref/{ptfRef}:
+      get:
+        summary: Returns a particular Platform through its OceanOPS reference
+        description: Returns a particular Platform through its OceanOPS reference
+        tags:
+          - Platform
+        parameters:
+          - $ref: '#/components/parameters/ptfRef'
+        security:
+          - X-OceanOPS-Metadata-ID
+          - X-OceanOPS-Metadata-Token
+        responses:
+          '200':
+            description: Success responce
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        type: object
+                    total:
+                      type: number
+  /platform/wigosid/{ptfWigosId}:
+      get:
+        summary: Returns a particular Platform through its WIGOS ID
+        description: Returns a particular Platform through its WIGOS ID
+        tags:
+          - Platform
+        parameters:
+          - $ref: '#/components/parameters/ptfWigosId'
+        security:
+          - X-OceanOPS-Metadata-ID
+          - X-OceanOPS-Metadata-Token
+        responses:
+          '200':
+            description: Success responce
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        type: object
+                    total:
+                      type: number
+  /platform/wmdr/{ptfId}:
+      get:
+        summary: Returns a particular WMDR Platform through its database identifier
+        description: Returns a particular Platform, in a WIGOS XML compliant format, through its database identifier
+        tags:
+          - Platform
+        parameters:
+          - $ref: '#/components/parameters/ptfId'
+        responses:
+          '200':
+            description: Success responce
+            content:
+              application/xml:
+                example: TBD
+  /platform/wmdr/ref/{ptfRef}:
+      get:
+        summary: Returns a particular WMDR Platform through its OceanOPS reference
+        description: Returns a particular Platform, in a WIGOS XML compliant format, through its OceanOPS reference
+        tags:
+          - Platform
+        parameters:
+          - $ref: '#/components/parameters/ptfRef'
+        responses:
+          '200':
+            description: Success responce
+            content:
+              application/xml:
+                example: TBD
+  /platform/wmdr/wigosid/{ptfWigosId}:
+      get:
+        summary: Returns a particular WMDR Platform through its WIGOS ID
+        description: Returns a particular Platform, in a WIGOS XML compliant format, through its WIGOS ID
+        tags:
+          - Platform
+        parameters:
+          - $ref: '#/components/parameters/ptfWigosId'
+        responses:
+          '200':
+            description: Success responce
+            content:
+              application/json:
+                example: TBD
