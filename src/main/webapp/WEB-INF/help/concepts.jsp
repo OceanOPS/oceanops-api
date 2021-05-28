@@ -13,9 +13,9 @@ However, this page will guide you through the basics of it through examples belo
     By default, accessing an AgRest concept will display all its leaf nodes (scalar attributes) but none of the relationship. 
     This can give you an overview and a list of what to pick in the 'include' parameter (see further in this documentation).
     This parameter can be used to restrict the attributes in the output, and also to include related concepts through relationships.
-    The different attributes and relationships available are documented in the OpenAPI 3.0 specification available here:
+    The different attributes and relationships available are documented in the <a href="https://www.openapis.org/" target='_blank'>OpenAPI</a> 3.0 specification available here:
     <div class="text-center"><span class="url"><a href='https://<%=rootUrl%>oceanops-api.yaml' target='_blank'><%=rootUrl%>oceanops-api.yaml</a></span></div>
-    It can be displayed in a more human readable version, through the Swagger UI application here (this will display the latest documentation available, but you can upload any version by providing the correct link):     
+    It can be displayed in a more human readable version, through the <a href='https://swagger.io' target='_blank'>Swagger</a> UI application here (this will display the latest documentation available, but you can upload any version by providing the correct link):     
     <div class="text-center"><span class="url"><a href='https://<%=rootUrlNoVersion%>swagger' target='_blank'><%=rootUrlNoVersion%>swagger</a></span></div>
 </p>
 

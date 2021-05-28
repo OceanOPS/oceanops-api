@@ -1956,6 +1956,8 @@ components:
       type: object
     PtfVariable:
       properties:
+        accuracy:
+          type: string
         averagingMethod:
           type: string
         averagingPeriod:
@@ -1967,6 +1969,8 @@ components:
           format: date-time
           type: string
         comments:
+          type: string
+        controlSchedule:
           type: string
         dataProcessingMethod:
           $ref: '#/components/schemas/DataProcessingMethod'
@@ -1994,16 +1998,24 @@ components:
         manufDate:
           format: date-time
           type: string
+        manufWeblink:
+          $ref: '#/components/schemas/Weblink'
         nbObs:
           type: number
         ownership:
           type: string
         packageN:
           type: number
+        precision:
+          type: string
         program:
           $ref: '#/components/schemas/Program'
         ptf:
           $ref: '#/components/schemas/Ptf'
+        range:
+          type: string
+        resolution:
+          type: string
         samplingRate:
           type: number
         samplingRateTotal:
@@ -2018,8 +2030,6 @@ components:
           type: number
         serialNo:
           type: string
-        serviceScheduleId:
-          type: number
         sideIndicator:
           type: string
         startDate:
@@ -2977,14 +2987,14 @@ contact:
 info:
   description: An API for interacting with OceanOPS metadata
   title: OceanOPS API for metadata access
-  version: preview
+  version: ${project.version}
 license:
   identifier: Apache-2.0
   name: Apache 2.0
   url: https://www.apache.org/licenses/LICENSE-2.0.html
 openapi: 3.0.3
 paths:
-  /platform:
+  /${entityPath}/platform:
     get:
       parameters:
       - $ref: '#/components/queryParams/Includes'
@@ -3015,7 +3025,7 @@ paths:
       summary: Get list of all platforms
       tags:
       - Platform
-  /platform/ref/{ptfRef}:
+  /${entityPath}/platform/ref/{ptfRef}:
     get:
       description: Returns a particular Platform through its OceanOPS reference
       parameters:
@@ -3040,7 +3050,7 @@ paths:
       summary: Returns a particular Platform through its OceanOPS reference
       tags:
       - Platform
-  /platform/wigosid/{ptfWigosId}:
+  /${entityPath}/platform/wigosid/{ptfWigosId}:
     get:
       description: Returns a particular Platform through its WIGOS ID
       parameters:
@@ -3065,7 +3075,7 @@ paths:
       summary: Returns a particular Platform through its WIGOS ID
       tags:
       - Platform
-  /platform/wmdr/ref/{ptfRef}:
+  /${entityPath}/platform/wmdr/ref/{ptfRef}:
     get:
       description: Returns a particular Platform, in a WIGOS XML compliant format,
         through its OceanOPS reference
@@ -3080,7 +3090,7 @@ paths:
       summary: Returns a particular WMDR Platform through its OceanOPS reference
       tags:
       - Platform
-  /platform/wmdr/wigosid/{ptfWigosId}:
+  /${entityPath}/platform/wmdr/wigosid/{ptfWigosId}:
     get:
       description: Returns a particular Platform, in a WIGOS XML compliant format,
         through its WIGOS ID
@@ -3095,7 +3105,7 @@ paths:
       summary: Returns a particular WMDR Platform through its WIGOS ID
       tags:
       - Platform
-  /platform/wmdr/{ptfId}:
+  /${entityPath}/platform/wmdr/{ptfId}:
     get:
       description: Returns a particular Platform, in a WIGOS XML compliant format,
         through its database identifier
@@ -3110,7 +3120,7 @@ paths:
       summary: Returns a particular WMDR Platform through its database identifier
       tags:
       - Platform
-  /platform/{ptfId}:
+  /${entityPath}/platform/{ptfId}:
     get:
       description: Returns a particular Platform through its database identifier
       parameters:
@@ -3135,7 +3145,7 @@ paths:
       summary: Returns a particular Platform through its database identifier
       tags:
       - Platform
-  /ship:
+  /${entityPath}/ship:
     get:
       parameters:
       - $ref: '#/components/queryParams/Includes'
@@ -3166,7 +3176,7 @@ paths:
       summary: Get list of all ships
       tags:
       - Ship
-  /ship/{shipId}:
+  /${entityPath}/ship/{shipId}:
     get:
       description: Returns a particular Ship through its database identifier
       parameters:
@@ -3198,7 +3208,7 @@ paths:
       tags:
       - Ship
 servers:
-- url: https://www.ocean-ops.org/api/preview
+- url: https://www.ocean-ops.org/api/${project.version}
 tags:
 - description: 'This model represents a Platform entity and is used to retrieve a
     platform information (schema model named ''Ptf'').

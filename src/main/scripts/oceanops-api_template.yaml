@@ -1,10 +1,10 @@
 openapi: 3.0.3
 servers:
-  - url: https://www.ocean-ops.org/api/preview
+  - url: https://www.ocean-ops.org/api/${project.version}
 info:
   title: OceanOPS API for metadata access
   description: An API for interacting with OceanOPS metadata
-  version: preview
+  version: ${project.version}
 contact:
   name: API Support
   url: https://ocean-ops.org/api
@@ -55,7 +55,7 @@ tags:
       This model represents a Ship entity and is used to retrieve a ship information (schema model named 'Ship').
 
 paths:
-  /ship:
+  /${entityPath}/ship:
     get:
       summary: Get list of all ships
       tags:
@@ -86,7 +86,7 @@ paths:
       security:
         - X-OceanOPS-Metadata-ID
         - X-OceanOPS-Metadata-Token
-  /ship/{shipId}:
+  /${entityPath}/ship/{shipId}:
       get:
         summary: Returns a particular Ship through its database identifier
         description: Returns a particular Ship through its database identifier
@@ -117,7 +117,7 @@ paths:
                         type: object
                     total:
                       type: number
-  /platform:
+  /${entityPath}/platform:
     get:
       summary: Get list of all platforms
       tags:
@@ -148,7 +148,7 @@ paths:
       security:
         - X-OceanOPS-Metadata-ID
         - X-OceanOPS-Metadata-Token
-  /platform/{ptfId}:
+  /${entityPath}/platform/{ptfId}:
       get:
         summary: Returns a particular Platform through its database identifier
         description: Returns a particular Platform through its database identifier
@@ -173,7 +173,7 @@ paths:
                         type: object
                     total:
                       type: number
-  /platform/ref/{ptfRef}:
+  /${entityPath}/platform/ref/{ptfRef}:
       get:
         summary: Returns a particular Platform through its OceanOPS reference
         description: Returns a particular Platform through its OceanOPS reference
@@ -198,7 +198,7 @@ paths:
                         type: object
                     total:
                       type: number
-  /platform/wigosid/{ptfWigosId}:
+  /${entityPath}/platform/wigosid/{ptfWigosId}:
       get:
         summary: Returns a particular Platform through its WIGOS ID
         description: Returns a particular Platform through its WIGOS ID
@@ -223,7 +223,7 @@ paths:
                         type: object
                     total:
                       type: number
-  /platform/wmdr/{ptfId}:
+  /${entityPath}/platform/wmdr/{ptfId}:
       get:
         summary: Returns a particular WMDR Platform through its database identifier
         description: Returns a particular Platform, in a WIGOS XML compliant format, through its database identifier
@@ -237,7 +237,7 @@ paths:
             content:
               application/xml:
                 example: TBD
-  /platform/wmdr/ref/{ptfRef}:
+  /${entityPath}/platform/wmdr/ref/{ptfRef}:
       get:
         summary: Returns a particular WMDR Platform through its OceanOPS reference
         description: Returns a particular Platform, in a WIGOS XML compliant format, through its OceanOPS reference
@@ -251,7 +251,7 @@ paths:
             content:
               application/xml:
                 example: TBD
-  /platform/wmdr/wigosid/{ptfWigosId}:
+  /${entityPath}/platform/wmdr/wigosid/{ptfWigosId}:
       get:
         summary: Returns a particular WMDR Platform through its WIGOS ID
         description: Returns a particular Platform, in a WIGOS XML compliant format, through its WIGOS ID

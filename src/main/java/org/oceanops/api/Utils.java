@@ -25,14 +25,13 @@ public class Utils {
 	private static ObjectContext cayenneContext;
 	private static Properties properties;
 	private static String projectName, projectVersion, rootUrl, programUrl, inspectPtfUrl, helpEditionDate,
-			versionQualifier;
+			versionQualifier, entityPath;
 	private static boolean betaVersion;
 	public static final String CSV_SEPARATOR = ";";
 	public static final DateTimeFormatter ISO_DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
 	public static final DateTimeFormatter ISO_DATE_NO_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	public static final Integer OCEANOPS_AGENCY_ID = 61;
 	public static final Integer SOT_NETWORK_ID = 1000622;
-	public static final String entityPath = "data";
 
 	private Utils() {
 	}
@@ -46,12 +45,12 @@ public class Utils {
 				projectName = properties.getProperty("PROJECT_NAME");
 				rootUrl = properties.getProperty("ROOT_URL");
 				programUrl = properties.getProperty("PROGRAM_URL");
+				entityPath = properties.getProperty("ENTITY_PATH");
 				inspectPtfUrl = properties.getProperty("INSPECT_PTF_URL");
 				helpEditionDate = properties.getProperty("HELP_EDITION_DATE");
-				versionQualifier = properties.getProperty("VERSION_QUALIFIER");
 				betaVersion = projectVersion.substring(0, 1).equals("0") || projectVersion.endsWith("-SNAPSHOT")
-						|| versionQualifier.length() > 0;
-				if (versionQualifier.length() == 0 && betaVersion)
+						|| projectVersion.endsWith("beta") || projectVersion.endsWith("alpha");
+				if (betaVersion)
 					versionQualifier = "preview";
 				if (betaVersion)
 					rootUrl = rootUrl.replace(projectVersion, "preview");
@@ -60,6 +59,11 @@ public class Utils {
 				projectName = "ERROR";
 			}
 		}
+	}
+
+	public static String getEntityPath() {
+		Utils.init();
+		return entityPath;
 	}
 
 	public static String getProgramUrl() {

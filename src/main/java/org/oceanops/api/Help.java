@@ -178,7 +178,7 @@ public class Help extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setAttribute("rootUrl", Utils.getRootUrl());
-		request.setAttribute("entityPath", Utils.entityPath);
+		request.setAttribute("entityPath", Utils.getEntityPath());
 		if(Utils.isBetaVersion())
 			request.setAttribute("rootUrlNoVersion", Utils.getRootUrl().substring(0, Utils.getRootUrl().length() - "preview".length() - 1));
 		else

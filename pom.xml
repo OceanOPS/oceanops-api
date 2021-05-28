@@ -252,12 +252,11 @@
 		<timestamp>${maven.build.timestamp}</timestamp>
 		<jersey.version>2.33</jersey.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<helpEditionDate>2021-05-07</helpEditionDate>
-		<versionQualifier>beta</versionQualifier>
 		<project.scm.id>oceanops-scm-server</project.scm.id>
 		<java.version>14</java.version>
 		<agrest.version>4.5</agrest.version>
 		<cayenne.version>4.2.M3</cayenne.version>
+		<entityPath>data</entityPath>
 	</properties>
 	<url>www.ocean-ops.org/api/${project.version}/</url>
 </project>
