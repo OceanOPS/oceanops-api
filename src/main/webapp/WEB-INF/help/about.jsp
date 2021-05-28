@@ -22,7 +22,7 @@
 		<li><code>Minor</code> refers to a minor version update. This concerns mainly addition of entities, metadata, new formats. 
 		This might involve <strong>breaking changes</strong>, depending on what format the client is using and how flexible it is.
 	</ul> 
-	Minor changes - such as bug fixes, typos, etc. - everything subject to a hot patch is not subject to any breaking change and does not increment the version.</li>
+	Minor changes - such as bug fixes, typos, etc. (everything subject to a hot patch) - is not subject to any breaking change and does not increment the version.</li>
 </p>
 
 <p>
