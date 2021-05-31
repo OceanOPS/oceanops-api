@@ -1,5 +1,5 @@
 <p>
-	The main endpoints to access entites metadata are documented in the OpenAPI 3.0 specification and discoverable through the Swagger UI 
+	The main endpoints to access entites metadata are documented in the OpenAPI 3.0 definition and discoverable through the Swagger UI 
 	(see <a href="#concepts-api-organisation">Concepts & API organisation</a>), 
 	but the following section will guide and provide examples of usage through the 'platform' entity.
 </p>

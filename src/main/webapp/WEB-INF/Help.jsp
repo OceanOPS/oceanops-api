@@ -38,7 +38,7 @@
 			<div class="navbar-header">
 				<h1><img src="//www.ocean-ops.org/static/images/oceanops/logos/oceanops-sm.png" alt="OceanOPS logo"/> API <small>documentation<%if(isBetaVersion){ %> <span class="label label-warning"><%=versionQualifier%></span><%}%></small></h1>
 			</div>
-			<p class="navbar-text navbar-right text-right">applicable version: <%=version%><br>last published: <%=helpEditionDate%></p>
+			<p class="navbar-text navbar-right text-right">applicable version: <%=version%><br>last published: <%=helpEditionDate%><br><a href='https://<%=rootUrl%>oceanops-api.yaml' target='_blank'>OpenAPI definition</a> - <a href='https://<%=rootUrlNoVersion%>swagger/?url=https://<%=rootUrl%>oceanops-api.yaml' target='_blank'>Swagger UI</a></p>
 		</div>
 	</nav>
 	<div id="main-container" class="container-fluid">
