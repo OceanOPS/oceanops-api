@@ -5,12 +5,12 @@
 	<groupId>org.oceanops</groupId>
 	<artifactId>api</artifactId>
 	<packaging>war</packaging>
-	<version>1.0beta</version>
+	<version>1.0beta-SNAPSHOT</version>
 	<name>OceanOPS API</name>
 
 	<scm>
 		<developerConnection>scm:git:https://github.com/OceanOPS/oceanops-api.git</developerConnection>
-		<tag>v1.0beta.20210621-1502</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<build>
