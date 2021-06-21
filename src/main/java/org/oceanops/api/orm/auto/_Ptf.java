@@ -76,6 +76,7 @@ public abstract class _Ptf extends BaseDataObject {
     public static final StringProperty<String> REF_PARENT = PropertyFactory.createString("refParent", String.class);
     public static final DateProperty<LocalDateTime> UPDATE_DATE = PropertyFactory.createDate("updateDate", LocalDateTime.class);
     public static final NumericProperty<BigDecimal> VALIDATED = PropertyFactory.createNumeric("validated", BigDecimal.class);
+    public static final NumericProperty<BigDecimal> WIGOS_SYNCHRONISED = PropertyFactory.createNumeric("wigosSynchronised", BigDecimal.class);
     public static final ListProperty<AgencyPtf> AGENCY_PTFS = PropertyFactory.createList("agencyPtfs", AgencyPtf.class);
     public static final EntityProperty<Telecom> BACKUP_TELECOM = PropertyFactory.createEntity("backupTelecom", Telecom.class);
     public static final EntityProperty<LocSystem> BACKUP_TRACKING_SYSTEM = PropertyFactory.createEntity("backupTrackingSystem", LocSystem.class);
@@ -129,6 +130,7 @@ public abstract class _Ptf extends BaseDataObject {
     protected String refParent;
     protected LocalDateTime updateDate;
     protected BigDecimal validated;
+    protected BigDecimal wigosSynchronised;
 
     protected Object agencyPtfs;
     protected Object backupTelecom;
@@ -343,6 +345,16 @@ public abstract class _Ptf extends BaseDataObject {
     public BigDecimal getValidated() {
         beforePropertyRead("validated");
         return this.validated;
+    }
+
+    public void setWigosSynchronised(BigDecimal wigosSynchronised) {
+        beforePropertyWrite("wigosSynchronised", this.wigosSynchronised, wigosSynchronised);
+        this.wigosSynchronised = wigosSynchronised;
+    }
+
+    public BigDecimal getWigosSynchronised() {
+        beforePropertyRead("wigosSynchronised");
+        return this.wigosSynchronised;
     }
 
     public void addToAgencyPtfs(AgencyPtf obj) {
@@ -740,6 +752,8 @@ public abstract class _Ptf extends BaseDataObject {
                 return this.updateDate;
             case "validated":
                 return this.validated;
+            case "wigosSynchronised":
+                return this.wigosSynchronised;
             case "agencyPtfs":
                 return this.agencyPtfs;
             case "backupTelecom":
@@ -873,6 +887,9 @@ public abstract class _Ptf extends BaseDataObject {
                 break;
             case "validated":
                 this.validated = (BigDecimal)val;
+                break;
+            case "wigosSynchronised":
+                this.wigosSynchronised = (BigDecimal)val;
                 break;
             case "agencyPtfs":
                 this.agencyPtfs = val;
@@ -1010,6 +1027,7 @@ public abstract class _Ptf extends BaseDataObject {
         out.writeObject(this.refParent);
         out.writeObject(this.updateDate);
         out.writeObject(this.validated);
+        out.writeObject(this.wigosSynchronised);
         out.writeObject(this.agencyPtfs);
         out.writeObject(this.backupTelecom);
         out.writeObject(this.backupTrackingSystem);
@@ -1067,6 +1085,7 @@ public abstract class _Ptf extends BaseDataObject {
         this.refParent = (String)in.readObject();
         this.updateDate = (LocalDateTime)in.readObject();
         this.validated = (BigDecimal)in.readObject();
+        this.wigosSynchronised = (BigDecimal)in.readObject();
         this.agencyPtfs = in.readObject();
         this.backupTelecom = in.readObject();
         this.backupTrackingSystem = in.readObject();
