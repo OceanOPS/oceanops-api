@@ -134,7 +134,7 @@
 		<entity name="WEB_CONNECTION" x="10.0" y="10.0" width="109.0" height="98.0"/>
 		<entity name="OBS_GLIDERS_GDAC_VARIABLE" x="10.0" y="10.0" width="179.0" height="66.0"/>
 		<entity name="INDICATOR_VALUE" x="950.0" y="35.0" width="109.0" height="130.0"/>
-		<entity name="PTF" x="10.0" y="10.0" width="171.0" height="610.0"/>
+		<entity name="PTF" x="10.0" y="10.0" width="171.0" height="626.0"/>
 		<entity name="SENSOR_MODEL" x="10.0" y="10.0" width="108.0" height="274.0"/>
 		<entity name="VARIABLE_FAMILY" x="10.0" y="10.0" width="105.0" height="130.0"/>
 		<entity name="SENSOR_MODEL_NETWORK" x="10.0" y="10.0" width="158.0" height="66.0"/>
@@ -334,7 +334,7 @@
 		<entity name="PtfRefLock" x="973.0" y="33.0" width="80.0" height="98.0"/>
 		<entity name="NetworkEndingCause" x="10.0" y="10.0" width="121.0" height="66.0"/>
 		<entity name="ShipType" x="10.0" y="10.0" width="81.0" height="114.0"/>
-		<entity name="Ptf" x="10.0" y="10.0" width="95.0" height="322.0"/>
+		<entity name="Ptf" x="10.0" y="10.0" width="104.0" height="338.0"/>
 		<entity name="Variable" x="10.0" y="10.0" width="75.0" height="242.0"/>
 		<entity name="Config" x="10.0" y="10.0" width="68.0" height="178.0"/>
 		<entity name="GtsInstrumentType" x="10.0" y="10.0" width="111.0" height="130.0"/>

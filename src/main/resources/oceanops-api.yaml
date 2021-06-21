@@ -1532,6 +1532,8 @@ components:
           type: number
         weblinks:
           $ref: '#/components/schemas/Weblink'
+        wigosSynchronised:
+          type: number
         wmos:
           $ref: '#/components/schemas/Wmo'
       type: object
