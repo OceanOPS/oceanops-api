@@ -29,6 +29,7 @@ import org.oceanops.api.orm.PtfPtfStatus;
 import org.oceanops.api.orm.PtfStatus;
 import org.oceanops.api.orm.PtfVariable;
 import org.oceanops.api.orm.SensorModel;
+import org.oceanops.api.orm.SensorType;
 import org.oceanops.api.orm.Variable;
 import org.oceanops.api.orm.Weblink;
 import org.oceanops.api.orm.Wmo;
@@ -325,7 +326,12 @@ public class Platform {
 			currentEquipmentType.setManufacturer(sm.getAgency().getName());
 		else
 			currentEquipmentType.setManufacturer("unknown");
-		currentEquipmentType.setObservableRange("unknown");
+		if(ptfV.getRange() != null)
+			currentEquipmentType.setObservableRange(ptfV.getRange());
+		else if(sm.getRange() != null)
+			currentEquipmentType.setObservableRange(sm.getRange());
+		else	
+			currentEquipmentType.setObservableRange("unknown");
 		currentEquipmentType.setSpecifiedAbsoluteUncertainty("unknown");
 		currentEquipmentType.setSpecifiedRelativeUncertainty("unknown");
 		currentEquipmentType.setDriftPerUnitTime("unknown");
@@ -365,7 +371,24 @@ public class Platform {
 		currentEquipmentType.getResponsibleParty().add(responsibleParty);
 
 		ReferenceType refType = this.gmlOF.createReferenceType();
-		refType.setHref("http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/" + "unknown");
+		// Find sensor type where same variable
+		// Observing Method in WIGOS is similar to SensorType
+		String obsMethod = null;
+		if(ptfV.getVariableId() != null){
+			int i = 0;
+			SensorType st;
+			while(obsMethod == null && i < sm.getSensorModelSensorTypes().size()){
+				st = sm.getSensorModelSensorTypes().get(i).getSensorType();
+				if(st.getVariable() != null){
+					if(st.getVariable().getId().equals(ptfV.getVariableId()))
+						obsMethod = st.getWigosCode();
+				}
+				i++;
+			}
+		}
+		if(obsMethod == null)
+			obsMethod = "http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/unknown";
+		refType.setHref(obsMethod);
 		currentEquipmentType.setObservingMethod(refType);
 
 		currentEquipment.setEquipment(currentEquipmentType);

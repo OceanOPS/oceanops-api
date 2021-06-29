@@ -33,6 +33,7 @@ public abstract class _SensorType extends BaseDataObject {
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> NAME_SHORT = PropertyFactory.createString("nameShort", String.class);
     public static final StringProperty<String> PUB47REF = PropertyFactory.createString("pub47Ref", String.class);
+    public static final StringProperty<String> WIGOS_CODE = PropertyFactory.createString("wigosCode", String.class);
     public static final EntityProperty<SensorFamily> SENSOR_FAMILY = PropertyFactory.createEntity("sensorFamily", SensorFamily.class);
     public static final ListProperty<SensorModelSensorType> SENSOR_MODEL_SENSOR_TYPES = PropertyFactory.createList("sensorModelSensorTypes", SensorModelSensorType.class);
     public static final EntityProperty<Variable> VARIABLE = PropertyFactory.createEntity("variable", Variable.class);
@@ -42,6 +43,7 @@ public abstract class _SensorType extends BaseDataObject {
     protected String name;
     protected String nameShort;
     protected String pub47Ref;
+    protected String wigosCode;
 
     protected Object sensorFamily;
     protected Object sensorModelSensorTypes;
@@ -97,6 +99,16 @@ public abstract class _SensorType extends BaseDataObject {
         return this.pub47Ref;
     }
 
+    public void setWigosCode(String wigosCode) {
+        beforePropertyWrite("wigosCode", this.wigosCode, wigosCode);
+        this.wigosCode = wigosCode;
+    }
+
+    public String getWigosCode() {
+        beforePropertyRead("wigosCode");
+        return this.wigosCode;
+    }
+
     public void setSensorFamily(SensorFamily sensorFamily) {
         setToOneTarget("sensorFamily", sensorFamily, true);
     }
@@ -143,6 +155,8 @@ public abstract class _SensorType extends BaseDataObject {
                 return this.nameShort;
             case "pub47Ref":
                 return this.pub47Ref;
+            case "wigosCode":
+                return this.wigosCode;
             case "sensorFamily":
                 return this.sensorFamily;
             case "sensorModelSensorTypes":
@@ -176,6 +190,9 @@ public abstract class _SensorType extends BaseDataObject {
             case "pub47Ref":
                 this.pub47Ref = (String)val;
                 break;
+            case "wigosCode":
+                this.wigosCode = (String)val;
+                break;
             case "sensorFamily":
                 this.sensorFamily = val;
                 break;
@@ -206,6 +223,7 @@ public abstract class _SensorType extends BaseDataObject {
         out.writeObject(this.name);
         out.writeObject(this.nameShort);
         out.writeObject(this.pub47Ref);
+        out.writeObject(this.wigosCode);
         out.writeObject(this.sensorFamily);
         out.writeObject(this.sensorModelSensorTypes);
         out.writeObject(this.variable);
@@ -219,6 +237,7 @@ public abstract class _SensorType extends BaseDataObject {
         this.name = (String)in.readObject();
         this.nameShort = (String)in.readObject();
         this.pub47Ref = (String)in.readObject();
+        this.wigosCode = (String)in.readObject();
         this.sensorFamily = in.readObject();
         this.sensorModelSensorTypes = in.readObject();
         this.variable = in.readObject();

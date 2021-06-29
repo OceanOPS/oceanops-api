@@ -60,6 +60,7 @@ public abstract class _PtfVariable extends BaseDataObject {
     public static final NumericProperty<BigDecimal> SAMPLING_RATE_TOTAL = PropertyFactory.createNumeric("samplingRateTotal", BigDecimal.class);
     public static final NumericProperty<BigDecimal> SENSOR_STATUS_ID = PropertyFactory.createNumeric("sensorStatusId", BigDecimal.class);
     public static final StringProperty<String> SERIAL_NO = PropertyFactory.createString("serialNo", String.class);
+    public static final NumericProperty<BigDecimal> SERVICE_SCHEDULE_ID = PropertyFactory.createNumeric("serviceScheduleId", BigDecimal.class);
     public static final StringProperty<String> SIDE_INDICATOR = PropertyFactory.createString("sideIndicator", String.class);
     public static final DateProperty<LocalDateTime> START_DATE = PropertyFactory.createDate("startDate", LocalDateTime.class);
     public static final NumericProperty<BigDecimal> TIME_OFFSET = PropertyFactory.createNumeric("timeOffset", BigDecimal.class);
@@ -101,6 +102,7 @@ public abstract class _PtfVariable extends BaseDataObject {
     protected BigDecimal samplingRateTotal;
     protected BigDecimal sensorStatusId;
     protected String serialNo;
+    protected BigDecimal serviceScheduleId;
     protected String sideIndicator;
     protected LocalDateTime startDate;
     protected BigDecimal timeOffset;
@@ -386,6 +388,16 @@ public abstract class _PtfVariable extends BaseDataObject {
         return this.serialNo;
     }
 
+    public void setServiceScheduleId(BigDecimal serviceScheduleId) {
+        beforePropertyWrite("serviceScheduleId", this.serviceScheduleId, serviceScheduleId);
+        this.serviceScheduleId = serviceScheduleId;
+    }
+
+    public BigDecimal getServiceScheduleId() {
+        beforePropertyRead("serviceScheduleId");
+        return this.serviceScheduleId;
+    }
+
     public void setSideIndicator(String sideIndicator) {
         beforePropertyWrite("sideIndicator", this.sideIndicator, sideIndicator);
         this.sideIndicator = sideIndicator;
@@ -559,6 +571,8 @@ public abstract class _PtfVariable extends BaseDataObject {
                 return this.sensorStatusId;
             case "serialNo":
                 return this.serialNo;
+            case "serviceScheduleId":
+                return this.serviceScheduleId;
             case "sideIndicator":
                 return this.sideIndicator;
             case "startDate":
@@ -678,6 +692,9 @@ public abstract class _PtfVariable extends BaseDataObject {
             case "serialNo":
                 this.serialNo = (String)val;
                 break;
+            case "serviceScheduleId":
+                this.serviceScheduleId = (BigDecimal)val;
+                break;
             case "sideIndicator":
                 this.sideIndicator = (String)val;
                 break;
@@ -760,6 +777,7 @@ public abstract class _PtfVariable extends BaseDataObject {
         out.writeObject(this.samplingRateTotal);
         out.writeObject(this.sensorStatusId);
         out.writeObject(this.serialNo);
+        out.writeObject(this.serviceScheduleId);
         out.writeObject(this.sideIndicator);
         out.writeObject(this.startDate);
         out.writeObject(this.timeOffset);
@@ -805,6 +823,7 @@ public abstract class _PtfVariable extends BaseDataObject {
         this.samplingRateTotal = (BigDecimal)in.readObject();
         this.sensorStatusId = (BigDecimal)in.readObject();
         this.serialNo = (String)in.readObject();
+        this.serviceScheduleId = (BigDecimal)in.readObject();
         this.sideIndicator = (String)in.readObject();
         this.startDate = (LocalDateTime)in.readObject();
         this.timeOffset = (BigDecimal)in.readObject();
