@@ -20,6 +20,7 @@ import org.oceanops.api.orm.Network;
 import org.oceanops.api.orm.ProgramAgency;
 import org.oceanops.api.orm.ProgramContact;
 import org.oceanops.api.orm.Ptf;
+import org.oceanops.api.orm.PtfModel;
 import org.oceanops.api.orm.PtfVariable;
 import org.oceanops.api.orm.Weblink;
 
@@ -36,6 +37,7 @@ public abstract class _Program extends BaseDataObject {
     public static final String ID_PK_COLUMN = "ID";
 
     public static final NumericProperty<BigDecimal> ACTIVE = PropertyFactory.createNumeric("active", BigDecimal.class);
+    public static final NumericProperty<BigDecimal> DEFAULT_PTF_MODEL_ID = PropertyFactory.createNumeric("defaultPtfModelId", BigDecimal.class);
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
     public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
@@ -43,6 +45,7 @@ public abstract class _Program extends BaseDataObject {
     public static final StringProperty<String> WIGOS_CODE = PropertyFactory.createString("wigosCode", String.class);
     public static final EntityProperty<Country> COUNTRY = PropertyFactory.createEntity("country", Country.class);
     public static final ListProperty<CruiseProgram> CRUISE_PROGRAMS = PropertyFactory.createList("cruisePrograms", CruiseProgram.class);
+    public static final EntityProperty<PtfModel> DEFAULT_PTF_MODEL = PropertyFactory.createEntity("defaultPtfModel", PtfModel.class);
     public static final ListProperty<Image> IMAGES = PropertyFactory.createList("images", Image.class);
     public static final ListProperty<LineProgram> LINE_PROGRAMS = PropertyFactory.createList("linePrograms", LineProgram.class);
     public static final EntityProperty<Network> NETWORK = PropertyFactory.createEntity("network", Network.class);
@@ -53,6 +56,7 @@ public abstract class _Program extends BaseDataObject {
     public static final ListProperty<Weblink> WEBLINKS = PropertyFactory.createList("weblinks", Weblink.class);
 
     protected BigDecimal active;
+    protected BigDecimal defaultPtfModelId;
     protected String description;
     protected BigDecimal id;
     protected String name;
@@ -61,6 +65,7 @@ public abstract class _Program extends BaseDataObject {
 
     protected Object country;
     protected Object cruisePrograms;
+    protected Object defaultPtfModel;
     protected Object images;
     protected Object linePrograms;
     protected Object network;
@@ -78,6 +83,16 @@ public abstract class _Program extends BaseDataObject {
     public BigDecimal getActive() {
         beforePropertyRead("active");
         return this.active;
+    }
+
+    public void setDefaultPtfModelId(BigDecimal defaultPtfModelId) {
+        beforePropertyWrite("defaultPtfModelId", this.defaultPtfModelId, defaultPtfModelId);
+        this.defaultPtfModelId = defaultPtfModelId;
+    }
+
+    public BigDecimal getDefaultPtfModelId() {
+        beforePropertyRead("defaultPtfModelId");
+        return this.defaultPtfModelId;
     }
 
     public void setDescription(String description) {
@@ -149,6 +164,14 @@ public abstract class _Program extends BaseDataObject {
     @SuppressWarnings("unchecked")
     public List<CruiseProgram> getCruisePrograms() {
         return (List<CruiseProgram>)readProperty("cruisePrograms");
+    }
+
+    public void setDefaultPtfModel(PtfModel defaultPtfModel) {
+        setToOneTarget("defaultPtfModel", defaultPtfModel, true);
+    }
+
+    public PtfModel getDefaultPtfModel() {
+        return (PtfModel)readProperty("defaultPtfModel");
     }
 
     public void addToImages(Image obj) {
@@ -259,6 +282,8 @@ public abstract class _Program extends BaseDataObject {
         switch(propName) {
             case "active":
                 return this.active;
+            case "defaultPtfModelId":
+                return this.defaultPtfModelId;
             case "description":
                 return this.description;
             case "id":
@@ -273,6 +298,8 @@ public abstract class _Program extends BaseDataObject {
                 return this.country;
             case "cruisePrograms":
                 return this.cruisePrograms;
+            case "defaultPtfModel":
+                return this.defaultPtfModel;
             case "images":
                 return this.images;
             case "linePrograms":
@@ -304,6 +331,9 @@ public abstract class _Program extends BaseDataObject {
             case "active":
                 this.active = (BigDecimal)val;
                 break;
+            case "defaultPtfModelId":
+                this.defaultPtfModelId = (BigDecimal)val;
+                break;
             case "description":
                 this.description = (String)val;
                 break;
@@ -324,6 +354,9 @@ public abstract class _Program extends BaseDataObject {
                 break;
             case "cruisePrograms":
                 this.cruisePrograms = val;
+                break;
+            case "defaultPtfModel":
+                this.defaultPtfModel = val;
                 break;
             case "images":
                 this.images = val;
@@ -366,6 +399,7 @@ public abstract class _Program extends BaseDataObject {
     protected void writeState(ObjectOutputStream out) throws IOException {
         super.writeState(out);
         out.writeObject(this.active);
+        out.writeObject(this.defaultPtfModelId);
         out.writeObject(this.description);
         out.writeObject(this.id);
         out.writeObject(this.name);
@@ -373,6 +407,7 @@ public abstract class _Program extends BaseDataObject {
         out.writeObject(this.wigosCode);
         out.writeObject(this.country);
         out.writeObject(this.cruisePrograms);
+        out.writeObject(this.defaultPtfModel);
         out.writeObject(this.images);
         out.writeObject(this.linePrograms);
         out.writeObject(this.network);
@@ -387,6 +422,7 @@ public abstract class _Program extends BaseDataObject {
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
         this.active = (BigDecimal)in.readObject();
+        this.defaultPtfModelId = (BigDecimal)in.readObject();
         this.description = (String)in.readObject();
         this.id = (BigDecimal)in.readObject();
         this.name = (String)in.readObject();
@@ -394,6 +430,7 @@ public abstract class _Program extends BaseDataObject {
         this.wigosCode = (String)in.readObject();
         this.country = in.readObject();
         this.cruisePrograms = in.readObject();
+        this.defaultPtfModel = in.readObject();
         this.images = in.readObject();
         this.linePrograms = in.readObject();
         this.network = in.readObject();

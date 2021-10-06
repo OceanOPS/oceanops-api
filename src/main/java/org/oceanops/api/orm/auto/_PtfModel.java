@@ -13,6 +13,7 @@ import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
 import org.oceanops.api.orm.Agency;
+import org.oceanops.api.orm.ApiWmoIdType;
 import org.oceanops.api.orm.Contact;
 import org.oceanops.api.orm.GtsInstrumentType;
 import org.oceanops.api.orm.Image;
@@ -36,6 +37,7 @@ public abstract class _PtfModel extends BaseDataObject {
     public static final String ID_PK_COLUMN = "ID";
 
     public static final NumericProperty<BigDecimal> AIR_DEPL_CERTIF = PropertyFactory.createNumeric("airDeplCertif", BigDecimal.class);
+    public static final NumericProperty<BigDecimal> API_WMO_ID_TYPE_ID = PropertyFactory.createNumeric("apiWmoIdTypeId", BigDecimal.class);
     public static final NumericProperty<BigDecimal> COMMERCIAL = PropertyFactory.createNumeric("commercial", BigDecimal.class);
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
     public static final NumericProperty<BigDecimal> DIAMETER = PropertyFactory.createNumeric("diameter", BigDecimal.class);
@@ -55,6 +57,7 @@ public abstract class _PtfModel extends BaseDataObject {
     public static final NumericProperty<BigDecimal> WEIGHT = PropertyFactory.createNumeric("weight", BigDecimal.class);
     public static final NumericProperty<BigDecimal> WIDTH = PropertyFactory.createNumeric("width", BigDecimal.class);
     public static final EntityProperty<Agency> AGENCY = PropertyFactory.createEntity("agency", Agency.class);
+    public static final EntityProperty<ApiWmoIdType> API_WMO_ID_TYPE = PropertyFactory.createEntity("apiWmoIdType", ApiWmoIdType.class);
     public static final EntityProperty<Contact> CONTACT = PropertyFactory.createEntity("contact", Contact.class);
     public static final EntityProperty<GtsInstrumentType> GTS_INSTRUMENT_TYPE = PropertyFactory.createEntity("gtsInstrumentType", GtsInstrumentType.class);
     public static final EntityProperty<PtfHullType> HULL_TYPE = PropertyFactory.createEntity("hullType", PtfHullType.class);
@@ -66,6 +69,7 @@ public abstract class _PtfModel extends BaseDataObject {
     public static final EntityProperty<Weblink> WEBLINK = PropertyFactory.createEntity("weblink", Weblink.class);
 
     protected BigDecimal airDeplCertif;
+    protected BigDecimal apiWmoIdTypeId;
     protected BigDecimal commercial;
     protected String description;
     protected BigDecimal diameter;
@@ -86,6 +90,7 @@ public abstract class _PtfModel extends BaseDataObject {
     protected BigDecimal width;
 
     protected Object agency;
+    protected Object apiWmoIdType;
     protected Object contact;
     protected Object gtsInstrumentType;
     protected Object hullType;
@@ -104,6 +109,16 @@ public abstract class _PtfModel extends BaseDataObject {
     public BigDecimal getAirDeplCertif() {
         beforePropertyRead("airDeplCertif");
         return this.airDeplCertif;
+    }
+
+    public void setApiWmoIdTypeId(BigDecimal apiWmoIdTypeId) {
+        beforePropertyWrite("apiWmoIdTypeId", this.apiWmoIdTypeId, apiWmoIdTypeId);
+        this.apiWmoIdTypeId = apiWmoIdTypeId;
+    }
+
+    public BigDecimal getApiWmoIdTypeId() {
+        beforePropertyRead("apiWmoIdTypeId");
+        return this.apiWmoIdTypeId;
     }
 
     public void setCommercial(BigDecimal commercial) {
@@ -294,6 +309,14 @@ public abstract class _PtfModel extends BaseDataObject {
         return (Agency)readProperty("agency");
     }
 
+    public void setApiWmoIdType(ApiWmoIdType apiWmoIdType) {
+        setToOneTarget("apiWmoIdType", apiWmoIdType, true);
+    }
+
+    public ApiWmoIdType getApiWmoIdType() {
+        return (ApiWmoIdType)readProperty("apiWmoIdType");
+    }
+
     public void setContact(Contact contact) {
         setToOneTarget("contact", contact, true);
     }
@@ -385,6 +408,8 @@ public abstract class _PtfModel extends BaseDataObject {
         switch(propName) {
             case "airDeplCertif":
                 return this.airDeplCertif;
+            case "apiWmoIdTypeId":
+                return this.apiWmoIdTypeId;
             case "commercial":
                 return this.commercial;
             case "description":
@@ -423,6 +448,8 @@ public abstract class _PtfModel extends BaseDataObject {
                 return this.width;
             case "agency":
                 return this.agency;
+            case "apiWmoIdType":
+                return this.apiWmoIdType;
             case "contact":
                 return this.contact;
             case "gtsInstrumentType":
@@ -455,6 +482,9 @@ public abstract class _PtfModel extends BaseDataObject {
         switch (propName) {
             case "airDeplCertif":
                 this.airDeplCertif = (BigDecimal)val;
+                break;
+            case "apiWmoIdTypeId":
+                this.apiWmoIdTypeId = (BigDecimal)val;
                 break;
             case "commercial":
                 this.commercial = (BigDecimal)val;
@@ -513,6 +543,9 @@ public abstract class _PtfModel extends BaseDataObject {
             case "agency":
                 this.agency = val;
                 break;
+            case "apiWmoIdType":
+                this.apiWmoIdType = val;
+                break;
             case "contact":
                 this.contact = val;
                 break;
@@ -557,6 +590,7 @@ public abstract class _PtfModel extends BaseDataObject {
     protected void writeState(ObjectOutputStream out) throws IOException {
         super.writeState(out);
         out.writeObject(this.airDeplCertif);
+        out.writeObject(this.apiWmoIdTypeId);
         out.writeObject(this.commercial);
         out.writeObject(this.description);
         out.writeObject(this.diameter);
@@ -576,6 +610,7 @@ public abstract class _PtfModel extends BaseDataObject {
         out.writeObject(this.weight);
         out.writeObject(this.width);
         out.writeObject(this.agency);
+        out.writeObject(this.apiWmoIdType);
         out.writeObject(this.contact);
         out.writeObject(this.gtsInstrumentType);
         out.writeObject(this.hullType);
@@ -591,6 +626,7 @@ public abstract class _PtfModel extends BaseDataObject {
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
         this.airDeplCertif = (BigDecimal)in.readObject();
+        this.apiWmoIdTypeId = (BigDecimal)in.readObject();
         this.commercial = (BigDecimal)in.readObject();
         this.description = (String)in.readObject();
         this.diameter = (BigDecimal)in.readObject();
@@ -610,6 +646,7 @@ public abstract class _PtfModel extends BaseDataObject {
         this.weight = (BigDecimal)in.readObject();
         this.width = (BigDecimal)in.readObject();
         this.agency = in.readObject();
+        this.apiWmoIdType = in.readObject();
         this.contact = in.readObject();
         this.gtsInstrumentType = in.readObject();
         this.hullType = in.readObject();

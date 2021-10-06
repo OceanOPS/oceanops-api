@@ -48,6 +48,8 @@ public abstract class _Agency extends BaseDataObject {
     public static final StringProperty<String> EMAIL = PropertyFactory.createString("email", String.class);
     public static final StringProperty<String> FAX = PropertyFactory.createString("fax", String.class);
     public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<BigDecimal> LAT = PropertyFactory.createNumeric("lat", BigDecimal.class);
+    public static final NumericProperty<BigDecimal> LON = PropertyFactory.createNumeric("lon", BigDecimal.class);
     public static final NumericProperty<BigDecimal> MANUF = PropertyFactory.createNumeric("manuf", BigDecimal.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> NAME_SHORT = PropertyFactory.createString("nameShort", String.class);
@@ -80,6 +82,8 @@ public abstract class _Agency extends BaseDataObject {
     protected String email;
     protected String fax;
     protected BigDecimal id;
+    protected BigDecimal lat;
+    protected BigDecimal lon;
     protected BigDecimal manuf;
     protected String name;
     protected String nameShort;
@@ -165,6 +169,26 @@ public abstract class _Agency extends BaseDataObject {
     public BigDecimal getId() {
         beforePropertyRead("id");
         return this.id;
+    }
+
+    public void setLat(BigDecimal lat) {
+        beforePropertyWrite("lat", this.lat, lat);
+        this.lat = lat;
+    }
+
+    public BigDecimal getLat() {
+        beforePropertyRead("lat");
+        return this.lat;
+    }
+
+    public void setLon(BigDecimal lon) {
+        beforePropertyWrite("lon", this.lon, lon);
+        this.lon = lon;
+    }
+
+    public BigDecimal getLon() {
+        beforePropertyRead("lon");
+        return this.lon;
     }
 
     public void setManuf(BigDecimal manuf) {
@@ -475,6 +499,10 @@ public abstract class _Agency extends BaseDataObject {
                 return this.fax;
             case "id":
                 return this.id;
+            case "lat":
+                return this.lat;
+            case "lon":
+                return this.lon;
             case "manuf":
                 return this.manuf;
             case "name":
@@ -554,6 +582,12 @@ public abstract class _Agency extends BaseDataObject {
                 break;
             case "id":
                 this.id = (BigDecimal)val;
+                break;
+            case "lat":
+                this.lat = (BigDecimal)val;
+                break;
+            case "lon":
+                this.lon = (BigDecimal)val;
                 break;
             case "manuf":
                 this.manuf = (BigDecimal)val;
@@ -652,6 +686,8 @@ public abstract class _Agency extends BaseDataObject {
         out.writeObject(this.email);
         out.writeObject(this.fax);
         out.writeObject(this.id);
+        out.writeObject(this.lat);
+        out.writeObject(this.lon);
         out.writeObject(this.manuf);
         out.writeObject(this.name);
         out.writeObject(this.nameShort);
@@ -688,6 +724,8 @@ public abstract class _Agency extends BaseDataObject {
         this.email = (String)in.readObject();
         this.fax = (String)in.readObject();
         this.id = (BigDecimal)in.readObject();
+        this.lat = (BigDecimal)in.readObject();
+        this.lon = (BigDecimal)in.readObject();
         this.manuf = (BigDecimal)in.readObject();
         this.name = (String)in.readObject();
         this.nameShort = (String)in.readObject();

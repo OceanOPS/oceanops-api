@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
+import org.apache.cayenne.exp.property.NumericIdProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.oceanops.api.orm.Network;
@@ -22,8 +23,8 @@ public abstract class _NetworkPtf extends BaseDataObject {
 
     private static final long serialVersionUID = 1L;
 
-    public static final String NETWORK_ID_PK_COLUMN = "NETWORK_ID";
-    public static final String PTF_ID_PK_COLUMN = "PTF_ID";
+    public static final NumericIdProperty<BigDecimal> ID_PK_PROPERTY = PropertyFactory.createNumericId("ID", "NetworkPtf", BigDecimal.class);
+    public static final String ID_PK_COLUMN = "ID";
 
     public static final NumericProperty<BigDecimal> NETWORK_ID = PropertyFactory.createNumeric("networkId", BigDecimal.class);
     public static final NumericProperty<BigDecimal> PTF_ID = PropertyFactory.createNumeric("ptfId", BigDecimal.class);

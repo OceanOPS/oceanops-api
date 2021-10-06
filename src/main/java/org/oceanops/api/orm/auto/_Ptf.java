@@ -26,6 +26,7 @@ import org.oceanops.api.orm.NetworkPtf;
 import org.oceanops.api.orm.ObsLatest;
 import org.oceanops.api.orm.Program;
 import org.oceanops.api.orm.PtfAutomation;
+import org.oceanops.api.orm.PtfBatchStatus;
 import org.oceanops.api.orm.PtfConfig;
 import org.oceanops.api.orm.PtfDeployment;
 import org.oceanops.api.orm.PtfHardware;
@@ -61,6 +62,7 @@ public abstract class _Ptf extends BaseDataObject {
     public static final NumericProperty<BigDecimal> ACTIVITY_CRITERION = PropertyFactory.createNumeric("activityCriterion", BigDecimal.class);
     public static final NumericProperty<BigDecimal> AGE = PropertyFactory.createNumeric("age", BigDecimal.class);
     public static final NumericProperty<BigDecimal> AGE_WEIGHT = PropertyFactory.createNumeric("ageWeight", BigDecimal.class);
+    public static final StringProperty<String> BATCH_REQUEST_REF = PropertyFactory.createString("batchRequestRef", String.class);
     public static final NumericProperty<BigDecimal> CLOSURE_CRITERION = PropertyFactory.createNumeric("closureCriterion", BigDecimal.class);
     public static final StringProperty<String> DATA_URL = PropertyFactory.createString("dataUrl", String.class);
     public static final NumericProperty<BigDecimal> DELETE_TAG = PropertyFactory.createNumeric("deleteTag", BigDecimal.class);
@@ -70,10 +72,13 @@ public abstract class _Ptf extends BaseDataObject {
     public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
     public static final DateProperty<LocalDateTime> INSERT_DATE = PropertyFactory.createDate("insertDate", LocalDateTime.class);
     public static final DateProperty<LocalDateTime> LAST_UPDATE = PropertyFactory.createDate("lastUpdate", LocalDateTime.class);
+    public static final NumericProperty<BigDecimal> METADATA_AVAILABLE = PropertyFactory.createNumeric("metadataAvailable", BigDecimal.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> NOK_REASON = PropertyFactory.createString("nokReason", String.class);
+    public static final NumericProperty<BigDecimal> PTF_BATCH_STATUS_ID = PropertyFactory.createNumeric("ptfBatchStatusId", BigDecimal.class);
     public static final StringProperty<String> REF = PropertyFactory.createString("ref", String.class);
     public static final StringProperty<String> REF_PARENT = PropertyFactory.createString("refParent", String.class);
+    public static final NumericProperty<BigDecimal> SERVICE_SCHEDULE_ID = PropertyFactory.createNumeric("serviceScheduleId", BigDecimal.class);
     public static final DateProperty<LocalDateTime> UPDATE_DATE = PropertyFactory.createDate("updateDate", LocalDateTime.class);
     public static final NumericProperty<BigDecimal> VALIDATED = PropertyFactory.createNumeric("validated", BigDecimal.class);
     public static final NumericProperty<BigDecimal> WIGOS_SYNCHRONISED = PropertyFactory.createNumeric("wigosSynchronised", BigDecimal.class);
@@ -91,6 +96,7 @@ public abstract class _Ptf extends BaseDataObject {
     public static final ListProperty<NetworkPtf> NETWORK_PTFS = PropertyFactory.createList("networkPtfs", NetworkPtf.class);
     public static final EntityProperty<Program> PROGRAM = PropertyFactory.createEntity("program", Program.class);
     public static final EntityProperty<PtfAutomation> PTF_AUTOMATION = PropertyFactory.createEntity("ptfAutomation", PtfAutomation.class);
+    public static final EntityProperty<PtfBatchStatus> PTF_BATCH_STATUS = PropertyFactory.createEntity("ptfBatchStatus", PtfBatchStatus.class);
     public static final ListProperty<PtfConfig> PTF_CONFIGS = PropertyFactory.createList("ptfConfigs", PtfConfig.class);
     public static final EntityProperty<PtfDeployment> PTF_DEPL = PropertyFactory.createEntity("ptfDepl", PtfDeployment.class);
     public static final EntityProperty<PtfHardware> PTF_HARDWARE = PropertyFactory.createEntity("ptfHardware", PtfHardware.class);
@@ -115,6 +121,7 @@ public abstract class _Ptf extends BaseDataObject {
     protected BigDecimal activityCriterion;
     protected BigDecimal age;
     protected BigDecimal ageWeight;
+    protected String batchRequestRef;
     protected BigDecimal closureCriterion;
     protected String dataUrl;
     protected BigDecimal deleteTag;
@@ -124,10 +131,13 @@ public abstract class _Ptf extends BaseDataObject {
     protected BigDecimal id;
     protected LocalDateTime insertDate;
     protected LocalDateTime lastUpdate;
+    protected BigDecimal metadataAvailable;
     protected String name;
     protected String nokReason;
+    protected BigDecimal ptfBatchStatusId;
     protected String ref;
     protected String refParent;
+    protected BigDecimal serviceScheduleId;
     protected LocalDateTime updateDate;
     protected BigDecimal validated;
     protected BigDecimal wigosSynchronised;
@@ -146,6 +156,7 @@ public abstract class _Ptf extends BaseDataObject {
     protected Object networkPtfs;
     protected Object program;
     protected Object ptfAutomation;
+    protected Object ptfBatchStatus;
     protected Object ptfConfigs;
     protected Object ptfDepl;
     protected Object ptfHardware;
@@ -195,6 +206,16 @@ public abstract class _Ptf extends BaseDataObject {
     public BigDecimal getAgeWeight() {
         beforePropertyRead("ageWeight");
         return this.ageWeight;
+    }
+
+    public void setBatchRequestRef(String batchRequestRef) {
+        beforePropertyWrite("batchRequestRef", this.batchRequestRef, batchRequestRef);
+        this.batchRequestRef = batchRequestRef;
+    }
+
+    public String getBatchRequestRef() {
+        beforePropertyRead("batchRequestRef");
+        return this.batchRequestRef;
     }
 
     public void setClosureCriterion(BigDecimal closureCriterion) {
@@ -287,6 +308,16 @@ public abstract class _Ptf extends BaseDataObject {
         return this.lastUpdate;
     }
 
+    public void setMetadataAvailable(BigDecimal metadataAvailable) {
+        beforePropertyWrite("metadataAvailable", this.metadataAvailable, metadataAvailable);
+        this.metadataAvailable = metadataAvailable;
+    }
+
+    public BigDecimal getMetadataAvailable() {
+        beforePropertyRead("metadataAvailable");
+        return this.metadataAvailable;
+    }
+
     public void setName(String name) {
         beforePropertyWrite("name", this.name, name);
         this.name = name;
@@ -307,6 +338,16 @@ public abstract class _Ptf extends BaseDataObject {
         return this.nokReason;
     }
 
+    public void setPtfBatchStatusId(BigDecimal ptfBatchStatusId) {
+        beforePropertyWrite("ptfBatchStatusId", this.ptfBatchStatusId, ptfBatchStatusId);
+        this.ptfBatchStatusId = ptfBatchStatusId;
+    }
+
+    public BigDecimal getPtfBatchStatusId() {
+        beforePropertyRead("ptfBatchStatusId");
+        return this.ptfBatchStatusId;
+    }
+
     public void setRef(String ref) {
         beforePropertyWrite("ref", this.ref, ref);
         this.ref = ref;
@@ -325,6 +366,16 @@ public abstract class _Ptf extends BaseDataObject {
     public String getRefParent() {
         beforePropertyRead("refParent");
         return this.refParent;
+    }
+
+    public void setServiceScheduleId(BigDecimal serviceScheduleId) {
+        beforePropertyWrite("serviceScheduleId", this.serviceScheduleId, serviceScheduleId);
+        this.serviceScheduleId = serviceScheduleId;
+    }
+
+    public BigDecimal getServiceScheduleId() {
+        beforePropertyRead("serviceScheduleId");
+        return this.serviceScheduleId;
     }
 
     public void setUpdateDate(LocalDateTime updateDate) {
@@ -497,6 +548,14 @@ public abstract class _Ptf extends BaseDataObject {
 
     public PtfAutomation getPtfAutomation() {
         return (PtfAutomation)readProperty("ptfAutomation");
+    }
+
+    public void setPtfBatchStatus(PtfBatchStatus ptfBatchStatus) {
+        setToOneTarget("ptfBatchStatus", ptfBatchStatus, true);
+    }
+
+    public PtfBatchStatus getPtfBatchStatus() {
+        return (PtfBatchStatus)readProperty("ptfBatchStatus");
     }
 
     public void addToPtfConfigs(PtfConfig obj) {
@@ -722,6 +781,8 @@ public abstract class _Ptf extends BaseDataObject {
                 return this.age;
             case "ageWeight":
                 return this.ageWeight;
+            case "batchRequestRef":
+                return this.batchRequestRef;
             case "closureCriterion":
                 return this.closureCriterion;
             case "dataUrl":
@@ -740,14 +801,20 @@ public abstract class _Ptf extends BaseDataObject {
                 return this.insertDate;
             case "lastUpdate":
                 return this.lastUpdate;
+            case "metadataAvailable":
+                return this.metadataAvailable;
             case "name":
                 return this.name;
             case "nokReason":
                 return this.nokReason;
+            case "ptfBatchStatusId":
+                return this.ptfBatchStatusId;
             case "ref":
                 return this.ref;
             case "refParent":
                 return this.refParent;
+            case "serviceScheduleId":
+                return this.serviceScheduleId;
             case "updateDate":
                 return this.updateDate;
             case "validated":
@@ -782,6 +849,8 @@ public abstract class _Ptf extends BaseDataObject {
                 return this.program;
             case "ptfAutomation":
                 return this.ptfAutomation;
+            case "ptfBatchStatus":
+                return this.ptfBatchStatus;
             case "ptfConfigs":
                 return this.ptfConfigs;
             case "ptfDepl":
@@ -843,6 +912,9 @@ public abstract class _Ptf extends BaseDataObject {
             case "ageWeight":
                 this.ageWeight = (BigDecimal)val;
                 break;
+            case "batchRequestRef":
+                this.batchRequestRef = (String)val;
+                break;
             case "closureCriterion":
                 this.closureCriterion = (BigDecimal)val;
                 break;
@@ -870,17 +942,26 @@ public abstract class _Ptf extends BaseDataObject {
             case "lastUpdate":
                 this.lastUpdate = (LocalDateTime)val;
                 break;
+            case "metadataAvailable":
+                this.metadataAvailable = (BigDecimal)val;
+                break;
             case "name":
                 this.name = (String)val;
                 break;
             case "nokReason":
                 this.nokReason = (String)val;
                 break;
+            case "ptfBatchStatusId":
+                this.ptfBatchStatusId = (BigDecimal)val;
+                break;
             case "ref":
                 this.ref = (String)val;
                 break;
             case "refParent":
                 this.refParent = (String)val;
+                break;
+            case "serviceScheduleId":
+                this.serviceScheduleId = (BigDecimal)val;
                 break;
             case "updateDate":
                 this.updateDate = (LocalDateTime)val;
@@ -932,6 +1013,9 @@ public abstract class _Ptf extends BaseDataObject {
                 break;
             case "ptfAutomation":
                 this.ptfAutomation = val;
+                break;
+            case "ptfBatchStatus":
+                this.ptfBatchStatus = val;
                 break;
             case "ptfConfigs":
                 this.ptfConfigs = val;
@@ -1012,6 +1096,7 @@ public abstract class _Ptf extends BaseDataObject {
         out.writeObject(this.activityCriterion);
         out.writeObject(this.age);
         out.writeObject(this.ageWeight);
+        out.writeObject(this.batchRequestRef);
         out.writeObject(this.closureCriterion);
         out.writeObject(this.dataUrl);
         out.writeObject(this.deleteTag);
@@ -1021,10 +1106,13 @@ public abstract class _Ptf extends BaseDataObject {
         out.writeObject(this.id);
         out.writeObject(this.insertDate);
         out.writeObject(this.lastUpdate);
+        out.writeObject(this.metadataAvailable);
         out.writeObject(this.name);
         out.writeObject(this.nokReason);
+        out.writeObject(this.ptfBatchStatusId);
         out.writeObject(this.ref);
         out.writeObject(this.refParent);
+        out.writeObject(this.serviceScheduleId);
         out.writeObject(this.updateDate);
         out.writeObject(this.validated);
         out.writeObject(this.wigosSynchronised);
@@ -1042,6 +1130,7 @@ public abstract class _Ptf extends BaseDataObject {
         out.writeObject(this.networkPtfs);
         out.writeObject(this.program);
         out.writeObject(this.ptfAutomation);
+        out.writeObject(this.ptfBatchStatus);
         out.writeObject(this.ptfConfigs);
         out.writeObject(this.ptfDepl);
         out.writeObject(this.ptfHardware);
@@ -1070,6 +1159,7 @@ public abstract class _Ptf extends BaseDataObject {
         this.activityCriterion = (BigDecimal)in.readObject();
         this.age = (BigDecimal)in.readObject();
         this.ageWeight = (BigDecimal)in.readObject();
+        this.batchRequestRef = (String)in.readObject();
         this.closureCriterion = (BigDecimal)in.readObject();
         this.dataUrl = (String)in.readObject();
         this.deleteTag = (BigDecimal)in.readObject();
@@ -1079,10 +1169,13 @@ public abstract class _Ptf extends BaseDataObject {
         this.id = (BigDecimal)in.readObject();
         this.insertDate = (LocalDateTime)in.readObject();
         this.lastUpdate = (LocalDateTime)in.readObject();
+        this.metadataAvailable = (BigDecimal)in.readObject();
         this.name = (String)in.readObject();
         this.nokReason = (String)in.readObject();
+        this.ptfBatchStatusId = (BigDecimal)in.readObject();
         this.ref = (String)in.readObject();
         this.refParent = (String)in.readObject();
+        this.serviceScheduleId = (BigDecimal)in.readObject();
         this.updateDate = (LocalDateTime)in.readObject();
         this.validated = (BigDecimal)in.readObject();
         this.wigosSynchronised = (BigDecimal)in.readObject();
@@ -1100,6 +1193,7 @@ public abstract class _Ptf extends BaseDataObject {
         this.networkPtfs = in.readObject();
         this.program = in.readObject();
         this.ptfAutomation = in.readObject();
+        this.ptfBatchStatus = in.readObject();
         this.ptfConfigs = in.readObject();
         this.ptfDepl = in.readObject();
         this.ptfHardware = in.readObject();
