@@ -18,9 +18,8 @@
 <p>
 	The versionning pattern of this API is as follows: <code>Major.Minor</code>.
 	<ul>
-		<li><code>Major</code> refers to a major version update. This typically refers to an update in the behavior of the API. This is highly subject to <strong>breaking changes</strong>.</li>
+		<li><code>Major</code> refers to a major version update. This typically refers to an update in the behavior of the API. This is highly subject to <strong>breaking changes</strong> and is then reflected in the URL.</li>
 		<li><code>Minor</code> refers to a minor version update. This concerns mainly addition of entities, metadata, new formats. 
-		This might involve <strong>breaking changes</strong>, depending on what format the client is using and how flexible it is.
 	</ul> 
 	Minor changes - such as bug fixes, typos, etc. (everything subject to a hot patch) - is not subject to any breaking change and does not increment the version.</li>
 </p>

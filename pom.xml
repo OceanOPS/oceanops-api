@@ -261,5 +261,5 @@
 		<cayenne.version>4.2.M3</cayenne.version>
 		<entityPath>data</entityPath>
 	</properties>
-	<url>www.ocean-ops.org/api/${project.version}/</url>
+	<url>www.ocean-ops.org/api/</url>
 </project>
