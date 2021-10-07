@@ -20,7 +20,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-war-plugin</artifactId>
-					<version>3.3.1</version>
+					<version>3.3.2</version>
 					<configuration>
 						<attachClasses>true</attachClasses>
 					</configuration>
@@ -46,7 +46,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-javadoc-plugin</artifactId>
-					<version>3.2.0</version>
+					<version>3.3.1</version>
 					<configuration>
 						<skip>true</skip>
 						<excludePackageNames>_int.*:net.opengis.*</excludePackageNames>
@@ -140,7 +140,7 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-crypto</artifactId>
-			<version>5.4.6</version>
+			<version>5.5.2</version>
 		</dependency>		
 		<dependency>
 			<groupId>commons-logging</groupId>
@@ -150,7 +150,7 @@
 		<dependency>
 			<groupId>org.bouncycastle</groupId>
 			<artifactId>bcpkix-jdk15on</artifactId>
-			<version>1.68</version>
+			<version>1.69</version>
 		</dependency>
 
 		<dependency>
@@ -162,22 +162,22 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>1.7.30</version>
+			<version>1.7.32</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jul-to-slf4j</artifactId>
-			<version>1.7.30</version>
+			<version>1.7.32</version>
 		</dependency>
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
-			<version>1.2.3</version>
+			<version>1.2.6</version>
 		</dependency>
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-core</artifactId>
-			<version>1.2.3</version>
+			<version>1.2.6</version>
 		</dependency>
 		<dependency>
 			<groupId>org.glassfish.jersey.containers</groupId>
@@ -205,7 +205,7 @@
 		<dependency>
 			<groupId>com.oracle.database.jdbc</groupId>
 			<artifactId>ojdbc10</artifactId>
-			<version>19.10.0.0</version>
+			<version>19.12.0.0</version>
 		</dependency>
 
 		<dependency>
@@ -253,7 +253,7 @@
 	<properties>
 		<maven.build.timestamp.format>yyyyMMdd-HHmm</maven.build.timestamp.format>
 		<timestamp>${maven.build.timestamp}</timestamp>
-		<jersey.version>2.33</jersey.version>
+		<jersey.version>2.35</jersey.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.scm.id>oceanops-scm-server</project.scm.id>
 		<java.version>14</java.version>
