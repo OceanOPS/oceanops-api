@@ -26,7 +26,8 @@ public class Authorization {
 			Contact.PASSWD.getName(),
 			Contact.IS_PRIVATE.getName(),
 			Contact.ADMIN.getName(),
-			Contact.GREETINGS.getName()
+			Contact.GREETINGS.getName(),
+            Contact.GDPR_APPROVED.getName()
 		));
 
 		// ProgramContact MZMS exclusion
@@ -64,6 +65,10 @@ public class Authorization {
             sBuilder.entityOverlay(new AgEntityOverlay<Ship>(Ship.class).exclude(
                 Ship.CONTACT_SEA_EMAIL.getName(),
                 Ship.CONTACT_SHORE_EMAIL.getName(),
+                Ship.CONTACT_SEA_EMAIL2.getName(),
+                Ship.CONTACT_SHORE_EMAIL2.getName(),
+                Ship.CONTACT_SEA_EMAIL3.getName(),
+                Ship.CONTACT_SHORE_EMAIL3.getName(),
                 Ship.CONTACT_SHORE_NAME.getName()
             ).redefineToMany(
                 Ship.PTF_DEPLOYMENTS.getName(), PtfDeployment.class,
