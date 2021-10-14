@@ -12,7 +12,7 @@ if len(sys.argv) > 1:
         "WebMessage","WebMetric","WebMetricNetwork","WebModule","WebPtfFilter","WebPtfVisits","WebQuery","WebWorkspace",
         "WmoBlocks",
         "Obs","ObsVariable","ObsArgoGdac","ObsArgoGdacDs","ObsArgoGdacVariable","ObsDataStatus","ObsGlidersGdac","ObsGlidersGdacDs","ObsGlidersGdacVariable",
-        "ObsGlidersGtsOsmc","ObsGlidersGtsOsmcVariable","ObsObsDataStatus","ObsTsunaGtsOsmc","ObsTsunaGtsOsmcVariable","ObsStats"]
+        "ObsGlidersGtsOsmc","ObsGlidersGtsOsmcVariable","ObsObsDataStatus","ObsTsunaGtsOsmc","ObsTsunaGtsOsmcVariable","ObsFishingvesselFishydata","ObsStats"]
     excludedProperties = {
         "Contact": ["login", "passwd", "admin", "isPrivate", "greetings"],
         "ProgramContact": ["mzmsWarningEnabled", "mzmsAutoCheck"]
@@ -37,7 +37,7 @@ if len(sys.argv) > 1:
                 if validProp:
                     type = "string"
                     format = None
-                    if prop.attributes['type'].value in ["java.math.BigDecimal"]:
+                    if prop.attributes['type'].value in ["java.math.BigDecimal", "java.lang.Double", "java.lang.Integer"]:
                         type = "number"
                         format = None
                     if prop.attributes['type'].value in ["java.time.LocalDateTime"]:

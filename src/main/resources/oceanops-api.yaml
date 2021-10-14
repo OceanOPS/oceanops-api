@@ -138,6 +138,10 @@ components:
           $ref: '#/components/schemas/Image'
         images:
           $ref: '#/components/schemas/Image'
+        lat:
+          type: number
+        lon:
+          type: number
         manuf:
           type: number
         name:
@@ -208,6 +212,8 @@ components:
           $ref: '#/components/schemas/Agency'
         agencyRole:
           $ref: '#/components/schemas/AgencyRole'
+        assemblyTypeId:
+          type: number
         dacType:
           $ref: '#/components/schemas/DacType'
         ptf:
@@ -240,6 +246,15 @@ components:
           $ref: '#/components/schemas/AgencyRole'
         siteId:
           type: number
+      type: object
+    ApiWmoIdType:
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+        name:
+          type: string
       type: object
     Config:
       properties:
@@ -288,6 +303,8 @@ components:
           type: string
         firstName:
           type: string
+        gdprApproved:
+          type: number
         id:
           type: number
         image:
@@ -360,6 +377,8 @@ components:
           $ref: '#/components/schemas/CountryCommitment'
         cruiseCountries:
           $ref: '#/components/schemas/CruiseCountry'
+        eez:
+          type: number
         gtsCcccs:
           $ref: '#/components/schemas/GtsCccc'
         id:
@@ -390,6 +409,8 @@ components:
           $ref: '#/components/schemas/ShipHistory'
         ships:
           $ref: '#/components/schemas/Ship'
+        toNotify:
+          type: number
         userGroupContacts:
           $ref: '#/components/schemas/UserGroupContact'
         weblinks:
@@ -503,6 +524,8 @@ components:
           type: number
         services:
           $ref: '#/components/schemas/Service'
+        shape:
+          type: string
         ship:
           $ref: '#/components/schemas/Ship'
         shipStop:
@@ -906,6 +929,8 @@ components:
           type: number
         indicatorCategory:
           $ref: '#/components/schemas/IndicatorCategory'
+        indicatorValues:
+          $ref: '#/components/schemas/IndicatorValue'
         legendMax:
           type: number
         legendMin:
@@ -926,6 +951,8 @@ components:
           type: string
         targetValue:
           type: number
+        variable:
+          $ref: '#/components/schemas/Variable'
       type: object
     IndicatorCategory:
       properties:
@@ -947,8 +974,8 @@ components:
           type: string
         id:
           type: number
-        indicatorId:
-          type: number
+        indicator:
+          $ref: '#/components/schemas/Indicator'
         startDate:
           format: date-time
           type: string
@@ -986,6 +1013,8 @@ components:
           type: string
         ptfs:
           $ref: '#/components/schemas/Ptf'
+        shape:
+          type: string
         weblink:
           $ref: '#/components/schemas/Weblink'
         wkt:
@@ -1345,6 +1374,11 @@ components:
         nameShort:
           type: string
       type: object
+    ObsFishingvesselFdVariable:
+      properties:
+        variable:
+          $ref: '#/components/schemas/Variable'
+      type: object
     ObsLatest:
       properties:
         id:
@@ -1359,6 +1393,8 @@ components:
         originId:
           type: number
         originTable:
+          type: string
+        shape:
           type: string
       type: object
     PostRetrievalStatus:
@@ -1382,10 +1418,10 @@ components:
           $ref: '#/components/schemas/Country'
         cruisePrograms:
           $ref: '#/components/schemas/CruiseProgram'
+        defaultPtfModel:
+          $ref: '#/components/schemas/PtfModel'
         description:
           type: string
-        id:
-          type: number
         images:
           $ref: '#/components/schemas/Image'
         linePrograms:
@@ -1404,6 +1440,8 @@ components:
           $ref: '#/components/schemas/PtfVariable'
         ptfs:
           $ref: '#/components/schemas/Ptf'
+        services:
+          $ref: '#/components/schemas/Service'
         weblinks:
           $ref: '#/components/schemas/Weblink'
         wigosCode:
@@ -1433,16 +1471,14 @@ components:
       properties:
         activityCriterion:
           type: number
-        age:
-          type: number
-        ageWeight:
-          type: number
         agencyPtfs:
           $ref: '#/components/schemas/AgencyPtf'
         backupTelecom:
           $ref: '#/components/schemas/Telecom'
         backupTrackingSystem:
           $ref: '#/components/schemas/LocSystem'
+        batchRequestRef:
+          type: string
         closureCriterion:
           type: number
         contactPtfRoles:
@@ -1475,6 +1511,8 @@ components:
           $ref: '#/components/schemas/ObsLatest'
         lines:
           $ref: '#/components/schemas/Line'
+        metadataAvailable:
+          type: number
         mzmsPtfCountries:
           $ref: '#/components/schemas/MzmsPtfCountry'
         name:
@@ -1487,6 +1525,8 @@ components:
           $ref: '#/components/schemas/Program'
         ptfAutomation:
           $ref: '#/components/schemas/PtfAutomation'
+        ptfBatchStatus:
+          $ref: '#/components/schemas/PtfBatchStatus'
         ptfConfigs:
           $ref: '#/components/schemas/PtfConfig'
         ptfDepl:
@@ -1495,8 +1535,6 @@ components:
           $ref: '#/components/schemas/PtfHardware'
         ptfIdentifiers:
           $ref: '#/components/schemas/PtfIdentifiers'
-        ptfInspection:
-          $ref: '#/components/schemas/PtfInspection'
         ptfLocStatuses:
           $ref: '#/components/schemas/PtfLocStatus'
         ptfModel:
@@ -1546,6 +1584,13 @@ components:
         pub47Ref:
           type: string
         ref:
+          type: string
+      type: object
+    PtfBatchStatus:
+      properties:
+        description:
+          type: string
+        name:
           type: string
       type: object
     PtfBattery:
@@ -1626,14 +1671,20 @@ components:
           type: number
         noSite:
           type: number
+        ptfs:
+          $ref: '#/components/schemas/Ptf'
         refStationId:
           type: string
         score:
+          type: number
+        seaStateId:
           type: number
         ship:
           $ref: '#/components/schemas/Ship'
         shipName:
           type: string
+        weatherId:
+          type: number
         windSpeed:
           type: number
       type: object
@@ -1701,10 +1752,10 @@ components:
           type: string
         mooringDepth:
           type: number
-        mooringTypeId:
-          type: number
         mooringWeight:
           type: number
+        ptfs:
+          $ref: '#/components/schemas/Ptf'
         sensorUpgradeCountry:
           $ref: '#/components/schemas/Country'
         serialRef:
@@ -1752,6 +1803,8 @@ components:
           type: string
         operatorRef:
           type: string
+        ptfs:
+          $ref: '#/components/schemas/Ptf'
         seadatanetRef:
           type: string
         wigosRef:
@@ -1790,6 +1843,10 @@ components:
         agency:
           $ref: '#/components/schemas/Agency'
         airDeplCertif:
+          type: number
+        apiWmoIdType:
+          $ref: '#/components/schemas/ApiWmoIdType'
+        apiWmoIdTypeId:
           type: number
         commercial:
           type: number
@@ -1976,8 +2033,6 @@ components:
           type: string
         dataProcessingMethod:
           $ref: '#/components/schemas/DataProcessingMethod'
-        dataProcessingMethodId:
-          type: number
         distanceX:
           type: number
         distanceY:
@@ -2019,21 +2074,19 @@ components:
         resolution:
           type: string
         samplingRate:
-          type: number
+          type: string
         samplingRateTotal:
-          type: number
+          type: string
         sensorExposure:
           $ref: '#/components/schemas/SensorExposure'
         sensorLocation:
           $ref: '#/components/schemas/SensorLocation'
         sensorModel:
           $ref: '#/components/schemas/SensorModel'
-        sensorStatusId:
-          type: number
+        sensorStatus:
+          $ref: '#/components/schemas/SensorStatus'
         serialNo:
           type: string
-        serviceScheduleId:
-          type: number
         sideIndicator:
           type: string
         startDate:
@@ -2253,6 +2306,13 @@ components:
         userGroupContacts:
           $ref: '#/components/schemas/UserGroupContact'
       type: object
+    Schedule:
+      properties:
+        name:
+          type: string
+        nameShort:
+          type: string
+      type: object
     SensorExposure:
       properties:
         description:
@@ -2375,6 +2435,8 @@ components:
           type: string
         name:
           type: string
+        ptfVariables:
+          $ref: '#/components/schemas/PtfVariable'
         ref:
           type: string
       type: object
@@ -2403,9 +2465,6 @@ components:
       properties:
         agency:
           $ref: '#/components/schemas/Agency'
-        calibrationDate:
-          format: date-time
-          type: string
         contact:
           $ref: '#/components/schemas/Contact'
         cruise:
@@ -2417,15 +2476,31 @@ components:
           type: string
         id:
           type: number
+        location:
+          type: string
+        locationId:
+          type: number
+        program:
+          $ref: '#/components/schemas/Program'
         ptf:
           $ref: '#/components/schemas/Ptf'
         sensorModel:
           $ref: '#/components/schemas/SensorModel'
-        serviceDate:
-          format: date-time
-          type: string
         startDate:
           format: date-time
+          type: string
+        type:
+          type: string
+        typeId:
+          type: number
+      type: object
+    ServiceLocation:
+      properties:
+        description:
+          type: string
+        name:
+          type: string
+        nameShort:
           type: string
       type: object
     ServiceType:
@@ -2452,7 +2527,15 @@ components:
           type: string
         contactSeaEmail:
           type: string
+        contactSeaEmail2:
+          type: string
+        contactSeaEmail3:
+          type: string
         contactShoreEmail:
+          type: string
+        contactShoreEmail2:
+          type: string
+        contactShoreEmail3:
           type: string
         contactShoreName:
           type: string
@@ -2491,6 +2574,8 @@ components:
           type: string
         length:
           type: number
+        mmsi:
+          type: string
         name:
           type: string
         originalDataset:
@@ -2544,6 +2629,8 @@ components:
           type: number
         insertDate:
           format: date-time
+          type: string
+        mmsi:
           type: string
         name:
           type: string
@@ -2600,6 +2687,8 @@ components:
           type: string
         networkSites:
           $ref: '#/components/schemas/NetworkSite'
+        shape:
+          type: string
         siteFamily:
           $ref: '#/components/schemas/SiteFamily'
         sitePtfs:
@@ -2684,8 +2773,16 @@ components:
           type: string
         latency:
           $ref: '#/components/schemas/Latency'
+        latency1:
+          type: number
         num:
           type: string
+        ptfId:
+          type: number
+        ptfs:
+          $ref: '#/components/schemas/Ptf'
+        ptfs1:
+          $ref: '#/components/schemas/Ptf'
         refProg:
           type: string
         startDate:
@@ -2851,6 +2948,8 @@ components:
           type: number
         imosRef:
           type: string
+        indicators:
+          $ref: '#/components/schemas/Indicator'
         name:
           type: string
         nameAlter:
