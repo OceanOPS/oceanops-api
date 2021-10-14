@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
@@ -44,11 +43,11 @@ public abstract class _Network extends BaseDataObject {
     public static final String ID_PK_COLUMN = "ID";
 
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> NAME_SHORT = PropertyFactory.createString("nameShort", String.class);
-    public static final NumericProperty<BigDecimal> PARENT_NETWORK_ID = PropertyFactory.createNumeric("parentNetworkId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> RANK = PropertyFactory.createNumeric("rank", BigDecimal.class);
+    public static final NumericProperty<Integer> PARENT_NETWORK_ID = PropertyFactory.createNumeric("parentNetworkId", Integer.class);
+    public static final NumericProperty<Integer> RANK = PropertyFactory.createNumeric("rank", Integer.class);
     public static final StringProperty<String> WIGOS_CODE = PropertyFactory.createString("wigosCode", String.class);
     public static final ListProperty<AgencyDacType> AGENCY_DAC_TYPES = PropertyFactory.createList("agencyDacTypes", AgencyDacType.class);
     public static final ListProperty<CountryCommitment> COUNTRY_COMMITMENTS = PropertyFactory.createList("countryCommitments", CountryCommitment.class);
@@ -70,11 +69,11 @@ public abstract class _Network extends BaseDataObject {
     public static final ListProperty<Weblink> WEBLINKS = PropertyFactory.createList("weblinks", Weblink.class);
 
     protected String description;
-    protected BigDecimal id;
+    protected Integer id;
     protected String name;
     protected String nameShort;
-    protected BigDecimal parentNetworkId;
-    protected BigDecimal rank;
+    protected Integer parentNetworkId;
+    protected Integer rank;
     protected String wigosCode;
 
     protected Object agencyDacTypes;
@@ -106,12 +105,12 @@ public abstract class _Network extends BaseDataObject {
         return this.description;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
@@ -136,22 +135,22 @@ public abstract class _Network extends BaseDataObject {
         return this.nameShort;
     }
 
-    public void setParentNetworkId(BigDecimal parentNetworkId) {
+    public void setParentNetworkId(Integer parentNetworkId) {
         beforePropertyWrite("parentNetworkId", this.parentNetworkId, parentNetworkId);
         this.parentNetworkId = parentNetworkId;
     }
 
-    public BigDecimal getParentNetworkId() {
+    public Integer getParentNetworkId() {
         beforePropertyRead("parentNetworkId");
         return this.parentNetworkId;
     }
 
-    public void setRank(BigDecimal rank) {
+    public void setRank(Integer rank) {
         beforePropertyWrite("rank", this.rank, rank);
         this.rank = rank;
     }
 
-    public BigDecimal getRank() {
+    public Integer getRank() {
         beforePropertyRead("rank");
         return this.rank;
     }
@@ -463,7 +462,7 @@ public abstract class _Network extends BaseDataObject {
                 this.description = (String)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "name":
                 this.name = (String)val;
@@ -472,10 +471,10 @@ public abstract class _Network extends BaseDataObject {
                 this.nameShort = (String)val;
                 break;
             case "parentNetworkId":
-                this.parentNetworkId = (BigDecimal)val;
+                this.parentNetworkId = (Integer)val;
                 break;
             case "rank":
-                this.rank = (BigDecimal)val;
+                this.rank = (Integer)val;
                 break;
             case "wigosCode":
                 this.wigosCode = (String)val;
@@ -581,11 +580,11 @@ public abstract class _Network extends BaseDataObject {
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
         this.description = (String)in.readObject();
-        this.id = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
         this.name = (String)in.readObject();
         this.nameShort = (String)in.readObject();
-        this.parentNetworkId = (BigDecimal)in.readObject();
-        this.rank = (BigDecimal)in.readObject();
+        this.parentNetworkId = (Integer)in.readObject();
+        this.rank = (Integer)in.readObject();
         this.wigosCode = (String)in.readObject();
         this.agencyDacTypes = in.readObject();
         this.countryCommitments = in.readObject();

@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -25,33 +24,33 @@ public abstract class _DocContact extends BaseDataObject {
     public static final String CONTACT_ID_PK_COLUMN = "CONTACT_ID";
     public static final String DOC_ID_PK_COLUMN = "DOC_ID";
 
-    public static final NumericProperty<BigDecimal> CONTACT_ID = PropertyFactory.createNumeric("contactId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> DOC_ID = PropertyFactory.createNumeric("docId", BigDecimal.class);
+    public static final NumericProperty<Integer> CONTACT_ID = PropertyFactory.createNumeric("contactId", Integer.class);
+    public static final NumericProperty<Integer> DOC_ID = PropertyFactory.createNumeric("docId", Integer.class);
     public static final EntityProperty<Doc> CONTACT = PropertyFactory.createEntity("contact", Doc.class);
     public static final EntityProperty<Contact> DOC = PropertyFactory.createEntity("doc", Contact.class);
 
-    protected BigDecimal contactId;
-    protected BigDecimal docId;
+    protected Integer contactId;
+    protected Integer docId;
 
     protected Object contact;
     protected Object doc;
 
-    public void setContactId(BigDecimal contactId) {
+    public void setContactId(Integer contactId) {
         beforePropertyWrite("contactId", this.contactId, contactId);
         this.contactId = contactId;
     }
 
-    public BigDecimal getContactId() {
+    public Integer getContactId() {
         beforePropertyRead("contactId");
         return this.contactId;
     }
 
-    public void setDocId(BigDecimal docId) {
+    public void setDocId(Integer docId) {
         beforePropertyWrite("docId", this.docId, docId);
         this.docId = docId;
     }
 
-    public BigDecimal getDocId() {
+    public Integer getDocId() {
         beforePropertyRead("docId");
         return this.docId;
     }
@@ -100,10 +99,10 @@ public abstract class _DocContact extends BaseDataObject {
 
         switch (propName) {
             case "contactId":
-                this.contactId = (BigDecimal)val;
+                this.contactId = (Integer)val;
                 break;
             case "docId":
-                this.docId = (BigDecimal)val;
+                this.docId = (Integer)val;
                 break;
             case "contact":
                 this.contact = val;
@@ -136,8 +135,8 @@ public abstract class _DocContact extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.contactId = (BigDecimal)in.readObject();
-        this.docId = (BigDecimal)in.readObject();
+        this.contactId = (Integer)in.readObject();
+        this.docId = (Integer)in.readObject();
         this.contact = in.readObject();
         this.doc = in.readObject();
     }

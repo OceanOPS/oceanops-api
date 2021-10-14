@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
@@ -45,10 +44,10 @@ public abstract class _Weblink extends BaseDataObject {
     public static final String ID_PK_COLUMN = "ID";
 
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
-    public static final NumericProperty<BigDecimal> RANK = PropertyFactory.createNumeric("rank", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> STORY_ID = PropertyFactory.createNumeric("storyId", BigDecimal.class);
+    public static final NumericProperty<Integer> RANK = PropertyFactory.createNumeric("rank", Integer.class);
+    public static final NumericProperty<Integer> STORY_ID = PropertyFactory.createNumeric("storyId", Integer.class);
     public static final StringProperty<String> URL = PropertyFactory.createString("url", String.class);
     public static final ListProperty<Agency> AGENCIES = PropertyFactory.createList("agencies", Agency.class);
     public static final ListProperty<AgencyDacType> AGENCY_DAC_TYPES = PropertyFactory.createList("agencyDacTypes", AgencyDacType.class);
@@ -71,10 +70,10 @@ public abstract class _Weblink extends BaseDataObject {
     public static final ListProperty<WeblinkPtf> WEBLINK_PTFS = PropertyFactory.createList("weblinkPtfs", WeblinkPtf.class);
 
     protected String description;
-    protected BigDecimal id;
+    protected Integer id;
     protected String name;
-    protected BigDecimal rank;
-    protected BigDecimal storyId;
+    protected Integer rank;
+    protected Integer storyId;
     protected String url;
 
     protected Object agencies;
@@ -107,12 +106,12 @@ public abstract class _Weblink extends BaseDataObject {
         return this.description;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
@@ -127,22 +126,22 @@ public abstract class _Weblink extends BaseDataObject {
         return this.name;
     }
 
-    public void setRank(BigDecimal rank) {
+    public void setRank(Integer rank) {
         beforePropertyWrite("rank", this.rank, rank);
         this.rank = rank;
     }
 
-    public BigDecimal getRank() {
+    public Integer getRank() {
         beforePropertyRead("rank");
         return this.rank;
     }
 
-    public void setStoryId(BigDecimal storyId) {
+    public void setStoryId(Integer storyId) {
         beforePropertyWrite("storyId", this.storyId, storyId);
         this.storyId = storyId;
     }
 
-    public BigDecimal getStoryId() {
+    public Integer getStoryId() {
         beforePropertyRead("storyId");
         return this.storyId;
     }
@@ -447,16 +446,16 @@ public abstract class _Weblink extends BaseDataObject {
                 this.description = (String)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "name":
                 this.name = (String)val;
                 break;
             case "rank":
-                this.rank = (BigDecimal)val;
+                this.rank = (Integer)val;
                 break;
             case "storyId":
-                this.storyId = (BigDecimal)val;
+                this.storyId = (Integer)val;
                 break;
             case "url":
                 this.url = (String)val;
@@ -565,10 +564,10 @@ public abstract class _Weblink extends BaseDataObject {
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
         this.description = (String)in.readObject();
-        this.id = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
         this.name = (String)in.readObject();
-        this.rank = (BigDecimal)in.readObject();
-        this.storyId = (BigDecimal)in.readObject();
+        this.rank = (Integer)in.readObject();
+        this.storyId = (Integer)in.readObject();
         this.url = (String)in.readObject();
         this.agencies = in.readObject();
         this.agencyDacTypes = in.readObject();

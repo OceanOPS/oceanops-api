@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -24,31 +23,31 @@ public abstract class _DocLanguage extends BaseDataObject {
     public static final String DOC_ID_PK_COLUMN = "DOC_ID";
     public static final String LANGUAGE_ID_PK_COLUMN = "LANGUAGE_ID";
 
-    public static final NumericProperty<BigDecimal> DOC_ID = PropertyFactory.createNumeric("docId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> LANGUAGE_ID = PropertyFactory.createNumeric("languageId", BigDecimal.class);
+    public static final NumericProperty<Integer> DOC_ID = PropertyFactory.createNumeric("docId", Integer.class);
+    public static final NumericProperty<Integer> LANGUAGE_ID = PropertyFactory.createNumeric("languageId", Integer.class);
     public static final EntityProperty<Language> LANGUAGE = PropertyFactory.createEntity("language", Language.class);
 
-    protected BigDecimal docId;
-    protected BigDecimal languageId;
+    protected Integer docId;
+    protected Integer languageId;
 
     protected Object language;
 
-    public void setDocId(BigDecimal docId) {
+    public void setDocId(Integer docId) {
         beforePropertyWrite("docId", this.docId, docId);
         this.docId = docId;
     }
 
-    public BigDecimal getDocId() {
+    public Integer getDocId() {
         beforePropertyRead("docId");
         return this.docId;
     }
 
-    public void setLanguageId(BigDecimal languageId) {
+    public void setLanguageId(Integer languageId) {
         beforePropertyWrite("languageId", this.languageId, languageId);
         this.languageId = languageId;
     }
 
-    public BigDecimal getLanguageId() {
+    public Integer getLanguageId() {
         beforePropertyRead("languageId");
         return this.languageId;
     }
@@ -87,10 +86,10 @@ public abstract class _DocLanguage extends BaseDataObject {
 
         switch (propName) {
             case "docId":
-                this.docId = (BigDecimal)val;
+                this.docId = (Integer)val;
                 break;
             case "languageId":
-                this.languageId = (BigDecimal)val;
+                this.languageId = (Integer)val;
                 break;
             case "language":
                 this.language = val;
@@ -119,8 +118,8 @@ public abstract class _DocLanguage extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.docId = (BigDecimal)in.readObject();
-        this.languageId = (BigDecimal)in.readObject();
+        this.docId = (Integer)in.readObject();
+        this.languageId = (Integer)in.readObject();
         this.language = in.readObject();
     }
 

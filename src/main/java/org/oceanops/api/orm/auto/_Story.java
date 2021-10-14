@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.apache.cayenne.BaseDataObject;
@@ -24,45 +23,45 @@ public abstract class _Story extends BaseDataObject {
 
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> IMAGE_ID = PropertyFactory.createNumeric("imageId", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
+    public static final NumericProperty<Integer> IMAGE_ID = PropertyFactory.createNumeric("imageId", Integer.class);
     public static final StringProperty<String> KEYWORDS = PropertyFactory.createString("keywords", String.class);
     public static final StringProperty<String> PAPER_URL = PropertyFactory.createString("paperUrl", String.class);
     public static final StringProperty<String> POST_URL = PropertyFactory.createString("postUrl", String.class);
-    public static final NumericProperty<BigDecimal> PTF_ID = PropertyFactory.createNumeric("ptfId", BigDecimal.class);
+    public static final NumericProperty<Integer> PTF_ID = PropertyFactory.createNumeric("ptfId", Integer.class);
     public static final StringProperty<String> SOURCE = PropertyFactory.createString("source", String.class);
     public static final DateProperty<LocalDateTime> STORY_DATE = PropertyFactory.createDate("storyDate", LocalDateTime.class);
     public static final StringProperty<String> TEXT = PropertyFactory.createString("text", String.class);
     public static final StringProperty<String> TITLE = PropertyFactory.createString("title", String.class);
 
-    protected BigDecimal id;
-    protected BigDecimal imageId;
+    protected Integer id;
+    protected Integer imageId;
     protected String keywords;
     protected String paperUrl;
     protected String postUrl;
-    protected BigDecimal ptfId;
+    protected Integer ptfId;
     protected String source;
     protected LocalDateTime storyDate;
     protected String text;
     protected String title;
 
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
 
-    public void setImageId(BigDecimal imageId) {
+    public void setImageId(Integer imageId) {
         beforePropertyWrite("imageId", this.imageId, imageId);
         this.imageId = imageId;
     }
 
-    public BigDecimal getImageId() {
+    public Integer getImageId() {
         beforePropertyRead("imageId");
         return this.imageId;
     }
@@ -97,12 +96,12 @@ public abstract class _Story extends BaseDataObject {
         return this.postUrl;
     }
 
-    public void setPtfId(BigDecimal ptfId) {
+    public void setPtfId(Integer ptfId) {
         beforePropertyWrite("ptfId", this.ptfId, ptfId);
         this.ptfId = ptfId;
     }
 
-    public BigDecimal getPtfId() {
+    public Integer getPtfId() {
         beforePropertyRead("ptfId");
         return this.ptfId;
     }
@@ -187,10 +186,10 @@ public abstract class _Story extends BaseDataObject {
 
         switch (propName) {
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "imageId":
-                this.imageId = (BigDecimal)val;
+                this.imageId = (Integer)val;
                 break;
             case "keywords":
                 this.keywords = (String)val;
@@ -202,7 +201,7 @@ public abstract class _Story extends BaseDataObject {
                 this.postUrl = (String)val;
                 break;
             case "ptfId":
-                this.ptfId = (BigDecimal)val;
+                this.ptfId = (Integer)val;
                 break;
             case "source":
                 this.source = (String)val;
@@ -247,12 +246,12 @@ public abstract class _Story extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.id = (BigDecimal)in.readObject();
-        this.imageId = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
+        this.imageId = (Integer)in.readObject();
         this.keywords = (String)in.readObject();
         this.paperUrl = (String)in.readObject();
         this.postUrl = (String)in.readObject();
-        this.ptfId = (BigDecimal)in.readObject();
+        this.ptfId = (Integer)in.readObject();
         this.source = (String)in.readObject();
         this.storyDate = (LocalDateTime)in.readObject();
         this.text = (String)in.readObject();

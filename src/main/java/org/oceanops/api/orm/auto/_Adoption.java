@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.apache.cayenne.BaseDataObject;
@@ -28,9 +27,9 @@ public abstract class _Adoption extends BaseDataObject {
     public static final StringProperty<String> ADOPTER_EMAIL = PropertyFactory.createString("adopterEmail", String.class);
     public static final StringProperty<String> ADOPTER_NAME = PropertyFactory.createString("adopterName", String.class);
     public static final DateProperty<LocalDateTime> ADOPTION_DATE = PropertyFactory.createDate("adoptionDate", LocalDateTime.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> IMAGE_ID = PropertyFactory.createNumeric("imageId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> PTF_ID = PropertyFactory.createNumeric("ptfId", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
+    public static final NumericProperty<Integer> IMAGE_ID = PropertyFactory.createNumeric("imageId", Integer.class);
+    public static final NumericProperty<Integer> PTF_ID = PropertyFactory.createNumeric("ptfId", Integer.class);
     public static final StringProperty<String> PTF_NAME = PropertyFactory.createString("ptfName", String.class);
     public static final StringProperty<String> TEXT = PropertyFactory.createString("text", String.class);
     public static final StringProperty<String> TITLE = PropertyFactory.createString("title", String.class);
@@ -40,9 +39,9 @@ public abstract class _Adoption extends BaseDataObject {
     protected String adopterEmail;
     protected String adopterName;
     protected LocalDateTime adoptionDate;
-    protected BigDecimal id;
-    protected BigDecimal imageId;
-    protected BigDecimal ptfId;
+    protected Integer id;
+    protected Integer imageId;
+    protected Integer ptfId;
     protected String ptfName;
     protected String text;
     protected String title;
@@ -89,32 +88,32 @@ public abstract class _Adoption extends BaseDataObject {
         return this.adoptionDate;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
 
-    public void setImageId(BigDecimal imageId) {
+    public void setImageId(Integer imageId) {
         beforePropertyWrite("imageId", this.imageId, imageId);
         this.imageId = imageId;
     }
 
-    public BigDecimal getImageId() {
+    public Integer getImageId() {
         beforePropertyRead("imageId");
         return this.imageId;
     }
 
-    public void setPtfId(BigDecimal ptfId) {
+    public void setPtfId(Integer ptfId) {
         beforePropertyWrite("ptfId", this.ptfId, ptfId);
         this.ptfId = ptfId;
     }
 
-    public BigDecimal getPtfId() {
+    public Integer getPtfId() {
         beforePropertyRead("ptfId");
         return this.ptfId;
     }
@@ -213,13 +212,13 @@ public abstract class _Adoption extends BaseDataObject {
                 this.adoptionDate = (LocalDateTime)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "imageId":
-                this.imageId = (BigDecimal)val;
+                this.imageId = (Integer)val;
                 break;
             case "ptfId":
-                this.ptfId = (BigDecimal)val;
+                this.ptfId = (Integer)val;
                 break;
             case "ptfName":
                 this.ptfName = (String)val;
@@ -269,9 +268,9 @@ public abstract class _Adoption extends BaseDataObject {
         this.adopterEmail = (String)in.readObject();
         this.adopterName = (String)in.readObject();
         this.adoptionDate = (LocalDateTime)in.readObject();
-        this.id = (BigDecimal)in.readObject();
-        this.imageId = (BigDecimal)in.readObject();
-        this.ptfId = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
+        this.imageId = (Integer)in.readObject();
+        this.ptfId = (Integer)in.readObject();
         this.ptfName = (String)in.readObject();
         this.text = (String)in.readObject();
         this.title = (String)in.readObject();

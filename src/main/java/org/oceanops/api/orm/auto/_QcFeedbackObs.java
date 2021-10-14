@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -24,31 +23,31 @@ public abstract class _QcFeedbackObs extends BaseDataObject {
     public static final String OBS_ID_PK_COLUMN = "OBS_ID";
     public static final String QC_FEEDBACK_ID_PK_COLUMN = "QC_FEEDBACK_ID";
 
-    public static final NumericProperty<BigDecimal> OBS_ID = PropertyFactory.createNumeric("obsId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> QC_FEEDBACK_ID = PropertyFactory.createNumeric("qcFeedbackId", BigDecimal.class);
+    public static final NumericProperty<Integer> OBS_ID = PropertyFactory.createNumeric("obsId", Integer.class);
+    public static final NumericProperty<Integer> QC_FEEDBACK_ID = PropertyFactory.createNumeric("qcFeedbackId", Integer.class);
     public static final EntityProperty<QcFeedback> QC_FEEDBACK = PropertyFactory.createEntity("qcFeedback", QcFeedback.class);
 
-    protected BigDecimal obsId;
-    protected BigDecimal qcFeedbackId;
+    protected Integer obsId;
+    protected Integer qcFeedbackId;
 
     protected Object qcFeedback;
 
-    public void setObsId(BigDecimal obsId) {
+    public void setObsId(Integer obsId) {
         beforePropertyWrite("obsId", this.obsId, obsId);
         this.obsId = obsId;
     }
 
-    public BigDecimal getObsId() {
+    public Integer getObsId() {
         beforePropertyRead("obsId");
         return this.obsId;
     }
 
-    public void setQcFeedbackId(BigDecimal qcFeedbackId) {
+    public void setQcFeedbackId(Integer qcFeedbackId) {
         beforePropertyWrite("qcFeedbackId", this.qcFeedbackId, qcFeedbackId);
         this.qcFeedbackId = qcFeedbackId;
     }
 
-    public BigDecimal getQcFeedbackId() {
+    public Integer getQcFeedbackId() {
         beforePropertyRead("qcFeedbackId");
         return this.qcFeedbackId;
     }
@@ -87,10 +86,10 @@ public abstract class _QcFeedbackObs extends BaseDataObject {
 
         switch (propName) {
             case "obsId":
-                this.obsId = (BigDecimal)val;
+                this.obsId = (Integer)val;
                 break;
             case "qcFeedbackId":
-                this.qcFeedbackId = (BigDecimal)val;
+                this.qcFeedbackId = (Integer)val;
                 break;
             case "qcFeedback":
                 this.qcFeedback = val;
@@ -119,8 +118,8 @@ public abstract class _QcFeedbackObs extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.obsId = (BigDecimal)in.readObject();
-        this.qcFeedbackId = (BigDecimal)in.readObject();
+        this.obsId = (Integer)in.readObject();
+        this.qcFeedbackId = (Integer)in.readObject();
         this.qcFeedback = in.readObject();
     }
 

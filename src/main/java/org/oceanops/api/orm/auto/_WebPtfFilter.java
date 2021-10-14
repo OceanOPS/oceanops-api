@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.NumericProperty;
@@ -27,12 +26,12 @@ public abstract class _WebPtfFilter extends BaseDataObject {
 
     public static final StringProperty<String> FILTER_ID = PropertyFactory.createString("filterId", String.class);
     public static final StringProperty<String> FILTER_NAME = PropertyFactory.createString("filterName", String.class);
-    public static final NumericProperty<BigDecimal> VALUE_ID = PropertyFactory.createNumeric("valueId", BigDecimal.class);
+    public static final NumericProperty<Integer> VALUE_ID = PropertyFactory.createNumeric("valueId", Integer.class);
     public static final StringProperty<String> VALUE_NAME = PropertyFactory.createString("valueName", String.class);
 
     protected String filterId;
     protected String filterName;
-    protected BigDecimal valueId;
+    protected Integer valueId;
     protected String valueName;
 
 
@@ -56,12 +55,12 @@ public abstract class _WebPtfFilter extends BaseDataObject {
         return this.filterName;
     }
 
-    public void setValueId(BigDecimal valueId) {
+    public void setValueId(Integer valueId) {
         beforePropertyWrite("valueId", this.valueId, valueId);
         this.valueId = valueId;
     }
 
-    public BigDecimal getValueId() {
+    public Integer getValueId() {
         beforePropertyRead("valueId");
         return this.valueId;
     }
@@ -110,7 +109,7 @@ public abstract class _WebPtfFilter extends BaseDataObject {
                 this.filterName = (String)val;
                 break;
             case "valueId":
-                this.valueId = (BigDecimal)val;
+                this.valueId = (Integer)val;
                 break;
             case "valueName":
                 this.valueName = (String)val;
@@ -142,7 +141,7 @@ public abstract class _WebPtfFilter extends BaseDataObject {
         super.readState(in);
         this.filterId = (String)in.readObject();
         this.filterName = (String)in.readObject();
-        this.valueId = (BigDecimal)in.readObject();
+        this.valueId = (Integer)in.readObject();
         this.valueName = (String)in.readObject();
     }
 

@@ -3,11 +3,11 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
+import org.apache.cayenne.exp.property.BaseProperty;
 import org.apache.cayenne.exp.property.DateProperty;
 import org.apache.cayenne.exp.property.EntityProperty;
 import org.apache.cayenne.exp.property.ListProperty;
@@ -31,10 +31,13 @@ public abstract class _ObsGlidersGtsOsmc extends BaseDataObject {
     public static final String ID_PK_COLUMN = "ID";
 
     public static final DateProperty<LocalDateTime> DISTRIBUTION_DATE = PropertyFactory.createDate("distributionDate", LocalDateTime.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final DateProperty<LocalDateTime> INSERT_DATE = PropertyFactory.createDate("insertDate", LocalDateTime.class);
+    public static final NumericProperty<Double> LAT = PropertyFactory.createNumeric("lat", Double.class);
     public static final DateProperty<LocalDateTime> LATEST_DISTRIBUTION_DATE = PropertyFactory.createDate("latestDistributionDate", LocalDateTime.class);
+    public static final NumericProperty<Double> LON = PropertyFactory.createNumeric("lon", Double.class);
     public static final DateProperty<LocalDateTime> OBS_DATE = PropertyFactory.createDate("obsDate", LocalDateTime.class);
+    public static final BaseProperty<byte[]> SHAPE = PropertyFactory.createBase("shape", byte[].class);
     public static final DateProperty<LocalDateTime> UPDATE_DATE = PropertyFactory.createDate("updateDate", LocalDateTime.class);
     public static final StringProperty<String> WMO = PropertyFactory.createString("wmo", String.class);
     public static final EntityProperty<ObsDataStatus> OBS_DATA_STATUS = PropertyFactory.createEntity("obsDataStatus", ObsDataStatus.class);
@@ -42,10 +45,13 @@ public abstract class _ObsGlidersGtsOsmc extends BaseDataObject {
     public static final EntityProperty<Ptf> PTF = PropertyFactory.createEntity("ptf", Ptf.class);
 
     protected LocalDateTime distributionDate;
-    protected BigDecimal id;
+    protected Integer id;
     protected LocalDateTime insertDate;
+    protected Double lat;
     protected LocalDateTime latestDistributionDate;
+    protected Double lon;
     protected LocalDateTime obsDate;
+    protected byte[] shape;
     protected LocalDateTime updateDate;
     protected String wmo;
 
@@ -63,12 +69,12 @@ public abstract class _ObsGlidersGtsOsmc extends BaseDataObject {
         return this.distributionDate;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
@@ -83,6 +89,16 @@ public abstract class _ObsGlidersGtsOsmc extends BaseDataObject {
         return this.insertDate;
     }
 
+    public void setLat(Double lat) {
+        beforePropertyWrite("lat", this.lat, lat);
+        this.lat = lat;
+    }
+
+    public Double getLat() {
+        beforePropertyRead("lat");
+        return this.lat;
+    }
+
     public void setLatestDistributionDate(LocalDateTime latestDistributionDate) {
         beforePropertyWrite("latestDistributionDate", this.latestDistributionDate, latestDistributionDate);
         this.latestDistributionDate = latestDistributionDate;
@@ -93,6 +109,16 @@ public abstract class _ObsGlidersGtsOsmc extends BaseDataObject {
         return this.latestDistributionDate;
     }
 
+    public void setLon(Double lon) {
+        beforePropertyWrite("lon", this.lon, lon);
+        this.lon = lon;
+    }
+
+    public Double getLon() {
+        beforePropertyRead("lon");
+        return this.lon;
+    }
+
     public void setObsDate(LocalDateTime obsDate) {
         beforePropertyWrite("obsDate", this.obsDate, obsDate);
         this.obsDate = obsDate;
@@ -101,6 +127,16 @@ public abstract class _ObsGlidersGtsOsmc extends BaseDataObject {
     public LocalDateTime getObsDate() {
         beforePropertyRead("obsDate");
         return this.obsDate;
+    }
+
+    public void setShape(byte[] shape) {
+        beforePropertyWrite("shape", this.shape, shape);
+        this.shape = shape;
+    }
+
+    public byte[] getShape() {
+        beforePropertyRead("shape");
+        return this.shape;
     }
 
     public void setUpdateDate(LocalDateTime updateDate) {
@@ -165,10 +201,16 @@ public abstract class _ObsGlidersGtsOsmc extends BaseDataObject {
                 return this.id;
             case "insertDate":
                 return this.insertDate;
+            case "lat":
+                return this.lat;
             case "latestDistributionDate":
                 return this.latestDistributionDate;
+            case "lon":
+                return this.lon;
             case "obsDate":
                 return this.obsDate;
+            case "shape":
+                return this.shape;
             case "updateDate":
                 return this.updateDate;
             case "wmo":
@@ -195,16 +237,25 @@ public abstract class _ObsGlidersGtsOsmc extends BaseDataObject {
                 this.distributionDate = (LocalDateTime)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "insertDate":
                 this.insertDate = (LocalDateTime)val;
                 break;
+            case "lat":
+                this.lat = (Double)val;
+                break;
             case "latestDistributionDate":
                 this.latestDistributionDate = (LocalDateTime)val;
                 break;
+            case "lon":
+                this.lon = (Double)val;
+                break;
             case "obsDate":
                 this.obsDate = (LocalDateTime)val;
+                break;
+            case "shape":
+                this.shape = (byte[])val;
                 break;
             case "updateDate":
                 this.updateDate = (LocalDateTime)val;
@@ -240,8 +291,11 @@ public abstract class _ObsGlidersGtsOsmc extends BaseDataObject {
         out.writeObject(this.distributionDate);
         out.writeObject(this.id);
         out.writeObject(this.insertDate);
+        out.writeObject(this.lat);
         out.writeObject(this.latestDistributionDate);
+        out.writeObject(this.lon);
         out.writeObject(this.obsDate);
+        out.writeObject(this.shape);
         out.writeObject(this.updateDate);
         out.writeObject(this.wmo);
         out.writeObject(this.obsDataStatus);
@@ -253,10 +307,13 @@ public abstract class _ObsGlidersGtsOsmc extends BaseDataObject {
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
         this.distributionDate = (LocalDateTime)in.readObject();
-        this.id = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
         this.insertDate = (LocalDateTime)in.readObject();
+        this.lat = (Double)in.readObject();
         this.latestDistributionDate = (LocalDateTime)in.readObject();
+        this.lon = (Double)in.readObject();
         this.obsDate = (LocalDateTime)in.readObject();
+        this.shape = (byte[])in.readObject();
         this.updateDate = (LocalDateTime)in.readObject();
         this.wmo = (String)in.readObject();
         this.obsDataStatus = in.readObject();

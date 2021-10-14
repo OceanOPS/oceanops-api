@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -25,25 +24,25 @@ public abstract class _WebWorkspace extends BaseDataObject {
     public static final String CONTACT_ID_PK_COLUMN = "CONTACT_ID";
     public static final String NAME_PK_COLUMN = "NAME";
 
-    public static final NumericProperty<BigDecimal> CONTACT_ID = PropertyFactory.createNumeric("contactId", BigDecimal.class);
+    public static final NumericProperty<Integer> CONTACT_ID = PropertyFactory.createNumeric("contactId", Integer.class);
     public static final StringProperty<String> ID = PropertyFactory.createString("id", String.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> URL = PropertyFactory.createString("url", String.class);
     public static final EntityProperty<Contact> CONTACT = PropertyFactory.createEntity("contact", Contact.class);
 
-    protected BigDecimal contactId;
+    protected Integer contactId;
     protected String id;
     protected String name;
     protected String url;
 
     protected Object contact;
 
-    public void setContactId(BigDecimal contactId) {
+    public void setContactId(Integer contactId) {
         beforePropertyWrite("contactId", this.contactId, contactId);
         this.contactId = contactId;
     }
 
-    public BigDecimal getContactId() {
+    public Integer getContactId() {
         beforePropertyRead("contactId");
         return this.contactId;
     }
@@ -116,7 +115,7 @@ public abstract class _WebWorkspace extends BaseDataObject {
 
         switch (propName) {
             case "contactId":
-                this.contactId = (BigDecimal)val;
+                this.contactId = (Integer)val;
                 break;
             case "id":
                 this.id = (String)val;
@@ -156,7 +155,7 @@ public abstract class _WebWorkspace extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.contactId = (BigDecimal)in.readObject();
+        this.contactId = (Integer)in.readObject();
         this.id = (String)in.readObject();
         this.name = (String)in.readObject();
         this.url = (String)in.readObject();

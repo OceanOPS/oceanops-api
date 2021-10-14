@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -25,45 +24,45 @@ public abstract class _LineProgram extends BaseDataObject {
     public static final String LINE_ID_PK_COLUMN = "LINE_ID";
     public static final String PROGRAM_ID_PK_COLUMN = "PROGRAM_ID";
 
-    public static final NumericProperty<BigDecimal> LEAD = PropertyFactory.createNumeric("lead", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> LINE_ID = PropertyFactory.createNumeric("lineId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> PROGRAM_ID = PropertyFactory.createNumeric("programId", BigDecimal.class);
+    public static final NumericProperty<Integer> LEAD = PropertyFactory.createNumeric("lead", Integer.class);
+    public static final NumericProperty<Integer> LINE_ID = PropertyFactory.createNumeric("lineId", Integer.class);
+    public static final NumericProperty<Integer> PROGRAM_ID = PropertyFactory.createNumeric("programId", Integer.class);
     public static final EntityProperty<Line> LINE = PropertyFactory.createEntity("line", Line.class);
     public static final EntityProperty<Program> PROGRAM = PropertyFactory.createEntity("program", Program.class);
 
-    protected BigDecimal lead;
-    protected BigDecimal lineId;
-    protected BigDecimal programId;
+    protected Integer lead;
+    protected Integer lineId;
+    protected Integer programId;
 
     protected Object line;
     protected Object program;
 
-    public void setLead(BigDecimal lead) {
+    public void setLead(Integer lead) {
         beforePropertyWrite("lead", this.lead, lead);
         this.lead = lead;
     }
 
-    public BigDecimal getLead() {
+    public Integer getLead() {
         beforePropertyRead("lead");
         return this.lead;
     }
 
-    public void setLineId(BigDecimal lineId) {
+    public void setLineId(Integer lineId) {
         beforePropertyWrite("lineId", this.lineId, lineId);
         this.lineId = lineId;
     }
 
-    public BigDecimal getLineId() {
+    public Integer getLineId() {
         beforePropertyRead("lineId");
         return this.lineId;
     }
 
-    public void setProgramId(BigDecimal programId) {
+    public void setProgramId(Integer programId) {
         beforePropertyWrite("programId", this.programId, programId);
         this.programId = programId;
     }
 
-    public BigDecimal getProgramId() {
+    public Integer getProgramId() {
         beforePropertyRead("programId");
         return this.programId;
     }
@@ -114,13 +113,13 @@ public abstract class _LineProgram extends BaseDataObject {
 
         switch (propName) {
             case "lead":
-                this.lead = (BigDecimal)val;
+                this.lead = (Integer)val;
                 break;
             case "lineId":
-                this.lineId = (BigDecimal)val;
+                this.lineId = (Integer)val;
                 break;
             case "programId":
-                this.programId = (BigDecimal)val;
+                this.programId = (Integer)val;
                 break;
             case "line":
                 this.line = val;
@@ -154,9 +153,9 @@ public abstract class _LineProgram extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.lead = (BigDecimal)in.readObject();
-        this.lineId = (BigDecimal)in.readObject();
-        this.programId = (BigDecimal)in.readObject();
+        this.lead = (Integer)in.readObject();
+        this.lineId = (Integer)in.readObject();
+        this.programId = (Integer)in.readObject();
         this.line = in.readObject();
         this.program = in.readObject();
     }

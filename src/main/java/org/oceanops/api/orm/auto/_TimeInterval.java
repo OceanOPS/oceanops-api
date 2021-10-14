@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.apache.cayenne.BaseDataObject;
@@ -25,15 +24,15 @@ public abstract class _TimeInterval extends BaseDataObject {
     public static final String ID_PK_COLUMN = "ID";
 
     public static final DateProperty<LocalDateTime> END_DATE = PropertyFactory.createDate("endDate", LocalDateTime.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
-    public static final NumericProperty<BigDecimal> NB_YEARS = PropertyFactory.createNumeric("nbYears", BigDecimal.class);
+    public static final NumericProperty<Integer> NB_YEARS = PropertyFactory.createNumeric("nbYears", Integer.class);
     public static final DateProperty<LocalDateTime> START_DATE = PropertyFactory.createDate("startDate", LocalDateTime.class);
 
     protected LocalDateTime endDate;
-    protected BigDecimal id;
+    protected Integer id;
     protected String name;
-    protected BigDecimal nbYears;
+    protected Integer nbYears;
     protected LocalDateTime startDate;
 
 
@@ -47,12 +46,12 @@ public abstract class _TimeInterval extends BaseDataObject {
         return this.endDate;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
@@ -67,12 +66,12 @@ public abstract class _TimeInterval extends BaseDataObject {
         return this.name;
     }
 
-    public void setNbYears(BigDecimal nbYears) {
+    public void setNbYears(Integer nbYears) {
         beforePropertyWrite("nbYears", this.nbYears, nbYears);
         this.nbYears = nbYears;
     }
 
-    public BigDecimal getNbYears() {
+    public Integer getNbYears() {
         beforePropertyRead("nbYears");
         return this.nbYears;
     }
@@ -120,13 +119,13 @@ public abstract class _TimeInterval extends BaseDataObject {
                 this.endDate = (LocalDateTime)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "name":
                 this.name = (String)val;
                 break;
             case "nbYears":
-                this.nbYears = (BigDecimal)val;
+                this.nbYears = (Integer)val;
                 break;
             case "startDate":
                 this.startDate = (LocalDateTime)val;
@@ -158,9 +157,9 @@ public abstract class _TimeInterval extends BaseDataObject {
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
         this.endDate = (LocalDateTime)in.readObject();
-        this.id = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
         this.name = (String)in.readObject();
-        this.nbYears = (BigDecimal)in.readObject();
+        this.nbYears = (Integer)in.readObject();
         this.startDate = (LocalDateTime)in.readObject();
     }
 

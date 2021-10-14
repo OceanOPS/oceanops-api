@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -25,33 +24,33 @@ public abstract class _PtfCruise extends BaseDataObject {
     public static final String CRUISE_ID_PK_COLUMN = "CRUISE_ID";
     public static final String PTF_ID_PK_COLUMN = "PTF_ID";
 
-    public static final NumericProperty<BigDecimal> CRUISE_ID = PropertyFactory.createNumeric("cruiseId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> PTF_ID = PropertyFactory.createNumeric("ptfId", BigDecimal.class);
+    public static final NumericProperty<Integer> CRUISE_ID = PropertyFactory.createNumeric("cruiseId", Integer.class);
+    public static final NumericProperty<Integer> PTF_ID = PropertyFactory.createNumeric("ptfId", Integer.class);
     public static final EntityProperty<Cruise> CRUISE = PropertyFactory.createEntity("cruise", Cruise.class);
     public static final EntityProperty<Ptf> PTF = PropertyFactory.createEntity("ptf", Ptf.class);
 
-    protected BigDecimal cruiseId;
-    protected BigDecimal ptfId;
+    protected Integer cruiseId;
+    protected Integer ptfId;
 
     protected Object cruise;
     protected Object ptf;
 
-    public void setCruiseId(BigDecimal cruiseId) {
+    public void setCruiseId(Integer cruiseId) {
         beforePropertyWrite("cruiseId", this.cruiseId, cruiseId);
         this.cruiseId = cruiseId;
     }
 
-    public BigDecimal getCruiseId() {
+    public Integer getCruiseId() {
         beforePropertyRead("cruiseId");
         return this.cruiseId;
     }
 
-    public void setPtfId(BigDecimal ptfId) {
+    public void setPtfId(Integer ptfId) {
         beforePropertyWrite("ptfId", this.ptfId, ptfId);
         this.ptfId = ptfId;
     }
 
-    public BigDecimal getPtfId() {
+    public Integer getPtfId() {
         beforePropertyRead("ptfId");
         return this.ptfId;
     }
@@ -100,10 +99,10 @@ public abstract class _PtfCruise extends BaseDataObject {
 
         switch (propName) {
             case "cruiseId":
-                this.cruiseId = (BigDecimal)val;
+                this.cruiseId = (Integer)val;
                 break;
             case "ptfId":
-                this.ptfId = (BigDecimal)val;
+                this.ptfId = (Integer)val;
                 break;
             case "cruise":
                 this.cruise = val;
@@ -136,8 +135,8 @@ public abstract class _PtfCruise extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.cruiseId = (BigDecimal)in.readObject();
-        this.ptfId = (BigDecimal)in.readObject();
+        this.cruiseId = (Integer)in.readObject();
+        this.ptfId = (Integer)in.readObject();
         this.cruise = in.readObject();
         this.ptf = in.readObject();
     }

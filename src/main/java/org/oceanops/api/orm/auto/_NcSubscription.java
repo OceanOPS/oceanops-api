@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.apache.cayenne.BaseDataObject;
@@ -29,8 +28,8 @@ public abstract class _NcSubscription extends BaseDataObject {
 
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final NumericProperty<BigDecimal> EMAILED = PropertyFactory.createNumeric("emailed", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<Integer> EMAILED = PropertyFactory.createNumeric("emailed", Integer.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final StringProperty<String> PREFERRED_EMAIL = PropertyFactory.createString("preferredEmail", String.class);
     public static final DateProperty<LocalDateTime> SUBSCRIPTION_DATE = PropertyFactory.createDate("subscriptionDate", LocalDateTime.class);
     public static final EntityProperty<Contact> CONTACT = PropertyFactory.createEntity("contact", Contact.class);
@@ -38,8 +37,8 @@ public abstract class _NcSubscription extends BaseDataObject {
     public static final EntityProperty<Program> PROGRAM = PropertyFactory.createEntity("program", Program.class);
     public static final EntityProperty<Ptf> PTF = PropertyFactory.createEntity("ptf", Ptf.class);
 
-    protected BigDecimal emailed;
-    protected BigDecimal id;
+    protected Integer emailed;
+    protected Integer id;
     protected String preferredEmail;
     protected LocalDateTime subscriptionDate;
 
@@ -48,22 +47,22 @@ public abstract class _NcSubscription extends BaseDataObject {
     protected Object program;
     protected Object ptf;
 
-    public void setEmailed(BigDecimal emailed) {
+    public void setEmailed(Integer emailed) {
         beforePropertyWrite("emailed", this.emailed, emailed);
         this.emailed = emailed;
     }
 
-    public BigDecimal getEmailed() {
+    public Integer getEmailed() {
         beforePropertyRead("emailed");
         return this.emailed;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
@@ -156,10 +155,10 @@ public abstract class _NcSubscription extends BaseDataObject {
 
         switch (propName) {
             case "emailed":
-                this.emailed = (BigDecimal)val;
+                this.emailed = (Integer)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "preferredEmail":
                 this.preferredEmail = (String)val;
@@ -208,8 +207,8 @@ public abstract class _NcSubscription extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.emailed = (BigDecimal)in.readObject();
-        this.id = (BigDecimal)in.readObject();
+        this.emailed = (Integer)in.readObject();
+        this.id = (Integer)in.readObject();
         this.preferredEmail = (String)in.readObject();
         this.subscriptionDate = (LocalDateTime)in.readObject();
         this.contact = in.readObject();

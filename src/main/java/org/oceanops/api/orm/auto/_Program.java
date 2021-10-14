@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
@@ -16,12 +15,14 @@ import org.oceanops.api.orm.Country;
 import org.oceanops.api.orm.CruiseProgram;
 import org.oceanops.api.orm.Image;
 import org.oceanops.api.orm.LineProgram;
+import org.oceanops.api.orm.NcNotification;
 import org.oceanops.api.orm.Network;
 import org.oceanops.api.orm.ProgramAgency;
 import org.oceanops.api.orm.ProgramContact;
 import org.oceanops.api.orm.Ptf;
 import org.oceanops.api.orm.PtfModel;
 import org.oceanops.api.orm.PtfVariable;
+import org.oceanops.api.orm.Service;
 import org.oceanops.api.orm.Weblink;
 
 /**
@@ -36,10 +37,8 @@ public abstract class _Program extends BaseDataObject {
 
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final NumericProperty<BigDecimal> ACTIVE = PropertyFactory.createNumeric("active", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> DEFAULT_PTF_MODEL_ID = PropertyFactory.createNumeric("defaultPtfModelId", BigDecimal.class);
+    public static final NumericProperty<Integer> ACTIVE = PropertyFactory.createNumeric("active", Integer.class);
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> NAME_SHORT = PropertyFactory.createString("nameShort", String.class);
     public static final StringProperty<String> WIGOS_CODE = PropertyFactory.createString("wigosCode", String.class);
@@ -48,17 +47,17 @@ public abstract class _Program extends BaseDataObject {
     public static final EntityProperty<PtfModel> DEFAULT_PTF_MODEL = PropertyFactory.createEntity("defaultPtfModel", PtfModel.class);
     public static final ListProperty<Image> IMAGES = PropertyFactory.createList("images", Image.class);
     public static final ListProperty<LineProgram> LINE_PROGRAMS = PropertyFactory.createList("linePrograms", LineProgram.class);
+    public static final ListProperty<NcNotification> NC_NOTIFICATIONS = PropertyFactory.createList("ncNotifications", NcNotification.class);
     public static final EntityProperty<Network> NETWORK = PropertyFactory.createEntity("network", Network.class);
     public static final ListProperty<ProgramAgency> PROGRAM_AGENCIES = PropertyFactory.createList("programAgencies", ProgramAgency.class);
     public static final ListProperty<ProgramContact> PROGRAM_CONTACTS = PropertyFactory.createList("programContacts", ProgramContact.class);
     public static final ListProperty<PtfVariable> PTF_VARIABLES = PropertyFactory.createList("ptfVariables", PtfVariable.class);
     public static final ListProperty<Ptf> PTFS = PropertyFactory.createList("ptfs", Ptf.class);
+    public static final ListProperty<Service> SERVICES = PropertyFactory.createList("services", Service.class);
     public static final ListProperty<Weblink> WEBLINKS = PropertyFactory.createList("weblinks", Weblink.class);
 
-    protected BigDecimal active;
-    protected BigDecimal defaultPtfModelId;
+    protected Integer active;
     protected String description;
-    protected BigDecimal id;
     protected String name;
     protected String nameShort;
     protected String wigosCode;
@@ -68,31 +67,23 @@ public abstract class _Program extends BaseDataObject {
     protected Object defaultPtfModel;
     protected Object images;
     protected Object linePrograms;
+    protected Object ncNotifications;
     protected Object network;
     protected Object programAgencies;
     protected Object programContacts;
     protected Object ptfVariables;
     protected Object ptfs;
+    protected Object services;
     protected Object weblinks;
 
-    public void setActive(BigDecimal active) {
+    public void setActive(Integer active) {
         beforePropertyWrite("active", this.active, active);
         this.active = active;
     }
 
-    public BigDecimal getActive() {
+    public Integer getActive() {
         beforePropertyRead("active");
         return this.active;
-    }
-
-    public void setDefaultPtfModelId(BigDecimal defaultPtfModelId) {
-        beforePropertyWrite("defaultPtfModelId", this.defaultPtfModelId, defaultPtfModelId);
-        this.defaultPtfModelId = defaultPtfModelId;
-    }
-
-    public BigDecimal getDefaultPtfModelId() {
-        beforePropertyRead("defaultPtfModelId");
-        return this.defaultPtfModelId;
     }
 
     public void setDescription(String description) {
@@ -103,16 +94,6 @@ public abstract class _Program extends BaseDataObject {
     public String getDescription() {
         beforePropertyRead("description");
         return this.description;
-    }
-
-    public void setId(BigDecimal id) {
-        beforePropertyWrite("id", this.id, id);
-        this.id = id;
-    }
-
-    public BigDecimal getId() {
-        beforePropertyRead("id");
-        return this.id;
     }
 
     public void setName(String name) {
@@ -200,6 +181,19 @@ public abstract class _Program extends BaseDataObject {
         return (List<LineProgram>)readProperty("linePrograms");
     }
 
+    public void addToNcNotifications(NcNotification obj) {
+        addToManyTarget("ncNotifications", obj, true);
+    }
+
+    public void removeFromNcNotifications(NcNotification obj) {
+        removeToManyTarget("ncNotifications", obj, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<NcNotification> getNcNotifications() {
+        return (List<NcNotification>)readProperty("ncNotifications");
+    }
+
     public void setNetwork(Network network) {
         setToOneTarget("network", network, true);
     }
@@ -260,6 +254,19 @@ public abstract class _Program extends BaseDataObject {
         return (List<Ptf>)readProperty("ptfs");
     }
 
+    public void addToServices(Service obj) {
+        addToManyTarget("services", obj, true);
+    }
+
+    public void removeFromServices(Service obj) {
+        removeToManyTarget("services", obj, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Service> getServices() {
+        return (List<Service>)readProperty("services");
+    }
+
     public void addToWeblinks(Weblink obj) {
         addToManyTarget("weblinks", obj, true);
     }
@@ -282,12 +289,8 @@ public abstract class _Program extends BaseDataObject {
         switch(propName) {
             case "active":
                 return this.active;
-            case "defaultPtfModelId":
-                return this.defaultPtfModelId;
             case "description":
                 return this.description;
-            case "id":
-                return this.id;
             case "name":
                 return this.name;
             case "nameShort":
@@ -304,6 +307,8 @@ public abstract class _Program extends BaseDataObject {
                 return this.images;
             case "linePrograms":
                 return this.linePrograms;
+            case "ncNotifications":
+                return this.ncNotifications;
             case "network":
                 return this.network;
             case "programAgencies":
@@ -314,6 +319,8 @@ public abstract class _Program extends BaseDataObject {
                 return this.ptfVariables;
             case "ptfs":
                 return this.ptfs;
+            case "services":
+                return this.services;
             case "weblinks":
                 return this.weblinks;
             default:
@@ -329,16 +336,10 @@ public abstract class _Program extends BaseDataObject {
 
         switch (propName) {
             case "active":
-                this.active = (BigDecimal)val;
-                break;
-            case "defaultPtfModelId":
-                this.defaultPtfModelId = (BigDecimal)val;
+                this.active = (Integer)val;
                 break;
             case "description":
                 this.description = (String)val;
-                break;
-            case "id":
-                this.id = (BigDecimal)val;
                 break;
             case "name":
                 this.name = (String)val;
@@ -364,6 +365,9 @@ public abstract class _Program extends BaseDataObject {
             case "linePrograms":
                 this.linePrograms = val;
                 break;
+            case "ncNotifications":
+                this.ncNotifications = val;
+                break;
             case "network":
                 this.network = val;
                 break;
@@ -378,6 +382,9 @@ public abstract class _Program extends BaseDataObject {
                 break;
             case "ptfs":
                 this.ptfs = val;
+                break;
+            case "services":
+                this.services = val;
                 break;
             case "weblinks":
                 this.weblinks = val;
@@ -399,9 +406,7 @@ public abstract class _Program extends BaseDataObject {
     protected void writeState(ObjectOutputStream out) throws IOException {
         super.writeState(out);
         out.writeObject(this.active);
-        out.writeObject(this.defaultPtfModelId);
         out.writeObject(this.description);
-        out.writeObject(this.id);
         out.writeObject(this.name);
         out.writeObject(this.nameShort);
         out.writeObject(this.wigosCode);
@@ -410,21 +415,21 @@ public abstract class _Program extends BaseDataObject {
         out.writeObject(this.defaultPtfModel);
         out.writeObject(this.images);
         out.writeObject(this.linePrograms);
+        out.writeObject(this.ncNotifications);
         out.writeObject(this.network);
         out.writeObject(this.programAgencies);
         out.writeObject(this.programContacts);
         out.writeObject(this.ptfVariables);
         out.writeObject(this.ptfs);
+        out.writeObject(this.services);
         out.writeObject(this.weblinks);
     }
 
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.active = (BigDecimal)in.readObject();
-        this.defaultPtfModelId = (BigDecimal)in.readObject();
+        this.active = (Integer)in.readObject();
         this.description = (String)in.readObject();
-        this.id = (BigDecimal)in.readObject();
         this.name = (String)in.readObject();
         this.nameShort = (String)in.readObject();
         this.wigosCode = (String)in.readObject();
@@ -433,11 +438,13 @@ public abstract class _Program extends BaseDataObject {
         this.defaultPtfModel = in.readObject();
         this.images = in.readObject();
         this.linePrograms = in.readObject();
+        this.ncNotifications = in.readObject();
         this.network = in.readObject();
         this.programAgencies = in.readObject();
         this.programContacts = in.readObject();
         this.ptfVariables = in.readObject();
         this.ptfs = in.readObject();
+        this.services = in.readObject();
         this.weblinks = in.readObject();
     }
 

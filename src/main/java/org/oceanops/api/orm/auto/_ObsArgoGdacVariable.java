@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -27,63 +26,63 @@ public abstract class _ObsArgoGdacVariable extends BaseDataObject {
     public static final String OBS_ID_PK_COLUMN = "OBS_ID";
     public static final String VARIABLE_ID_PK_COLUMN = "VARIABLE_ID";
 
-    public static final NumericProperty<BigDecimal> ADJUSTMENT_DEVIATION = PropertyFactory.createNumeric("adjustmentDeviation", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> ADJUSTMENT_MEAN = PropertyFactory.createNumeric("adjustmentMean", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> LEVELS_NB = PropertyFactory.createNumeric("levelsNb", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> OBS_ID = PropertyFactory.createNumeric("obsId", BigDecimal.class);
+    public static final NumericProperty<Double> ADJUSTMENT_DEVIATION = PropertyFactory.createNumeric("adjustmentDeviation", Double.class);
+    public static final NumericProperty<Double> ADJUSTMENT_MEAN = PropertyFactory.createNumeric("adjustmentMean", Double.class);
+    public static final NumericProperty<Integer> LEVELS_NB = PropertyFactory.createNumeric("levelsNb", Integer.class);
+    public static final NumericProperty<Integer> OBS_ID = PropertyFactory.createNumeric("obsId", Integer.class);
     public static final StringProperty<String> QC = PropertyFactory.createString("qc", String.class);
-    public static final NumericProperty<BigDecimal> VARIABLE_ID = PropertyFactory.createNumeric("variableId", BigDecimal.class);
+    public static final NumericProperty<Integer> VARIABLE_ID = PropertyFactory.createNumeric("variableId", Integer.class);
     public static final EntityProperty<ObsArgoGdac> OBS = PropertyFactory.createEntity("obs", ObsArgoGdac.class);
     public static final EntityProperty<ObsDataStatus> OBS_DATA_STATUS = PropertyFactory.createEntity("obsDataStatus", ObsDataStatus.class);
     public static final EntityProperty<Variable> VARIABLE = PropertyFactory.createEntity("variable", Variable.class);
 
-    protected BigDecimal adjustmentDeviation;
-    protected BigDecimal adjustmentMean;
-    protected BigDecimal levelsNb;
-    protected BigDecimal obsId;
+    protected Double adjustmentDeviation;
+    protected Double adjustmentMean;
+    protected Integer levelsNb;
+    protected Integer obsId;
     protected String qc;
-    protected BigDecimal variableId;
+    protected Integer variableId;
 
     protected Object obs;
     protected Object obsDataStatus;
     protected Object variable;
 
-    public void setAdjustmentDeviation(BigDecimal adjustmentDeviation) {
+    public void setAdjustmentDeviation(Double adjustmentDeviation) {
         beforePropertyWrite("adjustmentDeviation", this.adjustmentDeviation, adjustmentDeviation);
         this.adjustmentDeviation = adjustmentDeviation;
     }
 
-    public BigDecimal getAdjustmentDeviation() {
+    public Double getAdjustmentDeviation() {
         beforePropertyRead("adjustmentDeviation");
         return this.adjustmentDeviation;
     }
 
-    public void setAdjustmentMean(BigDecimal adjustmentMean) {
+    public void setAdjustmentMean(Double adjustmentMean) {
         beforePropertyWrite("adjustmentMean", this.adjustmentMean, adjustmentMean);
         this.adjustmentMean = adjustmentMean;
     }
 
-    public BigDecimal getAdjustmentMean() {
+    public Double getAdjustmentMean() {
         beforePropertyRead("adjustmentMean");
         return this.adjustmentMean;
     }
 
-    public void setLevelsNb(BigDecimal levelsNb) {
+    public void setLevelsNb(Integer levelsNb) {
         beforePropertyWrite("levelsNb", this.levelsNb, levelsNb);
         this.levelsNb = levelsNb;
     }
 
-    public BigDecimal getLevelsNb() {
+    public Integer getLevelsNb() {
         beforePropertyRead("levelsNb");
         return this.levelsNb;
     }
 
-    public void setObsId(BigDecimal obsId) {
+    public void setObsId(Integer obsId) {
         beforePropertyWrite("obsId", this.obsId, obsId);
         this.obsId = obsId;
     }
 
-    public BigDecimal getObsId() {
+    public Integer getObsId() {
         beforePropertyRead("obsId");
         return this.obsId;
     }
@@ -98,12 +97,12 @@ public abstract class _ObsArgoGdacVariable extends BaseDataObject {
         return this.qc;
     }
 
-    public void setVariableId(BigDecimal variableId) {
+    public void setVariableId(Integer variableId) {
         beforePropertyWrite("variableId", this.variableId, variableId);
         this.variableId = variableId;
     }
 
-    public BigDecimal getVariableId() {
+    public Integer getVariableId() {
         beforePropertyRead("variableId");
         return this.variableId;
     }
@@ -170,22 +169,22 @@ public abstract class _ObsArgoGdacVariable extends BaseDataObject {
 
         switch (propName) {
             case "adjustmentDeviation":
-                this.adjustmentDeviation = (BigDecimal)val;
+                this.adjustmentDeviation = (Double)val;
                 break;
             case "adjustmentMean":
-                this.adjustmentMean = (BigDecimal)val;
+                this.adjustmentMean = (Double)val;
                 break;
             case "levelsNb":
-                this.levelsNb = (BigDecimal)val;
+                this.levelsNb = (Integer)val;
                 break;
             case "obsId":
-                this.obsId = (BigDecimal)val;
+                this.obsId = (Integer)val;
                 break;
             case "qc":
                 this.qc = (String)val;
                 break;
             case "variableId":
-                this.variableId = (BigDecimal)val;
+                this.variableId = (Integer)val;
                 break;
             case "obs":
                 this.obs = val;
@@ -226,12 +225,12 @@ public abstract class _ObsArgoGdacVariable extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.adjustmentDeviation = (BigDecimal)in.readObject();
-        this.adjustmentMean = (BigDecimal)in.readObject();
-        this.levelsNb = (BigDecimal)in.readObject();
-        this.obsId = (BigDecimal)in.readObject();
+        this.adjustmentDeviation = (Double)in.readObject();
+        this.adjustmentMean = (Double)in.readObject();
+        this.levelsNb = (Integer)in.readObject();
+        this.obsId = (Integer)in.readObject();
         this.qc = (String)in.readObject();
-        this.variableId = (BigDecimal)in.readObject();
+        this.variableId = (Integer)in.readObject();
         this.obs = in.readObject();
         this.obsDataStatus = in.readObject();
         this.variable = in.readObject();

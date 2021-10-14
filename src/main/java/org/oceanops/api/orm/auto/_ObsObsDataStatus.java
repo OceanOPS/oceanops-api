@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.apache.cayenne.BaseDataObject;
@@ -27,35 +26,35 @@ public abstract class _ObsObsDataStatus extends BaseDataObject {
     public static final String OBS_DATA_STATUS_ID_PK_COLUMN = "OBS_DATA_STATUS_ID";
     public static final String OBS_ID_PK_COLUMN = "OBS_ID";
 
-    public static final NumericProperty<BigDecimal> OBS_DATA_STATUS_ID = PropertyFactory.createNumeric("obsDataStatusId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> OBS_ID = PropertyFactory.createNumeric("obsId", BigDecimal.class);
+    public static final NumericProperty<Integer> OBS_DATA_STATUS_ID = PropertyFactory.createNumeric("obsDataStatusId", Integer.class);
+    public static final NumericProperty<Integer> OBS_ID = PropertyFactory.createNumeric("obsId", Integer.class);
     public static final DateProperty<LocalDateTime> STATUS_DATE = PropertyFactory.createDate("statusDate", LocalDateTime.class);
     public static final EntityProperty<Obs> OBS = PropertyFactory.createEntity("obs", Obs.class);
     public static final EntityProperty<ObsDataStatus> OBS_DATA_STATUS = PropertyFactory.createEntity("obsDataStatus", ObsDataStatus.class);
 
-    protected BigDecimal obsDataStatusId;
-    protected BigDecimal obsId;
+    protected Integer obsDataStatusId;
+    protected Integer obsId;
     protected LocalDateTime statusDate;
 
     protected Object obs;
     protected Object obsDataStatus;
 
-    public void setObsDataStatusId(BigDecimal obsDataStatusId) {
+    public void setObsDataStatusId(Integer obsDataStatusId) {
         beforePropertyWrite("obsDataStatusId", this.obsDataStatusId, obsDataStatusId);
         this.obsDataStatusId = obsDataStatusId;
     }
 
-    public BigDecimal getObsDataStatusId() {
+    public Integer getObsDataStatusId() {
         beforePropertyRead("obsDataStatusId");
         return this.obsDataStatusId;
     }
 
-    public void setObsId(BigDecimal obsId) {
+    public void setObsId(Integer obsId) {
         beforePropertyWrite("obsId", this.obsId, obsId);
         this.obsId = obsId;
     }
 
-    public BigDecimal getObsId() {
+    public Integer getObsId() {
         beforePropertyRead("obsId");
         return this.obsId;
     }
@@ -116,10 +115,10 @@ public abstract class _ObsObsDataStatus extends BaseDataObject {
 
         switch (propName) {
             case "obsDataStatusId":
-                this.obsDataStatusId = (BigDecimal)val;
+                this.obsDataStatusId = (Integer)val;
                 break;
             case "obsId":
-                this.obsId = (BigDecimal)val;
+                this.obsId = (Integer)val;
                 break;
             case "statusDate":
                 this.statusDate = (LocalDateTime)val;
@@ -156,8 +155,8 @@ public abstract class _ObsObsDataStatus extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.obsDataStatusId = (BigDecimal)in.readObject();
-        this.obsId = (BigDecimal)in.readObject();
+        this.obsDataStatusId = (Integer)in.readObject();
+        this.obsId = (Integer)in.readObject();
         this.statusDate = (LocalDateTime)in.readObject();
         this.obs = in.readObject();
         this.obsDataStatus = in.readObject();

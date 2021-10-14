@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.apache.cayenne.BaseDataObject;
@@ -26,11 +25,11 @@ public abstract class _WebDailyVisits extends BaseDataObject {
     public static final String THEME_PK_COLUMN = "THEME";
 
     public static final DateProperty<LocalDateTime> DAY = PropertyFactory.createDate("day", LocalDateTime.class);
-    public static final NumericProperty<BigDecimal> NB_VISITS = PropertyFactory.createNumeric("nbVisits", BigDecimal.class);
+    public static final NumericProperty<Integer> NB_VISITS = PropertyFactory.createNumeric("nbVisits", Integer.class);
     public static final StringProperty<String> THEME = PropertyFactory.createString("theme", String.class);
 
     protected LocalDateTime day;
-    protected BigDecimal nbVisits;
+    protected Integer nbVisits;
     protected String theme;
 
 
@@ -44,12 +43,12 @@ public abstract class _WebDailyVisits extends BaseDataObject {
         return this.day;
     }
 
-    public void setNbVisits(BigDecimal nbVisits) {
+    public void setNbVisits(Integer nbVisits) {
         beforePropertyWrite("nbVisits", this.nbVisits, nbVisits);
         this.nbVisits = nbVisits;
     }
 
-    public BigDecimal getNbVisits() {
+    public Integer getNbVisits() {
         beforePropertyRead("nbVisits");
         return this.nbVisits;
     }
@@ -93,7 +92,7 @@ public abstract class _WebDailyVisits extends BaseDataObject {
                 this.day = (LocalDateTime)val;
                 break;
             case "nbVisits":
-                this.nbVisits = (BigDecimal)val;
+                this.nbVisits = (Integer)val;
                 break;
             case "theme":
                 this.theme = (String)val;
@@ -123,7 +122,7 @@ public abstract class _WebDailyVisits extends BaseDataObject {
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
         this.day = (LocalDateTime)in.readObject();
-        this.nbVisits = (BigDecimal)in.readObject();
+        this.nbVisits = (Integer)in.readObject();
         this.theme = (String)in.readObject();
     }
 

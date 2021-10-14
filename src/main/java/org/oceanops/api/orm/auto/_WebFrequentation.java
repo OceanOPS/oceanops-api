@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.apache.cayenne.BaseDataObject;
@@ -29,8 +28,8 @@ public abstract class _WebFrequentation extends BaseDataObject {
 
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final NumericProperty<BigDecimal> COUNT = PropertyFactory.createNumeric("count", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<Integer> COUNT = PropertyFactory.createNumeric("count", Integer.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final DateProperty<LocalDateTime> LATEST_DATE = PropertyFactory.createDate("latestDate", LocalDateTime.class);
     public static final EntityProperty<Contact> CONTACT = PropertyFactory.createEntity("contact", Contact.class);
     public static final EntityProperty<Cruise> CRUISE = PropertyFactory.createEntity("cruise", Cruise.class);
@@ -38,8 +37,8 @@ public abstract class _WebFrequentation extends BaseDataObject {
     public static final EntityProperty<Ptf> PTF = PropertyFactory.createEntity("ptf", Ptf.class);
     public static final EntityProperty<WebModule> WEB_MODULE = PropertyFactory.createEntity("webModule", WebModule.class);
 
-    protected BigDecimal count;
-    protected BigDecimal id;
+    protected Integer count;
+    protected Integer id;
     protected LocalDateTime latestDate;
 
     protected Object contact;
@@ -48,22 +47,22 @@ public abstract class _WebFrequentation extends BaseDataObject {
     protected Object ptf;
     protected Object webModule;
 
-    public void setCount(BigDecimal count) {
+    public void setCount(Integer count) {
         beforePropertyWrite("count", this.count, count);
         this.count = count;
     }
 
-    public BigDecimal getCount() {
+    public Integer getCount() {
         beforePropertyRead("count");
         return this.count;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
@@ -154,10 +153,10 @@ public abstract class _WebFrequentation extends BaseDataObject {
 
         switch (propName) {
             case "count":
-                this.count = (BigDecimal)val;
+                this.count = (Integer)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "latestDate":
                 this.latestDate = (LocalDateTime)val;
@@ -206,8 +205,8 @@ public abstract class _WebFrequentation extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.count = (BigDecimal)in.readObject();
-        this.id = (BigDecimal)in.readObject();
+        this.count = (Integer)in.readObject();
+        this.id = (Integer)in.readObject();
         this.latestDate = (LocalDateTime)in.readObject();
         this.contact = in.readObject();
         this.cruise = in.readObject();

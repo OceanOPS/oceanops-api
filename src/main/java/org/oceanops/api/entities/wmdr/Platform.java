@@ -6,7 +6,6 @@
 package org.oceanops.api.entities.wmdr;
 
 import java.io.StringWriter;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -660,8 +659,8 @@ public class Platform {
 				// Operational status
 				reportingStatus = this.wmdrOF.createProgramAffiliationTypeReportingStatus();
 				reportingStatusType = this.wmdrOF.createReportingStatusType();
-				PtfStatus opStatus = ObjectSelect.query(PtfStatus.class).where(PtfStatus.ID.eq(new BigDecimal(6))).selectOne(cayenneContext);
-				PtfStatus closedStatus = ObjectSelect.query(PtfStatus.class).where(PtfStatus.ID.eq(new BigDecimal(5))).selectOne(cayenneContext);
+				PtfStatus opStatus = ObjectSelect.query(PtfStatus.class).where(PtfStatus.ID.eq(6)).selectOne(cayenneContext);
+				PtfStatus closedStatus = ObjectSelect.query(PtfStatus.class).where(PtfStatus.ID.eq(5)).selectOne(cayenneContext);
 				refType = new ReferenceType();
 				
 				refType.setHref("http://codes.wmo.int/wmdr/ReportingStatus/" + opStatus.getWigosCode());

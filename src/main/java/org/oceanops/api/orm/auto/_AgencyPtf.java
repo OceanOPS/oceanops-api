@@ -3,11 +3,10 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
-import org.apache.cayenne.exp.property.NumericIdProperty;
+import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.oceanops.api.orm.Agency;
 import org.oceanops.api.orm.AgencyRole;
@@ -24,19 +23,30 @@ public abstract class _AgencyPtf extends BaseDataObject {
 
     private static final long serialVersionUID = 1L;
 
-    public static final NumericIdProperty<BigDecimal> ID_PK_PROPERTY = PropertyFactory.createNumericId("ID", "AgencyPtf", BigDecimal.class);
     public static final String ID_PK_COLUMN = "ID";
 
+    public static final NumericProperty<Integer> ASSEMBLY_TYPE_ID = PropertyFactory.createNumeric("assemblyTypeId", Integer.class);
     public static final EntityProperty<Agency> AGENCY = PropertyFactory.createEntity("agency", Agency.class);
     public static final EntityProperty<AgencyRole> AGENCY_ROLE = PropertyFactory.createEntity("agencyRole", AgencyRole.class);
     public static final EntityProperty<DacType> DAC_TYPE = PropertyFactory.createEntity("dacType", DacType.class);
     public static final EntityProperty<Ptf> PTF = PropertyFactory.createEntity("ptf", Ptf.class);
 
+    protected Integer assemblyTypeId;
 
     protected Object agency;
     protected Object agencyRole;
     protected Object dacType;
     protected Object ptf;
+
+    public void setAssemblyTypeId(Integer assemblyTypeId) {
+        beforePropertyWrite("assemblyTypeId", this.assemblyTypeId, assemblyTypeId);
+        this.assemblyTypeId = assemblyTypeId;
+    }
+
+    public Integer getAssemblyTypeId() {
+        beforePropertyRead("assemblyTypeId");
+        return this.assemblyTypeId;
+    }
 
     public void setAgency(Agency agency) {
         setToOneTarget("agency", agency, true);
@@ -77,6 +87,8 @@ public abstract class _AgencyPtf extends BaseDataObject {
         }
 
         switch(propName) {
+            case "assemblyTypeId":
+                return this.assemblyTypeId;
             case "agency":
                 return this.agency;
             case "agencyRole":
@@ -97,6 +109,9 @@ public abstract class _AgencyPtf extends BaseDataObject {
         }
 
         switch (propName) {
+            case "assemblyTypeId":
+                this.assemblyTypeId = (Integer)val;
+                break;
             case "agency":
                 this.agency = val;
                 break;
@@ -125,6 +140,7 @@ public abstract class _AgencyPtf extends BaseDataObject {
     @Override
     protected void writeState(ObjectOutputStream out) throws IOException {
         super.writeState(out);
+        out.writeObject(this.assemblyTypeId);
         out.writeObject(this.agency);
         out.writeObject(this.agencyRole);
         out.writeObject(this.dacType);
@@ -134,6 +150,7 @@ public abstract class _AgencyPtf extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
+        this.assemblyTypeId = (Integer)in.readObject();
         this.agency = in.readObject();
         this.agencyRole = in.readObject();
         this.dacType = in.readObject();

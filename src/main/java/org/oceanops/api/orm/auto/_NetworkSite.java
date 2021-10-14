@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -25,33 +24,33 @@ public abstract class _NetworkSite extends BaseDataObject {
     public static final String NETWORK_ID_PK_COLUMN = "NETWORK_ID";
     public static final String SITE_ID_PK_COLUMN = "SITE_ID";
 
-    public static final NumericProperty<BigDecimal> NETWORK_ID = PropertyFactory.createNumeric("networkId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> SITE_ID = PropertyFactory.createNumeric("siteId", BigDecimal.class);
+    public static final NumericProperty<Integer> NETWORK_ID = PropertyFactory.createNumeric("networkId", Integer.class);
+    public static final NumericProperty<Integer> SITE_ID = PropertyFactory.createNumeric("siteId", Integer.class);
     public static final EntityProperty<Network> NETWORK = PropertyFactory.createEntity("network", Network.class);
     public static final EntityProperty<Site> SITE = PropertyFactory.createEntity("site", Site.class);
 
-    protected BigDecimal networkId;
-    protected BigDecimal siteId;
+    protected Integer networkId;
+    protected Integer siteId;
 
     protected Object network;
     protected Object site;
 
-    public void setNetworkId(BigDecimal networkId) {
+    public void setNetworkId(Integer networkId) {
         beforePropertyWrite("networkId", this.networkId, networkId);
         this.networkId = networkId;
     }
 
-    public BigDecimal getNetworkId() {
+    public Integer getNetworkId() {
         beforePropertyRead("networkId");
         return this.networkId;
     }
 
-    public void setSiteId(BigDecimal siteId) {
+    public void setSiteId(Integer siteId) {
         beforePropertyWrite("siteId", this.siteId, siteId);
         this.siteId = siteId;
     }
 
-    public BigDecimal getSiteId() {
+    public Integer getSiteId() {
         beforePropertyRead("siteId");
         return this.siteId;
     }
@@ -100,10 +99,10 @@ public abstract class _NetworkSite extends BaseDataObject {
 
         switch (propName) {
             case "networkId":
-                this.networkId = (BigDecimal)val;
+                this.networkId = (Integer)val;
                 break;
             case "siteId":
-                this.siteId = (BigDecimal)val;
+                this.siteId = (Integer)val;
                 break;
             case "network":
                 this.network = val;
@@ -136,8 +135,8 @@ public abstract class _NetworkSite extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.networkId = (BigDecimal)in.readObject();
-        this.siteId = (BigDecimal)in.readObject();
+        this.networkId = (Integer)in.readObject();
+        this.siteId = (Integer)in.readObject();
         this.network = in.readObject();
         this.site = in.readObject();
     }

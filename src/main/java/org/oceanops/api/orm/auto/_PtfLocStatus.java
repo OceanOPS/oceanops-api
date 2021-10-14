@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.apache.cayenne.BaseDataObject;
@@ -30,16 +29,16 @@ public abstract class _PtfLocStatus extends BaseDataObject {
     public static final String START_DATE_PK_COLUMN = "START_DATE";
 
     public static final DateProperty<LocalDateTime> END_DATE = PropertyFactory.createDate("endDate", LocalDateTime.class);
-    public static final NumericProperty<BigDecimal> LOC_STATUS_ID = PropertyFactory.createNumeric("locStatusId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> PTF_ID = PropertyFactory.createNumeric("ptfId", BigDecimal.class);
+    public static final NumericProperty<Integer> LOC_STATUS_ID = PropertyFactory.createNumeric("locStatusId", Integer.class);
+    public static final NumericProperty<Integer> PTF_ID = PropertyFactory.createNumeric("ptfId", Integer.class);
     public static final StringProperty<String> SOURCE = PropertyFactory.createString("source", String.class);
     public static final DateProperty<LocalDateTime> START_DATE = PropertyFactory.createDate("startDate", LocalDateTime.class);
     public static final EntityProperty<LocStatus> LOC_STATUS = PropertyFactory.createEntity("locStatus", LocStatus.class);
     public static final EntityProperty<Ptf> PTF = PropertyFactory.createEntity("ptf", Ptf.class);
 
     protected LocalDateTime endDate;
-    protected BigDecimal locStatusId;
-    protected BigDecimal ptfId;
+    protected Integer locStatusId;
+    protected Integer ptfId;
     protected String source;
     protected LocalDateTime startDate;
 
@@ -56,22 +55,22 @@ public abstract class _PtfLocStatus extends BaseDataObject {
         return this.endDate;
     }
 
-    public void setLocStatusId(BigDecimal locStatusId) {
+    public void setLocStatusId(Integer locStatusId) {
         beforePropertyWrite("locStatusId", this.locStatusId, locStatusId);
         this.locStatusId = locStatusId;
     }
 
-    public BigDecimal getLocStatusId() {
+    public Integer getLocStatusId() {
         beforePropertyRead("locStatusId");
         return this.locStatusId;
     }
 
-    public void setPtfId(BigDecimal ptfId) {
+    public void setPtfId(Integer ptfId) {
         beforePropertyWrite("ptfId", this.ptfId, ptfId);
         this.ptfId = ptfId;
     }
 
-    public BigDecimal getPtfId() {
+    public Integer getPtfId() {
         beforePropertyRead("ptfId");
         return this.ptfId;
     }
@@ -149,10 +148,10 @@ public abstract class _PtfLocStatus extends BaseDataObject {
                 this.endDate = (LocalDateTime)val;
                 break;
             case "locStatusId":
-                this.locStatusId = (BigDecimal)val;
+                this.locStatusId = (Integer)val;
                 break;
             case "ptfId":
-                this.ptfId = (BigDecimal)val;
+                this.ptfId = (Integer)val;
                 break;
             case "source":
                 this.source = (String)val;
@@ -195,8 +194,8 @@ public abstract class _PtfLocStatus extends BaseDataObject {
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
         this.endDate = (LocalDateTime)in.readObject();
-        this.locStatusId = (BigDecimal)in.readObject();
-        this.ptfId = (BigDecimal)in.readObject();
+        this.locStatusId = (Integer)in.readObject();
+        this.ptfId = (Integer)in.readObject();
         this.source = (String)in.readObject();
         this.startDate = (LocalDateTime)in.readObject();
         this.locStatus = in.readObject();

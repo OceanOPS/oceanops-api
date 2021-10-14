@@ -3,11 +3,9 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
-import org.apache.cayenne.exp.property.NumericIdProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.oceanops.api.orm.Network;
@@ -23,36 +21,35 @@ public abstract class _NetworkPtf extends BaseDataObject {
 
     private static final long serialVersionUID = 1L;
 
-    public static final NumericIdProperty<BigDecimal> ID_PK_PROPERTY = PropertyFactory.createNumericId("ID", "NetworkPtf", BigDecimal.class);
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final NumericProperty<BigDecimal> NETWORK_ID = PropertyFactory.createNumeric("networkId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> PTF_ID = PropertyFactory.createNumeric("ptfId", BigDecimal.class);
+    public static final NumericProperty<Integer> NETWORK_ID = PropertyFactory.createNumeric("networkId", Integer.class);
+    public static final NumericProperty<Integer> PTF_ID = PropertyFactory.createNumeric("ptfId", Integer.class);
     public static final EntityProperty<Network> NETWORK = PropertyFactory.createEntity("network", Network.class);
     public static final EntityProperty<Ptf> PTF = PropertyFactory.createEntity("ptf", Ptf.class);
 
-    protected BigDecimal networkId;
-    protected BigDecimal ptfId;
+    protected Integer networkId;
+    protected Integer ptfId;
 
     protected Object network;
     protected Object ptf;
 
-    public void setNetworkId(BigDecimal networkId) {
+    public void setNetworkId(Integer networkId) {
         beforePropertyWrite("networkId", this.networkId, networkId);
         this.networkId = networkId;
     }
 
-    public BigDecimal getNetworkId() {
+    public Integer getNetworkId() {
         beforePropertyRead("networkId");
         return this.networkId;
     }
 
-    public void setPtfId(BigDecimal ptfId) {
+    public void setPtfId(Integer ptfId) {
         beforePropertyWrite("ptfId", this.ptfId, ptfId);
         this.ptfId = ptfId;
     }
 
-    public BigDecimal getPtfId() {
+    public Integer getPtfId() {
         beforePropertyRead("ptfId");
         return this.ptfId;
     }
@@ -101,10 +98,10 @@ public abstract class _NetworkPtf extends BaseDataObject {
 
         switch (propName) {
             case "networkId":
-                this.networkId = (BigDecimal)val;
+                this.networkId = (Integer)val;
                 break;
             case "ptfId":
-                this.ptfId = (BigDecimal)val;
+                this.ptfId = (Integer)val;
                 break;
             case "network":
                 this.network = val;
@@ -137,8 +134,8 @@ public abstract class _NetworkPtf extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.networkId = (BigDecimal)in.readObject();
-        this.ptfId = (BigDecimal)in.readObject();
+        this.networkId = (Integer)in.readObject();
+        this.ptfId = (Integer)in.readObject();
         this.network = in.readObject();
         this.ptf = in.readObject();
     }

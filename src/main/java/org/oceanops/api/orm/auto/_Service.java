@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.apache.cayenne.BaseDataObject;
@@ -15,6 +14,7 @@ import org.apache.cayenne.exp.property.StringProperty;
 import org.oceanops.api.orm.Agency;
 import org.oceanops.api.orm.Contact;
 import org.oceanops.api.orm.Cruise;
+import org.oceanops.api.orm.Program;
 import org.oceanops.api.orm.Ptf;
 import org.oceanops.api.orm.SensorModel;
 
@@ -30,40 +30,36 @@ public abstract class _Service extends BaseDataObject {
 
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final DateProperty<LocalDateTime> CALIBRATION_DATE = PropertyFactory.createDate("calibrationDate", LocalDateTime.class);
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
     public static final DateProperty<LocalDateTime> END_DATE = PropertyFactory.createDate("endDate", LocalDateTime.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
-    public static final DateProperty<LocalDateTime> SERVICE_DATE = PropertyFactory.createDate("serviceDate", LocalDateTime.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
+    public static final StringProperty<String> LOCATION = PropertyFactory.createString("location", String.class);
+    public static final NumericProperty<Integer> LOCATION_ID = PropertyFactory.createNumeric("locationId", Integer.class);
     public static final DateProperty<LocalDateTime> START_DATE = PropertyFactory.createDate("startDate", LocalDateTime.class);
+    public static final StringProperty<String> TYPE = PropertyFactory.createString("type", String.class);
+    public static final NumericProperty<Integer> TYPE_ID = PropertyFactory.createNumeric("typeId", Integer.class);
     public static final EntityProperty<Agency> AGENCY = PropertyFactory.createEntity("agency", Agency.class);
     public static final EntityProperty<Contact> CONTACT = PropertyFactory.createEntity("contact", Contact.class);
     public static final EntityProperty<Cruise> CRUISE = PropertyFactory.createEntity("cruise", Cruise.class);
+    public static final EntityProperty<Program> PROGRAM = PropertyFactory.createEntity("program", Program.class);
     public static final EntityProperty<Ptf> PTF = PropertyFactory.createEntity("ptf", Ptf.class);
     public static final EntityProperty<SensorModel> SENSOR_MODEL = PropertyFactory.createEntity("sensorModel", SensorModel.class);
 
-    protected LocalDateTime calibrationDate;
     protected String description;
     protected LocalDateTime endDate;
-    protected BigDecimal id;
-    protected LocalDateTime serviceDate;
+    protected Integer id;
+    protected String location;
+    protected Integer locationId;
     protected LocalDateTime startDate;
+    protected String type;
+    protected Integer typeId;
 
     protected Object agency;
     protected Object contact;
     protected Object cruise;
+    protected Object program;
     protected Object ptf;
     protected Object sensorModel;
-
-    public void setCalibrationDate(LocalDateTime calibrationDate) {
-        beforePropertyWrite("calibrationDate", this.calibrationDate, calibrationDate);
-        this.calibrationDate = calibrationDate;
-    }
-
-    public LocalDateTime getCalibrationDate() {
-        beforePropertyRead("calibrationDate");
-        return this.calibrationDate;
-    }
 
     public void setDescription(String description) {
         beforePropertyWrite("description", this.description, description);
@@ -85,24 +81,34 @@ public abstract class _Service extends BaseDataObject {
         return this.endDate;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
 
-    public void setServiceDate(LocalDateTime serviceDate) {
-        beforePropertyWrite("serviceDate", this.serviceDate, serviceDate);
-        this.serviceDate = serviceDate;
+    public void setLocation(String location) {
+        beforePropertyWrite("location", this.location, location);
+        this.location = location;
     }
 
-    public LocalDateTime getServiceDate() {
-        beforePropertyRead("serviceDate");
-        return this.serviceDate;
+    public String getLocation() {
+        beforePropertyRead("location");
+        return this.location;
+    }
+
+    public void setLocationId(Integer locationId) {
+        beforePropertyWrite("locationId", this.locationId, locationId);
+        this.locationId = locationId;
+    }
+
+    public Integer getLocationId() {
+        beforePropertyRead("locationId");
+        return this.locationId;
     }
 
     public void setStartDate(LocalDateTime startDate) {
@@ -113,6 +119,26 @@ public abstract class _Service extends BaseDataObject {
     public LocalDateTime getStartDate() {
         beforePropertyRead("startDate");
         return this.startDate;
+    }
+
+    public void setType(String type) {
+        beforePropertyWrite("type", this.type, type);
+        this.type = type;
+    }
+
+    public String getType() {
+        beforePropertyRead("type");
+        return this.type;
+    }
+
+    public void setTypeId(Integer typeId) {
+        beforePropertyWrite("typeId", this.typeId, typeId);
+        this.typeId = typeId;
+    }
+
+    public Integer getTypeId() {
+        beforePropertyRead("typeId");
+        return this.typeId;
     }
 
     public void setAgency(Agency agency) {
@@ -139,6 +165,14 @@ public abstract class _Service extends BaseDataObject {
         return (Cruise)readProperty("cruise");
     }
 
+    public void setProgram(Program program) {
+        setToOneTarget("program", program, true);
+    }
+
+    public Program getProgram() {
+        return (Program)readProperty("program");
+    }
+
     public void setPtf(Ptf ptf) {
         setToOneTarget("ptf", ptf, true);
     }
@@ -162,24 +196,30 @@ public abstract class _Service extends BaseDataObject {
         }
 
         switch(propName) {
-            case "calibrationDate":
-                return this.calibrationDate;
             case "description":
                 return this.description;
             case "endDate":
                 return this.endDate;
             case "id":
                 return this.id;
-            case "serviceDate":
-                return this.serviceDate;
+            case "location":
+                return this.location;
+            case "locationId":
+                return this.locationId;
             case "startDate":
                 return this.startDate;
+            case "type":
+                return this.type;
+            case "typeId":
+                return this.typeId;
             case "agency":
                 return this.agency;
             case "contact":
                 return this.contact;
             case "cruise":
                 return this.cruise;
+            case "program":
+                return this.program;
             case "ptf":
                 return this.ptf;
             case "sensorModel":
@@ -196,9 +236,6 @@ public abstract class _Service extends BaseDataObject {
         }
 
         switch (propName) {
-            case "calibrationDate":
-                this.calibrationDate = (LocalDateTime)val;
-                break;
             case "description":
                 this.description = (String)val;
                 break;
@@ -206,13 +243,22 @@ public abstract class _Service extends BaseDataObject {
                 this.endDate = (LocalDateTime)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
-            case "serviceDate":
-                this.serviceDate = (LocalDateTime)val;
+            case "location":
+                this.location = (String)val;
+                break;
+            case "locationId":
+                this.locationId = (Integer)val;
                 break;
             case "startDate":
                 this.startDate = (LocalDateTime)val;
+                break;
+            case "type":
+                this.type = (String)val;
+                break;
+            case "typeId":
+                this.typeId = (Integer)val;
                 break;
             case "agency":
                 this.agency = val;
@@ -222,6 +268,9 @@ public abstract class _Service extends BaseDataObject {
                 break;
             case "cruise":
                 this.cruise = val;
+                break;
+            case "program":
+                this.program = val;
                 break;
             case "ptf":
                 this.ptf = val;
@@ -245,15 +294,18 @@ public abstract class _Service extends BaseDataObject {
     @Override
     protected void writeState(ObjectOutputStream out) throws IOException {
         super.writeState(out);
-        out.writeObject(this.calibrationDate);
         out.writeObject(this.description);
         out.writeObject(this.endDate);
         out.writeObject(this.id);
-        out.writeObject(this.serviceDate);
+        out.writeObject(this.location);
+        out.writeObject(this.locationId);
         out.writeObject(this.startDate);
+        out.writeObject(this.type);
+        out.writeObject(this.typeId);
         out.writeObject(this.agency);
         out.writeObject(this.contact);
         out.writeObject(this.cruise);
+        out.writeObject(this.program);
         out.writeObject(this.ptf);
         out.writeObject(this.sensorModel);
     }
@@ -261,15 +313,18 @@ public abstract class _Service extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.calibrationDate = (LocalDateTime)in.readObject();
         this.description = (String)in.readObject();
         this.endDate = (LocalDateTime)in.readObject();
-        this.id = (BigDecimal)in.readObject();
-        this.serviceDate = (LocalDateTime)in.readObject();
+        this.id = (Integer)in.readObject();
+        this.location = (String)in.readObject();
+        this.locationId = (Integer)in.readObject();
         this.startDate = (LocalDateTime)in.readObject();
+        this.type = (String)in.readObject();
+        this.typeId = (Integer)in.readObject();
         this.agency = in.readObject();
         this.contact = in.readObject();
         this.cruise = in.readObject();
+        this.program = in.readObject();
         this.ptf = in.readObject();
         this.sensorModel = in.readObject();
     }

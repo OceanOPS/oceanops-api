@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.apache.cayenne.BaseDataObject;
@@ -15,6 +14,7 @@ import org.apache.cayenne.exp.property.StringProperty;
 import org.oceanops.api.orm.Contact;
 import org.oceanops.api.orm.NcLevel;
 import org.oceanops.api.orm.NcTopic;
+import org.oceanops.api.orm.Program;
 import org.oceanops.api.orm.Ptf;
 
 /**
@@ -29,37 +29,39 @@ public abstract class _NcNotification extends BaseDataObject {
 
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final NumericProperty<BigDecimal> CRUISE_ID = PropertyFactory.createNumeric("cruiseId", BigDecimal.class);
+    public static final NumericProperty<Integer> CRUISE_ID = PropertyFactory.createNumeric("cruiseId", Integer.class);
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> IS_PRIVATE = PropertyFactory.createNumeric("isPrivate", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
+    public static final NumericProperty<Integer> IS_PRIVATE = PropertyFactory.createNumeric("isPrivate", Integer.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final DateProperty<LocalDateTime> NOTIFICATION_DATE = PropertyFactory.createDate("notificationDate", LocalDateTime.class);
-    public static final NumericProperty<BigDecimal> SENT = PropertyFactory.createNumeric("sent", BigDecimal.class);
+    public static final NumericProperty<Integer> SENT = PropertyFactory.createNumeric("sent", Integer.class);
     public static final EntityProperty<Contact> CONTACT = PropertyFactory.createEntity("contact", Contact.class);
     public static final EntityProperty<NcLevel> NC_LEVEL = PropertyFactory.createEntity("ncLevel", NcLevel.class);
     public static final EntityProperty<NcTopic> NC_TOPIC = PropertyFactory.createEntity("ncTopic", NcTopic.class);
+    public static final EntityProperty<Program> PROGRAM = PropertyFactory.createEntity("program", Program.class);
     public static final EntityProperty<Ptf> PTF = PropertyFactory.createEntity("ptf", Ptf.class);
 
-    protected BigDecimal cruiseId;
+    protected Integer cruiseId;
     protected String description;
-    protected BigDecimal id;
-    protected BigDecimal isPrivate;
+    protected Integer id;
+    protected Integer isPrivate;
     protected String name;
     protected LocalDateTime notificationDate;
-    protected BigDecimal sent;
+    protected Integer sent;
 
     protected Object contact;
     protected Object ncLevel;
     protected Object ncTopic;
+    protected Object program;
     protected Object ptf;
 
-    public void setCruiseId(BigDecimal cruiseId) {
+    public void setCruiseId(Integer cruiseId) {
         beforePropertyWrite("cruiseId", this.cruiseId, cruiseId);
         this.cruiseId = cruiseId;
     }
 
-    public BigDecimal getCruiseId() {
+    public Integer getCruiseId() {
         beforePropertyRead("cruiseId");
         return this.cruiseId;
     }
@@ -74,22 +76,22 @@ public abstract class _NcNotification extends BaseDataObject {
         return this.description;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
 
-    public void setIsPrivate(BigDecimal isPrivate) {
+    public void setIsPrivate(Integer isPrivate) {
         beforePropertyWrite("isPrivate", this.isPrivate, isPrivate);
         this.isPrivate = isPrivate;
     }
 
-    public BigDecimal getIsPrivate() {
+    public Integer getIsPrivate() {
         beforePropertyRead("isPrivate");
         return this.isPrivate;
     }
@@ -114,12 +116,12 @@ public abstract class _NcNotification extends BaseDataObject {
         return this.notificationDate;
     }
 
-    public void setSent(BigDecimal sent) {
+    public void setSent(Integer sent) {
         beforePropertyWrite("sent", this.sent, sent);
         this.sent = sent;
     }
 
-    public BigDecimal getSent() {
+    public Integer getSent() {
         beforePropertyRead("sent");
         return this.sent;
     }
@@ -146,6 +148,14 @@ public abstract class _NcNotification extends BaseDataObject {
 
     public NcTopic getNcTopic() {
         return (NcTopic)readProperty("ncTopic");
+    }
+
+    public void setProgram(Program program) {
+        setToOneTarget("program", program, true);
+    }
+
+    public Program getProgram() {
+        return (Program)readProperty("program");
     }
 
     public void setPtf(Ptf ptf) {
@@ -183,6 +193,8 @@ public abstract class _NcNotification extends BaseDataObject {
                 return this.ncLevel;
             case "ncTopic":
                 return this.ncTopic;
+            case "program":
+                return this.program;
             case "ptf":
                 return this.ptf;
             default:
@@ -198,16 +210,16 @@ public abstract class _NcNotification extends BaseDataObject {
 
         switch (propName) {
             case "cruiseId":
-                this.cruiseId = (BigDecimal)val;
+                this.cruiseId = (Integer)val;
                 break;
             case "description":
                 this.description = (String)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "isPrivate":
-                this.isPrivate = (BigDecimal)val;
+                this.isPrivate = (Integer)val;
                 break;
             case "name":
                 this.name = (String)val;
@@ -216,7 +228,7 @@ public abstract class _NcNotification extends BaseDataObject {
                 this.notificationDate = (LocalDateTime)val;
                 break;
             case "sent":
-                this.sent = (BigDecimal)val;
+                this.sent = (Integer)val;
                 break;
             case "contact":
                 this.contact = val;
@@ -226,6 +238,9 @@ public abstract class _NcNotification extends BaseDataObject {
                 break;
             case "ncTopic":
                 this.ncTopic = val;
+                break;
+            case "program":
+                this.program = val;
                 break;
             case "ptf":
                 this.ptf = val;
@@ -256,22 +271,24 @@ public abstract class _NcNotification extends BaseDataObject {
         out.writeObject(this.contact);
         out.writeObject(this.ncLevel);
         out.writeObject(this.ncTopic);
+        out.writeObject(this.program);
         out.writeObject(this.ptf);
     }
 
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.cruiseId = (BigDecimal)in.readObject();
+        this.cruiseId = (Integer)in.readObject();
         this.description = (String)in.readObject();
-        this.id = (BigDecimal)in.readObject();
-        this.isPrivate = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
+        this.isPrivate = (Integer)in.readObject();
         this.name = (String)in.readObject();
         this.notificationDate = (LocalDateTime)in.readObject();
-        this.sent = (BigDecimal)in.readObject();
+        this.sent = (Integer)in.readObject();
         this.contact = in.readObject();
         this.ncLevel = in.readObject();
         this.ncTopic = in.readObject();
+        this.program = in.readObject();
         this.ptf = in.readObject();
     }
 

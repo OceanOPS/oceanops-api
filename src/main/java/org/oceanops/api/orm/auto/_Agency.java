@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
@@ -43,18 +42,18 @@ public abstract class _Agency extends BaseDataObject {
     public static final String ID_PK_COLUMN = "ID";
 
     public static final StringProperty<String> ADDRESS = PropertyFactory.createString("address", String.class);
-    public static final NumericProperty<BigDecimal> DEPLOYER = PropertyFactory.createNumeric("deployer", BigDecimal.class);
+    public static final NumericProperty<Integer> DEPLOYER = PropertyFactory.createNumeric("deployer", Integer.class);
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
     public static final StringProperty<String> EMAIL = PropertyFactory.createString("email", String.class);
     public static final StringProperty<String> FAX = PropertyFactory.createString("fax", String.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> LAT = PropertyFactory.createNumeric("lat", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> LON = PropertyFactory.createNumeric("lon", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> MANUF = PropertyFactory.createNumeric("manuf", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
+    public static final NumericProperty<Double> LAT = PropertyFactory.createNumeric("lat", Double.class);
+    public static final NumericProperty<Double> LON = PropertyFactory.createNumeric("lon", Double.class);
+    public static final NumericProperty<Integer> MANUF = PropertyFactory.createNumeric("manuf", Integer.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> NAME_SHORT = PropertyFactory.createString("nameShort", String.class);
-    public static final NumericProperty<BigDecimal> POGO_MEMBER = PropertyFactory.createNumeric("pogoMember", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> PURCHASER = PropertyFactory.createNumeric("purchaser", BigDecimal.class);
+    public static final NumericProperty<Integer> POGO_MEMBER = PropertyFactory.createNumeric("pogoMember", Integer.class);
+    public static final NumericProperty<Integer> PURCHASER = PropertyFactory.createNumeric("purchaser", Integer.class);
     public static final StringProperty<String> REF = PropertyFactory.createString("ref", String.class);
     public static final StringProperty<String> TEL = PropertyFactory.createString("tel", String.class);
     public static final ListProperty<AgencyDacType> AGENCY_DAC_TYPES = PropertyFactory.createList("agencyDacTypes", AgencyDacType.class);
@@ -77,18 +76,18 @@ public abstract class _Agency extends BaseDataObject {
     public static final EntityProperty<Weblink> WEBLINK = PropertyFactory.createEntity("weblink", Weblink.class);
 
     protected String address;
-    protected BigDecimal deployer;
+    protected Integer deployer;
     protected String description;
     protected String email;
     protected String fax;
-    protected BigDecimal id;
-    protected BigDecimal lat;
-    protected BigDecimal lon;
-    protected BigDecimal manuf;
+    protected Integer id;
+    protected Double lat;
+    protected Double lon;
+    protected Integer manuf;
     protected String name;
     protected String nameShort;
-    protected BigDecimal pogoMember;
-    protected BigDecimal purchaser;
+    protected Integer pogoMember;
+    protected Integer purchaser;
     protected String ref;
     protected String tel;
 
@@ -121,12 +120,12 @@ public abstract class _Agency extends BaseDataObject {
         return this.address;
     }
 
-    public void setDeployer(BigDecimal deployer) {
+    public void setDeployer(Integer deployer) {
         beforePropertyWrite("deployer", this.deployer, deployer);
         this.deployer = deployer;
     }
 
-    public BigDecimal getDeployer() {
+    public Integer getDeployer() {
         beforePropertyRead("deployer");
         return this.deployer;
     }
@@ -161,42 +160,42 @@ public abstract class _Agency extends BaseDataObject {
         return this.fax;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
 
-    public void setLat(BigDecimal lat) {
+    public void setLat(Double lat) {
         beforePropertyWrite("lat", this.lat, lat);
         this.lat = lat;
     }
 
-    public BigDecimal getLat() {
+    public Double getLat() {
         beforePropertyRead("lat");
         return this.lat;
     }
 
-    public void setLon(BigDecimal lon) {
+    public void setLon(Double lon) {
         beforePropertyWrite("lon", this.lon, lon);
         this.lon = lon;
     }
 
-    public BigDecimal getLon() {
+    public Double getLon() {
         beforePropertyRead("lon");
         return this.lon;
     }
 
-    public void setManuf(BigDecimal manuf) {
+    public void setManuf(Integer manuf) {
         beforePropertyWrite("manuf", this.manuf, manuf);
         this.manuf = manuf;
     }
 
-    public BigDecimal getManuf() {
+    public Integer getManuf() {
         beforePropertyRead("manuf");
         return this.manuf;
     }
@@ -221,22 +220,22 @@ public abstract class _Agency extends BaseDataObject {
         return this.nameShort;
     }
 
-    public void setPogoMember(BigDecimal pogoMember) {
+    public void setPogoMember(Integer pogoMember) {
         beforePropertyWrite("pogoMember", this.pogoMember, pogoMember);
         this.pogoMember = pogoMember;
     }
 
-    public BigDecimal getPogoMember() {
+    public Integer getPogoMember() {
         beforePropertyRead("pogoMember");
         return this.pogoMember;
     }
 
-    public void setPurchaser(BigDecimal purchaser) {
+    public void setPurchaser(Integer purchaser) {
         beforePropertyWrite("purchaser", this.purchaser, purchaser);
         this.purchaser = purchaser;
     }
 
-    public BigDecimal getPurchaser() {
+    public Integer getPurchaser() {
         beforePropertyRead("purchaser");
         return this.purchaser;
     }
@@ -569,7 +568,7 @@ public abstract class _Agency extends BaseDataObject {
                 this.address = (String)val;
                 break;
             case "deployer":
-                this.deployer = (BigDecimal)val;
+                this.deployer = (Integer)val;
                 break;
             case "description":
                 this.description = (String)val;
@@ -581,16 +580,16 @@ public abstract class _Agency extends BaseDataObject {
                 this.fax = (String)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "lat":
-                this.lat = (BigDecimal)val;
+                this.lat = (Double)val;
                 break;
             case "lon":
-                this.lon = (BigDecimal)val;
+                this.lon = (Double)val;
                 break;
             case "manuf":
-                this.manuf = (BigDecimal)val;
+                this.manuf = (Integer)val;
                 break;
             case "name":
                 this.name = (String)val;
@@ -599,10 +598,10 @@ public abstract class _Agency extends BaseDataObject {
                 this.nameShort = (String)val;
                 break;
             case "pogoMember":
-                this.pogoMember = (BigDecimal)val;
+                this.pogoMember = (Integer)val;
                 break;
             case "purchaser":
-                this.purchaser = (BigDecimal)val;
+                this.purchaser = (Integer)val;
                 break;
             case "ref":
                 this.ref = (String)val;
@@ -719,18 +718,18 @@ public abstract class _Agency extends BaseDataObject {
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
         this.address = (String)in.readObject();
-        this.deployer = (BigDecimal)in.readObject();
+        this.deployer = (Integer)in.readObject();
         this.description = (String)in.readObject();
         this.email = (String)in.readObject();
         this.fax = (String)in.readObject();
-        this.id = (BigDecimal)in.readObject();
-        this.lat = (BigDecimal)in.readObject();
-        this.lon = (BigDecimal)in.readObject();
-        this.manuf = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
+        this.lat = (Double)in.readObject();
+        this.lon = (Double)in.readObject();
+        this.manuf = (Integer)in.readObject();
         this.name = (String)in.readObject();
         this.nameShort = (String)in.readObject();
-        this.pogoMember = (BigDecimal)in.readObject();
-        this.purchaser = (BigDecimal)in.readObject();
+        this.pogoMember = (Integer)in.readObject();
+        this.purchaser = (Integer)in.readObject();
         this.ref = (String)in.readObject();
         this.tel = (String)in.readObject();
         this.agencyDacTypes = in.readObject();

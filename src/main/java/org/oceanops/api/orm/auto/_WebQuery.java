@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.apache.cayenne.BaseDataObject;
@@ -27,30 +26,30 @@ public abstract class _WebQuery extends BaseDataObject {
     public static final String ID_PK_COLUMN = "ID";
 
     public static final DateProperty<LocalDateTime> DATE_CREATION = PropertyFactory.createDate("dateCreation", LocalDateTime.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> IS_DEFAULT = PropertyFactory.createNumeric("isDefault", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> IS_OCEANSITES_DEFAULT = PropertyFactory.createNumeric("isOceansitesDefault", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
+    public static final NumericProperty<Integer> IS_DEFAULT = PropertyFactory.createNumeric("isDefault", Integer.class);
+    public static final NumericProperty<Integer> IS_OCEANSITES_DEFAULT = PropertyFactory.createNumeric("isOceansitesDefault", Integer.class);
     public static final StringProperty<String> JSON_FORM_VALUES = PropertyFactory.createString("jsonFormValues", String.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> NAME_LONG = PropertyFactory.createString("nameLong", String.class);
     public static final StringProperty<String> NAME_SHORT = PropertyFactory.createString("nameShort", String.class);
     public static final StringProperty<String> OBS_SQL_A = PropertyFactory.createString("obsSqlA", String.class);
     public static final StringProperty<String> OBS_SQL_B = PropertyFactory.createString("obsSqlB", String.class);
-    public static final NumericProperty<BigDecimal> PREFERENCE = PropertyFactory.createNumeric("preference", BigDecimal.class);
+    public static final NumericProperty<Integer> PREFERENCE = PropertyFactory.createNumeric("preference", Integer.class);
     public static final StringProperty<String> SQL = PropertyFactory.createString("sql", String.class);
     public static final EntityProperty<Contact> CONTACT = PropertyFactory.createEntity("contact", Contact.class);
 
     protected LocalDateTime dateCreation;
-    protected BigDecimal id;
-    protected BigDecimal isDefault;
-    protected BigDecimal isOceansitesDefault;
+    protected Integer id;
+    protected Integer isDefault;
+    protected Integer isOceansitesDefault;
     protected String jsonFormValues;
     protected String name;
     protected String nameLong;
     protected String nameShort;
     protected String obsSqlA;
     protected String obsSqlB;
-    protected BigDecimal preference;
+    protected Integer preference;
     protected String sql;
 
     protected Object contact;
@@ -65,32 +64,32 @@ public abstract class _WebQuery extends BaseDataObject {
         return this.dateCreation;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
 
-    public void setIsDefault(BigDecimal isDefault) {
+    public void setIsDefault(Integer isDefault) {
         beforePropertyWrite("isDefault", this.isDefault, isDefault);
         this.isDefault = isDefault;
     }
 
-    public BigDecimal getIsDefault() {
+    public Integer getIsDefault() {
         beforePropertyRead("isDefault");
         return this.isDefault;
     }
 
-    public void setIsOceansitesDefault(BigDecimal isOceansitesDefault) {
+    public void setIsOceansitesDefault(Integer isOceansitesDefault) {
         beforePropertyWrite("isOceansitesDefault", this.isOceansitesDefault, isOceansitesDefault);
         this.isOceansitesDefault = isOceansitesDefault;
     }
 
-    public BigDecimal getIsOceansitesDefault() {
+    public Integer getIsOceansitesDefault() {
         beforePropertyRead("isOceansitesDefault");
         return this.isOceansitesDefault;
     }
@@ -155,12 +154,12 @@ public abstract class _WebQuery extends BaseDataObject {
         return this.obsSqlB;
     }
 
-    public void setPreference(BigDecimal preference) {
+    public void setPreference(Integer preference) {
         beforePropertyWrite("preference", this.preference, preference);
         this.preference = preference;
     }
 
-    public BigDecimal getPreference() {
+    public Integer getPreference() {
         beforePropertyRead("preference");
         return this.preference;
     }
@@ -232,13 +231,13 @@ public abstract class _WebQuery extends BaseDataObject {
                 this.dateCreation = (LocalDateTime)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "isDefault":
-                this.isDefault = (BigDecimal)val;
+                this.isDefault = (Integer)val;
                 break;
             case "isOceansitesDefault":
-                this.isOceansitesDefault = (BigDecimal)val;
+                this.isOceansitesDefault = (Integer)val;
                 break;
             case "jsonFormValues":
                 this.jsonFormValues = (String)val;
@@ -259,7 +258,7 @@ public abstract class _WebQuery extends BaseDataObject {
                 this.obsSqlB = (String)val;
                 break;
             case "preference":
-                this.preference = (BigDecimal)val;
+                this.preference = (Integer)val;
                 break;
             case "sql":
                 this.sql = (String)val;
@@ -302,16 +301,16 @@ public abstract class _WebQuery extends BaseDataObject {
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
         this.dateCreation = (LocalDateTime)in.readObject();
-        this.id = (BigDecimal)in.readObject();
-        this.isDefault = (BigDecimal)in.readObject();
-        this.isOceansitesDefault = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
+        this.isDefault = (Integer)in.readObject();
+        this.isOceansitesDefault = (Integer)in.readObject();
         this.jsonFormValues = (String)in.readObject();
         this.name = (String)in.readObject();
         this.nameLong = (String)in.readObject();
         this.nameShort = (String)in.readObject();
         this.obsSqlA = (String)in.readObject();
         this.obsSqlB = (String)in.readObject();
-        this.preference = (BigDecimal)in.readObject();
+        this.preference = (Integer)in.readObject();
         this.sql = (String)in.readObject();
         this.contact = in.readObject();
     }

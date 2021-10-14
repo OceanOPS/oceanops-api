@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -27,37 +26,37 @@ public abstract class _UserGroupContact extends BaseDataObject {
     public static final String CONTACT_ID_PK_COLUMN = "CONTACT_ID";
     public static final String USER_GROUP_ID_PK_COLUMN = "USER_GROUP_ID";
 
-    public static final NumericProperty<BigDecimal> CONTACT_ID = PropertyFactory.createNumeric("contactId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> USER_GROUP_ID = PropertyFactory.createNumeric("userGroupId", BigDecimal.class);
+    public static final NumericProperty<Integer> CONTACT_ID = PropertyFactory.createNumeric("contactId", Integer.class);
+    public static final NumericProperty<Integer> USER_GROUP_ID = PropertyFactory.createNumeric("userGroupId", Integer.class);
     public static final EntityProperty<Contact> CONTACT = PropertyFactory.createEntity("contact", Contact.class);
     public static final EntityProperty<Country> COUNTRY = PropertyFactory.createEntity("country", Country.class);
     public static final EntityProperty<Role> ROLE = PropertyFactory.createEntity("role", Role.class);
     public static final EntityProperty<UserGroup> USER_GROUP = PropertyFactory.createEntity("userGroup", UserGroup.class);
 
-    protected BigDecimal contactId;
-    protected BigDecimal userGroupId;
+    protected Integer contactId;
+    protected Integer userGroupId;
 
     protected Object contact;
     protected Object country;
     protected Object role;
     protected Object userGroup;
 
-    public void setContactId(BigDecimal contactId) {
+    public void setContactId(Integer contactId) {
         beforePropertyWrite("contactId", this.contactId, contactId);
         this.contactId = contactId;
     }
 
-    public BigDecimal getContactId() {
+    public Integer getContactId() {
         beforePropertyRead("contactId");
         return this.contactId;
     }
 
-    public void setUserGroupId(BigDecimal userGroupId) {
+    public void setUserGroupId(Integer userGroupId) {
         beforePropertyWrite("userGroupId", this.userGroupId, userGroupId);
         this.userGroupId = userGroupId;
     }
 
-    public BigDecimal getUserGroupId() {
+    public Integer getUserGroupId() {
         beforePropertyRead("userGroupId");
         return this.userGroupId;
     }
@@ -126,10 +125,10 @@ public abstract class _UserGroupContact extends BaseDataObject {
 
         switch (propName) {
             case "contactId":
-                this.contactId = (BigDecimal)val;
+                this.contactId = (Integer)val;
                 break;
             case "userGroupId":
-                this.userGroupId = (BigDecimal)val;
+                this.userGroupId = (Integer)val;
                 break;
             case "contact":
                 this.contact = val;
@@ -170,8 +169,8 @@ public abstract class _UserGroupContact extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.contactId = (BigDecimal)in.readObject();
-        this.userGroupId = (BigDecimal)in.readObject();
+        this.contactId = (Integer)in.readObject();
+        this.userGroupId = (Integer)in.readObject();
         this.contact = in.readObject();
         this.country = in.readObject();
         this.role = in.readObject();

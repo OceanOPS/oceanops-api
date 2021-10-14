@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -31,7 +30,7 @@ public abstract class _GtsHeader extends BaseDataObject {
 
     public static final DateProperty<LocalDateTime> END_DATE = PropertyFactory.createDate("endDate", LocalDateTime.class);
     public static final StringProperty<String> HEADER = PropertyFactory.createString("header", String.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final DateProperty<LocalDateTime> START_DATE = PropertyFactory.createDate("startDate", LocalDateTime.class);
     public static final StringProperty<String> TEXT = PropertyFactory.createString("text", String.class);
     public static final ListProperty<GtsCcccHeader> GTS_CCCC_HEADERS = PropertyFactory.createList("gtsCcccHeaders", GtsCcccHeader.class);
@@ -40,7 +39,7 @@ public abstract class _GtsHeader extends BaseDataObject {
 
     protected LocalDateTime endDate;
     protected String header;
-    protected BigDecimal id;
+    protected Integer id;
     protected LocalDateTime startDate;
     protected String text;
 
@@ -68,12 +67,12 @@ public abstract class _GtsHeader extends BaseDataObject {
         return this.header;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
@@ -179,7 +178,7 @@ public abstract class _GtsHeader extends BaseDataObject {
                 this.header = (String)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "startDate":
                 this.startDate = (LocalDateTime)val;
@@ -227,7 +226,7 @@ public abstract class _GtsHeader extends BaseDataObject {
         super.readState(in);
         this.endDate = (LocalDateTime)in.readObject();
         this.header = (String)in.readObject();
-        this.id = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
         this.startDate = (LocalDateTime)in.readObject();
         this.text = (String)in.readObject();
         this.gtsCcccHeaders = in.readObject();

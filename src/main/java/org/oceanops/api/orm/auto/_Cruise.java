@@ -3,11 +3,11 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
+import org.apache.cayenne.exp.property.BaseProperty;
 import org.apache.cayenne.exp.property.DateProperty;
 import org.apache.cayenne.exp.property.EntityProperty;
 import org.apache.cayenne.exp.property.ListProperty;
@@ -48,17 +48,17 @@ public abstract class _Cruise extends BaseDataObject {
     public static final String ID_PK_COLUMN = "ID";
 
     public static final DateProperty<LocalDateTime> ARRIVAL_DATE = PropertyFactory.createDate("arrivalDate", LocalDateTime.class);
-    public static final NumericProperty<BigDecimal> AUTONOMY = PropertyFactory.createNumeric("autonomy", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> COOPERATIONS = PropertyFactory.createNumeric("cooperations", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> COST_MONTH = PropertyFactory.createNumeric("costMonth", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> COST_UNIT = PropertyFactory.createNumeric("costUnit", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> DATES_PENDING = PropertyFactory.createNumeric("datesPending", BigDecimal.class);
+    public static final NumericProperty<Integer> AUTONOMY = PropertyFactory.createNumeric("autonomy", Integer.class);
+    public static final NumericProperty<Integer> COOPERATIONS = PropertyFactory.createNumeric("cooperations", Integer.class);
+    public static final NumericProperty<Integer> COST_MONTH = PropertyFactory.createNumeric("costMonth", Integer.class);
+    public static final NumericProperty<Integer> COST_UNIT = PropertyFactory.createNumeric("costUnit", Integer.class);
+    public static final NumericProperty<Integer> DATES_PENDING = PropertyFactory.createNumeric("datesPending", Integer.class);
     public static final DateProperty<LocalDateTime> DEMOB_DATE = PropertyFactory.createDate("demobDate", LocalDateTime.class);
     public static final DateProperty<LocalDateTime> DEPARTURE_DATE = PropertyFactory.createDate("departureDate", LocalDateTime.class);
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
-    public static final NumericProperty<BigDecimal> EMBARK_CAPACITY = PropertyFactory.createNumeric("embarkCapacity", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> FLEXIBLE_ROUTE = PropertyFactory.createNumeric("flexibleRoute", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<Integer> EMBARK_CAPACITY = PropertyFactory.createNumeric("embarkCapacity", Integer.class);
+    public static final NumericProperty<Integer> FLEXIBLE_ROUTE = PropertyFactory.createNumeric("flexibleRoute", Integer.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final StringProperty<String> IIOE2ID = PropertyFactory.createString("iioe2Id", String.class);
     public static final DateProperty<LocalDateTime> INSERT_DATE = PropertyFactory.createDate("insertDate", LocalDateTime.class);
     public static final DateProperty<LocalDateTime> MOB_DATE = PropertyFactory.createDate("mobDate", LocalDateTime.class);
@@ -66,17 +66,18 @@ public abstract class _Cruise extends BaseDataObject {
     public static final StringProperty<String> NAME_LONG = PropertyFactory.createString("nameLong", String.class);
     public static final DateProperty<LocalDateTime> OPERATION_DATE = PropertyFactory.createDate("operationDate", LocalDateTime.class);
     public static final StringProperty<String> PERFORMANCE_COMMENT = PropertyFactory.createString("performanceComment", String.class);
-    public static final NumericProperty<BigDecimal> PERFORMANCE_INDEX = PropertyFactory.createNumeric("performanceIndex", BigDecimal.class);
+    public static final NumericProperty<Double> PERFORMANCE_INDEX = PropertyFactory.createNumeric("performanceIndex", Double.class);
     public static final StringProperty<String> PROJECT_NAME = PropertyFactory.createString("projectName", String.class);
     public static final StringProperty<String> REF = PropertyFactory.createString("ref", String.class);
     public static final StringProperty<String> REF_TMP = PropertyFactory.createString("refTmp", String.class);
-    public static final NumericProperty<BigDecimal> ROUTE_PENDING = PropertyFactory.createNumeric("routePending", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> ROUTE_PRIVATE = PropertyFactory.createNumeric("routePrivate", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> SHIP_STOP = PropertyFactory.createNumeric("shipStop", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> STORAGE_CAPACITY = PropertyFactory.createNumeric("storageCapacity", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> UNOLS_ID = PropertyFactory.createNumeric("unolsId", BigDecimal.class);
+    public static final NumericProperty<Integer> ROUTE_PENDING = PropertyFactory.createNumeric("routePending", Integer.class);
+    public static final NumericProperty<Integer> ROUTE_PRIVATE = PropertyFactory.createNumeric("routePrivate", Integer.class);
+    public static final BaseProperty<byte[]> SHAPE = PropertyFactory.createBase("shape", byte[].class);
+    public static final NumericProperty<Integer> SHIP_STOP = PropertyFactory.createNumeric("shipStop", Integer.class);
+    public static final NumericProperty<Integer> STORAGE_CAPACITY = PropertyFactory.createNumeric("storageCapacity", Integer.class);
+    public static final NumericProperty<Integer> UNOLS_ID = PropertyFactory.createNumeric("unolsId", Integer.class);
     public static final DateProperty<LocalDateTime> UPDATE_DATE = PropertyFactory.createDate("updateDate", LocalDateTime.class);
-    public static final NumericProperty<BigDecimal> VALIDATED = PropertyFactory.createNumeric("validated", BigDecimal.class);
+    public static final NumericProperty<Integer> VALIDATED = PropertyFactory.createNumeric("validated", Integer.class);
     public static final StringProperty<String> WKT = PropertyFactory.createString("wkt", String.class);
     public static final EntityProperty<Agency> AGENCY = PropertyFactory.createEntity("agency", Agency.class);
     public static final EntityProperty<CruiseClass> CRUISE_CLASS = PropertyFactory.createEntity("cruiseClass", CruiseClass.class);
@@ -100,17 +101,17 @@ public abstract class _Cruise extends BaseDataObject {
     public static final EntityProperty<Weblink> WEBLINK = PropertyFactory.createEntity("weblink", Weblink.class);
 
     protected LocalDateTime arrivalDate;
-    protected BigDecimal autonomy;
-    protected BigDecimal cooperations;
-    protected BigDecimal costMonth;
-    protected BigDecimal costUnit;
-    protected BigDecimal datesPending;
+    protected Integer autonomy;
+    protected Integer cooperations;
+    protected Integer costMonth;
+    protected Integer costUnit;
+    protected Integer datesPending;
     protected LocalDateTime demobDate;
     protected LocalDateTime departureDate;
     protected String description;
-    protected BigDecimal embarkCapacity;
-    protected BigDecimal flexibleRoute;
-    protected BigDecimal id;
+    protected Integer embarkCapacity;
+    protected Integer flexibleRoute;
+    protected Integer id;
     protected String iioe2Id;
     protected LocalDateTime insertDate;
     protected LocalDateTime mobDate;
@@ -118,17 +119,18 @@ public abstract class _Cruise extends BaseDataObject {
     protected String nameLong;
     protected LocalDateTime operationDate;
     protected String performanceComment;
-    protected BigDecimal performanceIndex;
+    protected Double performanceIndex;
     protected String projectName;
     protected String ref;
     protected String refTmp;
-    protected BigDecimal routePending;
-    protected BigDecimal routePrivate;
-    protected BigDecimal shipStop;
-    protected BigDecimal storageCapacity;
-    protected BigDecimal unolsId;
+    protected Integer routePending;
+    protected Integer routePrivate;
+    protected byte[] shape;
+    protected Integer shipStop;
+    protected Integer storageCapacity;
+    protected Integer unolsId;
     protected LocalDateTime updateDate;
-    protected BigDecimal validated;
+    protected Integer validated;
     protected String wkt;
 
     protected Object agency;
@@ -162,52 +164,52 @@ public abstract class _Cruise extends BaseDataObject {
         return this.arrivalDate;
     }
 
-    public void setAutonomy(BigDecimal autonomy) {
+    public void setAutonomy(Integer autonomy) {
         beforePropertyWrite("autonomy", this.autonomy, autonomy);
         this.autonomy = autonomy;
     }
 
-    public BigDecimal getAutonomy() {
+    public Integer getAutonomy() {
         beforePropertyRead("autonomy");
         return this.autonomy;
     }
 
-    public void setCooperations(BigDecimal cooperations) {
+    public void setCooperations(Integer cooperations) {
         beforePropertyWrite("cooperations", this.cooperations, cooperations);
         this.cooperations = cooperations;
     }
 
-    public BigDecimal getCooperations() {
+    public Integer getCooperations() {
         beforePropertyRead("cooperations");
         return this.cooperations;
     }
 
-    public void setCostMonth(BigDecimal costMonth) {
+    public void setCostMonth(Integer costMonth) {
         beforePropertyWrite("costMonth", this.costMonth, costMonth);
         this.costMonth = costMonth;
     }
 
-    public BigDecimal getCostMonth() {
+    public Integer getCostMonth() {
         beforePropertyRead("costMonth");
         return this.costMonth;
     }
 
-    public void setCostUnit(BigDecimal costUnit) {
+    public void setCostUnit(Integer costUnit) {
         beforePropertyWrite("costUnit", this.costUnit, costUnit);
         this.costUnit = costUnit;
     }
 
-    public BigDecimal getCostUnit() {
+    public Integer getCostUnit() {
         beforePropertyRead("costUnit");
         return this.costUnit;
     }
 
-    public void setDatesPending(BigDecimal datesPending) {
+    public void setDatesPending(Integer datesPending) {
         beforePropertyWrite("datesPending", this.datesPending, datesPending);
         this.datesPending = datesPending;
     }
 
-    public BigDecimal getDatesPending() {
+    public Integer getDatesPending() {
         beforePropertyRead("datesPending");
         return this.datesPending;
     }
@@ -242,32 +244,32 @@ public abstract class _Cruise extends BaseDataObject {
         return this.description;
     }
 
-    public void setEmbarkCapacity(BigDecimal embarkCapacity) {
+    public void setEmbarkCapacity(Integer embarkCapacity) {
         beforePropertyWrite("embarkCapacity", this.embarkCapacity, embarkCapacity);
         this.embarkCapacity = embarkCapacity;
     }
 
-    public BigDecimal getEmbarkCapacity() {
+    public Integer getEmbarkCapacity() {
         beforePropertyRead("embarkCapacity");
         return this.embarkCapacity;
     }
 
-    public void setFlexibleRoute(BigDecimal flexibleRoute) {
+    public void setFlexibleRoute(Integer flexibleRoute) {
         beforePropertyWrite("flexibleRoute", this.flexibleRoute, flexibleRoute);
         this.flexibleRoute = flexibleRoute;
     }
 
-    public BigDecimal getFlexibleRoute() {
+    public Integer getFlexibleRoute() {
         beforePropertyRead("flexibleRoute");
         return this.flexibleRoute;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
@@ -342,12 +344,12 @@ public abstract class _Cruise extends BaseDataObject {
         return this.performanceComment;
     }
 
-    public void setPerformanceIndex(BigDecimal performanceIndex) {
+    public void setPerformanceIndex(Double performanceIndex) {
         beforePropertyWrite("performanceIndex", this.performanceIndex, performanceIndex);
         this.performanceIndex = performanceIndex;
     }
 
-    public BigDecimal getPerformanceIndex() {
+    public Double getPerformanceIndex() {
         beforePropertyRead("performanceIndex");
         return this.performanceIndex;
     }
@@ -382,52 +384,62 @@ public abstract class _Cruise extends BaseDataObject {
         return this.refTmp;
     }
 
-    public void setRoutePending(BigDecimal routePending) {
+    public void setRoutePending(Integer routePending) {
         beforePropertyWrite("routePending", this.routePending, routePending);
         this.routePending = routePending;
     }
 
-    public BigDecimal getRoutePending() {
+    public Integer getRoutePending() {
         beforePropertyRead("routePending");
         return this.routePending;
     }
 
-    public void setRoutePrivate(BigDecimal routePrivate) {
+    public void setRoutePrivate(Integer routePrivate) {
         beforePropertyWrite("routePrivate", this.routePrivate, routePrivate);
         this.routePrivate = routePrivate;
     }
 
-    public BigDecimal getRoutePrivate() {
+    public Integer getRoutePrivate() {
         beforePropertyRead("routePrivate");
         return this.routePrivate;
     }
 
-    public void setShipStop(BigDecimal shipStop) {
+    public void setShape(byte[] shape) {
+        beforePropertyWrite("shape", this.shape, shape);
+        this.shape = shape;
+    }
+
+    public byte[] getShape() {
+        beforePropertyRead("shape");
+        return this.shape;
+    }
+
+    public void setShipStop(Integer shipStop) {
         beforePropertyWrite("shipStop", this.shipStop, shipStop);
         this.shipStop = shipStop;
     }
 
-    public BigDecimal getShipStop() {
+    public Integer getShipStop() {
         beforePropertyRead("shipStop");
         return this.shipStop;
     }
 
-    public void setStorageCapacity(BigDecimal storageCapacity) {
+    public void setStorageCapacity(Integer storageCapacity) {
         beforePropertyWrite("storageCapacity", this.storageCapacity, storageCapacity);
         this.storageCapacity = storageCapacity;
     }
 
-    public BigDecimal getStorageCapacity() {
+    public Integer getStorageCapacity() {
         beforePropertyRead("storageCapacity");
         return this.storageCapacity;
     }
 
-    public void setUnolsId(BigDecimal unolsId) {
+    public void setUnolsId(Integer unolsId) {
         beforePropertyWrite("unolsId", this.unolsId, unolsId);
         this.unolsId = unolsId;
     }
 
-    public BigDecimal getUnolsId() {
+    public Integer getUnolsId() {
         beforePropertyRead("unolsId");
         return this.unolsId;
     }
@@ -442,12 +454,12 @@ public abstract class _Cruise extends BaseDataObject {
         return this.updateDate;
     }
 
-    public void setValidated(BigDecimal validated) {
+    public void setValidated(Integer validated) {
         beforePropertyWrite("validated", this.validated, validated);
         this.validated = validated;
     }
 
-    public BigDecimal getValidated() {
+    public Integer getValidated() {
         beforePropertyRead("validated");
         return this.validated;
     }
@@ -729,6 +741,8 @@ public abstract class _Cruise extends BaseDataObject {
                 return this.routePending;
             case "routePrivate":
                 return this.routePrivate;
+            case "shape":
+                return this.shape;
             case "shipStop":
                 return this.shipStop;
             case "storageCapacity":
@@ -797,19 +811,19 @@ public abstract class _Cruise extends BaseDataObject {
                 this.arrivalDate = (LocalDateTime)val;
                 break;
             case "autonomy":
-                this.autonomy = (BigDecimal)val;
+                this.autonomy = (Integer)val;
                 break;
             case "cooperations":
-                this.cooperations = (BigDecimal)val;
+                this.cooperations = (Integer)val;
                 break;
             case "costMonth":
-                this.costMonth = (BigDecimal)val;
+                this.costMonth = (Integer)val;
                 break;
             case "costUnit":
-                this.costUnit = (BigDecimal)val;
+                this.costUnit = (Integer)val;
                 break;
             case "datesPending":
-                this.datesPending = (BigDecimal)val;
+                this.datesPending = (Integer)val;
                 break;
             case "demobDate":
                 this.demobDate = (LocalDateTime)val;
@@ -821,13 +835,13 @@ public abstract class _Cruise extends BaseDataObject {
                 this.description = (String)val;
                 break;
             case "embarkCapacity":
-                this.embarkCapacity = (BigDecimal)val;
+                this.embarkCapacity = (Integer)val;
                 break;
             case "flexibleRoute":
-                this.flexibleRoute = (BigDecimal)val;
+                this.flexibleRoute = (Integer)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "iioe2Id":
                 this.iioe2Id = (String)val;
@@ -851,7 +865,7 @@ public abstract class _Cruise extends BaseDataObject {
                 this.performanceComment = (String)val;
                 break;
             case "performanceIndex":
-                this.performanceIndex = (BigDecimal)val;
+                this.performanceIndex = (Double)val;
                 break;
             case "projectName":
                 this.projectName = (String)val;
@@ -863,25 +877,28 @@ public abstract class _Cruise extends BaseDataObject {
                 this.refTmp = (String)val;
                 break;
             case "routePending":
-                this.routePending = (BigDecimal)val;
+                this.routePending = (Integer)val;
                 break;
             case "routePrivate":
-                this.routePrivate = (BigDecimal)val;
+                this.routePrivate = (Integer)val;
+                break;
+            case "shape":
+                this.shape = (byte[])val;
                 break;
             case "shipStop":
-                this.shipStop = (BigDecimal)val;
+                this.shipStop = (Integer)val;
                 break;
             case "storageCapacity":
-                this.storageCapacity = (BigDecimal)val;
+                this.storageCapacity = (Integer)val;
                 break;
             case "unolsId":
-                this.unolsId = (BigDecimal)val;
+                this.unolsId = (Integer)val;
                 break;
             case "updateDate":
                 this.updateDate = (LocalDateTime)val;
                 break;
             case "validated":
-                this.validated = (BigDecimal)val;
+                this.validated = (Integer)val;
                 break;
             case "wkt":
                 this.wkt = (String)val;
@@ -987,6 +1004,7 @@ public abstract class _Cruise extends BaseDataObject {
         out.writeObject(this.refTmp);
         out.writeObject(this.routePending);
         out.writeObject(this.routePrivate);
+        out.writeObject(this.shape);
         out.writeObject(this.shipStop);
         out.writeObject(this.storageCapacity);
         out.writeObject(this.unolsId);
@@ -1019,17 +1037,17 @@ public abstract class _Cruise extends BaseDataObject {
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
         this.arrivalDate = (LocalDateTime)in.readObject();
-        this.autonomy = (BigDecimal)in.readObject();
-        this.cooperations = (BigDecimal)in.readObject();
-        this.costMonth = (BigDecimal)in.readObject();
-        this.costUnit = (BigDecimal)in.readObject();
-        this.datesPending = (BigDecimal)in.readObject();
+        this.autonomy = (Integer)in.readObject();
+        this.cooperations = (Integer)in.readObject();
+        this.costMonth = (Integer)in.readObject();
+        this.costUnit = (Integer)in.readObject();
+        this.datesPending = (Integer)in.readObject();
         this.demobDate = (LocalDateTime)in.readObject();
         this.departureDate = (LocalDateTime)in.readObject();
         this.description = (String)in.readObject();
-        this.embarkCapacity = (BigDecimal)in.readObject();
-        this.flexibleRoute = (BigDecimal)in.readObject();
-        this.id = (BigDecimal)in.readObject();
+        this.embarkCapacity = (Integer)in.readObject();
+        this.flexibleRoute = (Integer)in.readObject();
+        this.id = (Integer)in.readObject();
         this.iioe2Id = (String)in.readObject();
         this.insertDate = (LocalDateTime)in.readObject();
         this.mobDate = (LocalDateTime)in.readObject();
@@ -1037,17 +1055,18 @@ public abstract class _Cruise extends BaseDataObject {
         this.nameLong = (String)in.readObject();
         this.operationDate = (LocalDateTime)in.readObject();
         this.performanceComment = (String)in.readObject();
-        this.performanceIndex = (BigDecimal)in.readObject();
+        this.performanceIndex = (Double)in.readObject();
         this.projectName = (String)in.readObject();
         this.ref = (String)in.readObject();
         this.refTmp = (String)in.readObject();
-        this.routePending = (BigDecimal)in.readObject();
-        this.routePrivate = (BigDecimal)in.readObject();
-        this.shipStop = (BigDecimal)in.readObject();
-        this.storageCapacity = (BigDecimal)in.readObject();
-        this.unolsId = (BigDecimal)in.readObject();
+        this.routePending = (Integer)in.readObject();
+        this.routePrivate = (Integer)in.readObject();
+        this.shape = (byte[])in.readObject();
+        this.shipStop = (Integer)in.readObject();
+        this.storageCapacity = (Integer)in.readObject();
+        this.unolsId = (Integer)in.readObject();
         this.updateDate = (LocalDateTime)in.readObject();
-        this.validated = (BigDecimal)in.readObject();
+        this.validated = (Integer)in.readObject();
         this.wkt = (String)in.readObject();
         this.agency = in.readObject();
         this.cruiseClass = in.readObject();

@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
@@ -28,18 +27,18 @@ public abstract class _GtsInstrumentType extends BaseDataObject {
 
     public static final StringProperty<String> CODE = PropertyFactory.createString("code", String.class);
     public static final StringProperty<String> DETAILS = PropertyFactory.createString("details", String.class);
-    public static final NumericProperty<BigDecimal> FALLRATE_A = PropertyFactory.createNumeric("fallrateA", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> FALLRATE_B = PropertyFactory.createNumeric("fallrateB", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<Double> FALLRATE_A = PropertyFactory.createNumeric("fallrateA", Double.class);
+    public static final NumericProperty<Double> FALLRATE_B = PropertyFactory.createNumeric("fallrateB", Double.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final StringProperty<String> TYPE = PropertyFactory.createString("type", String.class);
     public static final ListProperty<Obs> OBSS = PropertyFactory.createList("obss", Obs.class);
     public static final ListProperty<PtfModel> PTF_MODELS = PropertyFactory.createList("ptfModels", PtfModel.class);
 
     protected String code;
     protected String details;
-    protected BigDecimal fallrateA;
-    protected BigDecimal fallrateB;
-    protected BigDecimal id;
+    protected Double fallrateA;
+    protected Double fallrateB;
+    protected Integer id;
     protected String type;
 
     protected Object obss;
@@ -65,32 +64,32 @@ public abstract class _GtsInstrumentType extends BaseDataObject {
         return this.details;
     }
 
-    public void setFallrateA(BigDecimal fallrateA) {
+    public void setFallrateA(Double fallrateA) {
         beforePropertyWrite("fallrateA", this.fallrateA, fallrateA);
         this.fallrateA = fallrateA;
     }
 
-    public BigDecimal getFallrateA() {
+    public Double getFallrateA() {
         beforePropertyRead("fallrateA");
         return this.fallrateA;
     }
 
-    public void setFallrateB(BigDecimal fallrateB) {
+    public void setFallrateB(Double fallrateB) {
         beforePropertyWrite("fallrateB", this.fallrateB, fallrateB);
         this.fallrateB = fallrateB;
     }
 
-    public BigDecimal getFallrateB() {
+    public Double getFallrateB() {
         beforePropertyRead("fallrateB");
         return this.fallrateB;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
@@ -173,13 +172,13 @@ public abstract class _GtsInstrumentType extends BaseDataObject {
                 this.details = (String)val;
                 break;
             case "fallrateA":
-                this.fallrateA = (BigDecimal)val;
+                this.fallrateA = (Double)val;
                 break;
             case "fallrateB":
-                this.fallrateB = (BigDecimal)val;
+                this.fallrateB = (Double)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "type":
                 this.type = (String)val;
@@ -221,9 +220,9 @@ public abstract class _GtsInstrumentType extends BaseDataObject {
         super.readState(in);
         this.code = (String)in.readObject();
         this.details = (String)in.readObject();
-        this.fallrateA = (BigDecimal)in.readObject();
-        this.fallrateB = (BigDecimal)in.readObject();
-        this.id = (BigDecimal)in.readObject();
+        this.fallrateA = (Double)in.readObject();
+        this.fallrateB = (Double)in.readObject();
+        this.id = (Integer)in.readObject();
         this.type = (String)in.readObject();
         this.obss = in.readObject();
         this.ptfModels = in.readObject();

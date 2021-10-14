@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -25,33 +24,33 @@ public abstract class _PtfConfig extends BaseDataObject {
     public static final String CYCLE_PK_COLUMN = "CYCLE";
     public static final String PTF_ID_PK_COLUMN = "PTF_ID";
 
-    public static final NumericProperty<BigDecimal> CYCLE = PropertyFactory.createNumeric("cycle", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> PTF_ID = PropertyFactory.createNumeric("ptfId", BigDecimal.class);
+    public static final NumericProperty<Integer> CYCLE = PropertyFactory.createNumeric("cycle", Integer.class);
+    public static final NumericProperty<Integer> PTF_ID = PropertyFactory.createNumeric("ptfId", Integer.class);
     public static final EntityProperty<Config> CONFIG = PropertyFactory.createEntity("config", Config.class);
     public static final EntityProperty<Ptf> PTF = PropertyFactory.createEntity("ptf", Ptf.class);
 
-    protected BigDecimal cycle;
-    protected BigDecimal ptfId;
+    protected Integer cycle;
+    protected Integer ptfId;
 
     protected Object config;
     protected Object ptf;
 
-    public void setCycle(BigDecimal cycle) {
+    public void setCycle(Integer cycle) {
         beforePropertyWrite("cycle", this.cycle, cycle);
         this.cycle = cycle;
     }
 
-    public BigDecimal getCycle() {
+    public Integer getCycle() {
         beforePropertyRead("cycle");
         return this.cycle;
     }
 
-    public void setPtfId(BigDecimal ptfId) {
+    public void setPtfId(Integer ptfId) {
         beforePropertyWrite("ptfId", this.ptfId, ptfId);
         this.ptfId = ptfId;
     }
 
-    public BigDecimal getPtfId() {
+    public Integer getPtfId() {
         beforePropertyRead("ptfId");
         return this.ptfId;
     }
@@ -100,10 +99,10 @@ public abstract class _PtfConfig extends BaseDataObject {
 
         switch (propName) {
             case "cycle":
-                this.cycle = (BigDecimal)val;
+                this.cycle = (Integer)val;
                 break;
             case "ptfId":
-                this.ptfId = (BigDecimal)val;
+                this.ptfId = (Integer)val;
                 break;
             case "config":
                 this.config = val;
@@ -136,8 +135,8 @@ public abstract class _PtfConfig extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.cycle = (BigDecimal)in.readObject();
-        this.ptfId = (BigDecimal)in.readObject();
+        this.cycle = (Integer)in.readObject();
+        this.ptfId = (Integer)in.readObject();
         this.config = in.readObject();
         this.ptf = in.readObject();
     }

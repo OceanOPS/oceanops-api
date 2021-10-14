@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.apache.cayenne.BaseDataObject;
@@ -18,6 +17,8 @@ import org.oceanops.api.orm.Ptf;
 import org.oceanops.api.orm.SensorExposure;
 import org.oceanops.api.orm.SensorLocation;
 import org.oceanops.api.orm.SensorModel;
+import org.oceanops.api.orm.SensorStatus;
+import org.oceanops.api.orm.TimePeriod;
 import org.oceanops.api.orm.Variable;
 import org.oceanops.api.orm.Weblink;
 
@@ -35,36 +36,33 @@ public abstract class _PtfVariable extends BaseDataObject {
 
     public static final StringProperty<String> ACCURACY = PropertyFactory.createString("accuracy", String.class);
     public static final StringProperty<String> AVERAGING_METHOD = PropertyFactory.createString("averagingMethod", String.class);
-    public static final NumericProperty<BigDecimal> AVERAGING_PERIOD = PropertyFactory.createNumeric("averagingPeriod", BigDecimal.class);
+    public static final NumericProperty<Double> AVERAGING_PERIOD = PropertyFactory.createNumeric("averagingPeriod", Double.class);
     public static final DateProperty<LocalDateTime> CALIB_DATE = PropertyFactory.createDate("calibDate", LocalDateTime.class);
     public static final DateProperty<LocalDateTime> CALIB_DATE_NEXT = PropertyFactory.createDate("calibDateNext", LocalDateTime.class);
     public static final StringProperty<String> COMMENTS = PropertyFactory.createString("comments", String.class);
     public static final StringProperty<String> CONTROL_SCHEDULE = PropertyFactory.createString("controlSchedule", String.class);
-    public static final NumericProperty<BigDecimal> DATA_PROCESSING_METHOD_ID = PropertyFactory.createNumeric("dataProcessingMethodId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> DISTANCE_X = PropertyFactory.createNumeric("distanceX", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> DISTANCE_Y = PropertyFactory.createNumeric("distanceY", BigDecimal.class);
+    public static final NumericProperty<Double> DISTANCE_X = PropertyFactory.createNumeric("distanceX", Double.class);
+    public static final NumericProperty<Double> DISTANCE_Y = PropertyFactory.createNumeric("distanceY", Double.class);
     public static final DateProperty<LocalDateTime> END_DATE = PropertyFactory.createDate("endDate", LocalDateTime.class);
     public static final DateProperty<LocalDateTime> FIRST_MEASURED = PropertyFactory.createDate("firstMeasured", LocalDateTime.class);
-    public static final NumericProperty<BigDecimal> HEIGHT = PropertyFactory.createNumeric("height", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> HEIGHT_SECONDARY_REF_LEVEL = PropertyFactory.createNumeric("heightSecondaryRefLevel", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<Double> HEIGHT = PropertyFactory.createNumeric("height", Double.class);
+    public static final NumericProperty<Double> HEIGHT_SECONDARY_REF_LEVEL = PropertyFactory.createNumeric("heightSecondaryRefLevel", Double.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final DateProperty<LocalDateTime> LAST_MEASURED = PropertyFactory.createDate("lastMeasured", LocalDateTime.class);
     public static final DateProperty<LocalDateTime> MANUF_DATE = PropertyFactory.createDate("manufDate", LocalDateTime.class);
-    public static final NumericProperty<BigDecimal> NB_OBS = PropertyFactory.createNumeric("nbObs", BigDecimal.class);
+    public static final NumericProperty<Integer> NB_OBS = PropertyFactory.createNumeric("nbObs", Integer.class);
     public static final StringProperty<String> OWNERSHIP = PropertyFactory.createString("ownership", String.class);
-    public static final NumericProperty<BigDecimal> PACKAGE_N = PropertyFactory.createNumeric("packageN", BigDecimal.class);
+    public static final NumericProperty<Integer> PACKAGE_N = PropertyFactory.createNumeric("packageN", Integer.class);
     public static final StringProperty<String> PRECISION = PropertyFactory.createString("precision", String.class);
     public static final StringProperty<String> RANGE = PropertyFactory.createString("range", String.class);
     public static final StringProperty<String> RESOLUTION = PropertyFactory.createString("resolution", String.class);
-    public static final NumericProperty<BigDecimal> SAMPLING_RATE = PropertyFactory.createNumeric("samplingRate", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> SAMPLING_RATE_TOTAL = PropertyFactory.createNumeric("samplingRateTotal", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> SENSOR_STATUS_ID = PropertyFactory.createNumeric("sensorStatusId", BigDecimal.class);
+    public static final StringProperty<String> SAMPLING_RATE = PropertyFactory.createString("samplingRate", String.class);
+    public static final StringProperty<String> SAMPLING_RATE_TOTAL = PropertyFactory.createString("samplingRateTotal", String.class);
     public static final StringProperty<String> SERIAL_NO = PropertyFactory.createString("serialNo", String.class);
-    public static final NumericProperty<BigDecimal> SERVICE_SCHEDULE_ID = PropertyFactory.createNumeric("serviceScheduleId", BigDecimal.class);
     public static final StringProperty<String> SIDE_INDICATOR = PropertyFactory.createString("sideIndicator", String.class);
     public static final DateProperty<LocalDateTime> START_DATE = PropertyFactory.createDate("startDate", LocalDateTime.class);
-    public static final NumericProperty<BigDecimal> TIME_OFFSET = PropertyFactory.createNumeric("timeOffset", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> VARIABLE_ID = PropertyFactory.createNumeric("variableId", BigDecimal.class);
+    public static final NumericProperty<Double> TIME_OFFSET = PropertyFactory.createNumeric("timeOffset", Double.class);
+    public static final NumericProperty<Integer> VARIABLE_ID = PropertyFactory.createNumeric("variableId", Integer.class);
     public static final EntityProperty<DataProcessingMethod> DATA_PROCESSING_METHOD = PropertyFactory.createEntity("dataProcessingMethod", DataProcessingMethod.class);
     public static final EntityProperty<Weblink> MANUF_WEBLINK = PropertyFactory.createEntity("manufWeblink", Weblink.class);
     public static final EntityProperty<Program> PROGRAM = PropertyFactory.createEntity("program", Program.class);
@@ -72,41 +70,40 @@ public abstract class _PtfVariable extends BaseDataObject {
     public static final EntityProperty<SensorExposure> SENSOR_EXPOSURE = PropertyFactory.createEntity("sensorExposure", SensorExposure.class);
     public static final EntityProperty<SensorLocation> SENSOR_LOCATION = PropertyFactory.createEntity("sensorLocation", SensorLocation.class);
     public static final EntityProperty<SensorModel> SENSOR_MODEL = PropertyFactory.createEntity("sensorModel", SensorModel.class);
+    public static final EntityProperty<SensorStatus> SENSOR_STATUS = PropertyFactory.createEntity("sensorStatus", SensorStatus.class);
+    public static final EntityProperty<TimePeriod> SERVICE_SCHEDULE = PropertyFactory.createEntity("serviceSchedule", TimePeriod.class);
     public static final EntityProperty<Variable> VARIABLE = PropertyFactory.createEntity("variable", Variable.class);
     public static final EntityProperty<Weblink> WEBLINK = PropertyFactory.createEntity("weblink", Weblink.class);
 
     protected String accuracy;
     protected String averagingMethod;
-    protected BigDecimal averagingPeriod;
+    protected Double averagingPeriod;
     protected LocalDateTime calibDate;
     protected LocalDateTime calibDateNext;
     protected String comments;
     protected String controlSchedule;
-    protected BigDecimal dataProcessingMethodId;
-    protected BigDecimal distanceX;
-    protected BigDecimal distanceY;
+    protected Double distanceX;
+    protected Double distanceY;
     protected LocalDateTime endDate;
     protected LocalDateTime firstMeasured;
-    protected BigDecimal height;
-    protected BigDecimal heightSecondaryRefLevel;
-    protected BigDecimal id;
+    protected Double height;
+    protected Double heightSecondaryRefLevel;
+    protected Integer id;
     protected LocalDateTime lastMeasured;
     protected LocalDateTime manufDate;
-    protected BigDecimal nbObs;
+    protected Integer nbObs;
     protected String ownership;
-    protected BigDecimal packageN;
+    protected Integer packageN;
     protected String precision;
     protected String range;
     protected String resolution;
-    protected BigDecimal samplingRate;
-    protected BigDecimal samplingRateTotal;
-    protected BigDecimal sensorStatusId;
+    protected String samplingRate;
+    protected String samplingRateTotal;
     protected String serialNo;
-    protected BigDecimal serviceScheduleId;
     protected String sideIndicator;
     protected LocalDateTime startDate;
-    protected BigDecimal timeOffset;
-    protected BigDecimal variableId;
+    protected Double timeOffset;
+    protected Integer variableId;
 
     protected Object dataProcessingMethod;
     protected Object manufWeblink;
@@ -115,6 +112,8 @@ public abstract class _PtfVariable extends BaseDataObject {
     protected Object sensorExposure;
     protected Object sensorLocation;
     protected Object sensorModel;
+    protected Object sensorStatus;
+    protected Object serviceSchedule;
     protected Object variable;
     protected Object weblink;
 
@@ -138,12 +137,12 @@ public abstract class _PtfVariable extends BaseDataObject {
         return this.averagingMethod;
     }
 
-    public void setAveragingPeriod(BigDecimal averagingPeriod) {
+    public void setAveragingPeriod(Double averagingPeriod) {
         beforePropertyWrite("averagingPeriod", this.averagingPeriod, averagingPeriod);
         this.averagingPeriod = averagingPeriod;
     }
 
-    public BigDecimal getAveragingPeriod() {
+    public Double getAveragingPeriod() {
         beforePropertyRead("averagingPeriod");
         return this.averagingPeriod;
     }
@@ -188,32 +187,22 @@ public abstract class _PtfVariable extends BaseDataObject {
         return this.controlSchedule;
     }
 
-    public void setDataProcessingMethodId(BigDecimal dataProcessingMethodId) {
-        beforePropertyWrite("dataProcessingMethodId", this.dataProcessingMethodId, dataProcessingMethodId);
-        this.dataProcessingMethodId = dataProcessingMethodId;
-    }
-
-    public BigDecimal getDataProcessingMethodId() {
-        beforePropertyRead("dataProcessingMethodId");
-        return this.dataProcessingMethodId;
-    }
-
-    public void setDistanceX(BigDecimal distanceX) {
+    public void setDistanceX(Double distanceX) {
         beforePropertyWrite("distanceX", this.distanceX, distanceX);
         this.distanceX = distanceX;
     }
 
-    public BigDecimal getDistanceX() {
+    public Double getDistanceX() {
         beforePropertyRead("distanceX");
         return this.distanceX;
     }
 
-    public void setDistanceY(BigDecimal distanceY) {
+    public void setDistanceY(Double distanceY) {
         beforePropertyWrite("distanceY", this.distanceY, distanceY);
         this.distanceY = distanceY;
     }
 
-    public BigDecimal getDistanceY() {
+    public Double getDistanceY() {
         beforePropertyRead("distanceY");
         return this.distanceY;
     }
@@ -238,32 +227,32 @@ public abstract class _PtfVariable extends BaseDataObject {
         return this.firstMeasured;
     }
 
-    public void setHeight(BigDecimal height) {
+    public void setHeight(Double height) {
         beforePropertyWrite("height", this.height, height);
         this.height = height;
     }
 
-    public BigDecimal getHeight() {
+    public Double getHeight() {
         beforePropertyRead("height");
         return this.height;
     }
 
-    public void setHeightSecondaryRefLevel(BigDecimal heightSecondaryRefLevel) {
+    public void setHeightSecondaryRefLevel(Double heightSecondaryRefLevel) {
         beforePropertyWrite("heightSecondaryRefLevel", this.heightSecondaryRefLevel, heightSecondaryRefLevel);
         this.heightSecondaryRefLevel = heightSecondaryRefLevel;
     }
 
-    public BigDecimal getHeightSecondaryRefLevel() {
+    public Double getHeightSecondaryRefLevel() {
         beforePropertyRead("heightSecondaryRefLevel");
         return this.heightSecondaryRefLevel;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
@@ -288,12 +277,12 @@ public abstract class _PtfVariable extends BaseDataObject {
         return this.manufDate;
     }
 
-    public void setNbObs(BigDecimal nbObs) {
+    public void setNbObs(Integer nbObs) {
         beforePropertyWrite("nbObs", this.nbObs, nbObs);
         this.nbObs = nbObs;
     }
 
-    public BigDecimal getNbObs() {
+    public Integer getNbObs() {
         beforePropertyRead("nbObs");
         return this.nbObs;
     }
@@ -308,12 +297,12 @@ public abstract class _PtfVariable extends BaseDataObject {
         return this.ownership;
     }
 
-    public void setPackageN(BigDecimal packageN) {
+    public void setPackageN(Integer packageN) {
         beforePropertyWrite("packageN", this.packageN, packageN);
         this.packageN = packageN;
     }
 
-    public BigDecimal getPackageN() {
+    public Integer getPackageN() {
         beforePropertyRead("packageN");
         return this.packageN;
     }
@@ -348,34 +337,24 @@ public abstract class _PtfVariable extends BaseDataObject {
         return this.resolution;
     }
 
-    public void setSamplingRate(BigDecimal samplingRate) {
+    public void setSamplingRate(String samplingRate) {
         beforePropertyWrite("samplingRate", this.samplingRate, samplingRate);
         this.samplingRate = samplingRate;
     }
 
-    public BigDecimal getSamplingRate() {
+    public String getSamplingRate() {
         beforePropertyRead("samplingRate");
         return this.samplingRate;
     }
 
-    public void setSamplingRateTotal(BigDecimal samplingRateTotal) {
+    public void setSamplingRateTotal(String samplingRateTotal) {
         beforePropertyWrite("samplingRateTotal", this.samplingRateTotal, samplingRateTotal);
         this.samplingRateTotal = samplingRateTotal;
     }
 
-    public BigDecimal getSamplingRateTotal() {
+    public String getSamplingRateTotal() {
         beforePropertyRead("samplingRateTotal");
         return this.samplingRateTotal;
-    }
-
-    public void setSensorStatusId(BigDecimal sensorStatusId) {
-        beforePropertyWrite("sensorStatusId", this.sensorStatusId, sensorStatusId);
-        this.sensorStatusId = sensorStatusId;
-    }
-
-    public BigDecimal getSensorStatusId() {
-        beforePropertyRead("sensorStatusId");
-        return this.sensorStatusId;
     }
 
     public void setSerialNo(String serialNo) {
@@ -386,16 +365,6 @@ public abstract class _PtfVariable extends BaseDataObject {
     public String getSerialNo() {
         beforePropertyRead("serialNo");
         return this.serialNo;
-    }
-
-    public void setServiceScheduleId(BigDecimal serviceScheduleId) {
-        beforePropertyWrite("serviceScheduleId", this.serviceScheduleId, serviceScheduleId);
-        this.serviceScheduleId = serviceScheduleId;
-    }
-
-    public BigDecimal getServiceScheduleId() {
-        beforePropertyRead("serviceScheduleId");
-        return this.serviceScheduleId;
     }
 
     public void setSideIndicator(String sideIndicator) {
@@ -418,22 +387,22 @@ public abstract class _PtfVariable extends BaseDataObject {
         return this.startDate;
     }
 
-    public void setTimeOffset(BigDecimal timeOffset) {
+    public void setTimeOffset(Double timeOffset) {
         beforePropertyWrite("timeOffset", this.timeOffset, timeOffset);
         this.timeOffset = timeOffset;
     }
 
-    public BigDecimal getTimeOffset() {
+    public Double getTimeOffset() {
         beforePropertyRead("timeOffset");
         return this.timeOffset;
     }
 
-    public void setVariableId(BigDecimal variableId) {
+    public void setVariableId(Integer variableId) {
         beforePropertyWrite("variableId", this.variableId, variableId);
         this.variableId = variableId;
     }
 
-    public BigDecimal getVariableId() {
+    public Integer getVariableId() {
         beforePropertyRead("variableId");
         return this.variableId;
     }
@@ -494,6 +463,22 @@ public abstract class _PtfVariable extends BaseDataObject {
         return (SensorModel)readProperty("sensorModel");
     }
 
+    public void setSensorStatus(SensorStatus sensorStatus) {
+        setToOneTarget("sensorStatus", sensorStatus, true);
+    }
+
+    public SensorStatus getSensorStatus() {
+        return (SensorStatus)readProperty("sensorStatus");
+    }
+
+    public void setServiceSchedule(TimePeriod serviceSchedule) {
+        setToOneTarget("serviceSchedule", serviceSchedule, true);
+    }
+
+    public TimePeriod getServiceSchedule() {
+        return (TimePeriod)readProperty("serviceSchedule");
+    }
+
     public void setVariable(Variable variable) {
         setToOneTarget("variable", variable, true);
     }
@@ -531,8 +516,6 @@ public abstract class _PtfVariable extends BaseDataObject {
                 return this.comments;
             case "controlSchedule":
                 return this.controlSchedule;
-            case "dataProcessingMethodId":
-                return this.dataProcessingMethodId;
             case "distanceX":
                 return this.distanceX;
             case "distanceY":
@@ -567,12 +550,8 @@ public abstract class _PtfVariable extends BaseDataObject {
                 return this.samplingRate;
             case "samplingRateTotal":
                 return this.samplingRateTotal;
-            case "sensorStatusId":
-                return this.sensorStatusId;
             case "serialNo":
                 return this.serialNo;
-            case "serviceScheduleId":
-                return this.serviceScheduleId;
             case "sideIndicator":
                 return this.sideIndicator;
             case "startDate":
@@ -595,6 +574,10 @@ public abstract class _PtfVariable extends BaseDataObject {
                 return this.sensorLocation;
             case "sensorModel":
                 return this.sensorModel;
+            case "sensorStatus":
+                return this.sensorStatus;
+            case "serviceSchedule":
+                return this.serviceSchedule;
             case "variable":
                 return this.variable;
             case "weblink":
@@ -618,7 +601,7 @@ public abstract class _PtfVariable extends BaseDataObject {
                 this.averagingMethod = (String)val;
                 break;
             case "averagingPeriod":
-                this.averagingPeriod = (BigDecimal)val;
+                this.averagingPeriod = (Double)val;
                 break;
             case "calibDate":
                 this.calibDate = (LocalDateTime)val;
@@ -632,14 +615,11 @@ public abstract class _PtfVariable extends BaseDataObject {
             case "controlSchedule":
                 this.controlSchedule = (String)val;
                 break;
-            case "dataProcessingMethodId":
-                this.dataProcessingMethodId = (BigDecimal)val;
-                break;
             case "distanceX":
-                this.distanceX = (BigDecimal)val;
+                this.distanceX = (Double)val;
                 break;
             case "distanceY":
-                this.distanceY = (BigDecimal)val;
+                this.distanceY = (Double)val;
                 break;
             case "endDate":
                 this.endDate = (LocalDateTime)val;
@@ -648,13 +628,13 @@ public abstract class _PtfVariable extends BaseDataObject {
                 this.firstMeasured = (LocalDateTime)val;
                 break;
             case "height":
-                this.height = (BigDecimal)val;
+                this.height = (Double)val;
                 break;
             case "heightSecondaryRefLevel":
-                this.heightSecondaryRefLevel = (BigDecimal)val;
+                this.heightSecondaryRefLevel = (Double)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "lastMeasured":
                 this.lastMeasured = (LocalDateTime)val;
@@ -663,13 +643,13 @@ public abstract class _PtfVariable extends BaseDataObject {
                 this.manufDate = (LocalDateTime)val;
                 break;
             case "nbObs":
-                this.nbObs = (BigDecimal)val;
+                this.nbObs = (Integer)val;
                 break;
             case "ownership":
                 this.ownership = (String)val;
                 break;
             case "packageN":
-                this.packageN = (BigDecimal)val;
+                this.packageN = (Integer)val;
                 break;
             case "precision":
                 this.precision = (String)val;
@@ -681,19 +661,13 @@ public abstract class _PtfVariable extends BaseDataObject {
                 this.resolution = (String)val;
                 break;
             case "samplingRate":
-                this.samplingRate = (BigDecimal)val;
+                this.samplingRate = (String)val;
                 break;
             case "samplingRateTotal":
-                this.samplingRateTotal = (BigDecimal)val;
-                break;
-            case "sensorStatusId":
-                this.sensorStatusId = (BigDecimal)val;
+                this.samplingRateTotal = (String)val;
                 break;
             case "serialNo":
                 this.serialNo = (String)val;
-                break;
-            case "serviceScheduleId":
-                this.serviceScheduleId = (BigDecimal)val;
                 break;
             case "sideIndicator":
                 this.sideIndicator = (String)val;
@@ -702,10 +676,10 @@ public abstract class _PtfVariable extends BaseDataObject {
                 this.startDate = (LocalDateTime)val;
                 break;
             case "timeOffset":
-                this.timeOffset = (BigDecimal)val;
+                this.timeOffset = (Double)val;
                 break;
             case "variableId":
-                this.variableId = (BigDecimal)val;
+                this.variableId = (Integer)val;
                 break;
             case "dataProcessingMethod":
                 this.dataProcessingMethod = val;
@@ -727,6 +701,12 @@ public abstract class _PtfVariable extends BaseDataObject {
                 break;
             case "sensorModel":
                 this.sensorModel = val;
+                break;
+            case "sensorStatus":
+                this.sensorStatus = val;
+                break;
+            case "serviceSchedule":
+                this.serviceSchedule = val;
                 break;
             case "variable":
                 this.variable = val;
@@ -757,7 +737,6 @@ public abstract class _PtfVariable extends BaseDataObject {
         out.writeObject(this.calibDateNext);
         out.writeObject(this.comments);
         out.writeObject(this.controlSchedule);
-        out.writeObject(this.dataProcessingMethodId);
         out.writeObject(this.distanceX);
         out.writeObject(this.distanceY);
         out.writeObject(this.endDate);
@@ -775,9 +754,7 @@ public abstract class _PtfVariable extends BaseDataObject {
         out.writeObject(this.resolution);
         out.writeObject(this.samplingRate);
         out.writeObject(this.samplingRateTotal);
-        out.writeObject(this.sensorStatusId);
         out.writeObject(this.serialNo);
-        out.writeObject(this.serviceScheduleId);
         out.writeObject(this.sideIndicator);
         out.writeObject(this.startDate);
         out.writeObject(this.timeOffset);
@@ -789,6 +766,8 @@ public abstract class _PtfVariable extends BaseDataObject {
         out.writeObject(this.sensorExposure);
         out.writeObject(this.sensorLocation);
         out.writeObject(this.sensorModel);
+        out.writeObject(this.sensorStatus);
+        out.writeObject(this.serviceSchedule);
         out.writeObject(this.variable);
         out.writeObject(this.weblink);
     }
@@ -798,36 +777,33 @@ public abstract class _PtfVariable extends BaseDataObject {
         super.readState(in);
         this.accuracy = (String)in.readObject();
         this.averagingMethod = (String)in.readObject();
-        this.averagingPeriod = (BigDecimal)in.readObject();
+        this.averagingPeriod = (Double)in.readObject();
         this.calibDate = (LocalDateTime)in.readObject();
         this.calibDateNext = (LocalDateTime)in.readObject();
         this.comments = (String)in.readObject();
         this.controlSchedule = (String)in.readObject();
-        this.dataProcessingMethodId = (BigDecimal)in.readObject();
-        this.distanceX = (BigDecimal)in.readObject();
-        this.distanceY = (BigDecimal)in.readObject();
+        this.distanceX = (Double)in.readObject();
+        this.distanceY = (Double)in.readObject();
         this.endDate = (LocalDateTime)in.readObject();
         this.firstMeasured = (LocalDateTime)in.readObject();
-        this.height = (BigDecimal)in.readObject();
-        this.heightSecondaryRefLevel = (BigDecimal)in.readObject();
-        this.id = (BigDecimal)in.readObject();
+        this.height = (Double)in.readObject();
+        this.heightSecondaryRefLevel = (Double)in.readObject();
+        this.id = (Integer)in.readObject();
         this.lastMeasured = (LocalDateTime)in.readObject();
         this.manufDate = (LocalDateTime)in.readObject();
-        this.nbObs = (BigDecimal)in.readObject();
+        this.nbObs = (Integer)in.readObject();
         this.ownership = (String)in.readObject();
-        this.packageN = (BigDecimal)in.readObject();
+        this.packageN = (Integer)in.readObject();
         this.precision = (String)in.readObject();
         this.range = (String)in.readObject();
         this.resolution = (String)in.readObject();
-        this.samplingRate = (BigDecimal)in.readObject();
-        this.samplingRateTotal = (BigDecimal)in.readObject();
-        this.sensorStatusId = (BigDecimal)in.readObject();
+        this.samplingRate = (String)in.readObject();
+        this.samplingRateTotal = (String)in.readObject();
         this.serialNo = (String)in.readObject();
-        this.serviceScheduleId = (BigDecimal)in.readObject();
         this.sideIndicator = (String)in.readObject();
         this.startDate = (LocalDateTime)in.readObject();
-        this.timeOffset = (BigDecimal)in.readObject();
-        this.variableId = (BigDecimal)in.readObject();
+        this.timeOffset = (Double)in.readObject();
+        this.variableId = (Integer)in.readObject();
         this.dataProcessingMethod = in.readObject();
         this.manufWeblink = in.readObject();
         this.program = in.readObject();
@@ -835,6 +811,8 @@ public abstract class _PtfVariable extends BaseDataObject {
         this.sensorExposure = in.readObject();
         this.sensorLocation = in.readObject();
         this.sensorModel = in.readObject();
+        this.sensorStatus = in.readObject();
+        this.serviceSchedule = in.readObject();
         this.variable = in.readObject();
         this.weblink = in.readObject();
     }

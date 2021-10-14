@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
@@ -13,6 +12,8 @@ import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
 import org.oceanops.api.orm.CruiseVariable;
+import org.oceanops.api.orm.Indicator;
+import org.oceanops.api.orm.ObsFishingvesselFishydata;
 import org.oceanops.api.orm.PtfVariable;
 import org.oceanops.api.orm.QcFeedback;
 import org.oceanops.api.orm.QcFeedbackVariable;
@@ -37,7 +38,7 @@ public abstract class _Variable extends BaseDataObject {
     public static final StringProperty<String> CF_REF = PropertyFactory.createString("cfRef", String.class);
     public static final StringProperty<String> DATA_SOURCE = PropertyFactory.createString("dataSource", String.class);
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final StringProperty<String> IMOS_REF = PropertyFactory.createString("imosRef", String.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> NAME_ALTER = PropertyFactory.createString("nameAlter", String.class);
@@ -46,6 +47,8 @@ public abstract class _Variable extends BaseDataObject {
     public static final StringProperty<String> QC_REF = PropertyFactory.createString("qcRef", String.class);
     public static final StringProperty<String> WIGOS_CODE = PropertyFactory.createString("wigosCode", String.class);
     public static final ListProperty<CruiseVariable> CRUISE_VARIABLES = PropertyFactory.createList("cruiseVariables", CruiseVariable.class);
+    public static final ListProperty<Indicator> INDICATORS = PropertyFactory.createList("indicators", Indicator.class);
+    public static final ListProperty<ObsFishingvesselFishydata> OBS_FISHINGVESSEL_FISHYDATAS = PropertyFactory.createList("obsFishingvesselFishydatas", ObsFishingvesselFishydata.class);
     public static final ListProperty<PtfVariable> PTF_VARIABLES = PropertyFactory.createList("ptfVariables", PtfVariable.class);
     public static final ListProperty<QcFeedbackVariable> QC_FEEDBACK_VARIABLES = PropertyFactory.createList("qcFeedbackVariables", QcFeedbackVariable.class);
     public static final ListProperty<QcFeedback> QC_FEEDBACKS = PropertyFactory.createList("qcFeedbacks", QcFeedback.class);
@@ -58,7 +61,7 @@ public abstract class _Variable extends BaseDataObject {
     protected String cfRef;
     protected String dataSource;
     protected String description;
-    protected BigDecimal id;
+    protected Integer id;
     protected String imosRef;
     protected String name;
     protected String nameAlter;
@@ -68,6 +71,8 @@ public abstract class _Variable extends BaseDataObject {
     protected String wigosCode;
 
     protected Object cruiseVariables;
+    protected Object indicators;
+    protected Object obsFishingvesselFishydatas;
     protected Object ptfVariables;
     protected Object qcFeedbackVariables;
     protected Object qcFeedbacks;
@@ -125,12 +130,12 @@ public abstract class _Variable extends BaseDataObject {
         return this.description;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
@@ -216,6 +221,32 @@ public abstract class _Variable extends BaseDataObject {
     @SuppressWarnings("unchecked")
     public List<CruiseVariable> getCruiseVariables() {
         return (List<CruiseVariable>)readProperty("cruiseVariables");
+    }
+
+    public void addToIndicators(Indicator obj) {
+        addToManyTarget("indicators", obj, true);
+    }
+
+    public void removeFromIndicators(Indicator obj) {
+        removeToManyTarget("indicators", obj, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Indicator> getIndicators() {
+        return (List<Indicator>)readProperty("indicators");
+    }
+
+    public void addToObsFishingvesselFishydatas(ObsFishingvesselFishydata obj) {
+        addToManyTarget("obsFishingvesselFishydatas", obj, true);
+    }
+
+    public void removeFromObsFishingvesselFishydatas(ObsFishingvesselFishydata obj) {
+        removeToManyTarget("obsFishingvesselFishydatas", obj, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<ObsFishingvesselFishydata> getObsFishingvesselFishydatas() {
+        return (List<ObsFishingvesselFishydata>)readProperty("obsFishingvesselFishydatas");
     }
 
     public void addToPtfVariables(PtfVariable obj) {
@@ -326,6 +357,10 @@ public abstract class _Variable extends BaseDataObject {
                 return this.wigosCode;
             case "cruiseVariables":
                 return this.cruiseVariables;
+            case "indicators":
+                return this.indicators;
+            case "obsFishingvesselFishydatas":
+                return this.obsFishingvesselFishydatas;
             case "ptfVariables":
                 return this.ptfVariables;
             case "qcFeedbackVariables":
@@ -366,7 +401,7 @@ public abstract class _Variable extends BaseDataObject {
                 this.description = (String)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "imosRef":
                 this.imosRef = (String)val;
@@ -391,6 +426,12 @@ public abstract class _Variable extends BaseDataObject {
                 break;
             case "cruiseVariables":
                 this.cruiseVariables = val;
+                break;
+            case "indicators":
+                this.indicators = val;
+                break;
+            case "obsFishingvesselFishydatas":
+                this.obsFishingvesselFishydatas = val;
                 break;
             case "ptfVariables":
                 this.ptfVariables = val;
@@ -440,6 +481,8 @@ public abstract class _Variable extends BaseDataObject {
         out.writeObject(this.qcRef);
         out.writeObject(this.wigosCode);
         out.writeObject(this.cruiseVariables);
+        out.writeObject(this.indicators);
+        out.writeObject(this.obsFishingvesselFishydatas);
         out.writeObject(this.ptfVariables);
         out.writeObject(this.qcFeedbackVariables);
         out.writeObject(this.qcFeedbacks);
@@ -456,7 +499,7 @@ public abstract class _Variable extends BaseDataObject {
         this.cfRef = (String)in.readObject();
         this.dataSource = (String)in.readObject();
         this.description = (String)in.readObject();
-        this.id = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
         this.imosRef = (String)in.readObject();
         this.name = (String)in.readObject();
         this.nameAlter = (String)in.readObject();
@@ -465,6 +508,8 @@ public abstract class _Variable extends BaseDataObject {
         this.qcRef = (String)in.readObject();
         this.wigosCode = (String)in.readObject();
         this.cruiseVariables = in.readObject();
+        this.indicators = in.readObject();
+        this.obsFishingvesselFishydatas = in.readObject();
         this.ptfVariables = in.readObject();
         this.qcFeedbackVariables = in.readObject();
         this.qcFeedbacks = in.readObject();

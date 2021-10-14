@@ -1,21 +1,86 @@
 package org.oceanops.api.orm;
 
+import org.apache.cayenne.DataRow;
+import org.apache.cayenne.QueryResponse;
+import org.apache.cayenne.query.ProcedureQuery;
 import org.oceanops.api.orm.auto._Ptf;
 
+import io.agrest.annotation.AgAttribute;
+import io.agrest.annotation.AgRelationship;
 import io.agrest.annotation.ClientReadable;
 
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
 @ClientReadable(id = true, value = {
 	"id","ref","refParent","endingDate","lastUpdate","activityCriterion","closureCriterion","validated","description","eNotificationDate","program",
 	"retrieval","ptfDepl","ptfHardware","ptfIdentifiers","endingCause","telecom","trackingSystem","backupTrackingSystem","ptfStatus","dataStatus","ptfModel",
-	"backupTelecom","insertDate","updateDate","nokReason","age","ageWeight","name","ptfAutomation","ptfInspection","ptfSoftware", "latestObs", 
-	"ptfPtfStatuses", "agencyPtfs", "networkPtfs", "lines", "wmos", "ptfVariables", "contactPtfRoles"})
+	"backupTelecom","insertDate","updateDate","nokReason","age","name","ptfAutomation","ptfSoftware", "latestObs", 
+	"ptfPtfStatuses", "agencyPtfs", "networkPtfs", "lines", "wmos", "ptfVariables", "contactPtfRoles", "ptfBatchStatus", "batchRequestRef"})
 public class Ptf extends _Ptf {
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Age sub-class
+	 */
+	public class Age {
+		private Ptf ptf;
+
+		public Age(Ptf ptf){
+			this.ptf = ptf;
+		}
+
+		@SuppressWarnings("unchecked")
+		@AgAttribute
+		public double getAgeWeight(){
+			Double age = null;
+			ProcedureQuery query = new ProcedureQuery("PTF_INFO.GET_PTF_AGE_WEIGHT");
+			query.addParameter("PTF_ID", this.ptf.getId().intValue());
+
+			QueryResponse result = this.ptf.getObjectContext().performGenericQuery(query);
+			if(result.next() && result.isList()){
+				List<DataRow> objList = (List<DataRow>) result.currentList();
+				Iterator<DataRow> it = objList.iterator();
+				DataRow row = it.next();
+				age = (Double)row.get("AGE_WEIGHT");
+			}
+			return age;
+		}
+
+		@SuppressWarnings("unchecked")
+		@AgAttribute
+		public double getAge(){
+			Double age = null;
+			ProcedureQuery query = new ProcedureQuery("PTF_INFO.GET_PTF_AGE");
+			query.addParameter("PTF_ID", this.ptf.getId().intValue());
+
+			QueryResponse result = this.ptf.getObjectContext().performGenericQuery(query);
+			if(result.next() && result.isList()){
+				List<DataRow> objList = (List<DataRow>) result.currentList();
+				Iterator<DataRow> it = objList.iterator();
+				DataRow row = it.next();
+				age = (Double)row.get("AGE");
+			}
+			return age;
+		}
+	}
+
+	/**
+	 * Age relationship. Heavy to compute, so only including it as a relationship to optimise default query performance.
+	 * @return an Age object, including age and AgeWeight properties
+	 */
+	@AgRelationship
+	public Age getAge(){
+		return new Age(this);
+	}
+	
+
+	/**
+	 * Returns the latest record of Wmo (most recent start date)
+	 * @return a Wmo record
+	 */
 	public String getLatestWmo() {
 		String result = null;
 		List<Wmo> wmos = this.getWmos();

@@ -3,11 +3,9 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
-import org.apache.cayenne.exp.property.NumericIdProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.oceanops.api.orm.Agency;
@@ -24,26 +22,25 @@ public abstract class _ProgramAgency extends BaseDataObject {
 
     private static final long serialVersionUID = 1L;
 
-    public static final NumericIdProperty<BigDecimal> ID_PK_PROPERTY = PropertyFactory.createNumericId("ID", "ProgramAgency", BigDecimal.class);
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final NumericProperty<BigDecimal> LEAD = PropertyFactory.createNumeric("lead", BigDecimal.class);
+    public static final NumericProperty<Integer> LEAD = PropertyFactory.createNumeric("lead", Integer.class);
     public static final EntityProperty<Agency> AGENCY = PropertyFactory.createEntity("agency", Agency.class);
     public static final EntityProperty<Program> PROGRAM = PropertyFactory.createEntity("program", Program.class);
     public static final EntityProperty<AgencyRole> ROLE = PropertyFactory.createEntity("role", AgencyRole.class);
 
-    protected BigDecimal lead;
+    protected Integer lead;
 
     protected Object agency;
     protected Object program;
     protected Object role;
 
-    public void setLead(BigDecimal lead) {
+    public void setLead(Integer lead) {
         beforePropertyWrite("lead", this.lead, lead);
         this.lead = lead;
     }
 
-    public BigDecimal getLead() {
+    public Integer getLead() {
         beforePropertyRead("lead");
         return this.lead;
     }
@@ -100,7 +97,7 @@ public abstract class _ProgramAgency extends BaseDataObject {
 
         switch (propName) {
             case "lead":
-                this.lead = (BigDecimal)val;
+                this.lead = (Integer)val;
                 break;
             case "agency":
                 this.agency = val;
@@ -136,7 +133,7 @@ public abstract class _ProgramAgency extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.lead = (BigDecimal)in.readObject();
+        this.lead = (Integer)in.readObject();
         this.agency = in.readObject();
         this.program = in.readObject();
         this.role = in.readObject();

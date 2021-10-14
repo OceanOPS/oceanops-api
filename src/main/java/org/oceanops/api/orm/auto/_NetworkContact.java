@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -27,47 +26,47 @@ public abstract class _NetworkContact extends BaseDataObject {
     public static final String NETWORK_ID_PK_COLUMN = "NETWORK_ID";
     public static final String ROLE_ID_PK_COLUMN = "ROLE_ID";
 
-    public static final NumericProperty<BigDecimal> CONTACT_ID = PropertyFactory.createNumeric("contactId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> NETWORK_ID = PropertyFactory.createNumeric("networkId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> ROLE_ID = PropertyFactory.createNumeric("roleId", BigDecimal.class);
+    public static final NumericProperty<Integer> CONTACT_ID = PropertyFactory.createNumeric("contactId", Integer.class);
+    public static final NumericProperty<Integer> NETWORK_ID = PropertyFactory.createNumeric("networkId", Integer.class);
+    public static final NumericProperty<Integer> ROLE_ID = PropertyFactory.createNumeric("roleId", Integer.class);
     public static final EntityProperty<Contact> CONTACT = PropertyFactory.createEntity("contact", Contact.class);
     public static final EntityProperty<Network> NETWORK = PropertyFactory.createEntity("network", Network.class);
     public static final EntityProperty<Role> ROLE = PropertyFactory.createEntity("role", Role.class);
 
-    protected BigDecimal contactId;
-    protected BigDecimal networkId;
-    protected BigDecimal roleId;
+    protected Integer contactId;
+    protected Integer networkId;
+    protected Integer roleId;
 
     protected Object contact;
     protected Object network;
     protected Object role;
 
-    public void setContactId(BigDecimal contactId) {
+    public void setContactId(Integer contactId) {
         beforePropertyWrite("contactId", this.contactId, contactId);
         this.contactId = contactId;
     }
 
-    public BigDecimal getContactId() {
+    public Integer getContactId() {
         beforePropertyRead("contactId");
         return this.contactId;
     }
 
-    public void setNetworkId(BigDecimal networkId) {
+    public void setNetworkId(Integer networkId) {
         beforePropertyWrite("networkId", this.networkId, networkId);
         this.networkId = networkId;
     }
 
-    public BigDecimal getNetworkId() {
+    public Integer getNetworkId() {
         beforePropertyRead("networkId");
         return this.networkId;
     }
 
-    public void setRoleId(BigDecimal roleId) {
+    public void setRoleId(Integer roleId) {
         beforePropertyWrite("roleId", this.roleId, roleId);
         this.roleId = roleId;
     }
 
-    public BigDecimal getRoleId() {
+    public Integer getRoleId() {
         beforePropertyRead("roleId");
         return this.roleId;
     }
@@ -128,13 +127,13 @@ public abstract class _NetworkContact extends BaseDataObject {
 
         switch (propName) {
             case "contactId":
-                this.contactId = (BigDecimal)val;
+                this.contactId = (Integer)val;
                 break;
             case "networkId":
-                this.networkId = (BigDecimal)val;
+                this.networkId = (Integer)val;
                 break;
             case "roleId":
-                this.roleId = (BigDecimal)val;
+                this.roleId = (Integer)val;
                 break;
             case "contact":
                 this.contact = val;
@@ -172,9 +171,9 @@ public abstract class _NetworkContact extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.contactId = (BigDecimal)in.readObject();
-        this.networkId = (BigDecimal)in.readObject();
-        this.roleId = (BigDecimal)in.readObject();
+        this.contactId = (Integer)in.readObject();
+        this.networkId = (Integer)in.readObject();
+        this.roleId = (Integer)in.readObject();
         this.contact = in.readObject();
         this.network = in.readObject();
         this.role = in.readObject();

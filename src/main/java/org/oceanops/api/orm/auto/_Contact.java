@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -52,15 +51,16 @@ public abstract class _Contact extends BaseDataObject {
     public static final String ID_PK_COLUMN = "ID";
 
     public static final StringProperty<String> ADDRESS = PropertyFactory.createString("address", String.class);
-    public static final NumericProperty<BigDecimal> ADMIN = PropertyFactory.createNumeric("admin", BigDecimal.class);
+    public static final NumericProperty<Integer> ADMIN = PropertyFactory.createNumeric("admin", Integer.class);
     public static final StringProperty<String> EMAIL = PropertyFactory.createString("email", String.class);
     public static final StringProperty<String> EMAIL2 = PropertyFactory.createString("email2", String.class);
     public static final StringProperty<String> EMAIL_PUBLIC = PropertyFactory.createString("emailPublic", String.class);
     public static final StringProperty<String> FAX = PropertyFactory.createString("fax", String.class);
     public static final StringProperty<String> FIRST_NAME = PropertyFactory.createString("firstName", String.class);
-    public static final NumericProperty<BigDecimal> GREETINGS = PropertyFactory.createNumeric("greetings", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> IS_PRIVATE = PropertyFactory.createNumeric("isPrivate", BigDecimal.class);
+    public static final NumericProperty<Integer> GDPR_APPROVED = PropertyFactory.createNumeric("gdprApproved", Integer.class);
+    public static final NumericProperty<Integer> GREETINGS = PropertyFactory.createNumeric("greetings", Integer.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
+    public static final NumericProperty<Integer> IS_PRIVATE = PropertyFactory.createNumeric("isPrivate", Integer.class);
     public static final StringProperty<String> LAST_NAME = PropertyFactory.createString("lastName", String.class);
     public static final DateProperty<LocalDateTime> LAST_UPDATE = PropertyFactory.createDate("lastUpdate", LocalDateTime.class);
     public static final StringProperty<String> LOGIN = PropertyFactory.createString("login", String.class);
@@ -95,15 +95,16 @@ public abstract class _Contact extends BaseDataObject {
     public static final EntityProperty<Weblink> WEBLINK = PropertyFactory.createEntity("weblink", Weblink.class);
 
     protected String address;
-    protected BigDecimal admin;
+    protected Integer admin;
     protected String email;
     protected String email2;
     protected String emailPublic;
     protected String fax;
     protected String firstName;
-    protected BigDecimal greetings;
-    protected BigDecimal id;
-    protected BigDecimal isPrivate;
+    protected Integer gdprApproved;
+    protected Integer greetings;
+    protected Integer id;
+    protected Integer isPrivate;
     protected String lastName;
     protected LocalDateTime lastUpdate;
     protected String login;
@@ -148,12 +149,12 @@ public abstract class _Contact extends BaseDataObject {
         return this.address;
     }
 
-    public void setAdmin(BigDecimal admin) {
+    public void setAdmin(Integer admin) {
         beforePropertyWrite("admin", this.admin, admin);
         this.admin = admin;
     }
 
-    public BigDecimal getAdmin() {
+    public Integer getAdmin() {
         beforePropertyRead("admin");
         return this.admin;
     }
@@ -208,32 +209,42 @@ public abstract class _Contact extends BaseDataObject {
         return this.firstName;
     }
 
-    public void setGreetings(BigDecimal greetings) {
+    public void setGdprApproved(Integer gdprApproved) {
+        beforePropertyWrite("gdprApproved", this.gdprApproved, gdprApproved);
+        this.gdprApproved = gdprApproved;
+    }
+
+    public Integer getGdprApproved() {
+        beforePropertyRead("gdprApproved");
+        return this.gdprApproved;
+    }
+
+    public void setGreetings(Integer greetings) {
         beforePropertyWrite("greetings", this.greetings, greetings);
         this.greetings = greetings;
     }
 
-    public BigDecimal getGreetings() {
+    public Integer getGreetings() {
         beforePropertyRead("greetings");
         return this.greetings;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
 
-    public void setIsPrivate(BigDecimal isPrivate) {
+    public void setIsPrivate(Integer isPrivate) {
         beforePropertyWrite("isPrivate", this.isPrivate, isPrivate);
         this.isPrivate = isPrivate;
     }
 
-    public BigDecimal getIsPrivate() {
+    public Integer getIsPrivate() {
         beforePropertyRead("isPrivate");
         return this.isPrivate;
     }
@@ -626,6 +637,8 @@ public abstract class _Contact extends BaseDataObject {
                 return this.fax;
             case "firstName":
                 return this.firstName;
+            case "gdprApproved":
+                return this.gdprApproved;
             case "greetings":
                 return this.greetings;
             case "id":
@@ -712,7 +725,7 @@ public abstract class _Contact extends BaseDataObject {
                 this.address = (String)val;
                 break;
             case "admin":
-                this.admin = (BigDecimal)val;
+                this.admin = (Integer)val;
                 break;
             case "email":
                 this.email = (String)val;
@@ -729,14 +742,17 @@ public abstract class _Contact extends BaseDataObject {
             case "firstName":
                 this.firstName = (String)val;
                 break;
+            case "gdprApproved":
+                this.gdprApproved = (Integer)val;
+                break;
             case "greetings":
-                this.greetings = (BigDecimal)val;
+                this.greetings = (Integer)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "isPrivate":
-                this.isPrivate = (BigDecimal)val;
+                this.isPrivate = (Integer)val;
                 break;
             case "lastName":
                 this.lastName = (String)val;
@@ -857,6 +873,7 @@ public abstract class _Contact extends BaseDataObject {
         out.writeObject(this.emailPublic);
         out.writeObject(this.fax);
         out.writeObject(this.firstName);
+        out.writeObject(this.gdprApproved);
         out.writeObject(this.greetings);
         out.writeObject(this.id);
         out.writeObject(this.isPrivate);
@@ -898,15 +915,16 @@ public abstract class _Contact extends BaseDataObject {
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
         this.address = (String)in.readObject();
-        this.admin = (BigDecimal)in.readObject();
+        this.admin = (Integer)in.readObject();
         this.email = (String)in.readObject();
         this.email2 = (String)in.readObject();
         this.emailPublic = (String)in.readObject();
         this.fax = (String)in.readObject();
         this.firstName = (String)in.readObject();
-        this.greetings = (BigDecimal)in.readObject();
-        this.id = (BigDecimal)in.readObject();
-        this.isPrivate = (BigDecimal)in.readObject();
+        this.gdprApproved = (Integer)in.readObject();
+        this.greetings = (Integer)in.readObject();
+        this.id = (Integer)in.readObject();
+        this.isPrivate = (Integer)in.readObject();
         this.lastName = (String)in.readObject();
         this.lastUpdate = (LocalDateTime)in.readObject();
         this.login = (String)in.readObject();

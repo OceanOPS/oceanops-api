@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -32,7 +31,7 @@ public abstract class _Survey extends BaseDataObject {
 
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
     public static final DateProperty<LocalDateTime> END_DATE = PropertyFactory.createDate("endDate", LocalDateTime.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> NAME_SHORT = PropertyFactory.createString("nameShort", String.class);
     public static final DateProperty<LocalDateTime> START_DATE = PropertyFactory.createDate("startDate", LocalDateTime.class);
@@ -42,7 +41,7 @@ public abstract class _Survey extends BaseDataObject {
 
     protected String description;
     protected LocalDateTime endDate;
-    protected BigDecimal id;
+    protected Integer id;
     protected String name;
     protected String nameShort;
     protected LocalDateTime startDate;
@@ -71,12 +70,12 @@ public abstract class _Survey extends BaseDataObject {
         return this.endDate;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
@@ -189,7 +188,7 @@ public abstract class _Survey extends BaseDataObject {
                 this.endDate = (LocalDateTime)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "name":
                 this.name = (String)val;
@@ -241,7 +240,7 @@ public abstract class _Survey extends BaseDataObject {
         super.readState(in);
         this.description = (String)in.readObject();
         this.endDate = (LocalDateTime)in.readObject();
-        this.id = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
         this.name = (String)in.readObject();
         this.nameShort = (String)in.readObject();
         this.startDate = (LocalDateTime)in.readObject();

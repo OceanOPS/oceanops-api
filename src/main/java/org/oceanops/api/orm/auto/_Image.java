@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -44,9 +43,9 @@ public abstract class _Image extends BaseDataObject {
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
     public static final StringProperty<String> FILENAME = PropertyFactory.createString("filename", String.class);
     public static final StringProperty<String> HTML_ALT = PropertyFactory.createString("htmlAlt", String.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
-    public static final NumericProperty<BigDecimal> STORY_ID = PropertyFactory.createNumeric("storyId", BigDecimal.class);
+    public static final NumericProperty<Integer> STORY_ID = PropertyFactory.createNumeric("storyId", Integer.class);
     public static final StringProperty<String> TAGS = PropertyFactory.createString("tags", String.class);
     public static final StringProperty<String> URL = PropertyFactory.createString("url", String.class);
     public static final ListProperty<Agency> AGENCIES = PropertyFactory.createList("agencies", Agency.class);
@@ -67,9 +66,9 @@ public abstract class _Image extends BaseDataObject {
     protected String description;
     protected String filename;
     protected String htmlAlt;
-    protected BigDecimal id;
+    protected Integer id;
     protected String name;
-    protected BigDecimal storyId;
+    protected Integer storyId;
     protected String tags;
     protected String url;
 
@@ -145,12 +144,12 @@ public abstract class _Image extends BaseDataObject {
         return this.htmlAlt;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
@@ -165,12 +164,12 @@ public abstract class _Image extends BaseDataObject {
         return this.name;
     }
 
-    public void setStoryId(BigDecimal storyId) {
+    public void setStoryId(Integer storyId) {
         beforePropertyWrite("storyId", this.storyId, storyId);
         this.storyId = storyId;
     }
 
-    public BigDecimal getStoryId() {
+    public Integer getStoryId() {
         beforePropertyRead("storyId");
         return this.storyId;
     }
@@ -395,13 +394,13 @@ public abstract class _Image extends BaseDataObject {
                 this.htmlAlt = (String)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "name":
                 this.name = (String)val;
                 break;
             case "storyId":
-                this.storyId = (BigDecimal)val;
+                this.storyId = (Integer)val;
                 break;
             case "tags":
                 this.tags = (String)val;
@@ -491,9 +490,9 @@ public abstract class _Image extends BaseDataObject {
         this.description = (String)in.readObject();
         this.filename = (String)in.readObject();
         this.htmlAlt = (String)in.readObject();
-        this.id = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
         this.name = (String)in.readObject();
-        this.storyId = (BigDecimal)in.readObject();
+        this.storyId = (Integer)in.readObject();
         this.tags = (String)in.readObject();
         this.url = (String)in.readObject();
         this.agencies = in.readObject();

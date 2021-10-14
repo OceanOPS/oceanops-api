@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -27,19 +26,19 @@ public abstract class _SensorModelSensorType extends BaseDataObject {
     public static final String SENSOR_TYPE_ID_PK_COLUMN = "SENSOR_TYPE_ID";
 
     public static final StringProperty<String> ACCURACY = PropertyFactory.createString("accuracy", String.class);
-    public static final NumericProperty<BigDecimal> HIGH = PropertyFactory.createNumeric("high", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> LOW = PropertyFactory.createNumeric("low", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> SENSOR_MODEL_ID = PropertyFactory.createNumeric("sensorModelId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> SENSOR_TYPE_ID = PropertyFactory.createNumeric("sensorTypeId", BigDecimal.class);
+    public static final NumericProperty<Integer> HIGH = PropertyFactory.createNumeric("high", Integer.class);
+    public static final NumericProperty<Integer> LOW = PropertyFactory.createNumeric("low", Integer.class);
+    public static final NumericProperty<Integer> SENSOR_MODEL_ID = PropertyFactory.createNumeric("sensorModelId", Integer.class);
+    public static final NumericProperty<Integer> SENSOR_TYPE_ID = PropertyFactory.createNumeric("sensorTypeId", Integer.class);
     public static final StringProperty<String> UNIT = PropertyFactory.createString("unit", String.class);
     public static final EntityProperty<SensorModel> SENSOR_MODEL = PropertyFactory.createEntity("sensorModel", SensorModel.class);
     public static final EntityProperty<SensorType> SENSOR_TYPE = PropertyFactory.createEntity("sensorType", SensorType.class);
 
     protected String accuracy;
-    protected BigDecimal high;
-    protected BigDecimal low;
-    protected BigDecimal sensorModelId;
-    protected BigDecimal sensorTypeId;
+    protected Integer high;
+    protected Integer low;
+    protected Integer sensorModelId;
+    protected Integer sensorTypeId;
     protected String unit;
 
     protected Object sensorModel;
@@ -55,42 +54,42 @@ public abstract class _SensorModelSensorType extends BaseDataObject {
         return this.accuracy;
     }
 
-    public void setHigh(BigDecimal high) {
+    public void setHigh(Integer high) {
         beforePropertyWrite("high", this.high, high);
         this.high = high;
     }
 
-    public BigDecimal getHigh() {
+    public Integer getHigh() {
         beforePropertyRead("high");
         return this.high;
     }
 
-    public void setLow(BigDecimal low) {
+    public void setLow(Integer low) {
         beforePropertyWrite("low", this.low, low);
         this.low = low;
     }
 
-    public BigDecimal getLow() {
+    public Integer getLow() {
         beforePropertyRead("low");
         return this.low;
     }
 
-    public void setSensorModelId(BigDecimal sensorModelId) {
+    public void setSensorModelId(Integer sensorModelId) {
         beforePropertyWrite("sensorModelId", this.sensorModelId, sensorModelId);
         this.sensorModelId = sensorModelId;
     }
 
-    public BigDecimal getSensorModelId() {
+    public Integer getSensorModelId() {
         beforePropertyRead("sensorModelId");
         return this.sensorModelId;
     }
 
-    public void setSensorTypeId(BigDecimal sensorTypeId) {
+    public void setSensorTypeId(Integer sensorTypeId) {
         beforePropertyWrite("sensorTypeId", this.sensorTypeId, sensorTypeId);
         this.sensorTypeId = sensorTypeId;
     }
 
-    public BigDecimal getSensorTypeId() {
+    public Integer getSensorTypeId() {
         beforePropertyRead("sensorTypeId");
         return this.sensorTypeId;
     }
@@ -160,16 +159,16 @@ public abstract class _SensorModelSensorType extends BaseDataObject {
                 this.accuracy = (String)val;
                 break;
             case "high":
-                this.high = (BigDecimal)val;
+                this.high = (Integer)val;
                 break;
             case "low":
-                this.low = (BigDecimal)val;
+                this.low = (Integer)val;
                 break;
             case "sensorModelId":
-                this.sensorModelId = (BigDecimal)val;
+                this.sensorModelId = (Integer)val;
                 break;
             case "sensorTypeId":
-                this.sensorTypeId = (BigDecimal)val;
+                this.sensorTypeId = (Integer)val;
                 break;
             case "unit":
                 this.unit = (String)val;
@@ -210,10 +209,10 @@ public abstract class _SensorModelSensorType extends BaseDataObject {
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
         this.accuracy = (String)in.readObject();
-        this.high = (BigDecimal)in.readObject();
-        this.low = (BigDecimal)in.readObject();
-        this.sensorModelId = (BigDecimal)in.readObject();
-        this.sensorTypeId = (BigDecimal)in.readObject();
+        this.high = (Integer)in.readObject();
+        this.low = (Integer)in.readObject();
+        this.sensorModelId = (Integer)in.readObject();
+        this.sensorTypeId = (Integer)in.readObject();
         this.unit = (String)in.readObject();
         this.sensorModel = in.readObject();
         this.sensorType = in.readObject();

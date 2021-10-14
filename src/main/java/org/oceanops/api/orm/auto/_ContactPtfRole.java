@@ -3,11 +3,9 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
-import org.apache.cayenne.exp.property.NumericIdProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.oceanops.api.orm.Contact;
@@ -24,26 +22,25 @@ public abstract class _ContactPtfRole extends BaseDataObject {
 
     private static final long serialVersionUID = 1L;
 
-    public static final NumericIdProperty<BigDecimal> ID_PK_PROPERTY = PropertyFactory.createNumericId("ID", "ContactPtfRole", BigDecimal.class);
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final NumericProperty<BigDecimal> SENSOR_MODEL_ID = PropertyFactory.createNumeric("sensorModelId", BigDecimal.class);
+    public static final NumericProperty<Integer> SENSOR_MODEL_ID = PropertyFactory.createNumeric("sensorModelId", Integer.class);
     public static final EntityProperty<Contact> CONTACT = PropertyFactory.createEntity("contact", Contact.class);
     public static final EntityProperty<Ptf> PTF = PropertyFactory.createEntity("ptf", Ptf.class);
     public static final EntityProperty<Role> ROLE = PropertyFactory.createEntity("role", Role.class);
 
-    protected BigDecimal sensorModelId;
+    protected Integer sensorModelId;
 
     protected Object contact;
     protected Object ptf;
     protected Object role;
 
-    public void setSensorModelId(BigDecimal sensorModelId) {
+    public void setSensorModelId(Integer sensorModelId) {
         beforePropertyWrite("sensorModelId", this.sensorModelId, sensorModelId);
         this.sensorModelId = sensorModelId;
     }
 
-    public BigDecimal getSensorModelId() {
+    public Integer getSensorModelId() {
         beforePropertyRead("sensorModelId");
         return this.sensorModelId;
     }
@@ -100,7 +97,7 @@ public abstract class _ContactPtfRole extends BaseDataObject {
 
         switch (propName) {
             case "sensorModelId":
-                this.sensorModelId = (BigDecimal)val;
+                this.sensorModelId = (Integer)val;
                 break;
             case "contact":
                 this.contact = val;
@@ -136,7 +133,7 @@ public abstract class _ContactPtfRole extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.sensorModelId = (BigDecimal)in.readObject();
+        this.sensorModelId = (Integer)in.readObject();
         this.contact = in.readObject();
         this.ptf = in.readObject();
         this.role = in.readObject();

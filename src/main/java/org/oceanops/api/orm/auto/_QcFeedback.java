@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -42,15 +41,15 @@ public abstract class _QcFeedback extends BaseDataObject {
 
     public static final StringProperty<String> ANSWER = PropertyFactory.createString("answer", String.class);
     public static final StringProperty<String> CORRECTION_TYPE = PropertyFactory.createString("correctionType", String.class);
-    public static final NumericProperty<BigDecimal> CORRECTION_VALUE = PropertyFactory.createNumeric("correctionValue", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> DONE = PropertyFactory.createNumeric("done", BigDecimal.class);
+    public static final NumericProperty<Double> CORRECTION_VALUE = PropertyFactory.createNumeric("correctionValue", Double.class);
+    public static final NumericProperty<Integer> DONE = PropertyFactory.createNumeric("done", Integer.class);
     public static final StringProperty<String> EMAIL = PropertyFactory.createString("email", String.class);
     public static final DateProperty<LocalDateTime> END_DATE = PropertyFactory.createDate("endDate", LocalDateTime.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final StringProperty<String> MESSAGE = PropertyFactory.createString("message", String.class);
     public static final StringProperty<String> ORIGIN = PropertyFactory.createString("origin", String.class);
     public static final StringProperty<String> RECIPIENTS = PropertyFactory.createString("recipients", String.class);
-    public static final NumericProperty<BigDecimal> SENT = PropertyFactory.createNumeric("sent", BigDecimal.class);
+    public static final NumericProperty<Integer> SENT = PropertyFactory.createNumeric("sent", Integer.class);
     public static final DateProperty<LocalDateTime> START_DATE = PropertyFactory.createDate("startDate", LocalDateTime.class);
     public static final StringProperty<String> SUBJECT = PropertyFactory.createString("subject", String.class);
     public static final StringProperty<String> WMO = PropertyFactory.createString("wmo", String.class);
@@ -71,15 +70,15 @@ public abstract class _QcFeedback extends BaseDataObject {
 
     protected String answer;
     protected String correctionType;
-    protected BigDecimal correctionValue;
-    protected BigDecimal done;
+    protected Double correctionValue;
+    protected Integer done;
     protected String email;
     protected LocalDateTime endDate;
-    protected BigDecimal id;
+    protected Integer id;
     protected String message;
     protected String origin;
     protected String recipients;
-    protected BigDecimal sent;
+    protected Integer sent;
     protected LocalDateTime startDate;
     protected String subject;
     protected String wmo;
@@ -119,22 +118,22 @@ public abstract class _QcFeedback extends BaseDataObject {
         return this.correctionType;
     }
 
-    public void setCorrectionValue(BigDecimal correctionValue) {
+    public void setCorrectionValue(Double correctionValue) {
         beforePropertyWrite("correctionValue", this.correctionValue, correctionValue);
         this.correctionValue = correctionValue;
     }
 
-    public BigDecimal getCorrectionValue() {
+    public Double getCorrectionValue() {
         beforePropertyRead("correctionValue");
         return this.correctionValue;
     }
 
-    public void setDone(BigDecimal done) {
+    public void setDone(Integer done) {
         beforePropertyWrite("done", this.done, done);
         this.done = done;
     }
 
-    public BigDecimal getDone() {
+    public Integer getDone() {
         beforePropertyRead("done");
         return this.done;
     }
@@ -159,12 +158,12 @@ public abstract class _QcFeedback extends BaseDataObject {
         return this.endDate;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
@@ -199,12 +198,12 @@ public abstract class _QcFeedback extends BaseDataObject {
         return this.recipients;
     }
 
-    public void setSent(BigDecimal sent) {
+    public void setSent(Integer sent) {
         beforePropertyWrite("sent", this.sent, sent);
         this.sent = sent;
     }
 
-    public BigDecimal getSent() {
+    public Integer getSent() {
         beforePropertyRead("sent");
         return this.sent;
     }
@@ -443,10 +442,10 @@ public abstract class _QcFeedback extends BaseDataObject {
                 this.correctionType = (String)val;
                 break;
             case "correctionValue":
-                this.correctionValue = (BigDecimal)val;
+                this.correctionValue = (Double)val;
                 break;
             case "done":
-                this.done = (BigDecimal)val;
+                this.done = (Integer)val;
                 break;
             case "email":
                 this.email = (String)val;
@@ -455,7 +454,7 @@ public abstract class _QcFeedback extends BaseDataObject {
                 this.endDate = (LocalDateTime)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "message":
                 this.message = (String)val;
@@ -467,7 +466,7 @@ public abstract class _QcFeedback extends BaseDataObject {
                 this.recipients = (String)val;
                 break;
             case "sent":
-                this.sent = (BigDecimal)val;
+                this.sent = (Integer)val;
                 break;
             case "startDate":
                 this.startDate = (LocalDateTime)val;
@@ -571,15 +570,15 @@ public abstract class _QcFeedback extends BaseDataObject {
         super.readState(in);
         this.answer = (String)in.readObject();
         this.correctionType = (String)in.readObject();
-        this.correctionValue = (BigDecimal)in.readObject();
-        this.done = (BigDecimal)in.readObject();
+        this.correctionValue = (Double)in.readObject();
+        this.done = (Integer)in.readObject();
         this.email = (String)in.readObject();
         this.endDate = (LocalDateTime)in.readObject();
-        this.id = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
         this.message = (String)in.readObject();
         this.origin = (String)in.readObject();
         this.recipients = (String)in.readObject();
-        this.sent = (BigDecimal)in.readObject();
+        this.sent = (Integer)in.readObject();
         this.startDate = (LocalDateTime)in.readObject();
         this.subject = (String)in.readObject();
         this.wmo = (String)in.readObject();

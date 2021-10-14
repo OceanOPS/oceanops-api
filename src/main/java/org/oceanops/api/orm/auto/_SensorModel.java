@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
@@ -35,20 +34,20 @@ public abstract class _SensorModel extends BaseDataObject {
     public static final String ID_PK_COLUMN = "ID";
 
     public static final StringProperty<String> ACCURACY = PropertyFactory.createString("accuracy", String.class);
-    public static final NumericProperty<BigDecimal> AXES_NO = PropertyFactory.createNumeric("axesNo", BigDecimal.class);
+    public static final NumericProperty<Integer> AXES_NO = PropertyFactory.createNumeric("axesNo", Integer.class);
     public static final StringProperty<String> BODC_ID = PropertyFactory.createString("bodcId", String.class);
-    public static final NumericProperty<BigDecimal> CALIB_FREQUENCY = PropertyFactory.createNumeric("calibFrequency", BigDecimal.class);
+    public static final NumericProperty<Integer> CALIB_FREQUENCY = PropertyFactory.createNumeric("calibFrequency", Integer.class);
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> NAME_LONG = PropertyFactory.createString("nameLong", String.class);
     public static final StringProperty<String> NAME_SHORT = PropertyFactory.createString("nameShort", String.class);
     public static final StringProperty<String> ORIGINAL_DATASET = PropertyFactory.createString("originalDataset", String.class);
     public static final StringProperty<String> PRECISION = PropertyFactory.createString("precision", String.class);
     public static final StringProperty<String> RANGE = PropertyFactory.createString("range", String.class);
-    public static final NumericProperty<BigDecimal> RESOLUTION = PropertyFactory.createNumeric("resolution", BigDecimal.class);
+    public static final NumericProperty<Integer> RESOLUTION = PropertyFactory.createNumeric("resolution", Integer.class);
     public static final BaseProperty<byte[]> SPEC = PropertyFactory.createBase("spec", byte[].class);
-    public static final NumericProperty<BigDecimal> YEARLY_DRIFT = PropertyFactory.createNumeric("yearlyDrift", BigDecimal.class);
+    public static final NumericProperty<Integer> YEARLY_DRIFT = PropertyFactory.createNumeric("yearlyDrift", Integer.class);
     public static final EntityProperty<Agency> AGENCY = PropertyFactory.createEntity("agency", Agency.class);
     public static final ListProperty<CruiseSensorModel> CRUISE_SENSOR_MODELS = PropertyFactory.createList("cruiseSensorModels", CruiseSensorModel.class);
     public static final EntityProperty<Image> IMAGE = PropertyFactory.createEntity("image", Image.class);
@@ -59,20 +58,20 @@ public abstract class _SensorModel extends BaseDataObject {
     public static final EntityProperty<Weblink> WEBLINK = PropertyFactory.createEntity("weblink", Weblink.class);
 
     protected String accuracy;
-    protected BigDecimal axesNo;
+    protected Integer axesNo;
     protected String bodcId;
-    protected BigDecimal calibFrequency;
+    protected Integer calibFrequency;
     protected String description;
-    protected BigDecimal id;
+    protected Integer id;
     protected String name;
     protected String nameLong;
     protected String nameShort;
     protected String originalDataset;
     protected String precision;
     protected String range;
-    protected BigDecimal resolution;
+    protected Integer resolution;
     protected byte[] spec;
-    protected BigDecimal yearlyDrift;
+    protected Integer yearlyDrift;
 
     protected Object agency;
     protected Object cruiseSensorModels;
@@ -93,12 +92,12 @@ public abstract class _SensorModel extends BaseDataObject {
         return this.accuracy;
     }
 
-    public void setAxesNo(BigDecimal axesNo) {
+    public void setAxesNo(Integer axesNo) {
         beforePropertyWrite("axesNo", this.axesNo, axesNo);
         this.axesNo = axesNo;
     }
 
-    public BigDecimal getAxesNo() {
+    public Integer getAxesNo() {
         beforePropertyRead("axesNo");
         return this.axesNo;
     }
@@ -113,12 +112,12 @@ public abstract class _SensorModel extends BaseDataObject {
         return this.bodcId;
     }
 
-    public void setCalibFrequency(BigDecimal calibFrequency) {
+    public void setCalibFrequency(Integer calibFrequency) {
         beforePropertyWrite("calibFrequency", this.calibFrequency, calibFrequency);
         this.calibFrequency = calibFrequency;
     }
 
-    public BigDecimal getCalibFrequency() {
+    public Integer getCalibFrequency() {
         beforePropertyRead("calibFrequency");
         return this.calibFrequency;
     }
@@ -133,12 +132,12 @@ public abstract class _SensorModel extends BaseDataObject {
         return this.description;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
@@ -203,12 +202,12 @@ public abstract class _SensorModel extends BaseDataObject {
         return this.range;
     }
 
-    public void setResolution(BigDecimal resolution) {
+    public void setResolution(Integer resolution) {
         beforePropertyWrite("resolution", this.resolution, resolution);
         this.resolution = resolution;
     }
 
-    public BigDecimal getResolution() {
+    public Integer getResolution() {
         beforePropertyRead("resolution");
         return this.resolution;
     }
@@ -223,12 +222,12 @@ public abstract class _SensorModel extends BaseDataObject {
         return this.spec;
     }
 
-    public void setYearlyDrift(BigDecimal yearlyDrift) {
+    public void setYearlyDrift(Integer yearlyDrift) {
         beforePropertyWrite("yearlyDrift", this.yearlyDrift, yearlyDrift);
         this.yearlyDrift = yearlyDrift;
     }
 
-    public BigDecimal getYearlyDrift() {
+    public Integer getYearlyDrift() {
         beforePropertyRead("yearlyDrift");
         return this.yearlyDrift;
     }
@@ -391,19 +390,19 @@ public abstract class _SensorModel extends BaseDataObject {
                 this.accuracy = (String)val;
                 break;
             case "axesNo":
-                this.axesNo = (BigDecimal)val;
+                this.axesNo = (Integer)val;
                 break;
             case "bodcId":
                 this.bodcId = (String)val;
                 break;
             case "calibFrequency":
-                this.calibFrequency = (BigDecimal)val;
+                this.calibFrequency = (Integer)val;
                 break;
             case "description":
                 this.description = (String)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "name":
                 this.name = (String)val;
@@ -424,13 +423,13 @@ public abstract class _SensorModel extends BaseDataObject {
                 this.range = (String)val;
                 break;
             case "resolution":
-                this.resolution = (BigDecimal)val;
+                this.resolution = (Integer)val;
                 break;
             case "spec":
                 this.spec = (byte[])val;
                 break;
             case "yearlyDrift":
-                this.yearlyDrift = (BigDecimal)val;
+                this.yearlyDrift = (Integer)val;
                 break;
             case "agency":
                 this.agency = val;
@@ -501,20 +500,20 @@ public abstract class _SensorModel extends BaseDataObject {
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
         this.accuracy = (String)in.readObject();
-        this.axesNo = (BigDecimal)in.readObject();
+        this.axesNo = (Integer)in.readObject();
         this.bodcId = (String)in.readObject();
-        this.calibFrequency = (BigDecimal)in.readObject();
+        this.calibFrequency = (Integer)in.readObject();
         this.description = (String)in.readObject();
-        this.id = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
         this.name = (String)in.readObject();
         this.nameLong = (String)in.readObject();
         this.nameShort = (String)in.readObject();
         this.originalDataset = (String)in.readObject();
         this.precision = (String)in.readObject();
         this.range = (String)in.readObject();
-        this.resolution = (BigDecimal)in.readObject();
+        this.resolution = (Integer)in.readObject();
         this.spec = (byte[])in.readObject();
-        this.yearlyDrift = (BigDecimal)in.readObject();
+        this.yearlyDrift = (Integer)in.readObject();
         this.agency = in.readObject();
         this.cruiseSensorModels = in.readObject();
         this.image = in.readObject();

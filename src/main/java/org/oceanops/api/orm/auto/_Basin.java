@@ -3,10 +3,10 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
+import org.apache.cayenne.exp.property.BaseProperty;
 import org.apache.cayenne.exp.property.EntityProperty;
 import org.apache.cayenne.exp.property.ListProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
@@ -27,33 +27,37 @@ public abstract class _Basin extends BaseDataObject {
 
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> NAME_LONG = PropertyFactory.createString("nameLong", String.class);
     public static final StringProperty<String> NAME_SHORT = PropertyFactory.createString("nameShort", String.class);
     public static final StringProperty<String> OCEAN = PropertyFactory.createString("ocean", String.class);
-    public static final NumericProperty<BigDecimal> RANK = PropertyFactory.createNumeric("rank", BigDecimal.class);
+    public static final NumericProperty<Integer> RANK = PropertyFactory.createNumeric("rank", Integer.class);
+    public static final BaseProperty<byte[]> SHAPE = PropertyFactory.createBase("shape", byte[].class);
     public static final StringProperty<String> SUBOCEAN = PropertyFactory.createString("subocean", String.class);
+    public static final StringProperty<String> WKT = PropertyFactory.createString("wkt", String.class);
     public static final EntityProperty<BasinType> BASIN_TYPE = PropertyFactory.createEntity("basinType", BasinType.class);
     public static final ListProperty<CountryCommitment> COUNTRY_COMMITMENTS = PropertyFactory.createList("countryCommitments", CountryCommitment.class);
 
-    protected BigDecimal id;
+    protected Integer id;
     protected String name;
     protected String nameLong;
     protected String nameShort;
     protected String ocean;
-    protected BigDecimal rank;
+    protected Integer rank;
+    protected byte[] shape;
     protected String subocean;
+    protected String wkt;
 
     protected Object basinType;
     protected Object countryCommitments;
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
@@ -98,14 +102,24 @@ public abstract class _Basin extends BaseDataObject {
         return this.ocean;
     }
 
-    public void setRank(BigDecimal rank) {
+    public void setRank(Integer rank) {
         beforePropertyWrite("rank", this.rank, rank);
         this.rank = rank;
     }
 
-    public BigDecimal getRank() {
+    public Integer getRank() {
         beforePropertyRead("rank");
         return this.rank;
+    }
+
+    public void setShape(byte[] shape) {
+        beforePropertyWrite("shape", this.shape, shape);
+        this.shape = shape;
+    }
+
+    public byte[] getShape() {
+        beforePropertyRead("shape");
+        return this.shape;
     }
 
     public void setSubocean(String subocean) {
@@ -116,6 +130,16 @@ public abstract class _Basin extends BaseDataObject {
     public String getSubocean() {
         beforePropertyRead("subocean");
         return this.subocean;
+    }
+
+    public void setWkt(String wkt) {
+        beforePropertyWrite("wkt", this.wkt, wkt);
+        this.wkt = wkt;
+    }
+
+    public String getWkt() {
+        beforePropertyRead("wkt");
+        return this.wkt;
     }
 
     public void setBasinType(BasinType basinType) {
@@ -158,8 +182,12 @@ public abstract class _Basin extends BaseDataObject {
                 return this.ocean;
             case "rank":
                 return this.rank;
+            case "shape":
+                return this.shape;
             case "subocean":
                 return this.subocean;
+            case "wkt":
+                return this.wkt;
             case "basinType":
                 return this.basinType;
             case "countryCommitments":
@@ -177,7 +205,7 @@ public abstract class _Basin extends BaseDataObject {
 
         switch (propName) {
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "name":
                 this.name = (String)val;
@@ -192,10 +220,16 @@ public abstract class _Basin extends BaseDataObject {
                 this.ocean = (String)val;
                 break;
             case "rank":
-                this.rank = (BigDecimal)val;
+                this.rank = (Integer)val;
+                break;
+            case "shape":
+                this.shape = (byte[])val;
                 break;
             case "subocean":
                 this.subocean = (String)val;
+                break;
+            case "wkt":
+                this.wkt = (String)val;
                 break;
             case "basinType":
                 this.basinType = val;
@@ -225,7 +259,9 @@ public abstract class _Basin extends BaseDataObject {
         out.writeObject(this.nameShort);
         out.writeObject(this.ocean);
         out.writeObject(this.rank);
+        out.writeObject(this.shape);
         out.writeObject(this.subocean);
+        out.writeObject(this.wkt);
         out.writeObject(this.basinType);
         out.writeObject(this.countryCommitments);
     }
@@ -233,13 +269,15 @@ public abstract class _Basin extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.id = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
         this.name = (String)in.readObject();
         this.nameLong = (String)in.readObject();
         this.nameShort = (String)in.readObject();
         this.ocean = (String)in.readObject();
-        this.rank = (BigDecimal)in.readObject();
+        this.rank = (Integer)in.readObject();
+        this.shape = (byte[])in.readObject();
         this.subocean = (String)in.readObject();
+        this.wkt = (String)in.readObject();
         this.basinType = in.readObject();
         this.countryCommitments = in.readObject();
     }

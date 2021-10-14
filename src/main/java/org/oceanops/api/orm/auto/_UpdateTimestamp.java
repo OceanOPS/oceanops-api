@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.apache.cayenne.BaseDataObject;
@@ -24,23 +23,23 @@ public abstract class _UpdateTimestamp extends BaseDataObject {
 
     public static final String NAME_PK_COLUMN = "NAME";
 
-    public static final NumericProperty<BigDecimal> COMPLETED = PropertyFactory.createNumeric("completed", BigDecimal.class);
+    public static final NumericProperty<Integer> COMPLETED = PropertyFactory.createNumeric("completed", Integer.class);
     public static final DateProperty<LocalDateTime> LAST_UPDATE = PropertyFactory.createDate("lastUpdate", LocalDateTime.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
-    public static final NumericProperty<BigDecimal> RUNNING = PropertyFactory.createNumeric("running", BigDecimal.class);
+    public static final NumericProperty<Integer> RUNNING = PropertyFactory.createNumeric("running", Integer.class);
 
-    protected BigDecimal completed;
+    protected Integer completed;
     protected LocalDateTime lastUpdate;
     protected String name;
-    protected BigDecimal running;
+    protected Integer running;
 
 
-    public void setCompleted(BigDecimal completed) {
+    public void setCompleted(Integer completed) {
         beforePropertyWrite("completed", this.completed, completed);
         this.completed = completed;
     }
 
-    public BigDecimal getCompleted() {
+    public Integer getCompleted() {
         beforePropertyRead("completed");
         return this.completed;
     }
@@ -65,12 +64,12 @@ public abstract class _UpdateTimestamp extends BaseDataObject {
         return this.name;
     }
 
-    public void setRunning(BigDecimal running) {
+    public void setRunning(Integer running) {
         beforePropertyWrite("running", this.running, running);
         this.running = running;
     }
 
-    public BigDecimal getRunning() {
+    public Integer getRunning() {
         beforePropertyRead("running");
         return this.running;
     }
@@ -103,7 +102,7 @@ public abstract class _UpdateTimestamp extends BaseDataObject {
 
         switch (propName) {
             case "completed":
-                this.completed = (BigDecimal)val;
+                this.completed = (Integer)val;
                 break;
             case "lastUpdate":
                 this.lastUpdate = (LocalDateTime)val;
@@ -112,7 +111,7 @@ public abstract class _UpdateTimestamp extends BaseDataObject {
                 this.name = (String)val;
                 break;
             case "running":
-                this.running = (BigDecimal)val;
+                this.running = (Integer)val;
                 break;
             default:
                 super.writePropertyDirectly(propName, val);
@@ -139,10 +138,10 @@ public abstract class _UpdateTimestamp extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.completed = (BigDecimal)in.readObject();
+        this.completed = (Integer)in.readObject();
         this.lastUpdate = (LocalDateTime)in.readObject();
         this.name = (String)in.readObject();
-        this.running = (BigDecimal)in.readObject();
+        this.running = (Integer)in.readObject();
     }
 
 }

@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.apache.cayenne.BaseDataObject;
@@ -27,17 +26,17 @@ public abstract class _Wmo extends BaseDataObject {
     public static final String ID_PK_COLUMN = "ID";
 
     public static final DateProperty<LocalDateTime> END_DATE = PropertyFactory.createDate("endDate", LocalDateTime.class);
-    public static final NumericProperty<BigDecimal> FIVEDIGIT_DUPL_EXISTS = PropertyFactory.createNumeric("fivedigitDuplExists", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> MASK = PropertyFactory.createNumeric("mask", BigDecimal.class);
+    public static final NumericProperty<Integer> FIVEDIGIT_DUPL_EXISTS = PropertyFactory.createNumeric("fivedigitDuplExists", Integer.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
+    public static final NumericProperty<Integer> MASK = PropertyFactory.createNumeric("mask", Integer.class);
     public static final DateProperty<LocalDateTime> START_DATE = PropertyFactory.createDate("startDate", LocalDateTime.class);
     public static final StringProperty<String> WMO = PropertyFactory.createString("wmo", String.class);
     public static final EntityProperty<Ptf> PTF = PropertyFactory.createEntity("ptf", Ptf.class);
 
     protected LocalDateTime endDate;
-    protected BigDecimal fivedigitDuplExists;
-    protected BigDecimal id;
-    protected BigDecimal mask;
+    protected Integer fivedigitDuplExists;
+    protected Integer id;
+    protected Integer mask;
     protected LocalDateTime startDate;
     protected String wmo;
 
@@ -53,32 +52,32 @@ public abstract class _Wmo extends BaseDataObject {
         return this.endDate;
     }
 
-    public void setFivedigitDuplExists(BigDecimal fivedigitDuplExists) {
+    public void setFivedigitDuplExists(Integer fivedigitDuplExists) {
         beforePropertyWrite("fivedigitDuplExists", this.fivedigitDuplExists, fivedigitDuplExists);
         this.fivedigitDuplExists = fivedigitDuplExists;
     }
 
-    public BigDecimal getFivedigitDuplExists() {
+    public Integer getFivedigitDuplExists() {
         beforePropertyRead("fivedigitDuplExists");
         return this.fivedigitDuplExists;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
 
-    public void setMask(BigDecimal mask) {
+    public void setMask(Integer mask) {
         beforePropertyWrite("mask", this.mask, mask);
         this.mask = mask;
     }
 
-    public BigDecimal getMask() {
+    public Integer getMask() {
         beforePropertyRead("mask");
         return this.mask;
     }
@@ -148,13 +147,13 @@ public abstract class _Wmo extends BaseDataObject {
                 this.endDate = (LocalDateTime)val;
                 break;
             case "fivedigitDuplExists":
-                this.fivedigitDuplExists = (BigDecimal)val;
+                this.fivedigitDuplExists = (Integer)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "mask":
-                this.mask = (BigDecimal)val;
+                this.mask = (Integer)val;
                 break;
             case "startDate":
                 this.startDate = (LocalDateTime)val;
@@ -194,9 +193,9 @@ public abstract class _Wmo extends BaseDataObject {
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
         this.endDate = (LocalDateTime)in.readObject();
-        this.fivedigitDuplExists = (BigDecimal)in.readObject();
-        this.id = (BigDecimal)in.readObject();
-        this.mask = (BigDecimal)in.readObject();
+        this.fivedigitDuplExists = (Integer)in.readObject();
+        this.id = (Integer)in.readObject();
+        this.mask = (Integer)in.readObject();
         this.startDate = (LocalDateTime)in.readObject();
         this.wmo = (String)in.readObject();
         this.ptf = in.readObject();

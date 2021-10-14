@@ -12,6 +12,10 @@ import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 import javax.xml.bind.DatatypeConverter;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
@@ -19,6 +23,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.configuration.server.ServerRuntime;
+import org.apache.cayenne.dba.JdbcAdapter;
 
 public class Utils {
 	private static ServerRuntime cayenneRuntime;
@@ -86,11 +91,21 @@ public class Utils {
 		return projectVersion;
 	}
 
-	public static void initCayenneRuntime() {
+	public static void initCayenneRuntime() throws NamingException{
 		if (Utils.cayenneRuntime == null) {
+			Context initContext = new InitialContext();
+			Context envContext = (Context) initContext.lookup("java:comp/env");
+			DataSource dataSource = (DataSource) envContext.lookup("jdbc/OceanOPSDB");
+			
 			Utils.cayenneRuntime = ServerRuntime.builder()
                     .addConfig("cayenne-OceanOPS-API.xml")
+					.dataSource(dataSource)
                     .build();
+			
+			JdbcAdapter adapter = (JdbcAdapter)Utils.cayenneRuntime.getDataDomain().getDataNode("prod").getAdapter();
+			OraclePkGeneratorCustom pkgen = new OraclePkGeneratorCustom(adapter);
+			pkgen.setPkCacheSize(1);
+			Utils.cayenneRuntime.getDataDomain().getDataNode("prod").getAdapter().setPkGenerator(pkgen);
 		}
 	}
 

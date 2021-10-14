@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
@@ -27,25 +26,25 @@ public abstract class _Topic extends BaseDataObject {
 
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final ListProperty<Doc> DOCS = PropertyFactory.createList("docs", Doc.class);
     public static final ListProperty<QcFeedback> QC_FEEDBACKS = PropertyFactory.createList("qcFeedbacks", QcFeedback.class);
     public static final ListProperty<Weblink> WEBLINKS = PropertyFactory.createList("weblinks", Weblink.class);
 
-    protected BigDecimal id;
+    protected Integer id;
     protected String name;
 
     protected Object docs;
     protected Object qcFeedbacks;
     protected Object weblinks;
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
@@ -129,7 +128,7 @@ public abstract class _Topic extends BaseDataObject {
 
         switch (propName) {
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "name":
                 this.name = (String)val;
@@ -169,7 +168,7 @@ public abstract class _Topic extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.id = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
         this.name = (String)in.readObject();
         this.docs = in.readObject();
         this.qcFeedbacks = in.readObject();

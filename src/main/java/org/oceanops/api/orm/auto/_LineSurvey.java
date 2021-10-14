@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -28,16 +27,16 @@ public abstract class _LineSurvey extends BaseDataObject {
     public static final String LINE_ID_PK_COLUMN = "LINE_ID";
     public static final String SURVEY_ID_PK_COLUMN = "SURVEY_ID";
 
-    public static final NumericProperty<BigDecimal> LINE_ID = PropertyFactory.createNumeric("lineId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> SURVEY_ID = PropertyFactory.createNumeric("surveyId", BigDecimal.class);
+    public static final NumericProperty<Integer> LINE_ID = PropertyFactory.createNumeric("lineId", Integer.class);
+    public static final NumericProperty<Integer> SURVEY_ID = PropertyFactory.createNumeric("surveyId", Integer.class);
     public static final EntityProperty<Line> LINE = PropertyFactory.createEntity("line", Line.class);
     public static final EntityProperty<LinePerformance> LINE_PERFORMANCE = PropertyFactory.createEntity("linePerformance", LinePerformance.class);
     public static final EntityProperty<LineStatus> LINE_STATUS = PropertyFactory.createEntity("lineStatus", LineStatus.class);
     public static final EntityProperty<LineType> LINE_TYPE = PropertyFactory.createEntity("lineType", LineType.class);
     public static final EntityProperty<Survey> SURVEY = PropertyFactory.createEntity("survey", Survey.class);
 
-    protected BigDecimal lineId;
-    protected BigDecimal surveyId;
+    protected Integer lineId;
+    protected Integer surveyId;
 
     protected Object line;
     protected Object linePerformance;
@@ -45,22 +44,22 @@ public abstract class _LineSurvey extends BaseDataObject {
     protected Object lineType;
     protected Object survey;
 
-    public void setLineId(BigDecimal lineId) {
+    public void setLineId(Integer lineId) {
         beforePropertyWrite("lineId", this.lineId, lineId);
         this.lineId = lineId;
     }
 
-    public BigDecimal getLineId() {
+    public Integer getLineId() {
         beforePropertyRead("lineId");
         return this.lineId;
     }
 
-    public void setSurveyId(BigDecimal surveyId) {
+    public void setSurveyId(Integer surveyId) {
         beforePropertyWrite("surveyId", this.surveyId, surveyId);
         this.surveyId = surveyId;
     }
 
-    public BigDecimal getSurveyId() {
+    public Integer getSurveyId() {
         beforePropertyRead("surveyId");
         return this.surveyId;
     }
@@ -139,10 +138,10 @@ public abstract class _LineSurvey extends BaseDataObject {
 
         switch (propName) {
             case "lineId":
-                this.lineId = (BigDecimal)val;
+                this.lineId = (Integer)val;
                 break;
             case "surveyId":
-                this.surveyId = (BigDecimal)val;
+                this.surveyId = (Integer)val;
                 break;
             case "line":
                 this.line = val;
@@ -187,8 +186,8 @@ public abstract class _LineSurvey extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.lineId = (BigDecimal)in.readObject();
-        this.surveyId = (BigDecimal)in.readObject();
+        this.lineId = (Integer)in.readObject();
+        this.surveyId = (Integer)in.readObject();
         this.line = in.readObject();
         this.linePerformance = in.readObject();
         this.lineStatus = in.readObject();

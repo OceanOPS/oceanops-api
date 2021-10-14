@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
@@ -25,35 +24,35 @@ public abstract class _GtsCode extends BaseDataObject {
 
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final NumericProperty<BigDecimal> ACTIVE = PropertyFactory.createNumeric("active", BigDecimal.class);
+    public static final NumericProperty<Integer> ACTIVE = PropertyFactory.createNumeric("active", Integer.class);
     public static final StringProperty<String> CODE_LETTERS = PropertyFactory.createString("codeLetters", String.class);
     public static final StringProperty<String> CODE_NAME = PropertyFactory.createString("codeName", String.class);
     public static final StringProperty<String> CODE_NAME2 = PropertyFactory.createString("codeName2", String.class);
     public static final StringProperty<String> COMMENTS = PropertyFactory.createString("comments", String.class);
     public static final StringProperty<String> FORMAL_CODE = PropertyFactory.createString("formalCode", String.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final StringProperty<String> MAIN_PTF_TYPE = PropertyFactory.createString("mainPtfType", String.class);
     public static final StringProperty<String> TAG = PropertyFactory.createString("tag", String.class);
     public static final ListProperty<Obs> OBSS = PropertyFactory.createList("obss", Obs.class);
 
-    protected BigDecimal active;
+    protected Integer active;
     protected String codeLetters;
     protected String codeName;
     protected String codeName2;
     protected String comments;
     protected String formalCode;
-    protected BigDecimal id;
+    protected Integer id;
     protected String mainPtfType;
     protected String tag;
 
     protected Object obss;
 
-    public void setActive(BigDecimal active) {
+    public void setActive(Integer active) {
         beforePropertyWrite("active", this.active, active);
         this.active = active;
     }
 
-    public BigDecimal getActive() {
+    public Integer getActive() {
         beforePropertyRead("active");
         return this.active;
     }
@@ -108,12 +107,12 @@ public abstract class _GtsCode extends BaseDataObject {
         return this.formalCode;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
@@ -191,7 +190,7 @@ public abstract class _GtsCode extends BaseDataObject {
 
         switch (propName) {
             case "active":
-                this.active = (BigDecimal)val;
+                this.active = (Integer)val;
                 break;
             case "codeLetters":
                 this.codeLetters = (String)val;
@@ -209,7 +208,7 @@ public abstract class _GtsCode extends BaseDataObject {
                 this.formalCode = (String)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "mainPtfType":
                 this.mainPtfType = (String)val;
@@ -251,13 +250,13 @@ public abstract class _GtsCode extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.active = (BigDecimal)in.readObject();
+        this.active = (Integer)in.readObject();
         this.codeLetters = (String)in.readObject();
         this.codeName = (String)in.readObject();
         this.codeName2 = (String)in.readObject();
         this.comments = (String)in.readObject();
         this.formalCode = (String)in.readObject();
-        this.id = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
         this.mainPtfType = (String)in.readObject();
         this.tag = (String)in.readObject();
         this.obss = in.readObject();

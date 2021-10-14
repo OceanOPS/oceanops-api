@@ -3,11 +3,9 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
-import org.apache.cayenne.exp.property.NumericIdProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.oceanops.api.orm.Contact;
@@ -23,24 +21,23 @@ public abstract class _ContactSiteRole extends BaseDataObject {
 
     private static final long serialVersionUID = 1L;
 
-    public static final NumericIdProperty<BigDecimal> ID_PK_PROPERTY = PropertyFactory.createNumericId("ID", "ContactSiteRole", BigDecimal.class);
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final NumericProperty<BigDecimal> SITE_ID = PropertyFactory.createNumeric("siteId", BigDecimal.class);
+    public static final NumericProperty<Integer> SITE_ID = PropertyFactory.createNumeric("siteId", Integer.class);
     public static final EntityProperty<Contact> CONTACT = PropertyFactory.createEntity("contact", Contact.class);
     public static final EntityProperty<Role> ROLE = PropertyFactory.createEntity("role", Role.class);
 
-    protected BigDecimal siteId;
+    protected Integer siteId;
 
     protected Object contact;
     protected Object role;
 
-    public void setSiteId(BigDecimal siteId) {
+    public void setSiteId(Integer siteId) {
         beforePropertyWrite("siteId", this.siteId, siteId);
         this.siteId = siteId;
     }
 
-    public BigDecimal getSiteId() {
+    public Integer getSiteId() {
         beforePropertyRead("siteId");
         return this.siteId;
     }
@@ -87,7 +84,7 @@ public abstract class _ContactSiteRole extends BaseDataObject {
 
         switch (propName) {
             case "siteId":
-                this.siteId = (BigDecimal)val;
+                this.siteId = (Integer)val;
                 break;
             case "contact":
                 this.contact = val;
@@ -119,7 +116,7 @@ public abstract class _ContactSiteRole extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.siteId = (BigDecimal)in.readObject();
+        this.siteId = (Integer)in.readObject();
         this.contact = in.readObject();
         this.role = in.readObject();
     }

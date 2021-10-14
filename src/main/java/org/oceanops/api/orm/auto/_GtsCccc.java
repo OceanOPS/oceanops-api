@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
@@ -33,8 +32,8 @@ public abstract class _GtsCccc extends BaseDataObject {
     public static final StringProperty<String> CCCC = PropertyFactory.createString("cccc", String.class);
     public static final StringProperty<String> CENTER = PropertyFactory.createString("center", String.class);
     public static final StringProperty<String> CITY = PropertyFactory.createString("city", String.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> INSERT_MARINE = PropertyFactory.createNumeric("insertMarine", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
+    public static final NumericProperty<Integer> INSERT_MARINE = PropertyFactory.createNumeric("insertMarine", Integer.class);
     public static final StringProperty<String> LOCATION = PropertyFactory.createString("location", String.class);
     public static final StringProperty<String> TAG = PropertyFactory.createString("tag", String.class);
     public static final StringProperty<String> TMP = PropertyFactory.createString("tmp", String.class);
@@ -47,8 +46,8 @@ public abstract class _GtsCccc extends BaseDataObject {
     protected String cccc;
     protected String center;
     protected String city;
-    protected BigDecimal id;
-    protected BigDecimal insertMarine;
+    protected Integer id;
+    protected Integer insertMarine;
     protected String location;
     protected String tag;
     protected String tmp;
@@ -89,22 +88,22 @@ public abstract class _GtsCccc extends BaseDataObject {
         return this.city;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
 
-    public void setInsertMarine(BigDecimal insertMarine) {
+    public void setInsertMarine(Integer insertMarine) {
         beforePropertyWrite("insertMarine", this.insertMarine, insertMarine);
         this.insertMarine = insertMarine;
     }
 
-    public BigDecimal getInsertMarine() {
+    public Integer getInsertMarine() {
         beforePropertyRead("insertMarine");
         return this.insertMarine;
     }
@@ -249,10 +248,10 @@ public abstract class _GtsCccc extends BaseDataObject {
                 this.city = (String)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "insertMarine":
-                this.insertMarine = (BigDecimal)val;
+                this.insertMarine = (Integer)val;
                 break;
             case "location":
                 this.location = (String)val;
@@ -315,8 +314,8 @@ public abstract class _GtsCccc extends BaseDataObject {
         this.cccc = (String)in.readObject();
         this.center = (String)in.readObject();
         this.city = (String)in.readObject();
-        this.id = (BigDecimal)in.readObject();
-        this.insertMarine = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
+        this.insertMarine = (Integer)in.readObject();
         this.location = (String)in.readObject();
         this.tag = (String)in.readObject();
         this.tmp = (String)in.readObject();

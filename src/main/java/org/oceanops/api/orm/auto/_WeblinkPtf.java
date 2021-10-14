@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -25,33 +24,33 @@ public abstract class _WeblinkPtf extends BaseDataObject {
     public static final String PTF_ID_PK_COLUMN = "PTF_ID";
     public static final String WEBLINK_ID_PK_COLUMN = "WEBLINK_ID";
 
-    public static final NumericProperty<BigDecimal> PTF_ID = PropertyFactory.createNumeric("ptfId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> WEBLINK_ID = PropertyFactory.createNumeric("weblinkId", BigDecimal.class);
+    public static final NumericProperty<Integer> PTF_ID = PropertyFactory.createNumeric("ptfId", Integer.class);
+    public static final NumericProperty<Integer> WEBLINK_ID = PropertyFactory.createNumeric("weblinkId", Integer.class);
     public static final EntityProperty<Ptf> PTF = PropertyFactory.createEntity("ptf", Ptf.class);
     public static final EntityProperty<Weblink> WEBLINK = PropertyFactory.createEntity("weblink", Weblink.class);
 
-    protected BigDecimal ptfId;
-    protected BigDecimal weblinkId;
+    protected Integer ptfId;
+    protected Integer weblinkId;
 
     protected Object ptf;
     protected Object weblink;
 
-    public void setPtfId(BigDecimal ptfId) {
+    public void setPtfId(Integer ptfId) {
         beforePropertyWrite("ptfId", this.ptfId, ptfId);
         this.ptfId = ptfId;
     }
 
-    public BigDecimal getPtfId() {
+    public Integer getPtfId() {
         beforePropertyRead("ptfId");
         return this.ptfId;
     }
 
-    public void setWeblinkId(BigDecimal weblinkId) {
+    public void setWeblinkId(Integer weblinkId) {
         beforePropertyWrite("weblinkId", this.weblinkId, weblinkId);
         this.weblinkId = weblinkId;
     }
 
-    public BigDecimal getWeblinkId() {
+    public Integer getWeblinkId() {
         beforePropertyRead("weblinkId");
         return this.weblinkId;
     }
@@ -100,10 +99,10 @@ public abstract class _WeblinkPtf extends BaseDataObject {
 
         switch (propName) {
             case "ptfId":
-                this.ptfId = (BigDecimal)val;
+                this.ptfId = (Integer)val;
                 break;
             case "weblinkId":
-                this.weblinkId = (BigDecimal)val;
+                this.weblinkId = (Integer)val;
                 break;
             case "ptf":
                 this.ptf = val;
@@ -136,8 +135,8 @@ public abstract class _WeblinkPtf extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.ptfId = (BigDecimal)in.readObject();
-        this.weblinkId = (BigDecimal)in.readObject();
+        this.ptfId = (Integer)in.readObject();
+        this.weblinkId = (Integer)in.readObject();
         this.ptf = in.readObject();
         this.weblink = in.readObject();
     }

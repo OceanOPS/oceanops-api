@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -24,33 +23,33 @@ public abstract class _AgencySiteRole extends BaseDataObject {
 
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> SITE_ID = PropertyFactory.createNumeric("siteId", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
+    public static final NumericProperty<Integer> SITE_ID = PropertyFactory.createNumeric("siteId", Integer.class);
     public static final EntityProperty<Agency> AGENCY = PropertyFactory.createEntity("agency", Agency.class);
     public static final EntityProperty<AgencyRole> ROLE = PropertyFactory.createEntity("role", AgencyRole.class);
 
-    protected BigDecimal id;
-    protected BigDecimal siteId;
+    protected Integer id;
+    protected Integer siteId;
 
     protected Object agency;
     protected Object role;
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
 
-    public void setSiteId(BigDecimal siteId) {
+    public void setSiteId(Integer siteId) {
         beforePropertyWrite("siteId", this.siteId, siteId);
         this.siteId = siteId;
     }
 
-    public BigDecimal getSiteId() {
+    public Integer getSiteId() {
         beforePropertyRead("siteId");
         return this.siteId;
     }
@@ -99,10 +98,10 @@ public abstract class _AgencySiteRole extends BaseDataObject {
 
         switch (propName) {
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "siteId":
-                this.siteId = (BigDecimal)val;
+                this.siteId = (Integer)val;
                 break;
             case "agency":
                 this.agency = val;
@@ -135,8 +134,8 @@ public abstract class _AgencySiteRole extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.id = (BigDecimal)in.readObject();
-        this.siteId = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
+        this.siteId = (Integer)in.readObject();
         this.agency = in.readObject();
         this.role = in.readObject();
     }

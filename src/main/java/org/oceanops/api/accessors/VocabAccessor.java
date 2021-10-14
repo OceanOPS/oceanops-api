@@ -1,7 +1,5 @@
 package org.oceanops.api.accessors;
 
-import java.math.BigDecimal;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -159,7 +157,7 @@ public class VocabAccessor {
 	@Path("observingnetwork")
     public DataResponse<Network> getObservingNetworks(@Context UriInfo uriInfo) {
 		SelectBuilder<Network> select = Ag.select(Network.class, config);
-		AgRequest agRequest = Ag.request(config).andExp(Network.RANK.eq(new BigDecimal(0)).toString()).build(); 
+		AgRequest agRequest = Ag.request(config).andExp(Network.RANK.eq(0).toString()).build(); 
 
 		Authorization.applySelectAuthorization(select);
 		select.request(agRequest);

@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -25,33 +24,33 @@ public abstract class _MapTypeNetwork extends BaseDataObject {
     public static final String MAP_TYPE_ID_PK_COLUMN = "MAP_TYPE_ID";
     public static final String NETWORK_ID_PK_COLUMN = "NETWORK_ID";
 
-    public static final NumericProperty<BigDecimal> MAP_TYPE_ID = PropertyFactory.createNumeric("mapTypeId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> NETWORK_ID = PropertyFactory.createNumeric("networkId", BigDecimal.class);
+    public static final NumericProperty<Integer> MAP_TYPE_ID = PropertyFactory.createNumeric("mapTypeId", Integer.class);
+    public static final NumericProperty<Integer> NETWORK_ID = PropertyFactory.createNumeric("networkId", Integer.class);
     public static final EntityProperty<MapType> MAP_TYPE = PropertyFactory.createEntity("mapType", MapType.class);
     public static final EntityProperty<Network> NETWORK = PropertyFactory.createEntity("network", Network.class);
 
-    protected BigDecimal mapTypeId;
-    protected BigDecimal networkId;
+    protected Integer mapTypeId;
+    protected Integer networkId;
 
     protected Object mapType;
     protected Object network;
 
-    public void setMapTypeId(BigDecimal mapTypeId) {
+    public void setMapTypeId(Integer mapTypeId) {
         beforePropertyWrite("mapTypeId", this.mapTypeId, mapTypeId);
         this.mapTypeId = mapTypeId;
     }
 
-    public BigDecimal getMapTypeId() {
+    public Integer getMapTypeId() {
         beforePropertyRead("mapTypeId");
         return this.mapTypeId;
     }
 
-    public void setNetworkId(BigDecimal networkId) {
+    public void setNetworkId(Integer networkId) {
         beforePropertyWrite("networkId", this.networkId, networkId);
         this.networkId = networkId;
     }
 
-    public BigDecimal getNetworkId() {
+    public Integer getNetworkId() {
         beforePropertyRead("networkId");
         return this.networkId;
     }
@@ -100,10 +99,10 @@ public abstract class _MapTypeNetwork extends BaseDataObject {
 
         switch (propName) {
             case "mapTypeId":
-                this.mapTypeId = (BigDecimal)val;
+                this.mapTypeId = (Integer)val;
                 break;
             case "networkId":
-                this.networkId = (BigDecimal)val;
+                this.networkId = (Integer)val;
                 break;
             case "mapType":
                 this.mapType = val;
@@ -136,8 +135,8 @@ public abstract class _MapTypeNetwork extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.mapTypeId = (BigDecimal)in.readObject();
-        this.networkId = (BigDecimal)in.readObject();
+        this.mapTypeId = (Integer)in.readObject();
+        this.networkId = (Integer)in.readObject();
         this.mapType = in.readObject();
         this.network = in.readObject();
     }

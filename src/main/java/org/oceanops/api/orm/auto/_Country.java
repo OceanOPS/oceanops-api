@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
@@ -40,17 +39,19 @@ public abstract class _Country extends BaseDataObject {
 
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final NumericProperty<BigDecimal> ACTIVE = PropertyFactory.createNumeric("active", BigDecimal.class);
+    public static final NumericProperty<Integer> ACTIVE = PropertyFactory.createNumeric("active", Integer.class);
     public static final StringProperty<String> CODE2 = PropertyFactory.createString("code2", String.class);
     public static final StringProperty<String> CODE3 = PropertyFactory.createString("code3", String.class);
     public static final StringProperty<String> COLOR = PropertyFactory.createString("color", String.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> IOC_MEMBER = PropertyFactory.createNumeric("iocMember", BigDecimal.class);
+    public static final NumericProperty<Integer> EEZ = PropertyFactory.createNumeric("eez", Integer.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
+    public static final NumericProperty<Integer> IOC_MEMBER = PropertyFactory.createNumeric("iocMember", Integer.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> NAME_LONG = PropertyFactory.createString("nameLong", String.class);
     public static final StringProperty<String> NAME_SHORT = PropertyFactory.createString("nameShort", String.class);
-    public static final NumericProperty<BigDecimal> NUMCODE = PropertyFactory.createNumeric("numcode", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> WMO_MEMBER = PropertyFactory.createNumeric("wmoMember", BigDecimal.class);
+    public static final NumericProperty<Integer> NUMCODE = PropertyFactory.createNumeric("numcode", Integer.class);
+    public static final NumericProperty<Integer> TO_NOTIFY = PropertyFactory.createNumeric("toNotify", Integer.class);
+    public static final NumericProperty<Integer> WMO_MEMBER = PropertyFactory.createNumeric("wmoMember", Integer.class);
     public static final ListProperty<Agency> AGENCIES = PropertyFactory.createList("agencies", Agency.class);
     public static final ListProperty<Contact> CONTACTS = PropertyFactory.createList("contacts", Contact.class);
     public static final ListProperty<CountryCommitment> COUNTRY_COMMITMENTS = PropertyFactory.createList("countryCommitments", CountryCommitment.class);
@@ -68,17 +69,19 @@ public abstract class _Country extends BaseDataObject {
     public static final ListProperty<UserGroupContact> USER_GROUP_CONTACTS = PropertyFactory.createList("userGroupContacts", UserGroupContact.class);
     public static final ListProperty<Weblink> WEBLINKS = PropertyFactory.createList("weblinks", Weblink.class);
 
-    protected BigDecimal active;
+    protected Integer active;
     protected String code2;
     protected String code3;
     protected String color;
-    protected BigDecimal id;
-    protected BigDecimal iocMember;
+    protected Integer eez;
+    protected Integer id;
+    protected Integer iocMember;
     protected String name;
     protected String nameLong;
     protected String nameShort;
-    protected BigDecimal numcode;
-    protected BigDecimal wmoMember;
+    protected Integer numcode;
+    protected Integer toNotify;
+    protected Integer wmoMember;
 
     protected Object agencies;
     protected Object contacts;
@@ -97,12 +100,12 @@ public abstract class _Country extends BaseDataObject {
     protected Object userGroupContacts;
     protected Object weblinks;
 
-    public void setActive(BigDecimal active) {
+    public void setActive(Integer active) {
         beforePropertyWrite("active", this.active, active);
         this.active = active;
     }
 
-    public BigDecimal getActive() {
+    public Integer getActive() {
         beforePropertyRead("active");
         return this.active;
     }
@@ -137,22 +140,32 @@ public abstract class _Country extends BaseDataObject {
         return this.color;
     }
 
-    public void setId(BigDecimal id) {
+    public void setEez(Integer eez) {
+        beforePropertyWrite("eez", this.eez, eez);
+        this.eez = eez;
+    }
+
+    public Integer getEez() {
+        beforePropertyRead("eez");
+        return this.eez;
+    }
+
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
 
-    public void setIocMember(BigDecimal iocMember) {
+    public void setIocMember(Integer iocMember) {
         beforePropertyWrite("iocMember", this.iocMember, iocMember);
         this.iocMember = iocMember;
     }
 
-    public BigDecimal getIocMember() {
+    public Integer getIocMember() {
         beforePropertyRead("iocMember");
         return this.iocMember;
     }
@@ -187,22 +200,32 @@ public abstract class _Country extends BaseDataObject {
         return this.nameShort;
     }
 
-    public void setNumcode(BigDecimal numcode) {
+    public void setNumcode(Integer numcode) {
         beforePropertyWrite("numcode", this.numcode, numcode);
         this.numcode = numcode;
     }
 
-    public BigDecimal getNumcode() {
+    public Integer getNumcode() {
         beforePropertyRead("numcode");
         return this.numcode;
     }
 
-    public void setWmoMember(BigDecimal wmoMember) {
+    public void setToNotify(Integer toNotify) {
+        beforePropertyWrite("toNotify", this.toNotify, toNotify);
+        this.toNotify = toNotify;
+    }
+
+    public Integer getToNotify() {
+        beforePropertyRead("toNotify");
+        return this.toNotify;
+    }
+
+    public void setWmoMember(Integer wmoMember) {
         beforePropertyWrite("wmoMember", this.wmoMember, wmoMember);
         this.wmoMember = wmoMember;
     }
 
-    public BigDecimal getWmoMember() {
+    public Integer getWmoMember() {
         beforePropertyRead("wmoMember");
         return this.wmoMember;
     }
@@ -430,6 +453,8 @@ public abstract class _Country extends BaseDataObject {
                 return this.code3;
             case "color":
                 return this.color;
+            case "eez":
+                return this.eez;
             case "id":
                 return this.id;
             case "iocMember":
@@ -442,6 +467,8 @@ public abstract class _Country extends BaseDataObject {
                 return this.nameShort;
             case "numcode":
                 return this.numcode;
+            case "toNotify":
+                return this.toNotify;
             case "wmoMember":
                 return this.wmoMember;
             case "agencies":
@@ -489,7 +516,7 @@ public abstract class _Country extends BaseDataObject {
 
         switch (propName) {
             case "active":
-                this.active = (BigDecimal)val;
+                this.active = (Integer)val;
                 break;
             case "code2":
                 this.code2 = (String)val;
@@ -500,11 +527,14 @@ public abstract class _Country extends BaseDataObject {
             case "color":
                 this.color = (String)val;
                 break;
+            case "eez":
+                this.eez = (Integer)val;
+                break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "iocMember":
-                this.iocMember = (BigDecimal)val;
+                this.iocMember = (Integer)val;
                 break;
             case "name":
                 this.name = (String)val;
@@ -516,10 +546,13 @@ public abstract class _Country extends BaseDataObject {
                 this.nameShort = (String)val;
                 break;
             case "numcode":
-                this.numcode = (BigDecimal)val;
+                this.numcode = (Integer)val;
+                break;
+            case "toNotify":
+                this.toNotify = (Integer)val;
                 break;
             case "wmoMember":
-                this.wmoMember = (BigDecimal)val;
+                this.wmoMember = (Integer)val;
                 break;
             case "agencies":
                 this.agencies = val;
@@ -589,12 +622,14 @@ public abstract class _Country extends BaseDataObject {
         out.writeObject(this.code2);
         out.writeObject(this.code3);
         out.writeObject(this.color);
+        out.writeObject(this.eez);
         out.writeObject(this.id);
         out.writeObject(this.iocMember);
         out.writeObject(this.name);
         out.writeObject(this.nameLong);
         out.writeObject(this.nameShort);
         out.writeObject(this.numcode);
+        out.writeObject(this.toNotify);
         out.writeObject(this.wmoMember);
         out.writeObject(this.agencies);
         out.writeObject(this.contacts);
@@ -617,17 +652,19 @@ public abstract class _Country extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.active = (BigDecimal)in.readObject();
+        this.active = (Integer)in.readObject();
         this.code2 = (String)in.readObject();
         this.code3 = (String)in.readObject();
         this.color = (String)in.readObject();
-        this.id = (BigDecimal)in.readObject();
-        this.iocMember = (BigDecimal)in.readObject();
+        this.eez = (Integer)in.readObject();
+        this.id = (Integer)in.readObject();
+        this.iocMember = (Integer)in.readObject();
         this.name = (String)in.readObject();
         this.nameLong = (String)in.readObject();
         this.nameShort = (String)in.readObject();
-        this.numcode = (BigDecimal)in.readObject();
-        this.wmoMember = (BigDecimal)in.readObject();
+        this.numcode = (Integer)in.readObject();
+        this.toNotify = (Integer)in.readObject();
+        this.wmoMember = (Integer)in.readObject();
         this.agencies = in.readObject();
         this.contacts = in.readObject();
         this.countryCommitments = in.readObject();

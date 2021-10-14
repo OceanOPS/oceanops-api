@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -29,30 +28,30 @@ public abstract class _AgencyDacType extends BaseDataObject {
     public static final String DAC_TYPE_ID_PK_COLUMN = "DAC_TYPE_ID";
     public static final String NETWORK_ID_PK_COLUMN = "NETWORK_ID";
 
-    public static final NumericProperty<BigDecimal> AGENCY_ID = PropertyFactory.createNumeric("agencyId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> DAC_TYPE_ID = PropertyFactory.createNumeric("dacTypeId", BigDecimal.class);
+    public static final NumericProperty<Integer> AGENCY_ID = PropertyFactory.createNumeric("agencyId", Integer.class);
+    public static final NumericProperty<Integer> DAC_TYPE_ID = PropertyFactory.createNumeric("dacTypeId", Integer.class);
     public static final StringProperty<String> DATA_PATH = PropertyFactory.createString("dataPath", String.class);
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
-    public static final NumericProperty<BigDecimal> MASTER_PROGRAM_ID = PropertyFactory.createNumeric("masterProgramId", BigDecimal.class);
+    public static final NumericProperty<Integer> MASTER_PROGRAM_ID = PropertyFactory.createNumeric("masterProgramId", Integer.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> NAME_SHORT = PropertyFactory.createString("nameShort", String.class);
-    public static final NumericProperty<BigDecimal> NETWORK_ID = PropertyFactory.createNumeric("networkId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> OLD_DAC_ID = PropertyFactory.createNumeric("oldDacId", BigDecimal.class);
+    public static final NumericProperty<Integer> NETWORK_ID = PropertyFactory.createNumeric("networkId", Integer.class);
+    public static final NumericProperty<Integer> OLD_DAC_ID = PropertyFactory.createNumeric("oldDacId", Integer.class);
     public static final StringProperty<String> OP_MAIL = PropertyFactory.createString("opMail", String.class);
     public static final EntityProperty<Agency> AGENCY = PropertyFactory.createEntity("agency", Agency.class);
     public static final EntityProperty<DacType> DAC_TYPE = PropertyFactory.createEntity("dacType", DacType.class);
     public static final EntityProperty<Network> NETWORK = PropertyFactory.createEntity("network", Network.class);
     public static final EntityProperty<Weblink> WEBLINK = PropertyFactory.createEntity("weblink", Weblink.class);
 
-    protected BigDecimal agencyId;
-    protected BigDecimal dacTypeId;
+    protected Integer agencyId;
+    protected Integer dacTypeId;
     protected String dataPath;
     protected String description;
-    protected BigDecimal masterProgramId;
+    protected Integer masterProgramId;
     protected String name;
     protected String nameShort;
-    protected BigDecimal networkId;
-    protected BigDecimal oldDacId;
+    protected Integer networkId;
+    protected Integer oldDacId;
     protected String opMail;
 
     protected Object agency;
@@ -60,22 +59,22 @@ public abstract class _AgencyDacType extends BaseDataObject {
     protected Object network;
     protected Object weblink;
 
-    public void setAgencyId(BigDecimal agencyId) {
+    public void setAgencyId(Integer agencyId) {
         beforePropertyWrite("agencyId", this.agencyId, agencyId);
         this.agencyId = agencyId;
     }
 
-    public BigDecimal getAgencyId() {
+    public Integer getAgencyId() {
         beforePropertyRead("agencyId");
         return this.agencyId;
     }
 
-    public void setDacTypeId(BigDecimal dacTypeId) {
+    public void setDacTypeId(Integer dacTypeId) {
         beforePropertyWrite("dacTypeId", this.dacTypeId, dacTypeId);
         this.dacTypeId = dacTypeId;
     }
 
-    public BigDecimal getDacTypeId() {
+    public Integer getDacTypeId() {
         beforePropertyRead("dacTypeId");
         return this.dacTypeId;
     }
@@ -100,12 +99,12 @@ public abstract class _AgencyDacType extends BaseDataObject {
         return this.description;
     }
 
-    public void setMasterProgramId(BigDecimal masterProgramId) {
+    public void setMasterProgramId(Integer masterProgramId) {
         beforePropertyWrite("masterProgramId", this.masterProgramId, masterProgramId);
         this.masterProgramId = masterProgramId;
     }
 
-    public BigDecimal getMasterProgramId() {
+    public Integer getMasterProgramId() {
         beforePropertyRead("masterProgramId");
         return this.masterProgramId;
     }
@@ -130,22 +129,22 @@ public abstract class _AgencyDacType extends BaseDataObject {
         return this.nameShort;
     }
 
-    public void setNetworkId(BigDecimal networkId) {
+    public void setNetworkId(Integer networkId) {
         beforePropertyWrite("networkId", this.networkId, networkId);
         this.networkId = networkId;
     }
 
-    public BigDecimal getNetworkId() {
+    public Integer getNetworkId() {
         beforePropertyRead("networkId");
         return this.networkId;
     }
 
-    public void setOldDacId(BigDecimal oldDacId) {
+    public void setOldDacId(Integer oldDacId) {
         beforePropertyWrite("oldDacId", this.oldDacId, oldDacId);
         this.oldDacId = oldDacId;
     }
 
-    public BigDecimal getOldDacId() {
+    public Integer getOldDacId() {
         beforePropertyRead("oldDacId");
         return this.oldDacId;
     }
@@ -240,10 +239,10 @@ public abstract class _AgencyDacType extends BaseDataObject {
 
         switch (propName) {
             case "agencyId":
-                this.agencyId = (BigDecimal)val;
+                this.agencyId = (Integer)val;
                 break;
             case "dacTypeId":
-                this.dacTypeId = (BigDecimal)val;
+                this.dacTypeId = (Integer)val;
                 break;
             case "dataPath":
                 this.dataPath = (String)val;
@@ -252,7 +251,7 @@ public abstract class _AgencyDacType extends BaseDataObject {
                 this.description = (String)val;
                 break;
             case "masterProgramId":
-                this.masterProgramId = (BigDecimal)val;
+                this.masterProgramId = (Integer)val;
                 break;
             case "name":
                 this.name = (String)val;
@@ -261,10 +260,10 @@ public abstract class _AgencyDacType extends BaseDataObject {
                 this.nameShort = (String)val;
                 break;
             case "networkId":
-                this.networkId = (BigDecimal)val;
+                this.networkId = (Integer)val;
                 break;
             case "oldDacId":
-                this.oldDacId = (BigDecimal)val;
+                this.oldDacId = (Integer)val;
                 break;
             case "opMail":
                 this.opMail = (String)val;
@@ -316,15 +315,15 @@ public abstract class _AgencyDacType extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.agencyId = (BigDecimal)in.readObject();
-        this.dacTypeId = (BigDecimal)in.readObject();
+        this.agencyId = (Integer)in.readObject();
+        this.dacTypeId = (Integer)in.readObject();
         this.dataPath = (String)in.readObject();
         this.description = (String)in.readObject();
-        this.masterProgramId = (BigDecimal)in.readObject();
+        this.masterProgramId = (Integer)in.readObject();
         this.name = (String)in.readObject();
         this.nameShort = (String)in.readObject();
-        this.networkId = (BigDecimal)in.readObject();
-        this.oldDacId = (BigDecimal)in.readObject();
+        this.networkId = (Integer)in.readObject();
+        this.oldDacId = (Integer)in.readObject();
         this.opMail = (String)in.readObject();
         this.agency = in.readObject();
         this.dacType = in.readObject();

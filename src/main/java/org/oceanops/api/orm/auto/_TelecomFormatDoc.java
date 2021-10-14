@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -25,33 +24,33 @@ public abstract class _TelecomFormatDoc extends BaseDataObject {
     public static final String DOC_ID_PK_COLUMN = "DOC_ID";
     public static final String TELECOM_FORMAT_ID_PK_COLUMN = "TELECOM_FORMAT_ID";
 
-    public static final NumericProperty<BigDecimal> DOC_ID = PropertyFactory.createNumeric("docId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> TELECOM_FORMAT_ID = PropertyFactory.createNumeric("telecomFormatId", BigDecimal.class);
+    public static final NumericProperty<Integer> DOC_ID = PropertyFactory.createNumeric("docId", Integer.class);
+    public static final NumericProperty<Integer> TELECOM_FORMAT_ID = PropertyFactory.createNumeric("telecomFormatId", Integer.class);
     public static final EntityProperty<Doc> DOC = PropertyFactory.createEntity("doc", Doc.class);
     public static final EntityProperty<TelecomFormat> TELECOM_FORMAT = PropertyFactory.createEntity("telecomFormat", TelecomFormat.class);
 
-    protected BigDecimal docId;
-    protected BigDecimal telecomFormatId;
+    protected Integer docId;
+    protected Integer telecomFormatId;
 
     protected Object doc;
     protected Object telecomFormat;
 
-    public void setDocId(BigDecimal docId) {
+    public void setDocId(Integer docId) {
         beforePropertyWrite("docId", this.docId, docId);
         this.docId = docId;
     }
 
-    public BigDecimal getDocId() {
+    public Integer getDocId() {
         beforePropertyRead("docId");
         return this.docId;
     }
 
-    public void setTelecomFormatId(BigDecimal telecomFormatId) {
+    public void setTelecomFormatId(Integer telecomFormatId) {
         beforePropertyWrite("telecomFormatId", this.telecomFormatId, telecomFormatId);
         this.telecomFormatId = telecomFormatId;
     }
 
-    public BigDecimal getTelecomFormatId() {
+    public Integer getTelecomFormatId() {
         beforePropertyRead("telecomFormatId");
         return this.telecomFormatId;
     }
@@ -100,10 +99,10 @@ public abstract class _TelecomFormatDoc extends BaseDataObject {
 
         switch (propName) {
             case "docId":
-                this.docId = (BigDecimal)val;
+                this.docId = (Integer)val;
                 break;
             case "telecomFormatId":
-                this.telecomFormatId = (BigDecimal)val;
+                this.telecomFormatId = (Integer)val;
                 break;
             case "doc":
                 this.doc = val;
@@ -136,8 +135,8 @@ public abstract class _TelecomFormatDoc extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.docId = (BigDecimal)in.readObject();
-        this.telecomFormatId = (BigDecimal)in.readObject();
+        this.docId = (Integer)in.readObject();
+        this.telecomFormatId = (Integer)in.readObject();
         this.doc = in.readObject();
         this.telecomFormat = in.readObject();
     }

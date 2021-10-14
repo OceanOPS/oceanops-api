@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -25,33 +24,33 @@ public abstract class _CruiseSensorModel extends BaseDataObject {
     public static final String CRUISE_ID_PK_COLUMN = "CRUISE_ID";
     public static final String SENSOR_MODEL_ID_PK_COLUMN = "SENSOR_MODEL_ID";
 
-    public static final NumericProperty<BigDecimal> CRUISE_ID = PropertyFactory.createNumeric("cruiseId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> SENSOR_MODEL_ID = PropertyFactory.createNumeric("sensorModelId", BigDecimal.class);
+    public static final NumericProperty<Integer> CRUISE_ID = PropertyFactory.createNumeric("cruiseId", Integer.class);
+    public static final NumericProperty<Integer> SENSOR_MODEL_ID = PropertyFactory.createNumeric("sensorModelId", Integer.class);
     public static final EntityProperty<Cruise> CRUISE = PropertyFactory.createEntity("cruise", Cruise.class);
     public static final EntityProperty<SensorModel> SENSOR_MODEL = PropertyFactory.createEntity("sensorModel", SensorModel.class);
 
-    protected BigDecimal cruiseId;
-    protected BigDecimal sensorModelId;
+    protected Integer cruiseId;
+    protected Integer sensorModelId;
 
     protected Object cruise;
     protected Object sensorModel;
 
-    public void setCruiseId(BigDecimal cruiseId) {
+    public void setCruiseId(Integer cruiseId) {
         beforePropertyWrite("cruiseId", this.cruiseId, cruiseId);
         this.cruiseId = cruiseId;
     }
 
-    public BigDecimal getCruiseId() {
+    public Integer getCruiseId() {
         beforePropertyRead("cruiseId");
         return this.cruiseId;
     }
 
-    public void setSensorModelId(BigDecimal sensorModelId) {
+    public void setSensorModelId(Integer sensorModelId) {
         beforePropertyWrite("sensorModelId", this.sensorModelId, sensorModelId);
         this.sensorModelId = sensorModelId;
     }
 
-    public BigDecimal getSensorModelId() {
+    public Integer getSensorModelId() {
         beforePropertyRead("sensorModelId");
         return this.sensorModelId;
     }
@@ -100,10 +99,10 @@ public abstract class _CruiseSensorModel extends BaseDataObject {
 
         switch (propName) {
             case "cruiseId":
-                this.cruiseId = (BigDecimal)val;
+                this.cruiseId = (Integer)val;
                 break;
             case "sensorModelId":
-                this.sensorModelId = (BigDecimal)val;
+                this.sensorModelId = (Integer)val;
                 break;
             case "cruise":
                 this.cruise = val;
@@ -136,8 +135,8 @@ public abstract class _CruiseSensorModel extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.cruiseId = (BigDecimal)in.readObject();
-        this.sensorModelId = (BigDecimal)in.readObject();
+        this.cruiseId = (Integer)in.readObject();
+        this.sensorModelId = (Integer)in.readObject();
         this.cruise = in.readObject();
         this.sensorModel = in.readObject();
     }

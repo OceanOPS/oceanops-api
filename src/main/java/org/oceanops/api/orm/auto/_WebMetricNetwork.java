@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -24,33 +23,33 @@ public abstract class _WebMetricNetwork extends BaseDataObject {
 
     public static final String NETWORK_ID_PK_COLUMN = "NETWORK_ID";
 
-    public static final NumericProperty<BigDecimal> NETWORK_ID = PropertyFactory.createNumeric("networkId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> TARGET = PropertyFactory.createNumeric("target", BigDecimal.class);
+    public static final NumericProperty<Integer> NETWORK_ID = PropertyFactory.createNumeric("networkId", Integer.class);
+    public static final NumericProperty<Double> TARGET = PropertyFactory.createNumeric("target", Double.class);
     public static final EntityProperty<Network> NETWORK = PropertyFactory.createEntity("network", Network.class);
     public static final EntityProperty<WebMetric> WEB_METRIC = PropertyFactory.createEntity("webMetric", WebMetric.class);
 
-    protected BigDecimal networkId;
-    protected BigDecimal target;
+    protected Integer networkId;
+    protected Double target;
 
     protected Object network;
     protected Object webMetric;
 
-    public void setNetworkId(BigDecimal networkId) {
+    public void setNetworkId(Integer networkId) {
         beforePropertyWrite("networkId", this.networkId, networkId);
         this.networkId = networkId;
     }
 
-    public BigDecimal getNetworkId() {
+    public Integer getNetworkId() {
         beforePropertyRead("networkId");
         return this.networkId;
     }
 
-    public void setTarget(BigDecimal target) {
+    public void setTarget(Double target) {
         beforePropertyWrite("target", this.target, target);
         this.target = target;
     }
 
-    public BigDecimal getTarget() {
+    public Double getTarget() {
         beforePropertyRead("target");
         return this.target;
     }
@@ -99,10 +98,10 @@ public abstract class _WebMetricNetwork extends BaseDataObject {
 
         switch (propName) {
             case "networkId":
-                this.networkId = (BigDecimal)val;
+                this.networkId = (Integer)val;
                 break;
             case "target":
-                this.target = (BigDecimal)val;
+                this.target = (Double)val;
                 break;
             case "network":
                 this.network = val;
@@ -135,8 +134,8 @@ public abstract class _WebMetricNetwork extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.networkId = (BigDecimal)in.readObject();
-        this.target = (BigDecimal)in.readObject();
+        this.networkId = (Integer)in.readObject();
+        this.target = (Double)in.readObject();
         this.network = in.readObject();
         this.webMetric = in.readObject();
     }

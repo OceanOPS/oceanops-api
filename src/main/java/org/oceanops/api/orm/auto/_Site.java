@@ -3,10 +3,10 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
+import org.apache.cayenne.exp.property.BaseProperty;
 import org.apache.cayenne.exp.property.EntityProperty;
 import org.apache.cayenne.exp.property.ListProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
@@ -30,10 +30,11 @@ public abstract class _Site extends BaseDataObject {
     public static final String ID_PK_COLUMN = "ID";
 
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> NAME_SHORT = PropertyFactory.createString("nameShort", String.class);
-    public static final NumericProperty<BigDecimal> TARGETED_OCCUPATION = PropertyFactory.createNumeric("targetedOccupation", BigDecimal.class);
+    public static final BaseProperty<byte[]> SHAPE = PropertyFactory.createBase("shape", byte[].class);
+    public static final NumericProperty<Integer> TARGETED_OCCUPATION = PropertyFactory.createNumeric("targetedOccupation", Integer.class);
     public static final StringProperty<String> WKT = PropertyFactory.createString("wkt", String.class);
     public static final ListProperty<NetworkSite> NETWORK_SITES = PropertyFactory.createList("networkSites", NetworkSite.class);
     public static final EntityProperty<SiteFamily> SITE_FAMILY = PropertyFactory.createEntity("siteFamily", SiteFamily.class);
@@ -41,10 +42,11 @@ public abstract class _Site extends BaseDataObject {
     public static final EntityProperty<SiteStatus> STATUS = PropertyFactory.createEntity("status", SiteStatus.class);
 
     protected String description;
-    protected BigDecimal id;
+    protected Integer id;
     protected String name;
     protected String nameShort;
-    protected BigDecimal targetedOccupation;
+    protected byte[] shape;
+    protected Integer targetedOccupation;
     protected String wkt;
 
     protected Object networkSites;
@@ -62,12 +64,12 @@ public abstract class _Site extends BaseDataObject {
         return this.description;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
@@ -92,12 +94,22 @@ public abstract class _Site extends BaseDataObject {
         return this.nameShort;
     }
 
-    public void setTargetedOccupation(BigDecimal targetedOccupation) {
+    public void setShape(byte[] shape) {
+        beforePropertyWrite("shape", this.shape, shape);
+        this.shape = shape;
+    }
+
+    public byte[] getShape() {
+        beforePropertyRead("shape");
+        return this.shape;
+    }
+
+    public void setTargetedOccupation(Integer targetedOccupation) {
         beforePropertyWrite("targetedOccupation", this.targetedOccupation, targetedOccupation);
         this.targetedOccupation = targetedOccupation;
     }
 
-    public BigDecimal getTargetedOccupation() {
+    public Integer getTargetedOccupation() {
         beforePropertyRead("targetedOccupation");
         return this.targetedOccupation;
     }
@@ -169,6 +181,8 @@ public abstract class _Site extends BaseDataObject {
                 return this.name;
             case "nameShort":
                 return this.nameShort;
+            case "shape":
+                return this.shape;
             case "targetedOccupation":
                 return this.targetedOccupation;
             case "wkt":
@@ -197,7 +211,7 @@ public abstract class _Site extends BaseDataObject {
                 this.description = (String)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "name":
                 this.name = (String)val;
@@ -205,8 +219,11 @@ public abstract class _Site extends BaseDataObject {
             case "nameShort":
                 this.nameShort = (String)val;
                 break;
+            case "shape":
+                this.shape = (byte[])val;
+                break;
             case "targetedOccupation":
-                this.targetedOccupation = (BigDecimal)val;
+                this.targetedOccupation = (Integer)val;
                 break;
             case "wkt":
                 this.wkt = (String)val;
@@ -243,6 +260,7 @@ public abstract class _Site extends BaseDataObject {
         out.writeObject(this.id);
         out.writeObject(this.name);
         out.writeObject(this.nameShort);
+        out.writeObject(this.shape);
         out.writeObject(this.targetedOccupation);
         out.writeObject(this.wkt);
         out.writeObject(this.networkSites);
@@ -255,10 +273,11 @@ public abstract class _Site extends BaseDataObject {
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
         this.description = (String)in.readObject();
-        this.id = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
         this.name = (String)in.readObject();
         this.nameShort = (String)in.readObject();
-        this.targetedOccupation = (BigDecimal)in.readObject();
+        this.shape = (byte[])in.readObject();
+        this.targetedOccupation = (Integer)in.readObject();
         this.wkt = (String)in.readObject();
         this.networkSites = in.readObject();
         this.siteFamily = in.readObject();

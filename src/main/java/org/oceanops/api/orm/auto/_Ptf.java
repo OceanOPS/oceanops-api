@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -23,6 +22,7 @@ import org.oceanops.api.orm.Line;
 import org.oceanops.api.orm.LocSystem;
 import org.oceanops.api.orm.MzmsPtfCountry;
 import org.oceanops.api.orm.NetworkPtf;
+import org.oceanops.api.orm.ObsFishingvesselFishydata;
 import org.oceanops.api.orm.ObsLatest;
 import org.oceanops.api.orm.Program;
 import org.oceanops.api.orm.PtfAutomation;
@@ -31,7 +31,6 @@ import org.oceanops.api.orm.PtfConfig;
 import org.oceanops.api.orm.PtfDeployment;
 import org.oceanops.api.orm.PtfHardware;
 import org.oceanops.api.orm.PtfIdentifiers;
-import org.oceanops.api.orm.PtfInspection;
 import org.oceanops.api.orm.PtfLoc;
 import org.oceanops.api.orm.PtfLocStatus;
 import org.oceanops.api.orm.PtfModel;
@@ -44,6 +43,7 @@ import org.oceanops.api.orm.Retrieval;
 import org.oceanops.api.orm.Service;
 import org.oceanops.api.orm.SitePtf;
 import org.oceanops.api.orm.Telecom;
+import org.oceanops.api.orm.TimePeriod;
 import org.oceanops.api.orm.Weblink;
 import org.oceanops.api.orm.Wmo;
 
@@ -59,29 +59,25 @@ public abstract class _Ptf extends BaseDataObject {
 
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final NumericProperty<BigDecimal> ACTIVITY_CRITERION = PropertyFactory.createNumeric("activityCriterion", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> AGE = PropertyFactory.createNumeric("age", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> AGE_WEIGHT = PropertyFactory.createNumeric("ageWeight", BigDecimal.class);
+    public static final NumericProperty<Integer> ACTIVITY_CRITERION = PropertyFactory.createNumeric("activityCriterion", Integer.class);
     public static final StringProperty<String> BATCH_REQUEST_REF = PropertyFactory.createString("batchRequestRef", String.class);
-    public static final NumericProperty<BigDecimal> CLOSURE_CRITERION = PropertyFactory.createNumeric("closureCriterion", BigDecimal.class);
+    public static final NumericProperty<Integer> CLOSURE_CRITERION = PropertyFactory.createNumeric("closureCriterion", Integer.class);
     public static final StringProperty<String> DATA_URL = PropertyFactory.createString("dataUrl", String.class);
-    public static final NumericProperty<BigDecimal> DELETE_TAG = PropertyFactory.createNumeric("deleteTag", BigDecimal.class);
+    public static final NumericProperty<Integer> DELETE_TAG = PropertyFactory.createNumeric("deleteTag", Integer.class);
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
     public static final DateProperty<LocalDateTime> E_NOTIFICATION_DATE = PropertyFactory.createDate("eNotificationDate", LocalDateTime.class);
     public static final DateProperty<LocalDateTime> ENDING_DATE = PropertyFactory.createDate("endingDate", LocalDateTime.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final DateProperty<LocalDateTime> INSERT_DATE = PropertyFactory.createDate("insertDate", LocalDateTime.class);
     public static final DateProperty<LocalDateTime> LAST_UPDATE = PropertyFactory.createDate("lastUpdate", LocalDateTime.class);
-    public static final NumericProperty<BigDecimal> METADATA_AVAILABLE = PropertyFactory.createNumeric("metadataAvailable", BigDecimal.class);
+    public static final NumericProperty<Integer> METADATA_AVAILABLE = PropertyFactory.createNumeric("metadataAvailable", Integer.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> NOK_REASON = PropertyFactory.createString("nokReason", String.class);
-    public static final NumericProperty<BigDecimal> PTF_BATCH_STATUS_ID = PropertyFactory.createNumeric("ptfBatchStatusId", BigDecimal.class);
     public static final StringProperty<String> REF = PropertyFactory.createString("ref", String.class);
     public static final StringProperty<String> REF_PARENT = PropertyFactory.createString("refParent", String.class);
-    public static final NumericProperty<BigDecimal> SERVICE_SCHEDULE_ID = PropertyFactory.createNumeric("serviceScheduleId", BigDecimal.class);
     public static final DateProperty<LocalDateTime> UPDATE_DATE = PropertyFactory.createDate("updateDate", LocalDateTime.class);
-    public static final NumericProperty<BigDecimal> VALIDATED = PropertyFactory.createNumeric("validated", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> WIGOS_SYNCHRONISED = PropertyFactory.createNumeric("wigosSynchronised", BigDecimal.class);
+    public static final NumericProperty<Integer> VALIDATED = PropertyFactory.createNumeric("validated", Integer.class);
+    public static final NumericProperty<Integer> WIGOS_SYNCHRONISED = PropertyFactory.createNumeric("wigosSynchronised", Integer.class);
     public static final ListProperty<AgencyPtf> AGENCY_PTFS = PropertyFactory.createList("agencyPtfs", AgencyPtf.class);
     public static final EntityProperty<Telecom> BACKUP_TELECOM = PropertyFactory.createEntity("backupTelecom", Telecom.class);
     public static final EntityProperty<LocSystem> BACKUP_TRACKING_SYSTEM = PropertyFactory.createEntity("backupTrackingSystem", LocSystem.class);
@@ -90,10 +86,12 @@ public abstract class _Ptf extends BaseDataObject {
     public static final EntityProperty<Doc> DOC = PropertyFactory.createEntity("doc", Doc.class);
     public static final ListProperty<Doc> DOCS = PropertyFactory.createList("docs", Doc.class);
     public static final EntityProperty<EndingCause> ENDING_CAUSE = PropertyFactory.createEntity("endingCause", EndingCause.class);
+    public static final EntityProperty<PtfLoc> LAST_LOC = PropertyFactory.createEntity("lastLoc", PtfLoc.class);
     public static final EntityProperty<ObsLatest> LATEST_OBS = PropertyFactory.createEntity("latestObs", ObsLatest.class);
     public static final ListProperty<Line> LINES = PropertyFactory.createList("lines", Line.class);
     public static final ListProperty<MzmsPtfCountry> MZMS_PTF_COUNTRIES = PropertyFactory.createList("mzmsPtfCountries", MzmsPtfCountry.class);
     public static final ListProperty<NetworkPtf> NETWORK_PTFS = PropertyFactory.createList("networkPtfs", NetworkPtf.class);
+    public static final ListProperty<ObsFishingvesselFishydata> OBS_FISHINGVESSEL_FISHYDATAS = PropertyFactory.createList("obsFishingvesselFishydatas", ObsFishingvesselFishydata.class);
     public static final EntityProperty<Program> PROGRAM = PropertyFactory.createEntity("program", Program.class);
     public static final EntityProperty<PtfAutomation> PTF_AUTOMATION = PropertyFactory.createEntity("ptfAutomation", PtfAutomation.class);
     public static final EntityProperty<PtfBatchStatus> PTF_BATCH_STATUS = PropertyFactory.createEntity("ptfBatchStatus", PtfBatchStatus.class);
@@ -101,7 +99,6 @@ public abstract class _Ptf extends BaseDataObject {
     public static final EntityProperty<PtfDeployment> PTF_DEPL = PropertyFactory.createEntity("ptfDepl", PtfDeployment.class);
     public static final EntityProperty<PtfHardware> PTF_HARDWARE = PropertyFactory.createEntity("ptfHardware", PtfHardware.class);
     public static final EntityProperty<PtfIdentifiers> PTF_IDENTIFIERS = PropertyFactory.createEntity("ptfIdentifiers", PtfIdentifiers.class);
-    public static final EntityProperty<PtfInspection> PTF_INSPECTION = PropertyFactory.createEntity("ptfInspection", PtfInspection.class);
     public static final ListProperty<PtfLocStatus> PTF_LOC_STATUSES = PropertyFactory.createList("ptfLocStatuses", PtfLocStatus.class);
     public static final ListProperty<PtfLoc> PTF_LOCS = PropertyFactory.createList("ptfLocs", PtfLoc.class);
     public static final EntityProperty<PtfModel> PTF_MODEL = PropertyFactory.createEntity("ptfModel", PtfModel.class);
@@ -111,6 +108,7 @@ public abstract class _Ptf extends BaseDataObject {
     public static final ListProperty<PtfVariable> PTF_VARIABLES = PropertyFactory.createList("ptfVariables", PtfVariable.class);
     public static final ListProperty<QcFeedback> QC_FEEDBACKS = PropertyFactory.createList("qcFeedbacks", QcFeedback.class);
     public static final EntityProperty<Retrieval> RETRIEVAL = PropertyFactory.createEntity("retrieval", Retrieval.class);
+    public static final EntityProperty<TimePeriod> SERVICE_SCHEDULE = PropertyFactory.createEntity("serviceSchedule", TimePeriod.class);
     public static final ListProperty<Service> SERVICES = PropertyFactory.createList("services", Service.class);
     public static final ListProperty<SitePtf> SITE_PTFS = PropertyFactory.createList("sitePtfs", SitePtf.class);
     public static final EntityProperty<Telecom> TELECOM = PropertyFactory.createEntity("telecom", Telecom.class);
@@ -118,29 +116,25 @@ public abstract class _Ptf extends BaseDataObject {
     public static final ListProperty<Weblink> WEBLINKS = PropertyFactory.createList("weblinks", Weblink.class);
     public static final ListProperty<Wmo> WMOS = PropertyFactory.createList("wmos", Wmo.class);
 
-    protected BigDecimal activityCriterion;
-    protected BigDecimal age;
-    protected BigDecimal ageWeight;
+    protected Integer activityCriterion;
     protected String batchRequestRef;
-    protected BigDecimal closureCriterion;
+    protected Integer closureCriterion;
     protected String dataUrl;
-    protected BigDecimal deleteTag;
+    protected Integer deleteTag;
     protected String description;
     protected LocalDateTime eNotificationDate;
     protected LocalDateTime endingDate;
-    protected BigDecimal id;
+    protected Integer id;
     protected LocalDateTime insertDate;
     protected LocalDateTime lastUpdate;
-    protected BigDecimal metadataAvailable;
+    protected Integer metadataAvailable;
     protected String name;
     protected String nokReason;
-    protected BigDecimal ptfBatchStatusId;
     protected String ref;
     protected String refParent;
-    protected BigDecimal serviceScheduleId;
     protected LocalDateTime updateDate;
-    protected BigDecimal validated;
-    protected BigDecimal wigosSynchronised;
+    protected Integer validated;
+    protected Integer wigosSynchronised;
 
     protected Object agencyPtfs;
     protected Object backupTelecom;
@@ -150,10 +144,12 @@ public abstract class _Ptf extends BaseDataObject {
     protected Object doc;
     protected Object docs;
     protected Object endingCause;
+    protected Object lastLoc;
     protected Object latestObs;
     protected Object lines;
     protected Object mzmsPtfCountries;
     protected Object networkPtfs;
+    protected Object obsFishingvesselFishydatas;
     protected Object program;
     protected Object ptfAutomation;
     protected Object ptfBatchStatus;
@@ -161,7 +157,6 @@ public abstract class _Ptf extends BaseDataObject {
     protected Object ptfDepl;
     protected Object ptfHardware;
     protected Object ptfIdentifiers;
-    protected Object ptfInspection;
     protected Object ptfLocStatuses;
     protected Object ptfLocs;
     protected Object ptfModel;
@@ -171,6 +166,7 @@ public abstract class _Ptf extends BaseDataObject {
     protected Object ptfVariables;
     protected Object qcFeedbacks;
     protected Object retrieval;
+    protected Object serviceSchedule;
     protected Object services;
     protected Object sitePtfs;
     protected Object telecom;
@@ -178,34 +174,14 @@ public abstract class _Ptf extends BaseDataObject {
     protected Object weblinks;
     protected Object wmos;
 
-    public void setActivityCriterion(BigDecimal activityCriterion) {
+    public void setActivityCriterion(Integer activityCriterion) {
         beforePropertyWrite("activityCriterion", this.activityCriterion, activityCriterion);
         this.activityCriterion = activityCriterion;
     }
 
-    public BigDecimal getActivityCriterion() {
+    public Integer getActivityCriterion() {
         beforePropertyRead("activityCriterion");
         return this.activityCriterion;
-    }
-
-    public void setAge(BigDecimal age) {
-        beforePropertyWrite("age", this.age, age);
-        this.age = age;
-    }
-
-    public BigDecimal getAge() {
-        beforePropertyRead("age");
-        return this.age;
-    }
-
-    public void setAgeWeight(BigDecimal ageWeight) {
-        beforePropertyWrite("ageWeight", this.ageWeight, ageWeight);
-        this.ageWeight = ageWeight;
-    }
-
-    public BigDecimal getAgeWeight() {
-        beforePropertyRead("ageWeight");
-        return this.ageWeight;
     }
 
     public void setBatchRequestRef(String batchRequestRef) {
@@ -218,12 +194,12 @@ public abstract class _Ptf extends BaseDataObject {
         return this.batchRequestRef;
     }
 
-    public void setClosureCriterion(BigDecimal closureCriterion) {
+    public void setClosureCriterion(Integer closureCriterion) {
         beforePropertyWrite("closureCriterion", this.closureCriterion, closureCriterion);
         this.closureCriterion = closureCriterion;
     }
 
-    public BigDecimal getClosureCriterion() {
+    public Integer getClosureCriterion() {
         beforePropertyRead("closureCriterion");
         return this.closureCriterion;
     }
@@ -238,12 +214,12 @@ public abstract class _Ptf extends BaseDataObject {
         return this.dataUrl;
     }
 
-    public void setDeleteTag(BigDecimal deleteTag) {
+    public void setDeleteTag(Integer deleteTag) {
         beforePropertyWrite("deleteTag", this.deleteTag, deleteTag);
         this.deleteTag = deleteTag;
     }
 
-    public BigDecimal getDeleteTag() {
+    public Integer getDeleteTag() {
         beforePropertyRead("deleteTag");
         return this.deleteTag;
     }
@@ -278,12 +254,12 @@ public abstract class _Ptf extends BaseDataObject {
         return this.endingDate;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
@@ -308,12 +284,12 @@ public abstract class _Ptf extends BaseDataObject {
         return this.lastUpdate;
     }
 
-    public void setMetadataAvailable(BigDecimal metadataAvailable) {
+    public void setMetadataAvailable(Integer metadataAvailable) {
         beforePropertyWrite("metadataAvailable", this.metadataAvailable, metadataAvailable);
         this.metadataAvailable = metadataAvailable;
     }
 
-    public BigDecimal getMetadataAvailable() {
+    public Integer getMetadataAvailable() {
         beforePropertyRead("metadataAvailable");
         return this.metadataAvailable;
     }
@@ -338,16 +314,6 @@ public abstract class _Ptf extends BaseDataObject {
         return this.nokReason;
     }
 
-    public void setPtfBatchStatusId(BigDecimal ptfBatchStatusId) {
-        beforePropertyWrite("ptfBatchStatusId", this.ptfBatchStatusId, ptfBatchStatusId);
-        this.ptfBatchStatusId = ptfBatchStatusId;
-    }
-
-    public BigDecimal getPtfBatchStatusId() {
-        beforePropertyRead("ptfBatchStatusId");
-        return this.ptfBatchStatusId;
-    }
-
     public void setRef(String ref) {
         beforePropertyWrite("ref", this.ref, ref);
         this.ref = ref;
@@ -368,16 +334,6 @@ public abstract class _Ptf extends BaseDataObject {
         return this.refParent;
     }
 
-    public void setServiceScheduleId(BigDecimal serviceScheduleId) {
-        beforePropertyWrite("serviceScheduleId", this.serviceScheduleId, serviceScheduleId);
-        this.serviceScheduleId = serviceScheduleId;
-    }
-
-    public BigDecimal getServiceScheduleId() {
-        beforePropertyRead("serviceScheduleId");
-        return this.serviceScheduleId;
-    }
-
     public void setUpdateDate(LocalDateTime updateDate) {
         beforePropertyWrite("updateDate", this.updateDate, updateDate);
         this.updateDate = updateDate;
@@ -388,22 +344,22 @@ public abstract class _Ptf extends BaseDataObject {
         return this.updateDate;
     }
 
-    public void setValidated(BigDecimal validated) {
+    public void setValidated(Integer validated) {
         beforePropertyWrite("validated", this.validated, validated);
         this.validated = validated;
     }
 
-    public BigDecimal getValidated() {
+    public Integer getValidated() {
         beforePropertyRead("validated");
         return this.validated;
     }
 
-    public void setWigosSynchronised(BigDecimal wigosSynchronised) {
+    public void setWigosSynchronised(Integer wigosSynchronised) {
         beforePropertyWrite("wigosSynchronised", this.wigosSynchronised, wigosSynchronised);
         this.wigosSynchronised = wigosSynchronised;
     }
 
-    public BigDecimal getWigosSynchronised() {
+    public Integer getWigosSynchronised() {
         beforePropertyRead("wigosSynchronised");
         return this.wigosSynchronised;
     }
@@ -487,6 +443,14 @@ public abstract class _Ptf extends BaseDataObject {
         return (EndingCause)readProperty("endingCause");
     }
 
+    public void setLastLoc(PtfLoc lastLoc) {
+        setToOneTarget("lastLoc", lastLoc, true);
+    }
+
+    public PtfLoc getLastLoc() {
+        return (PtfLoc)readProperty("lastLoc");
+    }
+
     public void setLatestObs(ObsLatest latestObs) {
         setToOneTarget("latestObs", latestObs, true);
     }
@@ -532,6 +496,19 @@ public abstract class _Ptf extends BaseDataObject {
     @SuppressWarnings("unchecked")
     public List<NetworkPtf> getNetworkPtfs() {
         return (List<NetworkPtf>)readProperty("networkPtfs");
+    }
+
+    public void addToObsFishingvesselFishydatas(ObsFishingvesselFishydata obj) {
+        addToManyTarget("obsFishingvesselFishydatas", obj, true);
+    }
+
+    public void removeFromObsFishingvesselFishydatas(ObsFishingvesselFishydata obj) {
+        removeToManyTarget("obsFishingvesselFishydatas", obj, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<ObsFishingvesselFishydata> getObsFishingvesselFishydatas() {
+        return (List<ObsFishingvesselFishydata>)readProperty("obsFishingvesselFishydatas");
     }
 
     public void setProgram(Program program) {
@@ -593,14 +570,6 @@ public abstract class _Ptf extends BaseDataObject {
 
     public PtfIdentifiers getPtfIdentifiers() {
         return (PtfIdentifiers)readProperty("ptfIdentifiers");
-    }
-
-    public void setPtfInspection(PtfInspection ptfInspection) {
-        setToOneTarget("ptfInspection", ptfInspection, true);
-    }
-
-    public PtfInspection getPtfInspection() {
-        return (PtfInspection)readProperty("ptfInspection");
     }
 
     public void addToPtfLocStatuses(PtfLocStatus obj) {
@@ -700,6 +669,14 @@ public abstract class _Ptf extends BaseDataObject {
         return (Retrieval)readProperty("retrieval");
     }
 
+    public void setServiceSchedule(TimePeriod serviceSchedule) {
+        setToOneTarget("serviceSchedule", serviceSchedule, true);
+    }
+
+    public TimePeriod getServiceSchedule() {
+        return (TimePeriod)readProperty("serviceSchedule");
+    }
+
     public void addToServices(Service obj) {
         addToManyTarget("services", obj, true);
     }
@@ -777,10 +754,6 @@ public abstract class _Ptf extends BaseDataObject {
         switch(propName) {
             case "activityCriterion":
                 return this.activityCriterion;
-            case "age":
-                return this.age;
-            case "ageWeight":
-                return this.ageWeight;
             case "batchRequestRef":
                 return this.batchRequestRef;
             case "closureCriterion":
@@ -807,14 +780,10 @@ public abstract class _Ptf extends BaseDataObject {
                 return this.name;
             case "nokReason":
                 return this.nokReason;
-            case "ptfBatchStatusId":
-                return this.ptfBatchStatusId;
             case "ref":
                 return this.ref;
             case "refParent":
                 return this.refParent;
-            case "serviceScheduleId":
-                return this.serviceScheduleId;
             case "updateDate":
                 return this.updateDate;
             case "validated":
@@ -837,6 +806,8 @@ public abstract class _Ptf extends BaseDataObject {
                 return this.docs;
             case "endingCause":
                 return this.endingCause;
+            case "lastLoc":
+                return this.lastLoc;
             case "latestObs":
                 return this.latestObs;
             case "lines":
@@ -845,6 +816,8 @@ public abstract class _Ptf extends BaseDataObject {
                 return this.mzmsPtfCountries;
             case "networkPtfs":
                 return this.networkPtfs;
+            case "obsFishingvesselFishydatas":
+                return this.obsFishingvesselFishydatas;
             case "program":
                 return this.program;
             case "ptfAutomation":
@@ -859,8 +832,6 @@ public abstract class _Ptf extends BaseDataObject {
                 return this.ptfHardware;
             case "ptfIdentifiers":
                 return this.ptfIdentifiers;
-            case "ptfInspection":
-                return this.ptfInspection;
             case "ptfLocStatuses":
                 return this.ptfLocStatuses;
             case "ptfLocs":
@@ -879,6 +850,8 @@ public abstract class _Ptf extends BaseDataObject {
                 return this.qcFeedbacks;
             case "retrieval":
                 return this.retrieval;
+            case "serviceSchedule":
+                return this.serviceSchedule;
             case "services":
                 return this.services;
             case "sitePtfs":
@@ -904,25 +877,19 @@ public abstract class _Ptf extends BaseDataObject {
 
         switch (propName) {
             case "activityCriterion":
-                this.activityCriterion = (BigDecimal)val;
-                break;
-            case "age":
-                this.age = (BigDecimal)val;
-                break;
-            case "ageWeight":
-                this.ageWeight = (BigDecimal)val;
+                this.activityCriterion = (Integer)val;
                 break;
             case "batchRequestRef":
                 this.batchRequestRef = (String)val;
                 break;
             case "closureCriterion":
-                this.closureCriterion = (BigDecimal)val;
+                this.closureCriterion = (Integer)val;
                 break;
             case "dataUrl":
                 this.dataUrl = (String)val;
                 break;
             case "deleteTag":
-                this.deleteTag = (BigDecimal)val;
+                this.deleteTag = (Integer)val;
                 break;
             case "description":
                 this.description = (String)val;
@@ -934,7 +901,7 @@ public abstract class _Ptf extends BaseDataObject {
                 this.endingDate = (LocalDateTime)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "insertDate":
                 this.insertDate = (LocalDateTime)val;
@@ -943,7 +910,7 @@ public abstract class _Ptf extends BaseDataObject {
                 this.lastUpdate = (LocalDateTime)val;
                 break;
             case "metadataAvailable":
-                this.metadataAvailable = (BigDecimal)val;
+                this.metadataAvailable = (Integer)val;
                 break;
             case "name":
                 this.name = (String)val;
@@ -951,26 +918,20 @@ public abstract class _Ptf extends BaseDataObject {
             case "nokReason":
                 this.nokReason = (String)val;
                 break;
-            case "ptfBatchStatusId":
-                this.ptfBatchStatusId = (BigDecimal)val;
-                break;
             case "ref":
                 this.ref = (String)val;
                 break;
             case "refParent":
                 this.refParent = (String)val;
                 break;
-            case "serviceScheduleId":
-                this.serviceScheduleId = (BigDecimal)val;
-                break;
             case "updateDate":
                 this.updateDate = (LocalDateTime)val;
                 break;
             case "validated":
-                this.validated = (BigDecimal)val;
+                this.validated = (Integer)val;
                 break;
             case "wigosSynchronised":
-                this.wigosSynchronised = (BigDecimal)val;
+                this.wigosSynchronised = (Integer)val;
                 break;
             case "agencyPtfs":
                 this.agencyPtfs = val;
@@ -996,6 +957,9 @@ public abstract class _Ptf extends BaseDataObject {
             case "endingCause":
                 this.endingCause = val;
                 break;
+            case "lastLoc":
+                this.lastLoc = val;
+                break;
             case "latestObs":
                 this.latestObs = val;
                 break;
@@ -1007,6 +971,9 @@ public abstract class _Ptf extends BaseDataObject {
                 break;
             case "networkPtfs":
                 this.networkPtfs = val;
+                break;
+            case "obsFishingvesselFishydatas":
+                this.obsFishingvesselFishydatas = val;
                 break;
             case "program":
                 this.program = val;
@@ -1028,9 +995,6 @@ public abstract class _Ptf extends BaseDataObject {
                 break;
             case "ptfIdentifiers":
                 this.ptfIdentifiers = val;
-                break;
-            case "ptfInspection":
-                this.ptfInspection = val;
                 break;
             case "ptfLocStatuses":
                 this.ptfLocStatuses = val;
@@ -1058,6 +1022,9 @@ public abstract class _Ptf extends BaseDataObject {
                 break;
             case "retrieval":
                 this.retrieval = val;
+                break;
+            case "serviceSchedule":
+                this.serviceSchedule = val;
                 break;
             case "services":
                 this.services = val;
@@ -1094,8 +1061,6 @@ public abstract class _Ptf extends BaseDataObject {
     protected void writeState(ObjectOutputStream out) throws IOException {
         super.writeState(out);
         out.writeObject(this.activityCriterion);
-        out.writeObject(this.age);
-        out.writeObject(this.ageWeight);
         out.writeObject(this.batchRequestRef);
         out.writeObject(this.closureCriterion);
         out.writeObject(this.dataUrl);
@@ -1109,10 +1074,8 @@ public abstract class _Ptf extends BaseDataObject {
         out.writeObject(this.metadataAvailable);
         out.writeObject(this.name);
         out.writeObject(this.nokReason);
-        out.writeObject(this.ptfBatchStatusId);
         out.writeObject(this.ref);
         out.writeObject(this.refParent);
-        out.writeObject(this.serviceScheduleId);
         out.writeObject(this.updateDate);
         out.writeObject(this.validated);
         out.writeObject(this.wigosSynchronised);
@@ -1124,10 +1087,12 @@ public abstract class _Ptf extends BaseDataObject {
         out.writeObject(this.doc);
         out.writeObject(this.docs);
         out.writeObject(this.endingCause);
+        out.writeObject(this.lastLoc);
         out.writeObject(this.latestObs);
         out.writeObject(this.lines);
         out.writeObject(this.mzmsPtfCountries);
         out.writeObject(this.networkPtfs);
+        out.writeObject(this.obsFishingvesselFishydatas);
         out.writeObject(this.program);
         out.writeObject(this.ptfAutomation);
         out.writeObject(this.ptfBatchStatus);
@@ -1135,7 +1100,6 @@ public abstract class _Ptf extends BaseDataObject {
         out.writeObject(this.ptfDepl);
         out.writeObject(this.ptfHardware);
         out.writeObject(this.ptfIdentifiers);
-        out.writeObject(this.ptfInspection);
         out.writeObject(this.ptfLocStatuses);
         out.writeObject(this.ptfLocs);
         out.writeObject(this.ptfModel);
@@ -1145,6 +1109,7 @@ public abstract class _Ptf extends BaseDataObject {
         out.writeObject(this.ptfVariables);
         out.writeObject(this.qcFeedbacks);
         out.writeObject(this.retrieval);
+        out.writeObject(this.serviceSchedule);
         out.writeObject(this.services);
         out.writeObject(this.sitePtfs);
         out.writeObject(this.telecom);
@@ -1156,29 +1121,25 @@ public abstract class _Ptf extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.activityCriterion = (BigDecimal)in.readObject();
-        this.age = (BigDecimal)in.readObject();
-        this.ageWeight = (BigDecimal)in.readObject();
+        this.activityCriterion = (Integer)in.readObject();
         this.batchRequestRef = (String)in.readObject();
-        this.closureCriterion = (BigDecimal)in.readObject();
+        this.closureCriterion = (Integer)in.readObject();
         this.dataUrl = (String)in.readObject();
-        this.deleteTag = (BigDecimal)in.readObject();
+        this.deleteTag = (Integer)in.readObject();
         this.description = (String)in.readObject();
         this.eNotificationDate = (LocalDateTime)in.readObject();
         this.endingDate = (LocalDateTime)in.readObject();
-        this.id = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
         this.insertDate = (LocalDateTime)in.readObject();
         this.lastUpdate = (LocalDateTime)in.readObject();
-        this.metadataAvailable = (BigDecimal)in.readObject();
+        this.metadataAvailable = (Integer)in.readObject();
         this.name = (String)in.readObject();
         this.nokReason = (String)in.readObject();
-        this.ptfBatchStatusId = (BigDecimal)in.readObject();
         this.ref = (String)in.readObject();
         this.refParent = (String)in.readObject();
-        this.serviceScheduleId = (BigDecimal)in.readObject();
         this.updateDate = (LocalDateTime)in.readObject();
-        this.validated = (BigDecimal)in.readObject();
-        this.wigosSynchronised = (BigDecimal)in.readObject();
+        this.validated = (Integer)in.readObject();
+        this.wigosSynchronised = (Integer)in.readObject();
         this.agencyPtfs = in.readObject();
         this.backupTelecom = in.readObject();
         this.backupTrackingSystem = in.readObject();
@@ -1187,10 +1148,12 @@ public abstract class _Ptf extends BaseDataObject {
         this.doc = in.readObject();
         this.docs = in.readObject();
         this.endingCause = in.readObject();
+        this.lastLoc = in.readObject();
         this.latestObs = in.readObject();
         this.lines = in.readObject();
         this.mzmsPtfCountries = in.readObject();
         this.networkPtfs = in.readObject();
+        this.obsFishingvesselFishydatas = in.readObject();
         this.program = in.readObject();
         this.ptfAutomation = in.readObject();
         this.ptfBatchStatus = in.readObject();
@@ -1198,7 +1161,6 @@ public abstract class _Ptf extends BaseDataObject {
         this.ptfDepl = in.readObject();
         this.ptfHardware = in.readObject();
         this.ptfIdentifiers = in.readObject();
-        this.ptfInspection = in.readObject();
         this.ptfLocStatuses = in.readObject();
         this.ptfLocs = in.readObject();
         this.ptfModel = in.readObject();
@@ -1208,6 +1170,7 @@ public abstract class _Ptf extends BaseDataObject {
         this.ptfVariables = in.readObject();
         this.qcFeedbacks = in.readObject();
         this.retrieval = in.readObject();
+        this.serviceSchedule = in.readObject();
         this.services = in.readObject();
         this.sitePtfs = in.readObject();
         this.telecom = in.readObject();

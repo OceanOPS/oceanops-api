@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -27,17 +26,17 @@ public abstract class _CountryCommitment extends BaseDataObject {
     public static final String ID_PK_COLUMN = "ID";
 
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> NB_FUNDED = PropertyFactory.createNumeric("nbFunded", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> YEAR = PropertyFactory.createNumeric("year", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
+    public static final NumericProperty<Integer> NB_FUNDED = PropertyFactory.createNumeric("nbFunded", Integer.class);
+    public static final NumericProperty<Integer> YEAR = PropertyFactory.createNumeric("year", Integer.class);
     public static final EntityProperty<Basin> BASIN = PropertyFactory.createEntity("basin", Basin.class);
     public static final EntityProperty<Country> COUNTRY = PropertyFactory.createEntity("country", Country.class);
     public static final EntityProperty<Network> NETWORK = PropertyFactory.createEntity("network", Network.class);
 
     protected String description;
-    protected BigDecimal id;
-    protected BigDecimal nbFunded;
-    protected BigDecimal year;
+    protected Integer id;
+    protected Integer nbFunded;
+    protected Integer year;
 
     protected Object basin;
     protected Object country;
@@ -53,32 +52,32 @@ public abstract class _CountryCommitment extends BaseDataObject {
         return this.description;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
 
-    public void setNbFunded(BigDecimal nbFunded) {
+    public void setNbFunded(Integer nbFunded) {
         beforePropertyWrite("nbFunded", this.nbFunded, nbFunded);
         this.nbFunded = nbFunded;
     }
 
-    public BigDecimal getNbFunded() {
+    public Integer getNbFunded() {
         beforePropertyRead("nbFunded");
         return this.nbFunded;
     }
 
-    public void setYear(BigDecimal year) {
+    public void setYear(Integer year) {
         beforePropertyWrite("year", this.year, year);
         this.year = year;
     }
 
-    public BigDecimal getYear() {
+    public Integer getYear() {
         beforePropertyRead("year");
         return this.year;
     }
@@ -144,13 +143,13 @@ public abstract class _CountryCommitment extends BaseDataObject {
                 this.description = (String)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "nbFunded":
-                this.nbFunded = (BigDecimal)val;
+                this.nbFunded = (Integer)val;
                 break;
             case "year":
-                this.year = (BigDecimal)val;
+                this.year = (Integer)val;
                 break;
             case "basin":
                 this.basin = val;
@@ -190,9 +189,9 @@ public abstract class _CountryCommitment extends BaseDataObject {
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
         this.description = (String)in.readObject();
-        this.id = (BigDecimal)in.readObject();
-        this.nbFunded = (BigDecimal)in.readObject();
-        this.year = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
+        this.nbFunded = (Integer)in.readObject();
+        this.year = (Integer)in.readObject();
         this.basin = in.readObject();
         this.country = in.readObject();
         this.network = in.readObject();

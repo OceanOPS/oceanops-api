@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.NumericProperty;
@@ -22,31 +21,31 @@ public abstract class _WebMessage extends BaseDataObject {
 
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final NumericProperty<BigDecimal> ENABLED = PropertyFactory.createNumeric("enabled", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<Integer> ENABLED = PropertyFactory.createNumeric("enabled", Integer.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final StringProperty<String> TEXT = PropertyFactory.createString("text", String.class);
 
-    protected BigDecimal enabled;
-    protected BigDecimal id;
+    protected Integer enabled;
+    protected Integer id;
     protected String text;
 
 
-    public void setEnabled(BigDecimal enabled) {
+    public void setEnabled(Integer enabled) {
         beforePropertyWrite("enabled", this.enabled, enabled);
         this.enabled = enabled;
     }
 
-    public BigDecimal getEnabled() {
+    public Integer getEnabled() {
         beforePropertyRead("enabled");
         return this.enabled;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
@@ -87,10 +86,10 @@ public abstract class _WebMessage extends BaseDataObject {
 
         switch (propName) {
             case "enabled":
-                this.enabled = (BigDecimal)val;
+                this.enabled = (Integer)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "text":
                 this.text = (String)val;
@@ -119,8 +118,8 @@ public abstract class _WebMessage extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.enabled = (BigDecimal)in.readObject();
-        this.id = (BigDecimal)in.readObject();
+        this.enabled = (Integer)in.readObject();
+        this.id = (Integer)in.readObject();
         this.text = (String)in.readObject();
     }
 

@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -31,7 +30,7 @@ public abstract class _PtfHullType extends BaseDataObject {
     public static final String ID_PK_COLUMN = "ID";
 
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final DateProperty<LocalDateTime> MANUF_DATE = PropertyFactory.createDate("manufDate", LocalDateTime.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final EntityProperty<Agency> AGENCY = PropertyFactory.createEntity("agency", Agency.class);
@@ -39,7 +38,7 @@ public abstract class _PtfHullType extends BaseDataObject {
     public static final ListProperty<PtfModel> PTF_MODELS = PropertyFactory.createList("ptfModels", PtfModel.class);
 
     protected String description;
-    protected BigDecimal id;
+    protected Integer id;
     protected LocalDateTime manufDate;
     protected String name;
 
@@ -57,12 +56,12 @@ public abstract class _PtfHullType extends BaseDataObject {
         return this.description;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
@@ -158,7 +157,7 @@ public abstract class _PtfHullType extends BaseDataObject {
                 this.description = (String)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "manufDate":
                 this.manufDate = (LocalDateTime)val;
@@ -204,7 +203,7 @@ public abstract class _PtfHullType extends BaseDataObject {
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
         this.description = (String)in.readObject();
-        this.id = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
         this.manufDate = (LocalDateTime)in.readObject();
         this.name = (String)in.readObject();
         this.agency = in.readObject();

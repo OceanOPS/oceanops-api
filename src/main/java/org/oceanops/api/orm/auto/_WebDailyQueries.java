@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.apache.cayenne.BaseDataObject;
@@ -24,10 +23,10 @@ public abstract class _WebDailyQueries extends BaseDataObject {
     public static final String DAY_PK_COLUMN = "DAY";
 
     public static final DateProperty<LocalDateTime> DAY = PropertyFactory.createDate("day", LocalDateTime.class);
-    public static final NumericProperty<BigDecimal> NB_QUERIES = PropertyFactory.createNumeric("nbQueries", BigDecimal.class);
+    public static final NumericProperty<Integer> NB_QUERIES = PropertyFactory.createNumeric("nbQueries", Integer.class);
 
     protected LocalDateTime day;
-    protected BigDecimal nbQueries;
+    protected Integer nbQueries;
 
 
     public void setDay(LocalDateTime day) {
@@ -40,12 +39,12 @@ public abstract class _WebDailyQueries extends BaseDataObject {
         return this.day;
     }
 
-    public void setNbQueries(BigDecimal nbQueries) {
+    public void setNbQueries(Integer nbQueries) {
         beforePropertyWrite("nbQueries", this.nbQueries, nbQueries);
         this.nbQueries = nbQueries;
     }
 
-    public BigDecimal getNbQueries() {
+    public Integer getNbQueries() {
         beforePropertyRead("nbQueries");
         return this.nbQueries;
     }
@@ -77,7 +76,7 @@ public abstract class _WebDailyQueries extends BaseDataObject {
                 this.day = (LocalDateTime)val;
                 break;
             case "nbQueries":
-                this.nbQueries = (BigDecimal)val;
+                this.nbQueries = (Integer)val;
                 break;
             default:
                 super.writePropertyDirectly(propName, val);
@@ -103,7 +102,7 @@ public abstract class _WebDailyQueries extends BaseDataObject {
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
         this.day = (LocalDateTime)in.readObject();
-        this.nbQueries = (BigDecimal)in.readObject();
+        this.nbQueries = (Integer)in.readObject();
     }
 
 }

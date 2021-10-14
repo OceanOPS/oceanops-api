@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -25,33 +24,33 @@ public abstract class _CruiseCountry extends BaseDataObject {
     public static final String COUNTRY_ID_PK_COLUMN = "COUNTRY_ID";
     public static final String CRUISE_ID_PK_COLUMN = "CRUISE_ID";
 
-    public static final NumericProperty<BigDecimal> COUNTRY_ID = PropertyFactory.createNumeric("countryId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> CRUISE_ID = PropertyFactory.createNumeric("cruiseId", BigDecimal.class);
+    public static final NumericProperty<Integer> COUNTRY_ID = PropertyFactory.createNumeric("countryId", Integer.class);
+    public static final NumericProperty<Integer> CRUISE_ID = PropertyFactory.createNumeric("cruiseId", Integer.class);
     public static final EntityProperty<Country> COUNTRY = PropertyFactory.createEntity("country", Country.class);
     public static final EntityProperty<Cruise> CRUISE = PropertyFactory.createEntity("cruise", Cruise.class);
 
-    protected BigDecimal countryId;
-    protected BigDecimal cruiseId;
+    protected Integer countryId;
+    protected Integer cruiseId;
 
     protected Object country;
     protected Object cruise;
 
-    public void setCountryId(BigDecimal countryId) {
+    public void setCountryId(Integer countryId) {
         beforePropertyWrite("countryId", this.countryId, countryId);
         this.countryId = countryId;
     }
 
-    public BigDecimal getCountryId() {
+    public Integer getCountryId() {
         beforePropertyRead("countryId");
         return this.countryId;
     }
 
-    public void setCruiseId(BigDecimal cruiseId) {
+    public void setCruiseId(Integer cruiseId) {
         beforePropertyWrite("cruiseId", this.cruiseId, cruiseId);
         this.cruiseId = cruiseId;
     }
 
-    public BigDecimal getCruiseId() {
+    public Integer getCruiseId() {
         beforePropertyRead("cruiseId");
         return this.cruiseId;
     }
@@ -100,10 +99,10 @@ public abstract class _CruiseCountry extends BaseDataObject {
 
         switch (propName) {
             case "countryId":
-                this.countryId = (BigDecimal)val;
+                this.countryId = (Integer)val;
                 break;
             case "cruiseId":
-                this.cruiseId = (BigDecimal)val;
+                this.cruiseId = (Integer)val;
                 break;
             case "country":
                 this.country = val;
@@ -136,8 +135,8 @@ public abstract class _CruiseCountry extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.countryId = (BigDecimal)in.readObject();
-        this.cruiseId = (BigDecimal)in.readObject();
+        this.countryId = (Integer)in.readObject();
+        this.cruiseId = (Integer)in.readObject();
         this.country = in.readObject();
         this.cruise = in.readObject();
     }

@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
@@ -36,26 +35,26 @@ public abstract class _PtfModel extends BaseDataObject {
 
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final NumericProperty<BigDecimal> AIR_DEPL_CERTIF = PropertyFactory.createNumeric("airDeplCertif", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> API_WMO_ID_TYPE_ID = PropertyFactory.createNumeric("apiWmoIdTypeId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> COMMERCIAL = PropertyFactory.createNumeric("commercial", BigDecimal.class);
+    public static final NumericProperty<Integer> AIR_DEPL_CERTIF = PropertyFactory.createNumeric("airDeplCertif", Integer.class);
+    public static final NumericProperty<Integer> API_WMO_ID_TYPE_ID = PropertyFactory.createNumeric("apiWmoIdTypeId", Integer.class);
+    public static final NumericProperty<Integer> COMMERCIAL = PropertyFactory.createNumeric("commercial", Integer.class);
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
-    public static final NumericProperty<BigDecimal> DIAMETER = PropertyFactory.createNumeric("diameter", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> DROGUE = PropertyFactory.createNumeric("drogue", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> DROGUE_DEPTH = PropertyFactory.createNumeric("drogueDepth", BigDecimal.class);
+    public static final NumericProperty<Double> DIAMETER = PropertyFactory.createNumeric("diameter", Double.class);
+    public static final NumericProperty<Integer> DROGUE = PropertyFactory.createNumeric("drogue", Integer.class);
+    public static final NumericProperty<Double> DROGUE_DEPTH = PropertyFactory.createNumeric("drogueDepth", Double.class);
     public static final StringProperty<String> DROGUE_TYPE = PropertyFactory.createString("drogueType", String.class);
-    public static final NumericProperty<BigDecimal> HEIGHT = PropertyFactory.createNumeric("height", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> HEIGHT_ABOVE = PropertyFactory.createNumeric("heightAbove", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> HULL_DEPTH = PropertyFactory.createNumeric("hullDepth", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<Double> HEIGHT = PropertyFactory.createNumeric("height", Double.class);
+    public static final NumericProperty<Double> HEIGHT_ABOVE = PropertyFactory.createNumeric("heightAbove", Double.class);
+    public static final NumericProperty<Double> HULL_DEPTH = PropertyFactory.createNumeric("hullDepth", Double.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final StringProperty<String> KEY = PropertyFactory.createString("key", String.class);
-    public static final NumericProperty<BigDecimal> LENGTH = PropertyFactory.createNumeric("length", BigDecimal.class);
+    public static final NumericProperty<Double> LENGTH = PropertyFactory.createNumeric("length", Double.class);
     public static final StringProperty<String> LIFE_TIME = PropertyFactory.createString("lifeTime", String.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> NAME_SHORT = PropertyFactory.createString("nameShort", String.class);
-    public static final NumericProperty<BigDecimal> TOTAL_HEIGHT = PropertyFactory.createNumeric("totalHeight", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> WEIGHT = PropertyFactory.createNumeric("weight", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> WIDTH = PropertyFactory.createNumeric("width", BigDecimal.class);
+    public static final NumericProperty<Double> TOTAL_HEIGHT = PropertyFactory.createNumeric("totalHeight", Double.class);
+    public static final NumericProperty<Double> WEIGHT = PropertyFactory.createNumeric("weight", Double.class);
+    public static final NumericProperty<Double> WIDTH = PropertyFactory.createNumeric("width", Double.class);
     public static final EntityProperty<Agency> AGENCY = PropertyFactory.createEntity("agency", Agency.class);
     public static final EntityProperty<ApiWmoIdType> API_WMO_ID_TYPE = PropertyFactory.createEntity("apiWmoIdType", ApiWmoIdType.class);
     public static final EntityProperty<Contact> CONTACT = PropertyFactory.createEntity("contact", Contact.class);
@@ -68,26 +67,26 @@ public abstract class _PtfModel extends BaseDataObject {
     public static final ListProperty<TelecomFormat> TELECOM_FORMATS = PropertyFactory.createList("telecomFormats", TelecomFormat.class);
     public static final EntityProperty<Weblink> WEBLINK = PropertyFactory.createEntity("weblink", Weblink.class);
 
-    protected BigDecimal airDeplCertif;
-    protected BigDecimal apiWmoIdTypeId;
-    protected BigDecimal commercial;
+    protected Integer airDeplCertif;
+    protected Integer apiWmoIdTypeId;
+    protected Integer commercial;
     protected String description;
-    protected BigDecimal diameter;
-    protected BigDecimal drogue;
-    protected BigDecimal drogueDepth;
+    protected Double diameter;
+    protected Integer drogue;
+    protected Double drogueDepth;
     protected String drogueType;
-    protected BigDecimal height;
-    protected BigDecimal heightAbove;
-    protected BigDecimal hullDepth;
-    protected BigDecimal id;
+    protected Double height;
+    protected Double heightAbove;
+    protected Double hullDepth;
+    protected Integer id;
     protected String key;
-    protected BigDecimal length;
+    protected Double length;
     protected String lifeTime;
     protected String name;
     protected String nameShort;
-    protected BigDecimal totalHeight;
-    protected BigDecimal weight;
-    protected BigDecimal width;
+    protected Double totalHeight;
+    protected Double weight;
+    protected Double width;
 
     protected Object agency;
     protected Object apiWmoIdType;
@@ -101,32 +100,32 @@ public abstract class _PtfModel extends BaseDataObject {
     protected Object telecomFormats;
     protected Object weblink;
 
-    public void setAirDeplCertif(BigDecimal airDeplCertif) {
+    public void setAirDeplCertif(Integer airDeplCertif) {
         beforePropertyWrite("airDeplCertif", this.airDeplCertif, airDeplCertif);
         this.airDeplCertif = airDeplCertif;
     }
 
-    public BigDecimal getAirDeplCertif() {
+    public Integer getAirDeplCertif() {
         beforePropertyRead("airDeplCertif");
         return this.airDeplCertif;
     }
 
-    public void setApiWmoIdTypeId(BigDecimal apiWmoIdTypeId) {
+    public void setApiWmoIdTypeId(Integer apiWmoIdTypeId) {
         beforePropertyWrite("apiWmoIdTypeId", this.apiWmoIdTypeId, apiWmoIdTypeId);
         this.apiWmoIdTypeId = apiWmoIdTypeId;
     }
 
-    public BigDecimal getApiWmoIdTypeId() {
+    public Integer getApiWmoIdTypeId() {
         beforePropertyRead("apiWmoIdTypeId");
         return this.apiWmoIdTypeId;
     }
 
-    public void setCommercial(BigDecimal commercial) {
+    public void setCommercial(Integer commercial) {
         beforePropertyWrite("commercial", this.commercial, commercial);
         this.commercial = commercial;
     }
 
-    public BigDecimal getCommercial() {
+    public Integer getCommercial() {
         beforePropertyRead("commercial");
         return this.commercial;
     }
@@ -141,32 +140,32 @@ public abstract class _PtfModel extends BaseDataObject {
         return this.description;
     }
 
-    public void setDiameter(BigDecimal diameter) {
+    public void setDiameter(Double diameter) {
         beforePropertyWrite("diameter", this.diameter, diameter);
         this.diameter = diameter;
     }
 
-    public BigDecimal getDiameter() {
+    public Double getDiameter() {
         beforePropertyRead("diameter");
         return this.diameter;
     }
 
-    public void setDrogue(BigDecimal drogue) {
+    public void setDrogue(Integer drogue) {
         beforePropertyWrite("drogue", this.drogue, drogue);
         this.drogue = drogue;
     }
 
-    public BigDecimal getDrogue() {
+    public Integer getDrogue() {
         beforePropertyRead("drogue");
         return this.drogue;
     }
 
-    public void setDrogueDepth(BigDecimal drogueDepth) {
+    public void setDrogueDepth(Double drogueDepth) {
         beforePropertyWrite("drogueDepth", this.drogueDepth, drogueDepth);
         this.drogueDepth = drogueDepth;
     }
 
-    public BigDecimal getDrogueDepth() {
+    public Double getDrogueDepth() {
         beforePropertyRead("drogueDepth");
         return this.drogueDepth;
     }
@@ -181,42 +180,42 @@ public abstract class _PtfModel extends BaseDataObject {
         return this.drogueType;
     }
 
-    public void setHeight(BigDecimal height) {
+    public void setHeight(Double height) {
         beforePropertyWrite("height", this.height, height);
         this.height = height;
     }
 
-    public BigDecimal getHeight() {
+    public Double getHeight() {
         beforePropertyRead("height");
         return this.height;
     }
 
-    public void setHeightAbove(BigDecimal heightAbove) {
+    public void setHeightAbove(Double heightAbove) {
         beforePropertyWrite("heightAbove", this.heightAbove, heightAbove);
         this.heightAbove = heightAbove;
     }
 
-    public BigDecimal getHeightAbove() {
+    public Double getHeightAbove() {
         beforePropertyRead("heightAbove");
         return this.heightAbove;
     }
 
-    public void setHullDepth(BigDecimal hullDepth) {
+    public void setHullDepth(Double hullDepth) {
         beforePropertyWrite("hullDepth", this.hullDepth, hullDepth);
         this.hullDepth = hullDepth;
     }
 
-    public BigDecimal getHullDepth() {
+    public Double getHullDepth() {
         beforePropertyRead("hullDepth");
         return this.hullDepth;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
@@ -231,12 +230,12 @@ public abstract class _PtfModel extends BaseDataObject {
         return this.key;
     }
 
-    public void setLength(BigDecimal length) {
+    public void setLength(Double length) {
         beforePropertyWrite("length", this.length, length);
         this.length = length;
     }
 
-    public BigDecimal getLength() {
+    public Double getLength() {
         beforePropertyRead("length");
         return this.length;
     }
@@ -271,32 +270,32 @@ public abstract class _PtfModel extends BaseDataObject {
         return this.nameShort;
     }
 
-    public void setTotalHeight(BigDecimal totalHeight) {
+    public void setTotalHeight(Double totalHeight) {
         beforePropertyWrite("totalHeight", this.totalHeight, totalHeight);
         this.totalHeight = totalHeight;
     }
 
-    public BigDecimal getTotalHeight() {
+    public Double getTotalHeight() {
         beforePropertyRead("totalHeight");
         return this.totalHeight;
     }
 
-    public void setWeight(BigDecimal weight) {
+    public void setWeight(Double weight) {
         beforePropertyWrite("weight", this.weight, weight);
         this.weight = weight;
     }
 
-    public BigDecimal getWeight() {
+    public Double getWeight() {
         beforePropertyRead("weight");
         return this.weight;
     }
 
-    public void setWidth(BigDecimal width) {
+    public void setWidth(Double width) {
         beforePropertyWrite("width", this.width, width);
         this.width = width;
     }
 
-    public BigDecimal getWidth() {
+    public Double getWidth() {
         beforePropertyRead("width");
         return this.width;
     }
@@ -481,46 +480,46 @@ public abstract class _PtfModel extends BaseDataObject {
 
         switch (propName) {
             case "airDeplCertif":
-                this.airDeplCertif = (BigDecimal)val;
+                this.airDeplCertif = (Integer)val;
                 break;
             case "apiWmoIdTypeId":
-                this.apiWmoIdTypeId = (BigDecimal)val;
+                this.apiWmoIdTypeId = (Integer)val;
                 break;
             case "commercial":
-                this.commercial = (BigDecimal)val;
+                this.commercial = (Integer)val;
                 break;
             case "description":
                 this.description = (String)val;
                 break;
             case "diameter":
-                this.diameter = (BigDecimal)val;
+                this.diameter = (Double)val;
                 break;
             case "drogue":
-                this.drogue = (BigDecimal)val;
+                this.drogue = (Integer)val;
                 break;
             case "drogueDepth":
-                this.drogueDepth = (BigDecimal)val;
+                this.drogueDepth = (Double)val;
                 break;
             case "drogueType":
                 this.drogueType = (String)val;
                 break;
             case "height":
-                this.height = (BigDecimal)val;
+                this.height = (Double)val;
                 break;
             case "heightAbove":
-                this.heightAbove = (BigDecimal)val;
+                this.heightAbove = (Double)val;
                 break;
             case "hullDepth":
-                this.hullDepth = (BigDecimal)val;
+                this.hullDepth = (Double)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "key":
                 this.key = (String)val;
                 break;
             case "length":
-                this.length = (BigDecimal)val;
+                this.length = (Double)val;
                 break;
             case "lifeTime":
                 this.lifeTime = (String)val;
@@ -532,13 +531,13 @@ public abstract class _PtfModel extends BaseDataObject {
                 this.nameShort = (String)val;
                 break;
             case "totalHeight":
-                this.totalHeight = (BigDecimal)val;
+                this.totalHeight = (Double)val;
                 break;
             case "weight":
-                this.weight = (BigDecimal)val;
+                this.weight = (Double)val;
                 break;
             case "width":
-                this.width = (BigDecimal)val;
+                this.width = (Double)val;
                 break;
             case "agency":
                 this.agency = val;
@@ -625,26 +624,26 @@ public abstract class _PtfModel extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.airDeplCertif = (BigDecimal)in.readObject();
-        this.apiWmoIdTypeId = (BigDecimal)in.readObject();
-        this.commercial = (BigDecimal)in.readObject();
+        this.airDeplCertif = (Integer)in.readObject();
+        this.apiWmoIdTypeId = (Integer)in.readObject();
+        this.commercial = (Integer)in.readObject();
         this.description = (String)in.readObject();
-        this.diameter = (BigDecimal)in.readObject();
-        this.drogue = (BigDecimal)in.readObject();
-        this.drogueDepth = (BigDecimal)in.readObject();
+        this.diameter = (Double)in.readObject();
+        this.drogue = (Integer)in.readObject();
+        this.drogueDepth = (Double)in.readObject();
         this.drogueType = (String)in.readObject();
-        this.height = (BigDecimal)in.readObject();
-        this.heightAbove = (BigDecimal)in.readObject();
-        this.hullDepth = (BigDecimal)in.readObject();
-        this.id = (BigDecimal)in.readObject();
+        this.height = (Double)in.readObject();
+        this.heightAbove = (Double)in.readObject();
+        this.hullDepth = (Double)in.readObject();
+        this.id = (Integer)in.readObject();
         this.key = (String)in.readObject();
-        this.length = (BigDecimal)in.readObject();
+        this.length = (Double)in.readObject();
         this.lifeTime = (String)in.readObject();
         this.name = (String)in.readObject();
         this.nameShort = (String)in.readObject();
-        this.totalHeight = (BigDecimal)in.readObject();
-        this.weight = (BigDecimal)in.readObject();
-        this.width = (BigDecimal)in.readObject();
+        this.totalHeight = (Double)in.readObject();
+        this.weight = (Double)in.readObject();
+        this.width = (Double)in.readObject();
         this.agency = in.readObject();
         this.apiWmoIdType = in.readObject();
         this.contact = in.readObject();

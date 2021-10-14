@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -25,33 +24,33 @@ public abstract class _QcFeedbackVariable extends BaseDataObject {
     public static final String QC_FEEDBACK_ID_PK_COLUMN = "QC_FEEDBACK_ID";
     public static final String VARIABLE_ID_PK_COLUMN = "VARIABLE_ID";
 
-    public static final NumericProperty<BigDecimal> QC_FEEDBACK_ID = PropertyFactory.createNumeric("qcFeedbackId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> VARIABLE_ID = PropertyFactory.createNumeric("variableId", BigDecimal.class);
+    public static final NumericProperty<Integer> QC_FEEDBACK_ID = PropertyFactory.createNumeric("qcFeedbackId", Integer.class);
+    public static final NumericProperty<Integer> VARIABLE_ID = PropertyFactory.createNumeric("variableId", Integer.class);
     public static final EntityProperty<QcFeedback> QC_FEEDBACK = PropertyFactory.createEntity("qcFeedback", QcFeedback.class);
     public static final EntityProperty<Variable> VARIABLE = PropertyFactory.createEntity("variable", Variable.class);
 
-    protected BigDecimal qcFeedbackId;
-    protected BigDecimal variableId;
+    protected Integer qcFeedbackId;
+    protected Integer variableId;
 
     protected Object qcFeedback;
     protected Object variable;
 
-    public void setQcFeedbackId(BigDecimal qcFeedbackId) {
+    public void setQcFeedbackId(Integer qcFeedbackId) {
         beforePropertyWrite("qcFeedbackId", this.qcFeedbackId, qcFeedbackId);
         this.qcFeedbackId = qcFeedbackId;
     }
 
-    public BigDecimal getQcFeedbackId() {
+    public Integer getQcFeedbackId() {
         beforePropertyRead("qcFeedbackId");
         return this.qcFeedbackId;
     }
 
-    public void setVariableId(BigDecimal variableId) {
+    public void setVariableId(Integer variableId) {
         beforePropertyWrite("variableId", this.variableId, variableId);
         this.variableId = variableId;
     }
 
-    public BigDecimal getVariableId() {
+    public Integer getVariableId() {
         beforePropertyRead("variableId");
         return this.variableId;
     }
@@ -100,10 +99,10 @@ public abstract class _QcFeedbackVariable extends BaseDataObject {
 
         switch (propName) {
             case "qcFeedbackId":
-                this.qcFeedbackId = (BigDecimal)val;
+                this.qcFeedbackId = (Integer)val;
                 break;
             case "variableId":
-                this.variableId = (BigDecimal)val;
+                this.variableId = (Integer)val;
                 break;
             case "qcFeedback":
                 this.qcFeedback = val;
@@ -136,8 +135,8 @@ public abstract class _QcFeedbackVariable extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.qcFeedbackId = (BigDecimal)in.readObject();
-        this.variableId = (BigDecimal)in.readObject();
+        this.qcFeedbackId = (Integer)in.readObject();
+        this.variableId = (Integer)in.readObject();
         this.qcFeedback = in.readObject();
         this.variable = in.readObject();
     }

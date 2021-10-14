@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -23,31 +22,31 @@ public abstract class _WebContactPreferences extends BaseDataObject {
 
     public static final String CONTACT_ID_PK_COLUMN = "CONTACT_ID";
 
-    public static final NumericProperty<BigDecimal> CONTACT_ID = PropertyFactory.createNumeric("contactId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> LITE_GIS = PropertyFactory.createNumeric("liteGis", BigDecimal.class);
+    public static final NumericProperty<Integer> CONTACT_ID = PropertyFactory.createNumeric("contactId", Integer.class);
+    public static final NumericProperty<Integer> LITE_GIS = PropertyFactory.createNumeric("liteGis", Integer.class);
     public static final EntityProperty<Contact> CONTACT = PropertyFactory.createEntity("contact", Contact.class);
 
-    protected BigDecimal contactId;
-    protected BigDecimal liteGis;
+    protected Integer contactId;
+    protected Integer liteGis;
 
     protected Object contact;
 
-    public void setContactId(BigDecimal contactId) {
+    public void setContactId(Integer contactId) {
         beforePropertyWrite("contactId", this.contactId, contactId);
         this.contactId = contactId;
     }
 
-    public BigDecimal getContactId() {
+    public Integer getContactId() {
         beforePropertyRead("contactId");
         return this.contactId;
     }
 
-    public void setLiteGis(BigDecimal liteGis) {
+    public void setLiteGis(Integer liteGis) {
         beforePropertyWrite("liteGis", this.liteGis, liteGis);
         this.liteGis = liteGis;
     }
 
-    public BigDecimal getLiteGis() {
+    public Integer getLiteGis() {
         beforePropertyRead("liteGis");
         return this.liteGis;
     }
@@ -86,10 +85,10 @@ public abstract class _WebContactPreferences extends BaseDataObject {
 
         switch (propName) {
             case "contactId":
-                this.contactId = (BigDecimal)val;
+                this.contactId = (Integer)val;
                 break;
             case "liteGis":
-                this.liteGis = (BigDecimal)val;
+                this.liteGis = (Integer)val;
                 break;
             case "contact":
                 this.contact = val;
@@ -118,8 +117,8 @@ public abstract class _WebContactPreferences extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.contactId = (BigDecimal)in.readObject();
-        this.liteGis = (BigDecimal)in.readObject();
+        this.contactId = (Integer)in.readObject();
+        this.liteGis = (Integer)in.readObject();
         this.contact = in.readObject();
     }
 

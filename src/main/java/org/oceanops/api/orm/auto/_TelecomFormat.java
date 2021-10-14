@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -33,12 +32,12 @@ public abstract class _TelecomFormat extends BaseDataObject {
 
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
     public static final DateProperty<LocalDateTime> END_DATE = PropertyFactory.createDate("endDate", LocalDateTime.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final StringProperty<String> KEY = PropertyFactory.createString("key", String.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> NAME_LONG = PropertyFactory.createString("nameLong", String.class);
     public static final StringProperty<String> NAME_SHORT = PropertyFactory.createString("nameShort", String.class);
-    public static final NumericProperty<BigDecimal> NB_BITS = PropertyFactory.createNumeric("nbBits", BigDecimal.class);
+    public static final NumericProperty<Integer> NB_BITS = PropertyFactory.createNumeric("nbBits", Integer.class);
     public static final DateProperty<LocalDateTime> START_DATE = PropertyFactory.createDate("startDate", LocalDateTime.class);
     public static final StringProperty<String> VERSION = PropertyFactory.createString("version", String.class);
     public static final EntityProperty<Contact> CONTACT = PropertyFactory.createEntity("contact", Contact.class);
@@ -48,12 +47,12 @@ public abstract class _TelecomFormat extends BaseDataObject {
 
     protected String description;
     protected LocalDateTime endDate;
-    protected BigDecimal id;
+    protected Integer id;
     protected String key;
     protected String name;
     protected String nameLong;
     protected String nameShort;
-    protected BigDecimal nbBits;
+    protected Integer nbBits;
     protected LocalDateTime startDate;
     protected String version;
 
@@ -82,12 +81,12 @@ public abstract class _TelecomFormat extends BaseDataObject {
         return this.endDate;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
@@ -132,12 +131,12 @@ public abstract class _TelecomFormat extends BaseDataObject {
         return this.nameShort;
     }
 
-    public void setNbBits(BigDecimal nbBits) {
+    public void setNbBits(Integer nbBits) {
         beforePropertyWrite("nbBits", this.nbBits, nbBits);
         this.nbBits = nbBits;
     }
 
-    public BigDecimal getNbBits() {
+    public Integer getNbBits() {
         beforePropertyRead("nbBits");
         return this.nbBits;
     }
@@ -258,7 +257,7 @@ public abstract class _TelecomFormat extends BaseDataObject {
                 this.endDate = (LocalDateTime)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "key":
                 this.key = (String)val;
@@ -273,7 +272,7 @@ public abstract class _TelecomFormat extends BaseDataObject {
                 this.nameShort = (String)val;
                 break;
             case "nbBits":
-                this.nbBits = (BigDecimal)val;
+                this.nbBits = (Integer)val;
                 break;
             case "startDate":
                 this.startDate = (LocalDateTime)val;
@@ -330,12 +329,12 @@ public abstract class _TelecomFormat extends BaseDataObject {
         super.readState(in);
         this.description = (String)in.readObject();
         this.endDate = (LocalDateTime)in.readObject();
-        this.id = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
         this.key = (String)in.readObject();
         this.name = (String)in.readObject();
         this.nameLong = (String)in.readObject();
         this.nameShort = (String)in.readObject();
-        this.nbBits = (BigDecimal)in.readObject();
+        this.nbBits = (Integer)in.readObject();
         this.startDate = (LocalDateTime)in.readObject();
         this.version = (String)in.readObject();
         this.contact = in.readObject();

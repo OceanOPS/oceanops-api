@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -45,14 +44,14 @@ public abstract class _Doc extends BaseDataObject {
     public static final StringProperty<String> BODY = PropertyFactory.createString("body", String.class);
     public static final BaseProperty<byte[]> BODY_BLOB = PropertyFactory.createBase("bodyBlob", byte[].class);
     public static final DateProperty<LocalDateTime> CREATION_DATE = PropertyFactory.createDate("creationDate", LocalDateTime.class);
-    public static final NumericProperty<BigDecimal> DOC_NO = PropertyFactory.createNumeric("docNo", BigDecimal.class);
+    public static final NumericProperty<Integer> DOC_NO = PropertyFactory.createNumeric("docNo", Integer.class);
     public static final StringProperty<String> DUE_DATE = PropertyFactory.createString("dueDate", String.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final StringProperty<String> KEYWORDS = PropertyFactory.createString("keywords", String.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> NAME_SHORT = PropertyFactory.createString("nameShort", String.class);
-    public static final NumericProperty<BigDecimal> VALIDATED = PropertyFactory.createNumeric("validated", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> VERSION = PropertyFactory.createNumeric("version", BigDecimal.class);
+    public static final NumericProperty<Integer> VALIDATED = PropertyFactory.createNumeric("validated", Integer.class);
+    public static final NumericProperty<Double> VERSION = PropertyFactory.createNumeric("version", Double.class);
     public static final ListProperty<DocContact> DOC_CONTACTS = PropertyFactory.createList("docContacts", DocContact.class);
     public static final EntityProperty<DocType> DOC_TYPE = PropertyFactory.createEntity("docType", DocType.class);
     public static final EntityProperty<Language> LANGUAGE = PropertyFactory.createEntity("language", Language.class);
@@ -72,14 +71,14 @@ public abstract class _Doc extends BaseDataObject {
     protected String body;
     protected byte[] bodyBlob;
     protected LocalDateTime creationDate;
-    protected BigDecimal docNo;
+    protected Integer docNo;
     protected String dueDate;
-    protected BigDecimal id;
+    protected Integer id;
     protected String keywords;
     protected String name;
     protected String nameShort;
-    protected BigDecimal validated;
-    protected BigDecimal version;
+    protected Integer validated;
+    protected Double version;
 
     protected Object docContacts;
     protected Object docType;
@@ -145,12 +144,12 @@ public abstract class _Doc extends BaseDataObject {
         return this.creationDate;
     }
 
-    public void setDocNo(BigDecimal docNo) {
+    public void setDocNo(Integer docNo) {
         beforePropertyWrite("docNo", this.docNo, docNo);
         this.docNo = docNo;
     }
 
-    public BigDecimal getDocNo() {
+    public Integer getDocNo() {
         beforePropertyRead("docNo");
         return this.docNo;
     }
@@ -165,12 +164,12 @@ public abstract class _Doc extends BaseDataObject {
         return this.dueDate;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
@@ -205,22 +204,22 @@ public abstract class _Doc extends BaseDataObject {
         return this.nameShort;
     }
 
-    public void setValidated(BigDecimal validated) {
+    public void setValidated(Integer validated) {
         beforePropertyWrite("validated", this.validated, validated);
         this.validated = validated;
     }
 
-    public BigDecimal getValidated() {
+    public Integer getValidated() {
         beforePropertyRead("validated");
         return this.validated;
     }
 
-    public void setVersion(BigDecimal version) {
+    public void setVersion(Double version) {
         beforePropertyWrite("version", this.version, version);
         this.version = version;
     }
 
-    public BigDecimal getVersion() {
+    public Double getVersion() {
         beforePropertyRead("version");
         return this.version;
     }
@@ -431,13 +430,13 @@ public abstract class _Doc extends BaseDataObject {
                 this.creationDate = (LocalDateTime)val;
                 break;
             case "docNo":
-                this.docNo = (BigDecimal)val;
+                this.docNo = (Integer)val;
                 break;
             case "dueDate":
                 this.dueDate = (String)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "keywords":
                 this.keywords = (String)val;
@@ -449,10 +448,10 @@ public abstract class _Doc extends BaseDataObject {
                 this.nameShort = (String)val;
                 break;
             case "validated":
-                this.validated = (BigDecimal)val;
+                this.validated = (Integer)val;
                 break;
             case "version":
-                this.version = (BigDecimal)val;
+                this.version = (Double)val;
                 break;
             case "docContacts":
                 this.docContacts = val;
@@ -545,14 +544,14 @@ public abstract class _Doc extends BaseDataObject {
         this.body = (String)in.readObject();
         this.bodyBlob = (byte[])in.readObject();
         this.creationDate = (LocalDateTime)in.readObject();
-        this.docNo = (BigDecimal)in.readObject();
+        this.docNo = (Integer)in.readObject();
         this.dueDate = (String)in.readObject();
-        this.id = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
         this.keywords = (String)in.readObject();
         this.name = (String)in.readObject();
         this.nameShort = (String)in.readObject();
-        this.validated = (BigDecimal)in.readObject();
-        this.version = (BigDecimal)in.readObject();
+        this.validated = (Integer)in.readObject();
+        this.version = (Double)in.readObject();
         this.docContacts = in.readObject();
         this.docType = in.readObject();
         this.language = in.readObject();

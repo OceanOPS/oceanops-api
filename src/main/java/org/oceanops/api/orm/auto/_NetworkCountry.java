@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -25,33 +24,33 @@ public abstract class _NetworkCountry extends BaseDataObject {
     public static final String COUNTRY_ID_PK_COLUMN = "COUNTRY_ID";
     public static final String NETWORK_ID_PK_COLUMN = "NETWORK_ID";
 
-    public static final NumericProperty<BigDecimal> COUNTRY_ID = PropertyFactory.createNumeric("countryId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> NETWORK_ID = PropertyFactory.createNumeric("networkId", BigDecimal.class);
+    public static final NumericProperty<Integer> COUNTRY_ID = PropertyFactory.createNumeric("countryId", Integer.class);
+    public static final NumericProperty<Integer> NETWORK_ID = PropertyFactory.createNumeric("networkId", Integer.class);
     public static final EntityProperty<Country> COUNTRY = PropertyFactory.createEntity("country", Country.class);
     public static final EntityProperty<Network> NETWORK = PropertyFactory.createEntity("network", Network.class);
 
-    protected BigDecimal countryId;
-    protected BigDecimal networkId;
+    protected Integer countryId;
+    protected Integer networkId;
 
     protected Object country;
     protected Object network;
 
-    public void setCountryId(BigDecimal countryId) {
+    public void setCountryId(Integer countryId) {
         beforePropertyWrite("countryId", this.countryId, countryId);
         this.countryId = countryId;
     }
 
-    public BigDecimal getCountryId() {
+    public Integer getCountryId() {
         beforePropertyRead("countryId");
         return this.countryId;
     }
 
-    public void setNetworkId(BigDecimal networkId) {
+    public void setNetworkId(Integer networkId) {
         beforePropertyWrite("networkId", this.networkId, networkId);
         this.networkId = networkId;
     }
 
-    public BigDecimal getNetworkId() {
+    public Integer getNetworkId() {
         beforePropertyRead("networkId");
         return this.networkId;
     }
@@ -100,10 +99,10 @@ public abstract class _NetworkCountry extends BaseDataObject {
 
         switch (propName) {
             case "countryId":
-                this.countryId = (BigDecimal)val;
+                this.countryId = (Integer)val;
                 break;
             case "networkId":
-                this.networkId = (BigDecimal)val;
+                this.networkId = (Integer)val;
                 break;
             case "country":
                 this.country = val;
@@ -136,8 +135,8 @@ public abstract class _NetworkCountry extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.countryId = (BigDecimal)in.readObject();
-        this.networkId = (BigDecimal)in.readObject();
+        this.countryId = (Integer)in.readObject();
+        this.networkId = (Integer)in.readObject();
         this.country = in.readObject();
         this.network = in.readObject();
     }

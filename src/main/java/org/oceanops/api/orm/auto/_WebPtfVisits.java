@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.NumericProperty;
@@ -24,10 +23,10 @@ public abstract class _WebPtfVisits extends BaseDataObject {
     public static final String VISIT_COUNT_PK_COLUMN = "VISIT_COUNT";
 
     public static final StringProperty<String> PTF_REF = PropertyFactory.createString("ptfRef", String.class);
-    public static final NumericProperty<BigDecimal> VISIT_COUNT = PropertyFactory.createNumeric("visitCount", BigDecimal.class);
+    public static final NumericProperty<Integer> VISIT_COUNT = PropertyFactory.createNumeric("visitCount", Integer.class);
 
     protected String ptfRef;
-    protected BigDecimal visitCount;
+    protected Integer visitCount;
 
 
     public void setPtfRef(String ptfRef) {
@@ -40,12 +39,12 @@ public abstract class _WebPtfVisits extends BaseDataObject {
         return this.ptfRef;
     }
 
-    public void setVisitCount(BigDecimal visitCount) {
+    public void setVisitCount(Integer visitCount) {
         beforePropertyWrite("visitCount", this.visitCount, visitCount);
         this.visitCount = visitCount;
     }
 
-    public BigDecimal getVisitCount() {
+    public Integer getVisitCount() {
         beforePropertyRead("visitCount");
         return this.visitCount;
     }
@@ -77,7 +76,7 @@ public abstract class _WebPtfVisits extends BaseDataObject {
                 this.ptfRef = (String)val;
                 break;
             case "visitCount":
-                this.visitCount = (BigDecimal)val;
+                this.visitCount = (Integer)val;
                 break;
             default:
                 super.writePropertyDirectly(propName, val);
@@ -103,7 +102,7 @@ public abstract class _WebPtfVisits extends BaseDataObject {
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
         this.ptfRef = (String)in.readObject();
-        this.visitCount = (BigDecimal)in.readObject();
+        this.visitCount = (Integer)in.readObject();
     }
 
 }

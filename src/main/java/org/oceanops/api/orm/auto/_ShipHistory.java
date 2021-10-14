@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.apache.cayenne.BaseDataObject;
@@ -31,10 +30,11 @@ public abstract class _ShipHistory extends BaseDataObject {
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
     public static final DateProperty<LocalDateTime> END_DATE = PropertyFactory.createDate("endDate", LocalDateTime.class);
     public static final StringProperty<String> ICES_CODE = PropertyFactory.createString("icesCode", String.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final DateProperty<LocalDateTime> INSERT_DATE = PropertyFactory.createDate("insertDate", LocalDateTime.class);
+    public static final StringProperty<String> MMSI = PropertyFactory.createString("mmsi", String.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
-    public static final NumericProperty<BigDecimal> OLD_ID = PropertyFactory.createNumeric("oldId", BigDecimal.class);
+    public static final NumericProperty<Integer> OLD_ID = PropertyFactory.createNumeric("oldId", Integer.class);
     public static final DateProperty<LocalDateTime> START_DATE = PropertyFactory.createDate("startDate", LocalDateTime.class);
     public static final DateProperty<LocalDateTime> UPDATE_DATE = PropertyFactory.createDate("updateDate", LocalDateTime.class);
     public static final EntityProperty<Country> COUNTRY = PropertyFactory.createEntity("country", Country.class);
@@ -44,10 +44,11 @@ public abstract class _ShipHistory extends BaseDataObject {
     protected String description;
     protected LocalDateTime endDate;
     protected String icesCode;
-    protected BigDecimal id;
+    protected Integer id;
     protected LocalDateTime insertDate;
+    protected String mmsi;
     protected String name;
-    protected BigDecimal oldId;
+    protected Integer oldId;
     protected LocalDateTime startDate;
     protected LocalDateTime updateDate;
 
@@ -94,12 +95,12 @@ public abstract class _ShipHistory extends BaseDataObject {
         return this.icesCode;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
@@ -114,6 +115,16 @@ public abstract class _ShipHistory extends BaseDataObject {
         return this.insertDate;
     }
 
+    public void setMmsi(String mmsi) {
+        beforePropertyWrite("mmsi", this.mmsi, mmsi);
+        this.mmsi = mmsi;
+    }
+
+    public String getMmsi() {
+        beforePropertyRead("mmsi");
+        return this.mmsi;
+    }
+
     public void setName(String name) {
         beforePropertyWrite("name", this.name, name);
         this.name = name;
@@ -124,12 +135,12 @@ public abstract class _ShipHistory extends BaseDataObject {
         return this.name;
     }
 
-    public void setOldId(BigDecimal oldId) {
+    public void setOldId(Integer oldId) {
         beforePropertyWrite("oldId", this.oldId, oldId);
         this.oldId = oldId;
     }
 
-    public BigDecimal getOldId() {
+    public Integer getOldId() {
         beforePropertyRead("oldId");
         return this.oldId;
     }
@@ -189,6 +200,8 @@ public abstract class _ShipHistory extends BaseDataObject {
                 return this.id;
             case "insertDate":
                 return this.insertDate;
+            case "mmsi":
+                return this.mmsi;
             case "name":
                 return this.name;
             case "oldId":
@@ -226,16 +239,19 @@ public abstract class _ShipHistory extends BaseDataObject {
                 this.icesCode = (String)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "insertDate":
                 this.insertDate = (LocalDateTime)val;
+                break;
+            case "mmsi":
+                this.mmsi = (String)val;
                 break;
             case "name":
                 this.name = (String)val;
                 break;
             case "oldId":
-                this.oldId = (BigDecimal)val;
+                this.oldId = (Integer)val;
                 break;
             case "startDate":
                 this.startDate = (LocalDateTime)val;
@@ -271,6 +287,7 @@ public abstract class _ShipHistory extends BaseDataObject {
         out.writeObject(this.icesCode);
         out.writeObject(this.id);
         out.writeObject(this.insertDate);
+        out.writeObject(this.mmsi);
         out.writeObject(this.name);
         out.writeObject(this.oldId);
         out.writeObject(this.startDate);
@@ -286,10 +303,11 @@ public abstract class _ShipHistory extends BaseDataObject {
         this.description = (String)in.readObject();
         this.endDate = (LocalDateTime)in.readObject();
         this.icesCode = (String)in.readObject();
-        this.id = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
         this.insertDate = (LocalDateTime)in.readObject();
+        this.mmsi = (String)in.readObject();
         this.name = (String)in.readObject();
-        this.oldId = (BigDecimal)in.readObject();
+        this.oldId = (Integer)in.readObject();
         this.startDate = (LocalDateTime)in.readObject();
         this.updateDate = (LocalDateTime)in.readObject();
         this.country = in.readObject();

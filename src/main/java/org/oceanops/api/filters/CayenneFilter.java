@@ -2,6 +2,7 @@ package org.oceanops.api.filters;
 
 import java.io.IOException;
 
+import javax.naming.NamingException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -21,7 +22,12 @@ public class CayenneFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		Utils.initCayenneRuntime();
+		try{
+			Utils.initCayenneRuntime();
+		}
+		catch(NamingException e){
+			throw new IOException("Impossible to establish a connection with the database");
+		}
 		chain.doFilter(request, response);
 	}
 

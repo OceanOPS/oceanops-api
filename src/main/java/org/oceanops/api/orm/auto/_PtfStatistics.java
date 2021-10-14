@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -23,211 +22,211 @@ public abstract class _PtfStatistics extends BaseDataObject {
 
     public static final String PTF_ID_PK_COLUMN = "PTF_ID";
 
-    public static final NumericProperty<BigDecimal> DELAY_AVG = PropertyFactory.createNumeric("delayAvg", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> DELAY_AVG_GDAC1 = PropertyFactory.createNumeric("delayAvgGdac1", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> DELAY_AVG_GDAC2 = PropertyFactory.createNumeric("delayAvgGdac2", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> DELAY_MEDIAN = PropertyFactory.createNumeric("delayMedian", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> DELAY_MEDIAN_GDAC1 = PropertyFactory.createNumeric("delayMedianGdac1", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> DELAY_MEDIAN_GDAC2 = PropertyFactory.createNumeric("delayMedianGdac2", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> NB_OBS = PropertyFactory.createNumeric("nbObs", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> NB_OBS_DM = PropertyFactory.createNumeric("nbObsDm", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> NB_OBS_DM_ELIGIBLE = PropertyFactory.createNumeric("nbObsDmEligible", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> NB_OBS_DM_ELIGIBLE_GDAC1 = PropertyFactory.createNumeric("nbObsDmEligibleGdac1", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> NB_OBS_DM_ELIGIBLE_GDAC2 = PropertyFactory.createNumeric("nbObsDmEligibleGdac2", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> NB_OBS_DM_GDAC1 = PropertyFactory.createNumeric("nbObsDmGdac1", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> NB_OBS_DM_GDAC2 = PropertyFactory.createNumeric("nbObsDmGdac2", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> NB_OBS_GDAC1 = PropertyFactory.createNumeric("nbObsGdac1", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> NB_OBS_GDAC2 = PropertyFactory.createNumeric("nbObsGdac2", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> NB_OBS_GTS = PropertyFactory.createNumeric("nbObsGts", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> PTF_ID = PropertyFactory.createNumeric("ptfId", BigDecimal.class);
+    public static final NumericProperty<Double> DELAY_AVG = PropertyFactory.createNumeric("delayAvg", Double.class);
+    public static final NumericProperty<Double> DELAY_AVG_GDAC1 = PropertyFactory.createNumeric("delayAvgGdac1", Double.class);
+    public static final NumericProperty<Double> DELAY_AVG_GDAC2 = PropertyFactory.createNumeric("delayAvgGdac2", Double.class);
+    public static final NumericProperty<Double> DELAY_MEDIAN = PropertyFactory.createNumeric("delayMedian", Double.class);
+    public static final NumericProperty<Double> DELAY_MEDIAN_GDAC1 = PropertyFactory.createNumeric("delayMedianGdac1", Double.class);
+    public static final NumericProperty<Double> DELAY_MEDIAN_GDAC2 = PropertyFactory.createNumeric("delayMedianGdac2", Double.class);
+    public static final NumericProperty<Integer> NB_OBS = PropertyFactory.createNumeric("nbObs", Integer.class);
+    public static final NumericProperty<Integer> NB_OBS_DM = PropertyFactory.createNumeric("nbObsDm", Integer.class);
+    public static final NumericProperty<Integer> NB_OBS_DM_ELIGIBLE = PropertyFactory.createNumeric("nbObsDmEligible", Integer.class);
+    public static final NumericProperty<Integer> NB_OBS_DM_ELIGIBLE_GDAC1 = PropertyFactory.createNumeric("nbObsDmEligibleGdac1", Integer.class);
+    public static final NumericProperty<Integer> NB_OBS_DM_ELIGIBLE_GDAC2 = PropertyFactory.createNumeric("nbObsDmEligibleGdac2", Integer.class);
+    public static final NumericProperty<Integer> NB_OBS_DM_GDAC1 = PropertyFactory.createNumeric("nbObsDmGdac1", Integer.class);
+    public static final NumericProperty<Integer> NB_OBS_DM_GDAC2 = PropertyFactory.createNumeric("nbObsDmGdac2", Integer.class);
+    public static final NumericProperty<Integer> NB_OBS_GDAC1 = PropertyFactory.createNumeric("nbObsGdac1", Integer.class);
+    public static final NumericProperty<Integer> NB_OBS_GDAC2 = PropertyFactory.createNumeric("nbObsGdac2", Integer.class);
+    public static final NumericProperty<Integer> NB_OBS_GTS = PropertyFactory.createNumeric("nbObsGts", Integer.class);
+    public static final NumericProperty<Integer> PTF_ID = PropertyFactory.createNumeric("ptfId", Integer.class);
     public static final EntityProperty<Ptf> PTF = PropertyFactory.createEntity("ptf", Ptf.class);
 
-    protected BigDecimal delayAvg;
-    protected BigDecimal delayAvgGdac1;
-    protected BigDecimal delayAvgGdac2;
-    protected BigDecimal delayMedian;
-    protected BigDecimal delayMedianGdac1;
-    protected BigDecimal delayMedianGdac2;
-    protected BigDecimal nbObs;
-    protected BigDecimal nbObsDm;
-    protected BigDecimal nbObsDmEligible;
-    protected BigDecimal nbObsDmEligibleGdac1;
-    protected BigDecimal nbObsDmEligibleGdac2;
-    protected BigDecimal nbObsDmGdac1;
-    protected BigDecimal nbObsDmGdac2;
-    protected BigDecimal nbObsGdac1;
-    protected BigDecimal nbObsGdac2;
-    protected BigDecimal nbObsGts;
-    protected BigDecimal ptfId;
+    protected Double delayAvg;
+    protected Double delayAvgGdac1;
+    protected Double delayAvgGdac2;
+    protected Double delayMedian;
+    protected Double delayMedianGdac1;
+    protected Double delayMedianGdac2;
+    protected Integer nbObs;
+    protected Integer nbObsDm;
+    protected Integer nbObsDmEligible;
+    protected Integer nbObsDmEligibleGdac1;
+    protected Integer nbObsDmEligibleGdac2;
+    protected Integer nbObsDmGdac1;
+    protected Integer nbObsDmGdac2;
+    protected Integer nbObsGdac1;
+    protected Integer nbObsGdac2;
+    protected Integer nbObsGts;
+    protected Integer ptfId;
 
     protected Object ptf;
 
-    public void setDelayAvg(BigDecimal delayAvg) {
+    public void setDelayAvg(Double delayAvg) {
         beforePropertyWrite("delayAvg", this.delayAvg, delayAvg);
         this.delayAvg = delayAvg;
     }
 
-    public BigDecimal getDelayAvg() {
+    public Double getDelayAvg() {
         beforePropertyRead("delayAvg");
         return this.delayAvg;
     }
 
-    public void setDelayAvgGdac1(BigDecimal delayAvgGdac1) {
+    public void setDelayAvgGdac1(Double delayAvgGdac1) {
         beforePropertyWrite("delayAvgGdac1", this.delayAvgGdac1, delayAvgGdac1);
         this.delayAvgGdac1 = delayAvgGdac1;
     }
 
-    public BigDecimal getDelayAvgGdac1() {
+    public Double getDelayAvgGdac1() {
         beforePropertyRead("delayAvgGdac1");
         return this.delayAvgGdac1;
     }
 
-    public void setDelayAvgGdac2(BigDecimal delayAvgGdac2) {
+    public void setDelayAvgGdac2(Double delayAvgGdac2) {
         beforePropertyWrite("delayAvgGdac2", this.delayAvgGdac2, delayAvgGdac2);
         this.delayAvgGdac2 = delayAvgGdac2;
     }
 
-    public BigDecimal getDelayAvgGdac2() {
+    public Double getDelayAvgGdac2() {
         beforePropertyRead("delayAvgGdac2");
         return this.delayAvgGdac2;
     }
 
-    public void setDelayMedian(BigDecimal delayMedian) {
+    public void setDelayMedian(Double delayMedian) {
         beforePropertyWrite("delayMedian", this.delayMedian, delayMedian);
         this.delayMedian = delayMedian;
     }
 
-    public BigDecimal getDelayMedian() {
+    public Double getDelayMedian() {
         beforePropertyRead("delayMedian");
         return this.delayMedian;
     }
 
-    public void setDelayMedianGdac1(BigDecimal delayMedianGdac1) {
+    public void setDelayMedianGdac1(Double delayMedianGdac1) {
         beforePropertyWrite("delayMedianGdac1", this.delayMedianGdac1, delayMedianGdac1);
         this.delayMedianGdac1 = delayMedianGdac1;
     }
 
-    public BigDecimal getDelayMedianGdac1() {
+    public Double getDelayMedianGdac1() {
         beforePropertyRead("delayMedianGdac1");
         return this.delayMedianGdac1;
     }
 
-    public void setDelayMedianGdac2(BigDecimal delayMedianGdac2) {
+    public void setDelayMedianGdac2(Double delayMedianGdac2) {
         beforePropertyWrite("delayMedianGdac2", this.delayMedianGdac2, delayMedianGdac2);
         this.delayMedianGdac2 = delayMedianGdac2;
     }
 
-    public BigDecimal getDelayMedianGdac2() {
+    public Double getDelayMedianGdac2() {
         beforePropertyRead("delayMedianGdac2");
         return this.delayMedianGdac2;
     }
 
-    public void setNbObs(BigDecimal nbObs) {
+    public void setNbObs(Integer nbObs) {
         beforePropertyWrite("nbObs", this.nbObs, nbObs);
         this.nbObs = nbObs;
     }
 
-    public BigDecimal getNbObs() {
+    public Integer getNbObs() {
         beforePropertyRead("nbObs");
         return this.nbObs;
     }
 
-    public void setNbObsDm(BigDecimal nbObsDm) {
+    public void setNbObsDm(Integer nbObsDm) {
         beforePropertyWrite("nbObsDm", this.nbObsDm, nbObsDm);
         this.nbObsDm = nbObsDm;
     }
 
-    public BigDecimal getNbObsDm() {
+    public Integer getNbObsDm() {
         beforePropertyRead("nbObsDm");
         return this.nbObsDm;
     }
 
-    public void setNbObsDmEligible(BigDecimal nbObsDmEligible) {
+    public void setNbObsDmEligible(Integer nbObsDmEligible) {
         beforePropertyWrite("nbObsDmEligible", this.nbObsDmEligible, nbObsDmEligible);
         this.nbObsDmEligible = nbObsDmEligible;
     }
 
-    public BigDecimal getNbObsDmEligible() {
+    public Integer getNbObsDmEligible() {
         beforePropertyRead("nbObsDmEligible");
         return this.nbObsDmEligible;
     }
 
-    public void setNbObsDmEligibleGdac1(BigDecimal nbObsDmEligibleGdac1) {
+    public void setNbObsDmEligibleGdac1(Integer nbObsDmEligibleGdac1) {
         beforePropertyWrite("nbObsDmEligibleGdac1", this.nbObsDmEligibleGdac1, nbObsDmEligibleGdac1);
         this.nbObsDmEligibleGdac1 = nbObsDmEligibleGdac1;
     }
 
-    public BigDecimal getNbObsDmEligibleGdac1() {
+    public Integer getNbObsDmEligibleGdac1() {
         beforePropertyRead("nbObsDmEligibleGdac1");
         return this.nbObsDmEligibleGdac1;
     }
 
-    public void setNbObsDmEligibleGdac2(BigDecimal nbObsDmEligibleGdac2) {
+    public void setNbObsDmEligibleGdac2(Integer nbObsDmEligibleGdac2) {
         beforePropertyWrite("nbObsDmEligibleGdac2", this.nbObsDmEligibleGdac2, nbObsDmEligibleGdac2);
         this.nbObsDmEligibleGdac2 = nbObsDmEligibleGdac2;
     }
 
-    public BigDecimal getNbObsDmEligibleGdac2() {
+    public Integer getNbObsDmEligibleGdac2() {
         beforePropertyRead("nbObsDmEligibleGdac2");
         return this.nbObsDmEligibleGdac2;
     }
 
-    public void setNbObsDmGdac1(BigDecimal nbObsDmGdac1) {
+    public void setNbObsDmGdac1(Integer nbObsDmGdac1) {
         beforePropertyWrite("nbObsDmGdac1", this.nbObsDmGdac1, nbObsDmGdac1);
         this.nbObsDmGdac1 = nbObsDmGdac1;
     }
 
-    public BigDecimal getNbObsDmGdac1() {
+    public Integer getNbObsDmGdac1() {
         beforePropertyRead("nbObsDmGdac1");
         return this.nbObsDmGdac1;
     }
 
-    public void setNbObsDmGdac2(BigDecimal nbObsDmGdac2) {
+    public void setNbObsDmGdac2(Integer nbObsDmGdac2) {
         beforePropertyWrite("nbObsDmGdac2", this.nbObsDmGdac2, nbObsDmGdac2);
         this.nbObsDmGdac2 = nbObsDmGdac2;
     }
 
-    public BigDecimal getNbObsDmGdac2() {
+    public Integer getNbObsDmGdac2() {
         beforePropertyRead("nbObsDmGdac2");
         return this.nbObsDmGdac2;
     }
 
-    public void setNbObsGdac1(BigDecimal nbObsGdac1) {
+    public void setNbObsGdac1(Integer nbObsGdac1) {
         beforePropertyWrite("nbObsGdac1", this.nbObsGdac1, nbObsGdac1);
         this.nbObsGdac1 = nbObsGdac1;
     }
 
-    public BigDecimal getNbObsGdac1() {
+    public Integer getNbObsGdac1() {
         beforePropertyRead("nbObsGdac1");
         return this.nbObsGdac1;
     }
 
-    public void setNbObsGdac2(BigDecimal nbObsGdac2) {
+    public void setNbObsGdac2(Integer nbObsGdac2) {
         beforePropertyWrite("nbObsGdac2", this.nbObsGdac2, nbObsGdac2);
         this.nbObsGdac2 = nbObsGdac2;
     }
 
-    public BigDecimal getNbObsGdac2() {
+    public Integer getNbObsGdac2() {
         beforePropertyRead("nbObsGdac2");
         return this.nbObsGdac2;
     }
 
-    public void setNbObsGts(BigDecimal nbObsGts) {
+    public void setNbObsGts(Integer nbObsGts) {
         beforePropertyWrite("nbObsGts", this.nbObsGts, nbObsGts);
         this.nbObsGts = nbObsGts;
     }
 
-    public BigDecimal getNbObsGts() {
+    public Integer getNbObsGts() {
         beforePropertyRead("nbObsGts");
         return this.nbObsGts;
     }
 
-    public void setPtfId(BigDecimal ptfId) {
+    public void setPtfId(Integer ptfId) {
         beforePropertyWrite("ptfId", this.ptfId, ptfId);
         this.ptfId = ptfId;
     }
 
-    public BigDecimal getPtfId() {
+    public Integer getPtfId() {
         beforePropertyRead("ptfId");
         return this.ptfId;
     }
@@ -296,55 +295,55 @@ public abstract class _PtfStatistics extends BaseDataObject {
 
         switch (propName) {
             case "delayAvg":
-                this.delayAvg = (BigDecimal)val;
+                this.delayAvg = (Double)val;
                 break;
             case "delayAvgGdac1":
-                this.delayAvgGdac1 = (BigDecimal)val;
+                this.delayAvgGdac1 = (Double)val;
                 break;
             case "delayAvgGdac2":
-                this.delayAvgGdac2 = (BigDecimal)val;
+                this.delayAvgGdac2 = (Double)val;
                 break;
             case "delayMedian":
-                this.delayMedian = (BigDecimal)val;
+                this.delayMedian = (Double)val;
                 break;
             case "delayMedianGdac1":
-                this.delayMedianGdac1 = (BigDecimal)val;
+                this.delayMedianGdac1 = (Double)val;
                 break;
             case "delayMedianGdac2":
-                this.delayMedianGdac2 = (BigDecimal)val;
+                this.delayMedianGdac2 = (Double)val;
                 break;
             case "nbObs":
-                this.nbObs = (BigDecimal)val;
+                this.nbObs = (Integer)val;
                 break;
             case "nbObsDm":
-                this.nbObsDm = (BigDecimal)val;
+                this.nbObsDm = (Integer)val;
                 break;
             case "nbObsDmEligible":
-                this.nbObsDmEligible = (BigDecimal)val;
+                this.nbObsDmEligible = (Integer)val;
                 break;
             case "nbObsDmEligibleGdac1":
-                this.nbObsDmEligibleGdac1 = (BigDecimal)val;
+                this.nbObsDmEligibleGdac1 = (Integer)val;
                 break;
             case "nbObsDmEligibleGdac2":
-                this.nbObsDmEligibleGdac2 = (BigDecimal)val;
+                this.nbObsDmEligibleGdac2 = (Integer)val;
                 break;
             case "nbObsDmGdac1":
-                this.nbObsDmGdac1 = (BigDecimal)val;
+                this.nbObsDmGdac1 = (Integer)val;
                 break;
             case "nbObsDmGdac2":
-                this.nbObsDmGdac2 = (BigDecimal)val;
+                this.nbObsDmGdac2 = (Integer)val;
                 break;
             case "nbObsGdac1":
-                this.nbObsGdac1 = (BigDecimal)val;
+                this.nbObsGdac1 = (Integer)val;
                 break;
             case "nbObsGdac2":
-                this.nbObsGdac2 = (BigDecimal)val;
+                this.nbObsGdac2 = (Integer)val;
                 break;
             case "nbObsGts":
-                this.nbObsGts = (BigDecimal)val;
+                this.nbObsGts = (Integer)val;
                 break;
             case "ptfId":
-                this.ptfId = (BigDecimal)val;
+                this.ptfId = (Integer)val;
                 break;
             case "ptf":
                 this.ptf = val;
@@ -388,23 +387,23 @@ public abstract class _PtfStatistics extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.delayAvg = (BigDecimal)in.readObject();
-        this.delayAvgGdac1 = (BigDecimal)in.readObject();
-        this.delayAvgGdac2 = (BigDecimal)in.readObject();
-        this.delayMedian = (BigDecimal)in.readObject();
-        this.delayMedianGdac1 = (BigDecimal)in.readObject();
-        this.delayMedianGdac2 = (BigDecimal)in.readObject();
-        this.nbObs = (BigDecimal)in.readObject();
-        this.nbObsDm = (BigDecimal)in.readObject();
-        this.nbObsDmEligible = (BigDecimal)in.readObject();
-        this.nbObsDmEligibleGdac1 = (BigDecimal)in.readObject();
-        this.nbObsDmEligibleGdac2 = (BigDecimal)in.readObject();
-        this.nbObsDmGdac1 = (BigDecimal)in.readObject();
-        this.nbObsDmGdac2 = (BigDecimal)in.readObject();
-        this.nbObsGdac1 = (BigDecimal)in.readObject();
-        this.nbObsGdac2 = (BigDecimal)in.readObject();
-        this.nbObsGts = (BigDecimal)in.readObject();
-        this.ptfId = (BigDecimal)in.readObject();
+        this.delayAvg = (Double)in.readObject();
+        this.delayAvgGdac1 = (Double)in.readObject();
+        this.delayAvgGdac2 = (Double)in.readObject();
+        this.delayMedian = (Double)in.readObject();
+        this.delayMedianGdac1 = (Double)in.readObject();
+        this.delayMedianGdac2 = (Double)in.readObject();
+        this.nbObs = (Integer)in.readObject();
+        this.nbObsDm = (Integer)in.readObject();
+        this.nbObsDmEligible = (Integer)in.readObject();
+        this.nbObsDmEligibleGdac1 = (Integer)in.readObject();
+        this.nbObsDmEligibleGdac2 = (Integer)in.readObject();
+        this.nbObsDmGdac1 = (Integer)in.readObject();
+        this.nbObsDmGdac2 = (Integer)in.readObject();
+        this.nbObsGdac1 = (Integer)in.readObject();
+        this.nbObsGdac2 = (Integer)in.readObject();
+        this.nbObsGts = (Integer)in.readObject();
+        this.ptfId = (Integer)in.readObject();
         this.ptf = in.readObject();
     }
 

@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -25,33 +24,33 @@ public abstract class _GtsCcccHeader extends BaseDataObject {
     public static final String GTS_CCCC_ID_PK_COLUMN = "GTS_CCCC_ID";
     public static final String GTS_HEADER_ID_PK_COLUMN = "GTS_HEADER_ID";
 
-    public static final NumericProperty<BigDecimal> GTS_CCCC_ID = PropertyFactory.createNumeric("gtsCcccId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> GTS_HEADER_ID = PropertyFactory.createNumeric("gtsHeaderId", BigDecimal.class);
+    public static final NumericProperty<Integer> GTS_CCCC_ID = PropertyFactory.createNumeric("gtsCcccId", Integer.class);
+    public static final NumericProperty<Integer> GTS_HEADER_ID = PropertyFactory.createNumeric("gtsHeaderId", Integer.class);
     public static final EntityProperty<GtsCccc> GTS_CCCC = PropertyFactory.createEntity("gtsCccc", GtsCccc.class);
     public static final EntityProperty<GtsHeader> GTS_HEADER = PropertyFactory.createEntity("gtsHeader", GtsHeader.class);
 
-    protected BigDecimal gtsCcccId;
-    protected BigDecimal gtsHeaderId;
+    protected Integer gtsCcccId;
+    protected Integer gtsHeaderId;
 
     protected Object gtsCccc;
     protected Object gtsHeader;
 
-    public void setGtsCcccId(BigDecimal gtsCcccId) {
+    public void setGtsCcccId(Integer gtsCcccId) {
         beforePropertyWrite("gtsCcccId", this.gtsCcccId, gtsCcccId);
         this.gtsCcccId = gtsCcccId;
     }
 
-    public BigDecimal getGtsCcccId() {
+    public Integer getGtsCcccId() {
         beforePropertyRead("gtsCcccId");
         return this.gtsCcccId;
     }
 
-    public void setGtsHeaderId(BigDecimal gtsHeaderId) {
+    public void setGtsHeaderId(Integer gtsHeaderId) {
         beforePropertyWrite("gtsHeaderId", this.gtsHeaderId, gtsHeaderId);
         this.gtsHeaderId = gtsHeaderId;
     }
 
-    public BigDecimal getGtsHeaderId() {
+    public Integer getGtsHeaderId() {
         beforePropertyRead("gtsHeaderId");
         return this.gtsHeaderId;
     }
@@ -100,10 +99,10 @@ public abstract class _GtsCcccHeader extends BaseDataObject {
 
         switch (propName) {
             case "gtsCcccId":
-                this.gtsCcccId = (BigDecimal)val;
+                this.gtsCcccId = (Integer)val;
                 break;
             case "gtsHeaderId":
-                this.gtsHeaderId = (BigDecimal)val;
+                this.gtsHeaderId = (Integer)val;
                 break;
             case "gtsCccc":
                 this.gtsCccc = val;
@@ -136,8 +135,8 @@ public abstract class _GtsCcccHeader extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.gtsCcccId = (BigDecimal)in.readObject();
-        this.gtsHeaderId = (BigDecimal)in.readObject();
+        this.gtsCcccId = (Integer)in.readObject();
+        this.gtsHeaderId = (Integer)in.readObject();
         this.gtsCccc = in.readObject();
         this.gtsHeader = in.readObject();
     }

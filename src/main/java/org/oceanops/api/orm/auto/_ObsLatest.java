@@ -3,10 +3,10 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.apache.cayenne.BaseDataObject;
+import org.apache.cayenne.exp.property.BaseProperty;
 import org.apache.cayenne.exp.property.DateProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
@@ -24,47 +24,49 @@ public abstract class _ObsLatest extends BaseDataObject {
 
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> LAT = PropertyFactory.createNumeric("lat", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> LON = PropertyFactory.createNumeric("lon", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
+    public static final NumericProperty<Double> LAT = PropertyFactory.createNumeric("lat", Double.class);
+    public static final NumericProperty<Double> LON = PropertyFactory.createNumeric("lon", Double.class);
     public static final DateProperty<LocalDateTime> OBS_DATE = PropertyFactory.createDate("obsDate", LocalDateTime.class);
-    public static final NumericProperty<BigDecimal> ORIGIN_ID = PropertyFactory.createNumeric("originId", BigDecimal.class);
+    public static final NumericProperty<Integer> ORIGIN_ID = PropertyFactory.createNumeric("originId", Integer.class);
     public static final StringProperty<String> ORIGIN_TABLE = PropertyFactory.createString("originTable", String.class);
+    public static final BaseProperty<byte[]> SHAPE = PropertyFactory.createBase("shape", byte[].class);
 
-    protected BigDecimal id;
-    protected BigDecimal lat;
-    protected BigDecimal lon;
+    protected Integer id;
+    protected Double lat;
+    protected Double lon;
     protected LocalDateTime obsDate;
-    protected BigDecimal originId;
+    protected Integer originId;
     protected String originTable;
+    protected byte[] shape;
 
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
 
-    public void setLat(BigDecimal lat) {
+    public void setLat(Double lat) {
         beforePropertyWrite("lat", this.lat, lat);
         this.lat = lat;
     }
 
-    public BigDecimal getLat() {
+    public Double getLat() {
         beforePropertyRead("lat");
         return this.lat;
     }
 
-    public void setLon(BigDecimal lon) {
+    public void setLon(Double lon) {
         beforePropertyWrite("lon", this.lon, lon);
         this.lon = lon;
     }
 
-    public BigDecimal getLon() {
+    public Double getLon() {
         beforePropertyRead("lon");
         return this.lon;
     }
@@ -79,12 +81,12 @@ public abstract class _ObsLatest extends BaseDataObject {
         return this.obsDate;
     }
 
-    public void setOriginId(BigDecimal originId) {
+    public void setOriginId(Integer originId) {
         beforePropertyWrite("originId", this.originId, originId);
         this.originId = originId;
     }
 
-    public BigDecimal getOriginId() {
+    public Integer getOriginId() {
         beforePropertyRead("originId");
         return this.originId;
     }
@@ -97,6 +99,16 @@ public abstract class _ObsLatest extends BaseDataObject {
     public String getOriginTable() {
         beforePropertyRead("originTable");
         return this.originTable;
+    }
+
+    public void setShape(byte[] shape) {
+        beforePropertyWrite("shape", this.shape, shape);
+        this.shape = shape;
+    }
+
+    public byte[] getShape() {
+        beforePropertyRead("shape");
+        return this.shape;
     }
 
     @Override
@@ -118,6 +130,8 @@ public abstract class _ObsLatest extends BaseDataObject {
                 return this.originId;
             case "originTable":
                 return this.originTable;
+            case "shape":
+                return this.shape;
             default:
                 return super.readPropertyDirectly(propName);
         }
@@ -131,22 +145,25 @@ public abstract class _ObsLatest extends BaseDataObject {
 
         switch (propName) {
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "lat":
-                this.lat = (BigDecimal)val;
+                this.lat = (Double)val;
                 break;
             case "lon":
-                this.lon = (BigDecimal)val;
+                this.lon = (Double)val;
                 break;
             case "obsDate":
                 this.obsDate = (LocalDateTime)val;
                 break;
             case "originId":
-                this.originId = (BigDecimal)val;
+                this.originId = (Integer)val;
                 break;
             case "originTable":
                 this.originTable = (String)val;
+                break;
+            case "shape":
+                this.shape = (byte[])val;
                 break;
             default:
                 super.writePropertyDirectly(propName, val);
@@ -170,17 +187,19 @@ public abstract class _ObsLatest extends BaseDataObject {
         out.writeObject(this.obsDate);
         out.writeObject(this.originId);
         out.writeObject(this.originTable);
+        out.writeObject(this.shape);
     }
 
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.id = (BigDecimal)in.readObject();
-        this.lat = (BigDecimal)in.readObject();
-        this.lon = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
+        this.lat = (Double)in.readObject();
+        this.lon = (Double)in.readObject();
         this.obsDate = (LocalDateTime)in.readObject();
-        this.originId = (BigDecimal)in.readObject();
+        this.originId = (Integer)in.readObject();
         this.originTable = (String)in.readObject();
+        this.shape = (byte[])in.readObject();
     }
 
 }

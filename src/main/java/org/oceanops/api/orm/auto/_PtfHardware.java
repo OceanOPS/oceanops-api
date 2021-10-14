@@ -3,17 +3,20 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.BaseProperty;
 import org.apache.cayenne.exp.property.DateProperty;
 import org.apache.cayenne.exp.property.EntityProperty;
+import org.apache.cayenne.exp.property.ListProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
 import org.oceanops.api.orm.Country;
+import org.oceanops.api.orm.MooringType;
+import org.oceanops.api.orm.Ptf;
 import org.oceanops.api.orm.PtfBattery;
 import org.oceanops.api.orm.PtfFirmware;
 import org.oceanops.api.orm.PtfHullType;
@@ -31,15 +34,14 @@ public abstract class _PtfHardware extends BaseDataObject {
 
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final NumericProperty<BigDecimal> BALLOON_SIZE = PropertyFactory.createNumeric("balloonSize", BigDecimal.class);
+    public static final NumericProperty<Double> BALLOON_SIZE = PropertyFactory.createNumeric("balloonSize", Double.class);
     public static final StringProperty<String> BATCH_REF = PropertyFactory.createString("batchRef", String.class);
     public static final StringProperty<String> BATTERY_PACK = PropertyFactory.createString("batteryPack", String.class);
-    public static final NumericProperty<BigDecimal> DROGUE = PropertyFactory.createNumeric("drogue", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<Integer> DROGUE = PropertyFactory.createNumeric("drogue", Integer.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final DateProperty<LocalDateTime> MANUF_DATE = PropertyFactory.createDate("manufDate", LocalDateTime.class);
-    public static final NumericProperty<BigDecimal> MOORING_DEPTH = PropertyFactory.createNumeric("mooringDepth", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> MOORING_TYPE_ID = PropertyFactory.createNumeric("mooringTypeId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> MOORING_WEIGHT = PropertyFactory.createNumeric("mooringWeight", BigDecimal.class);
+    public static final NumericProperty<Double> MOORING_DEPTH = PropertyFactory.createNumeric("mooringDepth", Double.class);
+    public static final NumericProperty<Double> MOORING_WEIGHT = PropertyFactory.createNumeric("mooringWeight", Double.class);
     public static final StringProperty<String> SERIAL_REF = PropertyFactory.createString("serialRef", String.class);
     public static final BaseProperty<byte[]> SPEC = PropertyFactory.createBase("spec", byte[].class);
     public static final StringProperty<String> SPECIAL_FEATURE = PropertyFactory.createString("specialFeature", String.class);
@@ -47,18 +49,19 @@ public abstract class _PtfHardware extends BaseDataObject {
     public static final EntityProperty<PtfFirmware> FIRMWARE = PropertyFactory.createEntity("firmware", PtfFirmware.class);
     public static final EntityProperty<PtfFirmware> FIRMWARE_ADD = PropertyFactory.createEntity("firmwareAdd", PtfFirmware.class);
     public static final EntityProperty<PtfHullType> HULL_TYPE = PropertyFactory.createEntity("hullType", PtfHullType.class);
+    public static final EntityProperty<MooringType> MOORING_TYPE = PropertyFactory.createEntity("mooringType", MooringType.class);
+    public static final ListProperty<Ptf> PTFS = PropertyFactory.createList("ptfs", Ptf.class);
     public static final EntityProperty<PumpType> PUMP_TYPE = PropertyFactory.createEntity("pumpType", PumpType.class);
     public static final EntityProperty<Country> SENSOR_UPGRADE_COUNTRY = PropertyFactory.createEntity("sensorUpgradeCountry", Country.class);
 
-    protected BigDecimal balloonSize;
+    protected Double balloonSize;
     protected String batchRef;
     protected String batteryPack;
-    protected BigDecimal drogue;
-    protected BigDecimal id;
+    protected Integer drogue;
+    protected Integer id;
     protected LocalDateTime manufDate;
-    protected BigDecimal mooringDepth;
-    protected BigDecimal mooringTypeId;
-    protected BigDecimal mooringWeight;
+    protected Double mooringDepth;
+    protected Double mooringWeight;
     protected String serialRef;
     protected byte[] spec;
     protected String specialFeature;
@@ -67,15 +70,17 @@ public abstract class _PtfHardware extends BaseDataObject {
     protected Object firmware;
     protected Object firmwareAdd;
     protected Object hullType;
+    protected Object mooringType;
+    protected Object ptfs;
     protected Object pumpType;
     protected Object sensorUpgradeCountry;
 
-    public void setBalloonSize(BigDecimal balloonSize) {
+    public void setBalloonSize(Double balloonSize) {
         beforePropertyWrite("balloonSize", this.balloonSize, balloonSize);
         this.balloonSize = balloonSize;
     }
 
-    public BigDecimal getBalloonSize() {
+    public Double getBalloonSize() {
         beforePropertyRead("balloonSize");
         return this.balloonSize;
     }
@@ -100,22 +105,22 @@ public abstract class _PtfHardware extends BaseDataObject {
         return this.batteryPack;
     }
 
-    public void setDrogue(BigDecimal drogue) {
+    public void setDrogue(Integer drogue) {
         beforePropertyWrite("drogue", this.drogue, drogue);
         this.drogue = drogue;
     }
 
-    public BigDecimal getDrogue() {
+    public Integer getDrogue() {
         beforePropertyRead("drogue");
         return this.drogue;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
@@ -130,32 +135,22 @@ public abstract class _PtfHardware extends BaseDataObject {
         return this.manufDate;
     }
 
-    public void setMooringDepth(BigDecimal mooringDepth) {
+    public void setMooringDepth(Double mooringDepth) {
         beforePropertyWrite("mooringDepth", this.mooringDepth, mooringDepth);
         this.mooringDepth = mooringDepth;
     }
 
-    public BigDecimal getMooringDepth() {
+    public Double getMooringDepth() {
         beforePropertyRead("mooringDepth");
         return this.mooringDepth;
     }
 
-    public void setMooringTypeId(BigDecimal mooringTypeId) {
-        beforePropertyWrite("mooringTypeId", this.mooringTypeId, mooringTypeId);
-        this.mooringTypeId = mooringTypeId;
-    }
-
-    public BigDecimal getMooringTypeId() {
-        beforePropertyRead("mooringTypeId");
-        return this.mooringTypeId;
-    }
-
-    public void setMooringWeight(BigDecimal mooringWeight) {
+    public void setMooringWeight(Double mooringWeight) {
         beforePropertyWrite("mooringWeight", this.mooringWeight, mooringWeight);
         this.mooringWeight = mooringWeight;
     }
 
-    public BigDecimal getMooringWeight() {
+    public Double getMooringWeight() {
         beforePropertyRead("mooringWeight");
         return this.mooringWeight;
     }
@@ -222,6 +217,27 @@ public abstract class _PtfHardware extends BaseDataObject {
         return (PtfHullType)readProperty("hullType");
     }
 
+    public void setMooringType(MooringType mooringType) {
+        setToOneTarget("mooringType", mooringType, true);
+    }
+
+    public MooringType getMooringType() {
+        return (MooringType)readProperty("mooringType");
+    }
+
+    public void addToPtfs(Ptf obj) {
+        addToManyTarget("ptfs", obj, true);
+    }
+
+    public void removeFromPtfs(Ptf obj) {
+        removeToManyTarget("ptfs", obj, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Ptf> getPtfs() {
+        return (List<Ptf>)readProperty("ptfs");
+    }
+
     public void setPumpType(PumpType pumpType) {
         setToOneTarget("pumpType", pumpType, true);
     }
@@ -259,8 +275,6 @@ public abstract class _PtfHardware extends BaseDataObject {
                 return this.manufDate;
             case "mooringDepth":
                 return this.mooringDepth;
-            case "mooringTypeId":
-                return this.mooringTypeId;
             case "mooringWeight":
                 return this.mooringWeight;
             case "serialRef":
@@ -277,6 +291,10 @@ public abstract class _PtfHardware extends BaseDataObject {
                 return this.firmwareAdd;
             case "hullType":
                 return this.hullType;
+            case "mooringType":
+                return this.mooringType;
+            case "ptfs":
+                return this.ptfs;
             case "pumpType":
                 return this.pumpType;
             case "sensorUpgradeCountry":
@@ -294,7 +312,7 @@ public abstract class _PtfHardware extends BaseDataObject {
 
         switch (propName) {
             case "balloonSize":
-                this.balloonSize = (BigDecimal)val;
+                this.balloonSize = (Double)val;
                 break;
             case "batchRef":
                 this.batchRef = (String)val;
@@ -303,22 +321,19 @@ public abstract class _PtfHardware extends BaseDataObject {
                 this.batteryPack = (String)val;
                 break;
             case "drogue":
-                this.drogue = (BigDecimal)val;
+                this.drogue = (Integer)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "manufDate":
                 this.manufDate = (LocalDateTime)val;
                 break;
             case "mooringDepth":
-                this.mooringDepth = (BigDecimal)val;
-                break;
-            case "mooringTypeId":
-                this.mooringTypeId = (BigDecimal)val;
+                this.mooringDepth = (Double)val;
                 break;
             case "mooringWeight":
-                this.mooringWeight = (BigDecimal)val;
+                this.mooringWeight = (Double)val;
                 break;
             case "serialRef":
                 this.serialRef = (String)val;
@@ -340,6 +355,12 @@ public abstract class _PtfHardware extends BaseDataObject {
                 break;
             case "hullType":
                 this.hullType = val;
+                break;
+            case "mooringType":
+                this.mooringType = val;
+                break;
+            case "ptfs":
+                this.ptfs = val;
                 break;
             case "pumpType":
                 this.pumpType = val;
@@ -370,7 +391,6 @@ public abstract class _PtfHardware extends BaseDataObject {
         out.writeObject(this.id);
         out.writeObject(this.manufDate);
         out.writeObject(this.mooringDepth);
-        out.writeObject(this.mooringTypeId);
         out.writeObject(this.mooringWeight);
         out.writeObject(this.serialRef);
         out.writeObject(this.spec);
@@ -379,6 +399,8 @@ public abstract class _PtfHardware extends BaseDataObject {
         out.writeObject(this.firmware);
         out.writeObject(this.firmwareAdd);
         out.writeObject(this.hullType);
+        out.writeObject(this.mooringType);
+        out.writeObject(this.ptfs);
         out.writeObject(this.pumpType);
         out.writeObject(this.sensorUpgradeCountry);
     }
@@ -386,15 +408,14 @@ public abstract class _PtfHardware extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.balloonSize = (BigDecimal)in.readObject();
+        this.balloonSize = (Double)in.readObject();
         this.batchRef = (String)in.readObject();
         this.batteryPack = (String)in.readObject();
-        this.drogue = (BigDecimal)in.readObject();
-        this.id = (BigDecimal)in.readObject();
+        this.drogue = (Integer)in.readObject();
+        this.id = (Integer)in.readObject();
         this.manufDate = (LocalDateTime)in.readObject();
-        this.mooringDepth = (BigDecimal)in.readObject();
-        this.mooringTypeId = (BigDecimal)in.readObject();
-        this.mooringWeight = (BigDecimal)in.readObject();
+        this.mooringDepth = (Double)in.readObject();
+        this.mooringWeight = (Double)in.readObject();
         this.serialRef = (String)in.readObject();
         this.spec = (byte[])in.readObject();
         this.specialFeature = (String)in.readObject();
@@ -402,6 +423,8 @@ public abstract class _PtfHardware extends BaseDataObject {
         this.firmware = in.readObject();
         this.firmwareAdd = in.readObject();
         this.hullType = in.readObject();
+        this.mooringType = in.readObject();
+        this.ptfs = in.readObject();
         this.pumpType = in.readObject();
         this.sensorUpgradeCountry = in.readObject();
     }

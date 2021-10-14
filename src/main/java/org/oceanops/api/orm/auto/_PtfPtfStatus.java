@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.apache.cayenne.BaseDataObject;
@@ -27,13 +26,13 @@ public abstract class _PtfPtfStatus extends BaseDataObject {
     public static final String ID_PK_COLUMN = "ID";
 
     public static final DateProperty<LocalDateTime> CHANGING_DATE = PropertyFactory.createDate("changingDate", LocalDateTime.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final DateProperty<LocalDateTime> INSERT_DATE = PropertyFactory.createDate("insertDate", LocalDateTime.class);
     public static final EntityProperty<Ptf> PTF = PropertyFactory.createEntity("ptf", Ptf.class);
     public static final EntityProperty<PtfStatus> PTF_STATUS = PropertyFactory.createEntity("ptfStatus", PtfStatus.class);
 
     protected LocalDateTime changingDate;
-    protected BigDecimal id;
+    protected Integer id;
     protected LocalDateTime insertDate;
 
     protected Object ptf;
@@ -49,12 +48,12 @@ public abstract class _PtfPtfStatus extends BaseDataObject {
         return this.changingDate;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
@@ -118,7 +117,7 @@ public abstract class _PtfPtfStatus extends BaseDataObject {
                 this.changingDate = (LocalDateTime)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "insertDate":
                 this.insertDate = (LocalDateTime)val;
@@ -156,7 +155,7 @@ public abstract class _PtfPtfStatus extends BaseDataObject {
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
         this.changingDate = (LocalDateTime)in.readObject();
-        this.id = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
         this.insertDate = (LocalDateTime)in.readObject();
         this.ptf = in.readObject();
         this.ptfStatus = in.readObject();

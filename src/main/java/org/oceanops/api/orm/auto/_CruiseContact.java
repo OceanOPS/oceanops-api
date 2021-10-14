@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -27,47 +26,47 @@ public abstract class _CruiseContact extends BaseDataObject {
     public static final String CRUISE_ID_PK_COLUMN = "CRUISE_ID";
     public static final String ROLE_ID_PK_COLUMN = "ROLE_ID";
 
-    public static final NumericProperty<BigDecimal> CONTACT_ID = PropertyFactory.createNumeric("contactId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> CRUISE_ID = PropertyFactory.createNumeric("cruiseId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> ROLE_ID = PropertyFactory.createNumeric("roleId", BigDecimal.class);
+    public static final NumericProperty<Integer> CONTACT_ID = PropertyFactory.createNumeric("contactId", Integer.class);
+    public static final NumericProperty<Integer> CRUISE_ID = PropertyFactory.createNumeric("cruiseId", Integer.class);
+    public static final NumericProperty<Integer> ROLE_ID = PropertyFactory.createNumeric("roleId", Integer.class);
     public static final EntityProperty<Contact> CONTACT = PropertyFactory.createEntity("contact", Contact.class);
     public static final EntityProperty<Cruise> CRUISE = PropertyFactory.createEntity("cruise", Cruise.class);
     public static final EntityProperty<Role> ROLE = PropertyFactory.createEntity("role", Role.class);
 
-    protected BigDecimal contactId;
-    protected BigDecimal cruiseId;
-    protected BigDecimal roleId;
+    protected Integer contactId;
+    protected Integer cruiseId;
+    protected Integer roleId;
 
     protected Object contact;
     protected Object cruise;
     protected Object role;
 
-    public void setContactId(BigDecimal contactId) {
+    public void setContactId(Integer contactId) {
         beforePropertyWrite("contactId", this.contactId, contactId);
         this.contactId = contactId;
     }
 
-    public BigDecimal getContactId() {
+    public Integer getContactId() {
         beforePropertyRead("contactId");
         return this.contactId;
     }
 
-    public void setCruiseId(BigDecimal cruiseId) {
+    public void setCruiseId(Integer cruiseId) {
         beforePropertyWrite("cruiseId", this.cruiseId, cruiseId);
         this.cruiseId = cruiseId;
     }
 
-    public BigDecimal getCruiseId() {
+    public Integer getCruiseId() {
         beforePropertyRead("cruiseId");
         return this.cruiseId;
     }
 
-    public void setRoleId(BigDecimal roleId) {
+    public void setRoleId(Integer roleId) {
         beforePropertyWrite("roleId", this.roleId, roleId);
         this.roleId = roleId;
     }
 
-    public BigDecimal getRoleId() {
+    public Integer getRoleId() {
         beforePropertyRead("roleId");
         return this.roleId;
     }
@@ -128,13 +127,13 @@ public abstract class _CruiseContact extends BaseDataObject {
 
         switch (propName) {
             case "contactId":
-                this.contactId = (BigDecimal)val;
+                this.contactId = (Integer)val;
                 break;
             case "cruiseId":
-                this.cruiseId = (BigDecimal)val;
+                this.cruiseId = (Integer)val;
                 break;
             case "roleId":
-                this.roleId = (BigDecimal)val;
+                this.roleId = (Integer)val;
                 break;
             case "contact":
                 this.contact = val;
@@ -172,9 +171,9 @@ public abstract class _CruiseContact extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.contactId = (BigDecimal)in.readObject();
-        this.cruiseId = (BigDecimal)in.readObject();
-        this.roleId = (BigDecimal)in.readObject();
+        this.contactId = (Integer)in.readObject();
+        this.cruiseId = (Integer)in.readObject();
+        this.roleId = (Integer)in.readObject();
         this.contact = in.readObject();
         this.cruise = in.readObject();
         this.role = in.readObject();

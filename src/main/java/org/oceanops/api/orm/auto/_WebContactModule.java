@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -25,33 +24,33 @@ public abstract class _WebContactModule extends BaseDataObject {
     public static final String CONTACT_ID_PK_COLUMN = "CONTACT_ID";
     public static final String MODULE_ID_PK_COLUMN = "MODULE_ID";
 
-    public static final NumericProperty<BigDecimal> CONTACT_ID = PropertyFactory.createNumeric("contactId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> MODULE_ID = PropertyFactory.createNumeric("moduleId", BigDecimal.class);
+    public static final NumericProperty<Integer> CONTACT_ID = PropertyFactory.createNumeric("contactId", Integer.class);
+    public static final NumericProperty<Integer> MODULE_ID = PropertyFactory.createNumeric("moduleId", Integer.class);
     public static final EntityProperty<Contact> CONTACT = PropertyFactory.createEntity("contact", Contact.class);
     public static final EntityProperty<WebModule> MODULE = PropertyFactory.createEntity("module", WebModule.class);
 
-    protected BigDecimal contactId;
-    protected BigDecimal moduleId;
+    protected Integer contactId;
+    protected Integer moduleId;
 
     protected Object contact;
     protected Object module;
 
-    public void setContactId(BigDecimal contactId) {
+    public void setContactId(Integer contactId) {
         beforePropertyWrite("contactId", this.contactId, contactId);
         this.contactId = contactId;
     }
 
-    public BigDecimal getContactId() {
+    public Integer getContactId() {
         beforePropertyRead("contactId");
         return this.contactId;
     }
 
-    public void setModuleId(BigDecimal moduleId) {
+    public void setModuleId(Integer moduleId) {
         beforePropertyWrite("moduleId", this.moduleId, moduleId);
         this.moduleId = moduleId;
     }
 
-    public BigDecimal getModuleId() {
+    public Integer getModuleId() {
         beforePropertyRead("moduleId");
         return this.moduleId;
     }
@@ -100,10 +99,10 @@ public abstract class _WebContactModule extends BaseDataObject {
 
         switch (propName) {
             case "contactId":
-                this.contactId = (BigDecimal)val;
+                this.contactId = (Integer)val;
                 break;
             case "moduleId":
-                this.moduleId = (BigDecimal)val;
+                this.moduleId = (Integer)val;
                 break;
             case "contact":
                 this.contact = val;
@@ -136,8 +135,8 @@ public abstract class _WebContactModule extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.contactId = (BigDecimal)in.readObject();
-        this.moduleId = (BigDecimal)in.readObject();
+        this.contactId = (Integer)in.readObject();
+        this.moduleId = (Integer)in.readObject();
         this.contact = in.readObject();
         this.module = in.readObject();
     }

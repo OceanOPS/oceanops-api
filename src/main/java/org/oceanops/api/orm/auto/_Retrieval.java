@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -38,10 +37,10 @@ public abstract class _Retrieval extends BaseDataObject {
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
     public static final StringProperty<String> EMAIL = PropertyFactory.createString("email", String.class);
     public static final DateProperty<LocalDateTime> END_DATE = PropertyFactory.createDate("endDate", LocalDateTime.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> LAT = PropertyFactory.createNumeric("lat", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
+    public static final NumericProperty<Double> LAT = PropertyFactory.createNumeric("lat", Double.class);
     public static final StringProperty<String> LOCAL_CONTACT_INFO = PropertyFactory.createString("localContactInfo", String.class);
-    public static final NumericProperty<BigDecimal> LON = PropertyFactory.createNumeric("lon", BigDecimal.class);
+    public static final NumericProperty<Double> LON = PropertyFactory.createNumeric("lon", Double.class);
     public static final StringProperty<String> REF_STATION_ID = PropertyFactory.createString("refStationId", String.class);
     public static final StringProperty<String> REGION = PropertyFactory.createString("region", String.class);
     public static final DateProperty<LocalDateTime> START_DATE = PropertyFactory.createDate("startDate", LocalDateTime.class);
@@ -58,10 +57,10 @@ public abstract class _Retrieval extends BaseDataObject {
     protected String description;
     protected String email;
     protected LocalDateTime endDate;
-    protected BigDecimal id;
-    protected BigDecimal lat;
+    protected Integer id;
+    protected Double lat;
     protected String localContactInfo;
-    protected BigDecimal lon;
+    protected Double lon;
     protected String refStationId;
     protected String region;
     protected LocalDateTime startDate;
@@ -124,22 +123,22 @@ public abstract class _Retrieval extends BaseDataObject {
         return this.endDate;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
 
-    public void setLat(BigDecimal lat) {
+    public void setLat(Double lat) {
         beforePropertyWrite("lat", this.lat, lat);
         this.lat = lat;
     }
 
-    public BigDecimal getLat() {
+    public Double getLat() {
         beforePropertyRead("lat");
         return this.lat;
     }
@@ -154,12 +153,12 @@ public abstract class _Retrieval extends BaseDataObject {
         return this.localContactInfo;
     }
 
-    public void setLon(BigDecimal lon) {
+    public void setLon(Double lon) {
         beforePropertyWrite("lon", this.lon, lon);
         this.lon = lon;
     }
 
-    public BigDecimal getLon() {
+    public Double getLon() {
         beforePropertyRead("lon");
         return this.lon;
     }
@@ -330,16 +329,16 @@ public abstract class _Retrieval extends BaseDataObject {
                 this.endDate = (LocalDateTime)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "lat":
-                this.lat = (BigDecimal)val;
+                this.lat = (Double)val;
                 break;
             case "localContactInfo":
                 this.localContactInfo = (String)val;
                 break;
             case "lon":
-                this.lon = (BigDecimal)val;
+                this.lon = (Double)val;
                 break;
             case "refStationId":
                 this.refStationId = (String)val;
@@ -416,10 +415,10 @@ public abstract class _Retrieval extends BaseDataObject {
         this.description = (String)in.readObject();
         this.email = (String)in.readObject();
         this.endDate = (LocalDateTime)in.readObject();
-        this.id = (BigDecimal)in.readObject();
-        this.lat = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
+        this.lat = (Double)in.readObject();
         this.localContactInfo = (String)in.readObject();
-        this.lon = (BigDecimal)in.readObject();
+        this.lon = (Double)in.readObject();
         this.refStationId = (String)in.readObject();
         this.region = (String)in.readObject();
         this.startDate = (LocalDateTime)in.readObject();

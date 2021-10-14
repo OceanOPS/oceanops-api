@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
@@ -26,13 +25,13 @@ public abstract class _SensorExposure extends BaseDataObject {
     public static final String ID_PK_COLUMN = "ID";
 
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final StringProperty<String> PUB47REF = PropertyFactory.createString("pub47Ref", String.class);
     public static final StringProperty<String> REF = PropertyFactory.createString("ref", String.class);
     public static final ListProperty<PtfVariable> PTF_VARIABLES = PropertyFactory.createList("ptfVariables", PtfVariable.class);
 
     protected String description;
-    protected BigDecimal id;
+    protected Integer id;
     protected String pub47Ref;
     protected String ref;
 
@@ -48,12 +47,12 @@ public abstract class _SensorExposure extends BaseDataObject {
         return this.description;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
@@ -124,7 +123,7 @@ public abstract class _SensorExposure extends BaseDataObject {
                 this.description = (String)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "pub47Ref":
                 this.pub47Ref = (String)val;
@@ -162,7 +161,7 @@ public abstract class _SensorExposure extends BaseDataObject {
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
         this.description = (String)in.readObject();
-        this.id = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
         this.pub47Ref = (String)in.readObject();
         this.ref = (String)in.readObject();
         this.ptfVariables = in.readObject();

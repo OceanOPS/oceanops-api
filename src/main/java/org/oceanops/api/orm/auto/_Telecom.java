@@ -3,16 +3,18 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.DateProperty;
 import org.apache.cayenne.exp.property.EntityProperty;
+import org.apache.cayenne.exp.property.ListProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
 import org.oceanops.api.orm.Latency;
+import org.oceanops.api.orm.Ptf;
 import org.oceanops.api.orm.TelecomFormat;
 import org.oceanops.api.orm.TelecomService;
 import org.oceanops.api.orm.TelecomType;
@@ -31,25 +33,33 @@ public abstract class _Telecom extends BaseDataObject {
 
     public static final DateProperty<LocalDateTime> END_DATE = PropertyFactory.createDate("endDate", LocalDateTime.class);
     public static final StringProperty<String> FREQUENCY = PropertyFactory.createString("frequency", String.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final StringProperty<String> IMEI = PropertyFactory.createString("imei", String.class);
+    public static final NumericProperty<Double> LATENCY1 = PropertyFactory.createNumeric("latency1", Double.class);
     public static final StringProperty<String> NUM = PropertyFactory.createString("num", String.class);
+    public static final NumericProperty<Integer> PTF_ID = PropertyFactory.createNumeric("ptfId", Integer.class);
     public static final StringProperty<String> REF_PROG = PropertyFactory.createString("refProg", String.class);
     public static final DateProperty<LocalDateTime> START_DATE = PropertyFactory.createDate("startDate", LocalDateTime.class);
     public static final EntityProperty<Latency> LATENCY = PropertyFactory.createEntity("latency", Latency.class);
+    public static final ListProperty<Ptf> PTFS = PropertyFactory.createList("ptfs", Ptf.class);
+    public static final ListProperty<Ptf> PTFS1 = PropertyFactory.createList("ptfs1", Ptf.class);
     public static final EntityProperty<TelecomFormat> TELECOM_FORMAT = PropertyFactory.createEntity("telecomFormat", TelecomFormat.class);
     public static final EntityProperty<TelecomService> TELECOM_SERVICE = PropertyFactory.createEntity("telecomService", TelecomService.class);
     public static final EntityProperty<TelecomType> TELECOM_TYPE = PropertyFactory.createEntity("telecomType", TelecomType.class);
 
     protected LocalDateTime endDate;
     protected String frequency;
-    protected BigDecimal id;
+    protected Integer id;
     protected String imei;
+    protected Double latency1;
     protected String num;
+    protected Integer ptfId;
     protected String refProg;
     protected LocalDateTime startDate;
 
     protected Object latency;
+    protected Object ptfs;
+    protected Object ptfs1;
     protected Object telecomFormat;
     protected Object telecomService;
     protected Object telecomType;
@@ -74,12 +84,12 @@ public abstract class _Telecom extends BaseDataObject {
         return this.frequency;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
@@ -94,6 +104,16 @@ public abstract class _Telecom extends BaseDataObject {
         return this.imei;
     }
 
+    public void setLatency1(Double latency1) {
+        beforePropertyWrite("latency1", this.latency1, latency1);
+        this.latency1 = latency1;
+    }
+
+    public Double getLatency1() {
+        beforePropertyRead("latency1");
+        return this.latency1;
+    }
+
     public void setNum(String num) {
         beforePropertyWrite("num", this.num, num);
         this.num = num;
@@ -102,6 +122,16 @@ public abstract class _Telecom extends BaseDataObject {
     public String getNum() {
         beforePropertyRead("num");
         return this.num;
+    }
+
+    public void setPtfId(Integer ptfId) {
+        beforePropertyWrite("ptfId", this.ptfId, ptfId);
+        this.ptfId = ptfId;
+    }
+
+    public Integer getPtfId() {
+        beforePropertyRead("ptfId");
+        return this.ptfId;
     }
 
     public void setRefProg(String refProg) {
@@ -130,6 +160,32 @@ public abstract class _Telecom extends BaseDataObject {
 
     public Latency getLatency() {
         return (Latency)readProperty("latency");
+    }
+
+    public void addToPtfs(Ptf obj) {
+        addToManyTarget("ptfs", obj, true);
+    }
+
+    public void removeFromPtfs(Ptf obj) {
+        removeToManyTarget("ptfs", obj, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Ptf> getPtfs() {
+        return (List<Ptf>)readProperty("ptfs");
+    }
+
+    public void addToPtfs1(Ptf obj) {
+        addToManyTarget("ptfs1", obj, true);
+    }
+
+    public void removeFromPtfs1(Ptf obj) {
+        removeToManyTarget("ptfs1", obj, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Ptf> getPtfs1() {
+        return (List<Ptf>)readProperty("ptfs1");
     }
 
     public void setTelecomFormat(TelecomFormat telecomFormat) {
@@ -171,14 +227,22 @@ public abstract class _Telecom extends BaseDataObject {
                 return this.id;
             case "imei":
                 return this.imei;
+            case "latency1":
+                return this.latency1;
             case "num":
                 return this.num;
+            case "ptfId":
+                return this.ptfId;
             case "refProg":
                 return this.refProg;
             case "startDate":
                 return this.startDate;
             case "latency":
                 return this.latency;
+            case "ptfs":
+                return this.ptfs;
+            case "ptfs1":
+                return this.ptfs1;
             case "telecomFormat":
                 return this.telecomFormat;
             case "telecomService":
@@ -204,13 +268,19 @@ public abstract class _Telecom extends BaseDataObject {
                 this.frequency = (String)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "imei":
                 this.imei = (String)val;
                 break;
+            case "latency1":
+                this.latency1 = (Double)val;
+                break;
             case "num":
                 this.num = (String)val;
+                break;
+            case "ptfId":
+                this.ptfId = (Integer)val;
                 break;
             case "refProg":
                 this.refProg = (String)val;
@@ -220,6 +290,12 @@ public abstract class _Telecom extends BaseDataObject {
                 break;
             case "latency":
                 this.latency = val;
+                break;
+            case "ptfs":
+                this.ptfs = val;
+                break;
+            case "ptfs1":
+                this.ptfs1 = val;
                 break;
             case "telecomFormat":
                 this.telecomFormat = val;
@@ -250,10 +326,14 @@ public abstract class _Telecom extends BaseDataObject {
         out.writeObject(this.frequency);
         out.writeObject(this.id);
         out.writeObject(this.imei);
+        out.writeObject(this.latency1);
         out.writeObject(this.num);
+        out.writeObject(this.ptfId);
         out.writeObject(this.refProg);
         out.writeObject(this.startDate);
         out.writeObject(this.latency);
+        out.writeObject(this.ptfs);
+        out.writeObject(this.ptfs1);
         out.writeObject(this.telecomFormat);
         out.writeObject(this.telecomService);
         out.writeObject(this.telecomType);
@@ -264,12 +344,16 @@ public abstract class _Telecom extends BaseDataObject {
         super.readState(in);
         this.endDate = (LocalDateTime)in.readObject();
         this.frequency = (String)in.readObject();
-        this.id = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
         this.imei = (String)in.readObject();
+        this.latency1 = (Double)in.readObject();
         this.num = (String)in.readObject();
+        this.ptfId = (Integer)in.readObject();
         this.refProg = (String)in.readObject();
         this.startDate = (LocalDateTime)in.readObject();
         this.latency = in.readObject();
+        this.ptfs = in.readObject();
+        this.ptfs1 = in.readObject();
         this.telecomFormat = in.readObject();
         this.telecomService = in.readObject();
         this.telecomType = in.readObject();

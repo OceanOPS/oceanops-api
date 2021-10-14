@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
@@ -26,55 +25,55 @@ public abstract class _LineType extends BaseDataObject {
     public static final String ID_PK_COLUMN = "ID";
 
     public static final StringProperty<String> COMMENTS = PropertyFactory.createString("comments", String.class);
-    public static final NumericProperty<BigDecimal> DROPS = PropertyFactory.createNumeric("drops", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> HORIZ_RES_BOXES = PropertyFactory.createNumeric("horizResBoxes", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> HORIZ_RESOL_DEG = PropertyFactory.createNumeric("horizResolDeg", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> HORIZ_RESOL_HR = PropertyFactory.createNumeric("horizResolHr", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> HORIZ_RESOL_KM = PropertyFactory.createNumeric("horizResolKm", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> MAX_HORIZ_RES = PropertyFactory.createNumeric("maxHorizRes", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> MAX_HORIZ_RES_I4 = PropertyFactory.createNumeric("maxHorizResI4", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> MAX_NB_TRANS12 = PropertyFactory.createNumeric("maxNbTrans12", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> MAX_NB_TRANS6 = PropertyFactory.createNumeric("maxNbTrans6", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> MAX_SD_HORIZ_RES = PropertyFactory.createNumeric("maxSdHorizRes", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> MAX_SD_PERIOD = PropertyFactory.createNumeric("maxSdPeriod", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> MIN_HORIZ_RES = PropertyFactory.createNumeric("minHorizRes", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> MIN_HORIZ_RES_I4 = PropertyFactory.createNumeric("minHorizResI4", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> MIN_NB_TRANS12 = PropertyFactory.createNumeric("minNbTrans12", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> MIN_NB_TRANS6 = PropertyFactory.createNumeric("minNbTrans6", BigDecimal.class);
+    public static final NumericProperty<Integer> DROPS = PropertyFactory.createNumeric("drops", Integer.class);
+    public static final NumericProperty<Integer> HORIZ_RES_BOXES = PropertyFactory.createNumeric("horizResBoxes", Integer.class);
+    public static final NumericProperty<Double> HORIZ_RESOL_DEG = PropertyFactory.createNumeric("horizResolDeg", Double.class);
+    public static final NumericProperty<Integer> HORIZ_RESOL_HR = PropertyFactory.createNumeric("horizResolHr", Integer.class);
+    public static final NumericProperty<Integer> HORIZ_RESOL_KM = PropertyFactory.createNumeric("horizResolKm", Integer.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
+    public static final NumericProperty<Integer> MAX_HORIZ_RES = PropertyFactory.createNumeric("maxHorizRes", Integer.class);
+    public static final NumericProperty<Integer> MAX_HORIZ_RES_I4 = PropertyFactory.createNumeric("maxHorizResI4", Integer.class);
+    public static final NumericProperty<Integer> MAX_NB_TRANS12 = PropertyFactory.createNumeric("maxNbTrans12", Integer.class);
+    public static final NumericProperty<Integer> MAX_NB_TRANS6 = PropertyFactory.createNumeric("maxNbTrans6", Integer.class);
+    public static final NumericProperty<Integer> MAX_SD_HORIZ_RES = PropertyFactory.createNumeric("maxSdHorizRes", Integer.class);
+    public static final NumericProperty<Integer> MAX_SD_PERIOD = PropertyFactory.createNumeric("maxSdPeriod", Integer.class);
+    public static final NumericProperty<Integer> MIN_HORIZ_RES = PropertyFactory.createNumeric("minHorizRes", Integer.class);
+    public static final NumericProperty<Integer> MIN_HORIZ_RES_I4 = PropertyFactory.createNumeric("minHorizResI4", Integer.class);
+    public static final NumericProperty<Integer> MIN_NB_TRANS12 = PropertyFactory.createNumeric("minNbTrans12", Integer.class);
+    public static final NumericProperty<Integer> MIN_NB_TRANS6 = PropertyFactory.createNumeric("minNbTrans6", Integer.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> NAME_LONG = PropertyFactory.createString("nameLong", String.class);
     public static final StringProperty<String> NAME_SHORT = PropertyFactory.createString("nameShort", String.class);
-    public static final NumericProperty<BigDecimal> PERCENT_BOXES = PropertyFactory.createNumeric("percentBoxes", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> PERCENT_GOOD_TR = PropertyFactory.createNumeric("percentGoodTr", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> PERIOD_TOLERANCE = PropertyFactory.createNumeric("periodTolerance", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> TRANSECTS = PropertyFactory.createNumeric("transects", BigDecimal.class);
+    public static final NumericProperty<Integer> PERCENT_BOXES = PropertyFactory.createNumeric("percentBoxes", Integer.class);
+    public static final NumericProperty<Integer> PERCENT_GOOD_TR = PropertyFactory.createNumeric("percentGoodTr", Integer.class);
+    public static final NumericProperty<Integer> PERIOD_TOLERANCE = PropertyFactory.createNumeric("periodTolerance", Integer.class);
+    public static final NumericProperty<Integer> TRANSECTS = PropertyFactory.createNumeric("transects", Integer.class);
     public static final ListProperty<LineSurvey> LINE_SURVEYS = PropertyFactory.createList("lineSurveys", LineSurvey.class);
 
     protected String comments;
-    protected BigDecimal drops;
-    protected BigDecimal horizResBoxes;
-    protected BigDecimal horizResolDeg;
-    protected BigDecimal horizResolHr;
-    protected BigDecimal horizResolKm;
-    protected BigDecimal id;
-    protected BigDecimal maxHorizRes;
-    protected BigDecimal maxHorizResI4;
-    protected BigDecimal maxNbTrans12;
-    protected BigDecimal maxNbTrans6;
-    protected BigDecimal maxSdHorizRes;
-    protected BigDecimal maxSdPeriod;
-    protected BigDecimal minHorizRes;
-    protected BigDecimal minHorizResI4;
-    protected BigDecimal minNbTrans12;
-    protected BigDecimal minNbTrans6;
+    protected Integer drops;
+    protected Integer horizResBoxes;
+    protected Double horizResolDeg;
+    protected Integer horizResolHr;
+    protected Integer horizResolKm;
+    protected Integer id;
+    protected Integer maxHorizRes;
+    protected Integer maxHorizResI4;
+    protected Integer maxNbTrans12;
+    protected Integer maxNbTrans6;
+    protected Integer maxSdHorizRes;
+    protected Integer maxSdPeriod;
+    protected Integer minHorizRes;
+    protected Integer minHorizResI4;
+    protected Integer minNbTrans12;
+    protected Integer minNbTrans6;
     protected String name;
     protected String nameLong;
     protected String nameShort;
-    protected BigDecimal percentBoxes;
-    protected BigDecimal percentGoodTr;
-    protected BigDecimal periodTolerance;
-    protected BigDecimal transects;
+    protected Integer percentBoxes;
+    protected Integer percentGoodTr;
+    protected Integer periodTolerance;
+    protected Integer transects;
 
     protected Object lineSurveys;
 
@@ -88,162 +87,162 @@ public abstract class _LineType extends BaseDataObject {
         return this.comments;
     }
 
-    public void setDrops(BigDecimal drops) {
+    public void setDrops(Integer drops) {
         beforePropertyWrite("drops", this.drops, drops);
         this.drops = drops;
     }
 
-    public BigDecimal getDrops() {
+    public Integer getDrops() {
         beforePropertyRead("drops");
         return this.drops;
     }
 
-    public void setHorizResBoxes(BigDecimal horizResBoxes) {
+    public void setHorizResBoxes(Integer horizResBoxes) {
         beforePropertyWrite("horizResBoxes", this.horizResBoxes, horizResBoxes);
         this.horizResBoxes = horizResBoxes;
     }
 
-    public BigDecimal getHorizResBoxes() {
+    public Integer getHorizResBoxes() {
         beforePropertyRead("horizResBoxes");
         return this.horizResBoxes;
     }
 
-    public void setHorizResolDeg(BigDecimal horizResolDeg) {
+    public void setHorizResolDeg(Double horizResolDeg) {
         beforePropertyWrite("horizResolDeg", this.horizResolDeg, horizResolDeg);
         this.horizResolDeg = horizResolDeg;
     }
 
-    public BigDecimal getHorizResolDeg() {
+    public Double getHorizResolDeg() {
         beforePropertyRead("horizResolDeg");
         return this.horizResolDeg;
     }
 
-    public void setHorizResolHr(BigDecimal horizResolHr) {
+    public void setHorizResolHr(Integer horizResolHr) {
         beforePropertyWrite("horizResolHr", this.horizResolHr, horizResolHr);
         this.horizResolHr = horizResolHr;
     }
 
-    public BigDecimal getHorizResolHr() {
+    public Integer getHorizResolHr() {
         beforePropertyRead("horizResolHr");
         return this.horizResolHr;
     }
 
-    public void setHorizResolKm(BigDecimal horizResolKm) {
+    public void setHorizResolKm(Integer horizResolKm) {
         beforePropertyWrite("horizResolKm", this.horizResolKm, horizResolKm);
         this.horizResolKm = horizResolKm;
     }
 
-    public BigDecimal getHorizResolKm() {
+    public Integer getHorizResolKm() {
         beforePropertyRead("horizResolKm");
         return this.horizResolKm;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
 
-    public void setMaxHorizRes(BigDecimal maxHorizRes) {
+    public void setMaxHorizRes(Integer maxHorizRes) {
         beforePropertyWrite("maxHorizRes", this.maxHorizRes, maxHorizRes);
         this.maxHorizRes = maxHorizRes;
     }
 
-    public BigDecimal getMaxHorizRes() {
+    public Integer getMaxHorizRes() {
         beforePropertyRead("maxHorizRes");
         return this.maxHorizRes;
     }
 
-    public void setMaxHorizResI4(BigDecimal maxHorizResI4) {
+    public void setMaxHorizResI4(Integer maxHorizResI4) {
         beforePropertyWrite("maxHorizResI4", this.maxHorizResI4, maxHorizResI4);
         this.maxHorizResI4 = maxHorizResI4;
     }
 
-    public BigDecimal getMaxHorizResI4() {
+    public Integer getMaxHorizResI4() {
         beforePropertyRead("maxHorizResI4");
         return this.maxHorizResI4;
     }
 
-    public void setMaxNbTrans12(BigDecimal maxNbTrans12) {
+    public void setMaxNbTrans12(Integer maxNbTrans12) {
         beforePropertyWrite("maxNbTrans12", this.maxNbTrans12, maxNbTrans12);
         this.maxNbTrans12 = maxNbTrans12;
     }
 
-    public BigDecimal getMaxNbTrans12() {
+    public Integer getMaxNbTrans12() {
         beforePropertyRead("maxNbTrans12");
         return this.maxNbTrans12;
     }
 
-    public void setMaxNbTrans6(BigDecimal maxNbTrans6) {
+    public void setMaxNbTrans6(Integer maxNbTrans6) {
         beforePropertyWrite("maxNbTrans6", this.maxNbTrans6, maxNbTrans6);
         this.maxNbTrans6 = maxNbTrans6;
     }
 
-    public BigDecimal getMaxNbTrans6() {
+    public Integer getMaxNbTrans6() {
         beforePropertyRead("maxNbTrans6");
         return this.maxNbTrans6;
     }
 
-    public void setMaxSdHorizRes(BigDecimal maxSdHorizRes) {
+    public void setMaxSdHorizRes(Integer maxSdHorizRes) {
         beforePropertyWrite("maxSdHorizRes", this.maxSdHorizRes, maxSdHorizRes);
         this.maxSdHorizRes = maxSdHorizRes;
     }
 
-    public BigDecimal getMaxSdHorizRes() {
+    public Integer getMaxSdHorizRes() {
         beforePropertyRead("maxSdHorizRes");
         return this.maxSdHorizRes;
     }
 
-    public void setMaxSdPeriod(BigDecimal maxSdPeriod) {
+    public void setMaxSdPeriod(Integer maxSdPeriod) {
         beforePropertyWrite("maxSdPeriod", this.maxSdPeriod, maxSdPeriod);
         this.maxSdPeriod = maxSdPeriod;
     }
 
-    public BigDecimal getMaxSdPeriod() {
+    public Integer getMaxSdPeriod() {
         beforePropertyRead("maxSdPeriod");
         return this.maxSdPeriod;
     }
 
-    public void setMinHorizRes(BigDecimal minHorizRes) {
+    public void setMinHorizRes(Integer minHorizRes) {
         beforePropertyWrite("minHorizRes", this.minHorizRes, minHorizRes);
         this.minHorizRes = minHorizRes;
     }
 
-    public BigDecimal getMinHorizRes() {
+    public Integer getMinHorizRes() {
         beforePropertyRead("minHorizRes");
         return this.minHorizRes;
     }
 
-    public void setMinHorizResI4(BigDecimal minHorizResI4) {
+    public void setMinHorizResI4(Integer minHorizResI4) {
         beforePropertyWrite("minHorizResI4", this.minHorizResI4, minHorizResI4);
         this.minHorizResI4 = minHorizResI4;
     }
 
-    public BigDecimal getMinHorizResI4() {
+    public Integer getMinHorizResI4() {
         beforePropertyRead("minHorizResI4");
         return this.minHorizResI4;
     }
 
-    public void setMinNbTrans12(BigDecimal minNbTrans12) {
+    public void setMinNbTrans12(Integer minNbTrans12) {
         beforePropertyWrite("minNbTrans12", this.minNbTrans12, minNbTrans12);
         this.minNbTrans12 = minNbTrans12;
     }
 
-    public BigDecimal getMinNbTrans12() {
+    public Integer getMinNbTrans12() {
         beforePropertyRead("minNbTrans12");
         return this.minNbTrans12;
     }
 
-    public void setMinNbTrans6(BigDecimal minNbTrans6) {
+    public void setMinNbTrans6(Integer minNbTrans6) {
         beforePropertyWrite("minNbTrans6", this.minNbTrans6, minNbTrans6);
         this.minNbTrans6 = minNbTrans6;
     }
 
-    public BigDecimal getMinNbTrans6() {
+    public Integer getMinNbTrans6() {
         beforePropertyRead("minNbTrans6");
         return this.minNbTrans6;
     }
@@ -278,42 +277,42 @@ public abstract class _LineType extends BaseDataObject {
         return this.nameShort;
     }
 
-    public void setPercentBoxes(BigDecimal percentBoxes) {
+    public void setPercentBoxes(Integer percentBoxes) {
         beforePropertyWrite("percentBoxes", this.percentBoxes, percentBoxes);
         this.percentBoxes = percentBoxes;
     }
 
-    public BigDecimal getPercentBoxes() {
+    public Integer getPercentBoxes() {
         beforePropertyRead("percentBoxes");
         return this.percentBoxes;
     }
 
-    public void setPercentGoodTr(BigDecimal percentGoodTr) {
+    public void setPercentGoodTr(Integer percentGoodTr) {
         beforePropertyWrite("percentGoodTr", this.percentGoodTr, percentGoodTr);
         this.percentGoodTr = percentGoodTr;
     }
 
-    public BigDecimal getPercentGoodTr() {
+    public Integer getPercentGoodTr() {
         beforePropertyRead("percentGoodTr");
         return this.percentGoodTr;
     }
 
-    public void setPeriodTolerance(BigDecimal periodTolerance) {
+    public void setPeriodTolerance(Integer periodTolerance) {
         beforePropertyWrite("periodTolerance", this.periodTolerance, periodTolerance);
         this.periodTolerance = periodTolerance;
     }
 
-    public BigDecimal getPeriodTolerance() {
+    public Integer getPeriodTolerance() {
         beforePropertyRead("periodTolerance");
         return this.periodTolerance;
     }
 
-    public void setTransects(BigDecimal transects) {
+    public void setTransects(Integer transects) {
         beforePropertyWrite("transects", this.transects, transects);
         this.transects = transects;
     }
 
-    public BigDecimal getTransects() {
+    public Integer getTransects() {
         beforePropertyRead("transects");
         return this.transects;
     }
@@ -404,52 +403,52 @@ public abstract class _LineType extends BaseDataObject {
                 this.comments = (String)val;
                 break;
             case "drops":
-                this.drops = (BigDecimal)val;
+                this.drops = (Integer)val;
                 break;
             case "horizResBoxes":
-                this.horizResBoxes = (BigDecimal)val;
+                this.horizResBoxes = (Integer)val;
                 break;
             case "horizResolDeg":
-                this.horizResolDeg = (BigDecimal)val;
+                this.horizResolDeg = (Double)val;
                 break;
             case "horizResolHr":
-                this.horizResolHr = (BigDecimal)val;
+                this.horizResolHr = (Integer)val;
                 break;
             case "horizResolKm":
-                this.horizResolKm = (BigDecimal)val;
+                this.horizResolKm = (Integer)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "maxHorizRes":
-                this.maxHorizRes = (BigDecimal)val;
+                this.maxHorizRes = (Integer)val;
                 break;
             case "maxHorizResI4":
-                this.maxHorizResI4 = (BigDecimal)val;
+                this.maxHorizResI4 = (Integer)val;
                 break;
             case "maxNbTrans12":
-                this.maxNbTrans12 = (BigDecimal)val;
+                this.maxNbTrans12 = (Integer)val;
                 break;
             case "maxNbTrans6":
-                this.maxNbTrans6 = (BigDecimal)val;
+                this.maxNbTrans6 = (Integer)val;
                 break;
             case "maxSdHorizRes":
-                this.maxSdHorizRes = (BigDecimal)val;
+                this.maxSdHorizRes = (Integer)val;
                 break;
             case "maxSdPeriod":
-                this.maxSdPeriod = (BigDecimal)val;
+                this.maxSdPeriod = (Integer)val;
                 break;
             case "minHorizRes":
-                this.minHorizRes = (BigDecimal)val;
+                this.minHorizRes = (Integer)val;
                 break;
             case "minHorizResI4":
-                this.minHorizResI4 = (BigDecimal)val;
+                this.minHorizResI4 = (Integer)val;
                 break;
             case "minNbTrans12":
-                this.minNbTrans12 = (BigDecimal)val;
+                this.minNbTrans12 = (Integer)val;
                 break;
             case "minNbTrans6":
-                this.minNbTrans6 = (BigDecimal)val;
+                this.minNbTrans6 = (Integer)val;
                 break;
             case "name":
                 this.name = (String)val;
@@ -461,16 +460,16 @@ public abstract class _LineType extends BaseDataObject {
                 this.nameShort = (String)val;
                 break;
             case "percentBoxes":
-                this.percentBoxes = (BigDecimal)val;
+                this.percentBoxes = (Integer)val;
                 break;
             case "percentGoodTr":
-                this.percentGoodTr = (BigDecimal)val;
+                this.percentGoodTr = (Integer)val;
                 break;
             case "periodTolerance":
-                this.periodTolerance = (BigDecimal)val;
+                this.periodTolerance = (Integer)val;
                 break;
             case "transects":
-                this.transects = (BigDecimal)val;
+                this.transects = (Integer)val;
                 break;
             case "lineSurveys":
                 this.lineSurveys = val;
@@ -522,29 +521,29 @@ public abstract class _LineType extends BaseDataObject {
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
         this.comments = (String)in.readObject();
-        this.drops = (BigDecimal)in.readObject();
-        this.horizResBoxes = (BigDecimal)in.readObject();
-        this.horizResolDeg = (BigDecimal)in.readObject();
-        this.horizResolHr = (BigDecimal)in.readObject();
-        this.horizResolKm = (BigDecimal)in.readObject();
-        this.id = (BigDecimal)in.readObject();
-        this.maxHorizRes = (BigDecimal)in.readObject();
-        this.maxHorizResI4 = (BigDecimal)in.readObject();
-        this.maxNbTrans12 = (BigDecimal)in.readObject();
-        this.maxNbTrans6 = (BigDecimal)in.readObject();
-        this.maxSdHorizRes = (BigDecimal)in.readObject();
-        this.maxSdPeriod = (BigDecimal)in.readObject();
-        this.minHorizRes = (BigDecimal)in.readObject();
-        this.minHorizResI4 = (BigDecimal)in.readObject();
-        this.minNbTrans12 = (BigDecimal)in.readObject();
-        this.minNbTrans6 = (BigDecimal)in.readObject();
+        this.drops = (Integer)in.readObject();
+        this.horizResBoxes = (Integer)in.readObject();
+        this.horizResolDeg = (Double)in.readObject();
+        this.horizResolHr = (Integer)in.readObject();
+        this.horizResolKm = (Integer)in.readObject();
+        this.id = (Integer)in.readObject();
+        this.maxHorizRes = (Integer)in.readObject();
+        this.maxHorizResI4 = (Integer)in.readObject();
+        this.maxNbTrans12 = (Integer)in.readObject();
+        this.maxNbTrans6 = (Integer)in.readObject();
+        this.maxSdHorizRes = (Integer)in.readObject();
+        this.maxSdPeriod = (Integer)in.readObject();
+        this.minHorizRes = (Integer)in.readObject();
+        this.minHorizResI4 = (Integer)in.readObject();
+        this.minNbTrans12 = (Integer)in.readObject();
+        this.minNbTrans6 = (Integer)in.readObject();
         this.name = (String)in.readObject();
         this.nameLong = (String)in.readObject();
         this.nameShort = (String)in.readObject();
-        this.percentBoxes = (BigDecimal)in.readObject();
-        this.percentGoodTr = (BigDecimal)in.readObject();
-        this.periodTolerance = (BigDecimal)in.readObject();
-        this.transects = (BigDecimal)in.readObject();
+        this.percentBoxes = (Integer)in.readObject();
+        this.percentGoodTr = (Integer)in.readObject();
+        this.periodTolerance = (Integer)in.readObject();
+        this.transects = (Integer)in.readObject();
         this.lineSurveys = in.readObject();
     }
 

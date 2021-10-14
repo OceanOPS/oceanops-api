@@ -3,10 +3,8 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
-import org.apache.cayenne.exp.property.NumericIdProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
@@ -21,24 +19,23 @@ public abstract class _Latency extends BaseDataObject {
 
     private static final long serialVersionUID = 1L;
 
-    public static final NumericIdProperty<BigDecimal> ID_PK_PROPERTY = PropertyFactory.createNumericId("ID", "Latency", BigDecimal.class);
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final NumericProperty<BigDecimal> MINUTES = PropertyFactory.createNumeric("minutes", BigDecimal.class);
+    public static final NumericProperty<Double> MINUTES = PropertyFactory.createNumeric("minutes", Double.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> NAME_SHORT = PropertyFactory.createString("nameShort", String.class);
 
-    protected BigDecimal minutes;
+    protected Double minutes;
     protected String name;
     protected String nameShort;
 
 
-    public void setMinutes(BigDecimal minutes) {
+    public void setMinutes(Double minutes) {
         beforePropertyWrite("minutes", this.minutes, minutes);
         this.minutes = minutes;
     }
 
-    public BigDecimal getMinutes() {
+    public Double getMinutes() {
         beforePropertyRead("minutes");
         return this.minutes;
     }
@@ -89,7 +86,7 @@ public abstract class _Latency extends BaseDataObject {
 
         switch (propName) {
             case "minutes":
-                this.minutes = (BigDecimal)val;
+                this.minutes = (Double)val;
                 break;
             case "name":
                 this.name = (String)val;
@@ -121,7 +118,7 @@ public abstract class _Latency extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.minutes = (BigDecimal)in.readObject();
+        this.minutes = (Double)in.readObject();
         this.name = (String)in.readObject();
         this.nameShort = (String)in.readObject();
     }

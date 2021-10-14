@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -25,33 +24,33 @@ public abstract class _ObsGlidersGtsOsmcVariable extends BaseDataObject {
     public static final String OBS_ID_PK_COLUMN = "OBS_ID";
     public static final String VARIABLE_ID_PK_COLUMN = "VARIABLE_ID";
 
-    public static final NumericProperty<BigDecimal> OBS_ID = PropertyFactory.createNumeric("obsId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> VARIABLE_ID = PropertyFactory.createNumeric("variableId", BigDecimal.class);
+    public static final NumericProperty<Integer> OBS_ID = PropertyFactory.createNumeric("obsId", Integer.class);
+    public static final NumericProperty<Integer> VARIABLE_ID = PropertyFactory.createNumeric("variableId", Integer.class);
     public static final EntityProperty<ObsGlidersGtsOsmc> OBS = PropertyFactory.createEntity("obs", ObsGlidersGtsOsmc.class);
     public static final EntityProperty<Variable> VARIABLE = PropertyFactory.createEntity("variable", Variable.class);
 
-    protected BigDecimal obsId;
-    protected BigDecimal variableId;
+    protected Integer obsId;
+    protected Integer variableId;
 
     protected Object obs;
     protected Object variable;
 
-    public void setObsId(BigDecimal obsId) {
+    public void setObsId(Integer obsId) {
         beforePropertyWrite("obsId", this.obsId, obsId);
         this.obsId = obsId;
     }
 
-    public BigDecimal getObsId() {
+    public Integer getObsId() {
         beforePropertyRead("obsId");
         return this.obsId;
     }
 
-    public void setVariableId(BigDecimal variableId) {
+    public void setVariableId(Integer variableId) {
         beforePropertyWrite("variableId", this.variableId, variableId);
         this.variableId = variableId;
     }
 
-    public BigDecimal getVariableId() {
+    public Integer getVariableId() {
         beforePropertyRead("variableId");
         return this.variableId;
     }
@@ -100,10 +99,10 @@ public abstract class _ObsGlidersGtsOsmcVariable extends BaseDataObject {
 
         switch (propName) {
             case "obsId":
-                this.obsId = (BigDecimal)val;
+                this.obsId = (Integer)val;
                 break;
             case "variableId":
-                this.variableId = (BigDecimal)val;
+                this.variableId = (Integer)val;
                 break;
             case "obs":
                 this.obs = val;
@@ -136,8 +135,8 @@ public abstract class _ObsGlidersGtsOsmcVariable extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.obsId = (BigDecimal)in.readObject();
-        this.variableId = (BigDecimal)in.readObject();
+        this.obsId = (Integer)in.readObject();
+        this.variableId = (Integer)in.readObject();
         this.obs = in.readObject();
         this.variable = in.readObject();
     }

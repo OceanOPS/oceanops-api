@@ -3,11 +3,9 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
-import org.apache.cayenne.exp.property.NumericIdProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.oceanops.api.orm.Contact;
@@ -24,38 +22,37 @@ public abstract class _ProgramContact extends BaseDataObject {
 
     private static final long serialVersionUID = 1L;
 
-    public static final NumericIdProperty<BigDecimal> ID_PK_PROPERTY = PropertyFactory.createNumericId("ID", "ProgramContact", BigDecimal.class);
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final NumericProperty<BigDecimal> MZMS_AUTO_CHECK = PropertyFactory.createNumeric("mzmsAutoCheck", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> MZMS_WARNING_ENABLED = PropertyFactory.createNumeric("mzmsWarningEnabled", BigDecimal.class);
+    public static final NumericProperty<Integer> MZMS_AUTO_CHECK = PropertyFactory.createNumeric("mzmsAutoCheck", Integer.class);
+    public static final NumericProperty<Integer> MZMS_WARNING_ENABLED = PropertyFactory.createNumeric("mzmsWarningEnabled", Integer.class);
     public static final EntityProperty<Contact> CONTACT = PropertyFactory.createEntity("contact", Contact.class);
     public static final EntityProperty<Program> PROGRAM = PropertyFactory.createEntity("program", Program.class);
     public static final EntityProperty<Role> ROLE = PropertyFactory.createEntity("role", Role.class);
 
-    protected BigDecimal mzmsAutoCheck;
-    protected BigDecimal mzmsWarningEnabled;
+    protected Integer mzmsAutoCheck;
+    protected Integer mzmsWarningEnabled;
 
     protected Object contact;
     protected Object program;
     protected Object role;
 
-    public void setMzmsAutoCheck(BigDecimal mzmsAutoCheck) {
+    public void setMzmsAutoCheck(Integer mzmsAutoCheck) {
         beforePropertyWrite("mzmsAutoCheck", this.mzmsAutoCheck, mzmsAutoCheck);
         this.mzmsAutoCheck = mzmsAutoCheck;
     }
 
-    public BigDecimal getMzmsAutoCheck() {
+    public Integer getMzmsAutoCheck() {
         beforePropertyRead("mzmsAutoCheck");
         return this.mzmsAutoCheck;
     }
 
-    public void setMzmsWarningEnabled(BigDecimal mzmsWarningEnabled) {
+    public void setMzmsWarningEnabled(Integer mzmsWarningEnabled) {
         beforePropertyWrite("mzmsWarningEnabled", this.mzmsWarningEnabled, mzmsWarningEnabled);
         this.mzmsWarningEnabled = mzmsWarningEnabled;
     }
 
-    public BigDecimal getMzmsWarningEnabled() {
+    public Integer getMzmsWarningEnabled() {
         beforePropertyRead("mzmsWarningEnabled");
         return this.mzmsWarningEnabled;
     }
@@ -114,10 +111,10 @@ public abstract class _ProgramContact extends BaseDataObject {
 
         switch (propName) {
             case "mzmsAutoCheck":
-                this.mzmsAutoCheck = (BigDecimal)val;
+                this.mzmsAutoCheck = (Integer)val;
                 break;
             case "mzmsWarningEnabled":
-                this.mzmsWarningEnabled = (BigDecimal)val;
+                this.mzmsWarningEnabled = (Integer)val;
                 break;
             case "contact":
                 this.contact = val;
@@ -154,8 +151,8 @@ public abstract class _ProgramContact extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.mzmsAutoCheck = (BigDecimal)in.readObject();
-        this.mzmsWarningEnabled = (BigDecimal)in.readObject();
+        this.mzmsAutoCheck = (Integer)in.readObject();
+        this.mzmsWarningEnabled = (Integer)in.readObject();
         this.contact = in.readObject();
         this.program = in.readObject();
         this.role = in.readObject();

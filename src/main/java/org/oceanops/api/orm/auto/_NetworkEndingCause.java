@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -25,33 +24,33 @@ public abstract class _NetworkEndingCause extends BaseDataObject {
     public static final String ENDING_CAUSE_ID_PK_COLUMN = "ENDING_CAUSE_ID";
     public static final String NETWORK_ID_PK_COLUMN = "NETWORK_ID";
 
-    public static final NumericProperty<BigDecimal> ENDING_CAUSE_ID = PropertyFactory.createNumeric("endingCauseId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> NETWORK_ID = PropertyFactory.createNumeric("networkId", BigDecimal.class);
+    public static final NumericProperty<Integer> ENDING_CAUSE_ID = PropertyFactory.createNumeric("endingCauseId", Integer.class);
+    public static final NumericProperty<Integer> NETWORK_ID = PropertyFactory.createNumeric("networkId", Integer.class);
     public static final EntityProperty<EndingCause> ENDING_CAUSE = PropertyFactory.createEntity("endingCause", EndingCause.class);
     public static final EntityProperty<Network> NETWORK = PropertyFactory.createEntity("network", Network.class);
 
-    protected BigDecimal endingCauseId;
-    protected BigDecimal networkId;
+    protected Integer endingCauseId;
+    protected Integer networkId;
 
     protected Object endingCause;
     protected Object network;
 
-    public void setEndingCauseId(BigDecimal endingCauseId) {
+    public void setEndingCauseId(Integer endingCauseId) {
         beforePropertyWrite("endingCauseId", this.endingCauseId, endingCauseId);
         this.endingCauseId = endingCauseId;
     }
 
-    public BigDecimal getEndingCauseId() {
+    public Integer getEndingCauseId() {
         beforePropertyRead("endingCauseId");
         return this.endingCauseId;
     }
 
-    public void setNetworkId(BigDecimal networkId) {
+    public void setNetworkId(Integer networkId) {
         beforePropertyWrite("networkId", this.networkId, networkId);
         this.networkId = networkId;
     }
 
-    public BigDecimal getNetworkId() {
+    public Integer getNetworkId() {
         beforePropertyRead("networkId");
         return this.networkId;
     }
@@ -100,10 +99,10 @@ public abstract class _NetworkEndingCause extends BaseDataObject {
 
         switch (propName) {
             case "endingCauseId":
-                this.endingCauseId = (BigDecimal)val;
+                this.endingCauseId = (Integer)val;
                 break;
             case "networkId":
-                this.networkId = (BigDecimal)val;
+                this.networkId = (Integer)val;
                 break;
             case "endingCause":
                 this.endingCause = val;
@@ -136,8 +135,8 @@ public abstract class _NetworkEndingCause extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.endingCauseId = (BigDecimal)in.readObject();
-        this.networkId = (BigDecimal)in.readObject();
+        this.endingCauseId = (Integer)in.readObject();
+        this.networkId = (Integer)in.readObject();
         this.endingCause = in.readObject();
         this.network = in.readObject();
     }

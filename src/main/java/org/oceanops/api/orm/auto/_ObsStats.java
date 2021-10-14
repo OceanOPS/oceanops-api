@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.apache.cayenne.BaseDataObject;
@@ -24,27 +23,27 @@ public abstract class _ObsStats extends BaseDataObject {
 
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final DateProperty<LocalDateTime> OBS_DAY = PropertyFactory.createDate("obsDay", LocalDateTime.class);
     public static final StringProperty<String> SOURCE = PropertyFactory.createString("source", String.class);
     public static final StringProperty<String> TYPE = PropertyFactory.createString("type", String.class);
-    public static final NumericProperty<BigDecimal> VALUE = PropertyFactory.createNumeric("value", BigDecimal.class);
+    public static final NumericProperty<Double> VALUE = PropertyFactory.createNumeric("value", Double.class);
 
-    protected BigDecimal id;
+    protected Integer id;
     protected String name;
     protected LocalDateTime obsDay;
     protected String source;
     protected String type;
-    protected BigDecimal value;
+    protected Double value;
 
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
@@ -89,12 +88,12 @@ public abstract class _ObsStats extends BaseDataObject {
         return this.type;
     }
 
-    public void setValue(BigDecimal value) {
+    public void setValue(Double value) {
         beforePropertyWrite("value", this.value, value);
         this.value = value;
     }
 
-    public BigDecimal getValue() {
+    public Double getValue() {
         beforePropertyRead("value");
         return this.value;
     }
@@ -131,7 +130,7 @@ public abstract class _ObsStats extends BaseDataObject {
 
         switch (propName) {
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "name":
                 this.name = (String)val;
@@ -146,7 +145,7 @@ public abstract class _ObsStats extends BaseDataObject {
                 this.type = (String)val;
                 break;
             case "value":
-                this.value = (BigDecimal)val;
+                this.value = (Double)val;
                 break;
             default:
                 super.writePropertyDirectly(propName, val);
@@ -175,12 +174,12 @@ public abstract class _ObsStats extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.id = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
         this.name = (String)in.readObject();
         this.obsDay = (LocalDateTime)in.readObject();
         this.source = (String)in.readObject();
         this.type = (String)in.readObject();
-        this.value = (BigDecimal)in.readObject();
+        this.value = (Double)in.readObject();
     }
 
 }

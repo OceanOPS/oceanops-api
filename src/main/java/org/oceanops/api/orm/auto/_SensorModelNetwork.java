@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -25,33 +24,33 @@ public abstract class _SensorModelNetwork extends BaseDataObject {
     public static final String NETWORK_ID_PK_COLUMN = "NETWORK_ID";
     public static final String SENSOR_MODEL_ID_PK_COLUMN = "SENSOR_MODEL_ID";
 
-    public static final NumericProperty<BigDecimal> NETWORK_ID = PropertyFactory.createNumeric("networkId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> SENSOR_MODEL_ID = PropertyFactory.createNumeric("sensorModelId", BigDecimal.class);
+    public static final NumericProperty<Integer> NETWORK_ID = PropertyFactory.createNumeric("networkId", Integer.class);
+    public static final NumericProperty<Integer> SENSOR_MODEL_ID = PropertyFactory.createNumeric("sensorModelId", Integer.class);
     public static final EntityProperty<Network> NETWORK = PropertyFactory.createEntity("network", Network.class);
     public static final EntityProperty<SensorModel> SENSOR_MODEL = PropertyFactory.createEntity("sensorModel", SensorModel.class);
 
-    protected BigDecimal networkId;
-    protected BigDecimal sensorModelId;
+    protected Integer networkId;
+    protected Integer sensorModelId;
 
     protected Object network;
     protected Object sensorModel;
 
-    public void setNetworkId(BigDecimal networkId) {
+    public void setNetworkId(Integer networkId) {
         beforePropertyWrite("networkId", this.networkId, networkId);
         this.networkId = networkId;
     }
 
-    public BigDecimal getNetworkId() {
+    public Integer getNetworkId() {
         beforePropertyRead("networkId");
         return this.networkId;
     }
 
-    public void setSensorModelId(BigDecimal sensorModelId) {
+    public void setSensorModelId(Integer sensorModelId) {
         beforePropertyWrite("sensorModelId", this.sensorModelId, sensorModelId);
         this.sensorModelId = sensorModelId;
     }
 
-    public BigDecimal getSensorModelId() {
+    public Integer getSensorModelId() {
         beforePropertyRead("sensorModelId");
         return this.sensorModelId;
     }
@@ -100,10 +99,10 @@ public abstract class _SensorModelNetwork extends BaseDataObject {
 
         switch (propName) {
             case "networkId":
-                this.networkId = (BigDecimal)val;
+                this.networkId = (Integer)val;
                 break;
             case "sensorModelId":
-                this.sensorModelId = (BigDecimal)val;
+                this.sensorModelId = (Integer)val;
                 break;
             case "network":
                 this.network = val;
@@ -136,8 +135,8 @@ public abstract class _SensorModelNetwork extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.networkId = (BigDecimal)in.readObject();
-        this.sensorModelId = (BigDecimal)in.readObject();
+        this.networkId = (Integer)in.readObject();
+        this.sensorModelId = (Integer)in.readObject();
         this.network = in.readObject();
         this.sensorModel = in.readObject();
     }

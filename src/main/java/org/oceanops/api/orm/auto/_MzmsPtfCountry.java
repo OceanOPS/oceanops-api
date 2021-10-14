@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.apache.cayenne.BaseDataObject;
@@ -28,33 +27,33 @@ public abstract class _MzmsPtfCountry extends BaseDataObject {
     public static final String COUNTRY_ID_PK_COLUMN = "COUNTRY_ID";
     public static final String PTF_ID_PK_COLUMN = "PTF_ID";
 
-    public static final NumericProperty<BigDecimal> CHECKED = PropertyFactory.createNumeric("checked", BigDecimal.class);
+    public static final NumericProperty<Integer> CHECKED = PropertyFactory.createNumeric("checked", Integer.class);
     public static final StringProperty<String> COMMENTS = PropertyFactory.createString("comments", String.class);
-    public static final NumericProperty<BigDecimal> COUNTRY_ID = PropertyFactory.createNumeric("countryId", BigDecimal.class);
+    public static final NumericProperty<Integer> COUNTRY_ID = PropertyFactory.createNumeric("countryId", Integer.class);
     public static final DateProperty<LocalDateTime> FORMAL_NOTIFICATION_DATE = PropertyFactory.createDate("formalNotificationDate", LocalDateTime.class);
     public static final DateProperty<LocalDateTime> LATEST_REPORT_DATE = PropertyFactory.createDate("latestReportDate", LocalDateTime.class);
-    public static final NumericProperty<BigDecimal> PTF_ID = PropertyFactory.createNumeric("ptfId", BigDecimal.class);
+    public static final NumericProperty<Integer> PTF_ID = PropertyFactory.createNumeric("ptfId", Integer.class);
     public static final DateProperty<LocalDateTime> WARNING_DATE = PropertyFactory.createDate("warningDate", LocalDateTime.class);
     public static final EntityProperty<Country> COUNTRY = PropertyFactory.createEntity("country", Country.class);
     public static final EntityProperty<Ptf> PTF = PropertyFactory.createEntity("ptf", Ptf.class);
 
-    protected BigDecimal checked;
+    protected Integer checked;
     protected String comments;
-    protected BigDecimal countryId;
+    protected Integer countryId;
     protected LocalDateTime formalNotificationDate;
     protected LocalDateTime latestReportDate;
-    protected BigDecimal ptfId;
+    protected Integer ptfId;
     protected LocalDateTime warningDate;
 
     protected Object country;
     protected Object ptf;
 
-    public void setChecked(BigDecimal checked) {
+    public void setChecked(Integer checked) {
         beforePropertyWrite("checked", this.checked, checked);
         this.checked = checked;
     }
 
-    public BigDecimal getChecked() {
+    public Integer getChecked() {
         beforePropertyRead("checked");
         return this.checked;
     }
@@ -69,12 +68,12 @@ public abstract class _MzmsPtfCountry extends BaseDataObject {
         return this.comments;
     }
 
-    public void setCountryId(BigDecimal countryId) {
+    public void setCountryId(Integer countryId) {
         beforePropertyWrite("countryId", this.countryId, countryId);
         this.countryId = countryId;
     }
 
-    public BigDecimal getCountryId() {
+    public Integer getCountryId() {
         beforePropertyRead("countryId");
         return this.countryId;
     }
@@ -99,12 +98,12 @@ public abstract class _MzmsPtfCountry extends BaseDataObject {
         return this.latestReportDate;
     }
 
-    public void setPtfId(BigDecimal ptfId) {
+    public void setPtfId(Integer ptfId) {
         beforePropertyWrite("ptfId", this.ptfId, ptfId);
         this.ptfId = ptfId;
     }
 
-    public BigDecimal getPtfId() {
+    public Integer getPtfId() {
         beforePropertyRead("ptfId");
         return this.ptfId;
     }
@@ -173,13 +172,13 @@ public abstract class _MzmsPtfCountry extends BaseDataObject {
 
         switch (propName) {
             case "checked":
-                this.checked = (BigDecimal)val;
+                this.checked = (Integer)val;
                 break;
             case "comments":
                 this.comments = (String)val;
                 break;
             case "countryId":
-                this.countryId = (BigDecimal)val;
+                this.countryId = (Integer)val;
                 break;
             case "formalNotificationDate":
                 this.formalNotificationDate = (LocalDateTime)val;
@@ -188,7 +187,7 @@ public abstract class _MzmsPtfCountry extends BaseDataObject {
                 this.latestReportDate = (LocalDateTime)val;
                 break;
             case "ptfId":
-                this.ptfId = (BigDecimal)val;
+                this.ptfId = (Integer)val;
                 break;
             case "warningDate":
                 this.warningDate = (LocalDateTime)val;
@@ -229,12 +228,12 @@ public abstract class _MzmsPtfCountry extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.checked = (BigDecimal)in.readObject();
+        this.checked = (Integer)in.readObject();
         this.comments = (String)in.readObject();
-        this.countryId = (BigDecimal)in.readObject();
+        this.countryId = (Integer)in.readObject();
         this.formalNotificationDate = (LocalDateTime)in.readObject();
         this.latestReportDate = (LocalDateTime)in.readObject();
-        this.ptfId = (BigDecimal)in.readObject();
+        this.ptfId = (Integer)in.readObject();
         this.warningDate = (LocalDateTime)in.readObject();
         this.country = in.readObject();
         this.ptf = in.readObject();

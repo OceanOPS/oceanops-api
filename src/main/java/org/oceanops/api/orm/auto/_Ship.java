@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -37,39 +36,44 @@ public abstract class _Ship extends BaseDataObject {
 
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final NumericProperty<BigDecimal> AUTONOMY = PropertyFactory.createNumeric("autonomy", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> BREADTH = PropertyFactory.createNumeric("breadth", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> BRIDGE = PropertyFactory.createNumeric("bridge", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> BUOY_CAPACITY = PropertyFactory.createNumeric("buoyCapacity", BigDecimal.class);
+    public static final NumericProperty<Integer> AUTONOMY = PropertyFactory.createNumeric("autonomy", Integer.class);
+    public static final NumericProperty<Double> BREADTH = PropertyFactory.createNumeric("breadth", Double.class);
+    public static final NumericProperty<Double> BRIDGE = PropertyFactory.createNumeric("bridge", Double.class);
+    public static final NumericProperty<Integer> BUOY_CAPACITY = PropertyFactory.createNumeric("buoyCapacity", Integer.class);
     public static final StringProperty<String> CALL_SIGN = PropertyFactory.createString("callSign", String.class);
     public static final DateProperty<LocalDateTime> COMMISSIONED_DATE = PropertyFactory.createDate("commissionedDate", LocalDateTime.class);
     public static final StringProperty<String> CONTACT_SEA_EMAIL = PropertyFactory.createString("contactSeaEmail", String.class);
+    public static final StringProperty<String> CONTACT_SEA_EMAIL2 = PropertyFactory.createString("contactSeaEmail2", String.class);
+    public static final StringProperty<String> CONTACT_SEA_EMAIL3 = PropertyFactory.createString("contactSeaEmail3", String.class);
     public static final StringProperty<String> CONTACT_SHORE_EMAIL = PropertyFactory.createString("contactShoreEmail", String.class);
+    public static final StringProperty<String> CONTACT_SHORE_EMAIL2 = PropertyFactory.createString("contactShoreEmail2", String.class);
+    public static final StringProperty<String> CONTACT_SHORE_EMAIL3 = PropertyFactory.createString("contactShoreEmail3", String.class);
     public static final StringProperty<String> CONTACT_SHORE_NAME = PropertyFactory.createString("contactShoreName", String.class);
     public static final DateProperty<LocalDateTime> DECOMMISSIONED_DATE = PropertyFactory.createDate("decommissionedDate", LocalDateTime.class);
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
-    public static final NumericProperty<BigDecimal> DRAUGHT = PropertyFactory.createNumeric("draught", BigDecimal.class);
+    public static final NumericProperty<Double> DRAUGHT = PropertyFactory.createNumeric("draught", Double.class);
     public static final DateProperty<LocalDateTime> EXT_UPDATE = PropertyFactory.createDate("extUpdate", LocalDateTime.class);
-    public static final NumericProperty<BigDecimal> FLOAT_CAPACITY = PropertyFactory.createNumeric("floatCapacity", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> FREEBOARD = PropertyFactory.createNumeric("freeboard", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> HEIGHT = PropertyFactory.createNumeric("height", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> HIDE_METADATA = PropertyFactory.createNumeric("hideMetadata", BigDecimal.class);
+    public static final NumericProperty<Integer> FLOAT_CAPACITY = PropertyFactory.createNumeric("floatCapacity", Integer.class);
+    public static final NumericProperty<Double> FREEBOARD = PropertyFactory.createNumeric("freeboard", Double.class);
+    public static final NumericProperty<Double> HEIGHT = PropertyFactory.createNumeric("height", Double.class);
+    public static final NumericProperty<Integer> HIDE_METADATA = PropertyFactory.createNumeric("hideMetadata", Integer.class);
     public static final StringProperty<String> HOME_PORT = PropertyFactory.createString("homePort", String.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final StringProperty<String> IMO = PropertyFactory.createString("imo", String.class);
     public static final DateProperty<LocalDateTime> INSERT_DATE = PropertyFactory.createDate("insertDate", LocalDateTime.class);
-    public static final NumericProperty<BigDecimal> LENGTH = PropertyFactory.createNumeric("length", BigDecimal.class);
+    public static final NumericProperty<Double> LENGTH = PropertyFactory.createNumeric("length", Double.class);
+    public static final StringProperty<String> MMSI = PropertyFactory.createString("mmsi", String.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> ORIGINAL_DATASET = PropertyFactory.createString("originalDataset", String.class);
-    public static final NumericProperty<BigDecimal> PASSENGER_CAPACITY = PropertyFactory.createNumeric("passengerCapacity", BigDecimal.class);
+    public static final NumericProperty<Integer> PASSENGER_CAPACITY = PropertyFactory.createNumeric("passengerCapacity", Integer.class);
     public static final StringProperty<String> REF = PropertyFactory.createString("ref", String.class);
-    public static final NumericProperty<BigDecimal> REF_PARENT = PropertyFactory.createNumeric("refParent", BigDecimal.class);
+    public static final NumericProperty<Integer> REF_PARENT = PropertyFactory.createNumeric("refParent", Integer.class);
     public static final StringProperty<String> REF_TMP = PropertyFactory.createString("refTmp", String.class);
     public static final StringProperty<String> SHIPPING_AGENCY = PropertyFactory.createString("shippingAgency", String.class);
-    public static final NumericProperty<BigDecimal> SPEED = PropertyFactory.createNumeric("speed", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> TRACKING_SYSTEM_ID = PropertyFactory.createNumeric("trackingSystemId", BigDecimal.class);
+    public static final NumericProperty<Double> SPEED = PropertyFactory.createNumeric("speed", Double.class);
+    public static final NumericProperty<Integer> TRACKING_SYSTEM_ID = PropertyFactory.createNumeric("trackingSystemId", Integer.class);
     public static final DateProperty<LocalDateTime> UPDATE_DATE = PropertyFactory.createDate("updateDate", LocalDateTime.class);
-    public static final NumericProperty<BigDecimal> VALIDATED = PropertyFactory.createNumeric("validated", BigDecimal.class);
+    public static final NumericProperty<Integer> VALIDATED = PropertyFactory.createNumeric("validated", Integer.class);
     public static final EntityProperty<Country> COUNTRY = PropertyFactory.createEntity("country", Country.class);
     public static final ListProperty<Cruise> CRUISES = PropertyFactory.createList("cruises", Cruise.class);
     public static final ListProperty<Doc> DOCS = PropertyFactory.createList("docs", Doc.class);
@@ -81,39 +85,44 @@ public abstract class _Ship extends BaseDataObject {
     public static final EntityProperty<ShipType> SHIP_TYPE = PropertyFactory.createEntity("shipType", ShipType.class);
     public static final EntityProperty<Weblink> WEBLINK = PropertyFactory.createEntity("weblink", Weblink.class);
 
-    protected BigDecimal autonomy;
-    protected BigDecimal breadth;
-    protected BigDecimal bridge;
-    protected BigDecimal buoyCapacity;
+    protected Integer autonomy;
+    protected Double breadth;
+    protected Double bridge;
+    protected Integer buoyCapacity;
     protected String callSign;
     protected LocalDateTime commissionedDate;
     protected String contactSeaEmail;
+    protected String contactSeaEmail2;
+    protected String contactSeaEmail3;
     protected String contactShoreEmail;
+    protected String contactShoreEmail2;
+    protected String contactShoreEmail3;
     protected String contactShoreName;
     protected LocalDateTime decommissionedDate;
     protected String description;
-    protected BigDecimal draught;
+    protected Double draught;
     protected LocalDateTime extUpdate;
-    protected BigDecimal floatCapacity;
-    protected BigDecimal freeboard;
-    protected BigDecimal height;
-    protected BigDecimal hideMetadata;
+    protected Integer floatCapacity;
+    protected Double freeboard;
+    protected Double height;
+    protected Integer hideMetadata;
     protected String homePort;
-    protected BigDecimal id;
+    protected Integer id;
     protected String imo;
     protected LocalDateTime insertDate;
-    protected BigDecimal length;
+    protected Double length;
+    protected String mmsi;
     protected String name;
     protected String originalDataset;
-    protected BigDecimal passengerCapacity;
+    protected Integer passengerCapacity;
     protected String ref;
-    protected BigDecimal refParent;
+    protected Integer refParent;
     protected String refTmp;
     protected String shippingAgency;
-    protected BigDecimal speed;
-    protected BigDecimal trackingSystemId;
+    protected Double speed;
+    protected Integer trackingSystemId;
     protected LocalDateTime updateDate;
-    protected BigDecimal validated;
+    protected Integer validated;
 
     protected Object country;
     protected Object cruises;
@@ -126,42 +135,42 @@ public abstract class _Ship extends BaseDataObject {
     protected Object shipType;
     protected Object weblink;
 
-    public void setAutonomy(BigDecimal autonomy) {
+    public void setAutonomy(Integer autonomy) {
         beforePropertyWrite("autonomy", this.autonomy, autonomy);
         this.autonomy = autonomy;
     }
 
-    public BigDecimal getAutonomy() {
+    public Integer getAutonomy() {
         beforePropertyRead("autonomy");
         return this.autonomy;
     }
 
-    public void setBreadth(BigDecimal breadth) {
+    public void setBreadth(Double breadth) {
         beforePropertyWrite("breadth", this.breadth, breadth);
         this.breadth = breadth;
     }
 
-    public BigDecimal getBreadth() {
+    public Double getBreadth() {
         beforePropertyRead("breadth");
         return this.breadth;
     }
 
-    public void setBridge(BigDecimal bridge) {
+    public void setBridge(Double bridge) {
         beforePropertyWrite("bridge", this.bridge, bridge);
         this.bridge = bridge;
     }
 
-    public BigDecimal getBridge() {
+    public Double getBridge() {
         beforePropertyRead("bridge");
         return this.bridge;
     }
 
-    public void setBuoyCapacity(BigDecimal buoyCapacity) {
+    public void setBuoyCapacity(Integer buoyCapacity) {
         beforePropertyWrite("buoyCapacity", this.buoyCapacity, buoyCapacity);
         this.buoyCapacity = buoyCapacity;
     }
 
-    public BigDecimal getBuoyCapacity() {
+    public Integer getBuoyCapacity() {
         beforePropertyRead("buoyCapacity");
         return this.buoyCapacity;
     }
@@ -196,6 +205,26 @@ public abstract class _Ship extends BaseDataObject {
         return this.contactSeaEmail;
     }
 
+    public void setContactSeaEmail2(String contactSeaEmail2) {
+        beforePropertyWrite("contactSeaEmail2", this.contactSeaEmail2, contactSeaEmail2);
+        this.contactSeaEmail2 = contactSeaEmail2;
+    }
+
+    public String getContactSeaEmail2() {
+        beforePropertyRead("contactSeaEmail2");
+        return this.contactSeaEmail2;
+    }
+
+    public void setContactSeaEmail3(String contactSeaEmail3) {
+        beforePropertyWrite("contactSeaEmail3", this.contactSeaEmail3, contactSeaEmail3);
+        this.contactSeaEmail3 = contactSeaEmail3;
+    }
+
+    public String getContactSeaEmail3() {
+        beforePropertyRead("contactSeaEmail3");
+        return this.contactSeaEmail3;
+    }
+
     public void setContactShoreEmail(String contactShoreEmail) {
         beforePropertyWrite("contactShoreEmail", this.contactShoreEmail, contactShoreEmail);
         this.contactShoreEmail = contactShoreEmail;
@@ -204,6 +233,26 @@ public abstract class _Ship extends BaseDataObject {
     public String getContactShoreEmail() {
         beforePropertyRead("contactShoreEmail");
         return this.contactShoreEmail;
+    }
+
+    public void setContactShoreEmail2(String contactShoreEmail2) {
+        beforePropertyWrite("contactShoreEmail2", this.contactShoreEmail2, contactShoreEmail2);
+        this.contactShoreEmail2 = contactShoreEmail2;
+    }
+
+    public String getContactShoreEmail2() {
+        beforePropertyRead("contactShoreEmail2");
+        return this.contactShoreEmail2;
+    }
+
+    public void setContactShoreEmail3(String contactShoreEmail3) {
+        beforePropertyWrite("contactShoreEmail3", this.contactShoreEmail3, contactShoreEmail3);
+        this.contactShoreEmail3 = contactShoreEmail3;
+    }
+
+    public String getContactShoreEmail3() {
+        beforePropertyRead("contactShoreEmail3");
+        return this.contactShoreEmail3;
     }
 
     public void setContactShoreName(String contactShoreName) {
@@ -236,12 +285,12 @@ public abstract class _Ship extends BaseDataObject {
         return this.description;
     }
 
-    public void setDraught(BigDecimal draught) {
+    public void setDraught(Double draught) {
         beforePropertyWrite("draught", this.draught, draught);
         this.draught = draught;
     }
 
-    public BigDecimal getDraught() {
+    public Double getDraught() {
         beforePropertyRead("draught");
         return this.draught;
     }
@@ -256,42 +305,42 @@ public abstract class _Ship extends BaseDataObject {
         return this.extUpdate;
     }
 
-    public void setFloatCapacity(BigDecimal floatCapacity) {
+    public void setFloatCapacity(Integer floatCapacity) {
         beforePropertyWrite("floatCapacity", this.floatCapacity, floatCapacity);
         this.floatCapacity = floatCapacity;
     }
 
-    public BigDecimal getFloatCapacity() {
+    public Integer getFloatCapacity() {
         beforePropertyRead("floatCapacity");
         return this.floatCapacity;
     }
 
-    public void setFreeboard(BigDecimal freeboard) {
+    public void setFreeboard(Double freeboard) {
         beforePropertyWrite("freeboard", this.freeboard, freeboard);
         this.freeboard = freeboard;
     }
 
-    public BigDecimal getFreeboard() {
+    public Double getFreeboard() {
         beforePropertyRead("freeboard");
         return this.freeboard;
     }
 
-    public void setHeight(BigDecimal height) {
+    public void setHeight(Double height) {
         beforePropertyWrite("height", this.height, height);
         this.height = height;
     }
 
-    public BigDecimal getHeight() {
+    public Double getHeight() {
         beforePropertyRead("height");
         return this.height;
     }
 
-    public void setHideMetadata(BigDecimal hideMetadata) {
+    public void setHideMetadata(Integer hideMetadata) {
         beforePropertyWrite("hideMetadata", this.hideMetadata, hideMetadata);
         this.hideMetadata = hideMetadata;
     }
 
-    public BigDecimal getHideMetadata() {
+    public Integer getHideMetadata() {
         beforePropertyRead("hideMetadata");
         return this.hideMetadata;
     }
@@ -306,12 +355,12 @@ public abstract class _Ship extends BaseDataObject {
         return this.homePort;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
@@ -336,14 +385,24 @@ public abstract class _Ship extends BaseDataObject {
         return this.insertDate;
     }
 
-    public void setLength(BigDecimal length) {
+    public void setLength(Double length) {
         beforePropertyWrite("length", this.length, length);
         this.length = length;
     }
 
-    public BigDecimal getLength() {
+    public Double getLength() {
         beforePropertyRead("length");
         return this.length;
+    }
+
+    public void setMmsi(String mmsi) {
+        beforePropertyWrite("mmsi", this.mmsi, mmsi);
+        this.mmsi = mmsi;
+    }
+
+    public String getMmsi() {
+        beforePropertyRead("mmsi");
+        return this.mmsi;
     }
 
     public void setName(String name) {
@@ -366,12 +425,12 @@ public abstract class _Ship extends BaseDataObject {
         return this.originalDataset;
     }
 
-    public void setPassengerCapacity(BigDecimal passengerCapacity) {
+    public void setPassengerCapacity(Integer passengerCapacity) {
         beforePropertyWrite("passengerCapacity", this.passengerCapacity, passengerCapacity);
         this.passengerCapacity = passengerCapacity;
     }
 
-    public BigDecimal getPassengerCapacity() {
+    public Integer getPassengerCapacity() {
         beforePropertyRead("passengerCapacity");
         return this.passengerCapacity;
     }
@@ -386,12 +445,12 @@ public abstract class _Ship extends BaseDataObject {
         return this.ref;
     }
 
-    public void setRefParent(BigDecimal refParent) {
+    public void setRefParent(Integer refParent) {
         beforePropertyWrite("refParent", this.refParent, refParent);
         this.refParent = refParent;
     }
 
-    public BigDecimal getRefParent() {
+    public Integer getRefParent() {
         beforePropertyRead("refParent");
         return this.refParent;
     }
@@ -416,22 +475,22 @@ public abstract class _Ship extends BaseDataObject {
         return this.shippingAgency;
     }
 
-    public void setSpeed(BigDecimal speed) {
+    public void setSpeed(Double speed) {
         beforePropertyWrite("speed", this.speed, speed);
         this.speed = speed;
     }
 
-    public BigDecimal getSpeed() {
+    public Double getSpeed() {
         beforePropertyRead("speed");
         return this.speed;
     }
 
-    public void setTrackingSystemId(BigDecimal trackingSystemId) {
+    public void setTrackingSystemId(Integer trackingSystemId) {
         beforePropertyWrite("trackingSystemId", this.trackingSystemId, trackingSystemId);
         this.trackingSystemId = trackingSystemId;
     }
 
-    public BigDecimal getTrackingSystemId() {
+    public Integer getTrackingSystemId() {
         beforePropertyRead("trackingSystemId");
         return this.trackingSystemId;
     }
@@ -446,12 +505,12 @@ public abstract class _Ship extends BaseDataObject {
         return this.updateDate;
     }
 
-    public void setValidated(BigDecimal validated) {
+    public void setValidated(Integer validated) {
         beforePropertyWrite("validated", this.validated, validated);
         this.validated = validated;
     }
 
-    public BigDecimal getValidated() {
+    public Integer getValidated() {
         beforePropertyRead("validated");
         return this.validated;
     }
@@ -587,8 +646,16 @@ public abstract class _Ship extends BaseDataObject {
                 return this.commissionedDate;
             case "contactSeaEmail":
                 return this.contactSeaEmail;
+            case "contactSeaEmail2":
+                return this.contactSeaEmail2;
+            case "contactSeaEmail3":
+                return this.contactSeaEmail3;
             case "contactShoreEmail":
                 return this.contactShoreEmail;
+            case "contactShoreEmail2":
+                return this.contactShoreEmail2;
+            case "contactShoreEmail3":
+                return this.contactShoreEmail3;
             case "contactShoreName":
                 return this.contactShoreName;
             case "decommissionedDate":
@@ -617,6 +684,8 @@ public abstract class _Ship extends BaseDataObject {
                 return this.insertDate;
             case "length":
                 return this.length;
+            case "mmsi":
+                return this.mmsi;
             case "name":
                 return this.name;
             case "originalDataset":
@@ -672,16 +741,16 @@ public abstract class _Ship extends BaseDataObject {
 
         switch (propName) {
             case "autonomy":
-                this.autonomy = (BigDecimal)val;
+                this.autonomy = (Integer)val;
                 break;
             case "breadth":
-                this.breadth = (BigDecimal)val;
+                this.breadth = (Double)val;
                 break;
             case "bridge":
-                this.bridge = (BigDecimal)val;
+                this.bridge = (Double)val;
                 break;
             case "buoyCapacity":
-                this.buoyCapacity = (BigDecimal)val;
+                this.buoyCapacity = (Integer)val;
                 break;
             case "callSign":
                 this.callSign = (String)val;
@@ -692,8 +761,20 @@ public abstract class _Ship extends BaseDataObject {
             case "contactSeaEmail":
                 this.contactSeaEmail = (String)val;
                 break;
+            case "contactSeaEmail2":
+                this.contactSeaEmail2 = (String)val;
+                break;
+            case "contactSeaEmail3":
+                this.contactSeaEmail3 = (String)val;
+                break;
             case "contactShoreEmail":
                 this.contactShoreEmail = (String)val;
+                break;
+            case "contactShoreEmail2":
+                this.contactShoreEmail2 = (String)val;
+                break;
+            case "contactShoreEmail3":
+                this.contactShoreEmail3 = (String)val;
                 break;
             case "contactShoreName":
                 this.contactShoreName = (String)val;
@@ -705,28 +786,28 @@ public abstract class _Ship extends BaseDataObject {
                 this.description = (String)val;
                 break;
             case "draught":
-                this.draught = (BigDecimal)val;
+                this.draught = (Double)val;
                 break;
             case "extUpdate":
                 this.extUpdate = (LocalDateTime)val;
                 break;
             case "floatCapacity":
-                this.floatCapacity = (BigDecimal)val;
+                this.floatCapacity = (Integer)val;
                 break;
             case "freeboard":
-                this.freeboard = (BigDecimal)val;
+                this.freeboard = (Double)val;
                 break;
             case "height":
-                this.height = (BigDecimal)val;
+                this.height = (Double)val;
                 break;
             case "hideMetadata":
-                this.hideMetadata = (BigDecimal)val;
+                this.hideMetadata = (Integer)val;
                 break;
             case "homePort":
                 this.homePort = (String)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "imo":
                 this.imo = (String)val;
@@ -735,7 +816,10 @@ public abstract class _Ship extends BaseDataObject {
                 this.insertDate = (LocalDateTime)val;
                 break;
             case "length":
-                this.length = (BigDecimal)val;
+                this.length = (Double)val;
+                break;
+            case "mmsi":
+                this.mmsi = (String)val;
                 break;
             case "name":
                 this.name = (String)val;
@@ -744,13 +828,13 @@ public abstract class _Ship extends BaseDataObject {
                 this.originalDataset = (String)val;
                 break;
             case "passengerCapacity":
-                this.passengerCapacity = (BigDecimal)val;
+                this.passengerCapacity = (Integer)val;
                 break;
             case "ref":
                 this.ref = (String)val;
                 break;
             case "refParent":
-                this.refParent = (BigDecimal)val;
+                this.refParent = (Integer)val;
                 break;
             case "refTmp":
                 this.refTmp = (String)val;
@@ -759,16 +843,16 @@ public abstract class _Ship extends BaseDataObject {
                 this.shippingAgency = (String)val;
                 break;
             case "speed":
-                this.speed = (BigDecimal)val;
+                this.speed = (Double)val;
                 break;
             case "trackingSystemId":
-                this.trackingSystemId = (BigDecimal)val;
+                this.trackingSystemId = (Integer)val;
                 break;
             case "updateDate":
                 this.updateDate = (LocalDateTime)val;
                 break;
             case "validated":
-                this.validated = (BigDecimal)val;
+                this.validated = (Integer)val;
                 break;
             case "country":
                 this.country = val;
@@ -823,7 +907,11 @@ public abstract class _Ship extends BaseDataObject {
         out.writeObject(this.callSign);
         out.writeObject(this.commissionedDate);
         out.writeObject(this.contactSeaEmail);
+        out.writeObject(this.contactSeaEmail2);
+        out.writeObject(this.contactSeaEmail3);
         out.writeObject(this.contactShoreEmail);
+        out.writeObject(this.contactShoreEmail2);
+        out.writeObject(this.contactShoreEmail3);
         out.writeObject(this.contactShoreName);
         out.writeObject(this.decommissionedDate);
         out.writeObject(this.description);
@@ -838,6 +926,7 @@ public abstract class _Ship extends BaseDataObject {
         out.writeObject(this.imo);
         out.writeObject(this.insertDate);
         out.writeObject(this.length);
+        out.writeObject(this.mmsi);
         out.writeObject(this.name);
         out.writeObject(this.originalDataset);
         out.writeObject(this.passengerCapacity);
@@ -864,39 +953,44 @@ public abstract class _Ship extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.autonomy = (BigDecimal)in.readObject();
-        this.breadth = (BigDecimal)in.readObject();
-        this.bridge = (BigDecimal)in.readObject();
-        this.buoyCapacity = (BigDecimal)in.readObject();
+        this.autonomy = (Integer)in.readObject();
+        this.breadth = (Double)in.readObject();
+        this.bridge = (Double)in.readObject();
+        this.buoyCapacity = (Integer)in.readObject();
         this.callSign = (String)in.readObject();
         this.commissionedDate = (LocalDateTime)in.readObject();
         this.contactSeaEmail = (String)in.readObject();
+        this.contactSeaEmail2 = (String)in.readObject();
+        this.contactSeaEmail3 = (String)in.readObject();
         this.contactShoreEmail = (String)in.readObject();
+        this.contactShoreEmail2 = (String)in.readObject();
+        this.contactShoreEmail3 = (String)in.readObject();
         this.contactShoreName = (String)in.readObject();
         this.decommissionedDate = (LocalDateTime)in.readObject();
         this.description = (String)in.readObject();
-        this.draught = (BigDecimal)in.readObject();
+        this.draught = (Double)in.readObject();
         this.extUpdate = (LocalDateTime)in.readObject();
-        this.floatCapacity = (BigDecimal)in.readObject();
-        this.freeboard = (BigDecimal)in.readObject();
-        this.height = (BigDecimal)in.readObject();
-        this.hideMetadata = (BigDecimal)in.readObject();
+        this.floatCapacity = (Integer)in.readObject();
+        this.freeboard = (Double)in.readObject();
+        this.height = (Double)in.readObject();
+        this.hideMetadata = (Integer)in.readObject();
         this.homePort = (String)in.readObject();
-        this.id = (BigDecimal)in.readObject();
+        this.id = (Integer)in.readObject();
         this.imo = (String)in.readObject();
         this.insertDate = (LocalDateTime)in.readObject();
-        this.length = (BigDecimal)in.readObject();
+        this.length = (Double)in.readObject();
+        this.mmsi = (String)in.readObject();
         this.name = (String)in.readObject();
         this.originalDataset = (String)in.readObject();
-        this.passengerCapacity = (BigDecimal)in.readObject();
+        this.passengerCapacity = (Integer)in.readObject();
         this.ref = (String)in.readObject();
-        this.refParent = (BigDecimal)in.readObject();
+        this.refParent = (Integer)in.readObject();
         this.refTmp = (String)in.readObject();
         this.shippingAgency = (String)in.readObject();
-        this.speed = (BigDecimal)in.readObject();
-        this.trackingSystemId = (BigDecimal)in.readObject();
+        this.speed = (Double)in.readObject();
+        this.trackingSystemId = (Integer)in.readObject();
         this.updateDate = (LocalDateTime)in.readObject();
-        this.validated = (BigDecimal)in.readObject();
+        this.validated = (Integer)in.readObject();
         this.country = in.readObject();
         this.cruises = in.readObject();
         this.docs = in.readObject();

@@ -3,7 +3,6 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -25,33 +24,33 @@ public abstract class _SitePtf extends BaseDataObject {
     public static final String PTF_ID_PK_COLUMN = "PTF_ID";
     public static final String SITE_ID_PK_COLUMN = "SITE_ID";
 
-    public static final NumericProperty<BigDecimal> PTF_ID = PropertyFactory.createNumeric("ptfId", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> SITE_ID = PropertyFactory.createNumeric("siteId", BigDecimal.class);
+    public static final NumericProperty<Integer> PTF_ID = PropertyFactory.createNumeric("ptfId", Integer.class);
+    public static final NumericProperty<Integer> SITE_ID = PropertyFactory.createNumeric("siteId", Integer.class);
     public static final EntityProperty<Ptf> PTF = PropertyFactory.createEntity("ptf", Ptf.class);
     public static final EntityProperty<Site> SITE = PropertyFactory.createEntity("site", Site.class);
 
-    protected BigDecimal ptfId;
-    protected BigDecimal siteId;
+    protected Integer ptfId;
+    protected Integer siteId;
 
     protected Object ptf;
     protected Object site;
 
-    public void setPtfId(BigDecimal ptfId) {
+    public void setPtfId(Integer ptfId) {
         beforePropertyWrite("ptfId", this.ptfId, ptfId);
         this.ptfId = ptfId;
     }
 
-    public BigDecimal getPtfId() {
+    public Integer getPtfId() {
         beforePropertyRead("ptfId");
         return this.ptfId;
     }
 
-    public void setSiteId(BigDecimal siteId) {
+    public void setSiteId(Integer siteId) {
         beforePropertyWrite("siteId", this.siteId, siteId);
         this.siteId = siteId;
     }
 
-    public BigDecimal getSiteId() {
+    public Integer getSiteId() {
         beforePropertyRead("siteId");
         return this.siteId;
     }
@@ -100,10 +99,10 @@ public abstract class _SitePtf extends BaseDataObject {
 
         switch (propName) {
             case "ptfId":
-                this.ptfId = (BigDecimal)val;
+                this.ptfId = (Integer)val;
                 break;
             case "siteId":
-                this.siteId = (BigDecimal)val;
+                this.siteId = (Integer)val;
                 break;
             case "ptf":
                 this.ptf = val;
@@ -136,8 +135,8 @@ public abstract class _SitePtf extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.ptfId = (BigDecimal)in.readObject();
-        this.siteId = (BigDecimal)in.readObject();
+        this.ptfId = (Integer)in.readObject();
+        this.siteId = (Integer)in.readObject();
         this.ptf = in.readObject();
         this.site = in.readObject();
     }

@@ -3,13 +3,11 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.DateProperty;
 import org.apache.cayenne.exp.property.EntityProperty;
-import org.apache.cayenne.exp.property.NumericIdProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
@@ -25,34 +23,33 @@ public abstract class _ApiToken extends BaseDataObject {
 
     private static final long serialVersionUID = 1L;
 
-    public static final NumericIdProperty<BigDecimal> ID_PK_PROPERTY = PropertyFactory.createNumericId("ID", "ApiToken", BigDecimal.class);
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final NumericProperty<BigDecimal> CONTACT_ID = PropertyFactory.createNumeric("contactId", BigDecimal.class);
+    public static final NumericProperty<Integer> CONTACT_ID = PropertyFactory.createNumeric("contactId", Integer.class);
     public static final DateProperty<LocalDateTime> CREATION_DATE = PropertyFactory.createDate("creationDate", LocalDateTime.class);
     public static final DateProperty<LocalDateTime> END_VALIDITY = PropertyFactory.createDate("endValidity", LocalDateTime.class);
-    public static final NumericProperty<BigDecimal> IS_VALID = PropertyFactory.createNumeric("isValid", BigDecimal.class);
+    public static final NumericProperty<Integer> IS_VALID = PropertyFactory.createNumeric("isValid", Integer.class);
     public static final DateProperty<LocalDateTime> LAST_USED = PropertyFactory.createDate("lastUsed", LocalDateTime.class);
     public static final StringProperty<String> TOKEN = PropertyFactory.createString("token", String.class);
     public static final StringProperty<String> TYPE = PropertyFactory.createString("type", String.class);
     public static final EntityProperty<Contact> CONTACT = PropertyFactory.createEntity("contact", Contact.class);
 
-    protected BigDecimal contactId;
+    protected Integer contactId;
     protected LocalDateTime creationDate;
     protected LocalDateTime endValidity;
-    protected BigDecimal isValid;
+    protected Integer isValid;
     protected LocalDateTime lastUsed;
     protected String token;
     protected String type;
 
     protected Object contact;
 
-    public void setContactId(BigDecimal contactId) {
+    public void setContactId(Integer contactId) {
         beforePropertyWrite("contactId", this.contactId, contactId);
         this.contactId = contactId;
     }
 
-    public BigDecimal getContactId() {
+    public Integer getContactId() {
         beforePropertyRead("contactId");
         return this.contactId;
     }
@@ -77,12 +74,12 @@ public abstract class _ApiToken extends BaseDataObject {
         return this.endValidity;
     }
 
-    public void setIsValid(BigDecimal isValid) {
+    public void setIsValid(Integer isValid) {
         beforePropertyWrite("isValid", this.isValid, isValid);
         this.isValid = isValid;
     }
 
-    public BigDecimal getIsValid() {
+    public Integer getIsValid() {
         beforePropertyRead("isValid");
         return this.isValid;
     }
@@ -161,7 +158,7 @@ public abstract class _ApiToken extends BaseDataObject {
 
         switch (propName) {
             case "contactId":
-                this.contactId = (BigDecimal)val;
+                this.contactId = (Integer)val;
                 break;
             case "creationDate":
                 this.creationDate = (LocalDateTime)val;
@@ -170,7 +167,7 @@ public abstract class _ApiToken extends BaseDataObject {
                 this.endValidity = (LocalDateTime)val;
                 break;
             case "isValid":
-                this.isValid = (BigDecimal)val;
+                this.isValid = (Integer)val;
                 break;
             case "lastUsed":
                 this.lastUsed = (LocalDateTime)val;
@@ -213,10 +210,10 @@ public abstract class _ApiToken extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.contactId = (BigDecimal)in.readObject();
+        this.contactId = (Integer)in.readObject();
         this.creationDate = (LocalDateTime)in.readObject();
         this.endValidity = (LocalDateTime)in.readObject();
-        this.isValid = (BigDecimal)in.readObject();
+        this.isValid = (Integer)in.readObject();
         this.lastUsed = (LocalDateTime)in.readObject();
         this.token = (String)in.readObject();
         this.type = (String)in.readObject();

@@ -3,11 +3,11 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
+import org.apache.cayenne.exp.property.BaseProperty;
 import org.apache.cayenne.exp.property.DateProperty;
 import org.apache.cayenne.exp.property.EntityProperty;
 import org.apache.cayenne.exp.property.ListProperty;
@@ -30,91 +30,107 @@ public abstract class _PtfLoc extends BaseDataObject {
 
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final NumericProperty<BigDecimal> ELEVATION = PropertyFactory.createNumeric("elevation", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> FLAG = PropertyFactory.createNumeric("flag", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> ID = PropertyFactory.createNumeric("id", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> IMG_LAT = PropertyFactory.createNumeric("imgLat", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> IMG_LON = PropertyFactory.createNumeric("imgLon", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> LAT = PropertyFactory.createNumeric("lat", BigDecimal.class);
+    public static final NumericProperty<Double> ELEVATION = PropertyFactory.createNumeric("elevation", Double.class);
+    public static final NumericProperty<Integer> FLAG = PropertyFactory.createNumeric("flag", Integer.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
+    public static final NumericProperty<Double> IMG_LAT = PropertyFactory.createNumeric("imgLat", Double.class);
+    public static final NumericProperty<Double> IMG_LON = PropertyFactory.createNumeric("imgLon", Double.class);
+    public static final BaseProperty<byte[]> IMG_SHAPE = PropertyFactory.createBase("imgShape", byte[].class);
+    public static final NumericProperty<Double> LAT = PropertyFactory.createNumeric("lat", Double.class);
     public static final DateProperty<LocalDateTime> LOC_DATE = PropertyFactory.createDate("locDate", LocalDateTime.class);
-    public static final NumericProperty<BigDecimal> LON = PropertyFactory.createNumeric("lon", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> QUALITY = PropertyFactory.createNumeric("quality", BigDecimal.class);
+    public static final NumericProperty<Double> LON = PropertyFactory.createNumeric("lon", Double.class);
+    public static final NumericProperty<Integer> QUALITY = PropertyFactory.createNumeric("quality", Integer.class);
+    public static final BaseProperty<byte[]> SHAPE = PropertyFactory.createBase("shape", byte[].class);
     public static final ListProperty<Doc> DOCS = PropertyFactory.createList("docs", Doc.class);
     public static final EntityProperty<LocSystem> LOC_SYSTEM = PropertyFactory.createEntity("locSystem", LocSystem.class);
     public static final ListProperty<Obs> OBSS = PropertyFactory.createList("obss", Obs.class);
     public static final EntityProperty<Ptf> PTF = PropertyFactory.createEntity("ptf", Ptf.class);
+    public static final ListProperty<Ptf> PTFS = PropertyFactory.createList("ptfs", Ptf.class);
 
-    protected BigDecimal elevation;
-    protected BigDecimal flag;
-    protected BigDecimal id;
-    protected BigDecimal imgLat;
-    protected BigDecimal imgLon;
-    protected BigDecimal lat;
+    protected Double elevation;
+    protected Integer flag;
+    protected Integer id;
+    protected Double imgLat;
+    protected Double imgLon;
+    protected byte[] imgShape;
+    protected Double lat;
     protected LocalDateTime locDate;
-    protected BigDecimal lon;
-    protected BigDecimal quality;
+    protected Double lon;
+    protected Integer quality;
+    protected byte[] shape;
 
     protected Object docs;
     protected Object locSystem;
     protected Object obss;
     protected Object ptf;
+    protected Object ptfs;
 
-    public void setElevation(BigDecimal elevation) {
+    public void setElevation(Double elevation) {
         beforePropertyWrite("elevation", this.elevation, elevation);
         this.elevation = elevation;
     }
 
-    public BigDecimal getElevation() {
+    public Double getElevation() {
         beforePropertyRead("elevation");
         return this.elevation;
     }
 
-    public void setFlag(BigDecimal flag) {
+    public void setFlag(Integer flag) {
         beforePropertyWrite("flag", this.flag, flag);
         this.flag = flag;
     }
 
-    public BigDecimal getFlag() {
+    public Integer getFlag() {
         beforePropertyRead("flag");
         return this.flag;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         beforePropertyRead("id");
         return this.id;
     }
 
-    public void setImgLat(BigDecimal imgLat) {
+    public void setImgLat(Double imgLat) {
         beforePropertyWrite("imgLat", this.imgLat, imgLat);
         this.imgLat = imgLat;
     }
 
-    public BigDecimal getImgLat() {
+    public Double getImgLat() {
         beforePropertyRead("imgLat");
         return this.imgLat;
     }
 
-    public void setImgLon(BigDecimal imgLon) {
+    public void setImgLon(Double imgLon) {
         beforePropertyWrite("imgLon", this.imgLon, imgLon);
         this.imgLon = imgLon;
     }
 
-    public BigDecimal getImgLon() {
+    public Double getImgLon() {
         beforePropertyRead("imgLon");
         return this.imgLon;
     }
 
-    public void setLat(BigDecimal lat) {
+    public void setImgShape(byte[] imgShape) {
+        beforePropertyWrite("imgShape", this.imgShape, imgShape);
+        this.imgShape = imgShape;
+    }
+
+    public byte[] getImgShape() {
+        beforePropertyRead("imgShape");
+        return this.imgShape;
+    }
+
+    public void setLat(Double lat) {
         beforePropertyWrite("lat", this.lat, lat);
         this.lat = lat;
     }
 
-    public BigDecimal getLat() {
+    public Double getLat() {
         beforePropertyRead("lat");
         return this.lat;
     }
@@ -129,24 +145,34 @@ public abstract class _PtfLoc extends BaseDataObject {
         return this.locDate;
     }
 
-    public void setLon(BigDecimal lon) {
+    public void setLon(Double lon) {
         beforePropertyWrite("lon", this.lon, lon);
         this.lon = lon;
     }
 
-    public BigDecimal getLon() {
+    public Double getLon() {
         beforePropertyRead("lon");
         return this.lon;
     }
 
-    public void setQuality(BigDecimal quality) {
+    public void setQuality(Integer quality) {
         beforePropertyWrite("quality", this.quality, quality);
         this.quality = quality;
     }
 
-    public BigDecimal getQuality() {
+    public Integer getQuality() {
         beforePropertyRead("quality");
         return this.quality;
+    }
+
+    public void setShape(byte[] shape) {
+        beforePropertyWrite("shape", this.shape, shape);
+        this.shape = shape;
+    }
+
+    public byte[] getShape() {
+        beforePropertyRead("shape");
+        return this.shape;
     }
 
     public void addToDocs(Doc obj) {
@@ -191,6 +217,19 @@ public abstract class _PtfLoc extends BaseDataObject {
         return (Ptf)readProperty("ptf");
     }
 
+    public void addToPtfs(Ptf obj) {
+        addToManyTarget("ptfs", obj, true);
+    }
+
+    public void removeFromPtfs(Ptf obj) {
+        removeToManyTarget("ptfs", obj, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Ptf> getPtfs() {
+        return (List<Ptf>)readProperty("ptfs");
+    }
+
     @Override
     public Object readPropertyDirectly(String propName) {
         if(propName == null) {
@@ -208,6 +247,8 @@ public abstract class _PtfLoc extends BaseDataObject {
                 return this.imgLat;
             case "imgLon":
                 return this.imgLon;
+            case "imgShape":
+                return this.imgShape;
             case "lat":
                 return this.lat;
             case "locDate":
@@ -216,6 +257,8 @@ public abstract class _PtfLoc extends BaseDataObject {
                 return this.lon;
             case "quality":
                 return this.quality;
+            case "shape":
+                return this.shape;
             case "docs":
                 return this.docs;
             case "locSystem":
@@ -224,6 +267,8 @@ public abstract class _PtfLoc extends BaseDataObject {
                 return this.obss;
             case "ptf":
                 return this.ptf;
+            case "ptfs":
+                return this.ptfs;
             default:
                 return super.readPropertyDirectly(propName);
         }
@@ -237,31 +282,37 @@ public abstract class _PtfLoc extends BaseDataObject {
 
         switch (propName) {
             case "elevation":
-                this.elevation = (BigDecimal)val;
+                this.elevation = (Double)val;
                 break;
             case "flag":
-                this.flag = (BigDecimal)val;
+                this.flag = (Integer)val;
                 break;
             case "id":
-                this.id = (BigDecimal)val;
+                this.id = (Integer)val;
                 break;
             case "imgLat":
-                this.imgLat = (BigDecimal)val;
+                this.imgLat = (Double)val;
                 break;
             case "imgLon":
-                this.imgLon = (BigDecimal)val;
+                this.imgLon = (Double)val;
+                break;
+            case "imgShape":
+                this.imgShape = (byte[])val;
                 break;
             case "lat":
-                this.lat = (BigDecimal)val;
+                this.lat = (Double)val;
                 break;
             case "locDate":
                 this.locDate = (LocalDateTime)val;
                 break;
             case "lon":
-                this.lon = (BigDecimal)val;
+                this.lon = (Double)val;
                 break;
             case "quality":
-                this.quality = (BigDecimal)val;
+                this.quality = (Integer)val;
+                break;
+            case "shape":
+                this.shape = (byte[])val;
                 break;
             case "docs":
                 this.docs = val;
@@ -274,6 +325,9 @@ public abstract class _PtfLoc extends BaseDataObject {
                 break;
             case "ptf":
                 this.ptf = val;
+                break;
+            case "ptfs":
+                this.ptfs = val;
                 break;
             default:
                 super.writePropertyDirectly(propName, val);
@@ -296,32 +350,38 @@ public abstract class _PtfLoc extends BaseDataObject {
         out.writeObject(this.id);
         out.writeObject(this.imgLat);
         out.writeObject(this.imgLon);
+        out.writeObject(this.imgShape);
         out.writeObject(this.lat);
         out.writeObject(this.locDate);
         out.writeObject(this.lon);
         out.writeObject(this.quality);
+        out.writeObject(this.shape);
         out.writeObject(this.docs);
         out.writeObject(this.locSystem);
         out.writeObject(this.obss);
         out.writeObject(this.ptf);
+        out.writeObject(this.ptfs);
     }
 
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.elevation = (BigDecimal)in.readObject();
-        this.flag = (BigDecimal)in.readObject();
-        this.id = (BigDecimal)in.readObject();
-        this.imgLat = (BigDecimal)in.readObject();
-        this.imgLon = (BigDecimal)in.readObject();
-        this.lat = (BigDecimal)in.readObject();
+        this.elevation = (Double)in.readObject();
+        this.flag = (Integer)in.readObject();
+        this.id = (Integer)in.readObject();
+        this.imgLat = (Double)in.readObject();
+        this.imgLon = (Double)in.readObject();
+        this.imgShape = (byte[])in.readObject();
+        this.lat = (Double)in.readObject();
         this.locDate = (LocalDateTime)in.readObject();
-        this.lon = (BigDecimal)in.readObject();
-        this.quality = (BigDecimal)in.readObject();
+        this.lon = (Double)in.readObject();
+        this.quality = (Integer)in.readObject();
+        this.shape = (byte[])in.readObject();
         this.docs = in.readObject();
         this.locSystem = in.readObject();
         this.obss = in.readObject();
         this.ptf = in.readObject();
+        this.ptfs = in.readObject();
     }
 
 }

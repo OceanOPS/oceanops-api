@@ -3,11 +3,9 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
-import org.apache.cayenne.exp.property.NumericIdProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.oceanops.api.orm.Line;
 import org.oceanops.api.orm.Ptf;
@@ -22,9 +20,7 @@ public abstract class _LinePtf extends BaseDataObject {
 
     private static final long serialVersionUID = 1L;
 
-    public static final NumericIdProperty<BigDecimal> LINE_ID_PK_PROPERTY = PropertyFactory.createNumericId("LINE_ID", "LinePtf", BigDecimal.class);
     public static final String LINE_ID_PK_COLUMN = "LINE_ID";
-    public static final NumericIdProperty<BigDecimal> PTF_ID_PK_PROPERTY = PropertyFactory.createNumericId("PTF_ID", "LinePtf", BigDecimal.class);
     public static final String PTF_ID_PK_COLUMN = "PTF_ID";
 
     public static final EntityProperty<Line> LINE = PropertyFactory.createEntity("line", Line.class);
