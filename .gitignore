@@ -6,6 +6,4 @@ doc
 /test/classes/
 /build/
 .settings
-src/main/resources/cayenne-project.xml
-src/main/resources/cayenne-OceanOPS-API.xml
-src/main/resources/datamap.map.xml
+.factoryPath

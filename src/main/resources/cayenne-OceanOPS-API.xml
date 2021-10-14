@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<domain xmlns="http://cayenne.apache.org/schema/10/domain"
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://cayenne.apache.org/schema/10/domain https://cayenne.apache.org/schema/10/domain.xsd"
+	 project-version="10">
+	<map name="datamap"/>
+	<node name="prod"
+		 adapter="org.oceanops.api.OracleSDEDbAdapter"
+		 factory="org.apache.cayenne.configuration.server.XMLPoolingDataSourceFactory"
+		 schema-update-strategy="org.apache.cayenne.access.dbsync.SkipSchemaUpdateStrategy">
+		<map-ref name="datamap"/>
+	</node>
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="OceanOPS-API.graph.xml"/>
+</domain>
