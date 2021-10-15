@@ -2,6 +2,7 @@ package org.oceanops.api;
 
 import java.util.ArrayList;
 
+import org.apache.cayenne.query.ObjectSelect;
 import org.oceanops.api.orm.Contact;
 import org.oceanops.api.orm.Cruise;
 import org.oceanops.api.orm.ProgramContact;
@@ -19,6 +20,43 @@ public class Authorization {
     public Authorization(){        
     }
 
+    /**
+     * Checks if a authenticated user can edit elements associated with a given program.
+     * The method will check, by order of importance:
+     * <ul>
+     *  <li>if the user is authenticated: return false if not</li>
+     *  <li>if the user is administrator: return true if yes</li>
+     *  <li>if the user is associated to the program: return true if yes, false if not</li>
+     * </ul>
+     * @param programId The ID of the concerned program.
+     * @return A boolean resulting of the algorythm described above.
+     */
+    public static boolean hasEditRightForProgram(Integer programId){
+        boolean result = false;
+        if(Authentication.isAuthenticated()){
+            // If admin, has the rights
+            if(Authentication.getContact().getAdmin() == 1)
+                result = true;
+            else{
+                // Checking in ProgramContact
+                long count = ObjectSelect.query(ProgramContact.class)
+                    .where(
+                        ProgramContact.CONTACT.eq(Authentication.getContact())
+                            .andExp(ProgramContact.PROGRAM.eqId(programId))
+                    ).selectCount(Utils.getCayenneContext());
+                if(count > 0)
+                    result = true;
+            }
+        }
+        
+        return result;
+    }
+
+    /**
+     * When then AgRest engine starts, aplying global authorization.
+     * @param agBuilder The AgBuilder used for the request engine.
+     * @return The input AgBuilder, modified.
+     */
     public static AgBuilder applyGlobalAuthorization(AgBuilder agBuilder){
         // Overlaying Contact entity
 		agBuilder.entityOverlay(new AgEntityOverlay<Contact>(Contact.class).exclude(
@@ -41,6 +79,11 @@ public class Authorization {
         return agBuilder;
     }
 
+    /**
+     * Applies filtering on a request based on the presence or not of an authenticated user.
+     * @param sBuilder The SelectBuilder used for the current query.
+     * @return The provided SelectBuilder, modified.
+     */
     public static SelectBuilder<?> applySelectAuthorization(SelectBuilder<?> sBuilder){
         // If the user is not authenticated as an administrator
         if(!(Authentication.isAuthenticated() && Authentication.getContact().getAdmin().intValue() == 1)){
