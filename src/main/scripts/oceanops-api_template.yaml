@@ -1,6 +1,6 @@
 openapi: 3.0.3
 servers:
-  - url: https://www.ocean-ops.org/api/${project.version}
+  - url: https://www.ocean-ops.org/api/1
 info:
   title: OceanOPS API for metadata access
   description: An API for interacting with OceanOPS metadata
