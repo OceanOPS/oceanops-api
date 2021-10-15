@@ -1,6 +1,7 @@
 package org.oceanops.api.accessors;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -21,8 +22,6 @@ import io.agrest.Ag;
 import io.agrest.AgRequest;
 import io.agrest.DataResponse;
 import io.agrest.SelectBuilder;
-
-import org.oceanops.api.exceptions.EntityNotFoundException;
 
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
@@ -97,13 +96,13 @@ public class PlatformAccessor {
 	 * 
 	 * @param id long The database identifier
 	 * @return A ORM Ptf object
-	 * @throws EntityNotFoundException
+	 * @throws NotFoundException
 	 */
-	public Ptf getPtfbyID(long id) throws EntityNotFoundException {
+	public Ptf getPtfbyID(long id) throws NotFoundException {
 		// Find the platform
 		Ptf ptf = SelectById.query(Ptf.class, id).selectOne(this.context);
 		if (ptf == null)
-			throw new EntityNotFoundException("No platform found for ID = " + String.valueOf(id));
+			throw new NotFoundException("No platform found for ID = " + String.valueOf(id));
 		return ptf;
 	}
 	
@@ -113,13 +112,13 @@ public class PlatformAccessor {
 	 * 
 	 * @param id long The database identifier
 	 * @return A ORM Ptf object
-	 * @throws EntityNotFoundException
+	 * @throws NotFoundException
 	 */
-	public Ptf getPtfbyRef(String ref) throws EntityNotFoundException {
+	public Ptf getPtfbyRef(String ref) throws NotFoundException {
 		// Find the platform
 		Ptf ptf = ObjectSelect.query(Ptf.class, Ptf.REF.eq(ref)).selectOne(this.context);
 		if (ptf == null)
-			throw new EntityNotFoundException("No platform found for ref = " + ref);
+			throw new NotFoundException("No platform found for ref = " + ref);
 		return ptf;
 	}
 
@@ -128,14 +127,14 @@ public class PlatformAccessor {
 	 * 
 	 * @param wigosid the WIGOS identifier
 	 * @return A ORM Ptf object
-	 * @throws EntityNotFoundException
+	 * @throws NotFoundException
 	 */
-	public Ptf getPtfbyWigosID(String wigosid) throws EntityNotFoundException {
+	public Ptf getPtfbyWigosID(String wigosid) throws NotFoundException {
 		// Find the platform
 		Ptf ptf = ObjectSelect.query(Ptf.class, Ptf.PTF_IDENTIFIERS.dot(PtfIdentifiers.WIGOS_REF).eq(wigosid)).selectOne(this.context);
 
 		if (ptf == null)
-			throw new EntityNotFoundException("No platform found for WIGOS ID = " + wigosid);
+			throw new NotFoundException("No platform found for WIGOS ID = " + wigosid);
 		
 		return ptf;
 	}
