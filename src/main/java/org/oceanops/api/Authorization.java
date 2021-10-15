@@ -2,6 +2,7 @@ package org.oceanops.api;
 
 import java.util.ArrayList;
 
+import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.query.ObjectSelect;
 import org.oceanops.api.orm.Contact;
 import org.oceanops.api.orm.Cruise;
@@ -31,7 +32,12 @@ public class Authorization {
      * @param programId The ID of the concerned program.
      * @return A boolean resulting of the algorythm described above.
      */
-    public static boolean hasEditRightForProgram(Integer programId){
+    public static boolean hasEditRightForProgram(Integer programId, ObjectContext providedContext){
+        ObjectContext context = providedContext;
+        if(providedContext == null)
+            context = Utils.getCayenneContext();
+        else
+            context = providedContext;
         boolean result = false;
         if(Authentication.isAuthenticated()){
             // If admin, has the rights
@@ -43,7 +49,7 @@ public class Authorization {
                     .where(
                         ProgramContact.CONTACT.eq(Authentication.getContact())
                             .andExp(ProgramContact.PROGRAM.eqId(programId))
-                    ).selectCount(Utils.getCayenneContext());
+                    ).selectCount(context);
                 if(count > 0)
                     result = true;
             }
