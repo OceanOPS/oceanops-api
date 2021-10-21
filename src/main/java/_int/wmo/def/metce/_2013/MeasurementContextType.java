@@ -1,7 +1,6 @@
 
 package _int.wmo.def.metce._2013;
 
-import java.io.Serializable;
 import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -53,10 +52,8 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 })
 public class MeasurementContextType
     extends AbstractGMLType
-    implements Serializable
 {
 
-    private final static long serialVersionUID = 1L;
     protected UnitOfMeasureType unitOfMeasure;
     @XmlElement(required = true)
     protected ObservablePropertyPropertyType measurand;
@@ -176,7 +173,7 @@ public class MeasurementContextType
     }
 
     public String toString() {
-        final ToStringStrategy2 strategy = JAXBToStringStrategy.INSTANCE;
+        final ToStringStrategy2 strategy = JAXBToStringStrategy.INSTANCE2;
         final StringBuilder buffer = new StringBuilder();
         append(null, buffer, strategy);
         return buffer.toString();
@@ -265,7 +262,7 @@ public class MeasurementContextType
     }
 
     public boolean equals(Object object) {
-        final EqualsStrategy2 strategy = JAXBEqualsStrategy.INSTANCE;
+        final EqualsStrategy2 strategy = JAXBEqualsStrategy.INSTANCE2;
         return equals(null, null, object, strategy);
     }
 
@@ -295,7 +292,7 @@ public class MeasurementContextType
     }
 
     public int hashCode() {
-        final HashCodeStrategy2 strategy = JAXBHashCodeStrategy.INSTANCE;
+        final HashCodeStrategy2 strategy = JAXBHashCodeStrategy.INSTANCE2;
         return this.hashCode(null, strategy);
     }
 
@@ -304,7 +301,7 @@ public class MeasurementContextType
     }
 
     public Object copyTo(Object target) {
-        final CopyStrategy2 strategy = JAXBCopyStrategy.INSTANCE;
+        final CopyStrategy2 strategy = JAXBCopyStrategy.INSTANCE2;
         return copyTo(null, target, strategy);
     }
 

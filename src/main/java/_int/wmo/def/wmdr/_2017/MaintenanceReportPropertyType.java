@@ -41,8 +41,8 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  *       &lt;sequence minOccurs="0"&gt;
  *         &lt;element ref="{http://def.wmo.int/wmdr/2017}MaintenanceReport"/&gt;
  *       &lt;/sequence&gt;
- *       &lt;attGroup ref="{http://www.opengis.net/gml/3.2}OwnershipAttributeGroup"/&gt;
  *       &lt;attGroup ref="{http://www.opengis.net/gml/3.2}AssociationAttributeGroup"/&gt;
+ *       &lt;attGroup ref="{http://www.opengis.net/gml/3.2}OwnershipAttributeGroup"/&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -60,8 +60,6 @@ public class MaintenanceReportPropertyType implements Serializable, Cloneable, C
     private final static long serialVersionUID = 1L;
     @XmlElement(name = "MaintenanceReport")
     protected MaintenanceReportType maintenanceReport;
-    @XmlAttribute(name = "owns")
-    protected Boolean owns;
     @XmlAttribute(name = "nilReason")
     protected List<String> nilReason;
     @XmlAttribute(name = "remoteSchema", namespace = "http://www.opengis.net/gml/3.2")
@@ -81,6 +79,8 @@ public class MaintenanceReportPropertyType implements Serializable, Cloneable, C
     protected ShowType show;
     @XmlAttribute(name = "actuate", namespace = "http://www.w3.org/1999/xlink")
     protected ActuateType actuate;
+    @XmlAttribute(name = "owns")
+    protected Boolean owns;
 
     /**
      * Gets the value of the maintenanceReport property.
@@ -108,42 +108,6 @@ public class MaintenanceReportPropertyType implements Serializable, Cloneable, C
 
     public boolean isSetMaintenanceReport() {
         return (this.maintenanceReport!= null);
-    }
-
-    /**
-     * Gets the value of the owns property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
-     */
-    public boolean isOwns() {
-        if (owns == null) {
-            return false;
-        } else {
-            return owns;
-        }
-    }
-
-    /**
-     * Sets the value of the owns property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
-     */
-    public void setOwns(boolean value) {
-        this.owns = value;
-    }
-
-    public boolean isSetOwns() {
-        return (this.owns!= null);
-    }
-
-    public void unsetOwns() {
-        this.owns = null;
     }
 
     /**
@@ -407,8 +371,44 @@ public class MaintenanceReportPropertyType implements Serializable, Cloneable, C
         return (this.actuate!= null);
     }
 
+    /**
+     * Gets the value of the owns property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public boolean isOwns() {
+        if (owns == null) {
+            return false;
+        } else {
+            return owns;
+        }
+    }
+
+    /**
+     * Sets the value of the owns property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setOwns(boolean value) {
+        this.owns = value;
+    }
+
+    public boolean isSetOwns() {
+        return (this.owns!= null);
+    }
+
+    public void unsetOwns() {
+        this.owns = null;
+    }
+
     public String toString() {
-        final ToStringStrategy2 strategy = JAXBToStringStrategy.INSTANCE;
+        final ToStringStrategy2 strategy = JAXBToStringStrategy.INSTANCE2;
         final StringBuilder buffer = new StringBuilder();
         append(null, buffer, strategy);
         return buffer.toString();
@@ -426,11 +426,6 @@ public class MaintenanceReportPropertyType implements Serializable, Cloneable, C
             MaintenanceReportType theMaintenanceReport;
             theMaintenanceReport = this.getMaintenanceReport();
             strategy.appendField(locator, this, "maintenanceReport", buffer, theMaintenanceReport, this.isSetMaintenanceReport());
-        }
-        {
-            boolean theOwns;
-            theOwns = (this.isSetOwns()?this.isOwns():false);
-            strategy.appendField(locator, this, "owns", buffer, theOwns, this.isSetOwns());
         }
         {
             List<String> theNilReason;
@@ -477,6 +472,11 @@ public class MaintenanceReportPropertyType implements Serializable, Cloneable, C
             theActuate = this.getActuate();
             strategy.appendField(locator, this, "actuate", buffer, theActuate, this.isSetActuate());
         }
+        {
+            boolean theOwns;
+            theOwns = (this.isSetOwns()?this.isOwns():false);
+            strategy.appendField(locator, this, "owns", buffer, theOwns, this.isSetOwns());
+        }
         return buffer;
     }
 
@@ -494,15 +494,6 @@ public class MaintenanceReportPropertyType implements Serializable, Cloneable, C
             MaintenanceReportType rhsMaintenanceReport;
             rhsMaintenanceReport = that.getMaintenanceReport();
             if (!strategy.equals(LocatorUtils.property(thisLocator, "maintenanceReport", lhsMaintenanceReport), LocatorUtils.property(thatLocator, "maintenanceReport", rhsMaintenanceReport), lhsMaintenanceReport, rhsMaintenanceReport, this.isSetMaintenanceReport(), that.isSetMaintenanceReport())) {
-                return false;
-            }
-        }
-        {
-            boolean lhsOwns;
-            lhsOwns = (this.isSetOwns()?this.isOwns():false);
-            boolean rhsOwns;
-            rhsOwns = (that.isSetOwns()?that.isOwns():false);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "owns", lhsOwns), LocatorUtils.property(thatLocator, "owns", rhsOwns), lhsOwns, rhsOwns, this.isSetOwns(), that.isSetOwns())) {
                 return false;
             }
         }
@@ -587,11 +578,20 @@ public class MaintenanceReportPropertyType implements Serializable, Cloneable, C
                 return false;
             }
         }
+        {
+            boolean lhsOwns;
+            lhsOwns = (this.isSetOwns()?this.isOwns():false);
+            boolean rhsOwns;
+            rhsOwns = (that.isSetOwns()?that.isOwns():false);
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "owns", lhsOwns), LocatorUtils.property(thatLocator, "owns", rhsOwns), lhsOwns, rhsOwns, this.isSetOwns(), that.isSetOwns())) {
+                return false;
+            }
+        }
         return true;
     }
 
     public boolean equals(Object object) {
-        final EqualsStrategy2 strategy = JAXBEqualsStrategy.INSTANCE;
+        final EqualsStrategy2 strategy = JAXBEqualsStrategy.INSTANCE2;
         return equals(null, null, object, strategy);
     }
 
@@ -601,11 +601,6 @@ public class MaintenanceReportPropertyType implements Serializable, Cloneable, C
             MaintenanceReportType theMaintenanceReport;
             theMaintenanceReport = this.getMaintenanceReport();
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "maintenanceReport", theMaintenanceReport), currentHashCode, theMaintenanceReport, this.isSetMaintenanceReport());
-        }
-        {
-            boolean theOwns;
-            theOwns = (this.isSetOwns()?this.isOwns():false);
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "owns", theOwns), currentHashCode, theOwns, this.isSetOwns());
         }
         {
             List<String> theNilReason;
@@ -652,11 +647,16 @@ public class MaintenanceReportPropertyType implements Serializable, Cloneable, C
             theActuate = this.getActuate();
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "actuate", theActuate), currentHashCode, theActuate, this.isSetActuate());
         }
+        {
+            boolean theOwns;
+            theOwns = (this.isSetOwns()?this.isOwns():false);
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "owns", theOwns), currentHashCode, theOwns, this.isSetOwns());
+        }
         return currentHashCode;
     }
 
     public int hashCode() {
-        final HashCodeStrategy2 strategy = JAXBHashCodeStrategy.INSTANCE;
+        final HashCodeStrategy2 strategy = JAXBHashCodeStrategy.INSTANCE2;
         return this.hashCode(null, strategy);
     }
 
@@ -665,7 +665,7 @@ public class MaintenanceReportPropertyType implements Serializable, Cloneable, C
     }
 
     public Object copyTo(Object target) {
-        final CopyStrategy2 strategy = JAXBCopyStrategy.INSTANCE;
+        final CopyStrategy2 strategy = JAXBCopyStrategy.INSTANCE2;
         return copyTo(null, target, strategy);
     }
 
@@ -683,19 +683,6 @@ public class MaintenanceReportPropertyType implements Serializable, Cloneable, C
                 } else {
                     if (maintenanceReportShouldBeCopiedAndSet == Boolean.FALSE) {
                         copy.maintenanceReport = null;
-                    }
-                }
-            }
-            {
-                Boolean ownsShouldBeCopiedAndSet = strategy.shouldBeCopiedAndSet(locator, this.isSetOwns());
-                if (ownsShouldBeCopiedAndSet == Boolean.TRUE) {
-                    boolean sourceOwns;
-                    sourceOwns = (this.isSetOwns()?this.isOwns():false);
-                    boolean copyOwns = strategy.copy(LocatorUtils.property(locator, "owns", sourceOwns), sourceOwns, this.isSetOwns());
-                    copy.setOwns(copyOwns);
-                } else {
-                    if (ownsShouldBeCopiedAndSet == Boolean.FALSE) {
-                        copy.unsetOwns();
                     }
                 }
             }
@@ -818,6 +805,19 @@ public class MaintenanceReportPropertyType implements Serializable, Cloneable, C
                 } else {
                     if (actuateShouldBeCopiedAndSet == Boolean.FALSE) {
                         copy.actuate = null;
+                    }
+                }
+            }
+            {
+                Boolean ownsShouldBeCopiedAndSet = strategy.shouldBeCopiedAndSet(locator, this.isSetOwns());
+                if (ownsShouldBeCopiedAndSet == Boolean.TRUE) {
+                    boolean sourceOwns;
+                    sourceOwns = (this.isSetOwns()?this.isOwns():false);
+                    boolean copyOwns = strategy.copy(LocatorUtils.property(locator, "owns", sourceOwns), sourceOwns, this.isSetOwns());
+                    copy.setOwns(copyOwns);
+                } else {
+                    if (ownsShouldBeCopiedAndSet == Boolean.FALSE) {
+                        copy.unsetOwns();
                     }
                 }
             }

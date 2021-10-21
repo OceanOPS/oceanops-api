@@ -512,7 +512,7 @@ public class WIGOSMetadataRecordType
     }
 
     public String toString() {
-        final ToStringStrategy2 strategy = JAXBToStringStrategy.INSTANCE;
+        final ToStringStrategy2 strategy = JAXBToStringStrategy.INSTANCE2;
         final StringBuilder buffer = new StringBuilder();
         append(null, buffer, strategy);
         return buffer.toString();
@@ -671,7 +671,7 @@ public class WIGOSMetadataRecordType
     }
 
     public boolean equals(Object object) {
-        final EqualsStrategy2 strategy = JAXBEqualsStrategy.INSTANCE;
+        final EqualsStrategy2 strategy = JAXBEqualsStrategy.INSTANCE2;
         return equals(null, null, object, strategy);
     }
 
@@ -726,7 +726,7 @@ public class WIGOSMetadataRecordType
     }
 
     public int hashCode() {
-        final HashCodeStrategy2 strategy = JAXBHashCodeStrategy.INSTANCE;
+        final HashCodeStrategy2 strategy = JAXBHashCodeStrategy.INSTANCE2;
         return this.hashCode(null, strategy);
     }
 
@@ -735,7 +735,7 @@ public class WIGOSMetadataRecordType
     }
 
     public Object copyTo(Object target) {
-        final CopyStrategy2 strategy = JAXBCopyStrategy.INSTANCE;
+        final CopyStrategy2 strategy = JAXBCopyStrategy.INSTANCE2;
         return copyTo(null, target, strategy);
     }
 
@@ -971,7 +971,7 @@ public class WIGOSMetadataRecordType
         }
 
         public String toString() {
-            final ToStringStrategy2 strategy = JAXBToStringStrategy.INSTANCE;
+            final ToStringStrategy2 strategy = JAXBToStringStrategy.INSTANCE2;
             final StringBuilder buffer = new StringBuilder();
             append(null, buffer, strategy);
             return buffer.toString();
@@ -1018,7 +1018,7 @@ public class WIGOSMetadataRecordType
         }
 
         public boolean equals(Object object) {
-            final EqualsStrategy2 strategy = JAXBEqualsStrategy.INSTANCE;
+            final EqualsStrategy2 strategy = JAXBEqualsStrategy.INSTANCE2;
             return equals(null, null, object, strategy);
         }
 
@@ -1033,7 +1033,7 @@ public class WIGOSMetadataRecordType
         }
 
         public int hashCode() {
-            final HashCodeStrategy2 strategy = JAXBHashCodeStrategy.INSTANCE;
+            final HashCodeStrategy2 strategy = JAXBHashCodeStrategy.INSTANCE2;
             return this.hashCode(null, strategy);
         }
 
@@ -1042,7 +1042,7 @@ public class WIGOSMetadataRecordType
         }
 
         public Object copyTo(Object target) {
-            final CopyStrategy2 strategy = JAXBCopyStrategy.INSTANCE;
+            final CopyStrategy2 strategy = JAXBCopyStrategy.INSTANCE2;
             return copyTo(null, target, strategy);
         }
 
@@ -1136,7 +1136,7 @@ public class WIGOSMetadataRecordType
         }
 
         public String toString() {
-            final ToStringStrategy2 strategy = JAXBToStringStrategy.INSTANCE;
+            final ToStringStrategy2 strategy = JAXBToStringStrategy.INSTANCE2;
             final StringBuilder buffer = new StringBuilder();
             append(null, buffer, strategy);
             return buffer.toString();
@@ -1183,7 +1183,7 @@ public class WIGOSMetadataRecordType
         }
 
         public boolean equals(Object object) {
-            final EqualsStrategy2 strategy = JAXBEqualsStrategy.INSTANCE;
+            final EqualsStrategy2 strategy = JAXBEqualsStrategy.INSTANCE2;
             return equals(null, null, object, strategy);
         }
 
@@ -1198,7 +1198,7 @@ public class WIGOSMetadataRecordType
         }
 
         public int hashCode() {
-            final HashCodeStrategy2 strategy = JAXBHashCodeStrategy.INSTANCE;
+            final HashCodeStrategy2 strategy = JAXBHashCodeStrategy.INSTANCE2;
             return this.hashCode(null, strategy);
         }
 
@@ -1207,7 +1207,7 @@ public class WIGOSMetadataRecordType
         }
 
         public Object copyTo(Object target) {
-            final CopyStrategy2 strategy = JAXBCopyStrategy.INSTANCE;
+            final CopyStrategy2 strategy = JAXBCopyStrategy.INSTANCE2;
             return copyTo(null, target, strategy);
         }
 
@@ -1301,7 +1301,7 @@ public class WIGOSMetadataRecordType
         }
 
         public String toString() {
-            final ToStringStrategy2 strategy = JAXBToStringStrategy.INSTANCE;
+            final ToStringStrategy2 strategy = JAXBToStringStrategy.INSTANCE2;
             final StringBuilder buffer = new StringBuilder();
             append(null, buffer, strategy);
             return buffer.toString();
@@ -1348,7 +1348,7 @@ public class WIGOSMetadataRecordType
         }
 
         public boolean equals(Object object) {
-            final EqualsStrategy2 strategy = JAXBEqualsStrategy.INSTANCE;
+            final EqualsStrategy2 strategy = JAXBEqualsStrategy.INSTANCE2;
             return equals(null, null, object, strategy);
         }
 
@@ -1363,7 +1363,7 @@ public class WIGOSMetadataRecordType
         }
 
         public int hashCode() {
-            final HashCodeStrategy2 strategy = JAXBHashCodeStrategy.INSTANCE;
+            final HashCodeStrategy2 strategy = JAXBHashCodeStrategy.INSTANCE2;
             return this.hashCode(null, strategy);
         }
 
@@ -1372,7 +1372,7 @@ public class WIGOSMetadataRecordType
         }
 
         public Object copyTo(Object target) {
-            final CopyStrategy2 strategy = JAXBCopyStrategy.INSTANCE;
+            final CopyStrategy2 strategy = JAXBCopyStrategy.INSTANCE2;
             return copyTo(null, target, strategy);
         }
 
@@ -1442,63 +1442,63 @@ public class WIGOSMetadataRecordType
          * 
          * @return
          *     possible object is
-         *     {@link JAXBElement }{@code <}{@link ProcessingType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link ControlCheckReportType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link MaintenanceReportType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link EventReportType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link LogEntryType }{@code >}
          *     {@link JAXBElement }{@code <}{@link SurfaceCoverType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link ClimateZoneType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link TopographyBathymetryType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link StatisticalQualifierType }{@code >}
          *     {@link JAXBElement }{@code <}{@link ReportingStatusType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link ProgramAffiliationType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link GeospatialLocationType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link ControlCheckReportType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link EventReportType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link MaintenanceReportType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link LogEntryType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link DescriptionType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link DataPolicyType }{@code >}
          *     {@link JAXBElement }{@code <}{@link ResponsiblePartyType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link TerritoryType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link SamplingType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link ScalarConstraintType }{@code >}
          *     {@link JAXBElement }{@code <}{@link CategoryConstraintType }{@code >}
          *     {@link JAXBElement }{@code <}{@link RangeConstraintType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link ScalarConstraintType }{@code >}
          *     {@link JAXBElement }{@code <}{@link ConstraintType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link ClimateZoneType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link DataPolicyType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link StatisticalQualifierType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link ScheduleType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link AttributionType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link DescriptionType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link HeaderType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link SurfaceRoughnessType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link ProcessingType }{@code >}
          *     {@link JAXBElement }{@code <}{@link _int.wmo.def.opm._2013.RangeBoundsType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link InstrumentOperatingStatusType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link ReportingType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link _int.wmo.def.metce._2013.RangeBoundsType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link _int.wmo.def.wmdr._2017.ProcessType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link _int.wmo.def.metce._2013.ProcessType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link ScheduleType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link MeasurementContextType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link FrequenciesType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link ObservingCapabilityType }{@code >}
          *     {@link JAXBElement }{@code <}{@link DeploymentType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link EruptingVolcanoType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link VolcanoType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link FacilityLogType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link EquipmentLogType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link LogType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link WIGOSMetadataRecordType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link DataGenerationType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link TropicalCycloneType }{@code >}
          *     {@link JAXBElement }{@code <}{@link EquipmentType }{@code >}
          *     {@link JAXBElement }{@code <}{@link ObservingFacilityType }{@code >}
          *     {@link JAXBElement }{@code <}{@link AbstractEnvironmentalMonitoringFacilityType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link TropicalCycloneType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link FrequenciesType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link EruptingVolcanoType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link VolcanoType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link DataGenerationType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link FacilityLogType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link EquipmentLogType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link LogType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link _int.wmo.def.wmdr._2017.ProcessType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link _int.wmo.def.metce._2013.ProcessType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link WIGOSMetadataRecordType }{@code >}
          *     {@link JAXBElement }{@code <}{@link FacilitySetType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link ObservingCapabilityType }{@code >}
          *     {@link JAXBElement }{@code <}{@link AbstractFeatureType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link MeasurementContextType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link CompositeObservablePropertyType }{@code >}
          *     {@link JAXBElement }{@code <}{@link QualifiedObservablePropertyType }{@code >}
          *     {@link JAXBElement }{@code <}{@link ObservablePropertyType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link CompositeObservablePropertyType }{@code >}
          *     {@link JAXBElement }{@code <}{@link AbstractObservablePropertyType }{@code >}
          *     {@link JAXBElement }{@code <}{@link VerticalDatumType }{@code >}
          *     {@link JAXBElement }{@code <}{@link AbstractDatumType }{@code >}
          *     {@link JAXBElement }{@code <}{@link DefinitionType }{@code >}
          *     {@link JAXBElement }{@code <}{@link AbstractGMLType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link GeospatialLocationType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link SurfaceRoughnessType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link HeaderType }{@code >}
          *     {@link JAXBElement }{@code <}{@link ResultSetType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link TopographyBathymetryType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link ReportingType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link AttributionType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link SamplingType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link TerritoryType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link InstrumentOperatingStatusType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link ProgramAffiliationType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link _int.wmo.def.metce._2013.RangeBoundsType }{@code >}
          *     {@link JAXBElement }{@code <}{@link Object }{@code >}
          *     
          */
@@ -1511,63 +1511,63 @@ public class WIGOSMetadataRecordType
          * 
          * @param value
          *     allowed object is
-         *     {@link JAXBElement }{@code <}{@link ProcessingType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link ControlCheckReportType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link MaintenanceReportType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link EventReportType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link LogEntryType }{@code >}
          *     {@link JAXBElement }{@code <}{@link SurfaceCoverType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link ClimateZoneType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link TopographyBathymetryType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link StatisticalQualifierType }{@code >}
          *     {@link JAXBElement }{@code <}{@link ReportingStatusType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link ProgramAffiliationType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link GeospatialLocationType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link ControlCheckReportType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link EventReportType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link MaintenanceReportType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link LogEntryType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link DescriptionType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link DataPolicyType }{@code >}
          *     {@link JAXBElement }{@code <}{@link ResponsiblePartyType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link TerritoryType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link SamplingType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link ScalarConstraintType }{@code >}
          *     {@link JAXBElement }{@code <}{@link CategoryConstraintType }{@code >}
          *     {@link JAXBElement }{@code <}{@link RangeConstraintType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link ScalarConstraintType }{@code >}
          *     {@link JAXBElement }{@code <}{@link ConstraintType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link ClimateZoneType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link DataPolicyType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link StatisticalQualifierType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link ScheduleType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link AttributionType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link DescriptionType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link HeaderType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link SurfaceRoughnessType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link ProcessingType }{@code >}
          *     {@link JAXBElement }{@code <}{@link _int.wmo.def.opm._2013.RangeBoundsType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link InstrumentOperatingStatusType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link ReportingType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link _int.wmo.def.metce._2013.RangeBoundsType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link _int.wmo.def.wmdr._2017.ProcessType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link _int.wmo.def.metce._2013.ProcessType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link ScheduleType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link MeasurementContextType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link FrequenciesType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link ObservingCapabilityType }{@code >}
          *     {@link JAXBElement }{@code <}{@link DeploymentType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link EruptingVolcanoType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link VolcanoType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link FacilityLogType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link EquipmentLogType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link LogType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link WIGOSMetadataRecordType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link DataGenerationType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link TropicalCycloneType }{@code >}
          *     {@link JAXBElement }{@code <}{@link EquipmentType }{@code >}
          *     {@link JAXBElement }{@code <}{@link ObservingFacilityType }{@code >}
          *     {@link JAXBElement }{@code <}{@link AbstractEnvironmentalMonitoringFacilityType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link TropicalCycloneType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link FrequenciesType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link EruptingVolcanoType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link VolcanoType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link DataGenerationType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link FacilityLogType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link EquipmentLogType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link LogType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link _int.wmo.def.wmdr._2017.ProcessType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link _int.wmo.def.metce._2013.ProcessType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link WIGOSMetadataRecordType }{@code >}
          *     {@link JAXBElement }{@code <}{@link FacilitySetType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link ObservingCapabilityType }{@code >}
          *     {@link JAXBElement }{@code <}{@link AbstractFeatureType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link MeasurementContextType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link CompositeObservablePropertyType }{@code >}
          *     {@link JAXBElement }{@code <}{@link QualifiedObservablePropertyType }{@code >}
          *     {@link JAXBElement }{@code <}{@link ObservablePropertyType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link CompositeObservablePropertyType }{@code >}
          *     {@link JAXBElement }{@code <}{@link AbstractObservablePropertyType }{@code >}
          *     {@link JAXBElement }{@code <}{@link VerticalDatumType }{@code >}
          *     {@link JAXBElement }{@code <}{@link AbstractDatumType }{@code >}
          *     {@link JAXBElement }{@code <}{@link DefinitionType }{@code >}
          *     {@link JAXBElement }{@code <}{@link AbstractGMLType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link GeospatialLocationType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link SurfaceRoughnessType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link HeaderType }{@code >}
          *     {@link JAXBElement }{@code <}{@link ResultSetType }{@code >}
-         *     {@link JAXBElement }{@code <}{@link TopographyBathymetryType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link ReportingType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link AttributionType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link SamplingType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link TerritoryType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link InstrumentOperatingStatusType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link ProgramAffiliationType }{@code >}
+         *     {@link JAXBElement }{@code <}{@link _int.wmo.def.metce._2013.RangeBoundsType }{@code >}
          *     {@link JAXBElement }{@code <}{@link Object }{@code >}
          *     
          */
@@ -1580,7 +1580,7 @@ public class WIGOSMetadataRecordType
         }
 
         public String toString() {
-            final ToStringStrategy2 strategy = JAXBToStringStrategy.INSTANCE;
+            final ToStringStrategy2 strategy = JAXBToStringStrategy.INSTANCE2;
             final StringBuilder buffer = new StringBuilder();
             append(null, buffer, strategy);
             return buffer.toString();
@@ -1627,7 +1627,7 @@ public class WIGOSMetadataRecordType
         }
 
         public boolean equals(Object object) {
-            final EqualsStrategy2 strategy = JAXBEqualsStrategy.INSTANCE;
+            final EqualsStrategy2 strategy = JAXBEqualsStrategy.INSTANCE2;
             return equals(null, null, object, strategy);
         }
 
@@ -1642,7 +1642,7 @@ public class WIGOSMetadataRecordType
         }
 
         public int hashCode() {
-            final HashCodeStrategy2 strategy = JAXBHashCodeStrategy.INSTANCE;
+            final HashCodeStrategy2 strategy = JAXBHashCodeStrategy.INSTANCE2;
             return this.hashCode(null, strategy);
         }
 
@@ -1651,7 +1651,7 @@ public class WIGOSMetadataRecordType
         }
 
         public Object copyTo(Object target) {
-            final CopyStrategy2 strategy = JAXBCopyStrategy.INSTANCE;
+            final CopyStrategy2 strategy = JAXBCopyStrategy.INSTANCE2;
             return copyTo(null, target, strategy);
         }
 
@@ -1745,7 +1745,7 @@ public class WIGOSMetadataRecordType
         }
 
         public String toString() {
-            final ToStringStrategy2 strategy = JAXBToStringStrategy.INSTANCE;
+            final ToStringStrategy2 strategy = JAXBToStringStrategy.INSTANCE2;
             final StringBuilder buffer = new StringBuilder();
             append(null, buffer, strategy);
             return buffer.toString();
@@ -1792,7 +1792,7 @@ public class WIGOSMetadataRecordType
         }
 
         public boolean equals(Object object) {
-            final EqualsStrategy2 strategy = JAXBEqualsStrategy.INSTANCE;
+            final EqualsStrategy2 strategy = JAXBEqualsStrategy.INSTANCE2;
             return equals(null, null, object, strategy);
         }
 
@@ -1807,7 +1807,7 @@ public class WIGOSMetadataRecordType
         }
 
         public int hashCode() {
-            final HashCodeStrategy2 strategy = JAXBHashCodeStrategy.INSTANCE;
+            final HashCodeStrategy2 strategy = JAXBHashCodeStrategy.INSTANCE2;
             return this.hashCode(null, strategy);
         }
 
@@ -1816,7 +1816,7 @@ public class WIGOSMetadataRecordType
         }
 
         public Object copyTo(Object target) {
-            final CopyStrategy2 strategy = JAXBCopyStrategy.INSTANCE;
+            final CopyStrategy2 strategy = JAXBCopyStrategy.INSTANCE2;
             return copyTo(null, target, strategy);
         }
 
@@ -1910,7 +1910,7 @@ public class WIGOSMetadataRecordType
         }
 
         public String toString() {
-            final ToStringStrategy2 strategy = JAXBToStringStrategy.INSTANCE;
+            final ToStringStrategy2 strategy = JAXBToStringStrategy.INSTANCE2;
             final StringBuilder buffer = new StringBuilder();
             append(null, buffer, strategy);
             return buffer.toString();
@@ -1957,7 +1957,7 @@ public class WIGOSMetadataRecordType
         }
 
         public boolean equals(Object object) {
-            final EqualsStrategy2 strategy = JAXBEqualsStrategy.INSTANCE;
+            final EqualsStrategy2 strategy = JAXBEqualsStrategy.INSTANCE2;
             return equals(null, null, object, strategy);
         }
 
@@ -1972,7 +1972,7 @@ public class WIGOSMetadataRecordType
         }
 
         public int hashCode() {
-            final HashCodeStrategy2 strategy = JAXBHashCodeStrategy.INSTANCE;
+            final HashCodeStrategy2 strategy = JAXBHashCodeStrategy.INSTANCE2;
             return this.hashCode(null, strategy);
         }
 
@@ -1981,7 +1981,7 @@ public class WIGOSMetadataRecordType
         }
 
         public Object copyTo(Object target) {
-            final CopyStrategy2 strategy = JAXBCopyStrategy.INSTANCE;
+            final CopyStrategy2 strategy = JAXBCopyStrategy.INSTANCE2;
             return copyTo(null, target, strategy);
         }
 
@@ -2075,7 +2075,7 @@ public class WIGOSMetadataRecordType
         }
 
         public String toString() {
-            final ToStringStrategy2 strategy = JAXBToStringStrategy.INSTANCE;
+            final ToStringStrategy2 strategy = JAXBToStringStrategy.INSTANCE2;
             final StringBuilder buffer = new StringBuilder();
             append(null, buffer, strategy);
             return buffer.toString();
@@ -2122,7 +2122,7 @@ public class WIGOSMetadataRecordType
         }
 
         public boolean equals(Object object) {
-            final EqualsStrategy2 strategy = JAXBEqualsStrategy.INSTANCE;
+            final EqualsStrategy2 strategy = JAXBEqualsStrategy.INSTANCE2;
             return equals(null, null, object, strategy);
         }
 
@@ -2137,7 +2137,7 @@ public class WIGOSMetadataRecordType
         }
 
         public int hashCode() {
-            final HashCodeStrategy2 strategy = JAXBHashCodeStrategy.INSTANCE;
+            final HashCodeStrategy2 strategy = JAXBHashCodeStrategy.INSTANCE2;
             return this.hashCode(null, strategy);
         }
 
@@ -2146,7 +2146,7 @@ public class WIGOSMetadataRecordType
         }
 
         public Object copyTo(Object target) {
-            final CopyStrategy2 strategy = JAXBCopyStrategy.INSTANCE;
+            final CopyStrategy2 strategy = JAXBCopyStrategy.INSTANCE2;
             return copyTo(null, target, strategy);
         }
 
@@ -2240,7 +2240,7 @@ public class WIGOSMetadataRecordType
         }
 
         public String toString() {
-            final ToStringStrategy2 strategy = JAXBToStringStrategy.INSTANCE;
+            final ToStringStrategy2 strategy = JAXBToStringStrategy.INSTANCE2;
             final StringBuilder buffer = new StringBuilder();
             append(null, buffer, strategy);
             return buffer.toString();
@@ -2287,7 +2287,7 @@ public class WIGOSMetadataRecordType
         }
 
         public boolean equals(Object object) {
-            final EqualsStrategy2 strategy = JAXBEqualsStrategy.INSTANCE;
+            final EqualsStrategy2 strategy = JAXBEqualsStrategy.INSTANCE2;
             return equals(null, null, object, strategy);
         }
 
@@ -2302,7 +2302,7 @@ public class WIGOSMetadataRecordType
         }
 
         public int hashCode() {
-            final HashCodeStrategy2 strategy = JAXBHashCodeStrategy.INSTANCE;
+            final HashCodeStrategy2 strategy = JAXBHashCodeStrategy.INSTANCE2;
             return this.hashCode(null, strategy);
         }
 
@@ -2311,7 +2311,7 @@ public class WIGOSMetadataRecordType
         }
 
         public Object copyTo(Object target) {
-            final CopyStrategy2 strategy = JAXBCopyStrategy.INSTANCE;
+            final CopyStrategy2 strategy = JAXBCopyStrategy.INSTANCE2;
             return copyTo(null, target, strategy);
         }
 
@@ -2405,7 +2405,7 @@ public class WIGOSMetadataRecordType
         }
 
         public String toString() {
-            final ToStringStrategy2 strategy = JAXBToStringStrategy.INSTANCE;
+            final ToStringStrategy2 strategy = JAXBToStringStrategy.INSTANCE2;
             final StringBuilder buffer = new StringBuilder();
             append(null, buffer, strategy);
             return buffer.toString();
@@ -2452,7 +2452,7 @@ public class WIGOSMetadataRecordType
         }
 
         public boolean equals(Object object) {
-            final EqualsStrategy2 strategy = JAXBEqualsStrategy.INSTANCE;
+            final EqualsStrategy2 strategy = JAXBEqualsStrategy.INSTANCE2;
             return equals(null, null, object, strategy);
         }
 
@@ -2467,7 +2467,7 @@ public class WIGOSMetadataRecordType
         }
 
         public int hashCode() {
-            final HashCodeStrategy2 strategy = JAXBHashCodeStrategy.INSTANCE;
+            final HashCodeStrategy2 strategy = JAXBHashCodeStrategy.INSTANCE2;
             return this.hashCode(null, strategy);
         }
 
@@ -2476,7 +2476,7 @@ public class WIGOSMetadataRecordType
         }
 
         public Object copyTo(Object target) {
-            final CopyStrategy2 strategy = JAXBCopyStrategy.INSTANCE;
+            final CopyStrategy2 strategy = JAXBCopyStrategy.INSTANCE2;
             return copyTo(null, target, strategy);
         }
 

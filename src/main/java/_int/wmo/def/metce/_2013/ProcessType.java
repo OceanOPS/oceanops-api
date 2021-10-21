@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
+import net.opengis.gml.v_3_2.AbstractFeatureType;
 import net.opengis.gml.v_3_2.ReferenceType;
 import net.opengis.om.v_2_0.NamedValuePropertyType;
 import org.jvnet.jaxb2_commons.lang.CopyStrategy2;
@@ -53,7 +54,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
     _int.wmo.def.wmdr._2017.ProcessType.class
 })
 public class ProcessType
-    extends net.opengis.gml.v_3_2.AbstractFeatureType
+    extends AbstractFeatureType
     implements Serializable
 {
 
@@ -165,7 +166,7 @@ public class ProcessType
     }
 
     public String toString() {
-        final ToStringStrategy2 strategy = JAXBToStringStrategy.INSTANCE;
+        final ToStringStrategy2 strategy = JAXBToStringStrategy.INSTANCE2;
         final StringBuilder buffer = new StringBuilder();
         append(null, buffer, strategy);
         return buffer.toString();
@@ -240,7 +241,7 @@ public class ProcessType
     }
 
     public boolean equals(Object object) {
-        final EqualsStrategy2 strategy = JAXBEqualsStrategy.INSTANCE;
+        final EqualsStrategy2 strategy = JAXBEqualsStrategy.INSTANCE2;
         return equals(null, null, object, strategy);
     }
 
@@ -265,7 +266,7 @@ public class ProcessType
     }
 
     public int hashCode() {
-        final HashCodeStrategy2 strategy = JAXBHashCodeStrategy.INSTANCE;
+        final HashCodeStrategy2 strategy = JAXBHashCodeStrategy.INSTANCE2;
         return this.hashCode(null, strategy);
     }
 
@@ -274,7 +275,7 @@ public class ProcessType
     }
 
     public Object copyTo(Object target) {
-        final CopyStrategy2 strategy = JAXBCopyStrategy.INSTANCE;
+        final CopyStrategy2 strategy = JAXBCopyStrategy.INSTANCE2;
         return copyTo(null, target, strategy);
     }
 
