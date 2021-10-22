@@ -267,7 +267,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.scm.id>oceanops-scm-server</project.scm.id>
 		<java.version>14</java.version>
-		<agrest.version>4.5</agrest.version>
+		<agrest.version>4.6</agrest.version>
 		<cayenne.version>4.2.M3</cayenne.version>
 		<entityPath>data</entityPath>
 	</properties>
