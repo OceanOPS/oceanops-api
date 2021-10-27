@@ -68,6 +68,19 @@
 						<modelFile>${project.basedir}/src/main/resources/cayenne-OceanOPS-API.xml</modelFile>
 					</configuration>
 				</plugin>
+				<plugin>
+					<groupId>org.apache.xmlbeans</groupId>
+					<artifactId>xmlbeans</artifactId>
+					<version>${xmlbeans.version}</version>
+					<configuration>
+						<sourceDir>${project.basedir}/src/main/schemas</sourceDir>
+						<sourceSchemas>wmdr.xsd</sourceSchemas>
+						<partialMethods>ALL,-GET_LIST,-XGET_LIST</partialMethods>
+						<download>true</download>
+						<sourceOnly>false</sourceOnly>
+						<outputJar>${project.basedir}/libs/wmdr/wmdr-beans/${wmdr.version}/wmdr-beans-${wmdr.version}.jar</outputJar>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 		<resources>
@@ -117,12 +130,12 @@
 		<dependency>
 			<groupId>org.apache.xmlbeans</groupId>
 			<artifactId>xmlbeans</artifactId>
-			<version>5.0.2</version>
+			<version>${xmlbeans.version}</version>
 		</dependency>	
 		<dependency>
 			<groupId>wmdr</groupId>
 			<artifactId>wmdr-beans</artifactId>
-			<version>1.0RC9</version>
+			<version>${wmdr.version}</version>
 		</dependency>
 
 		<dependency>
@@ -222,6 +235,8 @@
 		<java.version>14</java.version>
 		<agrest.version>4.6</agrest.version>
 		<cayenne.version>4.2.M3</cayenne.version>
+		<xmlbeans.version>5.0.2</xmlbeans.version>
+		<wmdr.version>1.0RC9</wmdr.version>
 		<entityPath>data</entityPath>
 	</properties>
 	<url>www.ocean-ops.org/api/</url>
