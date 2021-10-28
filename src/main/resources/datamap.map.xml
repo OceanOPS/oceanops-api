@@ -982,6 +982,13 @@
 		<db-attribute name="VALIDATED" type="NUMERIC" length="1"/>
 		<db-attribute name="WIGOS_SYNCHRONISED" type="NUMERIC" length="1"/>
 	</db-entity>
+	<db-entity name="PTF_ANCILLARY_DEVICE" schema="JCOMMOPS_B">
+		<db-attribute name="BATCH_REF" type="VARCHAR" length="20"/>
+		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
+		<db-attribute name="PTF_ID" type="INTEGER" length="10"/>
+		<db-attribute name="PTF_MODEL_ID" type="INTEGER" length="10"/>
+		<db-attribute name="SERIAL_REF" type="VARCHAR" length="20"/>
+	</db-entity>
 	<db-entity name="PTF_AUTOMATION" schema="JCOMMOPS_B">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="200"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
@@ -2635,6 +2642,10 @@
 		<obj-attribute name="updateDate" type="java.time.LocalDateTime" db-attribute-path="UPDATE_DATE"/>
 		<obj-attribute name="validated" type="java.lang.Integer" db-attribute-path="VALIDATED"/>
 		<obj-attribute name="wigosSynchronised" type="java.lang.Integer" db-attribute-path="WIGOS_SYNCHRONISED"/>
+	</obj-entity>
+	<obj-entity name="PtfAncillaryDevice" className="org.oceanops.api.orm.PtfAncillaryDevice" dbEntityName="PTF_ANCILLARY_DEVICE">
+		<obj-attribute name="batchRef" type="java.lang.String" db-attribute-path="BATCH_REF"/>
+		<obj-attribute name="serialRef" type="java.lang.String" db-attribute-path="SERIAL_REF"/>
 	</obj-entity>
 	<obj-entity name="PtfAutomation" className="org.oceanops.api.orm.PtfAutomation" dbEntityName="PTF_AUTOMATION">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
@@ -4556,6 +4567,12 @@
 	<db-relationship name="wmos" source="PTF" target="WMO" toMany="true">
 		<db-attribute-pair source="ID" target="PTF_ID"/>
 	</db-relationship>
+	<db-relationship name="ptf" source="PTF_ANCILLARY_DEVICE" target="PTF">
+		<db-attribute-pair source="PTF_ID" target="ID"/>
+	</db-relationship>
+	<db-relationship name="ptfModel" source="PTF_ANCILLARY_DEVICE" target="PTF_MODEL">
+		<db-attribute-pair source="PTF_MODEL_ID" target="ID"/>
+	</db-relationship>
 	<db-relationship name="untitledRel" source="PTF_AUTOMATION" target="PTF" toMany="true">
 		<db-attribute-pair source="ID" target="PTF_AUTOMATION_ID"/>
 	</db-relationship>
@@ -5679,6 +5696,8 @@
 	<obj-relationship name="trackingSystem" source="Ptf" target="LocSystem" deleteRule="Nullify" db-relationship-path="trackingSystem"/>
 	<obj-relationship name="weblinks" source="Ptf" target="Weblink" deleteRule="Nullify" db-relationship-path="weblinkPtfs.weblink"/>
 	<obj-relationship name="wmos" source="Ptf" target="Wmo" deleteRule="Deny" db-relationship-path="wmos"/>
+	<obj-relationship name="ptf" source="PtfAncillaryDevice" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
+	<obj-relationship name="ptfModel" source="PtfAncillaryDevice" target="PtfModel" deleteRule="Nullify" db-relationship-path="ptfModel"/>
 	<obj-relationship name="ptfHardwares" source="PtfBattery" target="PtfHardware" deleteRule="Deny" db-relationship-path="ptfHardwares"/>
 	<obj-relationship name="config" source="PtfConfig" target="Config" deleteRule="Nullify" db-relationship-path="config"/>
 	<obj-relationship name="ptf" source="PtfConfig" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
