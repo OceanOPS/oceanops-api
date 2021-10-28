@@ -33,7 +33,6 @@ public abstract class _SensorModel extends BaseDataObject {
 
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final StringProperty<String> ACCURACY = PropertyFactory.createString("accuracy", String.class);
     public static final NumericProperty<Integer> AXES_NO = PropertyFactory.createNumeric("axesNo", Integer.class);
     public static final StringProperty<String> BODC_ID = PropertyFactory.createString("bodcId", String.class);
     public static final NumericProperty<Integer> CALIB_FREQUENCY = PropertyFactory.createNumeric("calibFrequency", Integer.class);
@@ -43,9 +42,6 @@ public abstract class _SensorModel extends BaseDataObject {
     public static final StringProperty<String> NAME_LONG = PropertyFactory.createString("nameLong", String.class);
     public static final StringProperty<String> NAME_SHORT = PropertyFactory.createString("nameShort", String.class);
     public static final StringProperty<String> ORIGINAL_DATASET = PropertyFactory.createString("originalDataset", String.class);
-    public static final StringProperty<String> PRECISION = PropertyFactory.createString("precision", String.class);
-    public static final StringProperty<String> RANGE = PropertyFactory.createString("range", String.class);
-    public static final NumericProperty<Integer> RESOLUTION = PropertyFactory.createNumeric("resolution", Integer.class);
     public static final BaseProperty<byte[]> SPEC = PropertyFactory.createBase("spec", byte[].class);
     public static final NumericProperty<Integer> YEARLY_DRIFT = PropertyFactory.createNumeric("yearlyDrift", Integer.class);
     public static final EntityProperty<Agency> AGENCY = PropertyFactory.createEntity("agency", Agency.class);
@@ -57,7 +53,6 @@ public abstract class _SensorModel extends BaseDataObject {
     public static final ListProperty<Service> SERVICES = PropertyFactory.createList("services", Service.class);
     public static final EntityProperty<Weblink> WEBLINK = PropertyFactory.createEntity("weblink", Weblink.class);
 
-    protected String accuracy;
     protected Integer axesNo;
     protected String bodcId;
     protected Integer calibFrequency;
@@ -67,9 +62,6 @@ public abstract class _SensorModel extends BaseDataObject {
     protected String nameLong;
     protected String nameShort;
     protected String originalDataset;
-    protected String precision;
-    protected String range;
-    protected Integer resolution;
     protected byte[] spec;
     protected Integer yearlyDrift;
 
@@ -81,16 +73,6 @@ public abstract class _SensorModel extends BaseDataObject {
     protected Object sensorModelSensorTypes;
     protected Object services;
     protected Object weblink;
-
-    public void setAccuracy(String accuracy) {
-        beforePropertyWrite("accuracy", this.accuracy, accuracy);
-        this.accuracy = accuracy;
-    }
-
-    public String getAccuracy() {
-        beforePropertyRead("accuracy");
-        return this.accuracy;
-    }
 
     public void setAxesNo(Integer axesNo) {
         beforePropertyWrite("axesNo", this.axesNo, axesNo);
@@ -180,36 +162,6 @@ public abstract class _SensorModel extends BaseDataObject {
     public String getOriginalDataset() {
         beforePropertyRead("originalDataset");
         return this.originalDataset;
-    }
-
-    public void setPrecision(String precision) {
-        beforePropertyWrite("precision", this.precision, precision);
-        this.precision = precision;
-    }
-
-    public String getPrecision() {
-        beforePropertyRead("precision");
-        return this.precision;
-    }
-
-    public void setRange(String range) {
-        beforePropertyWrite("range", this.range, range);
-        this.range = range;
-    }
-
-    public String getRange() {
-        beforePropertyRead("range");
-        return this.range;
-    }
-
-    public void setResolution(Integer resolution) {
-        beforePropertyWrite("resolution", this.resolution, resolution);
-        this.resolution = resolution;
-    }
-
-    public Integer getResolution() {
-        beforePropertyRead("resolution");
-        return this.resolution;
     }
 
     public void setSpec(byte[] spec) {
@@ -328,8 +280,6 @@ public abstract class _SensorModel extends BaseDataObject {
         }
 
         switch(propName) {
-            case "accuracy":
-                return this.accuracy;
             case "axesNo":
                 return this.axesNo;
             case "bodcId":
@@ -348,12 +298,6 @@ public abstract class _SensorModel extends BaseDataObject {
                 return this.nameShort;
             case "originalDataset":
                 return this.originalDataset;
-            case "precision":
-                return this.precision;
-            case "range":
-                return this.range;
-            case "resolution":
-                return this.resolution;
             case "spec":
                 return this.spec;
             case "yearlyDrift":
@@ -386,9 +330,6 @@ public abstract class _SensorModel extends BaseDataObject {
         }
 
         switch (propName) {
-            case "accuracy":
-                this.accuracy = (String)val;
-                break;
             case "axesNo":
                 this.axesNo = (Integer)val;
                 break;
@@ -415,15 +356,6 @@ public abstract class _SensorModel extends BaseDataObject {
                 break;
             case "originalDataset":
                 this.originalDataset = (String)val;
-                break;
-            case "precision":
-                this.precision = (String)val;
-                break;
-            case "range":
-                this.range = (String)val;
-                break;
-            case "resolution":
-                this.resolution = (Integer)val;
                 break;
             case "spec":
                 this.spec = (byte[])val;
@@ -471,7 +403,6 @@ public abstract class _SensorModel extends BaseDataObject {
     @Override
     protected void writeState(ObjectOutputStream out) throws IOException {
         super.writeState(out);
-        out.writeObject(this.accuracy);
         out.writeObject(this.axesNo);
         out.writeObject(this.bodcId);
         out.writeObject(this.calibFrequency);
@@ -481,9 +412,6 @@ public abstract class _SensorModel extends BaseDataObject {
         out.writeObject(this.nameLong);
         out.writeObject(this.nameShort);
         out.writeObject(this.originalDataset);
-        out.writeObject(this.precision);
-        out.writeObject(this.range);
-        out.writeObject(this.resolution);
         out.writeObject(this.spec);
         out.writeObject(this.yearlyDrift);
         out.writeObject(this.agency);
@@ -499,7 +427,6 @@ public abstract class _SensorModel extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.accuracy = (String)in.readObject();
         this.axesNo = (Integer)in.readObject();
         this.bodcId = (String)in.readObject();
         this.calibFrequency = (Integer)in.readObject();
@@ -509,9 +436,6 @@ public abstract class _SensorModel extends BaseDataObject {
         this.nameLong = (String)in.readObject();
         this.nameShort = (String)in.readObject();
         this.originalDataset = (String)in.readObject();
-        this.precision = (String)in.readObject();
-        this.range = (String)in.readObject();
-        this.resolution = (Integer)in.readObject();
         this.spec = (byte[])in.readObject();
         this.yearlyDrift = (Integer)in.readObject();
         this.agency = in.readObject();

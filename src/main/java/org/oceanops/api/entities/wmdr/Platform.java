@@ -264,12 +264,11 @@ public class Platform {
 			currentEquipmentType.setManufacturer(sm.getAgency().getName());
 		else
 			currentEquipmentType.setManufacturer("unknown");
+		String range = "unknown";
 		if(ptfV.getRange() != null)
-			currentEquipmentType.setObservableRange(ptfV.getRange());
-		else if(sm.getRange() != null)
-			currentEquipmentType.setObservableRange(sm.getRange());
-		else	
-			currentEquipmentType.setObservableRange("unknown");
+			range = ptfV.getRange();
+		
+		currentEquipmentType.setObservableRange(range);
 		currentEquipmentType.setSpecifiedAbsoluteUncertainty("unknown");
 		currentEquipmentType.setSpecifiedRelativeUncertainty("unknown");
 		currentEquipmentType.setDriftPerUnitTime("unknown");

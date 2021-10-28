@@ -26,8 +26,9 @@ public abstract class _SensorModelSensorType extends BaseDataObject {
     public static final String SENSOR_TYPE_ID_PK_COLUMN = "SENSOR_TYPE_ID";
 
     public static final StringProperty<String> ACCURACY = PropertyFactory.createString("accuracy", String.class);
-    public static final NumericProperty<Integer> HIGH = PropertyFactory.createNumeric("high", Integer.class);
-    public static final NumericProperty<Integer> LOW = PropertyFactory.createNumeric("low", Integer.class);
+    public static final StringProperty<String> PRECISION = PropertyFactory.createString("precision", String.class);
+    public static final StringProperty<String> RANGE = PropertyFactory.createString("range", String.class);
+    public static final NumericProperty<Integer> RESOLUTION = PropertyFactory.createNumeric("resolution", Integer.class);
     public static final NumericProperty<Integer> SENSOR_MODEL_ID = PropertyFactory.createNumeric("sensorModelId", Integer.class);
     public static final NumericProperty<Integer> SENSOR_TYPE_ID = PropertyFactory.createNumeric("sensorTypeId", Integer.class);
     public static final StringProperty<String> UNIT = PropertyFactory.createString("unit", String.class);
@@ -35,8 +36,9 @@ public abstract class _SensorModelSensorType extends BaseDataObject {
     public static final EntityProperty<SensorType> SENSOR_TYPE = PropertyFactory.createEntity("sensorType", SensorType.class);
 
     protected String accuracy;
-    protected Integer high;
-    protected Integer low;
+    protected String precision;
+    protected String range;
+    protected Integer resolution;
     protected Integer sensorModelId;
     protected Integer sensorTypeId;
     protected String unit;
@@ -54,24 +56,34 @@ public abstract class _SensorModelSensorType extends BaseDataObject {
         return this.accuracy;
     }
 
-    public void setHigh(Integer high) {
-        beforePropertyWrite("high", this.high, high);
-        this.high = high;
+    public void setPrecision(String precision) {
+        beforePropertyWrite("precision", this.precision, precision);
+        this.precision = precision;
     }
 
-    public Integer getHigh() {
-        beforePropertyRead("high");
-        return this.high;
+    public String getPrecision() {
+        beforePropertyRead("precision");
+        return this.precision;
     }
 
-    public void setLow(Integer low) {
-        beforePropertyWrite("low", this.low, low);
-        this.low = low;
+    public void setRange(String range) {
+        beforePropertyWrite("range", this.range, range);
+        this.range = range;
     }
 
-    public Integer getLow() {
-        beforePropertyRead("low");
-        return this.low;
+    public String getRange() {
+        beforePropertyRead("range");
+        return this.range;
+    }
+
+    public void setResolution(Integer resolution) {
+        beforePropertyWrite("resolution", this.resolution, resolution);
+        this.resolution = resolution;
+    }
+
+    public Integer getResolution() {
+        beforePropertyRead("resolution");
+        return this.resolution;
     }
 
     public void setSensorModelId(Integer sensorModelId) {
@@ -129,10 +141,12 @@ public abstract class _SensorModelSensorType extends BaseDataObject {
         switch(propName) {
             case "accuracy":
                 return this.accuracy;
-            case "high":
-                return this.high;
-            case "low":
-                return this.low;
+            case "precision":
+                return this.precision;
+            case "range":
+                return this.range;
+            case "resolution":
+                return this.resolution;
             case "sensorModelId":
                 return this.sensorModelId;
             case "sensorTypeId":
@@ -158,11 +172,14 @@ public abstract class _SensorModelSensorType extends BaseDataObject {
             case "accuracy":
                 this.accuracy = (String)val;
                 break;
-            case "high":
-                this.high = (Integer)val;
+            case "precision":
+                this.precision = (String)val;
                 break;
-            case "low":
-                this.low = (Integer)val;
+            case "range":
+                this.range = (String)val;
+                break;
+            case "resolution":
+                this.resolution = (Integer)val;
                 break;
             case "sensorModelId":
                 this.sensorModelId = (Integer)val;
@@ -196,8 +213,9 @@ public abstract class _SensorModelSensorType extends BaseDataObject {
     protected void writeState(ObjectOutputStream out) throws IOException {
         super.writeState(out);
         out.writeObject(this.accuracy);
-        out.writeObject(this.high);
-        out.writeObject(this.low);
+        out.writeObject(this.precision);
+        out.writeObject(this.range);
+        out.writeObject(this.resolution);
         out.writeObject(this.sensorModelId);
         out.writeObject(this.sensorTypeId);
         out.writeObject(this.unit);
@@ -209,8 +227,9 @@ public abstract class _SensorModelSensorType extends BaseDataObject {
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
         this.accuracy = (String)in.readObject();
-        this.high = (Integer)in.readObject();
-        this.low = (Integer)in.readObject();
+        this.precision = (String)in.readObject();
+        this.range = (String)in.readObject();
+        this.resolution = (Integer)in.readObject();
         this.sensorModelId = (Integer)in.readObject();
         this.sensorTypeId = (Integer)in.readObject();
         this.unit = (String)in.readObject();

@@ -1385,7 +1385,6 @@
 		<db-attribute name="REF" type="VARCHAR" length="30"/>
 	</db-entity>
 	<db-entity name="SENSOR_MODEL" schema="JCOMMOPS_B">
-		<db-attribute name="ACCURACY" type="VARCHAR" length="50"/>
 		<db-attribute name="AGENCY_ID" type="INTEGER" length="10"/>
 		<db-attribute name="AXES_NO" type="NUMERIC" length="38"/>
 		<db-attribute name="BODC_ID" type="VARCHAR" length="30"/>
@@ -1397,9 +1396,6 @@
 		<db-attribute name="NAME_LONG" type="VARCHAR" length="150"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="50"/>
 		<db-attribute name="ORIGINAL_DATASET" type="VARCHAR" length="30"/>
-		<db-attribute name="PRECISION" type="VARCHAR" length="50"/>
-		<db-attribute name="RANGE" type="VARCHAR" length="100"/>
-		<db-attribute name="RESOLUTION" type="NUMERIC" length="38"/>
 		<db-attribute name="SPEC" type="BLOB" length="4000"/>
 		<db-attribute name="WEBLINK_ID" type="INTEGER" length="10"/>
 		<db-attribute name="YEARLY_DRIFT" type="NUMERIC" length="38"/>
@@ -1409,9 +1405,10 @@
 		<db-attribute name="SENSOR_MODEL_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 	</db-entity>
 	<db-entity name="SENSOR_MODEL_SENSOR_TYPE" schema="JCOMMOPS_B">
-		<db-attribute name="ACCURACY" type="VARCHAR" length="20"/>
-		<db-attribute name="HIGH" type="NUMERIC" length="10"/>
-		<db-attribute name="LOW" type="NUMERIC" length="10"/>
+		<db-attribute name="ACCURACY" type="VARCHAR" length="50"/>
+		<db-attribute name="PRECISION" type="VARCHAR" length="50"/>
+		<db-attribute name="RANGE" type="VARCHAR" length="50"/>
+		<db-attribute name="RESOLUTION" type="VARCHAR" length="50"/>
 		<db-attribute name="SENSOR_MODEL_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="SENSOR_TYPE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="UNIT" type="VARCHAR" length="20"/>
@@ -2980,7 +2977,6 @@
 		<obj-attribute name="ref" type="java.lang.String" db-attribute-path="REF"/>
 	</obj-entity>
 	<obj-entity name="SensorModel" className="org.oceanops.api.orm.SensorModel" dbEntityName="SENSOR_MODEL">
-		<obj-attribute name="accuracy" type="java.lang.String" db-attribute-path="ACCURACY"/>
 		<obj-attribute name="axesNo" type="java.lang.Integer" db-attribute-path="AXES_NO"/>
 		<obj-attribute name="bodcId" type="java.lang.String" db-attribute-path="BODC_ID"/>
 		<obj-attribute name="calibFrequency" type="java.lang.Integer" db-attribute-path="CALIB_FREQUENCY"/>
@@ -2990,9 +2986,6 @@
 		<obj-attribute name="nameLong" type="java.lang.String" db-attribute-path="NAME_LONG"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 		<obj-attribute name="originalDataset" type="java.lang.String" db-attribute-path="ORIGINAL_DATASET"/>
-		<obj-attribute name="precision" type="java.lang.String" db-attribute-path="PRECISION"/>
-		<obj-attribute name="range" type="java.lang.String" db-attribute-path="RANGE"/>
-		<obj-attribute name="resolution" type="java.lang.Integer" db-attribute-path="RESOLUTION"/>
 		<obj-attribute name="spec" type="byte[]" db-attribute-path="SPEC"/>
 		<obj-attribute name="yearlyDrift" type="java.lang.Integer" db-attribute-path="YEARLY_DRIFT"/>
 	</obj-entity>
@@ -3002,8 +2995,9 @@
 	</obj-entity>
 	<obj-entity name="SensorModelSensorType" className="org.oceanops.api.orm.SensorModelSensorType" dbEntityName="SENSOR_MODEL_SENSOR_TYPE">
 		<obj-attribute name="accuracy" type="java.lang.String" db-attribute-path="ACCURACY"/>
-		<obj-attribute name="high" type="java.lang.Integer" db-attribute-path="HIGH"/>
-		<obj-attribute name="low" type="java.lang.Integer" db-attribute-path="LOW"/>
+		<obj-attribute name="precision" type="java.lang.String" db-attribute-path="PRECISION"/>
+		<obj-attribute name="range" type="java.lang.String" db-attribute-path="RANGE"/>
+		<obj-attribute name="resolution" type="java.lang.Integer" db-attribute-path="RESOLUTION"/>
 		<obj-attribute name="sensorModelId" type="java.lang.Integer" db-attribute-path="SENSOR_MODEL_ID"/>
 		<obj-attribute name="sensorTypeId" type="java.lang.Integer" db-attribute-path="SENSOR_TYPE_ID"/>
 		<obj-attribute name="unit" type="java.lang.String" db-attribute-path="UNIT"/>
