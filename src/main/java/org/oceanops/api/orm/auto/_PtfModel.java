@@ -18,6 +18,7 @@ import org.oceanops.api.orm.GtsInstrumentType;
 import org.oceanops.api.orm.Image;
 import org.oceanops.api.orm.Network;
 import org.oceanops.api.orm.Ptf;
+import org.oceanops.api.orm.PtfAncillaryDevice;
 import org.oceanops.api.orm.PtfHullType;
 import org.oceanops.api.orm.PtfType;
 import org.oceanops.api.orm.TelecomFormat;
@@ -62,6 +63,7 @@ public abstract class _PtfModel extends BaseDataObject {
     public static final EntityProperty<PtfHullType> HULL_TYPE = PropertyFactory.createEntity("hullType", PtfHullType.class);
     public static final EntityProperty<Image> IMAGE = PropertyFactory.createEntity("image", Image.class);
     public static final EntityProperty<Network> NETWORK = PropertyFactory.createEntity("network", Network.class);
+    public static final ListProperty<PtfAncillaryDevice> PTF_ANCILLARY_DEVICES = PropertyFactory.createList("ptfAncillaryDevices", PtfAncillaryDevice.class);
     public static final EntityProperty<PtfType> PTF_TYPE = PropertyFactory.createEntity("ptfType", PtfType.class);
     public static final ListProperty<Ptf> PTFS = PropertyFactory.createList("ptfs", Ptf.class);
     public static final ListProperty<TelecomFormat> TELECOM_FORMATS = PropertyFactory.createList("telecomFormats", TelecomFormat.class);
@@ -95,6 +97,7 @@ public abstract class _PtfModel extends BaseDataObject {
     protected Object hullType;
     protected Object image;
     protected Object network;
+    protected Object ptfAncillaryDevices;
     protected Object ptfType;
     protected Object ptfs;
     protected Object telecomFormats;
@@ -356,6 +359,19 @@ public abstract class _PtfModel extends BaseDataObject {
         return (Network)readProperty("network");
     }
 
+    public void addToPtfAncillaryDevices(PtfAncillaryDevice obj) {
+        addToManyTarget("ptfAncillaryDevices", obj, true);
+    }
+
+    public void removeFromPtfAncillaryDevices(PtfAncillaryDevice obj) {
+        removeToManyTarget("ptfAncillaryDevices", obj, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<PtfAncillaryDevice> getPtfAncillaryDevices() {
+        return (List<PtfAncillaryDevice>)readProperty("ptfAncillaryDevices");
+    }
+
     public void setPtfType(PtfType ptfType) {
         setToOneTarget("ptfType", ptfType, true);
     }
@@ -459,6 +475,8 @@ public abstract class _PtfModel extends BaseDataObject {
                 return this.image;
             case "network":
                 return this.network;
+            case "ptfAncillaryDevices":
+                return this.ptfAncillaryDevices;
             case "ptfType":
                 return this.ptfType;
             case "ptfs":
@@ -560,6 +578,9 @@ public abstract class _PtfModel extends BaseDataObject {
             case "network":
                 this.network = val;
                 break;
+            case "ptfAncillaryDevices":
+                this.ptfAncillaryDevices = val;
+                break;
             case "ptfType":
                 this.ptfType = val;
                 break;
@@ -615,6 +636,7 @@ public abstract class _PtfModel extends BaseDataObject {
         out.writeObject(this.hullType);
         out.writeObject(this.image);
         out.writeObject(this.network);
+        out.writeObject(this.ptfAncillaryDevices);
         out.writeObject(this.ptfType);
         out.writeObject(this.ptfs);
         out.writeObject(this.telecomFormats);
@@ -651,6 +673,7 @@ public abstract class _PtfModel extends BaseDataObject {
         this.hullType = in.readObject();
         this.image = in.readObject();
         this.network = in.readObject();
+        this.ptfAncillaryDevices = in.readObject();
         this.ptfType = in.readObject();
         this.ptfs = in.readObject();
         this.telecomFormats = in.readObject();

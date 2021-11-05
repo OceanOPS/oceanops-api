@@ -44,18 +44,27 @@
 
 	<filter>
 		<filter-name>CayenneFilter</filter-name>
-		<filter-class>org.oceanops.api.filters.CayenneFilter</filter-class>
+		<filter-class>org.apache.cayenne.configuration.web.CayenneFilter</filter-class>
+		<init-param>
+			<param-name>configuration-location</param-name>
+			<param-value>cayenne-OceanOPS-API.xml</param-value>
+		</init-param>
+		<init-param>
+		   <param-name>extra-modules</param-name>
+		   <param-value>org.oceanops.api.filters.CayenneContextModule</param-value>
+		</init-param> 
 	</filter>
-	<filter-mapping>
-		<filter-name>CayenneFilter</filter-name>
-		<url-pattern>/data/*</url-pattern>
-	</filter-mapping>
 	<filter>
 		<filter-name>AuthFilter</filter-name>
 		<filter-class>org.oceanops.api.filters.AuthFilter</filter-class>
 	</filter>
 	<filter-mapping>
+		<filter-name>CayenneFilter</filter-name>
+		<url-pattern>/data/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
 		<filter-name>AuthFilter</filter-name>
 		<url-pattern>/data/*</url-pattern>
 	</filter-mapping>
+
 </web-app>

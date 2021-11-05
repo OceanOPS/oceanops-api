@@ -39,7 +39,7 @@ public class Authorization {
         else
             context = providedContext;
         boolean result = false;
-        if(Authentication.isAuthenticated()){
+        if(Authentication.isAuthenticated() && Authentication.getContact() != null){
             // If admin, has the rights
             if(Authentication.getContact().getAdmin() == 1)
                 result = true;
@@ -54,6 +54,9 @@ public class Authorization {
                     result = true;
             }
         }
+        // If service without contact authenticated
+        else if(Authentication.isAuthenticated())
+            result = true;
         
         return result;
     }

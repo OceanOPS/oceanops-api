@@ -1,33 +1,21 @@
 package org.oceanops.api;
 
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.text.NumberFormat;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.GregorianCalendar;
-import java.util.Locale;
 import java.util.Properties;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
-import javax.xml.bind.DatatypeConverter;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.apache.cayenne.BaseContext;
 import org.apache.cayenne.ObjectContext;
-import org.apache.cayenne.configuration.server.ServerRuntime;
-import org.apache.cayenne.dba.JdbcAdapter;
 
+/**
+ * Class defining utility/helper functions and access to properties
+ */
 public class Utils {
-	private static ServerRuntime cayenneRuntime;
-	private static ObjectContext cayenneContext;
 	private static Properties properties;
 	private static String projectName, projectVersion, rootUrl, programUrl, inspectPtfUrl, helpEditionDate,
 			versionQualifier, entityPath;
@@ -41,6 +29,9 @@ public class Utils {
 	private Utils() {
 	}
 
+	/**
+	 * Initializes the properties used by the API.
+	 */
 	public static void init() {
 		if (Utils.properties == null) {
 			properties = new Properties();
@@ -91,161 +82,6 @@ public class Utils {
 		return projectVersion;
 	}
 
-	public static void initCayenneRuntime() throws NamingException{
-		if (Utils.cayenneRuntime == null) {
-			Context initContext = new InitialContext();
-			Context envContext = (Context) initContext.lookup("java:comp/env");
-			DataSource dataSource = (DataSource) envContext.lookup("jdbc/OceanOPSDB");
-			
-			Utils.cayenneRuntime = ServerRuntime.builder()
-                    .addConfig("cayenne-OceanOPS-API.xml")
-					.dataSource(dataSource)
-                    .build();
-			
-			JdbcAdapter adapter = (JdbcAdapter)Utils.cayenneRuntime.getDataDomain().getDataNode("prod").getAdapter();
-			OraclePkGeneratorCustom pkgen = new OraclePkGeneratorCustom(adapter);
-			pkgen.setPkCacheSize(1);
-			Utils.cayenneRuntime.getDataDomain().getDataNode("prod").getAdapter().setPkGenerator(pkgen);
-		}
-	}
-
-	public static ServerRuntime getCayenneRuntime() {
-		return Utils.cayenneRuntime;
-	}
-
-	public static long ConvertIDStringtoLong(String str) {
-		// REGEX to extract ID
-		Pattern p = Pattern.compile("-?\\d+");
-		Matcher m = p.matcher(str);
-		long ID = 0;
-		while (m.find()) {
-			ID = Integer.parseInt(m.group());
-		}
-		return ID;
-
-	}
-
-	public static String GetIsoDate(LocalDateTime localDateTime) {
-		String dateISO = null;
-		if (localDateTime != null)
-			dateISO = ISO_DATE_FORMAT.format(localDateTime);
-		return dateISO;
-	}
-	
-	public static String GetIsoDateNoTime(LocalDateTime localDateTime) {
-		String dateISO = null;
-		if (localDateTime != null)
-			dateISO = ISO_DATE_NO_TIME_FORMAT.format(localDateTime);
-		return dateISO;
-	}
-
-	public static String GetYear(LocalDateTime date) {
-		return String.valueOf(date.getYear());
-	}
-
-
-	public static String StrValueForSql(String str) {
-		String SqlValueString = str.trim().replace(",", "','");
-		return SqlValueString;
-	}
-
-	public static boolean isNumeric(String str) {
-		return str.matches("-?\\d+(\\.\\d+)?"); // match a number with optional
-												// '-' and decimal.
-	}
-
-	public static boolean isInt(String str) {
-		return str.matches("-?\\d+"); // match a number with optional '-'.
-	}
-
-	public static boolean CheckIntValueForSql(String str) {
-		String[] strTab = str.trim().split(",");
-		boolean test = false;
-		int i = 0;
-		while (i < strTab.length) {
-			if (strTab[i].matches("^-?\\d+$")) {
-				test = true;
-
-			}
-			i++;
-		}
-
-		return test;
-
-	}
-
-	public static String checkStringNull(String str) {
-		return str == null ? "" : str;
-	}
-
-	public static String CheckInt(Integer l) {
-		String str = " ";
-
-		if (l == null) {
-
-		} else {
-			try {
-				str = l.toString();
-			} catch (NullPointerException e) {
-
-			}
-		}
-		return str;
-	}
-
-	public static String Checklong(Long l) {
-		String str = " ";
-
-		if (l == null) {
-
-		} else {
-			try {
-				str = l.toString();
-			} catch (NullPointerException e) {
-
-			}
-		}
-		return str;
-	}
-
-	public static String CheckBigDcm(BigDecimal l) {
-		String str = " ";
-
-		if (l == null) {
-
-		} else {
-			try {
-				str = l.toString();
-			} catch (NullPointerException e) {
-
-			}
-		}
-		return str;
-	}
-
-	public static String CatchException(Object o) {
-		String str = "";
-		if (o instanceof NullPointerException) {
-			str = "catched";
-		}
-
-		return str;
-
-	}
-
-	public static String basicSanitize(String value) {
-		String tempValue = null;
-		if (value != null) {
-			tempValue = value.toUpperCase();
-			if ((tempValue.contains("INSERT ") || tempValue.contains("DELETE ") || tempValue.contains("UPDATE ")
-					|| tempValue.contains("DROP ") || tempValue.contains("DEFINE ") || tempValue.contains("ALTER ")
-					|| tempValue.contains(";") || tempValue.contains("COMMIT"))) {
-				tempValue = null;
-			}
-		}
-		return tempValue;
-	}
-
 	public static String getRootUrl() {
 		Utils.init();
 		return rootUrl;
@@ -283,15 +119,44 @@ public class Utils {
 		Utils.versionQualifier = versionQualifier;
 	}
 
+	/**
+	 * Get an ISO 8601 string representation of the input date.
+	 * @param localDateTime the input date
+	 * @return an ISO 8601 representation string
+	 */
+	public static String GetIsoDate(LocalDateTime localDateTime) {
+		String dateISO = null;
+		if (localDateTime != null)
+			dateISO = ISO_DATE_FORMAT.format(localDateTime);
+		return dateISO;
+	}
+	
+	/**
+	 * Get an ISO 8601 string representation (without the time part) of the input date.
+	 * @param localDateTime the input date
+	 * @return an ISO 8601 representation string (without the time part)
+	 */
+	public static String GetIsoDateNoTime(LocalDateTime localDateTime) {
+		String dateISO = null;
+		if (localDateTime != null)
+			dateISO = ISO_DATE_NO_TIME_FORMAT.format(localDateTime);
+		return dateISO;
+	}
+
+	/**
+	 * Parses an ISO 8601 string representation and return the corresponding {@link LocalDateTime}.
+	 * @param s ISO 8601 string representation
+	 * @return the corresponding {@link LocalDateTime} object
+	 */
 	public static LocalDateTime parseDate(String s) {
 		return LocalDateTime.parse(s, ISO_DATE_FORMAT);
 	}
-
-	public static String printDate(LocalDateTime dt) {
-		GregorianCalendar c = GregorianCalendar.from(dt.atZone(ZoneId.systemDefault()));
-		return DatatypeConverter.printDate(c);
-	}
 	
+	/**
+	 * Convert a {@link LocalDateTime} to a {@link XMLGregorianCalendar}.
+	 * @param localDateTime input date
+	 * @return output {@link XMLGregorianCalendar} object
+	 */
 	public static XMLGregorianCalendar getDateAsXmlGregCal(LocalDateTime localDateTime){
 		try {
 			XMLGregorianCalendar date = DatatypeFactory.newInstance().newXMLGregorianCalendar(localDateTime.getYear(),
@@ -303,23 +168,11 @@ public class Utils {
 		}
 	}
 
-	public static ObjectContext getCayenneContext() {
-		if(Utils.cayenneContext == null)
-			Utils.cayenneContext = Utils.getCayenneRuntime().newContext();
-		return Utils.cayenneContext;
-	}
-	
 	/**
-	 * Formats a number to string while adding a tailing 0-padding
-	 * @param decimals	total number of decimals
-	 * @param number	the original number to format
-	 * @return	then umber formatted as a String
+	 * Get the thread Cayenne context
+	 * @return a {@link ObjectContext} object
 	 */
-	public static String formatNumber(int decimals, double number) {
-	    
-	    NumberFormat formatter = NumberFormat.getInstance(Locale.US);
-	    formatter.setMinimumFractionDigits(decimals);
-	    formatter.setMaximumFractionDigits(decimals);
-	    return formatter.format(number);
+	public static ObjectContext getCayenneContext() {
+		return BaseContext.getThreadObjectContext();
 	}
 }

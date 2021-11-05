@@ -28,8 +28,10 @@ public class AuthFilter implements Filter {
 		if(httpRequest.getHeader("X-OceanOPS-Metadata-ID") != null){
 			Integer id = Integer.parseInt(httpRequest.getHeader("X-OceanOPS-Metadata-ID"));
 			String token = httpRequest.getHeader("X-OceanOPS-Metadata-Token");
+			String serviceIdentifier = httpRequest.getHeader("X-OceanOPS-Metadata-ServiceIdentifier");
+			String serviceToken = httpRequest.getHeader("X-OceanOPS-Metadata-ServiceToken");
 
-			new Authentication(id, token);
+			new Authentication(id, token, serviceIdentifier, serviceToken);
 		}
 		else{
 			Authentication.reset();

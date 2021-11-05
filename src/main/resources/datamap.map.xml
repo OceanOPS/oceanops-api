@@ -4483,6 +4483,9 @@
 	<db-relationship name="program" source="PTF" target="PROGRAM">
 		<db-attribute-pair source="PROGRAM_ID" target="ID"/>
 	</db-relationship>
+	<db-relationship name="ptfAncillaryDevices" source="PTF" target="PTF_ANCILLARY_DEVICE" toMany="true">
+		<db-attribute-pair source="ID" target="PTF_ID"/>
+	</db-relationship>
 	<db-relationship name="ptfAutomation" source="PTF" target="PTF_AUTOMATION">
 		<db-attribute-pair source="PTF_AUTOMATION_ID" target="ID"/>
 	</db-relationship>
@@ -4701,6 +4704,9 @@
 	</db-relationship>
 	<db-relationship name="network" source="PTF_MODEL" target="NETWORK">
 		<db-attribute-pair source="NETWORK_ID" target="ID"/>
+	</db-relationship>
+	<db-relationship name="ptfAncillaryDevices" source="PTF_MODEL" target="PTF_ANCILLARY_DEVICE" toMany="true">
+		<db-attribute-pair source="ID" target="PTF_MODEL_ID"/>
 	</db-relationship>
 	<db-relationship name="ptfType" source="PTF_MODEL" target="PTF_TYPE">
 		<db-attribute-pair source="PTF_TYPE_ID" target="ID"/>
@@ -5668,6 +5674,7 @@
 	<obj-relationship name="networkPtfs" source="Ptf" target="NetworkPtf" deleteRule="Deny" db-relationship-path="networkPtfs"/>
 	<obj-relationship name="obsFishingvesselFishydatas" source="Ptf" target="ObsFishingvesselFishydata" deleteRule="Deny" db-relationship-path="obsFishingvesselFishydatas"/>
 	<obj-relationship name="program" source="Ptf" target="Program" deleteRule="Nullify" db-relationship-path="program"/>
+	<obj-relationship name="ptfAncillaryDevices" source="Ptf" target="PtfAncillaryDevice" deleteRule="Nullify" db-relationship-path="ptfAncillaryDevices"/>
 	<obj-relationship name="ptfAutomation" source="Ptf" target="PtfAutomation" deleteRule="Nullify" db-relationship-path="ptfAutomation"/>
 	<obj-relationship name="ptfBatchStatus" source="Ptf" target="PtfBatchStatus" deleteRule="Nullify" db-relationship-path="ptfBatchStatus"/>
 	<obj-relationship name="ptfConfigs" source="Ptf" target="PtfConfig" deleteRule="Deny" db-relationship-path="ptfConfigs"/>
@@ -5735,6 +5742,7 @@
 	<obj-relationship name="hullType" source="PtfModel" target="PtfHullType" deleteRule="Nullify" db-relationship-path="hullType"/>
 	<obj-relationship name="image" source="PtfModel" target="Image" deleteRule="Nullify" db-relationship-path="image"/>
 	<obj-relationship name="network" source="PtfModel" target="Network" deleteRule="Nullify" db-relationship-path="network"/>
+	<obj-relationship name="ptfAncillaryDevices" source="PtfModel" target="PtfAncillaryDevice" deleteRule="Nullify" db-relationship-path="ptfAncillaryDevices"/>
 	<obj-relationship name="ptfType" source="PtfModel" target="PtfType" deleteRule="Nullify" db-relationship-path="ptfType"/>
 	<obj-relationship name="ptfs" source="PtfModel" target="Ptf" deleteRule="Deny" db-relationship-path="ptfs"/>
 	<obj-relationship name="telecomFormats" source="PtfModel" target="TelecomFormat" deleteRule="Deny" db-relationship-path="telecomFormats"/>

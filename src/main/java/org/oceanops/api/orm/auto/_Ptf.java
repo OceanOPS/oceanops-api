@@ -25,6 +25,7 @@ import org.oceanops.api.orm.NetworkPtf;
 import org.oceanops.api.orm.ObsFishingvesselFishydata;
 import org.oceanops.api.orm.ObsLatest;
 import org.oceanops.api.orm.Program;
+import org.oceanops.api.orm.PtfAncillaryDevice;
 import org.oceanops.api.orm.PtfAutomation;
 import org.oceanops.api.orm.PtfBatchStatus;
 import org.oceanops.api.orm.PtfConfig;
@@ -93,6 +94,7 @@ public abstract class _Ptf extends BaseDataObject {
     public static final ListProperty<NetworkPtf> NETWORK_PTFS = PropertyFactory.createList("networkPtfs", NetworkPtf.class);
     public static final ListProperty<ObsFishingvesselFishydata> OBS_FISHINGVESSEL_FISHYDATAS = PropertyFactory.createList("obsFishingvesselFishydatas", ObsFishingvesselFishydata.class);
     public static final EntityProperty<Program> PROGRAM = PropertyFactory.createEntity("program", Program.class);
+    public static final ListProperty<PtfAncillaryDevice> PTF_ANCILLARY_DEVICES = PropertyFactory.createList("ptfAncillaryDevices", PtfAncillaryDevice.class);
     public static final EntityProperty<PtfAutomation> PTF_AUTOMATION = PropertyFactory.createEntity("ptfAutomation", PtfAutomation.class);
     public static final EntityProperty<PtfBatchStatus> PTF_BATCH_STATUS = PropertyFactory.createEntity("ptfBatchStatus", PtfBatchStatus.class);
     public static final ListProperty<PtfConfig> PTF_CONFIGS = PropertyFactory.createList("ptfConfigs", PtfConfig.class);
@@ -151,6 +153,7 @@ public abstract class _Ptf extends BaseDataObject {
     protected Object networkPtfs;
     protected Object obsFishingvesselFishydatas;
     protected Object program;
+    protected Object ptfAncillaryDevices;
     protected Object ptfAutomation;
     protected Object ptfBatchStatus;
     protected Object ptfConfigs;
@@ -519,6 +522,19 @@ public abstract class _Ptf extends BaseDataObject {
         return (Program)readProperty("program");
     }
 
+    public void addToPtfAncillaryDevices(PtfAncillaryDevice obj) {
+        addToManyTarget("ptfAncillaryDevices", obj, true);
+    }
+
+    public void removeFromPtfAncillaryDevices(PtfAncillaryDevice obj) {
+        removeToManyTarget("ptfAncillaryDevices", obj, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<PtfAncillaryDevice> getPtfAncillaryDevices() {
+        return (List<PtfAncillaryDevice>)readProperty("ptfAncillaryDevices");
+    }
+
     public void setPtfAutomation(PtfAutomation ptfAutomation) {
         setToOneTarget("ptfAutomation", ptfAutomation, true);
     }
@@ -820,6 +836,8 @@ public abstract class _Ptf extends BaseDataObject {
                 return this.obsFishingvesselFishydatas;
             case "program":
                 return this.program;
+            case "ptfAncillaryDevices":
+                return this.ptfAncillaryDevices;
             case "ptfAutomation":
                 return this.ptfAutomation;
             case "ptfBatchStatus":
@@ -978,6 +996,9 @@ public abstract class _Ptf extends BaseDataObject {
             case "program":
                 this.program = val;
                 break;
+            case "ptfAncillaryDevices":
+                this.ptfAncillaryDevices = val;
+                break;
             case "ptfAutomation":
                 this.ptfAutomation = val;
                 break;
@@ -1094,6 +1115,7 @@ public abstract class _Ptf extends BaseDataObject {
         out.writeObject(this.networkPtfs);
         out.writeObject(this.obsFishingvesselFishydatas);
         out.writeObject(this.program);
+        out.writeObject(this.ptfAncillaryDevices);
         out.writeObject(this.ptfAutomation);
         out.writeObject(this.ptfBatchStatus);
         out.writeObject(this.ptfConfigs);
@@ -1155,6 +1177,7 @@ public abstract class _Ptf extends BaseDataObject {
         this.networkPtfs = in.readObject();
         this.obsFishingvesselFishydatas = in.readObject();
         this.program = in.readObject();
+        this.ptfAncillaryDevices = in.readObject();
         this.ptfAutomation = in.readObject();
         this.ptfBatchStatus = in.readObject();
         this.ptfConfigs = in.readObject();
