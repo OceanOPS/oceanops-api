@@ -1523,6 +1523,8 @@ components:
           type: string
         program:
           $ref: '#/components/schemas/Program'
+        ptfAncillaryDevices:
+          $ref: '#/components/schemas/PtfAncillaryDevice'
         ptfAutomation:
           $ref: '#/components/schemas/PtfAutomation'
         ptfBatchStatus:
@@ -1574,6 +1576,17 @@ components:
           type: number
         wmos:
           $ref: '#/components/schemas/Wmo'
+      type: object
+    PtfAncillaryDevice:
+      properties:
+        batchRef:
+          type: string
+        ptf:
+          $ref: '#/components/schemas/Ptf'
+        ptfModel:
+          $ref: '#/components/schemas/PtfModel'
+        serialRef:
+          type: string
       type: object
     PtfAutomation:
       properties:
@@ -1888,6 +1901,8 @@ components:
           type: string
         network:
           $ref: '#/components/schemas/Network'
+        ptfAncillaryDevices:
+          $ref: '#/components/schemas/PtfAncillaryDevice'
         ptfType:
           $ref: '#/components/schemas/PtfType'
         ptfs:
@@ -2352,8 +2367,6 @@ components:
       type: object
     SensorModel:
       properties:
-        accuracy:
-          type: string
         agency:
           $ref: '#/components/schemas/Agency'
         axesNo:
@@ -2378,14 +2391,8 @@ components:
           type: string
         originalDataset:
           type: string
-        precision:
-          type: string
         ptfVariables:
           $ref: '#/components/schemas/PtfVariable'
-        range:
-          type: string
-        resolution:
-          type: number
         sensorModelNetworks:
           $ref: '#/components/schemas/SensorModelNetwork'
         sensorModelSensorTypes:
@@ -2414,9 +2421,11 @@ components:
       properties:
         accuracy:
           type: string
-        high:
-          type: number
-        low:
+        precision:
+          type: string
+        range:
+          type: string
+        resolution:
           type: number
         sensorModel:
           $ref: '#/components/schemas/SensorModel'
@@ -3319,7 +3328,7 @@ paths:
       tags:
       - Ship
 servers:
-- url: https://www.ocean-ops.org/api/${project.version}
+- url: https://www.ocean-ops.org/api/1
 tags:
 - description: 'This model represents a Platform entity and is used to retrieve a
     platform information (schema model named ''Ptf'').
