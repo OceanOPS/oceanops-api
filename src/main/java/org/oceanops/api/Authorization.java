@@ -9,6 +9,7 @@ import org.oceanops.api.orm.Cruise;
 import org.oceanops.api.orm.ProgramContact;
 import org.oceanops.api.orm.PtfDeployment;
 import org.oceanops.api.orm.Ship;
+import org.oceanops.api.orm.Telecom;
 
 import io.agrest.SelectBuilder;
 import io.agrest.meta.AgEntityOverlay;
@@ -142,6 +143,7 @@ public class Authorization {
                 }             
             ));
 
+            // Contact overlaying
             sBuilder.entityOverlay(new AgEntityOverlay<Contact>(Contact.class)
                 .redefineAttribute(Contact.EMAIL.getName(), String.class, ea -> ea.getIsPrivate().intValue() == 0 ? ea.getEmail(): null)
                 .redefineAttribute(Contact.EMAIL2.getName(), String.class, ea -> ea.getIsPrivate().intValue() == 0 ? ea.getEmail2(): null)
@@ -149,17 +151,29 @@ public class Authorization {
                 .redefineAttribute(Contact.TEL2.getName(), String.class, ea -> ea.getIsPrivate().intValue() == 0 ? ea.getTel2(): null)
                 .redefineAttribute(Contact.ADDRESS.getName(), String.class, ea -> ea.getIsPrivate().intValue() == 0 ? ea.getAddress(): null)
                 .redefineAttribute(Contact.FAX.getName(), String.class, ea -> ea.getIsPrivate().intValue() == 0 ? ea.getFax(): null)
-                .exclude("ncNotifications","ncSubscriptions","webConnections","webContactModules",
-                    "webContactPreferences","webFrequentations","webQueries","webWorkspaces")
+                .exclude(Contact.NC_NOTIFICATIONS.getName(),
+                    Contact.NC_SUBSCRIPTIONS.getName(),
+                    Contact.WEB_CONNECTIONS.getName(),
+                    Contact.WEB_CONTACT_MODULES.getName(),
+                    Contact.WEB_CONTACT_PREFERENCES.getName(),
+                    Contact.WEB_FREQUENTATIONS.getName(),
+                    Contact.WEB_QUERIES.getName(),
+                    Contact.WEB_WORKSPACES.getName())
             );
             
+            // ProgramContact overlaying
             sBuilder.entityOverlay(new AgEntityOverlay<ProgramContact>(ProgramContact.class)
-                .exclude("mzmsAutoCheck","mzmsWarningEnabled")
+                .exclude(ProgramContact.MZMS_AUTO_CHECK.getName(),
+                    ProgramContact.MZMS_WARNING_ENABLED.getName())
             );
         }
 
         if(!(Authentication.isAuthenticated())){
             // Non logged user filtering
+            // Telecom IMEI only visible if authenticated
+            sBuilder.entityOverlay(new AgEntityOverlay<Telecom>(Telecom.class)
+                .exclude(Telecom.IMEI.getName())
+            );
         }
 
         return sBuilder;
