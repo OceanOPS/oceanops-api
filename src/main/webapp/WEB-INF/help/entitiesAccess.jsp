@@ -4,7 +4,7 @@
 	but the following section will guide and provide examples of usage through the 'platform' entity.
 </p>
 <h3>JSON format</h3>
-<div class="well">
+<div class="card card-body bg-light">
 URL endpoint: <code>/<%=entityPath%>/platform</code>
 </div>
 <p>
@@ -18,9 +18,9 @@ URL endpoint: <code>/<%=entityPath%>/platform</code>
 		<span class="url"><%=rootUrl%><%=entityPath%>/platform</span>
 	</div>
 </p>
-<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#listAllPtfExample" aria-expanded="false"	aria-controls="listAllPtfExample">Example</button>
+<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#listAllPtfExample" aria-expanded="false"	aria-controls="listAllPtfExample">Example</button>
 <div class="collapse" id="listAllPtfExample">
-	<div class="well">
+	<div class="card card-body bg-light">
 		URL to generate the global platforms list in JSON format:<br> <i><%=rootUrl%><%=entityPath%>/platforms</i> <br>
 		Below is a truncated output:
 		<pre>
@@ -52,9 +52,9 @@ URL endpoint: <code>/<%=entityPath%>/platform</code>
 	Where field1 respresents a leaf field of the platform entity and field2.subfield a field accessed through a related entity.
 	The <code>exp</code> query parameter should specify a SQL like where clause, using the leaf fields or relationships. 
 </p>
-<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#listFilteredPtfExample" aria-expanded="false" aria-controls="listFilteredPtfExample">Example</button>
+<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#listFilteredPtfExample" aria-expanded="false" aria-controls="listFilteredPtfExample">Example</button>
 <div id="listFilteredPtfExample" class="collapse">
-	<div class="well">
+	<div class="card card-body bg-light">
 		<p>
 			To generate the index of <b>operational platforms</b> monitoring the <b>dissolved oxygen (ID = 33)</b>, here is the dedicated URL:
 			<div class="text-center">
@@ -98,9 +98,9 @@ URL endpoint: <code>/<%=entityPath%>/platform</code>
 	</ul>
 </p>
 
-<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#detailsPtfExample" aria-expanded="false"	aria-controls="detailsPtfExample">Example</button>
+<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#detailsPtfExample" aria-expanded="false"	aria-controls="detailsPtfExample">Example</button>
 <div id="detailsPtfExample" class="collapse">
-	<div class="well">
+	<div class="card card-body bg-light">
 		To generate the details information of platform (id=512263) in json	format. Here the dedicated URLs for this example:
 		<div class="text-center">
 			<span class="url"><%=rootUrl%><%=entityPath%>/platform/512263</span><br>
@@ -118,9 +118,9 @@ URL endpoint: <code>/<%=entityPath%>/platform</code>
 	Specify one or several leaf fields in the include parameter will restrict the result to what is specified. 
 	If specifying only a related object, the relation will be added to all the leaf fields.
 </p>
-<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#includeExcludeExample" aria-expanded="false"	aria-controls="includeExcludeExample">Example</button>
+<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#includeExcludeExample" aria-expanded="false"	aria-controls="includeExcludeExample">Example</button>
 <div id="includeExcludeExample" class="collapse">
-	<div class="well">
+	<div class="card card-body bg-light">
 		To generate the details information of platform (ref=6902545) including only the deployment ship, its status and the reference:
 		<div class="text-center">
 			<span class="url"><%=rootUrl%><%=entityPath%>/platform/ref/6902545?include=["ptfDepl.ship.name", "ref", "ptfStatus.name"]</span>
@@ -154,9 +154,9 @@ URL endpoint: <code>/<%=entityPath%>/platform</code>
 <p>
 	<em>The mapBy query parameter</em> can by used to group the result by a given parameter.
 </p>
-<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#mapByExample" aria-expanded="false"	aria-controls="mapByExample">Example</button>
+<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#mapByExample" aria-expanded="false"	aria-controls="mapByExample">Example</button>
 <div id="mapByExample" class="collapse">
-	<div class="well">
+	<div class="card card-body bg-light">
 		To generate the list of Italian operational platforms and group them by their programme name:
 		<div class="text-center">
 			<span class="url"><%=rootUrl%><%=entityPath%>/platform/?exp=["ptfStatus.name='OPERATIONAL' and program.country.code2='IT'"]&include=["ref", "ptfStatus.name"]&mapBy=program.name</span>
@@ -257,7 +257,7 @@ URL endpoint: <code>/<%=entityPath%>/platform</code>
 <ul>
 	<li>
 		All operational Argo floats:
-		<div class="text-center" data-toggle="collapse" data-target="#frequentQuery1" role="button">
+		<div class="text-center" data-bs-toggle="collapse" data-bs-target="#frequentQuery1" role="button">
 			<span class="url"><%=rootUrl%><%=entityPath%>/platform/?exp=["ptfStatus.name='OPERATIONAL' and networkPtfs.network.name='Argo'"]</span>
 		</div>
 		<div id="frequentQuery1" class="collapse">
@@ -271,7 +271,7 @@ URL endpoint: <code>/<%=entityPath%>/platform</code>
 	</li>
 	<li>
 		All inactive DBCP surface drifters:
-		<div class="text-center" data-toggle="collapse" data-target="#frequentQuery2" role="button">
+		<div class="text-center" data-bs-toggle="collapse" data-bs-target="#frequentQuery2" role="button">
 			<span class="url"><%=rootUrl%><%=entityPath%>/platform?exp=["ptfStatus.name='INACTIVE' and networkPtfs.network.nameShort='DBCP' and ptfModel.ptfType.ptfFamily.name = 'Drifting Buoy'"]</span>
 		</div>
 		<div id="frequentQuery2" class="collapse">
@@ -285,7 +285,7 @@ URL endpoint: <code>/<%=entityPath%>/platform</code>
 	</li>
 	<li>
 		All elements having 'CFO383' as GTS identifier (WMO code/ID), resulting only the platform reference, and their opened GTS identifier record (no end date, if any):
-		<div class="text-center" data-toggle="collapse" data-target="#frequentQuery3" role="button">
+		<div class="text-center" data-bs-toggle="collapse" data-bs-target="#frequentQuery3" role="button">
 			<span class="url"><%=rootUrl%><%=entityPath%>/platform?exp=["wmos.wmo = 'CFO383'"]&include=["ref",{"path":"wmos","exp":"endDate = null"},{"wmos":["wmo","startDate", "endDate"]}]</span>
 		</div>
 		<div id="frequentQuery3" class="collapse">
@@ -303,7 +303,7 @@ URL endpoint: <code>/<%=entityPath%>/platform</code>
 	</li>
 	<li>
 		All elements matching '2900' in the beginning of their reference, including the reference and the country name in the output:
-		<div class="text-center" data-toggle="collapse" data-target="#frequentQuery4" role="button">
+		<div class="text-center" data-bs-toggle="collapse" data-bs-target="#frequentQuery4" role="button">
 			<span class="url"><%=rootUrl%><%=entityPath%>/platform?exp=["ref like '2900%'"]&include=["ref","program.country.name"]</span>
 		</div>
 		<div id="frequentQuery4" class="collapse">
@@ -319,7 +319,7 @@ URL endpoint: <code>/<%=entityPath%>/platform</code>
 	</li>
 	<li>
 		All elements deployed after February 1st, 2021 and having a status 'OPERATIONAL' or 'REGISTERED', fetching the reference only:
-		<div class="text-center" data-toggle="collapse" data-target="#frequentQuery5" role="button">
+		<div class="text-center" data-bs-toggle="collapse" data-bs-target="#frequentQuery5" role="button">
 			<span class="url"><%=rootUrl%><%=entityPath%>/platform/?exp=["ptfStatus.name in ('REGISTERED','OPERATIONAL') and ptfDepl.deplDate>$d","2021-02-01 00:00:00"]&include=["ref"]</span>
 		</div>
 		<div id="frequentQuery5" class="collapse">
@@ -336,7 +336,7 @@ URL endpoint: <code>/<%=entityPath%>/platform</code>
 <br>
 
 <h3>XML format</h3>
-<div class="well">
+<div class="card card-body bg-light">
 	URL endpoint: <code>/<%=entityPath%>/platform/wmdr/</code>
 </div>
 <p>
@@ -362,9 +362,9 @@ URL endpoint: <code>/<%=entityPath%>/platform</code>
 	</ul>
 </p>
 
-<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#detailsPtfWMDRExample" aria-expanded="false"	aria-controls="detailsPtfWMDRExample">Example</button>
+<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#detailsPtfWMDRExample" aria-expanded="false"	aria-controls="detailsPtfWMDRExample">Example</button>
 <div id="detailsPtfWMDRExample" class="collapse">
-	<div class="well">
+	<div class="card card-body bg-light">
 		To generate the details information of platform (id=512263) in json	format. Here the dedicated URLs for this example:
 		<div class="text-center">
 			<span class="url"><%=rootUrl%><%=entityPath%>/platform/wmdr/512263</span><br>

@@ -21,35 +21,39 @@
 	<title><%=name%> help</title>
    	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
    	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"	crossorigin="anonymous">
-	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.css">
-	<script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	
+	<link
+	  rel="stylesheet"
+	  href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css"
+	/>
+	<script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
 	
 	<style><%@include file="/styles/main.css"%></style>
 	<style><%@include file="/styles/toc.css"%></style>
 	<script><%@include file="/scripts/main.js"%></script>
 </head>	
-<body data-spy="scroll" data-target="#toc">
-	<nav class="navbar navbar-default">
+<body>
+	<nav class="navbar navbar-light bg-light">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<h1><img src="//www.ocean-ops.org/static/images/oceanops/logos/oceanops-sm.png" alt="OceanOPS logo"/> API <small>documentation<%if(isBetaVersion){ %> <span class="label label-warning"><%=versionQualifier%></span><%}%></small></h1>
+				<h1><img src="//www.ocean-ops.org/static/images/oceanops/logos/oceanops-sm.png" alt="OceanOPS logo"/> API <small>documentation<%if(isBetaVersion){ %> <span class="badge bg-warning"><%=versionQualifier%></span><%}%></small></h1>
 			</div>
 			<p class="navbar-text navbar-right text-right">last version: <%=version%><br>last published: <%=helpEditionDate%><br><a href='https://<%=rootUrl%>oceanops-api.yaml' target='_blank'>OpenAPI definition</a> - <a href='https://<%=rootUrlNoVersion%>swagger/?url=https://<%=rootUrl%>oceanops-api.yaml' target='_blank'>Swagger UI</a></p>
 		</div>
 	</nav>
 	<div id="main-container" class="container-fluid">
 		<div class="row">
-			<div class="col-sm-2" id="left-side-container">
-				<nav id="toc" data-spy="affix"></nav>
+			<div class="col-xl-2" id="left-side-container">
+				<nav id="toc" data-spy="affix" class="sticky-top"></nav>
 			</div>
-			<div class="col-sm-10">
+			<div class="col-xl-10">
 				<%if(isBetaVersion){ %>
-				<div class="well">			
-					<p class="text-warning">This version is tagged "<%=versionQualifier%>". The specifications listed below and the results provided by this API are highly susceptible to change. Feedbacks are welcomed.</p>
+				<div class="alert alert-warning">			
+					This version is tagged "<%=versionQualifier%>". The specifications listed below and the results provided by this API are highly susceptible to change. Feedbacks are welcomed.
 				</div>
 				<%}%>
 								
