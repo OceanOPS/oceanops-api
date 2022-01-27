@@ -158,9 +158,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>4.0.1</version>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+			<version>4.0.4</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency> 
@@ -203,7 +203,7 @@
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
-			<version>20210307</version>
+    		<version>20211205</version>
 		</dependency>
 
 		<dependency>
@@ -236,36 +236,6 @@
 			<artifactId>agrest-annotations</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>io.agrest</groupId>
-			<artifactId>agrest-openapi</artifactId>
-			<exclusions>
-				<exclusion>
-					<artifactId>jakarta.activation-api</artifactId>
-					<groupId>jakarta.activation</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>jakarta.xml.bind-api</artifactId>
-					<groupId>jakarta.xml.bind</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>jackson-core</artifactId>
-					<groupId>com.fasterxml.jackson.core</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>jackson-annotations</artifactId>
-					<groupId>com.fasterxml.jackson.core</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>javassist</artifactId>
-					<groupId>org.javassist</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>jackson-databind</artifactId>
-					<groupId>com.fasterxml.jackson.core</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>	
-		<dependency>
 			<groupId>org.apache.cayenne</groupId>
 			<artifactId>cayenne-web</artifactId>
 			<version>${cayenne.version}</version>
@@ -278,9 +248,9 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.scm.id>oceanops-scm-server</project.scm.id>
 		<java.version>14</java.version>
-		<agrest.version>4.7</agrest.version>
-		<cayenne.version>4.2.M3</cayenne.version>
-		<xmlbeans.version>5.0.2</xmlbeans.version>
+		<agrest.version>4.9</agrest.version>
+		<cayenne.version>4.2.B1</cayenne.version>
+		<xmlbeans.version>5.0.3</xmlbeans.version>
 		<wmdr.version>1.0RC9</wmdr.version>
 		<entityPath>data</entityPath>
 	</properties>

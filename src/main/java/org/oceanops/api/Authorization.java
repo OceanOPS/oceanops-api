@@ -69,20 +69,32 @@ public class Authorization {
      */
     public static AgBuilder applyGlobalAuthorization(AgBuilder agBuilder){
         // Overlaying Contact entity
-		agBuilder.entityOverlay(new AgEntityOverlay<Contact>(Contact.class).exclude(
-			Contact.LOGIN.getName(), 
-			Contact.PASSWD.getName(),
-			Contact.IS_PRIVATE.getName(),
-			Contact.ADMIN.getName(),
-			Contact.GREETINGS.getName(),
-            Contact.GDPR_APPROVED.getName()
-		));
+		agBuilder.entityOverlay(new AgEntityOverlay<Contact>(Contact.class).readablePropFilter(
+            b -> b.property(Contact.LOGIN.getName(), false)
+                .property(Contact.PASSWD.getName(), false)
+                .property(Contact.IS_PRIVATE.getName(), false)
+                .property(Contact.ADMIN.getName(), false)
+                .property(Contact.GREETINGS.getName(), false)
+                .property(Contact.GDPR_APPROVED.getName(), false)
+            ).writablePropFilter(
+            b -> b.property(Contact.LOGIN.getName(), false)
+                .property(Contact.PASSWD.getName(), false)
+                .property(Contact.IS_PRIVATE.getName(), false)
+                .property(Contact.ADMIN.getName(), false)
+                .property(Contact.GREETINGS.getName(), false)
+                .property(Contact.GDPR_APPROVED.getName(), false)
+            )
+        );
 
 		// ProgramContact MZMS exclusion
-		agBuilder.entityOverlay(new AgEntityOverlay<ProgramContact>(ProgramContact.class).exclude(
-			ProgramContact.MZMS_AUTO_CHECK.getName(),
-			ProgramContact.MZMS_WARNING_ENABLED.getName()
-		));
+		agBuilder.entityOverlay(new AgEntityOverlay<ProgramContact>(ProgramContact.class).readablePropFilter(
+            b -> b.property(ProgramContact.MZMS_AUTO_CHECK.getName(), false)
+                .property(ProgramContact.MZMS_WARNING_ENABLED.getName(), false)
+            ).writablePropFilter(
+            b -> b.property(ProgramContact.MZMS_AUTO_CHECK.getName(), false)
+                .property(ProgramContact.MZMS_WARNING_ENABLED.getName(), false)
+            )
+        );
 
         
 
@@ -115,14 +127,14 @@ public class Authorization {
             );
             
             // Overlaying ship
-            sBuilder.entityOverlay(new AgEntityOverlay<Ship>(Ship.class).exclude(
-                Ship.CONTACT_SEA_EMAIL.getName(),
-                Ship.CONTACT_SHORE_EMAIL.getName(),
-                Ship.CONTACT_SEA_EMAIL2.getName(),
-                Ship.CONTACT_SHORE_EMAIL2.getName(),
-                Ship.CONTACT_SEA_EMAIL3.getName(),
-                Ship.CONTACT_SHORE_EMAIL3.getName(),
-                Ship.CONTACT_SHORE_NAME.getName()
+            sBuilder.entityOverlay(new AgEntityOverlay<Ship>(Ship.class).readablePropFilter(
+                b -> b.property(Ship.CONTACT_SEA_EMAIL.getName(), false)
+                .property(Ship.CONTACT_SHORE_EMAIL.getName(), false)
+                .property(Ship.CONTACT_SEA_EMAIL2.getName(), false)
+                .property(Ship.CONTACT_SHORE_EMAIL2.getName(), false)
+                .property(Ship.CONTACT_SEA_EMAIL3.getName(), false)
+                .property(Ship.CONTACT_SHORE_EMAIL3.getName(), false)
+                .property(Ship.CONTACT_SHORE_NAME.getName(), false)
             ).redefineToMany(
                 Ship.PTF_DEPLOYMENTS.getName(), PtfDeployment.class,
                 eo -> {
@@ -151,20 +163,24 @@ public class Authorization {
                 .redefineAttribute(Contact.TEL2.getName(), String.class, ea -> ea.getIsPrivate().intValue() == 0 ? ea.getTel2(): null)
                 .redefineAttribute(Contact.ADDRESS.getName(), String.class, ea -> ea.getIsPrivate().intValue() == 0 ? ea.getAddress(): null)
                 .redefineAttribute(Contact.FAX.getName(), String.class, ea -> ea.getIsPrivate().intValue() == 0 ? ea.getFax(): null)
-                .exclude(Contact.NC_NOTIFICATIONS.getName(),
-                    Contact.NC_SUBSCRIPTIONS.getName(),
-                    Contact.WEB_CONNECTIONS.getName(),
-                    Contact.WEB_CONTACT_MODULES.getName(),
-                    Contact.WEB_CONTACT_PREFERENCES.getName(),
-                    Contact.WEB_FREQUENTATIONS.getName(),
-                    Contact.WEB_QUERIES.getName(),
-                    Contact.WEB_WORKSPACES.getName())
+                .readablePropFilter(
+                    b -> b.property(Contact.NC_NOTIFICATIONS.getName(), false)
+                    .property(Contact.NC_SUBSCRIPTIONS.getName(), false)
+                    .property(Contact.WEB_CONNECTIONS.getName(), false)
+                    .property(Contact.WEB_CONTACT_MODULES.getName(), false)
+                    .property(Contact.WEB_CONTACT_PREFERENCES.getName(), false)
+                    .property(Contact.WEB_FREQUENTATIONS.getName(), false)
+                    .property(Contact.WEB_QUERIES.getName(), false)
+                    .property(Contact.WEB_WORKSPACES.getName(), false)
+                )
             );
             
             // ProgramContact overlaying
             sBuilder.entityOverlay(new AgEntityOverlay<ProgramContact>(ProgramContact.class)
-                .exclude(ProgramContact.MZMS_AUTO_CHECK.getName(),
-                    ProgramContact.MZMS_WARNING_ENABLED.getName())
+                .readablePropFilter(
+                    b -> b.property(ProgramContact.MZMS_AUTO_CHECK.getName(), false)
+                    .property(ProgramContact.MZMS_WARNING_ENABLED.getName(), false)
+                )
             );
         }
 
@@ -172,7 +188,9 @@ public class Authorization {
             // Non logged user filtering
             // Telecom IMEI only visible if authenticated
             sBuilder.entityOverlay(new AgEntityOverlay<Telecom>(Telecom.class)
-                .exclude(Telecom.IMEI.getName())
+                .readablePropFilter(
+                    b -> b.property(Telecom.IMEI.getName(), false)
+                )
             );
         }
 
