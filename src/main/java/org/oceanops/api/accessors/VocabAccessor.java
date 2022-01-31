@@ -17,6 +17,7 @@ import org.oceanops.api.orm.Network;
 import org.oceanops.api.orm.NetworkType;
 import org.oceanops.api.orm.PostRetrievalStatus;
 import org.oceanops.api.orm.Program;
+import org.oceanops.api.orm.PtfBatchStatus;
 import org.oceanops.api.orm.PtfFamily;
 import org.oceanops.api.orm.PtfModel;
 import org.oceanops.api.orm.PtfStatus;
@@ -44,6 +45,24 @@ public class VocabAccessor {
     public VocabAccessor(){
 	}
 	
+	@GET
+	@Path("batchstatus")
+    public DataResponse<PtfBatchStatus> getBatchStatuses(@Context UriInfo uriInfo) {
+		SelectBuilder<PtfBatchStatus> sBuilder = Ag.select(PtfBatchStatus.class, config);
+
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).get();
+	}
+	@GET
+	@Path("batchstatus/{id}")
+    public DataResponse<PtfBatchStatus> getBatchStatus(@PathParam("id") int id, @Context UriInfo uriInfo) {
+		SelectBuilder<PtfBatchStatus> sBuilder = Ag.select(PtfBatchStatus.class, config).byId(id);
+		
+		Authorization.applySelectAuthorization(sBuilder);
+
+		return sBuilder.uri(uriInfo).getOne();
+	}
 	@GET
 	@Path("platformstatus")
     public DataResponse<PtfStatus> getPtfStatuses(@Context UriInfo uriInfo) {

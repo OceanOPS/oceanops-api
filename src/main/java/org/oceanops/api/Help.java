@@ -173,6 +173,11 @@ public class Help extends HttpServlet {
 		concept.put("urlParam", "trackingsystem");
 		concept.put("jsonUrl", "trackingsystem");
 		concepts.add(concept);
+		concept = new HashMap<String, String>();
+		concept.put("name", "Batch status");
+		concept.put("urlParam", "batchstatus");
+		concept.put("jsonUrl", "batchstatus");
+		concepts.add(concept);
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
