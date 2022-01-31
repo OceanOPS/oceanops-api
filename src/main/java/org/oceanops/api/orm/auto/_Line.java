@@ -12,6 +12,7 @@ import org.apache.cayenne.exp.property.ListProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
+import org.apache.cayenne.value.Wkt;
 import org.oceanops.api.orm.Cruise;
 import org.oceanops.api.orm.LineDecadalStatus;
 import org.oceanops.api.orm.LineFamily;
@@ -34,10 +35,9 @@ public abstract class _Line extends BaseDataObject {
     public static final String ID_PK_COLUMN = "ID";
 
     public static final StringProperty<String> FROM_TO = PropertyFactory.createString("fromTo", String.class);
+    public static final BaseProperty<Wkt> GEOM = PropertyFactory.createBase("geom", Wkt.class);
     public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
-    public static final BaseProperty<byte[]> SHAPE = PropertyFactory.createBase("shape", byte[].class);
-    public static final StringProperty<String> WKT = PropertyFactory.createString("wkt", String.class);
     public static final ListProperty<Cruise> CRUISES = PropertyFactory.createList("cruises", Cruise.class);
     public static final EntityProperty<LineDecadalStatus> LINE_DECADAL_STATUS = PropertyFactory.createEntity("lineDecadalStatus", LineDecadalStatus.class);
     public static final EntityProperty<LineFamily> LINE_FAMILY = PropertyFactory.createEntity("lineFamily", LineFamily.class);
@@ -48,10 +48,9 @@ public abstract class _Line extends BaseDataObject {
     public static final EntityProperty<Weblink> WEBLINK = PropertyFactory.createEntity("weblink", Weblink.class);
 
     protected String fromTo;
+    protected Wkt geom;
     protected Integer id;
     protected String name;
-    protected byte[] shape;
-    protected String wkt;
 
     protected Object cruises;
     protected Object lineDecadalStatus;
@@ -72,6 +71,16 @@ public abstract class _Line extends BaseDataObject {
         return this.fromTo;
     }
 
+    public void setGeom(Wkt geom) {
+        beforePropertyWrite("geom", this.geom, geom);
+        this.geom = geom;
+    }
+
+    public Wkt getGeom() {
+        beforePropertyRead("geom");
+        return this.geom;
+    }
+
     public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
         this.id = id;
@@ -90,26 +99,6 @@ public abstract class _Line extends BaseDataObject {
     public String getName() {
         beforePropertyRead("name");
         return this.name;
-    }
-
-    public void setShape(byte[] shape) {
-        beforePropertyWrite("shape", this.shape, shape);
-        this.shape = shape;
-    }
-
-    public byte[] getShape() {
-        beforePropertyRead("shape");
-        return this.shape;
-    }
-
-    public void setWkt(String wkt) {
-        beforePropertyWrite("wkt", this.wkt, wkt);
-        this.wkt = wkt;
-    }
-
-    public String getWkt() {
-        beforePropertyRead("wkt");
-        return this.wkt;
     }
 
     public void addToCruises(Cruise obj) {
@@ -210,14 +199,12 @@ public abstract class _Line extends BaseDataObject {
         switch(propName) {
             case "fromTo":
                 return this.fromTo;
+            case "geom":
+                return this.geom;
             case "id":
                 return this.id;
             case "name":
                 return this.name;
-            case "shape":
-                return this.shape;
-            case "wkt":
-                return this.wkt;
             case "cruises":
                 return this.cruises;
             case "lineDecadalStatus":
@@ -249,17 +236,14 @@ public abstract class _Line extends BaseDataObject {
             case "fromTo":
                 this.fromTo = (String)val;
                 break;
+            case "geom":
+                this.geom = (Wkt)val;
+                break;
             case "id":
                 this.id = (Integer)val;
                 break;
             case "name":
                 this.name = (String)val;
-                break;
-            case "shape":
-                this.shape = (byte[])val;
-                break;
-            case "wkt":
-                this.wkt = (String)val;
                 break;
             case "cruises":
                 this.cruises = val;
@@ -302,10 +286,9 @@ public abstract class _Line extends BaseDataObject {
     protected void writeState(ObjectOutputStream out) throws IOException {
         super.writeState(out);
         out.writeObject(this.fromTo);
+        out.writeObject(this.geom);
         out.writeObject(this.id);
         out.writeObject(this.name);
-        out.writeObject(this.shape);
-        out.writeObject(this.wkt);
         out.writeObject(this.cruises);
         out.writeObject(this.lineDecadalStatus);
         out.writeObject(this.lineFamily);
@@ -320,10 +303,9 @@ public abstract class _Line extends BaseDataObject {
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
         this.fromTo = (String)in.readObject();
+        this.geom = (Wkt)in.readObject();
         this.id = (Integer)in.readObject();
         this.name = (String)in.readObject();
-        this.shape = (byte[])in.readObject();
-        this.wkt = (String)in.readObject();
         this.cruises = in.readObject();
         this.lineDecadalStatus = in.readObject();
         this.lineFamily = in.readObject();

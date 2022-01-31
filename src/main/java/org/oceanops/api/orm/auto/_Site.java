@@ -12,6 +12,7 @@ import org.apache.cayenne.exp.property.ListProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
+import org.apache.cayenne.value.Wkt;
 import org.oceanops.api.orm.NetworkSite;
 import org.oceanops.api.orm.SiteFamily;
 import org.oceanops.api.orm.SitePtf;
@@ -30,24 +31,22 @@ public abstract class _Site extends BaseDataObject {
     public static final String ID_PK_COLUMN = "ID";
 
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
+    public static final BaseProperty<Wkt> GEOM = PropertyFactory.createBase("geom", Wkt.class);
     public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> NAME_SHORT = PropertyFactory.createString("nameShort", String.class);
-    public static final BaseProperty<byte[]> SHAPE = PropertyFactory.createBase("shape", byte[].class);
     public static final NumericProperty<Integer> TARGETED_OCCUPATION = PropertyFactory.createNumeric("targetedOccupation", Integer.class);
-    public static final StringProperty<String> WKT = PropertyFactory.createString("wkt", String.class);
     public static final ListProperty<NetworkSite> NETWORK_SITES = PropertyFactory.createList("networkSites", NetworkSite.class);
     public static final EntityProperty<SiteFamily> SITE_FAMILY = PropertyFactory.createEntity("siteFamily", SiteFamily.class);
     public static final ListProperty<SitePtf> SITE_PTFS = PropertyFactory.createList("sitePtfs", SitePtf.class);
     public static final EntityProperty<SiteStatus> STATUS = PropertyFactory.createEntity("status", SiteStatus.class);
 
     protected String description;
+    protected Wkt geom;
     protected Integer id;
     protected String name;
     protected String nameShort;
-    protected byte[] shape;
     protected Integer targetedOccupation;
-    protected String wkt;
 
     protected Object networkSites;
     protected Object siteFamily;
@@ -62,6 +61,16 @@ public abstract class _Site extends BaseDataObject {
     public String getDescription() {
         beforePropertyRead("description");
         return this.description;
+    }
+
+    public void setGeom(Wkt geom) {
+        beforePropertyWrite("geom", this.geom, geom);
+        this.geom = geom;
+    }
+
+    public Wkt getGeom() {
+        beforePropertyRead("geom");
+        return this.geom;
     }
 
     public void setId(Integer id) {
@@ -94,16 +103,6 @@ public abstract class _Site extends BaseDataObject {
         return this.nameShort;
     }
 
-    public void setShape(byte[] shape) {
-        beforePropertyWrite("shape", this.shape, shape);
-        this.shape = shape;
-    }
-
-    public byte[] getShape() {
-        beforePropertyRead("shape");
-        return this.shape;
-    }
-
     public void setTargetedOccupation(Integer targetedOccupation) {
         beforePropertyWrite("targetedOccupation", this.targetedOccupation, targetedOccupation);
         this.targetedOccupation = targetedOccupation;
@@ -112,16 +111,6 @@ public abstract class _Site extends BaseDataObject {
     public Integer getTargetedOccupation() {
         beforePropertyRead("targetedOccupation");
         return this.targetedOccupation;
-    }
-
-    public void setWkt(String wkt) {
-        beforePropertyWrite("wkt", this.wkt, wkt);
-        this.wkt = wkt;
-    }
-
-    public String getWkt() {
-        beforePropertyRead("wkt");
-        return this.wkt;
     }
 
     public void addToNetworkSites(NetworkSite obj) {
@@ -175,18 +164,16 @@ public abstract class _Site extends BaseDataObject {
         switch(propName) {
             case "description":
                 return this.description;
+            case "geom":
+                return this.geom;
             case "id":
                 return this.id;
             case "name":
                 return this.name;
             case "nameShort":
                 return this.nameShort;
-            case "shape":
-                return this.shape;
             case "targetedOccupation":
                 return this.targetedOccupation;
-            case "wkt":
-                return this.wkt;
             case "networkSites":
                 return this.networkSites;
             case "siteFamily":
@@ -210,6 +197,9 @@ public abstract class _Site extends BaseDataObject {
             case "description":
                 this.description = (String)val;
                 break;
+            case "geom":
+                this.geom = (Wkt)val;
+                break;
             case "id":
                 this.id = (Integer)val;
                 break;
@@ -219,14 +209,8 @@ public abstract class _Site extends BaseDataObject {
             case "nameShort":
                 this.nameShort = (String)val;
                 break;
-            case "shape":
-                this.shape = (byte[])val;
-                break;
             case "targetedOccupation":
                 this.targetedOccupation = (Integer)val;
-                break;
-            case "wkt":
-                this.wkt = (String)val;
                 break;
             case "networkSites":
                 this.networkSites = val;
@@ -257,12 +241,11 @@ public abstract class _Site extends BaseDataObject {
     protected void writeState(ObjectOutputStream out) throws IOException {
         super.writeState(out);
         out.writeObject(this.description);
+        out.writeObject(this.geom);
         out.writeObject(this.id);
         out.writeObject(this.name);
         out.writeObject(this.nameShort);
-        out.writeObject(this.shape);
         out.writeObject(this.targetedOccupation);
-        out.writeObject(this.wkt);
         out.writeObject(this.networkSites);
         out.writeObject(this.siteFamily);
         out.writeObject(this.sitePtfs);
@@ -273,12 +256,11 @@ public abstract class _Site extends BaseDataObject {
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
         this.description = (String)in.readObject();
+        this.geom = (Wkt)in.readObject();
         this.id = (Integer)in.readObject();
         this.name = (String)in.readObject();
         this.nameShort = (String)in.readObject();
-        this.shape = (byte[])in.readObject();
         this.targetedOccupation = (Integer)in.readObject();
-        this.wkt = (String)in.readObject();
         this.networkSites = in.readObject();
         this.siteFamily = in.readObject();
         this.sitePtfs = in.readObject();

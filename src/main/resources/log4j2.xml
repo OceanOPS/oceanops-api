@@ -8,5 +8,8 @@
       <Root level="warn">
         <AppenderRef ref="Console"/>
       </Root>
+      <!--<Logger name="org.apache.cayenne" level="trace" additivity="false">
+        <AppenderRef ref="Console"/>
+      </Logger>-->
     </Loggers> 
 </configuration>

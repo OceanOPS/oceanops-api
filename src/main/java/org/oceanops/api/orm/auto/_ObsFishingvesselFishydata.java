@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
-import org.apache.cayenne.exp.property.BaseProperty;
 import org.apache.cayenne.exp.property.DateProperty;
 import org.apache.cayenne.exp.property.EntityProperty;
 import org.apache.cayenne.exp.property.ListProperty;
@@ -38,7 +37,6 @@ public abstract class _ObsFishingvesselFishydata extends BaseDataObject {
     public static final NumericProperty<Double> LON = PropertyFactory.createNumeric("lon", Double.class);
     public static final DateProperty<LocalDateTime> OBS_DATE = PropertyFactory.createDate("obsDate", LocalDateTime.class);
     public static final NumericProperty<Integer> PROFILE_ID = PropertyFactory.createNumeric("profileId", Integer.class);
-    public static final BaseProperty<byte[]> SHAPE = PropertyFactory.createBase("shape", byte[].class);
     public static final DateProperty<LocalDateTime> UPDATE_DATE = PropertyFactory.createDate("updateDate", LocalDateTime.class);
     public static final StringProperty<String> WMO = PropertyFactory.createString("wmo", String.class);
     public static final EntityProperty<ObsDataStatus> OBS_DATA_STATUS = PropertyFactory.createEntity("obsDataStatus", ObsDataStatus.class);
@@ -53,7 +51,6 @@ public abstract class _ObsFishingvesselFishydata extends BaseDataObject {
     protected Double lon;
     protected LocalDateTime obsDate;
     protected Integer profileId;
-    protected byte[] shape;
     protected LocalDateTime updateDate;
     protected String wmo;
 
@@ -141,16 +138,6 @@ public abstract class _ObsFishingvesselFishydata extends BaseDataObject {
         return this.profileId;
     }
 
-    public void setShape(byte[] shape) {
-        beforePropertyWrite("shape", this.shape, shape);
-        this.shape = shape;
-    }
-
-    public byte[] getShape() {
-        beforePropertyRead("shape");
-        return this.shape;
-    }
-
     public void setUpdateDate(LocalDateTime updateDate) {
         beforePropertyWrite("updateDate", this.updateDate, updateDate);
         this.updateDate = updateDate;
@@ -223,8 +210,6 @@ public abstract class _ObsFishingvesselFishydata extends BaseDataObject {
                 return this.obsDate;
             case "profileId":
                 return this.profileId;
-            case "shape":
-                return this.shape;
             case "updateDate":
                 return this.updateDate;
             case "wmo":
@@ -271,9 +256,6 @@ public abstract class _ObsFishingvesselFishydata extends BaseDataObject {
             case "profileId":
                 this.profileId = (Integer)val;
                 break;
-            case "shape":
-                this.shape = (byte[])val;
-                break;
             case "updateDate":
                 this.updateDate = (LocalDateTime)val;
                 break;
@@ -313,7 +295,6 @@ public abstract class _ObsFishingvesselFishydata extends BaseDataObject {
         out.writeObject(this.lon);
         out.writeObject(this.obsDate);
         out.writeObject(this.profileId);
-        out.writeObject(this.shape);
         out.writeObject(this.updateDate);
         out.writeObject(this.wmo);
         out.writeObject(this.obsDataStatus);
@@ -332,7 +313,6 @@ public abstract class _ObsFishingvesselFishydata extends BaseDataObject {
         this.lon = (Double)in.readObject();
         this.obsDate = (LocalDateTime)in.readObject();
         this.profileId = (Integer)in.readObject();
-        this.shape = (byte[])in.readObject();
         this.updateDate = (LocalDateTime)in.readObject();
         this.wmo = (String)in.readObject();
         this.obsDataStatus = in.readObject();

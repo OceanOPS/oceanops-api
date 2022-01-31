@@ -103,7 +103,6 @@
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="20"/>
 		<db-attribute name="OCEAN" type="VARCHAR" length="50"/>
 		<db-attribute name="RANK" type="NUMERIC" length="2"/>
-		<db-attribute name="SHAPE" type="BLOB" length="4000"/>
 		<db-attribute name="SUBOCEAN" type="VARCHAR" length="50"/>
 		<db-attribute name="WKT" type="VARCHAR" length="4000"/>
 	</db-entity>
@@ -230,7 +229,6 @@
 		<db-attribute name="REF_TMP" type="VARCHAR" length="30"/>
 		<db-attribute name="ROUTE_PENDING" type="NUMERIC" length="1"/>
 		<db-attribute name="ROUTE_PRIVATE" type="NUMERIC" length="1"/>
-		<db-attribute name="SHAPE" type="BLOB" length="4000"/>
 		<db-attribute name="SHIP_ID" type="INTEGER" length="10"/>
 		<db-attribute name="SHIP_STOP" type="NUMERIC" length="1"/>
 		<db-attribute name="STORAGE_CAPACITY" type="NUMERIC" length="38"/>
@@ -239,7 +237,7 @@
 		<db-attribute name="UPDATE_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="VALIDATED" type="NUMERIC" length="1"/>
 		<db-attribute name="WEBLINK_ID" type="INTEGER" length="10"/>
-		<db-attribute name="WKT" type="CLOB" length="4000"/>
+		<db-attribute name="WKB" type="OTHER" length="4000"/>
 	</db-entity>
 	<db-entity name="CRUISE_CLASS" schema="JCOMMOPS_B">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="255"/>
@@ -500,9 +498,8 @@
 		<db-attribute name="LINE_DECADAL_STATUS_ID" type="INTEGER" length="1"/>
 		<db-attribute name="LINE_FAMILY_ID" type="INTEGER" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" isMandatory="true" length="80"/>
-		<db-attribute name="SHAPE" type="BLOB" length="4000"/>
 		<db-attribute name="WEBLINK_ID" type="INTEGER" length="10"/>
-		<db-attribute name="WKT" type="CLOB" length="4000"/>
+		<db-attribute name="WKB" type="OTHER" length="4000"/>
 	</db-entity>
 	<db-entity name="LINE_DECADAL_STATUS" schema="JCOMMOPS_B">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="255"/>
@@ -735,7 +732,6 @@
 		<db-attribute name="OBS_END_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="PTF_ID" type="INTEGER" length="38"/>
 		<db-attribute name="PTF_LOC_ID" type="INTEGER" length="38"/>
-		<db-attribute name="SHAPE" type="BLOB" length="4000"/>
 		<db-attribute name="UPDATE_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="WMO" type="VARCHAR" length="20"/>
 	</db-entity>
@@ -762,7 +758,6 @@
 		<db-attribute name="OBS_DATA_STATUS_ID" type="INTEGER" length="10"/>
 		<db-attribute name="OBS_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="PTF_ID" type="INTEGER" length="38"/>
-		<db-attribute name="SHAPE" type="BLOB" length="4000"/>
 		<db-attribute name="UPDATE_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="WMO" type="VARCHAR" length="20"/>
 	</db-entity>
@@ -800,7 +795,6 @@
 		<db-attribute name="OBS_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="PROFILE_ID" type="INTEGER" length="10"/>
 		<db-attribute name="PTF_ID" type="INTEGER" length="38"/>
-		<db-attribute name="SHAPE" type="BLOB" length="4000"/>
 		<db-attribute name="UPDATE_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="WMO" type="VARCHAR" length="20"/>
 	</db-entity>
@@ -822,7 +816,6 @@
 		<db-attribute name="OBS_DATA_STATUS_ID" type="INTEGER" length="10"/>
 		<db-attribute name="OBS_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="PTF_ID" type="INTEGER" length="38"/>
-		<db-attribute name="SHAPE" type="BLOB" length="4000"/>
 		<db-attribute name="UPDATE_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="WMO" type="VARCHAR" length="20"/>
 	</db-entity>
@@ -845,7 +838,6 @@
 		<db-attribute name="OBS_DATA_STATUS_ID" type="INTEGER" length="10"/>
 		<db-attribute name="OBS_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="PTF_ID" type="INTEGER" length="38"/>
-		<db-attribute name="SHAPE" type="BLOB" length="4000"/>
 		<db-attribute name="UPDATE_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="WMO" type="VARCHAR" length="20"/>
 	</db-entity>
@@ -860,7 +852,6 @@
 		<db-attribute name="OBS_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="ORIGIN_ID" type="INTEGER"/>
 		<db-attribute name="ORIGIN_TABLE" type="VARCHAR" length="255"/>
-		<db-attribute name="SHAPE" type="BLOB" length="4000"/>
 	</db-entity>
 	<db-entity name="OBS_OBS_DATA_STATUS" schema="JCOMMOPS_B">
 		<db-attribute name="OBS_DATA_STATUS_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
@@ -886,7 +877,6 @@
 		<db-attribute name="OBS_DATA_STATUS_ID" type="INTEGER" length="10"/>
 		<db-attribute name="OBS_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="PTF_ID" type="INTEGER" length="38"/>
-		<db-attribute name="SHAPE" type="BLOB" length="4000"/>
 		<db-attribute name="UPDATE_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="WMO" type="VARCHAR" length="20"/>
 	</db-entity>
@@ -1113,14 +1103,12 @@
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="38"/>
 		<db-attribute name="IMG_LAT" type="NUMERIC" length="10" scale="4"/>
 		<db-attribute name="IMG_LON" type="NUMERIC" length="10" scale="4"/>
-		<db-attribute name="IMG_SHAPE" type="BLOB" length="4000"/>
 		<db-attribute name="LAT" type="NUMERIC" isMandatory="true" length="10" scale="4"/>
 		<db-attribute name="LOC_DATE" type="TIMESTAMP" isMandatory="true" length="7"/>
 		<db-attribute name="LOC_SYSTEM_ID" type="INTEGER" length="10"/>
 		<db-attribute name="LON" type="NUMERIC" isMandatory="true" length="10" scale="4"/>
 		<db-attribute name="PTF_ID" type="INTEGER" length="38"/>
 		<db-attribute name="QUALITY" type="NUMERIC" length="4"/>
-		<db-attribute name="SHAPE" type="BLOB" length="4000"/>
 	</db-entity>
 	<db-entity name="PTF_LOC_STATUS" schema="JCOMMOPS_B">
 		<db-attribute name="END_DATE" type="TIMESTAMP" length="7"/>
@@ -1534,11 +1522,10 @@
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" isMandatory="true" length="50"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="30"/>
-		<db-attribute name="SHAPE" type="BLOB" length="4000"/>
 		<db-attribute name="SITE_FAMILY_ID" type="INTEGER"/>
 		<db-attribute name="STATUS_ID" type="INTEGER" length="10"/>
 		<db-attribute name="TARGETED_OCCUPATION" type="NUMERIC"/>
-		<db-attribute name="WKT" type="CLOB" length="4000"/>
+		<db-attribute name="WKB" type="OTHER" length="4000"/>
 	</db-entity>
 	<db-entity name="SITE_FAMILY" schema="JCOMMOPS_B">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="255"/>
@@ -1905,7 +1892,6 @@
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 		<obj-attribute name="ocean" type="java.lang.String" db-attribute-path="OCEAN"/>
 		<obj-attribute name="rank" type="java.lang.Integer" db-attribute-path="RANK"/>
-		<obj-attribute name="shape" type="byte[]" db-attribute-path="SHAPE"/>
 		<obj-attribute name="subocean" type="java.lang.String" db-attribute-path="SUBOCEAN"/>
 		<obj-attribute name="wkt" type="java.lang.String" db-attribute-path="WKT"/>
 	</obj-entity>
@@ -1995,6 +1981,7 @@
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="embarkCapacity" type="java.lang.Integer" db-attribute-path="EMBARK_CAPACITY"/>
 		<obj-attribute name="flexibleRoute" type="java.lang.Integer" db-attribute-path="FLEXIBLE_ROUTE"/>
+		<obj-attribute name="geom" type="org.apache.cayenne.value.Wkt" db-attribute-path="WKB"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="iioe2Id" type="java.lang.String" db-attribute-path="IIOE2_ID"/>
 		<obj-attribute name="insertDate" type="java.time.LocalDateTime" db-attribute-path="INSERT_DATE"/>
@@ -2009,13 +1996,11 @@
 		<obj-attribute name="refTmp" type="java.lang.String" db-attribute-path="REF_TMP"/>
 		<obj-attribute name="routePending" type="java.lang.Integer" db-attribute-path="ROUTE_PENDING"/>
 		<obj-attribute name="routePrivate" type="java.lang.Integer" db-attribute-path="ROUTE_PRIVATE"/>
-		<obj-attribute name="shape" type="byte[]" db-attribute-path="SHAPE"/>
 		<obj-attribute name="shipStop" type="java.lang.Integer" db-attribute-path="SHIP_STOP"/>
 		<obj-attribute name="storageCapacity" type="java.lang.Integer" db-attribute-path="STORAGE_CAPACITY"/>
 		<obj-attribute name="unolsId" type="java.lang.Integer" db-attribute-path="UNOLS_ID"/>
 		<obj-attribute name="updateDate" type="java.time.LocalDateTime" db-attribute-path="UPDATE_DATE"/>
 		<obj-attribute name="validated" type="java.lang.Integer" db-attribute-path="VALIDATED"/>
-		<obj-attribute name="wkt" type="java.lang.String" db-attribute-path="WKT"/>
 	</obj-entity>
 	<obj-entity name="CruiseClass" className="org.oceanops.api.orm.CruiseClass" dbEntityName="CRUISE_CLASS">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
@@ -2238,10 +2223,9 @@
 	</obj-entity>
 	<obj-entity name="Line" className="org.oceanops.api.orm.Line" dbEntityName="LINE">
 		<obj-attribute name="fromTo" type="java.lang.String" db-attribute-path="FROM_TO"/>
+		<obj-attribute name="geom" type="org.apache.cayenne.value.Wkt" db-attribute-path="WKB"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
-		<obj-attribute name="shape" type="byte[]" db-attribute-path="SHAPE"/>
-		<obj-attribute name="wkt" type="java.lang.String" db-attribute-path="WKT"/>
 	</obj-entity>
 	<obj-entity name="LineDecadalStatus" className="org.oceanops.api.orm.LineDecadalStatus" dbEntityName="LINE_DECADAL_STATUS">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
@@ -2442,7 +2426,6 @@
 		<obj-attribute name="lon" type="java.lang.Double" db-attribute-path="LON"/>
 		<obj-attribute name="obsDate" type="java.time.LocalDateTime" db-attribute-path="OBS_DATE"/>
 		<obj-attribute name="obsEndDate" type="java.time.LocalDateTime" db-attribute-path="OBS_END_DATE"/>
-		<obj-attribute name="shape" type="byte[]" db-attribute-path="SHAPE"/>
 		<obj-attribute name="updateDate" type="java.time.LocalDateTime" db-attribute-path="UPDATE_DATE"/>
 		<obj-attribute name="wmo" type="java.lang.String" db-attribute-path="WMO"/>
 	</obj-entity>
@@ -2465,7 +2448,6 @@
 		<obj-attribute name="latestAssemblyDateBgc" type="java.time.LocalDateTime" db-attribute-path="LATEST_ASSEMBLY_DATE_BGC"/>
 		<obj-attribute name="lon" type="java.lang.Double" db-attribute-path="LON"/>
 		<obj-attribute name="obsDate" type="java.time.LocalDateTime" db-attribute-path="OBS_DATE"/>
-		<obj-attribute name="shape" type="byte[]" db-attribute-path="SHAPE"/>
 		<obj-attribute name="updateDate" type="java.time.LocalDateTime" db-attribute-path="UPDATE_DATE"/>
 		<obj-attribute name="wmo" type="java.lang.String" db-attribute-path="WMO"/>
 	</obj-entity>
@@ -2495,7 +2477,6 @@
 		<obj-attribute name="lon" type="java.lang.Double" db-attribute-path="LON"/>
 		<obj-attribute name="obsDate" type="java.time.LocalDateTime" db-attribute-path="OBS_DATE"/>
 		<obj-attribute name="profileId" type="java.lang.Integer" db-attribute-path="PROFILE_ID"/>
-		<obj-attribute name="shape" type="byte[]" db-attribute-path="SHAPE"/>
 		<obj-attribute name="updateDate" type="java.time.LocalDateTime" db-attribute-path="UPDATE_DATE"/>
 		<obj-attribute name="wmo" type="java.lang.String" db-attribute-path="WMO"/>
 	</obj-entity>
@@ -2517,7 +2498,6 @@
 		<obj-attribute name="obsDataStatusId" type="java.lang.Integer" db-attribute-path="OBS_DATA_STATUS_ID"/>
 		<obj-attribute name="obsDate" type="java.time.LocalDateTime" db-attribute-path="OBS_DATE"/>
 		<obj-attribute name="ptfId" type="java.lang.Integer" db-attribute-path="PTF_ID"/>
-		<obj-attribute name="shape" type="byte[]" db-attribute-path="SHAPE"/>
 		<obj-attribute name="updateDate" type="java.time.LocalDateTime" db-attribute-path="UPDATE_DATE"/>
 		<obj-attribute name="wmo" type="java.lang.String" db-attribute-path="WMO"/>
 	</obj-entity>
@@ -2538,7 +2518,6 @@
 		<obj-attribute name="latestDistributionDate" type="java.time.LocalDateTime" db-attribute-path="LATEST_DISTRIBUTION_DATE"/>
 		<obj-attribute name="lon" type="java.lang.Double" db-attribute-path="LON"/>
 		<obj-attribute name="obsDate" type="java.time.LocalDateTime" db-attribute-path="OBS_DATE"/>
-		<obj-attribute name="shape" type="byte[]" db-attribute-path="SHAPE"/>
 		<obj-attribute name="updateDate" type="java.time.LocalDateTime" db-attribute-path="UPDATE_DATE"/>
 		<obj-attribute name="wmo" type="java.lang.String" db-attribute-path="WMO"/>
 	</obj-entity>
@@ -2553,7 +2532,6 @@
 		<obj-attribute name="obsDate" type="java.time.LocalDateTime" db-attribute-path="OBS_DATE"/>
 		<obj-attribute name="originId" type="java.lang.Integer" db-attribute-path="ORIGIN_ID"/>
 		<obj-attribute name="originTable" type="java.lang.String" db-attribute-path="ORIGIN_TABLE"/>
-		<obj-attribute name="shape" type="byte[]" db-attribute-path="SHAPE"/>
 	</obj-entity>
 	<obj-entity name="ObsObsDataStatus" className="org.oceanops.api.orm.ObsObsDataStatus" dbEntityName="OBS_OBS_DATA_STATUS">
 		<obj-attribute name="obsDataStatusId" type="java.lang.Integer" db-attribute-path="OBS_DATA_STATUS_ID"/>
@@ -2577,7 +2555,6 @@
 		<obj-attribute name="latestDistributionDate" type="java.time.LocalDateTime" db-attribute-path="LATEST_DISTRIBUTION_DATE"/>
 		<obj-attribute name="lon" type="java.lang.Double" db-attribute-path="LON"/>
 		<obj-attribute name="obsDate" type="java.time.LocalDateTime" db-attribute-path="OBS_DATE"/>
-		<obj-attribute name="shape" type="byte[]" db-attribute-path="SHAPE"/>
 		<obj-attribute name="updateDate" type="java.time.LocalDateTime" db-attribute-path="UPDATE_DATE"/>
 		<obj-attribute name="wmo" type="java.lang.String" db-attribute-path="WMO"/>
 	</obj-entity>
@@ -2750,12 +2727,10 @@
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="imgLat" type="java.lang.Double" db-attribute-path="IMG_LAT"/>
 		<obj-attribute name="imgLon" type="java.lang.Double" db-attribute-path="IMG_LON"/>
-		<obj-attribute name="imgShape" type="byte[]" db-attribute-path="IMG_SHAPE"/>
 		<obj-attribute name="lat" type="java.lang.Double" db-attribute-path="LAT"/>
 		<obj-attribute name="locDate" type="java.time.LocalDateTime" db-attribute-path="LOC_DATE"/>
 		<obj-attribute name="lon" type="java.lang.Double" db-attribute-path="LON"/>
 		<obj-attribute name="quality" type="java.lang.Integer" db-attribute-path="QUALITY"/>
-		<obj-attribute name="shape" type="byte[]" db-attribute-path="SHAPE"/>
 	</obj-entity>
 	<obj-entity name="PtfLocStatus" className="org.oceanops.api.orm.PtfLocStatus" dbEntityName="PTF_LOC_STATUS">
 		<obj-attribute name="endDate" type="java.time.LocalDateTime" db-attribute-path="END_DATE"/>
@@ -3103,12 +3078,11 @@
 	</obj-entity>
 	<obj-entity name="Site" className="org.oceanops.api.orm.Site" dbEntityName="SITE">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
+		<obj-attribute name="geom" type="org.apache.cayenne.value.Wkt" db-attribute-path="WKB"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
-		<obj-attribute name="shape" type="byte[]" db-attribute-path="SHAPE"/>
 		<obj-attribute name="targetedOccupation" type="java.lang.Integer" db-attribute-path="TARGETED_OCCUPATION"/>
-		<obj-attribute name="wkt" type="java.lang.String" db-attribute-path="WKT"/>
 	</obj-entity>
 	<obj-entity name="SiteFamily" className="org.oceanops.api.orm.SiteFamily" dbEntityName="SITE_FAMILY">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
@@ -5990,6 +5964,10 @@
 			<excludeTable>PTF_SENSOR_MODEL</excludeTable>
 			<excludeTable>CATEGORY</excludeTable>
 			<excludeTable>PTF_CATEGORY</excludeTable>
+			<excludeTable>LOAD_CORIOLIS_ARGOBGC_DETAILS</excludeTable>
+			<excludeTable>LOAD_CORIOLIS_MINMAX</excludeTable>
+			<excludeTable>PUB47_OBS_SYSTEM</excludeTable>
+			<excludeTable>PUB47_PRST</excludeTable>
 			<name>JCOMMOPS_B</name>
 		</schema>
 		<tableTypes>

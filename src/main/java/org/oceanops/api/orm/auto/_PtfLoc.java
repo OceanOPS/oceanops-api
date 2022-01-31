@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
-import org.apache.cayenne.exp.property.BaseProperty;
 import org.apache.cayenne.exp.property.DateProperty;
 import org.apache.cayenne.exp.property.EntityProperty;
 import org.apache.cayenne.exp.property.ListProperty;
@@ -35,12 +34,10 @@ public abstract class _PtfLoc extends BaseDataObject {
     public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final NumericProperty<Double> IMG_LAT = PropertyFactory.createNumeric("imgLat", Double.class);
     public static final NumericProperty<Double> IMG_LON = PropertyFactory.createNumeric("imgLon", Double.class);
-    public static final BaseProperty<byte[]> IMG_SHAPE = PropertyFactory.createBase("imgShape", byte[].class);
     public static final NumericProperty<Double> LAT = PropertyFactory.createNumeric("lat", Double.class);
     public static final DateProperty<LocalDateTime> LOC_DATE = PropertyFactory.createDate("locDate", LocalDateTime.class);
     public static final NumericProperty<Double> LON = PropertyFactory.createNumeric("lon", Double.class);
     public static final NumericProperty<Integer> QUALITY = PropertyFactory.createNumeric("quality", Integer.class);
-    public static final BaseProperty<byte[]> SHAPE = PropertyFactory.createBase("shape", byte[].class);
     public static final ListProperty<Doc> DOCS = PropertyFactory.createList("docs", Doc.class);
     public static final EntityProperty<LocSystem> LOC_SYSTEM = PropertyFactory.createEntity("locSystem", LocSystem.class);
     public static final ListProperty<Obs> OBSS = PropertyFactory.createList("obss", Obs.class);
@@ -52,12 +49,10 @@ public abstract class _PtfLoc extends BaseDataObject {
     protected Integer id;
     protected Double imgLat;
     protected Double imgLon;
-    protected byte[] imgShape;
     protected Double lat;
     protected LocalDateTime locDate;
     protected Double lon;
     protected Integer quality;
-    protected byte[] shape;
 
     protected Object docs;
     protected Object locSystem;
@@ -115,16 +110,6 @@ public abstract class _PtfLoc extends BaseDataObject {
         return this.imgLon;
     }
 
-    public void setImgShape(byte[] imgShape) {
-        beforePropertyWrite("imgShape", this.imgShape, imgShape);
-        this.imgShape = imgShape;
-    }
-
-    public byte[] getImgShape() {
-        beforePropertyRead("imgShape");
-        return this.imgShape;
-    }
-
     public void setLat(Double lat) {
         beforePropertyWrite("lat", this.lat, lat);
         this.lat = lat;
@@ -163,16 +148,6 @@ public abstract class _PtfLoc extends BaseDataObject {
     public Integer getQuality() {
         beforePropertyRead("quality");
         return this.quality;
-    }
-
-    public void setShape(byte[] shape) {
-        beforePropertyWrite("shape", this.shape, shape);
-        this.shape = shape;
-    }
-
-    public byte[] getShape() {
-        beforePropertyRead("shape");
-        return this.shape;
     }
 
     public void addToDocs(Doc obj) {
@@ -247,8 +222,6 @@ public abstract class _PtfLoc extends BaseDataObject {
                 return this.imgLat;
             case "imgLon":
                 return this.imgLon;
-            case "imgShape":
-                return this.imgShape;
             case "lat":
                 return this.lat;
             case "locDate":
@@ -257,8 +230,6 @@ public abstract class _PtfLoc extends BaseDataObject {
                 return this.lon;
             case "quality":
                 return this.quality;
-            case "shape":
-                return this.shape;
             case "docs":
                 return this.docs;
             case "locSystem":
@@ -296,9 +267,6 @@ public abstract class _PtfLoc extends BaseDataObject {
             case "imgLon":
                 this.imgLon = (Double)val;
                 break;
-            case "imgShape":
-                this.imgShape = (byte[])val;
-                break;
             case "lat":
                 this.lat = (Double)val;
                 break;
@@ -310,9 +278,6 @@ public abstract class _PtfLoc extends BaseDataObject {
                 break;
             case "quality":
                 this.quality = (Integer)val;
-                break;
-            case "shape":
-                this.shape = (byte[])val;
                 break;
             case "docs":
                 this.docs = val;
@@ -350,12 +315,10 @@ public abstract class _PtfLoc extends BaseDataObject {
         out.writeObject(this.id);
         out.writeObject(this.imgLat);
         out.writeObject(this.imgLon);
-        out.writeObject(this.imgShape);
         out.writeObject(this.lat);
         out.writeObject(this.locDate);
         out.writeObject(this.lon);
         out.writeObject(this.quality);
-        out.writeObject(this.shape);
         out.writeObject(this.docs);
         out.writeObject(this.locSystem);
         out.writeObject(this.obss);
@@ -371,12 +334,10 @@ public abstract class _PtfLoc extends BaseDataObject {
         this.id = (Integer)in.readObject();
         this.imgLat = (Double)in.readObject();
         this.imgLon = (Double)in.readObject();
-        this.imgShape = (byte[])in.readObject();
         this.lat = (Double)in.readObject();
         this.locDate = (LocalDateTime)in.readObject();
         this.lon = (Double)in.readObject();
         this.quality = (Integer)in.readObject();
-        this.shape = (byte[])in.readObject();
         this.docs = in.readObject();
         this.locSystem = in.readObject();
         this.obss = in.readObject();

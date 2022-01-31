@@ -6,7 +6,6 @@ import java.io.ObjectOutputStream;
 import java.time.LocalDateTime;
 
 import org.apache.cayenne.BaseDataObject;
-import org.apache.cayenne.exp.property.BaseProperty;
 import org.apache.cayenne.exp.property.DateProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
@@ -30,7 +29,6 @@ public abstract class _ObsLatest extends BaseDataObject {
     public static final DateProperty<LocalDateTime> OBS_DATE = PropertyFactory.createDate("obsDate", LocalDateTime.class);
     public static final NumericProperty<Integer> ORIGIN_ID = PropertyFactory.createNumeric("originId", Integer.class);
     public static final StringProperty<String> ORIGIN_TABLE = PropertyFactory.createString("originTable", String.class);
-    public static final BaseProperty<byte[]> SHAPE = PropertyFactory.createBase("shape", byte[].class);
 
     protected Integer id;
     protected Double lat;
@@ -38,7 +36,6 @@ public abstract class _ObsLatest extends BaseDataObject {
     protected LocalDateTime obsDate;
     protected Integer originId;
     protected String originTable;
-    protected byte[] shape;
 
 
     public void setId(Integer id) {
@@ -101,16 +98,6 @@ public abstract class _ObsLatest extends BaseDataObject {
         return this.originTable;
     }
 
-    public void setShape(byte[] shape) {
-        beforePropertyWrite("shape", this.shape, shape);
-        this.shape = shape;
-    }
-
-    public byte[] getShape() {
-        beforePropertyRead("shape");
-        return this.shape;
-    }
-
     @Override
     public Object readPropertyDirectly(String propName) {
         if(propName == null) {
@@ -130,8 +117,6 @@ public abstract class _ObsLatest extends BaseDataObject {
                 return this.originId;
             case "originTable":
                 return this.originTable;
-            case "shape":
-                return this.shape;
             default:
                 return super.readPropertyDirectly(propName);
         }
@@ -162,9 +147,6 @@ public abstract class _ObsLatest extends BaseDataObject {
             case "originTable":
                 this.originTable = (String)val;
                 break;
-            case "shape":
-                this.shape = (byte[])val;
-                break;
             default:
                 super.writePropertyDirectly(propName, val);
         }
@@ -187,7 +169,6 @@ public abstract class _ObsLatest extends BaseDataObject {
         out.writeObject(this.obsDate);
         out.writeObject(this.originId);
         out.writeObject(this.originTable);
-        out.writeObject(this.shape);
     }
 
     @Override
@@ -199,7 +180,6 @@ public abstract class _ObsLatest extends BaseDataObject {
         this.obsDate = (LocalDateTime)in.readObject();
         this.originId = (Integer)in.readObject();
         this.originTable = (String)in.readObject();
-        this.shape = (byte[])in.readObject();
     }
 
 }

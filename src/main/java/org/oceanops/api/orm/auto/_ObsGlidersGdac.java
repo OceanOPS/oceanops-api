@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
-import org.apache.cayenne.exp.property.BaseProperty;
 import org.apache.cayenne.exp.property.DateProperty;
 import org.apache.cayenne.exp.property.ListProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
@@ -45,7 +44,6 @@ public abstract class _ObsGlidersGdac extends BaseDataObject {
     public static final NumericProperty<Integer> OBS_DATA_STATUS_ID = PropertyFactory.createNumeric("obsDataStatusId", Integer.class);
     public static final DateProperty<LocalDateTime> OBS_DATE = PropertyFactory.createDate("obsDate", LocalDateTime.class);
     public static final NumericProperty<Integer> PTF_ID = PropertyFactory.createNumeric("ptfId", Integer.class);
-    public static final BaseProperty<byte[]> SHAPE = PropertyFactory.createBase("shape", byte[].class);
     public static final DateProperty<LocalDateTime> UPDATE_DATE = PropertyFactory.createDate("updateDate", LocalDateTime.class);
     public static final StringProperty<String> WMO = PropertyFactory.createString("wmo", String.class);
     public static final ListProperty<ObsGlidersGdacDs> OBS_GLIDERS_GDAC_DSS = PropertyFactory.createList("obsGlidersGdacDss", ObsGlidersGdacDs.class);
@@ -68,7 +66,6 @@ public abstract class _ObsGlidersGdac extends BaseDataObject {
     protected Integer obsDataStatusId;
     protected LocalDateTime obsDate;
     protected Integer ptfId;
-    protected byte[] shape;
     protected LocalDateTime updateDate;
     protected String wmo;
 
@@ -245,16 +242,6 @@ public abstract class _ObsGlidersGdac extends BaseDataObject {
         return this.ptfId;
     }
 
-    public void setShape(byte[] shape) {
-        beforePropertyWrite("shape", this.shape, shape);
-        this.shape = shape;
-    }
-
-    public byte[] getShape() {
-        beforePropertyRead("shape");
-        return this.shape;
-    }
-
     public void setUpdateDate(LocalDateTime updateDate) {
         beforePropertyWrite("updateDate", this.updateDate, updateDate);
         this.updateDate = updateDate;
@@ -342,8 +329,6 @@ public abstract class _ObsGlidersGdac extends BaseDataObject {
                 return this.obsDate;
             case "ptfId":
                 return this.ptfId;
-            case "shape":
-                return this.shape;
             case "updateDate":
                 return this.updateDate;
             case "wmo":
@@ -415,9 +400,6 @@ public abstract class _ObsGlidersGdac extends BaseDataObject {
             case "ptfId":
                 this.ptfId = (Integer)val;
                 break;
-            case "shape":
-                this.shape = (byte[])val;
-                break;
             case "updateDate":
                 this.updateDate = (LocalDateTime)val;
                 break;
@@ -463,7 +445,6 @@ public abstract class _ObsGlidersGdac extends BaseDataObject {
         out.writeObject(this.obsDataStatusId);
         out.writeObject(this.obsDate);
         out.writeObject(this.ptfId);
-        out.writeObject(this.shape);
         out.writeObject(this.updateDate);
         out.writeObject(this.wmo);
         out.writeObject(this.obsGlidersGdacDss);
@@ -490,7 +471,6 @@ public abstract class _ObsGlidersGdac extends BaseDataObject {
         this.obsDataStatusId = (Integer)in.readObject();
         this.obsDate = (LocalDateTime)in.readObject();
         this.ptfId = (Integer)in.readObject();
-        this.shape = (byte[])in.readObject();
         this.updateDate = (LocalDateTime)in.readObject();
         this.wmo = (String)in.readObject();
         this.obsGlidersGdacDss = in.readObject();

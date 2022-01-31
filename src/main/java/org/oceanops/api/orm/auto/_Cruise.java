@@ -14,6 +14,7 @@ import org.apache.cayenne.exp.property.ListProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
+import org.apache.cayenne.value.Wkt;
 import org.oceanops.api.orm.Agency;
 import org.oceanops.api.orm.CruiseClass;
 import org.oceanops.api.orm.CruiseContact;
@@ -58,6 +59,7 @@ public abstract class _Cruise extends BaseDataObject {
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
     public static final NumericProperty<Integer> EMBARK_CAPACITY = PropertyFactory.createNumeric("embarkCapacity", Integer.class);
     public static final NumericProperty<Integer> FLEXIBLE_ROUTE = PropertyFactory.createNumeric("flexibleRoute", Integer.class);
+    public static final BaseProperty<Wkt> GEOM = PropertyFactory.createBase("geom", Wkt.class);
     public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final StringProperty<String> IIOE2ID = PropertyFactory.createString("iioe2Id", String.class);
     public static final DateProperty<LocalDateTime> INSERT_DATE = PropertyFactory.createDate("insertDate", LocalDateTime.class);
@@ -72,13 +74,11 @@ public abstract class _Cruise extends BaseDataObject {
     public static final StringProperty<String> REF_TMP = PropertyFactory.createString("refTmp", String.class);
     public static final NumericProperty<Integer> ROUTE_PENDING = PropertyFactory.createNumeric("routePending", Integer.class);
     public static final NumericProperty<Integer> ROUTE_PRIVATE = PropertyFactory.createNumeric("routePrivate", Integer.class);
-    public static final BaseProperty<byte[]> SHAPE = PropertyFactory.createBase("shape", byte[].class);
     public static final NumericProperty<Integer> SHIP_STOP = PropertyFactory.createNumeric("shipStop", Integer.class);
     public static final NumericProperty<Integer> STORAGE_CAPACITY = PropertyFactory.createNumeric("storageCapacity", Integer.class);
     public static final NumericProperty<Integer> UNOLS_ID = PropertyFactory.createNumeric("unolsId", Integer.class);
     public static final DateProperty<LocalDateTime> UPDATE_DATE = PropertyFactory.createDate("updateDate", LocalDateTime.class);
     public static final NumericProperty<Integer> VALIDATED = PropertyFactory.createNumeric("validated", Integer.class);
-    public static final StringProperty<String> WKT = PropertyFactory.createString("wkt", String.class);
     public static final EntityProperty<Agency> AGENCY = PropertyFactory.createEntity("agency", Agency.class);
     public static final EntityProperty<CruiseClass> CRUISE_CLASS = PropertyFactory.createEntity("cruiseClass", CruiseClass.class);
     public static final ListProperty<CruiseContact> CRUISE_CONTACTS = PropertyFactory.createList("cruiseContacts", CruiseContact.class);
@@ -111,6 +111,7 @@ public abstract class _Cruise extends BaseDataObject {
     protected String description;
     protected Integer embarkCapacity;
     protected Integer flexibleRoute;
+    protected Wkt geom;
     protected Integer id;
     protected String iioe2Id;
     protected LocalDateTime insertDate;
@@ -125,13 +126,11 @@ public abstract class _Cruise extends BaseDataObject {
     protected String refTmp;
     protected Integer routePending;
     protected Integer routePrivate;
-    protected byte[] shape;
     protected Integer shipStop;
     protected Integer storageCapacity;
     protected Integer unolsId;
     protected LocalDateTime updateDate;
     protected Integer validated;
-    protected String wkt;
 
     protected Object agency;
     protected Object cruiseClass;
@@ -262,6 +261,16 @@ public abstract class _Cruise extends BaseDataObject {
     public Integer getFlexibleRoute() {
         beforePropertyRead("flexibleRoute");
         return this.flexibleRoute;
+    }
+
+    public void setGeom(Wkt geom) {
+        beforePropertyWrite("geom", this.geom, geom);
+        this.geom = geom;
+    }
+
+    public Wkt getGeom() {
+        beforePropertyRead("geom");
+        return this.geom;
     }
 
     public void setId(Integer id) {
@@ -404,16 +413,6 @@ public abstract class _Cruise extends BaseDataObject {
         return this.routePrivate;
     }
 
-    public void setShape(byte[] shape) {
-        beforePropertyWrite("shape", this.shape, shape);
-        this.shape = shape;
-    }
-
-    public byte[] getShape() {
-        beforePropertyRead("shape");
-        return this.shape;
-    }
-
     public void setShipStop(Integer shipStop) {
         beforePropertyWrite("shipStop", this.shipStop, shipStop);
         this.shipStop = shipStop;
@@ -462,16 +461,6 @@ public abstract class _Cruise extends BaseDataObject {
     public Integer getValidated() {
         beforePropertyRead("validated");
         return this.validated;
-    }
-
-    public void setWkt(String wkt) {
-        beforePropertyWrite("wkt", this.wkt, wkt);
-        this.wkt = wkt;
-    }
-
-    public String getWkt() {
-        beforePropertyRead("wkt");
-        return this.wkt;
     }
 
     public void setAgency(Agency agency) {
@@ -713,6 +702,8 @@ public abstract class _Cruise extends BaseDataObject {
                 return this.embarkCapacity;
             case "flexibleRoute":
                 return this.flexibleRoute;
+            case "geom":
+                return this.geom;
             case "id":
                 return this.id;
             case "iioe2Id":
@@ -741,8 +732,6 @@ public abstract class _Cruise extends BaseDataObject {
                 return this.routePending;
             case "routePrivate":
                 return this.routePrivate;
-            case "shape":
-                return this.shape;
             case "shipStop":
                 return this.shipStop;
             case "storageCapacity":
@@ -753,8 +742,6 @@ public abstract class _Cruise extends BaseDataObject {
                 return this.updateDate;
             case "validated":
                 return this.validated;
-            case "wkt":
-                return this.wkt;
             case "agency":
                 return this.agency;
             case "cruiseClass":
@@ -840,6 +827,9 @@ public abstract class _Cruise extends BaseDataObject {
             case "flexibleRoute":
                 this.flexibleRoute = (Integer)val;
                 break;
+            case "geom":
+                this.geom = (Wkt)val;
+                break;
             case "id":
                 this.id = (Integer)val;
                 break;
@@ -882,9 +872,6 @@ public abstract class _Cruise extends BaseDataObject {
             case "routePrivate":
                 this.routePrivate = (Integer)val;
                 break;
-            case "shape":
-                this.shape = (byte[])val;
-                break;
             case "shipStop":
                 this.shipStop = (Integer)val;
                 break;
@@ -899,9 +886,6 @@ public abstract class _Cruise extends BaseDataObject {
                 break;
             case "validated":
                 this.validated = (Integer)val;
-                break;
-            case "wkt":
-                this.wkt = (String)val;
                 break;
             case "agency":
                 this.agency = val;
@@ -990,6 +974,7 @@ public abstract class _Cruise extends BaseDataObject {
         out.writeObject(this.description);
         out.writeObject(this.embarkCapacity);
         out.writeObject(this.flexibleRoute);
+        out.writeObject(this.geom);
         out.writeObject(this.id);
         out.writeObject(this.iioe2Id);
         out.writeObject(this.insertDate);
@@ -1004,13 +989,11 @@ public abstract class _Cruise extends BaseDataObject {
         out.writeObject(this.refTmp);
         out.writeObject(this.routePending);
         out.writeObject(this.routePrivate);
-        out.writeObject(this.shape);
         out.writeObject(this.shipStop);
         out.writeObject(this.storageCapacity);
         out.writeObject(this.unolsId);
         out.writeObject(this.updateDate);
         out.writeObject(this.validated);
-        out.writeObject(this.wkt);
         out.writeObject(this.agency);
         out.writeObject(this.cruiseClass);
         out.writeObject(this.cruiseContacts);
@@ -1047,6 +1030,7 @@ public abstract class _Cruise extends BaseDataObject {
         this.description = (String)in.readObject();
         this.embarkCapacity = (Integer)in.readObject();
         this.flexibleRoute = (Integer)in.readObject();
+        this.geom = (Wkt)in.readObject();
         this.id = (Integer)in.readObject();
         this.iioe2Id = (String)in.readObject();
         this.insertDate = (LocalDateTime)in.readObject();
@@ -1061,13 +1045,11 @@ public abstract class _Cruise extends BaseDataObject {
         this.refTmp = (String)in.readObject();
         this.routePending = (Integer)in.readObject();
         this.routePrivate = (Integer)in.readObject();
-        this.shape = (byte[])in.readObject();
         this.shipStop = (Integer)in.readObject();
         this.storageCapacity = (Integer)in.readObject();
         this.unolsId = (Integer)in.readObject();
         this.updateDate = (LocalDateTime)in.readObject();
         this.validated = (Integer)in.readObject();
-        this.wkt = (String)in.readObject();
         this.agency = in.readObject();
         this.cruiseClass = in.readObject();
         this.cruiseContacts = in.readObject();
