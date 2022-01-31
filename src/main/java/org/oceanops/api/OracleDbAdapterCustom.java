@@ -12,10 +12,10 @@ import org.apache.cayenne.dba.JdbcAdapter;
 import org.apache.cayenne.di.Inject;
 import org.apache.cayenne.resource.ResourceLocator;
 
-public class OracleSDEDbAdapter extends JdbcAdapter{
+public class OracleDbAdapterCustom extends JdbcAdapter{
 
     @SuppressWarnings("all")
-    public OracleSDEDbAdapter(@Inject RuntimeProperties runtimeProperties,
+    public OracleDbAdapterCustom(@Inject RuntimeProperties runtimeProperties,
             @Inject(Constants.SERVER_DEFAULT_TYPES_LIST) List<ExtendedType> defaultExtendedTypes,
             @Inject(Constants.SERVER_USER_TYPES_LIST) List<ExtendedType> userExtendedTypes,
             @Inject(Constants.SERVER_TYPE_FACTORIES_LIST) List<ExtendedTypeFactory> extendedTypeFactories,
@@ -28,6 +28,6 @@ public class OracleSDEDbAdapter extends JdbcAdapter{
     
     @Override
 	public SQLTreeProcessor getSqlTreeProcessor() {
-		return new OracleSDESQLTreeProcessor();
+		return new OracleSQLTreeProcessorCustom();
 	}
 }

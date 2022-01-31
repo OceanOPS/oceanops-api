@@ -6,9 +6,9 @@ import org.apache.cayenne.access.sqlbuilder.sqltree.FunctionNode;
 import org.apache.cayenne.access.translator.select.TypeAwareSQLTreeProcessor;
 import org.apache.cayenne.value.Wkt;
 
-public class OracleSDESQLTreeProcessor extends TypeAwareSQLTreeProcessor {
+public class OracleSQLTreeProcessorCustom extends TypeAwareSQLTreeProcessor {
 
-    public OracleSDESQLTreeProcessor() {
+    public OracleSQLTreeProcessorCustom() {
 
         registerColumnProcessor(Wkt.class, (parent, child, i) -> {
             FunctionNode geomFromWKB = FunctionNode.wrap(child, "SDO_UTIL.FROM_WKBGEOMETRY");
