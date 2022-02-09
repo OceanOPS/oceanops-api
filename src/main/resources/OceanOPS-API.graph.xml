@@ -34,6 +34,7 @@
 		<entity name="QC_FEEDBACK_ERROR_TYPE" x="2088.25" y="555.76" width="157.0" height="98.0"/>
 		<entity name="NETWORK_SITE" x="2437.96" y="844.13" width="90.0" height="66.0"/>
 		<entity name="PTF_CONFIG" x="2504.62" y="1062.61" width="71.0" height="82.0"/>
+		<entity name="PTF_ANCILLARY_DEVICE_VERSION" x="0.0" y="0.0" width="191.0" height="98.0"/>
 		<entity name="LINE_PTF" x="2044.87" y="719.99" width="52.0" height="66.0"/>
 		<entity name="OBS_ARGO_GDAC_VARIABLE" x="2477.62" y="1127.79" width="164.0" height="146.0"/>
 		<entity name="LINE_TYPE" x="2200.97" y="788.1" width="112.0" height="418.0"/>
@@ -66,7 +67,7 @@
 		<entity name="OBS_GLIDERS_GDAC_VARIABLE" x="2031.66" y="1299.2" width="179.0" height="66.0"/>
 		<entity name="INDICATOR_VALUE" x="1368.73" y="1157.26" width="109.0" height="130.0"/>
 		<entity name="PTF" x="1865.33" y="1056.85" width="171.0" height="674.0"/>
-		<entity name="PTF_ANCILLARY_DEVICE" x="2422.46" y="1260.96" width="135.0" height="114.0"/>
+		<entity name="PTF_ANCILLARY_DEVICE" x="2422.46" y="1260.96" width="135.0" height="98.0"/>
 		<entity name="VARIABLE_FAMILY" x="2192.3" y="1142.56" width="105.0" height="130.0"/>
 		<entity name="PTF_STATUS" x="2393.77" y="1330.23" width="78.0" height="130.0"/>
 		<entity name="USER_GROUP" x="2360.43" y="1410.71" width="79.0" height="130.0"/>
@@ -261,7 +262,7 @@
 		<entity name="SensorLocation" x="10.0" y="10.0" width="87.0" height="98.0"/>
 		<entity name="ObsGlidersGtsOsmc" x="10.0" y="10.0" width="116.0" height="178.0"/>
 		<entity name="ShipStatus" x="10.0" y="10.0" width="61.0" height="114.0"/>
-		<entity name="PtfAncillaryDevice" x="10.0" y="10.0" width="105.0" height="66.0"/>
+		<entity name="PtfAncillaryDevice" x="10.0" y="10.0" width="105.0" height="50.0"/>
 		<entity name="LineStatus" x="10.0" y="10.0" width="61.0" height="82.0"/>
 		<entity name="WebMetricNetwork" x="10.0" y="10.0" width="115.0" height="66.0"/>
 		<entity name="IndicatorCategory" x="10.0" y="10.0" width="102.0" height="98.0"/>
@@ -322,6 +323,7 @@
 		<entity name="TimePeriod" x="10.0" y="10.0" width="66.0" height="98.0"/>
 		<entity name="ObsDataStatus" x="10.0" y="10.0" width="84.0" height="50.0"/>
 		<entity name="TelecomService" x="10.0" y="10.0" width="92.0" height="82.0"/>
+		<entity name="PtfAncillaryDeviceVersion" x="0.0" y="0.0" width="147.0" height="66.0"/>
 		<entity name="LineSurvey" x="10.0" y="10.0" width="64.0" height="66.0"/>
 		<entity name="Survey" x="10.0" y="10.0" width="61.0" height="130.0"/>
 		<entity name="WebContactModule" x="10.0" y="10.0" width="113.0" height="66.0"/>

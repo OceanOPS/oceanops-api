@@ -480,6 +480,8 @@ components:
           type: number
         frequency:
           $ref: '#/components/schemas/Frequency'
+        geom:
+          type: string
         id:
           type: number
         iioe2Id:
@@ -524,8 +526,6 @@ components:
           type: number
         services:
           $ref: '#/components/schemas/Service'
-        shape:
-          type: string
         ship:
           $ref: '#/components/schemas/Ship'
         shipStop:
@@ -543,8 +543,6 @@ components:
           type: number
         weblink:
           $ref: '#/components/schemas/Weblink'
-        wkt:
-          type: string
       type: object
     CruiseClass:
       properties:
@@ -999,6 +997,8 @@ components:
           $ref: '#/components/schemas/Cruise'
         fromTo:
           type: string
+        geom:
+          type: string
         id:
           type: number
         lineDecadalStatus:
@@ -1013,12 +1013,8 @@ components:
           type: string
         ptfs:
           $ref: '#/components/schemas/Ptf'
-        shape:
-          type: string
         weblink:
           $ref: '#/components/schemas/Weblink'
-        wkt:
-          type: string
       type: object
     LineDecadalStatus:
       properties:
@@ -1394,8 +1390,6 @@ components:
           type: number
         originTable:
           type: string
-        shape:
-          type: string
       type: object
     PostRetrievalStatus:
       properties:
@@ -1579,13 +1573,22 @@ components:
       type: object
     PtfAncillaryDevice:
       properties:
-        batchRef:
-          type: string
         ptf:
           $ref: '#/components/schemas/Ptf'
+        ptfAncillaryDeviceVersion:
+          $ref: '#/components/schemas/PtfAncillaryDeviceVersion'
+        serialRef:
+          type: string
+      type: object
+    PtfAncillaryDeviceVersion:
+      properties:
+        deviceName:
+          type: string
+        ptfAncillaryDevice:
+          $ref: '#/components/schemas/PtfAncillaryDevice'
         ptfModel:
           $ref: '#/components/schemas/PtfModel'
-        serialRef:
+        version:
           type: string
       type: object
     PtfAutomation:
@@ -1901,8 +1904,6 @@ components:
           type: string
         network:
           $ref: '#/components/schemas/Network'
-        ptfAncillaryDevices:
-          $ref: '#/components/schemas/PtfAncillaryDevice'
         ptfType:
           $ref: '#/components/schemas/PtfType'
         ptfs:
@@ -2688,6 +2689,8 @@ components:
       properties:
         description:
           type: string
+        geom:
+          type: string
         id:
           type: number
         name:
@@ -2696,8 +2699,6 @@ components:
           type: string
         networkSites:
           $ref: '#/components/schemas/NetworkSite'
-        shape:
-          type: string
         siteFamily:
           $ref: '#/components/schemas/SiteFamily'
         sitePtfs:
@@ -2706,8 +2707,6 @@ components:
           $ref: '#/components/schemas/SiteStatus'
         targetedOccupation:
           type: number
-        wkt:
-          type: string
       type: object
     SiteFamily:
       properties:

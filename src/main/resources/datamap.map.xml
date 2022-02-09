@@ -973,11 +973,16 @@
 		<db-attribute name="WIGOS_SYNCHRONISED" type="NUMERIC" length="1"/>
 	</db-entity>
 	<db-entity name="PTF_ANCILLARY_DEVICE" schema="JCOMMOPS_B">
-		<db-attribute name="BATCH_REF" type="VARCHAR" length="20"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="PTF_ID" type="INTEGER" length="10"/>
-		<db-attribute name="PTF_MODEL_ID" type="INTEGER" length="10"/>
 		<db-attribute name="SERIAL_REF" type="VARCHAR" length="20"/>
+		<db-attribute name="VERSION_ID" type="INTEGER" length="10"/>
+	</db-entity>
+	<db-entity name="PTF_ANCILLARY_DEVICE_VERSION" schema="JCOMMOPS_B">
+		<db-attribute name="DEVICE_NAME" type="VARCHAR" length="50"/>
+		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
+		<db-attribute name="PTF_MODEL_ID" type="INTEGER" length="10"/>
+		<db-attribute name="VERSION" type="VARCHAR" length="50"/>
 	</db-entity>
 	<db-entity name="PTF_AUTOMATION" schema="JCOMMOPS_B">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="200"/>
@@ -2618,8 +2623,11 @@
 		<obj-attribute name="wigosSynchronised" type="java.lang.Integer" db-attribute-path="WIGOS_SYNCHRONISED"/>
 	</obj-entity>
 	<obj-entity name="PtfAncillaryDevice" className="org.oceanops.api.orm.PtfAncillaryDevice" dbEntityName="PTF_ANCILLARY_DEVICE">
-		<obj-attribute name="batchRef" type="java.lang.String" db-attribute-path="BATCH_REF"/>
 		<obj-attribute name="serialRef" type="java.lang.String" db-attribute-path="SERIAL_REF"/>
+	</obj-entity>
+	<obj-entity name="PtfAncillaryDeviceVersion" className="org.oceanops.api.orm.PtfAncillaryDeviceVersion" dbEntityName="PTF_ANCILLARY_DEVICE_VERSION">
+		<obj-attribute name="deviceName" type="java.lang.String" db-attribute-path="DEVICE_NAME"/>
+		<obj-attribute name="version" type="java.lang.String" db-attribute-path="VERSION"/>
 	</obj-entity>
 	<obj-entity name="PtfAutomation" className="org.oceanops.api.orm.PtfAutomation" dbEntityName="PTF_AUTOMATION">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
@@ -4541,7 +4549,13 @@
 	<db-relationship name="ptf" source="PTF_ANCILLARY_DEVICE" target="PTF">
 		<db-attribute-pair source="PTF_ID" target="ID"/>
 	</db-relationship>
-	<db-relationship name="ptfModel" source="PTF_ANCILLARY_DEVICE" target="PTF_MODEL">
+	<db-relationship name="ptfAncillaryDeviceVersion" source="PTF_ANCILLARY_DEVICE" target="PTF_ANCILLARY_DEVICE_VERSION">
+		<db-attribute-pair source="VERSION_ID" target="ID"/>
+	</db-relationship>
+	<db-relationship name="ptfAncillaryDevice" source="PTF_ANCILLARY_DEVICE_VERSION" target="PTF_ANCILLARY_DEVICE" toMany="true">
+		<db-attribute-pair source="ID" target="VERSION_ID"/>
+	</db-relationship>
+	<db-relationship name="ptfModel" source="PTF_ANCILLARY_DEVICE_VERSION" target="PTF_MODEL">
 		<db-attribute-pair source="PTF_MODEL_ID" target="ID"/>
 	</db-relationship>
 	<db-relationship name="untitledRel" source="PTF_AUTOMATION" target="PTF" toMany="true">
@@ -4679,7 +4693,7 @@
 	<db-relationship name="network" source="PTF_MODEL" target="NETWORK">
 		<db-attribute-pair source="NETWORK_ID" target="ID"/>
 	</db-relationship>
-	<db-relationship name="ptfAncillaryDevices" source="PTF_MODEL" target="PTF_ANCILLARY_DEVICE" toMany="true">
+	<db-relationship name="ptfAncillaryDeviceVersions" source="PTF_MODEL" target="PTF_ANCILLARY_DEVICE_VERSION" toMany="true">
 		<db-attribute-pair source="ID" target="PTF_MODEL_ID"/>
 	</db-relationship>
 	<db-relationship name="ptfType" source="PTF_MODEL" target="PTF_TYPE">
@@ -5672,7 +5686,9 @@
 	<obj-relationship name="weblinks" source="Ptf" target="Weblink" deleteRule="Nullify" db-relationship-path="weblinkPtfs.weblink"/>
 	<obj-relationship name="wmos" source="Ptf" target="Wmo" deleteRule="Deny" db-relationship-path="wmos"/>
 	<obj-relationship name="ptf" source="PtfAncillaryDevice" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
-	<obj-relationship name="ptfModel" source="PtfAncillaryDevice" target="PtfModel" deleteRule="Nullify" db-relationship-path="ptfModel"/>
+	<obj-relationship name="ptfAncillaryDeviceVersion" source="PtfAncillaryDevice" target="PtfAncillaryDeviceVersion" deleteRule="Nullify" db-relationship-path="ptfAncillaryDeviceVersion"/>
+	<obj-relationship name="ptfAncillaryDevice" source="PtfAncillaryDeviceVersion" target="PtfAncillaryDevice" deleteRule="Deny" db-relationship-path="ptfAncillaryDevice"/>
+	<obj-relationship name="ptfModel" source="PtfAncillaryDeviceVersion" target="PtfModel" deleteRule="Nullify" db-relationship-path="ptfModel"/>
 	<obj-relationship name="ptfHardwares" source="PtfBattery" target="PtfHardware" deleteRule="Deny" db-relationship-path="ptfHardwares"/>
 	<obj-relationship name="config" source="PtfConfig" target="Config" deleteRule="Nullify" db-relationship-path="config"/>
 	<obj-relationship name="ptf" source="PtfConfig" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
@@ -5716,7 +5732,6 @@
 	<obj-relationship name="hullType" source="PtfModel" target="PtfHullType" deleteRule="Nullify" db-relationship-path="hullType"/>
 	<obj-relationship name="image" source="PtfModel" target="Image" deleteRule="Nullify" db-relationship-path="image"/>
 	<obj-relationship name="network" source="PtfModel" target="Network" deleteRule="Nullify" db-relationship-path="network"/>
-	<obj-relationship name="ptfAncillaryDevices" source="PtfModel" target="PtfAncillaryDevice" deleteRule="Nullify" db-relationship-path="ptfAncillaryDevices"/>
 	<obj-relationship name="ptfType" source="PtfModel" target="PtfType" deleteRule="Nullify" db-relationship-path="ptfType"/>
 	<obj-relationship name="ptfs" source="PtfModel" target="Ptf" deleteRule="Deny" db-relationship-path="ptfs"/>
 	<obj-relationship name="telecomFormats" source="PtfModel" target="TelecomFormat" deleteRule="Deny" db-relationship-path="telecomFormats"/>
@@ -5982,6 +5997,7 @@
 		<usePrimitives>true</usePrimitives>
 	</dbImport>
 	<cgen xmlns="http://cayenne.apache.org/schema/10/cgen">
+		<excludeEntities>PtfAncillaryDeviceVersion</excludeEntities>
 		<destDir>..\java</destDir>
 		<mode>all</mode>
 		<template>templates/v4_1/subclass.vm</template>
