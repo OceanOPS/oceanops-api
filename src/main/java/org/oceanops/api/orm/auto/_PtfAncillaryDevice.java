@@ -9,6 +9,7 @@ import org.apache.cayenne.exp.property.EntityProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
 import org.oceanops.api.orm.Ptf;
+import org.oceanops.api.orm.PtfAncillaryDeviceName;
 import org.oceanops.api.orm.PtfAncillaryDeviceVersion;
 
 /**
@@ -25,11 +26,13 @@ public abstract class _PtfAncillaryDevice extends BaseDataObject {
 
     public static final StringProperty<String> SERIAL_REF = PropertyFactory.createString("serialRef", String.class);
     public static final EntityProperty<Ptf> PTF = PropertyFactory.createEntity("ptf", Ptf.class);
+    public static final EntityProperty<PtfAncillaryDeviceName> PTF_ANCILLARY_DEVICE_NAME = PropertyFactory.createEntity("ptfAncillaryDeviceName", PtfAncillaryDeviceName.class);
     public static final EntityProperty<PtfAncillaryDeviceVersion> PTF_ANCILLARY_DEVICE_VERSION = PropertyFactory.createEntity("ptfAncillaryDeviceVersion", PtfAncillaryDeviceVersion.class);
 
     protected String serialRef;
 
     protected Object ptf;
+    protected Object ptfAncillaryDeviceName;
     protected Object ptfAncillaryDeviceVersion;
 
     public void setSerialRef(String serialRef) {
@@ -48,6 +51,14 @@ public abstract class _PtfAncillaryDevice extends BaseDataObject {
 
     public Ptf getPtf() {
         return (Ptf)readProperty("ptf");
+    }
+
+    public void setPtfAncillaryDeviceName(PtfAncillaryDeviceName ptfAncillaryDeviceName) {
+        setToOneTarget("ptfAncillaryDeviceName", ptfAncillaryDeviceName, true);
+    }
+
+    public PtfAncillaryDeviceName getPtfAncillaryDeviceName() {
+        return (PtfAncillaryDeviceName)readProperty("ptfAncillaryDeviceName");
     }
 
     public void setPtfAncillaryDeviceVersion(PtfAncillaryDeviceVersion ptfAncillaryDeviceVersion) {
@@ -69,6 +80,8 @@ public abstract class _PtfAncillaryDevice extends BaseDataObject {
                 return this.serialRef;
             case "ptf":
                 return this.ptf;
+            case "ptfAncillaryDeviceName":
+                return this.ptfAncillaryDeviceName;
             case "ptfAncillaryDeviceVersion":
                 return this.ptfAncillaryDeviceVersion;
             default:
@@ -88,6 +101,9 @@ public abstract class _PtfAncillaryDevice extends BaseDataObject {
                 break;
             case "ptf":
                 this.ptf = val;
+                break;
+            case "ptfAncillaryDeviceName":
+                this.ptfAncillaryDeviceName = val;
                 break;
             case "ptfAncillaryDeviceVersion":
                 this.ptfAncillaryDeviceVersion = val;
@@ -110,6 +126,7 @@ public abstract class _PtfAncillaryDevice extends BaseDataObject {
         super.writeState(out);
         out.writeObject(this.serialRef);
         out.writeObject(this.ptf);
+        out.writeObject(this.ptfAncillaryDeviceName);
         out.writeObject(this.ptfAncillaryDeviceVersion);
     }
 
@@ -118,6 +135,7 @@ public abstract class _PtfAncillaryDevice extends BaseDataObject {
         super.readState(in);
         this.serialRef = (String)in.readObject();
         this.ptf = in.readObject();
+        this.ptfAncillaryDeviceName = in.readObject();
         this.ptfAncillaryDeviceVersion = in.readObject();
     }
 

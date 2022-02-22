@@ -1575,17 +1575,26 @@ components:
       properties:
         ptf:
           $ref: '#/components/schemas/Ptf'
+        ptfAncillaryDeviceName:
+          $ref: '#/components/schemas/PtfAncillaryDeviceName'
         ptfAncillaryDeviceVersion:
           $ref: '#/components/schemas/PtfAncillaryDeviceVersion'
         serialRef:
           type: string
       type: object
+    PtfAncillaryDeviceName:
+      properties:
+        description:
+          type: string
+        name:
+          type: string
+        ptfAncillaryDeviceVersions:
+          $ref: '#/components/schemas/PtfAncillaryDeviceVersion'
+      type: object
     PtfAncillaryDeviceVersion:
       properties:
-        deviceName:
-          type: string
-        ptfAncillaryDevice:
-          $ref: '#/components/schemas/PtfAncillaryDevice'
+        ptfAncillaryDeviceName:
+          $ref: '#/components/schemas/PtfAncillaryDeviceName'
         ptfModel:
           $ref: '#/components/schemas/PtfModel'
         version:

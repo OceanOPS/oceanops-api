@@ -974,13 +974,19 @@
 	</db-entity>
 	<db-entity name="PTF_ANCILLARY_DEVICE" schema="JCOMMOPS_B">
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
+		<db-attribute name="PTF_ANCILLARY_DEVICE_NAME_ID" type="INTEGER" length="10"/>
 		<db-attribute name="PTF_ID" type="INTEGER" length="10"/>
 		<db-attribute name="SERIAL_REF" type="VARCHAR" length="20"/>
 		<db-attribute name="VERSION_ID" type="INTEGER" length="10"/>
 	</db-entity>
-	<db-entity name="PTF_ANCILLARY_DEVICE_VERSION" schema="JCOMMOPS_B">
-		<db-attribute name="DEVICE_NAME" type="VARCHAR" length="50"/>
+	<db-entity name="PTF_ANCILLARY_DEVICE_NAME" schema="JCOMMOPS_B">
+		<db-attribute name="DESCRIPTION" type="VARCHAR" length="200"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
+		<db-attribute name="NAME" type="VARCHAR" length="50"/>
+	</db-entity>
+	<db-entity name="PTF_ANCILLARY_DEVICE_VERSION" schema="JCOMMOPS_B">
+		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
+		<db-attribute name="PTF_ANCILLARY_DEVICE_NAME_ID" type="INTEGER" length="10"/>
 		<db-attribute name="PTF_MODEL_ID" type="INTEGER" length="10"/>
 		<db-attribute name="VERSION" type="VARCHAR" length="50"/>
 	</db-entity>
@@ -2625,8 +2631,11 @@
 	<obj-entity name="PtfAncillaryDevice" className="org.oceanops.api.orm.PtfAncillaryDevice" dbEntityName="PTF_ANCILLARY_DEVICE">
 		<obj-attribute name="serialRef" type="java.lang.String" db-attribute-path="SERIAL_REF"/>
 	</obj-entity>
+	<obj-entity name="PtfAncillaryDeviceName" className="org.oceanops.api.orm.PtfAncillaryDeviceName" dbEntityName="PTF_ANCILLARY_DEVICE_NAME">
+		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
+	</obj-entity>
 	<obj-entity name="PtfAncillaryDeviceVersion" className="org.oceanops.api.orm.PtfAncillaryDeviceVersion" dbEntityName="PTF_ANCILLARY_DEVICE_VERSION">
-		<obj-attribute name="deviceName" type="java.lang.String" db-attribute-path="DEVICE_NAME"/>
 		<obj-attribute name="version" type="java.lang.String" db-attribute-path="VERSION"/>
 	</obj-entity>
 	<obj-entity name="PtfAutomation" className="org.oceanops.api.orm.PtfAutomation" dbEntityName="PTF_AUTOMATION">
@@ -4549,11 +4558,17 @@
 	<db-relationship name="ptf" source="PTF_ANCILLARY_DEVICE" target="PTF">
 		<db-attribute-pair source="PTF_ID" target="ID"/>
 	</db-relationship>
+	<db-relationship name="ptfAncillaryDeviceName" source="PTF_ANCILLARY_DEVICE" target="PTF_ANCILLARY_DEVICE_NAME">
+		<db-attribute-pair source="PTF_ANCILLARY_DEVICE_NAME_ID" target="ID"/>
+	</db-relationship>
 	<db-relationship name="ptfAncillaryDeviceVersion" source="PTF_ANCILLARY_DEVICE" target="PTF_ANCILLARY_DEVICE_VERSION">
 		<db-attribute-pair source="VERSION_ID" target="ID"/>
 	</db-relationship>
-	<db-relationship name="ptfAncillaryDevice" source="PTF_ANCILLARY_DEVICE_VERSION" target="PTF_ANCILLARY_DEVICE" toMany="true">
-		<db-attribute-pair source="ID" target="VERSION_ID"/>
+	<db-relationship name="ptfAncillaryDeviceVersions" source="PTF_ANCILLARY_DEVICE_NAME" target="PTF_ANCILLARY_DEVICE_VERSION" toMany="true">
+		<db-attribute-pair source="ID" target="PTF_ANCILLARY_DEVICE_NAME_ID"/>
+	</db-relationship>
+	<db-relationship name="ptfAncillaryDeviceName" source="PTF_ANCILLARY_DEVICE_VERSION" target="PTF_ANCILLARY_DEVICE_NAME">
+		<db-attribute-pair source="PTF_ANCILLARY_DEVICE_NAME_ID" target="ID"/>
 	</db-relationship>
 	<db-relationship name="ptfModel" source="PTF_ANCILLARY_DEVICE_VERSION" target="PTF_MODEL">
 		<db-attribute-pair source="PTF_MODEL_ID" target="ID"/>
@@ -5686,8 +5701,10 @@
 	<obj-relationship name="weblinks" source="Ptf" target="Weblink" deleteRule="Nullify" db-relationship-path="weblinkPtfs.weblink"/>
 	<obj-relationship name="wmos" source="Ptf" target="Wmo" deleteRule="Deny" db-relationship-path="wmos"/>
 	<obj-relationship name="ptf" source="PtfAncillaryDevice" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
+	<obj-relationship name="ptfAncillaryDeviceName" source="PtfAncillaryDevice" target="PtfAncillaryDeviceName" deleteRule="Nullify" db-relationship-path="ptfAncillaryDeviceName"/>
 	<obj-relationship name="ptfAncillaryDeviceVersion" source="PtfAncillaryDevice" target="PtfAncillaryDeviceVersion" deleteRule="Nullify" db-relationship-path="ptfAncillaryDeviceVersion"/>
-	<obj-relationship name="ptfAncillaryDevice" source="PtfAncillaryDeviceVersion" target="PtfAncillaryDevice" deleteRule="Deny" db-relationship-path="ptfAncillaryDevice"/>
+	<obj-relationship name="ptfAncillaryDeviceVersions" source="PtfAncillaryDeviceName" target="PtfAncillaryDeviceVersion" deleteRule="Deny" db-relationship-path="ptfAncillaryDeviceVersions"/>
+	<obj-relationship name="ptfAncillaryDeviceName" source="PtfAncillaryDeviceVersion" target="PtfAncillaryDeviceName" deleteRule="Nullify" db-relationship-path="ptfAncillaryDeviceName"/>
 	<obj-relationship name="ptfModel" source="PtfAncillaryDeviceVersion" target="PtfModel" deleteRule="Nullify" db-relationship-path="ptfModel"/>
 	<obj-relationship name="ptfHardwares" source="PtfBattery" target="PtfHardware" deleteRule="Deny" db-relationship-path="ptfHardwares"/>
 	<obj-relationship name="config" source="PtfConfig" target="Config" deleteRule="Nullify" db-relationship-path="config"/>
@@ -5997,7 +6014,7 @@
 		<usePrimitives>true</usePrimitives>
 	</dbImport>
 	<cgen xmlns="http://cayenne.apache.org/schema/10/cgen">
-		<excludeEntities>PtfAncillaryDeviceVersion</excludeEntities>
+		<excludeEntities>PtfAncillaryDeviceName,PtfAncillaryDeviceVersion</excludeEntities>
 		<destDir>..\java</destDir>
 		<mode>all</mode>
 		<template>templates/v4_1/subclass.vm</template>
