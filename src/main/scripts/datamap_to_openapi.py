@@ -66,7 +66,8 @@ if len(sys.argv) > 1:
             yamlAgrestObj = yaml.safe_load(agrestFile)
             yamlObj = yaml.safe_load(file)
             yamlObj["components"]["schemas"] = schemasObj
-            yamlObj["components"]["queryParams"] = yamlAgrestObj["components"]["queryParams"]
+            for [k, v] in yamlAgrestObj["components"]["parameters"].items():
+                yamlObj["components"]["parameters"][k] = v
 
             with open('./src/main/resources/oceanops-api.yaml', 'w') as file:
                 yaml.dump(yamlObj, file)

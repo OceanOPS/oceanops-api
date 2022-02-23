@@ -5,21 +5,22 @@ info:
   title: OceanOPS API for metadata access
   description: An API for interacting with OceanOPS metadata
   version: ${project.version}
-contact:
-  name: API Support
-  url: https://ocean-ops.org/api
-  email: dev@ocean-ops.org
-license:
-  name: Apache 2.0
-  identifier: Apache-2.0
-  url: https://www.apache.org/licenses/LICENSE-2.0.html
+  contact:
+    name: API Support
+    url: https://ocean-ops.org/api
+    email: dev@ocean-ops.org
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
 
 components:
   securitySchemes:    
-    - type: apiKey
+    apiKeyId:
+      type: apiKey
       name: X-OceanOPS-Metadata-ID
       in: header
-    - type: apiKey
+    apiKeyToken:
+      type: apiKey
       name: X-OceanOPS-Metadata-Token
       in: header
   parameters:
@@ -75,17 +76,17 @@ paths:
                   total:
                     type: number
       parameters:
-        - $ref: '#/components/queryParams/Includes'
-        - $ref: '#/components/queryParams/Excludes'
-        - $ref: '#/components/queryParams/Exp'
-        - $ref: '#/components/queryParams/MapBy'
-        - $ref: '#/components/queryParams/Start'
-        - $ref: '#/components/queryParams/Limit'
-        - $ref: '#/components/queryParams/Sort'
-        - $ref: '#/components/queryParams/Dir'
+        - $ref: '#/components/parameters/Includes'
+        - $ref: '#/components/parameters/Excludes'
+        - $ref: '#/components/parameters/Exp'
+        - $ref: '#/components/parameters/MapBy'
+        - $ref: '#/components/parameters/Start'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Sort'
+        - $ref: '#/components/parameters/Dir'
       security:
-        - X-OceanOPS-Metadata-ID
-        - X-OceanOPS-Metadata-Token
+        - X-OceanOPS-Metadata-ID: []
+          X-OceanOPS-Metadata-Token : []
   /${entityPath}/ship/{shipId}:
       get:
         summary: Returns a particular Ship through its database identifier
@@ -101,8 +102,8 @@ paths:
               type: integer
               format: int32
         security:
-          - X-OceanOPS-Metadata-ID
-          - X-OceanOPS-Metadata-Token
+          - X-OceanOPS-Metadata-ID: []
+            X-OceanOPS-Metadata-Token: []
         responses:
           '200':
             description: Success responce
@@ -137,17 +138,17 @@ paths:
                   total:
                     type: number
       parameters:
-        - $ref: '#/components/queryParams/Includes'
-        - $ref: '#/components/queryParams/Excludes'
-        - $ref: '#/components/queryParams/Exp'
-        - $ref: '#/components/queryParams/MapBy'
-        - $ref: '#/components/queryParams/Start'
-        - $ref: '#/components/queryParams/Limit'
-        - $ref: '#/components/queryParams/Sort'
-        - $ref: '#/components/queryParams/Dir'
+        - $ref: '#/components/parameters/Includes'
+        - $ref: '#/components/parameters/Excludes'
+        - $ref: '#/components/parameters/Exp'
+        - $ref: '#/components/parameters/MapBy'
+        - $ref: '#/components/parameters/Start'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Sort'
+        - $ref: '#/components/parameters/Dir'
       security:
-        - X-OceanOPS-Metadata-ID
-        - X-OceanOPS-Metadata-Token
+        - X-OceanOPS-Metadata-ID: []
+          X-OceanOPS-Metadata-Token: []
   /${entityPath}/platform/{ptfId}:
       get:
         summary: Returns a particular Platform through its database identifier
@@ -157,8 +158,8 @@ paths:
         parameters:
           - $ref: '#/components/parameters/ptfId'
         security:
-          - X-OceanOPS-Metadata-ID
-          - X-OceanOPS-Metadata-Token
+          - X-OceanOPS-Metadata-ID: []
+            X-OceanOPS-Metadata-Token: []
         responses:
           '200':
             description: Success responce
@@ -182,8 +183,8 @@ paths:
         parameters:
           - $ref: '#/components/parameters/ptfRef'
         security:
-          - X-OceanOPS-Metadata-ID
-          - X-OceanOPS-Metadata-Token
+          - X-OceanOPS-Metadata-ID: []
+            X-OceanOPS-Metadata-Token: []
         responses:
           '200':
             description: Success responce
@@ -207,8 +208,8 @@ paths:
         parameters:
           - $ref: '#/components/parameters/ptfWigosId'
         security:
-          - X-OceanOPS-Metadata-ID
-          - X-OceanOPS-Metadata-Token
+          - X-OceanOPS-Metadata-ID: []
+            X-OceanOPS-Metadata-Token: []
         responses:
           '200':
             description: Success responce

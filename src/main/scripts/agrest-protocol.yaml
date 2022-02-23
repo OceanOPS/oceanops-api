@@ -1,5 +1,5 @@
 components:
-  queryParams:
+  parameters:
 
     Exp:
       name: exp
@@ -8,7 +8,7 @@ components:
       explode: false
       schema:
         type: string
-      description: Condition applied to data in the format of Cayenne expression with parameters
+      description: condition applied to data in the format of Cayenne expression with parameters. More details [here](https://agrest.io/protocol/#filtering-collection-with-exp).
       required: false
 
     Dir:
@@ -21,7 +21,7 @@ components:
         enum:
           - ASC
           - DESC
-      description: sorting direction
+      description: sorting direction. More details [here](https://agrest.io/protocol/#ordering-collection-with-sort-dir).
       required: false
 
     Excludes:
@@ -33,7 +33,7 @@ components:
         type: array
         items:
           type: string
-      description: a list of excludes (either simple paths or JSON structures)
+      description: a list of excludes (either simple paths or JSON structures). More details [here](https://agrest.io/protocol/#shaping-collection-with-include-exclude).
       required: false
 
     Includes:
@@ -45,7 +45,7 @@ components:
         type: array
         items:
           type: string
-      description: a list of includes (either simple paths or JSON structures)
+      description: a list of includes (either simple paths or JSON structures). More details [here](https://agrest.io/protocol/#shaping-collection-with-include-exclude).
       required: false
 
     Limit:
@@ -56,7 +56,7 @@ components:
       schema:
         type: integer
         format: int32
-      description: limit query param. Used for pagination.
+      description: limit query parameter. Used for pagination. More details [here](https://agrest.io/protocol/#Pagination).
       required: false
 
     Start:
@@ -67,7 +67,7 @@ components:
       schema:
         type: integer
         format: int32
-      description: start query param. Used for pagination.
+      description: start query parameter. Used for pagination. More details [here](https://agrest.io/protocol/#Pagination).
       required: false
 
     MapBy:
@@ -77,7 +77,7 @@ components:
       explode: false
       schema:
         type: string
-      description:
+      description: map by query parameter to structure results. More details [here](https://agrest.io/protocol/#structuring-collection-with-mapby).
       required: false
 
     Sort:
@@ -87,5 +87,5 @@ components:
       explode: false
       schema:
         type: string
-      description: sort
+      description: sorting query parameter. More details [here](https://agrest.io/protocol/#ordering-collection-with-sort-dir).
       required: false
