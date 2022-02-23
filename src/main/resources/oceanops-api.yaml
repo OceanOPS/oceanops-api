@@ -1,5 +1,89 @@
 components:
   parameters:
+    Dir:
+      description: sorting direction. More details [here](https://agrest.io/protocol/#ordering-collection-with-sort-dir).
+      explode: false
+      in: query
+      name: dir
+      required: false
+      schema:
+        enum:
+        - ASC
+        - DESC
+        type: string
+      style: form
+    Excludes:
+      description: a list of excludes (either simple paths or JSON structures). More
+        details [here](https://agrest.io/protocol/#shaping-collection-with-include-exclude).
+      explode: true
+      in: query
+      name: exclude
+      required: false
+      schema:
+        items:
+          type: string
+        type: array
+      style: form
+    Exp:
+      description: condition applied to data in the format of Cayenne expression with
+        parameters. More details [here](https://agrest.io/protocol/#filtering-collection-with-exp).
+      explode: false
+      in: query
+      name: exp
+      required: false
+      schema:
+        type: string
+      style: form
+    Includes:
+      description: a list of includes (either simple paths or JSON structures). More
+        details [here](https://agrest.io/protocol/#shaping-collection-with-include-exclude).
+      explode: true
+      in: query
+      name: include
+      required: false
+      schema:
+        items:
+          type: string
+        type: array
+      style: form
+    Limit:
+      description: limit query parameter. Used for pagination. More details [here](https://agrest.io/protocol/#Pagination).
+      explode: false
+      in: query
+      name: limit
+      required: false
+      schema:
+        format: int32
+        type: integer
+      style: form
+    MapBy:
+      description: map by query parameter.
+      explode: false
+      in: query
+      name: mapBy query parameter to structure results. More details [here](https://agrest.io/protocol/#structuring-collection-with-mapby).
+      required: false
+      schema:
+        type: string
+      style: form
+    Sort:
+      description: sort
+      explode: false
+      in: query
+      name: sorting query parameter. More details [here](https://agrest.io/protocol/#ordering-collection-with-sort-dir).
+      required: false
+      schema:
+        type: string
+      style: form
+    Start:
+      description: start query parameter. Used for pagination. More details [here](https://agrest.io/protocol/#Pagination).
+      explode: false
+      in: query
+      name: start
+      required: false
+      schema:
+        format: int32
+        type: integer
+      style: form
     ptfId:
       description: ID of Platform to fetch
       in: path
@@ -22,89 +106,6 @@ components:
       required: true
       schema:
         type: string
-  queryParams:
-    Dir:
-      description: sorting direction
-      explode: false
-      in: query
-      name: dir
-      required: false
-      schema:
-        enum:
-        - ASC
-        - DESC
-        type: string
-      style: form
-    Excludes:
-      description: a list of excludes (either simple paths or JSON structures)
-      explode: true
-      in: query
-      name: exclude
-      required: false
-      schema:
-        items:
-          type: string
-        type: array
-      style: form
-    Exp:
-      description: Condition applied to data in the format of Cayenne expression with
-        parameters
-      explode: false
-      in: query
-      name: exp
-      required: false
-      schema:
-        type: string
-      style: form
-    Includes:
-      description: a list of includes (either simple paths or JSON structures)
-      explode: true
-      in: query
-      name: include
-      required: false
-      schema:
-        items:
-          type: string
-        type: array
-      style: form
-    Limit:
-      description: limit query param. Used for pagination.
-      explode: false
-      in: query
-      name: limit
-      required: false
-      schema:
-        format: int32
-        type: integer
-      style: form
-    MapBy:
-      description: null
-      explode: false
-      in: query
-      name: mapBy
-      required: false
-      schema:
-        type: string
-      style: form
-    Sort:
-      description: sort
-      explode: false
-      in: query
-      name: sort
-      required: false
-      schema:
-        type: string
-      style: form
-    Start:
-      description: start query param. Used for pagination.
-      explode: false
-      in: query
-      name: start
-      required: false
-      schema:
-        format: int32
-        type: integer
-      style: form
   schemas:
     Agency:
       properties:
@@ -3102,37 +3103,38 @@ components:
           type: string
       type: object
   securitySchemes:
-  - in: header
-    name: X-OceanOPS-Metadata-ID
-    type: apiKey
-  - in: header
-    name: X-OceanOPS-Metadata-Token
-    type: apiKey
-contact:
-  email: dev@ocean-ops.org
-  name: API Support
-  url: https://ocean-ops.org/api
+    apiKeyId:
+      in: header
+      name: X-OceanOPS-Metadata-ID
+      type: apiKey
+    apiKeyToken:
+      in: header
+      name: X-OceanOPS-Metadata-Token
+      type: apiKey
 info:
+  contact:
+    email: dev@ocean-ops.org
+    name: API Support
+    url: https://ocean-ops.org/api
   description: An API for interacting with OceanOPS metadata
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
   title: OceanOPS API for metadata access
   version: ${project.version}
-license:
-  identifier: Apache-2.0
-  name: Apache 2.0
-  url: https://www.apache.org/licenses/LICENSE-2.0.html
 openapi: 3.0.3
 paths:
   /${entityPath}/platform:
     get:
       parameters:
-      - $ref: '#/components/queryParams/Includes'
-      - $ref: '#/components/queryParams/Excludes'
-      - $ref: '#/components/queryParams/Exp'
-      - $ref: '#/components/queryParams/MapBy'
-      - $ref: '#/components/queryParams/Start'
-      - $ref: '#/components/queryParams/Limit'
-      - $ref: '#/components/queryParams/Sort'
-      - $ref: '#/components/queryParams/Dir'
+      - $ref: '#/components/parameters/Includes'
+      - $ref: '#/components/parameters/Excludes'
+      - $ref: '#/components/parameters/Exp'
+      - $ref: '#/components/parameters/MapBy'
+      - $ref: '#/components/parameters/Start'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Dir'
       responses:
         '200':
           content:
@@ -3148,8 +3150,8 @@ paths:
                 type: object
           description: Success response.
       security:
-      - X-OceanOPS-Metadata-ID
-      - X-OceanOPS-Metadata-Token
+      - X-OceanOPS-Metadata-ID: []
+        X-OceanOPS-Metadata-Token: []
       summary: Get list of all platforms
       tags:
       - Platform
@@ -3173,8 +3175,8 @@ paths:
                 type: object
           description: Success responce
       security:
-      - X-OceanOPS-Metadata-ID
-      - X-OceanOPS-Metadata-Token
+      - X-OceanOPS-Metadata-ID: []
+        X-OceanOPS-Metadata-Token: []
       summary: Returns a particular Platform through its OceanOPS reference
       tags:
       - Platform
@@ -3198,8 +3200,8 @@ paths:
                 type: object
           description: Success responce
       security:
-      - X-OceanOPS-Metadata-ID
-      - X-OceanOPS-Metadata-Token
+      - X-OceanOPS-Metadata-ID: []
+        X-OceanOPS-Metadata-Token: []
       summary: Returns a particular Platform through its WIGOS ID
       tags:
       - Platform
@@ -3268,22 +3270,22 @@ paths:
                 type: object
           description: Success responce
       security:
-      - X-OceanOPS-Metadata-ID
-      - X-OceanOPS-Metadata-Token
+      - X-OceanOPS-Metadata-ID: []
+        X-OceanOPS-Metadata-Token: []
       summary: Returns a particular Platform through its database identifier
       tags:
       - Platform
   /${entityPath}/ship:
     get:
       parameters:
-      - $ref: '#/components/queryParams/Includes'
-      - $ref: '#/components/queryParams/Excludes'
-      - $ref: '#/components/queryParams/Exp'
-      - $ref: '#/components/queryParams/MapBy'
-      - $ref: '#/components/queryParams/Start'
-      - $ref: '#/components/queryParams/Limit'
-      - $ref: '#/components/queryParams/Sort'
-      - $ref: '#/components/queryParams/Dir'
+      - $ref: '#/components/parameters/Includes'
+      - $ref: '#/components/parameters/Excludes'
+      - $ref: '#/components/parameters/Exp'
+      - $ref: '#/components/parameters/MapBy'
+      - $ref: '#/components/parameters/Start'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Dir'
       responses:
         '200':
           content:
@@ -3299,8 +3301,8 @@ paths:
                 type: object
           description: Success response.
       security:
-      - X-OceanOPS-Metadata-ID
-      - X-OceanOPS-Metadata-Token
+      - X-OceanOPS-Metadata-ID: []
+        X-OceanOPS-Metadata-Token: []
       summary: Get list of all ships
       tags:
       - Ship
@@ -3330,8 +3332,8 @@ paths:
                 type: object
           description: Success responce
       security:
-      - X-OceanOPS-Metadata-ID
-      - X-OceanOPS-Metadata-Token
+      - X-OceanOPS-Metadata-ID: []
+        X-OceanOPS-Metadata-Token: []
       summary: Returns a particular Ship through its database identifier
       tags:
       - Ship
