@@ -13,14 +13,6 @@
 		<tag>HEAD</tag>
 	</scm>
 
-	<repositories>			
-		<repository>
-			<id>in-project</id>
-			<name>In Project Repo</name>
-			<url>file://${project.basedir}/libs</url>
-		</repository>
-	</repositories>
-
 	<build>
 		<finalName>oceanops-api</finalName>
 		<pluginManagement>
@@ -69,19 +61,6 @@
 					</configuration>
 				</plugin>
 				<plugin>
-					<groupId>org.apache.xmlbeans</groupId>
-					<artifactId>xmlbeans</artifactId>
-					<version>${xmlbeans.version}</version>
-					<configuration>
-						<sourceDir>${project.basedir}/src/main/schemas</sourceDir>
-						<sourceSchemas>wmdr.xsd</sourceSchemas>
-						<partialMethods>ALL,-GET_LIST,-XGET_LIST</partialMethods>
-						<download>true</download>
-						<sourceOnly>false</sourceOnly>
-						<outputJar>${project.basedir}/libs/wmdr/wmdr-beans/${wmdr.version}/wmdr-beans-${wmdr.version}.jar</outputJar>
-					</configuration>
-				</plugin>
-				<plugin>
 					<groupId>org.eclipse.jetty</groupId>
 					<artifactId>jetty-maven-plugin</artifactId>
 					<version>10.0.7</version>
@@ -99,6 +78,53 @@
 							<version>21.7.0.0</version>
 						</dependency>
 					</dependencies>
+				</plugin>
+				<plugin>
+					<groupId>org.jvnet.jaxb2.maven2</groupId>
+					<artifactId>maven-jaxb2-plugin</artifactId>
+					<version>0.15.1</version>
+					<configuration>
+						<args>
+							<arg>-XtoString</arg>
+							<arg>-Xequals</arg>
+							<arg>-XhashCode</arg>
+							<!-- Creates the necessary createInstance methods -->
+							<arg>-Xcopyable</arg>
+							<!-- Updates the package-info with the namespace prefixes, defined 
+								in the binding file -->
+							<arg>-Xnamespace-prefix</arg>
+							<arg>-Xinheritance</arg>
+						</args>
+						<generateDirectory>src/main/java/</generateDirectory>
+						<!-- Uses episode files contained in the dependency jars -->
+						<useDependenciesAsEpisodes>true</useDependenciesAsEpisodes>
+						<!-- Uses extensions -->
+						<extension>true</extension>
+						<schemaDirectory>src/main/scripts/</schemaDirectory>
+						<schemaIncludes>
+							<schemaInclude>wmdr.xsd</schemaInclude>
+						</schemaIncludes>
+						<bindingDirectory>src/main/scripts</bindingDirectory>
+						<bindingIncludes>
+							<include>*.xjb</include>
+						</bindingIncludes>
+						<debug>false</debug>
+						<verbose>false</verbose>
+						<episode>false</episode>
+						<noFileHeader>true</noFileHeader>
+						<plugins>
+							<plugin>
+								<groupId>org.jvnet.jaxb2_commons</groupId>
+								<artifactId>jaxb2-basics</artifactId>
+								<version>0.13.1</version>
+							</plugin>
+							<plugin>
+								<groupId>org.jvnet.jaxb2_commons</groupId>
+								<artifactId>jaxb2-namespace-prefix</artifactId>
+								<version>1.3</version>
+							</plugin>
+						</plugins>
+					</configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -168,16 +194,21 @@
 			<artifactId>bcpkix-jdk15on</artifactId>
 			<version>1.70</version>
 		</dependency>
-
+		
 		<dependency>
-			<groupId>org.apache.xmlbeans</groupId>
-			<artifactId>xmlbeans</artifactId>
-			<version>${xmlbeans.version}</version>
+			<groupId>org.ogc-schemas</groupId>
+			<artifactId>samplingSpatial-v_2_0</artifactId>
+			<version>3.0.0</version>
+		</dependency>			
+		<dependency>
+			<groupId>org.jvnet.jaxb2_commons</groupId>
+			<artifactId>jaxb2-basics-runtime</artifactId>
+			<version>0.13.1</version>
 		</dependency>	
 		<dependency>
-			<groupId>wmdr</groupId>
-			<artifactId>wmdr-beans</artifactId>
-			<version>${wmdr.version}</version>
+			<groupId>org.jvnet.jaxb2_commons</groupId>
+			<artifactId>jaxb-xjc</artifactId>
+			<version>2.1.10.1</version>
 		</dependency>
 
 		<dependency>

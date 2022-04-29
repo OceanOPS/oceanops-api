@@ -1,0 +1,18 @@
+<jaxb:bindings 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+    xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+    xmlns:namespace="http://jaxb2-commons.dev.java.net/namespace-prefix"
+    jaxb:extensionBindingPrefixes="xjc"
+    version="2.1">
+
+	<jaxb:bindings schemaLocation="http://schemas.wmo.int/metce/1.0/phenomena.xsd">
+		<jaxb:bindings node="//xs:complexType[@name='TropicalCycloneType']//xs:element[@name='name']">
+		  <jaxb:property name="tropicalCycloneName"/>
+		</jaxb:bindings> 
+		<jaxb:bindings node="//xs:complexType[@name='VolcanoType']//xs:element[@name='name']">
+		  <jaxb:property name="volcanoName"/>
+		</jaxb:bindings> 
+	</jaxb:bindings>
+
+</jaxb:bindings> 

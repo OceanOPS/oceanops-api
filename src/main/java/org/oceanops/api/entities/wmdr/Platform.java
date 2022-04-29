@@ -5,17 +5,21 @@
  */
 package org.oceanops.api.entities.wmdr;
 
+import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.datatype.DatatypeConfigurationException;
 
 import org.apache.cayenne.Cayenne;
 import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.query.ObjectSelect;
-import org.apache.xmlbeans.XmlCursor;
-import org.apache.xmlbeans.XmlDate;
-import org.apache.xmlbeans.XmlDateTime;
-import org.apache.xmlbeans.XmlOptions;
 import org.oceanops.api.Utils;
 import org.oceanops.api.orm.Agency;
 import org.oceanops.api.orm.ProgramAgency;
@@ -31,52 +35,59 @@ import org.oceanops.api.orm.Wmo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import xint.wmo.def.wmdr.x2017.AbstractEnvironmentalMonitoringFacilityType;
-import xint.wmo.def.wmdr.x2017.AbstractEnvironmentalMonitoringFacilityType.Description;
-import xint.wmo.def.wmdr.x2017.AbstractEnvironmentalMonitoringFacilityType.GeospatialLocation;
-import xint.wmo.def.wmdr.x2017.AbstractEnvironmentalMonitoringFacilityType.OnlineResource;
-import xint.wmo.def.wmdr.x2017.DeploymentPropertyType;
-import xint.wmo.def.wmdr.x2017.DeploymentType;
-import xint.wmo.def.wmdr.x2017.DescriptionType;
-import xint.wmo.def.wmdr.x2017.EquipmentPropertyType;
-import xint.wmo.def.wmdr.x2017.EquipmentType;
-import xint.wmo.def.wmdr.x2017.GeospatialLocationType;
-import xint.wmo.def.wmdr.x2017.HeaderType;
-import xint.wmo.def.wmdr.x2017.ObservingCapabilityPropertyType;
-import xint.wmo.def.wmdr.x2017.ObservingCapabilityType;
-import xint.wmo.def.wmdr.x2017.ObservingFacilityType;
-import xint.wmo.def.wmdr.x2017.ProcessDocument;
-import xint.wmo.def.wmdr.x2017.ObservingFacilityType.ProgramAffiliation;
-import xint.wmo.def.wmdr.x2017.ObservingFacilityType.Territory;
-import xint.wmo.def.wmdr.x2017.ProcessType;
-import xint.wmo.def.wmdr.x2017.ProgramAffiliationType;
-import xint.wmo.def.wmdr.x2017.ProgramAffiliationType.ReportingStatus;
-import xint.wmo.def.wmdr.x2017.ReportingStatusType;
-import xint.wmo.def.wmdr.x2017.ResponsiblePartyType;
-import xint.wmo.def.wmdr.x2017.TerritoryType;
-import xint.wmo.def.wmdr.x2017.WIGOSMetadataRecordDocument;
-import xint.wmo.def.wmdr.x2017.WIGOSMetadataRecordType;
-import net.opengis.gml.x32.CodeWithAuthorityType;
-import net.opengis.gml.x32.DirectPositionType;
-import net.opengis.gml.x32.MeasureType;
-import net.opengis.gml.x32.PointPropertyType;
-import net.opengis.gml.x32.PointType;
-import net.opengis.gml.x32.ReferenceType;
-import net.opengis.gml.x32.TimePeriodPropertyType;
-import net.opengis.gml.x32.TimePeriodType;
-import net.opengis.gml.x32.TimePositionType;
-import org.isotc211.x2005.gco.CharacterStringPropertyType;
-import org.isotc211.x2005.gco.CodeListValueType;
-import org.isotc211.x2005.gmd.CIAddressType;
-import org.isotc211.x2005.gmd.CIContactType;
-import org.isotc211.x2005.gmd.CIOnlineResourceType;
-import org.isotc211.x2005.gmd.CIResponsiblePartyType;
-import org.isotc211.x2005.gmd.CIRoleCodePropertyType;
-import org.isotc211.x2005.gmd.CITelephoneType;
-import org.isotc211.x2005.gmd.URLPropertyType;
-import net.opengis.om.x20.OMObservationPropertyType;
-import net.opengis.om.x20.OMObservationType;
-import net.opengis.om.x20.OMProcessPropertyType;
+import _int.wmo.def.wmdr._2017.AbstractEnvironmentalMonitoringFacilityType;
+import _int.wmo.def.wmdr._2017.AbstractEnvironmentalMonitoringFacilityType.Description;
+import _int.wmo.def.wmdr._2017.AbstractEnvironmentalMonitoringFacilityType.GeospatialLocation;
+import _int.wmo.def.wmdr._2017.AbstractEnvironmentalMonitoringFacilityType.OnlineResource;
+import _int.wmo.def.wmdr._2017.DataGenerationPropertyType;
+import _int.wmo.def.wmdr._2017.DeploymentPropertyType;
+import _int.wmo.def.wmdr._2017.DeploymentType;
+import _int.wmo.def.wmdr._2017.DescriptionType;
+import _int.wmo.def.wmdr._2017.EquipmentPropertyType;
+import _int.wmo.def.wmdr._2017.EquipmentType;
+import _int.wmo.def.wmdr._2017.GeospatialLocationType;
+import _int.wmo.def.wmdr._2017.HeaderType;
+import _int.wmo.def.wmdr._2017.ObservingCapabilityPropertyType;
+import _int.wmo.def.wmdr._2017.ObservingCapabilityType;
+import _int.wmo.def.wmdr._2017.ObservingFacilityType;
+import _int.wmo.def.wmdr._2017.ObservingFacilityType.ProgramAffiliation;
+import _int.wmo.def.wmdr._2017.ObservingFacilityType.Territory;
+import _int.wmo.def.wmdr._2017.ProcessType;
+import _int.wmo.def.wmdr._2017.ProgramAffiliationType;
+import _int.wmo.def.wmdr._2017.ProgramAffiliationType.ReportingStatus;
+import _int.wmo.def.wmdr._2017.ReportingStatusType;
+import _int.wmo.def.wmdr._2017.ResponsiblePartyType;
+import _int.wmo.def.wmdr._2017.TerritoryType;
+import _int.wmo.def.wmdr._2017.WIGOSMetadataRecordType;
+import net.opengis.gml.v_3_2.CodeType;
+import net.opengis.gml.v_3_2.CodeWithAuthorityType;
+import net.opengis.gml.v_3_2.DirectPositionType;
+import net.opengis.gml.v_3_2.GeometryPropertyType;
+import net.opengis.gml.v_3_2.MeasureType;
+import net.opengis.gml.v_3_2.PointType;
+import net.opengis.gml.v_3_2.ReferenceType;
+import net.opengis.gml.v_3_2.StringOrRefType;
+import net.opengis.gml.v_3_2.TimePeriodPropertyType;
+import net.opengis.gml.v_3_2.TimePeriodType;
+import net.opengis.gml.v_3_2.TimePositionType;
+import net.opengis.iso19139.gco.v_20070417.CharacterStringPropertyType;
+import net.opengis.iso19139.gco.v_20070417.CodeListValueType;
+import net.opengis.iso19139.gmd.v_20070417.CIAddressPropertyType;
+import net.opengis.iso19139.gmd.v_20070417.CIAddressType;
+import net.opengis.iso19139.gmd.v_20070417.CIContactPropertyType;
+import net.opengis.iso19139.gmd.v_20070417.CIContactType;
+import net.opengis.iso19139.gmd.v_20070417.CIOnlineResourcePropertyType;
+import net.opengis.iso19139.gmd.v_20070417.CIOnlineResourceType;
+import net.opengis.iso19139.gmd.v_20070417.CIResponsiblePartyType;
+import net.opengis.iso19139.gmd.v_20070417.CIRoleCodePropertyType;
+import net.opengis.iso19139.gmd.v_20070417.CITelephonePropertyType;
+import net.opengis.iso19139.gmd.v_20070417.CITelephoneType;
+import net.opengis.iso19139.gmd.v_20070417.DQElementPropertyType;
+import net.opengis.iso19139.gmd.v_20070417.URLPropertyType;
+import net.opengis.om.v_2_0.OMObservationPropertyType;
+import net.opengis.om.v_2_0.OMObservationType;
+import net.opengis.om.v_2_0.OMProcessPropertyType;
+import net.opengis.om.v_2_0.TimeObjectPropertyType;
 
 /**
  * @author Anthonin Lizé
@@ -85,8 +96,18 @@ import net.opengis.om.x20.OMProcessPropertyType;
  */
 public class Platform {
 	private ObjectContext cayenneContext;
-    private XmlOptions opts;
-	private WIGOSMetadataRecordDocument rootElement;
+	private JAXBContext jaxbContext;
+	private _int.wmo.def.wmdr._2017.ObjectFactory wmdrOF;
+	//private _int.wmo.def.opm._2013.ObjectFactory opmOF;
+	//private _int.wmo.def.metce._2013.ObjectFactory metceOF;
+	//private net.opengis.sampling.v_2_0.ObjectFactory samOF;
+	//private net.opengis.samplingspatial.v_2_0.ObjectFactory samsOF;
+	private net.opengis.om.v_2_0.ObjectFactory omOF;
+	private net.opengis.gml.v_3_2.ObjectFactory gmlOF;
+	private WIGOSMetadataRecordType rootElementType;
+	private JAXBElement<WIGOSMetadataRecordType> rootElement;
+	private net.opengis.iso19139.gmd.v_20070417.ObjectFactory gmdOF;
+	private net.opengis.iso19139.gco.v_20070417.ObjectFactory gcoOF;
 
 	private Integer ciResponsiblePartyCounter = 0;
 	private Integer sensorIncrement = 0;
@@ -105,51 +126,54 @@ public class Platform {
 	}
 
 	/**
+	 * Constructor of this class. Initializes all the context variables. Should not be used directly.
+	 * 
+	 * @throws JAXBException
+	 */
+	public Platform() throws JAXBException {
+		this.cayenneContext = Utils.getCayenneContext();
+		this.jaxbContext = JAXBContext.newInstance("_int.wmo.def.wmdr._2017:_int.wmo.def.metce._2013:_int.wmo.def.opm._2013:net.opengis.gml.v_3_2:net.opengis.om.v_2_0:net.opengis.sampling.v_2_0:net.opengis.samplingspatial.v_2_0");
+		this.wmdrOF = new _int.wmo.def.wmdr._2017.ObjectFactory();
+		//this.opmOF = new _int.wmo.def.opm._2013.ObjectFactory();
+		//this.metceOF = new _int.wmo.def.metce._2013.ObjectFactory();
+		//this.samOF = new net.opengis.sampling.v_2_0.ObjectFactory();
+		//this.samsOF = new net.opengis.samplingspatial.v_2_0.ObjectFactory();
+		this.omOF = new net.opengis.om.v_2_0.ObjectFactory();
+		this.gmlOF = new net.opengis.gml.v_3_2.ObjectFactory();
+		this.gmdOF = new net.opengis.iso19139.gmd.v_20070417.ObjectFactory();
+		this.gcoOF = new net.opengis.iso19139.gco.v_20070417.ObjectFactory();
+
+		this.rootElementType = new WIGOSMetadataRecordType();
+		this.rootElement = wmdrOF.createWIGOSMetadataRecord(this.rootElementType);
+	}
+
+	/**
 	 * Main constructor of this class. It will instanciate the WMDR for the given platform
 	 * 
 	 * @param ptf An instance of a platform
 	 * 
+	 * @throws JAXBException
+	 * @throws DatatypeConfigurationException
 	 */
-	public Platform(Ptf ptf) {
-		this.cayenneContext = Utils.getCayenneContext();
+	public Platform(Ptf ptf) throws JAXBException, DatatypeConfigurationException {
+		this();
 		logger.debug("Instanciating Platform WMDR record for ptf_id = " + String.valueOf(ptf.getId()));
 		String wigosRef = this.getWIGOSIdentifier(ptf);
-        
-        this.rootElement = WIGOSMetadataRecordDocument.Factory.newInstance(opts);
-		WIGOSMetadataRecordType rootElementType = this.rootElement.addNewWIGOSMetadataRecord();
-        XmlCursor cursor = rootElementType.newCursor();
-        cursor.toNextToken();
-        cursor.insertNamespace("xsi", "http://www.w3.org/2001/XMLSchema-instance");
-        cursor.insertNamespace("wmdr", "http://def.wmo.int/wmdr/2017");
-        cursor.insertNamespace("gml", "http://www.opengis.net/gml/3.2");
-        cursor.insertNamespace("xlink", "http://www.w3.org/1999/xlink");
-        cursor.insertNamespace("gmd", "http://www.isotc211.org/2005/gmd");
-        cursor.insertNamespace("gco", "http://www.isotc211.org/2005/gco");
-        cursor.insertNamespace("sams", "http://www.opengis.net/samplingSpatial/2.0");
-        cursor.insertNamespace("gts", "http://www.isotc211.org/2005/gts");
-        cursor.insertNamespace("opm", "http://def.wmo.int/opm/2013");
-        cursor.insertNamespace("metce", "http://def.wmo.int/metce/2013");
-        cursor.insertNamespace("gmx", "http://www.isotc211.org/2005/gmx");
-        cursor.insertNamespace("sam", "http://www.opengis.net/sampling/2.0");
-        cursor.insertNamespace("om", "http://www.opengis.net/om/2.0");
 
-		cursor.insertAttributeWithValue("schemaLocation", "http://www.w3.org/2001/XMLSchema-instance", 
-			"http://def.wmo.int/wmdr/2017 http://schemas.wmo.int/wmdr/1.0RC9/wmdr.xsd");
-        cursor.close();
-
-		CodeWithAuthorityType identifier = rootElementType.addNewIdentifier();
-		identifier.setStringValue(wigosRef);
+		CodeWithAuthorityType identifier = new CodeWithAuthorityType();
+		identifier.setValue(wigosRef);
 		identifier.setCodeSpace("http://data.wmo.int/");
 
-		rootElementType.setId("record_" + wigosRef);
-		rootElementType.addNewName();
-		rootElementType.addNewDescription();
-		rootElementType.addNewBoundedBy().setNil();
-		rootElementType.setHeaderInformation(this.getHeaderInformation(ptf));
-
-		WIGOSMetadataRecordType.Facility facility = rootElementType.addNewFacility();
+		this.rootElementType.setId("record_" + wigosRef);
+		this.rootElementType.setDescription(new StringOrRefType());
+		this.rootElementType.setIdentifier(identifier);
+		this.rootElementType.setName(new ArrayList<CodeType>());
+		this.rootElementType.setHeaderInformation(this.getHeaderInformation(ptf));
+		List<WIGOSMetadataRecordType.Facility> facilities = this.rootElementType.getFacility();
+		WIGOSMetadataRecordType.Facility facility = this.wmdrOF.createWIGOSMetadataRecordTypeFacility();
 		ObservingFacilityType observingFacilityType = this.getObservingFacilityType(ptf);
 		facility.setObservingFacility(observingFacilityType);
+		facilities.add(facility);
 	}
 
 	/**
@@ -161,7 +185,7 @@ public class Platform {
 	 */
 	private CIResponsiblePartyType getCIResponsibleParty(Integer agencyId, String ciRoleCode) {
 		ciResponsiblePartyCounter++;
-		CIResponsiblePartyType responsibleParty = CIResponsiblePartyType.Factory.newInstance();
+		CIResponsiblePartyType responsibleParty = new CIResponsiblePartyType();
 		Agency agency;
 		if (agencyId != null) {
 			agency = Cayenne.objectForPK(this.cayenneContext, Agency.class, agencyId);
@@ -174,42 +198,76 @@ public class Platform {
 		if (agency.getRef() != null)
 			responsibleParty.setUuid(agency.getRef());
 
-		responsibleParty.addNewOrganisationName().setCharacterString(agency.getName());
-		CIContactType contact = responsibleParty.addNewContactInfo().addNewCIContact();
+		CharacterStringPropertyType organisationName = this.gcoOF.createCharacterStringPropertyType();
+		organisationName.setCharacterString(this.gcoOF.createCharacterString(agency.getName()));
+		CIContactPropertyType contactInfo = this.gmdOF.createCIContactPropertyType();
+		CIContactType contact = this.gmdOF.createCIContactType();
+		ArrayList<CharacterStringPropertyType> list = new ArrayList<CharacterStringPropertyType>();
 		CharacterStringPropertyType value;
-		CITelephoneType phone = contact.addNewPhone().addNewCITelephone();
-		CIAddressType address = contact.addNewAddress().addNewCIAddress();
+		CITelephonePropertyType phoneProperty = this.gmdOF.createCITelephonePropertyType();
+		CITelephoneType phone = this.gmdOF.createCITelephoneType();
+		CIAddressPropertyType addressProperty = this.gmdOF.createCIAddressPropertyType();
+		CIAddressType address = this.gmdOF.createCIAddressType();
 		if (agency.getTel() != null) {
-			phone.addNewVoice().setCharacterString(agency.getTel());
+			value = this.gcoOF.createCharacterStringPropertyType();
+			value.setCharacterString(this.gcoOF.createCharacterString(agency.getTel()));
+			list.add(value);
+			phone.setVoice(list);
+			phoneProperty.setCITelephone(phone);
 		}
 		if (agency.getAddress() != null) {
-			address.addNewDeliveryPoint().setCharacterString(agency.getAddress().replaceAll("<br />|<br>", " - ").replaceAll("\\<.*?>", ""));
+			list.clear();
+			value = this.gcoOF.createCharacterStringPropertyType();
+			value.setCharacterString(this.gcoOF.createCharacterString(agency.getAddress().replaceAll("<br />|<br>", " - ").replaceAll("\\<.*?>", "")));
+			list.add(value);
+			address.setDeliveryPoint(list);
 		}
 		if (agency.getEmail() != null) {
-			address.addNewElectronicMailAddress().setCharacterString(agency.getEmail());
+			list.clear();
+			value = this.gcoOF.createCharacterStringPropertyType();
+			value.setCharacterString(this.gcoOF.createCharacterString(agency.getEmail()));
+			list.add(value);
+			address.setElectronicMailAddress(list);
 		}
 		if (agency.getCountry() != null) {
-			value = address.addNewCountry();
-			value.setCharacterString(agency.getCountry().getCode3());
+			value = this.gcoOF.createCharacterStringPropertyType();
+			value.setCharacterString(this.gcoOF.createCharacterString(agency.getCountry().getCode3()));
 			// Exception for international agencies
 			if (agencyId == Utils.OCEANOPS_AGENCY_ID || agencyId == 1000540) // OceanOPS, EuroArgo
-				value.setCharacterString("FRA");
+				value.setCharacterString(this.gcoOF.createCharacterString("FRA"));
 			else if (agencyId == 14300) // EUMETNET
-				value.setCharacterString("BEL");
+				value.setCharacterString(this.gcoOF.createCharacterString("BEL"));
 			else if (agencyId == 14938) // EU-THOR
-				value.setCharacterString("DEU");
+				value.setCharacterString(this.gcoOF.createCharacterString("DEU"));
 			else if (agencyId == 6886 || agencyId == 14666) //  USA				
-				value.setCharacterString("USA");
+				value.setCharacterString(this.gcoOF.createCharacterString("USA"));
+
+			address.setCountry(value);
 		}
 
-		if (agency.getWeblink() != null){
-			contact.addNewOnlineResource().addNewCIOnlineResource().addNewLinkage().setURL(agency.getWeblink().getUrl());
-		}
+		addressProperty.setCIAddress(address);
 
-		CIRoleCodePropertyType roleCodeProperty =  responsibleParty.addNewRole();
-		CodeListValueType codeListValue = roleCodeProperty.addNewCIRoleCode();
+		CIOnlineResourcePropertyType onlineRsrcProperty = this.gmdOF.createCIOnlineResourcePropertyType();
+		CIOnlineResourceType onlineRsrc = this.gmdOF.createCIOnlineResourceType();
+		URLPropertyType urlProperty = this.gmdOF.createURLPropertyType();
+		if (agency.getWeblink() != null)
+			urlProperty.setURL(agency.getWeblink().getUrl());
+		onlineRsrc.setLinkage(urlProperty);
+		onlineRsrcProperty.setCIOnlineResource(onlineRsrc);
+
+		contact.setPhone(phoneProperty);
+		contact.setAddress(addressProperty);
+		contact.setOnlineResource(onlineRsrcProperty);
+		contactInfo.setCIContact(contact);
+
+		responsibleParty.setContactInfo(contactInfo);
+		responsibleParty.setOrganisationName(organisationName);
+		CIRoleCodePropertyType roleCodeProperty = this.gmdOF.createCIRoleCodePropertyType();
+		CodeListValueType codeListValue = this.gcoOF.createCodeListValueType();
 		codeListValue.setCodeList("http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode");
 		codeListValue.setCodeListValue(ciRoleCode != null ? ciRoleCode : "pointOfContact");
+		roleCodeProperty.setCIRoleCode(codeListValue);
+		responsibleParty.setRole(roleCodeProperty);
 
 		return responsibleParty;
 	}
@@ -219,47 +277,48 @@ public class Platform {
 	 * 
 	 * @param ptf The Ptf entity object from which data should be extracted
 	 * @return the header information
+	 * @throws DatatypeConfigurationException
 	 */
-	private WIGOSMetadataRecordType.HeaderInformation getHeaderInformation(Ptf ptf) {
-		WIGOSMetadataRecordType.HeaderInformation headerInfo = WIGOSMetadataRecordType.HeaderInformation.Factory.newInstance();
-		HeaderType headerType = headerInfo.addNewHeader();
-		HeaderType.RecordOwner recordOwner = headerType.addNewRecordOwner();
+	private WIGOSMetadataRecordType.HeaderInformation getHeaderInformation(Ptf ptf) throws DatatypeConfigurationException {
+		WIGOSMetadataRecordType.HeaderInformation headerInfo = new WIGOSMetadataRecordType.HeaderInformation();
+		HeaderType headerType = new HeaderType();
+
+		HeaderType.RecordOwner recordOwner = this.wmdrOF.createHeaderTypeRecordOwner();
 
 		recordOwner.setCIResponsibleParty(this.getCIResponsibleParty(Utils.OCEANOPS_AGENCY_ID, "custodian"));
-		XmlDateTime dt = XmlDateTime.Factory.newInstance();
-		dt.setStringValue(Utils.GetIsoDate(ptf.getUpdateDate()));
-		headerType.xsetFileDateTime(dt);
+
+		headerType.setRecordOwner(recordOwner);
+		headerType.setFileDateTime(Utils.getDateAsXmlGregCal(ptf.getUpdateDate()));
+
+		headerInfo.setHeader(headerType);
 
 		return headerInfo;
 	}
 
-	/**
-	 * Builds the EquipmentPropertyType element
-	 * @param pv a PtfVariable record
-	 * @return The EquipmentPropertyType object built
-	 */
 	private EquipmentPropertyType getEquipmentPropertyType(PtfVariable ptfV) {
-		EquipmentPropertyType currentEquipment = EquipmentPropertyType.Factory.newInstance();
-		EquipmentType currentEquipmentType = currentEquipment.addNewEquipment();
-		currentEquipmentType.addNewBoundedBy().setNil();
 		Variable variable = ptfV.getVariable();
+		EquipmentPropertyType currentEquipment;
+		EquipmentType currentEquipmentType;
 		SensorModel sm = ptfV.getSensorModel();
+		currentEquipment = this.wmdrOF.createEquipmentPropertyType();
+		currentEquipmentType = this.wmdrOF.createEquipmentType();
 		String id;
 		if (sensorIncrement == 0)
 			id = "subequipment-" + ptfV.getObjectId().getIdSnapshot().get("ID").toString();
 		else
 			id = "subequipment-" + ptfV.getObjectId().getIdSnapshot().get("ID").toString() + "-" + String.valueOf(sensorIncrement);
 		currentEquipmentType.setId(id);
-		CodeWithAuthorityType code = currentEquipmentType.addNewIdentifier();
+		CodeWithAuthorityType code = this.gmlOF.createCodeWithAuthorityType();
 		if(variable != null && variable.getWigosCode() != null) {
 			code.setCodeSpace(variable.getWigosCode());
 			String[] uriSplit = variable.getWigosCode().split("/");
-			code.setStringValue(uriSplit[uriSplit.length-1]);
+			code.setValue(uriSplit[uriSplit.length-1]);
 		}
-
+		currentEquipmentType.setIdentifier(code);
 		currentEquipmentType.setModel(sm.getName());
-		ReferenceType facilityLink = currentEquipmentType.addNewFacility();
+		ReferenceType facilityLink = this.gmlOF.createReferenceType();
 		facilityLink.setHref("http://data.wmo.int/wigos/" + getWIGOSIdentifier(ptfV.getPtf()));
+		currentEquipmentType.setFacility(facilityLink);
 		if (sm.getAgency() != null)
 			currentEquipmentType.setManufacturer(sm.getAgency().getName());
 		else
@@ -272,17 +331,20 @@ public class Platform {
 		currentEquipmentType.setSpecifiedAbsoluteUncertainty("unknown");
 		currentEquipmentType.setSpecifiedRelativeUncertainty("unknown");
 		currentEquipmentType.setDriftPerUnitTime("unknown");
-		if(sm.getDescription() != null)
-			currentEquipmentType.addNewDescription().setStringValue(sm.getDescription());
+		StringOrRefType value = new StringOrRefType();
+		value.setValue(sm.getDescription());
+		currentEquipmentType.setDescription(value);
 
-		if(ptfV.getSerialNo() != null)
-			currentEquipmentType.setSerialNumber(ptfV.getSerialNo());
+		currentEquipmentType.setSerialNumber(ptfV.getSerialNo());
 
 		if (sm.getWeblink() != null) {
-			OnlineResource or = currentEquipmentType.addNewOnlineResource();//OnlineResource.Factory.newInstance();
-			CIOnlineResourceType onlineRsrc = or.addNewCIOnlineResource();
-			URLPropertyType urlProperty = onlineRsrc.addNewLinkage();
-			urlProperty.setURL(sm.getWeblink().getUrl());	
+			OnlineResource or = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeOnlineResource();
+			CIOnlineResourceType onlineRsrc = this.gmdOF.createCIOnlineResourceType();
+			URLPropertyType urlProperty = this.gmdOF.createURLPropertyType();
+			urlProperty.setURL(sm.getWeblink().getUrl());
+			onlineRsrc.setLinkage(urlProperty);
+			or.setCIOnlineResource(onlineRsrc);
+			currentEquipmentType.getOnlineResource().add(or);
 			currentEquipmentType.setSpecificationLink(sm.getWeblink().getUrl());
 		}
 		else {
@@ -290,9 +352,9 @@ public class Platform {
 		}
 		
 
-		AbstractEnvironmentalMonitoringFacilityType.ResponsibleParty responsibleParty = currentEquipmentType.addNewResponsibleParty();
-		ResponsiblePartyType responsiblePartyType = responsibleParty.addNewResponsibleParty();
-		ResponsiblePartyType.ResponsibleParty rp = responsiblePartyType.addNewResponsibleParty();
+		AbstractEnvironmentalMonitoringFacilityType.ResponsibleParty responsibleParty = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeResponsibleParty();
+		ResponsiblePartyType responsiblePartyType = this.wmdrOF.createResponsiblePartyType();
+		ResponsiblePartyType.ResponsibleParty rp = this.wmdrOF.createResponsiblePartyTypeResponsibleParty();
 		if (sm.getAgency() != null) {
 			rp.setCIResponsibleParty(this.getCIResponsibleParty(Integer.parseInt(sm.getAgency().getObjectId().getIdSnapshot().get("ID").toString()), "pointOfContact"));
 
@@ -300,6 +362,11 @@ public class Platform {
 		} else
 			rp.setCIResponsibleParty(this.getCIResponsibleParty(null, null));
 
+		responsiblePartyType.setResponsibleParty(rp);
+		responsibleParty.setResponsibleParty(responsiblePartyType);
+		currentEquipmentType.getResponsibleParty().add(responsibleParty);
+
+		ReferenceType refType = this.gmlOF.createReferenceType();
 		// Find sensor type where same variable
 		// Observing Method in WIGOS is similar to SensorType
 		String obsMethod = null;
@@ -317,8 +384,10 @@ public class Platform {
 		}
 		if(obsMethod == null)
 			obsMethod = "http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/unknown";
-		ReferenceType refType = currentEquipmentType.addNewObservingMethod();
 		refType.setHref(obsMethod);
+		currentEquipmentType.setObservingMethod(refType);
+
+		currentEquipment.setEquipment(currentEquipmentType);
 
 		return currentEquipment;
 	}
@@ -327,17 +396,21 @@ public class Platform {
 	 * Builds the ObservingFacilityType object for the given platform.
 	 * @param ptf  The Ptf entity object from which data should be extracted
 	 * @return the ObervingFacilityType representation of the platform
+	 * @throws DatatypeConfigurationException 
 	 */
-	private ObservingFacilityType getObservingFacilityType(Ptf ptf) {
-		ObservingFacilityType o = ObservingFacilityType.Factory.newInstance();
+	private ObservingFacilityType getObservingFacilityType(Ptf ptf) throws DatatypeConfigurationException {
+		ObservingFacilityType o = this.wmdrOF.createObservingFacilityType();
 		String wigosID = getWIGOSIdentifier(ptf);
 		o.setId("_" + wigosID);
-		CodeWithAuthorityType value = CodeWithAuthorityType.Factory.newInstance();
-		value.setStringValue(wigosID);
+		CodeWithAuthorityType value = new CodeWithAuthorityType();
+		value.setValue(wigosID);
 		value.setCodeSpace("http://data.wmo.int");
 		o.setIdentifier(value);
-		o.addNewName().setStringValue(ptf.getRef());
-		o.addNewBoundedBy().setNil();
+		CodeType name = new CodeType();
+		name.setValue(ptf.getRef());
+		List<CodeType> nameList = new ArrayList<>();
+		nameList.add(name);
+		o.setName(nameList);
 		
 		// Sorting WMO codes for that platform
 		List<Wmo> wmos = ptf.getWmos();
@@ -369,43 +442,64 @@ public class Platform {
 				description += (ptf.getPtfDepl().getShip().getShipType() != null ? ("Ship type: " + ptf.getPtfDepl().getShip().getShipType().getName()) : "");
 			}
 		}
-		
-		Description desc = o.addNewDescription2();
-		DescriptionType descType = desc.addNewDescription();
+		List<Description> descriptions = o.getDescriptionList();
+		Description desc = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeDescription();
+		DescriptionType descType = this.wmdrOF.createDescriptionType();
 		descType.setDescription(description);
-		TimePeriodPropertyType descTimePeriodPropType = descType.addNewValidPeriod();
-		TimePeriodType descTimePeriod = descTimePeriodPropType.addNewTimePeriod();
+		TimePeriodPropertyType descTimePeriodPropType = new TimePeriodPropertyType();
+		TimePeriodType descTimePeriod = new TimePeriodType();
+		TimePositionType descStartTimePosition = new TimePositionType();
+		TimePositionType descEndTimePosition = new TimePositionType();
+		descStartTimePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(ptf.getPtfDepl().getDeplDate())));
 		descTimePeriod.setId("desc-timePeriod-" + ptf.getId());
-		descTimePeriod.addNewBeginPosition().setStringValue(Utils.ISO_DATE_FORMAT.format(ptf.getPtfDepl().getDeplDate()));
-		TimePositionType endTimePositionType = descTimePeriod.addNewEndPosition();
+		descTimePeriod.setBeginPosition(descStartTimePosition);
 		if(ptf.getPtfStatus().getId().intValue() == 5 && ptf.getEndingDate() != null)
-			endTimePositionType.setStringValue(Utils.ISO_DATE_FORMAT.format(ptf.getEndingDate()));
+			descEndTimePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(ptf.getEndingDate())));
+		descTimePeriod.setEndPosition(descEndTimePosition);
+		descTimePeriodPropType.setTimePeriod(descTimePeriod);
+		descType.setValidPeriod(descTimePeriodPropType);
+		desc.setDescription(descType);
+		descriptions.add(desc);
+
+		List<OnlineResource> onlineResources = o.getOnlineResource();
+		OnlineResource or = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeOnlineResource();
+		CIOnlineResourceType onlineRsrc = this.gmdOF.createCIOnlineResourceType();
+		URLPropertyType urlProperty = this.gmdOF.createURLPropertyType();
+		urlProperty.setURL(Utils.getInspectPtfUrl() + ptf.getRef());
+		onlineRsrc.setLinkage(urlProperty);
+		or.setCIOnlineResource(onlineRsrc);
+		onlineResources.add(or);
 		
-		// Link to OceanOPS inspecy
-		o.addNewOnlineResource().addNewCIOnlineResource().addNewLinkage().setURL(Utils.getInspectPtfUrl() + ptf.getRef());
-		// Adding any weblinks stored in the database
 		for(Weblink w : ptf.getWeblinks()){
-			o.addNewOnlineResource().addNewCIOnlineResource().addNewLinkage().setURL(w.getUrl());
+			or = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeOnlineResource();
+			onlineRsrc = this.gmdOF.createCIOnlineResourceType();
+			urlProperty = this.gmdOF.createURLPropertyType();
+			urlProperty.setURL(w.getUrl());
+			onlineRsrc.setLinkage(urlProperty);
+			or.setCIOnlineResource(onlineRsrc);
+			onlineResources.add(or);
 		}
 	
 		
 		// BEGIN - Latest location
-		TimePeriodPropertyType timePeriodProperty;
-		TimePeriodType timePeriod;
-		ReferenceType refType;
+		TimePeriodPropertyType timePeriodProperty = new TimePeriodPropertyType();
+		TimePeriodType timePeriod = new TimePeriodType();
+		TimePositionType timePosition = new TimePositionType();
+		ReferenceType refType = this.gmlOF.createReferenceType();
 		if(ptf.getLatestObs() != null) {
-			GeospatialLocation gsLoc = o.addNewGeospatialLocation();
-			GeospatialLocationType gsLocType = gsLoc.addNewGeospatialLocation();
-			timePeriodProperty = gsLocType.addNewValidPeriod();
-			timePeriod = timePeriodProperty.addNewTimePeriod();
+			List<GeospatialLocation> geospatialLocs = o.getGeospatialLocation();
+			GeospatialLocation gsLoc = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeGeospatialLocation();
+			GeospatialLocationType gsLocType = this.wmdrOF.createGeospatialLocationType();
 	
+			timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(ptf.getLatestObs().getObsDate())));
 			timePeriod.setId(o.getId() + "-LatestLocTimePeriod");
-			timePeriod.addNewBeginPosition().setStringValue(Utils.ISO_DATE_FORMAT.format(ptf.getLatestObs().getObsDate()));
-			timePeriod.addNewEndPosition();
+			timePeriod.setBeginPosition(timePosition);
+			timePeriod.setEndPosition(new TimePositionType());
+			timePeriodProperty.setTimePeriod(timePeriod);
 			
-			PointType geom = PointType.Factory.newInstance();
+			PointType geom = new PointType();
 			geom.setId(o.getId() + "-LatestLocationGeometry");
-			DirectPositionType posType = geom.addNewPos();
+			DirectPositionType posType = this.gmlOF.createDirectPositionType();
 			ArrayList<Double> coords = new ArrayList<Double>();
 			if(ptf.getLatestObs().getLat().doubleValue() == 0.0)
 				coords.add(0.0001);
@@ -416,27 +510,31 @@ public class Platform {
 			else
 				coords.add(ptf.getLatestObs().getLon().doubleValue());
 			coords.add(0.0);
-			posType.setListValue(coords);
+			posType.setValue(coords);
+			geom.setPos(posType);
 			geom.setSrsName("http://www.opengis.net/def/crs/EPSG/0/4979");
 	
-			PointPropertyType geomProperty = PointPropertyType.Factory.newInstance();
-			geomProperty.setPoint(geom);
+			GeometryPropertyType geomProperty = new GeometryPropertyType();
+			geomProperty.setAbstractGeometry(this.gmlOF.createPoint(geom));
 		
-			refType = gsLocType.addNewGeopositioningMethod();
 			if(ptf.getTrackingSystem() != null)
 				refType.setHref("http://codes.wmo.int/wmdr/GeopositioningMethod/" + ptf.getTrackingSystem().getWigosCode());
 			else
 				refType.setHref("http://codes.wmo.int/wmdr/GeopositioningMethod/unknown");
 			
-			// Overwriting AbstractGeom with Point
-			gsLocType.addNewGeoLocation().set(geomProperty);
+			gsLocType.setGeopositioningMethod(refType);
+			gsLocType.setGeoLocation(geomProperty);
+			gsLocType.setValidPeriod(timePeriodProperty);
+			
+			gsLoc.setGeospatialLocation(gsLocType);
+			geospatialLocs.add(gsLoc);
 		}
 		// END - Latest location
 		
 		
-		AbstractEnvironmentalMonitoringFacilityType.ResponsibleParty responsibleParty = o.addNewResponsibleParty();
-		ResponsiblePartyType responsiblePartyType = responsibleParty.addNewResponsibleParty();
-		ResponsiblePartyType.ResponsibleParty rp = responsiblePartyType.addNewResponsibleParty();
+		AbstractEnvironmentalMonitoringFacilityType.ResponsibleParty responsibleParty = this.wmdrOF.createAbstractEnvironmentalMonitoringFacilityTypeResponsibleParty();
+		ResponsiblePartyType responsiblePartyType = this.wmdrOF.createResponsiblePartyType();
+		ResponsiblePartyType.ResponsibleParty rp = this.wmdrOF.createResponsiblePartyTypeResponsibleParty();
 		if(ptf.getProgram().getProgramAgencies().size() > 0){
 			Integer agencyID = null;
 			for(ProgramAgency prAgency: ptf.getProgram().getProgramAgencies()){
@@ -454,41 +552,48 @@ public class Platform {
 		}
 		else
 			rp.setCIResponsibleParty(this.getCIResponsibleParty(null, null));
+		responsiblePartyType.setResponsibleParty(rp);
+		responsibleParty.setResponsibleParty(responsiblePartyType);
+		o.getResponsibleParty().add(responsibleParty);
 
-		
-		XmlDate xdate = XmlDate.Factory.newInstance();
-		xdate.setStringValue(Utils.GetIsoDateNoTime(ptf.getUpdateDate()) + "Z");
-		o.xsetDateEstablished(xdate);
+		o.setDateEstablished(Utils.getDateAsXmlGregCal(ptf.getUpdateDate()));
 		
 		if(ptf.getEndingDate() != null){
-			xdate = XmlDate.Factory.newInstance();
-			xdate.setStringValue(Utils.GetIsoDateNoTime(ptf.getEndingDate()) + "Z");
-			o.xsetDateClosed(xdate);
+			o.setDateClosed(Utils.getDateAsXmlGregCal(ptf.getEndingDate()));
 		}
 		
-		refType = o.addNewWmoRegion();
+		refType = this.gmlOF.createReferenceType();
 		//refType.setHref("http://codes.wmo.int/wmdr/WMORegion/");
+		o.setWmoRegion(refType);
 		
-		Territory territory = o.addNewTerritory();
-		TerritoryType territoryType = territory.addNewTerritory();
-		refType = territoryType.addNewTerritoryName();
+		Territory territory = new Territory();
+		TerritoryType territoryType = new TerritoryType();
+		refType = this.gmlOF.createReferenceType();
 		String country = "inapplicable";
 		if(ptf.getProgram().getCountry() != null) {
 			if(ptf.getProgram().getCountry().getCode3() != null)
 				country = ptf.getProgram().getCountry().getCode3();
 		}
 		refType.setHref("http://codes.wmo.int/wmdr/TerritoryName/" + country);
-
-		TimePeriodPropertyType territoryTimePeriodPropType = territoryType.addNewValidPeriod();
-		TimePeriodType territoryTimePeriod = territoryTimePeriodPropType.addNewTimePeriod();
+		territoryType.setTerritoryName(refType);
+		TimePeriodPropertyType territoryTimePeriodPropType = new TimePeriodPropertyType();
+		TimePeriodType territoryTimePeriod = new TimePeriodType();
+		TimePositionType territoryStartTimePosition = new TimePositionType();
+		TimePositionType territoryEndTimePosition = new TimePositionType();
+		territoryStartTimePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(ptf.getPtfDepl().getDeplDate())));
 		territoryTimePeriod.setId("territory-timePeriod-" + ptf.getId());
-		territoryTimePeriod.addNewBeginPosition().setStringValue(Utils.ISO_DATE_FORMAT.format(ptf.getPtfDepl().getDeplDate()));
-		endTimePositionType = territoryTimePeriod.addNewEndPosition();
+		territoryTimePeriod.setBeginPosition(territoryStartTimePosition);
 		if(ptf.getPtfStatus().getId().intValue() == 5 && ptf.getEndingDate() != null)
-			endTimePositionType.setStringValue(Utils.ISO_DATE_FORMAT.format(ptf.getEndingDate()));
+			territoryEndTimePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(ptf.getEndingDate())));
+		territoryTimePeriod.setEndPosition(territoryEndTimePosition);
+		territoryTimePeriodPropType.setTimePeriod(territoryTimePeriod);
+		territoryType.setValidPeriod(territoryTimePeriodPropType);
+		territory.setTerritory(territoryType);
+		o.getTerritory().add(territory);
 
-		refType = o.addNewFacilityType();
+		refType = new ReferenceType();
 		refType.setHref("http://codes.wmo.int/wmdr/FacilityType/" + ptf.getPtfModel().getPtfType().getWigosCode());
+		o.setFacilityType(refType);
 		
 		ProgramAffiliation progAffiliation;
 		ProgramAffiliationType progAffiliationType;
@@ -501,10 +606,11 @@ public class Platform {
 		if(wmos.size() > 0) {
 			// Using latest WMO code and full timeline, only workable solution for now
 			Wmo wmo = wmos.get(wmos.size()-1);
-			progAffiliation = o.addNewProgramAffiliation();
-			progAffiliationType = progAffiliation.addNewProgramAffiliation();
-			refType = progAffiliationType.addNewProgramAffiliation();
+			progAffiliation = this.wmdrOF.createObservingFacilityTypeProgramAffiliation();
+			progAffiliationType = this.wmdrOF.createProgramAffiliationType();
+			refType = this.gmlOF.createReferenceType();
 			refType.setHref("http://codes.wmo.int/wmdr/ProgramAffiliation/" + ptf.getProgram().getWigosCode());
+			progAffiliationType.setProgramAffiliation(refType);
 			progAffiliationType.setProgramSpecificFacilityId(wmo.getWmo());
 			ReportingStatus reportingStatus = null;
 			ReportingStatusType reportingStatusType = null;
@@ -521,19 +627,26 @@ public class Platform {
 						}
 						if(ptfPtfStatus.getPtfStatus().getId().intValue() == 5 && ptf.getEndingDate() != null)
 							startDate = Utils.ISO_DATE_FORMAT.format(ptf.getEndingDate());
-						reportingStatus = progAffiliationType.addNewReportingStatus();
-						reportingStatusType = reportingStatus.addNewReportingStatus();
-						refType = reportingStatusType.addNewReportingStatus();
+						reportingStatus = this.wmdrOF.createProgramAffiliationTypeReportingStatus();
+						reportingStatusType = this.wmdrOF.createReportingStatusType();
+						refType = new ReferenceType();
 						refType.setHref("http://codes.wmo.int/wmdr/ReportingStatus/" + ptfPtfStatus.getPtfStatus().getWigosCode());
+						reportingStatusType.setReportingStatus(refType);
 						
-						timePeriodProperty = reportingStatusType.addNewValidPeriod();
-						timePeriod = timePeriodProperty.addNewTimePeriod();
+						timePeriodProperty = new TimePeriodPropertyType();
+						timePeriod = new TimePeriodType();
 						timePeriod.setId(o.getId() + "-SCDTimePeriod-" + count);
-						timePeriod.addNewBeginPosition().setStringValue(startDate);
-						endTimePositionType = timePeriod.addNewEndPosition();
-						if(endDate != null)
-							endTimePositionType.setStringValue(endDate);
+						timePosition = new TimePositionType();
+						timePosition.setValue(Arrays.asList(startDate));
+						timePeriod.setBeginPosition(timePosition);
+						timePosition = new TimePositionType();
+						timePosition.setValue(Arrays.asList(endDate));
+						timePeriod.setEndPosition(timePosition);
+						timePeriodProperty.setTimePeriod(timePeriod);
 						
+						reportingStatusType.setValidPeriod(timePeriodProperty);
+						reportingStatus.setReportingStatus(reportingStatusType);
+						progAffiliationType.getReportingStatus().add(reportingStatus);
 						count++;
 					}
 				}
@@ -541,136 +654,164 @@ public class Platform {
 			else{
 				// No Timeline, should not happen
 				// Operational status
-				reportingStatus = progAffiliationType.addNewReportingStatus();
-				reportingStatusType = reportingStatus.addNewReportingStatus();
+				reportingStatus = this.wmdrOF.createProgramAffiliationTypeReportingStatus();
+				reportingStatusType = this.wmdrOF.createReportingStatusType();
 				PtfStatus opStatus = ObjectSelect.query(PtfStatus.class).where(PtfStatus.ID.eq(6)).selectOne(cayenneContext);
 				PtfStatus closedStatus = ObjectSelect.query(PtfStatus.class).where(PtfStatus.ID.eq(5)).selectOne(cayenneContext);
-
-				refType = reportingStatusType.addNewReportingStatus();				
+				refType = new ReferenceType();
+				
 				refType.setHref("http://codes.wmo.int/wmdr/ReportingStatus/" + opStatus.getWigosCode());
+				reportingStatusType.setReportingStatus(refType);
 				
-				timePeriodProperty = reportingStatusType.addNewValidPeriod();
-				timePeriod = timePeriodProperty.addNewTimePeriod();
+				timePeriodProperty = new TimePeriodPropertyType();
+				timePeriod = new TimePeriodType();
 				timePeriod.setId(o.getId() + "-SCDTimePeriod-" + count);
+				timePosition = new TimePositionType();
 				if(wmo.getStartDate()!= null)
-					timePeriod.addNewBeginPosition().setStringValue(Utils.ISO_DATE_FORMAT.format(wmo.getStartDate()));
+					timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(wmo.getStartDate())));
 				else
-					timePeriod.addNewBeginPosition().setStringValue(Utils.ISO_DATE_FORMAT.format(ptf.getPtfDepl().getDeplDate()));
-				
-				endTimePositionType = timePeriod.addNewEndPosition();
+					timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(ptf.getPtfDepl().getDeplDate())));
+				timePeriod.setBeginPosition(timePosition);
+
+				timePosition = new TimePositionType();
 				if(wmo.getEndDate()!= null)
-					endTimePositionType.setStringValue(Utils.ISO_DATE_FORMAT.format(wmo.getEndDate()));
+					timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(wmo.getEndDate())));
 				else if(ptf.getEndingDate() != null)
-					endTimePositionType.setStringValue(Utils.ISO_DATE_FORMAT.format(ptf.getEndingDate()));
-					
+					timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(ptf.getEndingDate())));
+				timePeriod.setEndPosition(timePosition);
+				timePeriodProperty.setTimePeriod(timePeriod);
+				
+				reportingStatusType.setValidPeriod(timePeriodProperty);
+				reportingStatus.setReportingStatus(reportingStatusType);
+				progAffiliationType.getReportingStatus().add(reportingStatus);
 				count++;
 
 				// Closed status
-				if(ptf.getPtfStatus().getId() == 5){
-					reportingStatus = progAffiliationType.addNewReportingStatus();
-					reportingStatusType = reportingStatus.addNewReportingStatus();
-
-					refType = reportingStatusType.addNewReportingStatus();					
+				if(ptf.getPtfStatus().getId().intValue() == 5){
+					reportingStatus = this.wmdrOF.createProgramAffiliationTypeReportingStatus();
+					reportingStatusType = this.wmdrOF.createReportingStatusType();
+					refType = new ReferenceType();
+					
 					refType.setHref("http://codes.wmo.int/wmdr/ReportingStatus/" + closedStatus.getWigosCode());
+					reportingStatusType.setReportingStatus(refType);
 					
-					timePeriodProperty = reportingStatusType.addNewValidPeriod();
-					timePeriod = timePeriodProperty.addNewTimePeriod();
+					timePeriodProperty = new TimePeriodPropertyType();
+					timePeriod = new TimePeriodType();
 					timePeriod.setId(o.getId() + "-SCDTimePeriod-" + count);
-					timePeriod.addNewBeginPosition().setStringValue(Utils.ISO_DATE_FORMAT.format(ptf.getEndingDate()));
-					timePeriod.addNewEndPosition();
+					timePosition = new TimePositionType();
+					timePosition.setValue(Arrays.asList(Utils.ISO_DATE_FORMAT.format(ptf.getEndingDate())));
+					timePeriod.setBeginPosition(timePosition);
+					timePosition = new TimePositionType();
+					timePeriod.setEndPosition(timePosition);
+					timePeriodProperty.setTimePeriod(timePeriod);
 					
+					reportingStatusType.setValidPeriod(timePeriodProperty);
 					reportingStatus.setReportingStatus(reportingStatusType);
+					progAffiliationType.getReportingStatus().add(reportingStatus);
 					progAffiliationType.setProgramSpecificFacilityId(wmo.getWmo());
 					count++;
 				}
 			}
 			
 			progAffiliation.setProgramAffiliation(progAffiliationType);
+			o.getProgramAffiliation().add(progAffiliation);
 		}
 		else {
 			// No WMO code, probably never used
-			progAffiliation = o.addNewProgramAffiliation();
-			progAffiliationType = progAffiliation.addNewProgramAffiliation();
-			refType = progAffiliationType.addNewProgramAffiliation();
+			progAffiliation = this.wmdrOF.createObservingFacilityTypeProgramAffiliation();
+			progAffiliationType = this.wmdrOF.createProgramAffiliationType();
+			refType = this.gmlOF.createReferenceType();
 			refType.setHref("http://codes.wmo.int/wmdr/ProgramAffiliation/" + ptf.getProgram().getWigosCode());
+			progAffiliationType.setProgramAffiliation(refType);
 			
 			ReportingStatus reportingStatus = null;
 			ReportingStatusType reportingStatusType = null;
 			for(int i = 0; i < ptfPtfStatuses.size(); i++){
 				PtfPtfStatus ptfPtfStatus = ptfPtfStatuses.get(i);
-				if(ptfPtfStatus.getPtfStatus().getId() > 2){
+				if(ptfPtfStatus.getPtfStatus().getId().intValue() > 2){
 					String startDate = Utils.ISO_DATE_FORMAT.format(ptfPtfStatus.getChangingDate());
 					String endDate = null;
 					if(i < ptfPtfStatuses.size() - 1){						
 						PtfPtfStatus nextPtfPtfStatus = ptfPtfStatuses.get(i+1);
 						endDate = Utils.ISO_DATE_FORMAT.format(nextPtfPtfStatus.getChangingDate());
 					}
-					if(ptfPtfStatus.getPtfStatus().getId() == 5 & ptf.getEndingDate() != null)
+					if(ptfPtfStatus.getPtfStatus().getId().intValue() == 5 & ptf.getEndingDate() != null)
 						startDate= Utils.ISO_DATE_FORMAT.format(ptf.getEndingDate());
-					reportingStatus = progAffiliationType.addNewReportingStatus();
-					reportingStatusType = reportingStatus.addNewReportingStatus();
-					refType = reportingStatusType.addNewReportingStatus();
+					reportingStatus = this.wmdrOF.createProgramAffiliationTypeReportingStatus();
+					reportingStatusType = this.wmdrOF.createReportingStatusType();
+					refType = new ReferenceType();
 					refType.setHref("http://codes.wmo.int/wmdr/ReportingStatus/" + ptfPtfStatus.getPtfStatus().getWigosCode());
+					reportingStatusType.setReportingStatus(refType);
 					
-					timePeriodProperty = reportingStatusType.addNewValidPeriod();
-					timePeriod = timePeriodProperty.addNewTimePeriod();
+					timePeriodProperty = new TimePeriodPropertyType();
+					timePeriod = new TimePeriodType();
 					timePeriod.setId(o.getId() + "-SCDTimePeriod-" + count);
-					timePeriod.addNewBeginPosition().setStringValue(startDate);
-					endTimePositionType = timePeriod.addNewEndPosition();
-					if(endDate != null)
-						endTimePositionType.setStringValue(endDate);
+					timePosition = new TimePositionType();
+					timePosition.setValue(Arrays.asList(startDate));
+					timePeriod.setBeginPosition(timePosition);
+					timePosition = new TimePositionType();
+					timePosition.setValue(Arrays.asList(endDate));
+					timePeriod.setEndPosition(timePosition);
+					timePeriodProperty.setTimePeriod(timePeriod);
 					
+					reportingStatusType.setValidPeriod(timePeriodProperty);
 					reportingStatus.setReportingStatus(reportingStatusType);
+					progAffiliationType.getReportingStatus().add(reportingStatus);
 					count++;
 				}
 			}
+			progAffiliation.setProgramAffiliation(progAffiliationType);
+			o.getProgramAffiliation().add(progAffiliation);	
 		}
 		
 		// OM_Observations
-		this.getObservations(o, ptf);
+		List<ObservingCapabilityPropertyType> obss = o.getObservation();
+		obss.addAll(this.getObservations(ptf));
 				
 		return o;
 	}
 
-	/**
-	 * Builds the DeploymentType element
-	 * @param pv a PtfVariable record
-	 * @return The DeploymentType object built
-	 */
 	private DeploymentType getDeploymentType(PtfVariable pv){
-		DeploymentType currentDeplType = DeploymentType.Factory.newInstance();
+		DeploymentType currentDeplType = this.wmdrOF.createDeploymentType();
 
-		currentDeplType.addNewBoundedBy().setNil();
 		currentDeplType.setId("process-depl-" + pv.getId());
 		currentDeplType.setDeployedEquipment(this.getEquipmentPropertyType(pv));
 
-		TimePeriodPropertyType tppt = currentDeplType.addNewValidPeriod();
-		TimePeriodType atotype = tppt.addNewTimePeriod();
-		atotype.setId("omobs-timeperiod-validperiod-" + pv.getId());
-
-		TimePositionType tptype = atotype.addNewBeginPosition();
+		TimePeriodType atotype = this.gmlOF.createTimePeriodType();
+		TimePositionType tptype = this.gmlOF.createTimePositionType();
+		ArrayList<String> datesString = new ArrayList<String>();
+		TimePeriodPropertyType tppt = this.gmlOF.createTimePeriodPropertyType();
 		if(pv.getStartDate() != null)
-			tptype.setStringValue(Utils.GetIsoDate(pv.getStartDate()));
+			datesString.add(Utils.GetIsoDate(pv.getStartDate()));
 		else
-			tptype.setStringValue(Utils.GetIsoDate(pv.getPtf().getPtfDepl().getDeplDate()));
-		tptype = atotype.addNewEndPosition();
-		if(pv.getEndDate() != null)
-			tptype.setStringValue(Utils.GetIsoDate(pv.getEndDate()));
-		else if(pv.getPtf().getEndingDate() != null)
-			tptype.setStringValue(Utils.GetIsoDate(pv.getPtf().getEndingDate()));
+			datesString.add(Utils.GetIsoDate(pv.getPtf().getPtfDepl().getDeplDate()));
+		tptype.setValue(datesString);
+		atotype.setId("omobs-timeperiod-validperiod-" + pv.getId());
+		atotype.setBeginPosition(tptype);
 		
-		currentDeplType.addNewDataGeneration();
+		tptype = this.gmlOF.createTimePositionType();
+		datesString = new ArrayList<String>();
+		if(pv.getEndDate() != null)
+			datesString.add(Utils.GetIsoDate(pv.getEndDate()));
+		else if(pv.getPtf().getEndingDate() != null)
+			datesString.add(Utils.GetIsoDate(pv.getPtf().getEndingDate()));
+		tptype.setValue(datesString);
+		atotype.setEndPosition(tptype);
 
-		MeasureType mt = currentDeplType.addNewHeightAboveLocalReferenceSurface();
+		tppt.setTimePeriod(atotype);
+		currentDeplType.setValidPeriod(tppt);
+		currentDeplType.getDataGeneration().add(new DataGenerationPropertyType());
+
+		MeasureType mt = this.gmlOF.createMeasureType();
 		mt.setUom("m");
 		if (pv.getHeight() != null)
-			mt.setDoubleValue(pv.getHeight());
-		else
-			mt.setDoubleValue(0.0);
+			mt.setValue(pv.getHeight().doubleValue());
+		currentDeplType.setHeightAboveLocalReferenceSurface(mt);
+		currentDeplType.setLocalReferenceSurface(this.gmlOF.createReferenceType());
 
-		currentDeplType.addNewLocalReferenceSurface();
-		currentDeplType.addNewApplicationArea();
-		currentDeplType.addNewSourceOfObservation();
+		currentDeplType.getApplicationArea().add(this.gmlOF.createReferenceType());
+		currentDeplType.setSourceOfObservation(this.gmlOF.createReferenceType());
+
 
 		return currentDeplType;
 	}
@@ -681,81 +822,108 @@ public class Platform {
 	 * @param ptf The Ptf entity object from which data should be extracted
 	 * @return the OMObservationPropertyType of the platform
 	 */
-	private ObservingCapabilityPropertyType[] getObservations(ObservingFacilityType o, Ptf ptf) {
-		ObservingCapabilityPropertyType ocp = null; 
-		ObservingCapabilityType oc = null;
+	private List<ObservingCapabilityPropertyType> getObservations(Ptf ptf) {
+		List<ObservingCapabilityPropertyType> result = new ArrayList<ObservingCapabilityPropertyType>();
+		ObservingCapabilityPropertyType ocp = this.wmdrOF.createObservingCapabilityPropertyType();;
+		ObservingCapabilityType oc = this.wmdrOF.createObservingCapabilityType();
 		Comparator<PtfVariable> ptfVariablesRanking = Comparator.comparing(PtfVariable::getVariableId);
 		List<PtfVariable> ptfVariables = ptf.getPtfVariables();
 		ptfVariables.sort(ptfVariablesRanking);
 		Variable currentVar = null;
+		boolean newVariable = false;
 		for (PtfVariable pv : ptfVariables) {
+			newVariable = false;
 			SensorModel sm = pv.getSensorModel();
 			if (sm != null && pv.getVariable().getWigosCode() != null) {
 				ReferenceType refType;
-				// Different sensors measuring the same variable are listed under the same variable entry in WIGOS
 				if(currentVar == null || !currentVar.equals(pv.getVariable())){
 					currentVar = pv.getVariable();
-					ocp = o.addNewObservation();
-					oc = ocp.addNewObservingCapability();
-					oc.addNewBoundedBy().setNil();
+					newVariable = true;
+					ocp = this.wmdrOF.createObservingCapabilityPropertyType();
+					oc = this.wmdrOF.createObservingCapabilityType();
 					oc.setId("oc-" + pv.getId());
-					refType = ReferenceType.Factory.newInstance();
+					refType = this.gmlOF.createReferenceType();
 					refType.setHref(getWIGOSIdentifier(ptf));
 					oc.setFacility(refType);
 
-					refType = oc.addNewProgramAffiliation();
+					refType = this.gmlOF.createReferenceType();
 					refType.setHref("http://codes.wmo.int/wmdr/ProgramAffiliation/" + ptf.getProgram().getWigosCode());
+					oc.getProgramAffiliation().add(refType);
 				}
-				// Adding to the same ObservingCapability if same variable, otherwise a new one would have been created
-				OMObservationPropertyType omobsp = oc.addNewObservation();
-				OMObservationType omobs = omobsp.addNewOMObservation();
-				omobs.addNewBoundedBy().setNil();
+				OMObservationPropertyType omobsp = this.omOF.createOMObservationPropertyType();
+				OMObservationType omobs = this.omOF.createOMObservationType();
+				omobsp.setOMObservation(omobs);
 				omobs.setId("omobs-" + pv.getId());
 
-				omobs.addNewObservedProperty().setHref(currentVar.getWigosCode());
+				refType = this.gmlOF.createReferenceType();
+				refType.setHref(currentVar.getWigosCode());
+				omobs.setObservedProperty(refType);
 
-				// Procedure relationship from OM:obs is linked to wmdr:Process, which inherits from OM:Process
-				// Creating relationship
-				OMProcessPropertyType omProcessType = omobs.addNewProcedure();
-				// Creating wmdr:Process
-				ProcessDocument processDocument = ProcessDocument.Factory.newInstance();
-				ProcessType process = processDocument.addNewProcess2();
-				process.addNewBoundedBy().setNil();
+				ProcessType process = this.wmdrOF.createProcessType();
 				process.setId("process-" + pv.getId());
-				DeploymentPropertyType deplP = DeploymentPropertyType.Factory.newInstance();
+
+				DeploymentPropertyType deplP = this.wmdrOF.createDeploymentPropertyType();
 				DeploymentType depl = this.getDeploymentType(pv);
+				
+
 				deplP.setDeployment(depl);
 				process.setDeployment(deplP);
-				// Overwriting OM:Process with wmdr:Process
-				omProcessType.set(processDocument);				
 
-				omobs.addNewType().setHref("http://codes.wmo.int/wmdr/featureOfInterest/point");
+				OMProcessPropertyType omProcessType = this.omOF.createOMProcessPropertyType();
+				omobs.setProcedure(omProcessType);
+				JAXBElement<ProcessType> processList = this.wmdrOF.createProcess(process);
+				omobsp.getOMObservation().getProcedure().setAny(processList);
 
-				TimePeriodPropertyType tppt = TimePeriodPropertyType.Factory.newInstance();
-				TimePeriodType atotype = tppt.addNewTimePeriod();
+				refType = this.gmlOF.createReferenceType();
+				refType.setHref("http://codes.wmo.int/wmdr/featureOfInterest/point");
+				omobs.setType(refType);
+
+				TimeObjectPropertyType topt = this.omOF.createTimeObjectPropertyType();
+				TimePeriodType atotype = this.gmlOF.createTimePeriodType();
+				TimePositionType tptype = this.gmlOF.createTimePositionType();
+				ArrayList<String> beginT = new ArrayList<String>();
+				beginT.add(Utils.GetIsoDate(ptf.getPtfDepl().getDeplDate()));
+				tptype.setValue(beginT);
 				atotype.setId("omobs-timeperiod-" + pv.getId());
-				atotype.addNewBeginPosition().setStringValue(Utils.GetIsoDate(ptf.getPtfDepl().getDeplDate()));
-				atotype.addNewEndPosition();
-				// Overwriting AbstractTimePeriod with TimePeriod
-				omobs.addNewPhenomenonTime().set(tppt);
+				atotype.setBeginPosition(tptype);
+				atotype.setEndPosition(this.gmlOF.createTimePositionType());
+				topt.setAbstractTimeObject(this.gmlOF.createTimePeriod(atotype));
+				omobs.setPhenomenonTime(topt);
 
-				omobs.addNewFeatureOfInterest().setNil();
-				omobs.addNewResultTime();
-				omobs.addNewValidTime();
-				omobs.addNewResultQuality();
-				omobs.addNewResult();
+				omobs.setResultTime(this.gmlOF.createTimeInstantPropertyType());
+				omobs.setValidTime(this.gmlOF.createTimePeriodPropertyType());
+				omobs.getResultQuality().add(new DQElementPropertyType());
+				omobs.setResult(this.wmdrOF.createResultSetType());
 
+				oc.getObservation().add(omobsp);
+				if(newVariable){
+					ocp.setObservingCapability(oc);
+					result.add(ocp);
+				}
 				sensorIncrement++;
 			}			
 		}
 
-		return o.getObservationArray();
+		return result;
 	}
 
 	/**
 	 * Marshaller method of this class. Converts a WIGOSMetadataRecord object to its String XML representation.
 	 */
 	public String toString() {
-        return this.rootElement.xmlText();
-    }
+		Marshaller m;
+		StringWriter sw = new StringWriter();
+
+		try {
+			m = this.jaxbContext.createMarshaller();
+			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			m.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
+			m.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "http://def.wmo.int/wmdr/2017 http://schemas.wmo.int/wmdr/1.0RC9/wmdr.xsd");
+			m.marshal(this.rootElement, sw);
+		} catch (JAXBException e) {
+			sw.write(e.getMessage());
+		}
+
+		return sw.toString();
+	}
 }
