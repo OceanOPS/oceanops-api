@@ -581,11 +581,12 @@
 		<db-attribute name="NAME" type="VARCHAR" length="50"/>
 		<db-attribute name="NAME_LONG" type="VARCHAR" length="80"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="30"/>
-		<db-attribute name="RANK" type="NUMERIC" length="38"/>
 	</db-entity>
 	<db-entity name="MAP_TYPE_NETWORK" schema="JCOMMOPS_B">
-		<db-attribute name="MAP_TYPE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
-		<db-attribute name="NETWORK_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
+		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
+		<db-attribute name="MAP_TYPE_ID" type="INTEGER" isMandatory="true" length="10"/>
+		<db-attribute name="NETWORK_ID" type="INTEGER" isMandatory="true" length="10"/>
+		<db-attribute name="RANK" type="INTEGER" length="10"/>
 	</db-entity>
 	<db-entity name="MEETING" schema="JCOMMOPS_B">
 		<db-attribute name="CONTACT_ID" type="INTEGER" isMandatory="true" length="10"/>
@@ -2312,11 +2313,9 @@
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameLong" type="java.lang.String" db-attribute-path="NAME_LONG"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
-		<obj-attribute name="rank" type="java.lang.Integer" db-attribute-path="RANK"/>
 	</obj-entity>
 	<obj-entity name="MapTypeNetwork" className="org.oceanops.api.orm.MapTypeNetwork" dbEntityName="MAP_TYPE_NETWORK">
-		<obj-attribute name="mapTypeId" type="java.lang.Integer" db-attribute-path="MAP_TYPE_ID"/>
-		<obj-attribute name="networkId" type="java.lang.Integer" db-attribute-path="NETWORK_ID"/>
+		<obj-attribute name="rank" type="java.lang.Integer" db-attribute-path="RANK"/>
 	</obj-entity>
 	<obj-entity name="Meeting" className="org.oceanops.api.orm.Meeting" dbEntityName="MEETING">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
@@ -4003,7 +4002,7 @@
 	<db-relationship name="ptfs1" source="LOC_SYSTEM" target="PTF" toMany="true">
 		<db-attribute-pair source="ID" target="TRACKING_SYSTEM_ID"/>
 	</db-relationship>
-	<db-relationship name="mapTypeNetworks" source="MAP_TYPE" target="MAP_TYPE_NETWORK" toDependentPK="true" toMany="true">
+	<db-relationship name="mapTypeNetworks" source="MAP_TYPE" target="MAP_TYPE_NETWORK" toMany="true">
 		<db-attribute-pair source="ID" target="MAP_TYPE_ID"/>
 	</db-relationship>
 	<db-relationship name="mapType" source="MAP_TYPE_NETWORK" target="MAP_TYPE">
@@ -4087,7 +4086,7 @@
 	<db-relationship name="indicators1" source="NETWORK" target="INDICATOR" toMany="true">
 		<db-attribute-pair source="ID" target="MASTER_NETWORK_ID"/>
 	</db-relationship>
-	<db-relationship name="mapTypeNetworks" source="NETWORK" target="MAP_TYPE_NETWORK" toDependentPK="true" toMany="true">
+	<db-relationship name="mapTypeNetworks" source="NETWORK" target="MAP_TYPE_NETWORK" toMany="true">
 		<db-attribute-pair source="ID" target="NETWORK_ID"/>
 	</db-relationship>
 	<db-relationship name="networkContacts" source="NETWORK" target="NETWORK_CONTACT" toDependentPK="true" toMany="true">
@@ -6014,7 +6013,6 @@
 		<usePrimitives>true</usePrimitives>
 	</dbImport>
 	<cgen xmlns="http://cayenne.apache.org/schema/10/cgen">
-		<excludeEntities>PtfAncillaryDeviceName,PtfAncillaryDeviceVersion</excludeEntities>
 		<destDir>..\java</destDir>
 		<mode>all</mode>
 		<template>templates/v4_1/subclass.vm</template>

@@ -1193,18 +1193,14 @@ components:
           type: string
         nameShort:
           type: string
-        rank:
-          type: number
       type: object
     MapTypeNetwork:
       properties:
         mapType:
           $ref: '#/components/schemas/MapType'
-        mapTypeId:
-          type: number
         network:
           $ref: '#/components/schemas/Network'
-        networkId:
+        rank:
           type: number
       type: object
     MzmsPtfCountry:

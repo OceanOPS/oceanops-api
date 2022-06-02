@@ -3,14 +3,12 @@ package org.oceanops.api.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
-import org.apache.cayenne.exp.property.ListProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
-import org.oceanops.api.orm.PtfAncillaryDevice;
+import org.oceanops.api.orm.PtfAncillaryDeviceName;
 import org.oceanops.api.orm.PtfModel;
 
 /**
@@ -25,26 +23,14 @@ public abstract class _PtfAncillaryDeviceVersion extends BaseDataObject {
 
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final StringProperty<String> DEVICE_NAME = PropertyFactory.createString("deviceName", String.class);
     public static final StringProperty<String> VERSION = PropertyFactory.createString("version", String.class);
-    public static final ListProperty<PtfAncillaryDevice> PTF_ANCILLARY_DEVICE = PropertyFactory.createList("ptfAncillaryDevice", PtfAncillaryDevice.class);
+    public static final EntityProperty<PtfAncillaryDeviceName> PTF_ANCILLARY_DEVICE_NAME = PropertyFactory.createEntity("ptfAncillaryDeviceName", PtfAncillaryDeviceName.class);
     public static final EntityProperty<PtfModel> PTF_MODEL = PropertyFactory.createEntity("ptfModel", PtfModel.class);
 
-    protected String deviceName;
     protected String version;
 
-    protected Object ptfAncillaryDevice;
+    protected Object ptfAncillaryDeviceName;
     protected Object ptfModel;
-
-    public void setDeviceName(String deviceName) {
-        beforePropertyWrite("deviceName", this.deviceName, deviceName);
-        this.deviceName = deviceName;
-    }
-
-    public String getDeviceName() {
-        beforePropertyRead("deviceName");
-        return this.deviceName;
-    }
 
     public void setVersion(String version) {
         beforePropertyWrite("version", this.version, version);
@@ -56,17 +42,12 @@ public abstract class _PtfAncillaryDeviceVersion extends BaseDataObject {
         return this.version;
     }
 
-    public void addToPtfAncillaryDevice(PtfAncillaryDevice obj) {
-        addToManyTarget("ptfAncillaryDevice", obj, true);
+    public void setPtfAncillaryDeviceName(PtfAncillaryDeviceName ptfAncillaryDeviceName) {
+        setToOneTarget("ptfAncillaryDeviceName", ptfAncillaryDeviceName, true);
     }
 
-    public void removeFromPtfAncillaryDevice(PtfAncillaryDevice obj) {
-        removeToManyTarget("ptfAncillaryDevice", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<PtfAncillaryDevice> getPtfAncillaryDevice() {
-        return (List<PtfAncillaryDevice>)readProperty("ptfAncillaryDevice");
+    public PtfAncillaryDeviceName getPtfAncillaryDeviceName() {
+        return (PtfAncillaryDeviceName)readProperty("ptfAncillaryDeviceName");
     }
 
     public void setPtfModel(PtfModel ptfModel) {
@@ -84,12 +65,10 @@ public abstract class _PtfAncillaryDeviceVersion extends BaseDataObject {
         }
 
         switch(propName) {
-            case "deviceName":
-                return this.deviceName;
             case "version":
                 return this.version;
-            case "ptfAncillaryDevice":
-                return this.ptfAncillaryDevice;
+            case "ptfAncillaryDeviceName":
+                return this.ptfAncillaryDeviceName;
             case "ptfModel":
                 return this.ptfModel;
             default:
@@ -104,14 +83,11 @@ public abstract class _PtfAncillaryDeviceVersion extends BaseDataObject {
         }
 
         switch (propName) {
-            case "deviceName":
-                this.deviceName = (String)val;
-                break;
             case "version":
                 this.version = (String)val;
                 break;
-            case "ptfAncillaryDevice":
-                this.ptfAncillaryDevice = val;
+            case "ptfAncillaryDeviceName":
+                this.ptfAncillaryDeviceName = val;
                 break;
             case "ptfModel":
                 this.ptfModel = val;
@@ -132,18 +108,16 @@ public abstract class _PtfAncillaryDeviceVersion extends BaseDataObject {
     @Override
     protected void writeState(ObjectOutputStream out) throws IOException {
         super.writeState(out);
-        out.writeObject(this.deviceName);
         out.writeObject(this.version);
-        out.writeObject(this.ptfAncillaryDevice);
+        out.writeObject(this.ptfAncillaryDeviceName);
         out.writeObject(this.ptfModel);
     }
 
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.deviceName = (String)in.readObject();
         this.version = (String)in.readObject();
-        this.ptfAncillaryDevice = in.readObject();
+        this.ptfAncillaryDeviceName = in.readObject();
         this.ptfModel = in.readObject();
     }
 

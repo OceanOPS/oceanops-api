@@ -110,7 +110,7 @@
 		<entity name="UserGroupAgency" x="10.0" y="10.0" width="104.0" height="66.0"/>
 		<entity name="Weblink" x="10.0" y="10.0" width="61.0" height="130.0"/>
 		<entity name="Image" x="10.0" y="10.0" width="69.0" height="210.0"/>
-		<entity name="MapTypeNetwork" x="10.0" y="10.0" width="103.0" height="66.0"/>
+		<entity name="MapTypeNetwork" x="10.0" y="10.0" width="103.0" height="50.0"/>
 		<entity name="UserGroup" x="10.0" y="10.0" width="63.0" height="114.0"/>
 		<entity name="LocSystem" x="10.0" y="10.0" width="62.0" height="98.0"/>
 		<entity name="PtfPtfStatus" x="10.0" y="10.0" width="76.0" height="82.0"/>
@@ -154,7 +154,7 @@
 		<entity name="ObsLatest" x="10.0" y="10.0" width="61.0" height="130.0"/>
 		<entity name="Retrieval" x="10.0" y="10.0" width="90.0" height="242.0"/>
 		<entity name="DacType" x="10.0" y="10.0" width="61.0" height="98.0"/>
-		<entity name="MapType" x="10.0" y="10.0" width="60.0" height="130.0"/>
+		<entity name="MapType" x="10.0" y="10.0" width="60.0" height="114.0"/>
 		<entity name="ShipHistory" x="10.0" y="10.0" width="66.0" height="210.0"/>
 		<entity name="ContactPtfRole" x="10.0" y="10.0" width="87.0" height="50.0"/>
 		<entity name="AgencySiteRole" x="10.0" y="10.0" width="90.0" height="66.0"/>
@@ -326,7 +326,7 @@
 		<entity name="SENSOR_FAMILY" x="2168.86" y="1489.04" width="95.0" height="82.0"/>
 		<entity name="LINE_SURVEY" x="1715.07" y="1628.5" width="131.0" height="114.0"/>
 		<entity name="DATA_FORMAT" x="2088.99" y="1413.06" width="88.0" height="98.0"/>
-		<entity name="MAP_TYPE" x="2260.78" y="1651.29" width="78.0" height="130.0"/>
+		<entity name="MAP_TYPE" x="2260.78" y="1651.29" width="78.0" height="114.0"/>
 		<entity name="TELECOM_FORMAT" x="1884.44" y="1650.39" width="108.0" height="226.0"/>
 		<entity name="AGENCY_PTF" x="2071.13" y="1597.23" width="106.0" height="130.0"/>
 		<entity name="CRUISE_STATUS" x="2227.69" y="1731.18" width="93.0" height="114.0"/>
@@ -384,7 +384,7 @@
 		<entity name="CONTACT_SITE_ROLE" x="184.7" y="951.45" width="119.0" height="98.0"/>
 		<entity name="LINE" x="1151.11" y="649.14" width="144.0" height="146.0"/>
 		<entity name="BASIN" x="327.91" y="602.59" width="82.0" height="178.0"/>
-		<entity name="MAP_TYPE_NETWORK" x="804.69" y="1498.5" width="124.0" height="66.0"/>
+		<entity name="MAP_TYPE_NETWORK" x="804.69" y="1498.5" width="124.0" height="98.0"/>
 		<entity name="WEB_PTF_FILTER" x="2233.0" y="1755.0" width="95.0" height="98.0"/>
 		<entity name="PTF_LOC_STATUS" x="525.84" y="989.8" width="99.0" height="114.0"/>
 		<entity name="OBS_ARGO_GDAC" x="789.73" y="996.87" width="163.0" height="418.0"/>

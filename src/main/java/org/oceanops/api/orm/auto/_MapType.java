@@ -29,7 +29,6 @@ public abstract class _MapType extends BaseDataObject {
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> NAME_LONG = PropertyFactory.createString("nameLong", String.class);
     public static final StringProperty<String> NAME_SHORT = PropertyFactory.createString("nameShort", String.class);
-    public static final NumericProperty<Integer> RANK = PropertyFactory.createNumeric("rank", Integer.class);
     public static final ListProperty<MapTypeNetwork> MAP_TYPE_NETWORKS = PropertyFactory.createList("mapTypeNetworks", MapTypeNetwork.class);
 
     protected Integer freq;
@@ -37,7 +36,6 @@ public abstract class _MapType extends BaseDataObject {
     protected String name;
     protected String nameLong;
     protected String nameShort;
-    protected Integer rank;
 
     protected Object mapTypeNetworks;
 
@@ -91,16 +89,6 @@ public abstract class _MapType extends BaseDataObject {
         return this.nameShort;
     }
 
-    public void setRank(Integer rank) {
-        beforePropertyWrite("rank", this.rank, rank);
-        this.rank = rank;
-    }
-
-    public Integer getRank() {
-        beforePropertyRead("rank");
-        return this.rank;
-    }
-
     public void addToMapTypeNetworks(MapTypeNetwork obj) {
         addToManyTarget("mapTypeNetworks", obj, true);
     }
@@ -131,8 +119,6 @@ public abstract class _MapType extends BaseDataObject {
                 return this.nameLong;
             case "nameShort":
                 return this.nameShort;
-            case "rank":
-                return this.rank;
             case "mapTypeNetworks":
                 return this.mapTypeNetworks;
             default:
@@ -162,9 +148,6 @@ public abstract class _MapType extends BaseDataObject {
             case "nameShort":
                 this.nameShort = (String)val;
                 break;
-            case "rank":
-                this.rank = (Integer)val;
-                break;
             case "mapTypeNetworks":
                 this.mapTypeNetworks = val;
                 break;
@@ -189,7 +172,6 @@ public abstract class _MapType extends BaseDataObject {
         out.writeObject(this.name);
         out.writeObject(this.nameLong);
         out.writeObject(this.nameShort);
-        out.writeObject(this.rank);
         out.writeObject(this.mapTypeNetworks);
     }
 
@@ -201,7 +183,6 @@ public abstract class _MapType extends BaseDataObject {
         this.name = (String)in.readObject();
         this.nameLong = (String)in.readObject();
         this.nameShort = (String)in.readObject();
-        this.rank = (Integer)in.readObject();
         this.mapTypeNetworks = in.readObject();
     }
 

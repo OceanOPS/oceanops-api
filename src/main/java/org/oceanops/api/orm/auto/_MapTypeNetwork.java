@@ -21,38 +21,25 @@ public abstract class _MapTypeNetwork extends BaseDataObject {
 
     private static final long serialVersionUID = 1L;
 
-    public static final String MAP_TYPE_ID_PK_COLUMN = "MAP_TYPE_ID";
-    public static final String NETWORK_ID_PK_COLUMN = "NETWORK_ID";
+    public static final String ID_PK_COLUMN = "ID";
 
-    public static final NumericProperty<Integer> MAP_TYPE_ID = PropertyFactory.createNumeric("mapTypeId", Integer.class);
-    public static final NumericProperty<Integer> NETWORK_ID = PropertyFactory.createNumeric("networkId", Integer.class);
+    public static final NumericProperty<Integer> RANK = PropertyFactory.createNumeric("rank", Integer.class);
     public static final EntityProperty<MapType> MAP_TYPE = PropertyFactory.createEntity("mapType", MapType.class);
     public static final EntityProperty<Network> NETWORK = PropertyFactory.createEntity("network", Network.class);
 
-    protected Integer mapTypeId;
-    protected Integer networkId;
+    protected Integer rank;
 
     protected Object mapType;
     protected Object network;
 
-    public void setMapTypeId(Integer mapTypeId) {
-        beforePropertyWrite("mapTypeId", this.mapTypeId, mapTypeId);
-        this.mapTypeId = mapTypeId;
+    public void setRank(Integer rank) {
+        beforePropertyWrite("rank", this.rank, rank);
+        this.rank = rank;
     }
 
-    public Integer getMapTypeId() {
-        beforePropertyRead("mapTypeId");
-        return this.mapTypeId;
-    }
-
-    public void setNetworkId(Integer networkId) {
-        beforePropertyWrite("networkId", this.networkId, networkId);
-        this.networkId = networkId;
-    }
-
-    public Integer getNetworkId() {
-        beforePropertyRead("networkId");
-        return this.networkId;
+    public Integer getRank() {
+        beforePropertyRead("rank");
+        return this.rank;
     }
 
     public void setMapType(MapType mapType) {
@@ -78,10 +65,8 @@ public abstract class _MapTypeNetwork extends BaseDataObject {
         }
 
         switch(propName) {
-            case "mapTypeId":
-                return this.mapTypeId;
-            case "networkId":
-                return this.networkId;
+            case "rank":
+                return this.rank;
             case "mapType":
                 return this.mapType;
             case "network":
@@ -98,11 +83,8 @@ public abstract class _MapTypeNetwork extends BaseDataObject {
         }
 
         switch (propName) {
-            case "mapTypeId":
-                this.mapTypeId = (Integer)val;
-                break;
-            case "networkId":
-                this.networkId = (Integer)val;
+            case "rank":
+                this.rank = (Integer)val;
                 break;
             case "mapType":
                 this.mapType = val;
@@ -126,8 +108,7 @@ public abstract class _MapTypeNetwork extends BaseDataObject {
     @Override
     protected void writeState(ObjectOutputStream out) throws IOException {
         super.writeState(out);
-        out.writeObject(this.mapTypeId);
-        out.writeObject(this.networkId);
+        out.writeObject(this.rank);
         out.writeObject(this.mapType);
         out.writeObject(this.network);
     }
@@ -135,8 +116,7 @@ public abstract class _MapTypeNetwork extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.mapTypeId = (Integer)in.readObject();
-        this.networkId = (Integer)in.readObject();
+        this.rank = (Integer)in.readObject();
         this.mapType = in.readObject();
         this.network = in.readObject();
     }
