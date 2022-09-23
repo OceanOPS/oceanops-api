@@ -581,6 +581,7 @@
 		<db-attribute name="NAME" type="VARCHAR" length="50"/>
 		<db-attribute name="NAME_LONG" type="VARCHAR" length="80"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="30"/>
+		<db-attribute name="URL_PATH" type="VARCHAR" length="100"/>
 	</db-entity>
 	<db-entity name="MAP_TYPE_NETWORK" schema="JCOMMOPS_B">
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
@@ -704,19 +705,9 @@
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="50"/>
 	</db-entity>
 	<db-entity name="OBS" schema="JCOMMOPS_B">
-		<db-attribute name="ASSEMBLY_DATE" type="TIMESTAMP" length="7"/>
-		<db-attribute name="CYCLE_NB" type="NUMERIC" length="10"/>
-		<db-attribute name="DAC_ID" type="INTEGER" length="10"/>
-		<db-attribute name="DATA_FORMAT_ID" type="INTEGER" length="10"/>
-		<db-attribute name="DATA_PATH" type="VARCHAR" length="4000"/>
 		<db-attribute name="DELAY" type="NUMERIC"/>
-		<db-attribute name="DELETED" type="NUMERIC" length="1"/>
 		<db-attribute name="DEPTH" type="NUMERIC" length="20" scale="4"/>
-		<db-attribute name="DEPTH_MAX" type="NUMERIC" length="20" scale="4"/>
-		<db-attribute name="DESCENDING" type="NUMERIC" length="1"/>
 		<db-attribute name="DISTRIBUTION_DATE" type="TIMESTAMP" length="7"/>
-		<db-attribute name="FILENAME" type="VARCHAR" length="100"/>
-		<db-attribute name="GDAC_ID" type="INTEGER" length="10"/>
 		<db-attribute name="GTS_CCCC_ID" type="INTEGER" isMandatory="true" length="10"/>
 		<db-attribute name="GTS_CODE_ID" type="INTEGER" length="10"/>
 		<db-attribute name="GTS_HEADER_ID" type="INTEGER" isMandatory="true" length="10"/>
@@ -725,14 +716,11 @@
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="38"/>
 		<db-attribute name="INSERT_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="LAT" type="NUMERIC" length="12" scale="4"/>
-		<db-attribute name="LATEST_ASSEMBLY_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="LATEST_DISTRIBUTION_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="LON" type="NUMERIC" length="12" scale="4"/>
 		<db-attribute name="OBS_DATA_STATUS_ID" type="INTEGER" length="10"/>
 		<db-attribute name="OBS_DATE" type="TIMESTAMP" length="7"/>
-		<db-attribute name="OBS_END_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="PTF_ID" type="INTEGER" length="38"/>
-		<db-attribute name="PTF_LOC_ID" type="INTEGER" length="38"/>
 		<db-attribute name="UPDATE_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="WMO" type="VARCHAR" length="20"/>
 	</db-entity>
@@ -1108,19 +1096,6 @@
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="200"/>
 		<db-attribute name="FREQUENCY" type="NUMERIC" length="5"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
-	</db-entity>
-	<db-entity name="PTF_LOC" schema="JCOMMOPS_B">
-		<db-attribute name="ELEVATION" type="NUMERIC" length="10" scale="4"/>
-		<db-attribute name="FLAG" type="NUMERIC" length="1"/>
-		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="38"/>
-		<db-attribute name="IMG_LAT" type="NUMERIC" length="10" scale="4"/>
-		<db-attribute name="IMG_LON" type="NUMERIC" length="10" scale="4"/>
-		<db-attribute name="LAT" type="NUMERIC" isMandatory="true" length="10" scale="4"/>
-		<db-attribute name="LOC_DATE" type="TIMESTAMP" isMandatory="true" length="7"/>
-		<db-attribute name="LOC_SYSTEM_ID" type="INTEGER" length="10"/>
-		<db-attribute name="LON" type="NUMERIC" isMandatory="true" length="10" scale="4"/>
-		<db-attribute name="PTF_ID" type="INTEGER" length="38"/>
-		<db-attribute name="QUALITY" type="NUMERIC" length="4"/>
 	</db-entity>
 	<db-entity name="PTF_LOC_STATUS" schema="JCOMMOPS_B">
 		<db-attribute name="END_DATE" type="TIMESTAMP" length="7"/>
@@ -1637,12 +1612,6 @@
 	<db-entity name="TOPIC" schema="JCOMMOPS_B">
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" isMandatory="true" length="50"/>
-	</db-entity>
-	<db-entity name="TRACKING_SYSTEM" schema="JCOMMOPS_B">
-		<db-attribute name="FREQUENCY_ID" type="INTEGER" length="10"/>
-		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
-		<db-attribute name="NAME" type="VARCHAR" length="80"/>
-		<db-attribute name="NAME_SHORT" type="VARCHAR" length="50"/>
 	</db-entity>
 	<db-entity name="UPDATE_TIMESTAMP" schema="JCOMMOPS_B">
 		<db-attribute name="COMPLETED" type="NUMERIC" length="1"/>
@@ -2313,6 +2282,7 @@
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameLong" type="java.lang.String" db-attribute-path="NAME_LONG"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
+		<obj-attribute name="urlPath" type="java.lang.String" db-attribute-path="URL_PATH"/>
 	</obj-entity>
 	<obj-entity name="MapTypeNetwork" className="org.oceanops.api.orm.MapTypeNetwork" dbEntityName="MAP_TYPE_NETWORK">
 		<obj-attribute name="rank" type="java.lang.Integer" db-attribute-path="RANK"/>
@@ -2418,24 +2388,15 @@
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
 	<obj-entity name="Obs" className="org.oceanops.api.orm.Obs" dbEntityName="OBS">
-		<obj-attribute name="assemblyDate" type="java.time.LocalDateTime" db-attribute-path="ASSEMBLY_DATE"/>
-		<obj-attribute name="cycleNb" type="java.lang.Integer" db-attribute-path="CYCLE_NB"/>
-		<obj-attribute name="dataPath" type="java.lang.String" db-attribute-path="DATA_PATH"/>
 		<obj-attribute name="delay" type="java.lang.Double" db-attribute-path="DELAY"/>
-		<obj-attribute name="deleted" type="java.lang.Integer" db-attribute-path="DELETED"/>
 		<obj-attribute name="depth" type="java.lang.Double" db-attribute-path="DEPTH"/>
-		<obj-attribute name="depthMax" type="java.lang.Double" db-attribute-path="DEPTH_MAX"/>
-		<obj-attribute name="descending" type="java.lang.Integer" db-attribute-path="DESCENDING"/>
 		<obj-attribute name="distributionDate" type="java.time.LocalDateTime" db-attribute-path="DISTRIBUTION_DATE"/>
-		<obj-attribute name="filename" type="java.lang.String" db-attribute-path="FILENAME"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="insertDate" type="java.time.LocalDateTime" db-attribute-path="INSERT_DATE"/>
 		<obj-attribute name="lat" type="java.lang.Double" db-attribute-path="LAT"/>
-		<obj-attribute name="latestAssemblyDate" type="java.time.LocalDateTime" db-attribute-path="LATEST_ASSEMBLY_DATE"/>
 		<obj-attribute name="latestDistributionDate" type="java.time.LocalDateTime" db-attribute-path="LATEST_DISTRIBUTION_DATE"/>
 		<obj-attribute name="lon" type="java.lang.Double" db-attribute-path="LON"/>
 		<obj-attribute name="obsDate" type="java.time.LocalDateTime" db-attribute-path="OBS_DATE"/>
-		<obj-attribute name="obsEndDate" type="java.time.LocalDateTime" db-attribute-path="OBS_END_DATE"/>
 		<obj-attribute name="updateDate" type="java.time.LocalDateTime" db-attribute-path="UPDATE_DATE"/>
 		<obj-attribute name="wmo" type="java.lang.String" db-attribute-path="WMO"/>
 	</obj-entity>
@@ -2736,17 +2697,6 @@
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="frequency" type="java.lang.Double" db-attribute-path="FREQUENCY"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
-	</obj-entity>
-	<obj-entity name="PtfLoc" className="org.oceanops.api.orm.PtfLoc" dbEntityName="PTF_LOC">
-		<obj-attribute name="elevation" type="java.lang.Double" db-attribute-path="ELEVATION"/>
-		<obj-attribute name="flag" type="java.lang.Integer" db-attribute-path="FLAG"/>
-		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
-		<obj-attribute name="imgLat" type="java.lang.Double" db-attribute-path="IMG_LAT"/>
-		<obj-attribute name="imgLon" type="java.lang.Double" db-attribute-path="IMG_LON"/>
-		<obj-attribute name="lat" type="java.lang.Double" db-attribute-path="LAT"/>
-		<obj-attribute name="locDate" type="java.time.LocalDateTime" db-attribute-path="LOC_DATE"/>
-		<obj-attribute name="lon" type="java.lang.Double" db-attribute-path="LON"/>
-		<obj-attribute name="quality" type="java.lang.Integer" db-attribute-path="QUALITY"/>
 	</obj-entity>
 	<obj-entity name="PtfLocStatus" className="org.oceanops.api.orm.PtfLocStatus" dbEntityName="PTF_LOC_STATUS">
 		<obj-attribute name="endDate" type="java.time.LocalDateTime" db-attribute-path="END_DATE"/>
@@ -3191,11 +3141,6 @@
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 	</obj-entity>
-	<obj-entity name="TrackingSystem" className="org.oceanops.api.orm.TrackingSystem" dbEntityName="TRACKING_SYSTEM">
-		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
-		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
-		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
-	</obj-entity>
 	<obj-entity name="UpdateTimestamp" className="org.oceanops.api.orm.UpdateTimestamp" dbEntityName="UPDATE_TIMESTAMP">
 		<obj-attribute name="completed" type="java.lang.Integer" db-attribute-path="COMPLETED"/>
 		<obj-attribute name="lastUpdate" type="java.time.LocalDateTime" db-attribute-path="LAST_UPDATE"/>
@@ -3376,12 +3321,6 @@
 		<db-attribute-pair source="ID" target="AGENCY_ID"/>
 	</db-relationship>
 	<db-relationship name="obsArgoGdacs" source="AGENCY" target="OBS_ARGO_GDAC" toMany="true">
-		<db-attribute-pair source="ID" target="DAC_ID"/>
-	</db-relationship>
-	<db-relationship name="obss" source="AGENCY" target="OBS" toMany="true">
-		<db-attribute-pair source="ID" target="GDAC_ID"/>
-	</db-relationship>
-	<db-relationship name="obss1" source="AGENCY" target="OBS" toMany="true">
 		<db-attribute-pair source="ID" target="DAC_ID"/>
 	</db-relationship>
 	<db-relationship name="programAgencies" source="AGENCY" target="PROGRAM_AGENCY" toMany="true">
@@ -3738,9 +3677,6 @@
 	<db-relationship name="agencyPtfs" source="DAC_TYPE" target="AGENCY_PTF" toMany="true">
 		<db-attribute-pair source="ID" target="DAC_TYPE_ID"/>
 	</db-relationship>
-	<db-relationship name="obss" source="DATA_FORMAT" target="OBS" toMany="true">
-		<db-attribute-pair source="ID" target="DATA_FORMAT_ID"/>
-	</db-relationship>
 	<db-relationship name="untitledRel" source="DATA_PROCESSING_METHOD" target="PTF_VARIABLE" toMany="true">
 		<db-attribute-pair source="ID" target="DATA_PROCESSING_METHOD_ID"/>
 	</db-relationship>
@@ -3761,9 +3697,6 @@
 	</db-relationship>
 	<db-relationship name="language" source="DOC" target="LANGUAGE">
 		<db-attribute-pair source="LANGUAGE_ID" target="ID"/>
-	</db-relationship>
-	<db-relationship name="loc" source="DOC" target="PTF_LOC">
-		<db-attribute-pair source="LOC_ID" target="ID"/>
 	</db-relationship>
 	<db-relationship name="meeting" source="DOC" target="MEETING">
 		<db-attribute-pair source="MEETING_ID" target="ID"/>
@@ -3811,9 +3744,6 @@
 		<db-attribute-pair source="ID" target="ENDING_CAUSE_ID"/>
 	</db-relationship>
 	<db-relationship name="cruises" source="FREQUENCY" target="CRUISE" toMany="true">
-		<db-attribute-pair source="ID" target="FREQUENCY_ID"/>
-	</db-relationship>
-	<db-relationship name="trackingSystems" source="FREQUENCY" target="TRACKING_SYSTEM" toMany="true">
 		<db-attribute-pair source="ID" target="FREQUENCY_ID"/>
 	</db-relationship>
 	<db-relationship name="agency" source="GTS_CCCC" target="AGENCY">
@@ -3993,9 +3923,6 @@
 	<db-relationship name="ptfLocStatuses" source="LOC_STATUS" target="PTF_LOC_STATUS" toDependentPK="true" toMany="true">
 		<db-attribute-pair source="ID" target="LOC_STATUS_ID"/>
 	</db-relationship>
-	<db-relationship name="ptfLocs" source="LOC_SYSTEM" target="PTF_LOC" toMany="true">
-		<db-attribute-pair source="ID" target="LOC_SYSTEM_ID"/>
-	</db-relationship>
 	<db-relationship name="ptfs" source="LOC_SYSTEM" target="PTF" toMany="true">
 		<db-attribute-pair source="ID" target="BACKUP_TRACKING_SYSTEM_ID"/>
 	</db-relationship>
@@ -4164,15 +4091,6 @@
 	<db-relationship name="untitledRel" source="NETWORK_TYPE" target="NETWORK" toMany="true">
 		<db-attribute-pair source="ID" target="NETWORK_TYPE_ID"/>
 	</db-relationship>
-	<db-relationship name="dac" source="OBS" target="AGENCY">
-		<db-attribute-pair source="DAC_ID" target="ID"/>
-	</db-relationship>
-	<db-relationship name="dataFormat" source="OBS" target="DATA_FORMAT">
-		<db-attribute-pair source="DATA_FORMAT_ID" target="ID"/>
-	</db-relationship>
-	<db-relationship name="gdac" source="OBS" target="AGENCY">
-		<db-attribute-pair source="GDAC_ID" target="ID"/>
-	</db-relationship>
 	<db-relationship name="gtsCccc" source="OBS" target="GTS_CCCC">
 		<db-attribute-pair source="GTS_CCCC_ID" target="ID"/>
 	</db-relationship>
@@ -4199,9 +4117,6 @@
 	</db-relationship>
 	<db-relationship name="ptf" source="OBS" target="PTF">
 		<db-attribute-pair source="PTF_ID" target="ID"/>
-	</db-relationship>
-	<db-relationship name="ptfLoc" source="OBS" target="PTF_LOC">
-		<db-attribute-pair source="PTF_LOC_ID" target="ID"/>
 	</db-relationship>
 	<db-relationship name="dac" source="OBS_ARGO_GDAC" target="AGENCY">
 		<db-attribute-pair source="DAC_ID" target="ID"/>
@@ -4434,9 +4349,6 @@
 	<db-relationship name="endingCause" source="PTF" target="ENDING_CAUSE">
 		<db-attribute-pair source="ENDING_CAUSE_ID" target="ID"/>
 	</db-relationship>
-	<db-relationship name="lastLoc" source="PTF" target="PTF_LOC">
-		<db-attribute-pair source="LAST_LOC_ID" target="ID"/>
-	</db-relationship>
 	<db-relationship name="latestObs" source="PTF" target="OBS_LATEST">
 		<db-attribute-pair source="LATEST_OBS_ID" target="ID"/>
 	</db-relationship>
@@ -4498,9 +4410,6 @@
 		<db-attribute-pair source="PTF_IDENTIFIERS_ID" target="ID"/>
 	</db-relationship>
 	<db-relationship name="ptfLocStatuses" source="PTF" target="PTF_LOC_STATUS" toDependentPK="true" toMany="true">
-		<db-attribute-pair source="ID" target="PTF_ID"/>
-	</db-relationship>
-	<db-relationship name="ptfLocs" source="PTF" target="PTF_LOC" toMany="true">
 		<db-attribute-pair source="ID" target="PTF_ID"/>
 	</db-relationship>
 	<db-relationship name="ptfModel" source="PTF" target="PTF_MODEL">
@@ -4664,21 +4573,6 @@
 	</db-relationship>
 	<db-relationship name="ptfs" source="PTF_IDENTIFIERS" target="PTF" toMany="true">
 		<db-attribute-pair source="ID" target="PTF_IDENTIFIERS_ID"/>
-	</db-relationship>
-	<db-relationship name="docs" source="PTF_LOC" target="DOC" toMany="true">
-		<db-attribute-pair source="ID" target="LOC_ID"/>
-	</db-relationship>
-	<db-relationship name="locSystem" source="PTF_LOC" target="LOC_SYSTEM">
-		<db-attribute-pair source="LOC_SYSTEM_ID" target="ID"/>
-	</db-relationship>
-	<db-relationship name="obss" source="PTF_LOC" target="OBS" toMany="true">
-		<db-attribute-pair source="ID" target="PTF_LOC_ID"/>
-	</db-relationship>
-	<db-relationship name="ptf" source="PTF_LOC" target="PTF">
-		<db-attribute-pair source="PTF_ID" target="ID"/>
-	</db-relationship>
-	<db-relationship name="ptfs" source="PTF_LOC" target="PTF" toMany="true">
-		<db-attribute-pair source="ID" target="LAST_LOC_ID"/>
 	</db-relationship>
 	<db-relationship name="locStatus" source="PTF_LOC_STATUS" target="LOC_STATUS">
 		<db-attribute-pair source="LOC_STATUS_ID" target="ID"/>
@@ -5115,9 +5009,6 @@
 	<db-relationship name="weblinks" source="TOPIC" target="WEBLINK" toMany="true">
 		<db-attribute-pair source="ID" target="TOPIC_ID"/>
 	</db-relationship>
-	<db-relationship name="frequency" source="TRACKING_SYSTEM" target="FREQUENCY">
-		<db-attribute-pair source="FREQUENCY_ID" target="ID"/>
-	</db-relationship>
 	<db-relationship name="docs" source="USER_GROUP" target="DOC" toMany="true">
 		<db-attribute-pair source="ID" target="USER_GROUP_ID"/>
 	</db-relationship>
@@ -5444,14 +5335,12 @@
 	<obj-relationship name="variable" source="CruiseVariable" target="Variable" deleteRule="Nullify" db-relationship-path="variable"/>
 	<obj-relationship name="agencyDacTypes" source="DacType" target="AgencyDacType" deleteRule="Deny" db-relationship-path="agencyDacTypes"/>
 	<obj-relationship name="agencyPtfs" source="DacType" target="AgencyPtf" deleteRule="Deny" db-relationship-path="agencyPtfs"/>
-	<obj-relationship name="obss" source="DataFormat" target="Obs" deleteRule="Deny" db-relationship-path="obss"/>
 	<obj-relationship name="ptfs" source="DataStatus" target="Ptf" deleteRule="Deny" db-relationship-path="ptfs"/>
 	<obj-relationship name="ptfDeployments" source="DeplMethod" target="PtfDeployment" deleteRule="Deny" db-relationship-path="ptfDeployments"/>
 	<obj-relationship name="ptfDeployments" source="DeplType" target="PtfDeployment" deleteRule="Deny" db-relationship-path="ptfDeployments"/>
 	<obj-relationship name="docContacts" source="Doc" target="DocContact" deleteRule="Deny" db-relationship-path="docContacts"/>
 	<obj-relationship name="docType" source="Doc" target="DocType" deleteRule="Nullify" db-relationship-path="docType"/>
 	<obj-relationship name="language" source="Doc" target="Language" deleteRule="Nullify" db-relationship-path="language"/>
-	<obj-relationship name="loc" source="Doc" target="PtfLoc" deleteRule="Nullify" db-relationship-path="loc"/>
 	<obj-relationship name="meeting" source="Doc" target="Meeting" deleteRule="Nullify" db-relationship-path="meeting"/>
 	<obj-relationship name="network" source="Doc" target="Network" deleteRule="Nullify" db-relationship-path="network"/>
 	<obj-relationship name="ptf" source="Doc" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
@@ -5468,7 +5357,6 @@
 	<obj-relationship name="networkEndingCauses" source="EndingCause" target="NetworkEndingCause" deleteRule="Deny" db-relationship-path="networkEndingCauses"/>
 	<obj-relationship name="ptfs" source="EndingCause" target="Ptf" deleteRule="Deny" db-relationship-path="ptfs"/>
 	<obj-relationship name="cruises" source="Frequency" target="Cruise" deleteRule="Deny" db-relationship-path="cruises"/>
-	<obj-relationship name="trackingSystems" source="Frequency" target="TrackingSystem" deleteRule="Deny" db-relationship-path="trackingSystems"/>
 	<obj-relationship name="agency" source="GtsCccc" target="Agency" deleteRule="Nullify" db-relationship-path="agency"/>
 	<obj-relationship name="country" source="GtsCccc" target="Country" deleteRule="Nullify" db-relationship-path="country"/>
 	<obj-relationship name="gtsCcccHeaders" source="GtsCccc" target="GtsCcccHeader" deleteRule="Deny" db-relationship-path="gtsCcccHeaders"/>
@@ -5527,7 +5415,6 @@
 	<obj-relationship name="survey" source="LineSurvey" target="Survey" deleteRule="Nullify" db-relationship-path="survey"/>
 	<obj-relationship name="lineSurveys" source="LineType" target="LineSurvey" deleteRule="Deny" db-relationship-path="lineSurveys"/>
 	<obj-relationship name="ptfLocStatuses" source="LocStatus" target="PtfLocStatus" deleteRule="Deny" db-relationship-path="ptfLocStatuses"/>
-	<obj-relationship name="ptfLocs" source="LocSystem" target="PtfLoc" deleteRule="Deny" db-relationship-path="ptfLocs"/>
 	<obj-relationship name="ptfs" source="LocSystem" target="Ptf" deleteRule="Deny" db-relationship-path="ptfs"/>
 	<obj-relationship name="ptfs1" source="LocSystem" target="Ptf" deleteRule="Deny" db-relationship-path="ptfs1"/>
 	<obj-relationship name="mapTypeNetworks" source="MapType" target="MapTypeNetwork" deleteRule="Deny" db-relationship-path="mapTypeNetworks"/>
@@ -5581,9 +5468,6 @@
 	<obj-relationship name="ptf" source="NetworkPtf" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
 	<obj-relationship name="network" source="NetworkSite" target="Network" deleteRule="Nullify" db-relationship-path="network"/>
 	<obj-relationship name="site" source="NetworkSite" target="Site" deleteRule="Nullify" db-relationship-path="site"/>
-	<obj-relationship name="dac" source="Obs" target="Agency" deleteRule="Nullify" db-relationship-path="dac"/>
-	<obj-relationship name="dataFormat" source="Obs" target="DataFormat" deleteRule="Nullify" db-relationship-path="dataFormat"/>
-	<obj-relationship name="gdac" source="Obs" target="Agency" deleteRule="Nullify" db-relationship-path="gdac"/>
 	<obj-relationship name="gtsCccc" source="Obs" target="GtsCccc" deleteRule="Nullify" db-relationship-path="gtsCccc"/>
 	<obj-relationship name="gtsCode" source="Obs" target="GtsCode" deleteRule="Nullify" db-relationship-path="gtsCode"/>
 	<obj-relationship name="gtsHeader" source="Obs" target="GtsHeader" deleteRule="Nullify" db-relationship-path="gtsHeader"/>
@@ -5593,7 +5477,6 @@
 	<obj-relationship name="obsObsDataStatuses" source="Obs" target="ObsObsDataStatus" deleteRule="Deny" db-relationship-path="obsObsDataStatuses"/>
 	<obj-relationship name="obsVariables" source="Obs" target="ObsVariable" deleteRule="Deny" db-relationship-path="obsVariables"/>
 	<obj-relationship name="ptf" source="Obs" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
-	<obj-relationship name="ptfLoc" source="Obs" target="PtfLoc" deleteRule="Nullify" db-relationship-path="ptfLoc"/>
 	<obj-relationship name="dac" source="ObsArgoGdac" target="Agency" deleteRule="Nullify" db-relationship-path="dac"/>
 	<obj-relationship name="obsArgoGdacDss" source="ObsArgoGdac" target="ObsArgoGdacDs" deleteRule="Deny" db-relationship-path="obsArgoGdacDss"/>
 	<obj-relationship name="obsArgoGdacVariables" source="ObsArgoGdac" target="ObsArgoGdacVariable" deleteRule="Deny" db-relationship-path="obsArgoGdacVariables"/>
@@ -5669,7 +5552,6 @@
 	<obj-relationship name="doc" source="Ptf" target="Doc" deleteRule="Nullify" db-relationship-path="doc"/>
 	<obj-relationship name="docs" source="Ptf" target="Doc" deleteRule="Deny" db-relationship-path="docs"/>
 	<obj-relationship name="endingCause" source="Ptf" target="EndingCause" deleteRule="Nullify" db-relationship-path="endingCause"/>
-	<obj-relationship name="lastLoc" source="Ptf" target="PtfLoc" deleteRule="Nullify" db-relationship-path="lastLoc"/>
 	<obj-relationship name="latestObs" source="Ptf" target="ObsLatest" deleteRule="Nullify" db-relationship-path="latestObs"/>
 	<obj-relationship name="lines" source="Ptf" target="Line" deleteRule="Nullify" db-relationship-path="linePtfs.line"/>
 	<obj-relationship name="mzmsPtfCountries" source="Ptf" target="MzmsPtfCountry" deleteRule="Deny" db-relationship-path="mzmsPtfCountries"/>
@@ -5684,7 +5566,6 @@
 	<obj-relationship name="ptfHardware" source="Ptf" target="PtfHardware" deleteRule="Nullify" db-relationship-path="ptfHardware"/>
 	<obj-relationship name="ptfIdentifiers" source="Ptf" target="PtfIdentifiers" deleteRule="Nullify" db-relationship-path="ptfIdentifiers"/>
 	<obj-relationship name="ptfLocStatuses" source="Ptf" target="PtfLocStatus" deleteRule="Deny" db-relationship-path="ptfLocStatuses"/>
-	<obj-relationship name="ptfLocs" source="Ptf" target="PtfLoc" deleteRule="Deny" db-relationship-path="ptfLocs"/>
 	<obj-relationship name="ptfModel" source="Ptf" target="PtfModel" deleteRule="Nullify" db-relationship-path="ptfModel"/>
 	<obj-relationship name="ptfPtfStatuses" source="Ptf" target="PtfPtfStatus" deleteRule="Deny" db-relationship-path="ptfPtfStatuses"/>
 	<obj-relationship name="ptfSoftware" source="Ptf" target="PtfSoftware" deleteRule="Nullify" db-relationship-path="ptfSoftware"/>
@@ -5734,11 +5615,6 @@
 	<obj-relationship name="ptfHardwares" source="PtfHullType" target="PtfHardware" deleteRule="Deny" db-relationship-path="ptfHardwares"/>
 	<obj-relationship name="ptfModels" source="PtfHullType" target="PtfModel" deleteRule="Deny" db-relationship-path="ptfModels"/>
 	<obj-relationship name="ptfs" source="PtfIdentifiers" target="Ptf" deleteRule="Deny" db-relationship-path="ptfs"/>
-	<obj-relationship name="docs" source="PtfLoc" target="Doc" deleteRule="Deny" db-relationship-path="docs"/>
-	<obj-relationship name="locSystem" source="PtfLoc" target="LocSystem" deleteRule="Nullify" db-relationship-path="locSystem"/>
-	<obj-relationship name="obss" source="PtfLoc" target="Obs" deleteRule="Deny" db-relationship-path="obss"/>
-	<obj-relationship name="ptf" source="PtfLoc" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
-	<obj-relationship name="ptfs" source="PtfLoc" target="Ptf" deleteRule="Deny" db-relationship-path="ptfs"/>
 	<obj-relationship name="locStatus" source="PtfLocStatus" target="LocStatus" deleteRule="Nullify" db-relationship-path="locStatus"/>
 	<obj-relationship name="ptf" source="PtfLocStatus" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
 	<obj-relationship name="agency" source="PtfModel" target="Agency" deleteRule="Nullify" db-relationship-path="agency"/>
@@ -5880,7 +5756,6 @@
 	<obj-relationship name="docs" source="Topic" target="Doc" deleteRule="Deny" db-relationship-path="docs"/>
 	<obj-relationship name="qcFeedbacks" source="Topic" target="QcFeedback" deleteRule="Deny" db-relationship-path="qcFeedbacks"/>
 	<obj-relationship name="weblinks" source="Topic" target="Weblink" deleteRule="Deny" db-relationship-path="weblinks"/>
-	<obj-relationship name="frequency" source="TrackingSystem" target="Frequency" deleteRule="Nullify" db-relationship-path="frequency"/>
 	<obj-relationship name="docs" source="UserGroup" target="Doc" deleteRule="Deny" db-relationship-path="docs"/>
 	<obj-relationship name="network" source="UserGroup" target="Network" deleteRule="Nullify" db-relationship-path="network"/>
 	<obj-relationship name="userGroupAgencies" source="UserGroup" target="UserGroupAgency" deleteRule="Deny" db-relationship-path="userGroupAgencies"/>
@@ -6013,10 +5888,8 @@
 		<usePrimitives>true</usePrimitives>
 	</dbImport>
 	<cgen xmlns="http://cayenne.apache.org/schema/10/cgen">
-		<destDir>..\java</destDir>
+		<destDir>../java</destDir>
 		<mode>all</mode>
-		<template>templates/v4_1/subclass.vm</template>
-		<superTemplate>templates/v4_1/superclass.vm</superTemplate>
 		<template>templates/v4_1/subclass.vm</template>
 		<superTemplate>templates/v4_1/superclass.vm</superTemplate>
 		<embeddableTemplate>templates/v4_1/embeddable-subclass.vm</embeddableTemplate>

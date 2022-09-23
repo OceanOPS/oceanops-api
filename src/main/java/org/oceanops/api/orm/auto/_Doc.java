@@ -20,7 +20,6 @@ import org.oceanops.api.orm.Language;
 import org.oceanops.api.orm.Meeting;
 import org.oceanops.api.orm.Network;
 import org.oceanops.api.orm.Ptf;
-import org.oceanops.api.orm.PtfLoc;
 import org.oceanops.api.orm.Ship;
 import org.oceanops.api.orm.TelecomFormatDoc;
 import org.oceanops.api.orm.Topic;
@@ -55,7 +54,6 @@ public abstract class _Doc extends BaseDataObject {
     public static final ListProperty<DocContact> DOC_CONTACTS = PropertyFactory.createList("docContacts", DocContact.class);
     public static final EntityProperty<DocType> DOC_TYPE = PropertyFactory.createEntity("docType", DocType.class);
     public static final EntityProperty<Language> LANGUAGE = PropertyFactory.createEntity("language", Language.class);
-    public static final EntityProperty<PtfLoc> LOC = PropertyFactory.createEntity("loc", PtfLoc.class);
     public static final EntityProperty<Meeting> MEETING = PropertyFactory.createEntity("meeting", Meeting.class);
     public static final EntityProperty<Network> NETWORK = PropertyFactory.createEntity("network", Network.class);
     public static final EntityProperty<Ptf> PTF = PropertyFactory.createEntity("ptf", Ptf.class);
@@ -83,7 +81,6 @@ public abstract class _Doc extends BaseDataObject {
     protected Object docContacts;
     protected Object docType;
     protected Object language;
-    protected Object loc;
     protected Object meeting;
     protected Object network;
     protected Object ptf;
@@ -253,14 +250,6 @@ public abstract class _Doc extends BaseDataObject {
         return (Language)readProperty("language");
     }
 
-    public void setLoc(PtfLoc loc) {
-        setToOneTarget("loc", loc, true);
-    }
-
-    public PtfLoc getLoc() {
-        return (PtfLoc)readProperty("loc");
-    }
-
     public void setMeeting(Meeting meeting) {
         setToOneTarget("meeting", meeting, true);
     }
@@ -382,8 +371,6 @@ public abstract class _Doc extends BaseDataObject {
                 return this.docType;
             case "language":
                 return this.language;
-            case "loc":
-                return this.loc;
             case "meeting":
                 return this.meeting;
             case "network":
@@ -462,9 +449,6 @@ public abstract class _Doc extends BaseDataObject {
             case "language":
                 this.language = val;
                 break;
-            case "loc":
-                this.loc = val;
-                break;
             case "meeting":
                 this.meeting = val;
                 break;
@@ -524,7 +508,6 @@ public abstract class _Doc extends BaseDataObject {
         out.writeObject(this.docContacts);
         out.writeObject(this.docType);
         out.writeObject(this.language);
-        out.writeObject(this.loc);
         out.writeObject(this.meeting);
         out.writeObject(this.network);
         out.writeObject(this.ptf);
@@ -555,7 +538,6 @@ public abstract class _Doc extends BaseDataObject {
         this.docContacts = in.readObject();
         this.docType = in.readObject();
         this.language = in.readObject();
-        this.loc = in.readObject();
         this.meeting = in.readObject();
         this.network = in.readObject();
         this.ptf = in.readObject();

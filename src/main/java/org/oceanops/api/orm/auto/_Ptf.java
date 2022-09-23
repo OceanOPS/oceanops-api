@@ -32,7 +32,6 @@ import org.oceanops.api.orm.PtfConfig;
 import org.oceanops.api.orm.PtfDeployment;
 import org.oceanops.api.orm.PtfHardware;
 import org.oceanops.api.orm.PtfIdentifiers;
-import org.oceanops.api.orm.PtfLoc;
 import org.oceanops.api.orm.PtfLocStatus;
 import org.oceanops.api.orm.PtfModel;
 import org.oceanops.api.orm.PtfPtfStatus;
@@ -87,7 +86,6 @@ public abstract class _Ptf extends BaseDataObject {
     public static final EntityProperty<Doc> DOC = PropertyFactory.createEntity("doc", Doc.class);
     public static final ListProperty<Doc> DOCS = PropertyFactory.createList("docs", Doc.class);
     public static final EntityProperty<EndingCause> ENDING_CAUSE = PropertyFactory.createEntity("endingCause", EndingCause.class);
-    public static final EntityProperty<PtfLoc> LAST_LOC = PropertyFactory.createEntity("lastLoc", PtfLoc.class);
     public static final EntityProperty<ObsLatest> LATEST_OBS = PropertyFactory.createEntity("latestObs", ObsLatest.class);
     public static final ListProperty<Line> LINES = PropertyFactory.createList("lines", Line.class);
     public static final ListProperty<MzmsPtfCountry> MZMS_PTF_COUNTRIES = PropertyFactory.createList("mzmsPtfCountries", MzmsPtfCountry.class);
@@ -102,7 +100,6 @@ public abstract class _Ptf extends BaseDataObject {
     public static final EntityProperty<PtfHardware> PTF_HARDWARE = PropertyFactory.createEntity("ptfHardware", PtfHardware.class);
     public static final EntityProperty<PtfIdentifiers> PTF_IDENTIFIERS = PropertyFactory.createEntity("ptfIdentifiers", PtfIdentifiers.class);
     public static final ListProperty<PtfLocStatus> PTF_LOC_STATUSES = PropertyFactory.createList("ptfLocStatuses", PtfLocStatus.class);
-    public static final ListProperty<PtfLoc> PTF_LOCS = PropertyFactory.createList("ptfLocs", PtfLoc.class);
     public static final EntityProperty<PtfModel> PTF_MODEL = PropertyFactory.createEntity("ptfModel", PtfModel.class);
     public static final ListProperty<PtfPtfStatus> PTF_PTF_STATUSES = PropertyFactory.createList("ptfPtfStatuses", PtfPtfStatus.class);
     public static final EntityProperty<PtfSoftware> PTF_SOFTWARE = PropertyFactory.createEntity("ptfSoftware", PtfSoftware.class);
@@ -146,7 +143,6 @@ public abstract class _Ptf extends BaseDataObject {
     protected Object doc;
     protected Object docs;
     protected Object endingCause;
-    protected Object lastLoc;
     protected Object latestObs;
     protected Object lines;
     protected Object mzmsPtfCountries;
@@ -161,7 +157,6 @@ public abstract class _Ptf extends BaseDataObject {
     protected Object ptfHardware;
     protected Object ptfIdentifiers;
     protected Object ptfLocStatuses;
-    protected Object ptfLocs;
     protected Object ptfModel;
     protected Object ptfPtfStatuses;
     protected Object ptfSoftware;
@@ -446,14 +441,6 @@ public abstract class _Ptf extends BaseDataObject {
         return (EndingCause)readProperty("endingCause");
     }
 
-    public void setLastLoc(PtfLoc lastLoc) {
-        setToOneTarget("lastLoc", lastLoc, true);
-    }
-
-    public PtfLoc getLastLoc() {
-        return (PtfLoc)readProperty("lastLoc");
-    }
-
     public void setLatestObs(ObsLatest latestObs) {
         setToOneTarget("latestObs", latestObs, true);
     }
@@ -599,19 +586,6 @@ public abstract class _Ptf extends BaseDataObject {
     @SuppressWarnings("unchecked")
     public List<PtfLocStatus> getPtfLocStatuses() {
         return (List<PtfLocStatus>)readProperty("ptfLocStatuses");
-    }
-
-    public void addToPtfLocs(PtfLoc obj) {
-        addToManyTarget("ptfLocs", obj, true);
-    }
-
-    public void removeFromPtfLocs(PtfLoc obj) {
-        removeToManyTarget("ptfLocs", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<PtfLoc> getPtfLocs() {
-        return (List<PtfLoc>)readProperty("ptfLocs");
     }
 
     public void setPtfModel(PtfModel ptfModel) {
@@ -822,8 +796,6 @@ public abstract class _Ptf extends BaseDataObject {
                 return this.docs;
             case "endingCause":
                 return this.endingCause;
-            case "lastLoc":
-                return this.lastLoc;
             case "latestObs":
                 return this.latestObs;
             case "lines":
@@ -852,8 +824,6 @@ public abstract class _Ptf extends BaseDataObject {
                 return this.ptfIdentifiers;
             case "ptfLocStatuses":
                 return this.ptfLocStatuses;
-            case "ptfLocs":
-                return this.ptfLocs;
             case "ptfModel":
                 return this.ptfModel;
             case "ptfPtfStatuses":
@@ -975,9 +945,6 @@ public abstract class _Ptf extends BaseDataObject {
             case "endingCause":
                 this.endingCause = val;
                 break;
-            case "lastLoc":
-                this.lastLoc = val;
-                break;
             case "latestObs":
                 this.latestObs = val;
                 break;
@@ -1019,9 +986,6 @@ public abstract class _Ptf extends BaseDataObject {
                 break;
             case "ptfLocStatuses":
                 this.ptfLocStatuses = val;
-                break;
-            case "ptfLocs":
-                this.ptfLocs = val;
                 break;
             case "ptfModel":
                 this.ptfModel = val;
@@ -1108,7 +1072,6 @@ public abstract class _Ptf extends BaseDataObject {
         out.writeObject(this.doc);
         out.writeObject(this.docs);
         out.writeObject(this.endingCause);
-        out.writeObject(this.lastLoc);
         out.writeObject(this.latestObs);
         out.writeObject(this.lines);
         out.writeObject(this.mzmsPtfCountries);
@@ -1123,7 +1086,6 @@ public abstract class _Ptf extends BaseDataObject {
         out.writeObject(this.ptfHardware);
         out.writeObject(this.ptfIdentifiers);
         out.writeObject(this.ptfLocStatuses);
-        out.writeObject(this.ptfLocs);
         out.writeObject(this.ptfModel);
         out.writeObject(this.ptfPtfStatuses);
         out.writeObject(this.ptfSoftware);
@@ -1170,7 +1132,6 @@ public abstract class _Ptf extends BaseDataObject {
         this.doc = in.readObject();
         this.docs = in.readObject();
         this.endingCause = in.readObject();
-        this.lastLoc = in.readObject();
         this.latestObs = in.readObject();
         this.lines = in.readObject();
         this.mzmsPtfCountries = in.readObject();
@@ -1185,7 +1146,6 @@ public abstract class _Ptf extends BaseDataObject {
         this.ptfHardware = in.readObject();
         this.ptfIdentifiers = in.readObject();
         this.ptfLocStatuses = in.readObject();
-        this.ptfLocs = in.readObject();
         this.ptfModel = in.readObject();
         this.ptfPtfStatuses = in.readObject();
         this.ptfSoftware = in.readObject();
