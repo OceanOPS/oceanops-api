@@ -28,7 +28,7 @@ import org.oceanops.api.orm.TrackingSystem;
 
 import io.agrest.DataResponse;
 import io.agrest.SelectBuilder;
-import io.agrest.Ag;
+import io.agrest.jaxrs2.AgJaxrs;
 
 @Path("/")
 @Produces(MediaType.APPLICATION_JSON + ";" + MediaType.CHARSET_PARAMETER + "=utf-8")
@@ -39,271 +39,271 @@ public class HardwareAccessor {
     @GET
 	@Path("sensormodel")
     public DataResponse<SensorModel> getSensorModels(@Context UriInfo uriInfo) {
-		SelectBuilder<SensorModel> sBuilder = Ag.select(SensorModel.class, config);
+		SelectBuilder<SensorModel> sBuilder = AgJaxrs.select(SensorModel.class, config);
 
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).get();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).get();
 	}
 	@GET
 	@Path("sensormodel/{id}")
     public DataResponse<SensorModel> getSensorModel(@PathParam("id") int id, @Context UriInfo uriInfo) {
-		SelectBuilder<SensorModel> sBuilder = Ag.select(SensorModel.class, config).byId(id);
+		SelectBuilder<SensorModel> sBuilder = AgJaxrs.select(SensorModel.class, config).byId(id);
 		
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).getOne();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).getOne();
 	}
 	@GET
 	@Path("sensortype")
     public DataResponse<SensorType> getSensorTypes(@Context UriInfo uriInfo) {
-		SelectBuilder<SensorType> sBuilder = Ag.select(SensorType.class, config);
+		SelectBuilder<SensorType> sBuilder = AgJaxrs.select(SensorType.class, config);
 
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).get();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).get();
 	}
 	@GET
 	@Path("sensortype/{id}")
     public DataResponse<SensorType> getSensorType(@PathParam("id") int id, @Context UriInfo uriInfo) {
-		SelectBuilder<SensorType> sBuilder = Ag.select(SensorType.class, config).byId(id);
+		SelectBuilder<SensorType> sBuilder = AgJaxrs.select(SensorType.class, config).byId(id);
 		
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).getOne();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).getOne();
 	}
 	@GET
 	@Path("sensorlocation")
     public DataResponse<SensorLocation> getSensorLocations(@Context UriInfo uriInfo) {
-		SelectBuilder<SensorLocation> sBuilder = Ag.select(SensorLocation.class, config);
+		SelectBuilder<SensorLocation> sBuilder = AgJaxrs.select(SensorLocation.class, config);
 
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).get();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).get();
 	}
 	@GET
 	@Path("sensorlocation/{id}")
     public DataResponse<SensorLocation> getSensorLocation(@PathParam("id") int id, @Context UriInfo uriInfo) {
-		SelectBuilder<SensorLocation> sBuilder = Ag.select(SensorLocation.class, config).byId(id);
+		SelectBuilder<SensorLocation> sBuilder = AgJaxrs.select(SensorLocation.class, config).byId(id);
 		
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).getOne();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).getOne();
 	}
 	@GET
 	@Path("sensorexposure")
     public DataResponse<SensorExposure> getSensorExposures(@Context UriInfo uriInfo) {
-		SelectBuilder<SensorExposure> sBuilder = Ag.select(SensorExposure.class, config);
+		SelectBuilder<SensorExposure> sBuilder = AgJaxrs.select(SensorExposure.class, config);
 
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).get();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).get();
 	}
 	@GET
 	@Path("sensorexposure/{id}")
     public DataResponse<SensorExposure> getSensorExposure(@PathParam("id") int id, @Context UriInfo uriInfo) {
-		SelectBuilder<SensorExposure> sBuilder = Ag.select(SensorExposure.class, config).byId(id);
+		SelectBuilder<SensorExposure> sBuilder = AgJaxrs.select(SensorExposure.class, config).byId(id);
 		
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).getOne();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).getOne();
 	}
 	@GET
 	@Path("sensorstatus")
     public DataResponse<SensorStatus> getSensorStatuses(@Context UriInfo uriInfo) {
-		SelectBuilder<SensorStatus> sBuilder = Ag.select(SensorStatus.class, config);
+		SelectBuilder<SensorStatus> sBuilder = AgJaxrs.select(SensorStatus.class, config);
 
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).get();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).get();
 	}
 	@GET
 	@Path("sensorstatus/{id}")
     public DataResponse<SensorStatus> getSensorStatus(@PathParam("id") int id, @Context UriInfo uriInfo) {
-		SelectBuilder<SensorStatus> sBuilder = Ag.select(SensorStatus.class, config).byId(id);
+		SelectBuilder<SensorStatus> sBuilder = AgJaxrs.select(SensorStatus.class, config).byId(id);
 		
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).getOne();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).getOne();
 	}
 	@GET
 	@Path("dataprocessingmethod")
     public DataResponse<DataProcessingMethod> getDataProcessingMethodes(@Context UriInfo uriInfo) {
-		SelectBuilder<DataProcessingMethod> sBuilder = Ag.select(DataProcessingMethod.class, config);
+		SelectBuilder<DataProcessingMethod> sBuilder = AgJaxrs.select(DataProcessingMethod.class, config);
 
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).get();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).get();
 	}
 	@GET
 	@Path("dataprocessingmethod/{id}")
     public DataResponse<DataProcessingMethod> getDataProcessingMethod(@PathParam("id") int id, @Context UriInfo uriInfo) {
-		SelectBuilder<DataProcessingMethod> sBuilder = Ag.select(DataProcessingMethod.class, config).byId(id);
+		SelectBuilder<DataProcessingMethod> sBuilder = AgJaxrs.select(DataProcessingMethod.class, config).byId(id);
 		
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).getOne();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).getOne();
 	}
 	@GET
 	@Path("telecomtype")
     public DataResponse<TelecomType> getTelecomTypes(@Context UriInfo uriInfo) {
-		SelectBuilder<TelecomType> sBuilder = Ag.select(TelecomType.class, config);
+		SelectBuilder<TelecomType> sBuilder = AgJaxrs.select(TelecomType.class, config);
 
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).get();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).get();
 	}
 	@GET
 	@Path("telecomtype/{id}")
     public DataResponse<TelecomType> getTelecomType(@PathParam("id") int id, @Context UriInfo uriInfo) {
-		SelectBuilder<TelecomType> sBuilder = Ag.select(TelecomType.class, config).byId(id);
+		SelectBuilder<TelecomType> sBuilder = AgJaxrs.select(TelecomType.class, config).byId(id);
 		
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).getOne();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).getOne();
 	}
 	@GET
 	@Path("telecomservice")
     public DataResponse<TelecomService> getTelecomServices(@Context UriInfo uriInfo) {
-		SelectBuilder<TelecomService> sBuilder = Ag.select(TelecomService.class, config);
+		SelectBuilder<TelecomService> sBuilder = AgJaxrs.select(TelecomService.class, config);
 
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).get();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).get();
 	}
 	@GET
 	@Path("telecomservice/{id}")
     public DataResponse<TelecomService> getTelecomService(@PathParam("id") int id, @Context UriInfo uriInfo) {
-		SelectBuilder<TelecomService> sBuilder = Ag.select(TelecomService.class, config).byId(id);
+		SelectBuilder<TelecomService> sBuilder = AgJaxrs.select(TelecomService.class, config).byId(id);
 		
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).getOne();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).getOne();
 	}
 	@GET
 	@Path("telecomformat")
     public DataResponse<TelecomFormat> getTelecomFormats(@Context UriInfo uriInfo) {
-		SelectBuilder<TelecomFormat> sBuilder = Ag.select(TelecomFormat.class, config);
+		SelectBuilder<TelecomFormat> sBuilder = AgJaxrs.select(TelecomFormat.class, config);
 
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).get();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).get();
 	}
 	@GET
 	@Path("telecomformat/{id}")
     public DataResponse<TelecomFormat> getTelecomFormat(@PathParam("id") int id, @Context UriInfo uriInfo) {
-		SelectBuilder<TelecomFormat> sBuilder = Ag.select(TelecomFormat.class, config).byId(id);
+		SelectBuilder<TelecomFormat> sBuilder = AgJaxrs.select(TelecomFormat.class, config).byId(id);
 		
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).getOne();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).getOne();
 	}
 	@GET
 	@Path("latency")
     public DataResponse<Latency> getLatencies(@Context UriInfo uriInfo) {
-		SelectBuilder<Latency> sBuilder = Ag.select(Latency.class, config);
+		SelectBuilder<Latency> sBuilder = AgJaxrs.select(Latency.class, config);
 
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).get();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).get();
 	}
 	@GET
 	@Path("latency/{id}")
     public DataResponse<Latency> getLatency(@PathParam("id") int id, @Context UriInfo uriInfo) {
-		SelectBuilder<Latency> sBuilder = Ag.select(Latency.class, config).byId(id);
+		SelectBuilder<Latency> sBuilder = AgJaxrs.select(Latency.class, config).byId(id);
 		
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).getOne();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).getOne();
 	}
 	@GET
 	@Path("platformautomation")
     public DataResponse<PtfAutomation> getPtfAutomations(@Context UriInfo uriInfo) {
-		SelectBuilder<PtfAutomation> sBuilder = Ag.select(PtfAutomation.class, config);
+		SelectBuilder<PtfAutomation> sBuilder = AgJaxrs.select(PtfAutomation.class, config);
 
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).get();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).get();
 	}
 	@GET
 	@Path("platformautomation/{id}")
     public DataResponse<PtfAutomation> getPtfAutomation(@PathParam("id") int id, @Context UriInfo uriInfo) {
-		SelectBuilder<PtfAutomation> sBuilder = Ag.select(PtfAutomation.class, config).byId(id);
+		SelectBuilder<PtfAutomation> sBuilder = AgJaxrs.select(PtfAutomation.class, config).byId(id);
 		
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).getOne();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).getOne();
 	}
 	@GET
 	@Path("servicetype")
     public DataResponse<ServiceType> getServiceTypes(@Context UriInfo uriInfo) {
-		SelectBuilder<ServiceType> sBuilder = Ag.select(ServiceType.class, config);
+		SelectBuilder<ServiceType> sBuilder = AgJaxrs.select(ServiceType.class, config);
 
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).get();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).get();
 	}
 	@GET
 	@Path("servicetype/{id}")
     public DataResponse<ServiceType> getServiceType(@PathParam("id") int id, @Context UriInfo uriInfo) {
-		SelectBuilder<ServiceType> sBuilder = Ag.select(ServiceType.class, config).byId(id);
+		SelectBuilder<ServiceType> sBuilder = AgJaxrs.select(ServiceType.class, config).byId(id);
 		
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).getOne();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).getOne();
 	}
 	@GET
 	@Path("platformbattery")
     public DataResponse<PtfBattery> getPtfBatterys(@Context UriInfo uriInfo) {
-		SelectBuilder<PtfBattery> sBuilder = Ag.select(PtfBattery.class, config);
+		SelectBuilder<PtfBattery> sBuilder = AgJaxrs.select(PtfBattery.class, config);
 
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).get();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).get();
 	}
 	@GET
 	@Path("platformbattery/{id}")
     public DataResponse<PtfBattery> getPtfBattery(@PathParam("id") int id, @Context UriInfo uriInfo) {
-		SelectBuilder<PtfBattery> sBuilder = Ag.select(PtfBattery.class, config).byId(id);
+		SelectBuilder<PtfBattery> sBuilder = AgJaxrs.select(PtfBattery.class, config).byId(id);
 		
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).getOne();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).getOne();
 	}
 	@GET
 	@Path("platformsoftwaretype")
     public DataResponse<PtfSoftwareType> getPtfSoftwareTypes(@Context UriInfo uriInfo) {
-		SelectBuilder<PtfSoftwareType> sBuilder = Ag.select(PtfSoftwareType.class, config);
+		SelectBuilder<PtfSoftwareType> sBuilder = AgJaxrs.select(PtfSoftwareType.class, config);
 
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).get();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).get();
 	}
 	@GET
 	@Path("platformsoftwaretype/{id}")
     public DataResponse<PtfSoftwareType> getPtfSoftwareType(@PathParam("id") int id, @Context UriInfo uriInfo) {
-		SelectBuilder<PtfSoftwareType> sBuilder = Ag.select(PtfSoftwareType.class, config).byId(id);
+		SelectBuilder<PtfSoftwareType> sBuilder = AgJaxrs.select(PtfSoftwareType.class, config).byId(id);
 		
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).getOne();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).getOne();
 	}
 	@GET
 	@Path("trackingsystem")
     public DataResponse<TrackingSystem> getTrackingSystems(@Context UriInfo uriInfo) {
-		SelectBuilder<TrackingSystem> sBuilder = Ag.select(TrackingSystem.class, config);
+		SelectBuilder<TrackingSystem> sBuilder = AgJaxrs.select(TrackingSystem.class, config);
 
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).get();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).get();
 	}
 	@GET
 	@Path("trackingsystem/{id}")
     public DataResponse<TrackingSystem> getTrackingSystem(@PathParam("id") int id, @Context UriInfo uriInfo) {
-		SelectBuilder<TrackingSystem> sBuilder = Ag.select(TrackingSystem.class, config).byId(id);
+		SelectBuilder<TrackingSystem> sBuilder = AgJaxrs.select(TrackingSystem.class, config).byId(id);
 		
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).getOne();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).getOne();
 	}
 }

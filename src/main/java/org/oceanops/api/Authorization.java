@@ -13,7 +13,7 @@ import org.oceanops.api.orm.Telecom;
 
 import io.agrest.SelectBuilder;
 import io.agrest.meta.AgEntityOverlay;
-import io.agrest.runtime.AgBuilder;
+import io.agrest.runtime.AgRuntimeBuilder;
 
 /**
  * Applies the different constraints based on the identity provided to query the API
@@ -64,10 +64,10 @@ public class Authorization {
 
     /**
      * When then AgRest engine starts, aplying global authorization.
-     * @param agBuilder The AgBuilder used for the request engine.
-     * @return The input AgBuilder, modified.
+     * @param agBuilder The AgRuntimeBuilder used for the request engine.
+     * @return The input AgRuntimeBuilder, modified.
      */
-    public static AgBuilder applyGlobalAuthorization(AgBuilder agBuilder){
+    public static AgRuntimeBuilder applyGlobalAuthorization(AgRuntimeBuilder agBuilder){
         // Overlaying Contact entity
 		agBuilder.entityOverlay(new AgEntityOverlay<Contact>(Contact.class).readablePropFilter(
             b -> b.property(Contact.LOGIN.getName(), false)

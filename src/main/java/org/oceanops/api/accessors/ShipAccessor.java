@@ -15,7 +15,7 @@ import org.oceanops.api.orm.ShipType;
 
 import io.agrest.DataResponse;
 import io.agrest.SelectBuilder;
-import io.agrest.Ag;
+import io.agrest.jaxrs2.AgJaxrs;
 
 @Path("/")
 @Produces(MediaType.APPLICATION_JSON + ";" + MediaType.CHARSET_PARAMETER + "=utf-8")
@@ -28,41 +28,41 @@ public class ShipAccessor {
     @GET
     @Path("ship")
     public DataResponse<Ship> getAll(@Context UriInfo uriInfo) {
-		SelectBuilder<Ship> sBuilder = Ag.select(Ship.class, config);
+		SelectBuilder<Ship> sBuilder = AgJaxrs.select(Ship.class, config);
 
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).get();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).get();
 	}
 	
     @GET
     @Path("ship/{id}")
 	public DataResponse<Ship> getOne(@PathParam("id") int id, @Context UriInfo uriInfo) {
-		SelectBuilder<Ship> sBuilder = Ag.select(Ship.class, config).byId(id);
+		SelectBuilder<Ship> sBuilder = AgJaxrs.select(Ship.class, config).byId(id);
 		
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).getOne();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).getOne();
 	}
 
     @GET
     @Path("shiptype")
     public DataResponse<ShipType> getAllShipTypes(@Context UriInfo uriInfo) {
-		SelectBuilder<ShipType> sBuilder = Ag.select(ShipType.class, config);
+		SelectBuilder<ShipType> sBuilder = AgJaxrs.select(ShipType.class, config);
 
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).get();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).get();
 	}
 	
     @GET
     @Path("shiptype/{id}")
 	public DataResponse<ShipType> getOneShipType(@PathParam("id") int id, @Context UriInfo uriInfo) {
-		SelectBuilder<ShipType> sBuilder = Ag.select(ShipType.class, config).byId(id);
+		SelectBuilder<ShipType> sBuilder = AgJaxrs.select(ShipType.class, config).byId(id);
 		
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).getOne();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).getOne();
 	}
 
 	public ShipAccessor() {

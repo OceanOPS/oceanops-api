@@ -15,7 +15,7 @@ import org.oceanops.api.orm.AgencyRole;
 
 import io.agrest.DataResponse;
 import io.agrest.SelectBuilder;
-import io.agrest.Ag;
+import io.agrest.jaxrs2.AgJaxrs;
 
 @Path("/")
 @Produces(MediaType.APPLICATION_JSON + ";" + MediaType.CHARSET_PARAMETER + "=utf-8")
@@ -26,31 +26,31 @@ public class AgencyAccessor {
 	@GET
     @Path("agency")
     public DataResponse<Agency> getAll(@Context UriInfo uriInfo) {
-		SelectBuilder<Agency> sBuilder = Ag.select(Agency.class, config);
+		SelectBuilder<Agency> sBuilder = AgJaxrs.select(Agency.class, config);
 
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).get();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).get();
     }
 	
     @GET
     @Path("agency/{id}")
 	public DataResponse<Agency> getOne(@PathParam("id") int id, @Context UriInfo uriInfo) {
-		SelectBuilder<Agency> sBuilder = Ag.select(Agency.class, config).byId(id);
+		SelectBuilder<Agency> sBuilder = AgJaxrs.select(Agency.class, config).byId(id);
 		
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).getOne();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).getOne();
 	}  
 
     
 	@GET
     @Path("agencyrole")
     public DataResponse<AgencyRole> getAllRoles(@Context UriInfo uriInfo) {
-		SelectBuilder<AgencyRole> sBuilder = Ag.select(AgencyRole.class, config);
+		SelectBuilder<AgencyRole> sBuilder = AgJaxrs.select(AgencyRole.class, config);
 
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).get();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).get();
     }
 }

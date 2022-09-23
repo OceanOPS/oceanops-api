@@ -259,6 +259,10 @@
 			<artifactId>agrest-annotations</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>io.agrest</groupId>
+			<artifactId>agrest-jaxrs2</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.apache.cayenne</groupId>
 			<artifactId>cayenne-web</artifactId>
 			<version>${cayenne.version}</version>
@@ -271,8 +275,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.scm.id>oceanops-scm-server</project.scm.id>
 		<java.version>14</java.version>
-		<agrest.version>4.10</agrest.version>
-		<cayenne.version>4.2.B1</cayenne.version>
+		<agrest.version>5.0.M6</agrest.version>
+		<cayenne.version>4.2.RC1</cayenne.version>
 		<xmlbeans.version>5.1.1</xmlbeans.version>
 		<wmdr.version>1.0RC9</wmdr.version>
 		<entityPath>data</entityPath>

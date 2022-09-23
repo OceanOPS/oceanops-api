@@ -14,30 +14,32 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.agrest.cayenne.AgCayenneBuilder;
 import io.agrest.cayenne.AgCayenneModule;
-import io.agrest.runtime.AgBuilder;
 import io.agrest.runtime.AgRuntime;
+import io.agrest.runtime.AgRuntimeBuilder;
+import io.agrest.jaxrs2.AgJaxrsFeature;
 
 @ApplicationPath("/")
 public class Application extends ResourceConfig  {	
 	Logger logger = LoggerFactory.getLogger(Application.class);
 
 	public Application(@Context ServletContext servletContext) throws IOException {
-		ServerRuntime runtime = (ServerRuntime)WebUtil.getCayenneRuntime(servletContext);
-		AgCayenneModule cayenneExt = AgCayenneBuilder.build(runtime);
-		PkGenerator pk = runtime.getDataDomain().getDataNode("prod").getAdapter().getPkGenerator();
+		ServerRuntime cayenneRuntime = (ServerRuntime)WebUtil.getCayenneRuntime(servletContext);
+		AgCayenneModule cayenneModule = AgCayenneModule.build(cayenneRuntime);		
+
+		PkGenerator pk = cayenneRuntime.getDataDomain().getDataNode("prod").getAdapter().getPkGenerator();
 		if(!(pk instanceof OraclePkGeneratorCustom)){
 			logger.warn("PkGenerator is not an instance of OraclePkGeneratorCustom");
 			logger.debug(pk.toString());
-			logger.debug(runtime.getDataDomain().getDataNode("prod").getAdapter().toString());
+			logger.debug(cayenneRuntime.getDataDomain().getDataNode("prod").getAdapter().toString());
 		}
-		AgBuilder agBuilder = new AgBuilder().module(cayenneExt);
 
+		AgRuntimeBuilder agBuilder = AgRuntime.builder().module(cayenneModule);
 		Authorization.applyGlobalAuthorization(agBuilder);
-
-		AgRuntime agRuntime = agBuilder.build();
-        register(agRuntime);
+		AgRuntime runtime = agBuilder.build();
+		
+		AgJaxrsFeature feature = AgJaxrsFeature.build(runtime);
+        register(feature);
 	}
 
 }

@@ -14,7 +14,7 @@ import org.oceanops.api.Authorization;
 //import org.slf4j.LoggerFactory;
 import org.oceanops.api.orm.MapType;
 
-import io.agrest.Ag;
+import io.agrest.jaxrs2.AgJaxrs;
 import io.agrest.DataResponse;
 import io.agrest.SelectBuilder;
 
@@ -30,19 +30,19 @@ public class OtherAccessor {
     @GET
 	@Path("maptype")
     public DataResponse<MapType> getMapTypes(@Context UriInfo uriInfo) {
-		SelectBuilder<MapType> sBuilder = Ag.select(MapType.class, config);
+		SelectBuilder<MapType> sBuilder = AgJaxrs.select(MapType.class, config);
 
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).get();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).get();
 	}
 	@GET
 	@Path("maptype/{id}")
     public DataResponse<MapType> getMapType(@PathParam("id") int id, @Context UriInfo uriInfo) {
-		SelectBuilder<MapType> sBuilder = Ag.select(MapType.class, config).byId(id);
+		SelectBuilder<MapType> sBuilder = AgJaxrs.select(MapType.class, config).byId(id);
 		
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).getOne();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).getOne();
 	}
 }

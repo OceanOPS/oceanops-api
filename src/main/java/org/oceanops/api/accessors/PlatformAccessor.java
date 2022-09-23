@@ -18,7 +18,7 @@ import org.oceanops.api.Utils;
 import org.oceanops.api.orm.Ptf;
 import org.oceanops.api.orm.PtfIdentifiers;
 
-import io.agrest.Ag;
+import io.agrest.jaxrs2.AgJaxrs;
 import io.agrest.AgRequest;
 import io.agrest.DataResponse;
 import io.agrest.SelectBuilder;
@@ -41,53 +41,53 @@ public class PlatformAccessor {
 	@Path("platform")
 	@Produces(MediaType.APPLICATION_JSON + ";" + MediaType.CHARSET_PARAMETER + "=utf-8")
 	public DataResponse<Ptf> getAll(@Context UriInfo uriInfo) {
-		SelectBuilder<Ptf> sBuilder = Ag.select(Ptf.class, config);
+		SelectBuilder<Ptf> sBuilder = AgJaxrs.select(Ptf.class, config);
 
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).get();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).get();
 	}
 
 	@GET
 	@Path("platform/{id}")
 	@Produces(MediaType.APPLICATION_JSON + ";" + MediaType.CHARSET_PARAMETER + "=utf-8")
 	public DataResponse<Ptf> getOne(@PathParam("id") int id, @Context UriInfo uriInfo) {
-		SelectBuilder<Ptf> sBuilder = Ag.select(Ptf.class, config).byId(id);
+		SelectBuilder<Ptf> sBuilder = AgJaxrs.select(Ptf.class, config).byId(id);
 		
 		Authorization.applySelectAuthorization(sBuilder);
 
-		return sBuilder.uri(uriInfo).getOne();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).getOne();
 	}
 
 	@GET
 	@Path("platform/ref/{ref}")
 	@Produces(MediaType.APPLICATION_JSON + ";" + MediaType.CHARSET_PARAMETER + "=utf-8")
 	public DataResponse<Ptf> getOneByRef(@PathParam("ref") String ref, @Context UriInfo uriInfo) {
-		SelectBuilder<Ptf> sBuilder = Ag.select(Ptf.class, config);
+		SelectBuilder<Ptf> sBuilder = AgJaxrs.select(Ptf.class, config);
 
-		AgRequest agRequest = Ag.request(config).andExp(Ptf.REF.eq(ref).toString()).build();
+		AgRequest agRequest = AgJaxrs.request(config).andExp(Ptf.REF.eq(ref).toString()).build();
 		
 		Authorization.applySelectAuthorization(sBuilder);
 
 		sBuilder.request(agRequest);
 
-		return sBuilder.uri(uriInfo).getOne();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).getOne();
 	}
 	
 	@GET
 	@Path("platform/wigosid/{wigosid}")
 	@Produces(MediaType.APPLICATION_JSON + ";" + MediaType.CHARSET_PARAMETER + "=utf-8")
 	public DataResponse<Ptf> getOneByWigosId(@PathParam("wigosid") String wigosid, @Context UriInfo uriInfo){		
-		SelectBuilder<Ptf> sBuilder = Ag.select(Ptf.class, config);
+		SelectBuilder<Ptf> sBuilder = AgJaxrs.select(Ptf.class, config);
 		
-		AgRequest agRequest = Ag.request(config).andExp(
+		AgRequest agRequest = AgJaxrs.request(config).andExp(
 			Ptf.PTF_IDENTIFIERS.dot(PtfIdentifiers.WIGOS_REF).eq(wigosid).toString()
 		).build(); 
 		
 		Authorization.applySelectAuthorization(sBuilder);
 		sBuilder.request(agRequest);
 
-		return sBuilder.uri(uriInfo).getOne();
+		return sBuilder.clientParams(uriInfo.getQueryParameters()).getOne();
 	}
 
 	/**
