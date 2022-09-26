@@ -217,7 +217,6 @@
 		<db-attribute name="IIOE2_ID" type="VARCHAR" length="20"/>
 		<db-attribute name="IMAGE_ID" type="INTEGER" length="10"/>
 		<db-attribute name="INSERT_DATE" type="TIMESTAMP" length="7"/>
-		<db-attribute name="LINE_ID" type="INTEGER" length="10"/>
 		<db-attribute name="MOB_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="MODIF_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="NAME_LONG" type="VARCHAR" length="150"/>
@@ -1997,6 +1996,10 @@
 		<obj-attribute name="countryId" type="java.lang.Integer" db-attribute-path="COUNTRY_ID"/>
 		<obj-attribute name="cruiseId" type="java.lang.Integer" db-attribute-path="CRUISE_ID"/>
 	</obj-entity>
+	<obj-entity name="CruiseLine" className="org.oceanops.api.orm.CruiseLine" dbEntityName="CRUISE_LINE">
+		<obj-attribute name="performanceIndex" type="java.math.BigDecimal" db-attribute-path="PERFORMANCE_INDEX"/>
+		<obj-attribute name="rank" type="java.math.BigDecimal" db-attribute-path="RANK"/>
+	</obj-entity>
 	<obj-entity name="CruiseProgram" className="org.oceanops.api.orm.CruiseProgram" dbEntityName="CRUISE_PROGRAM">
 		<obj-attribute name="cruiseId" type="java.lang.Integer" db-attribute-path="CRUISE_ID"/>
 		<obj-attribute name="lead" type="java.lang.Integer" db-attribute-path="LEAD"/>
@@ -3581,6 +3584,9 @@
 	<db-relationship name="cruiseCountries" source="CRUISE" target="CRUISE_COUNTRY" toDependentPK="true" toMany="true">
 		<db-attribute-pair source="ID" target="CRUISE_ID"/>
 	</db-relationship>
+	<db-relationship name="cruiseLines" source="CRUISE" target="CRUISE_LINE" toMany="true">
+		<db-attribute-pair source="ID" target="CRUISE_ID"/>
+	</db-relationship>
 	<db-relationship name="cruisePrograms" source="CRUISE" target="CRUISE_PROGRAM" toDependentPK="true" toMany="true">
 		<db-attribute-pair source="ID" target="CRUISE_ID"/>
 	</db-relationship>
@@ -3601,9 +3607,6 @@
 	</db-relationship>
 	<db-relationship name="image" source="CRUISE" target="IMAGE">
 		<db-attribute-pair source="IMAGE_ID" target="ID"/>
-	</db-relationship>
-	<db-relationship name="line" source="CRUISE" target="LINE">
-		<db-attribute-pair source="LINE_ID" target="ID"/>
 	</db-relationship>
 	<db-relationship name="ptfCruises" source="CRUISE" target="PTF_CRUISE" toDependentPK="true" toMany="true">
 		<db-attribute-pair source="ID" target="CRUISE_ID"/>
@@ -3646,6 +3649,12 @@
 	</db-relationship>
 	<db-relationship name="cruise" source="CRUISE_COUNTRY" target="CRUISE">
 		<db-attribute-pair source="CRUISE_ID" target="ID"/>
+	</db-relationship>
+	<db-relationship name="cruise" source="CRUISE_LINE" target="CRUISE">
+		<db-attribute-pair source="CRUISE_ID" target="ID"/>
+	</db-relationship>
+	<db-relationship name="line" source="CRUISE_LINE" target="LINE">
+		<db-attribute-pair source="LINE_ID" target="ID"/>
 	</db-relationship>
 	<db-relationship name="cruise" source="CRUISE_PROGRAM" target="CRUISE">
 		<db-attribute-pair source="CRUISE_ID" target="ID"/>
@@ -3854,7 +3863,7 @@
 	<db-relationship name="untitledRel" source="LATENCY" target="TELECOM" toMany="true">
 		<db-attribute-pair source="ID" target="LATENCY_ID"/>
 	</db-relationship>
-	<db-relationship name="cruises" source="LINE" target="CRUISE" toMany="true">
+	<db-relationship name="cruiseLines" source="LINE" target="CRUISE_LINE" toMany="true">
 		<db-attribute-pair source="ID" target="LINE_ID"/>
 	</db-relationship>
 	<db-relationship name="lineDecadalStatus" source="LINE" target="LINE_DECADAL_STATUS">
@@ -3923,11 +3932,11 @@
 	<db-relationship name="ptfLocStatuses" source="LOC_STATUS" target="PTF_LOC_STATUS" toDependentPK="true" toMany="true">
 		<db-attribute-pair source="ID" target="LOC_STATUS_ID"/>
 	</db-relationship>
-	<db-relationship name="ptfs" source="LOC_SYSTEM" target="PTF" toMany="true">
-		<db-attribute-pair source="ID" target="BACKUP_TRACKING_SYSTEM_ID"/>
-	</db-relationship>
 	<db-relationship name="ptfs1" source="LOC_SYSTEM" target="PTF" toMany="true">
 		<db-attribute-pair source="ID" target="TRACKING_SYSTEM_ID"/>
+	</db-relationship>
+	<db-relationship name="ptfsBackup" source="LOC_SYSTEM" target="PTF" toMany="true">
+		<db-attribute-pair source="ID" target="BACKUP_TRACKING_SYSTEM_ID"/>
 	</db-relationship>
 	<db-relationship name="mapTypeNetworks" source="MAP_TYPE" target="MAP_TYPE_NETWORK" toMany="true">
 		<db-attribute-pair source="ID" target="MAP_TYPE_ID"/>
@@ -5303,6 +5312,7 @@
 	<obj-relationship name="cruiseClass" source="Cruise" target="CruiseClass" deleteRule="Nullify" db-relationship-path="cruiseClass"/>
 	<obj-relationship name="cruiseContacts" source="Cruise" target="CruiseContact" deleteRule="Deny" db-relationship-path="cruiseContacts"/>
 	<obj-relationship name="cruiseCountries" source="Cruise" target="CruiseCountry" deleteRule="Deny" db-relationship-path="cruiseCountries"/>
+	<obj-relationship name="cruiseLines" source="Cruise" target="CruiseLine" deleteRule="Nullify" db-relationship-path="cruiseLines"/>
 	<obj-relationship name="cruisePrograms" source="Cruise" target="CruiseProgram" deleteRule="Deny" db-relationship-path="cruisePrograms"/>
 	<obj-relationship name="cruiseSensorModels" source="Cruise" target="CruiseSensorModel" deleteRule="Deny" db-relationship-path="cruiseSensorModels"/>
 	<obj-relationship name="cruiseStatus" source="Cruise" target="CruiseStatus" deleteRule="Nullify" db-relationship-path="cruiseStatus"/>
@@ -5310,7 +5320,6 @@
 	<obj-relationship name="cruiseVariables" source="Cruise" target="CruiseVariable" deleteRule="Deny" db-relationship-path="cruiseVariables"/>
 	<obj-relationship name="frequency" source="Cruise" target="Frequency" deleteRule="Nullify" db-relationship-path="frequency"/>
 	<obj-relationship name="image" source="Cruise" target="Image" deleteRule="Nullify" db-relationship-path="image"/>
-	<obj-relationship name="line" source="Cruise" target="Line" deleteRule="Nullify" db-relationship-path="line"/>
 	<obj-relationship name="ptfCruises" source="Cruise" target="PtfCruise" deleteRule="Deny" db-relationship-path="ptfCruises"/>
 	<obj-relationship name="ptfDeployments" source="Cruise" target="PtfDeployment" deleteRule="Deny" db-relationship-path="ptfDeployments"/>
 	<obj-relationship name="retrievals" source="Cruise" target="Retrieval" deleteRule="Deny" db-relationship-path="retrievals"/>
@@ -5325,6 +5334,8 @@
 	<obj-relationship name="role" source="CruiseContact" target="Role" deleteRule="Nullify" db-relationship-path="role"/>
 	<obj-relationship name="country" source="CruiseCountry" target="Country" deleteRule="Nullify" db-relationship-path="country"/>
 	<obj-relationship name="cruise" source="CruiseCountry" target="Cruise" deleteRule="Nullify" db-relationship-path="cruise"/>
+	<obj-relationship name="cruise" source="CruiseLine" target="Cruise" deleteRule="Nullify" db-relationship-path="cruise"/>
+	<obj-relationship name="line" source="CruiseLine" target="Line" deleteRule="Nullify" db-relationship-path="line"/>
 	<obj-relationship name="cruise" source="CruiseProgram" target="Cruise" deleteRule="Nullify" db-relationship-path="cruise"/>
 	<obj-relationship name="program" source="CruiseProgram" target="Program" deleteRule="Nullify" db-relationship-path="program"/>
 	<obj-relationship name="cruise" source="CruiseSensorModel" target="Cruise" deleteRule="Nullify" db-relationship-path="cruise"/>
@@ -5392,7 +5403,7 @@
 	<obj-relationship name="indicator" source="IndicatorValue" target="Indicator" deleteRule="Nullify" db-relationship-path="indicator"/>
 	<obj-relationship name="docLanguages" source="Language" target="DocLanguage" deleteRule="Deny" db-relationship-path="docLanguages"/>
 	<obj-relationship name="docs" source="Language" target="Doc" deleteRule="Deny" db-relationship-path="docs"/>
-	<obj-relationship name="cruises" source="Line" target="Cruise" deleteRule="Deny" db-relationship-path="cruises"/>
+	<obj-relationship name="cruiseLines" source="Line" target="CruiseLine" deleteRule="Nullify" db-relationship-path="cruiseLines"/>
 	<obj-relationship name="lineDecadalStatus" source="Line" target="LineDecadalStatus" deleteRule="Nullify" db-relationship-path="lineDecadalStatus"/>
 	<obj-relationship name="lineFamily" source="Line" target="LineFamily" deleteRule="Nullify" db-relationship-path="lineFamily"/>
 	<obj-relationship name="linePrograms" source="Line" target="LineProgram" deleteRule="Deny" db-relationship-path="linePrograms"/>
@@ -5415,8 +5426,8 @@
 	<obj-relationship name="survey" source="LineSurvey" target="Survey" deleteRule="Nullify" db-relationship-path="survey"/>
 	<obj-relationship name="lineSurveys" source="LineType" target="LineSurvey" deleteRule="Deny" db-relationship-path="lineSurveys"/>
 	<obj-relationship name="ptfLocStatuses" source="LocStatus" target="PtfLocStatus" deleteRule="Deny" db-relationship-path="ptfLocStatuses"/>
-	<obj-relationship name="ptfs" source="LocSystem" target="Ptf" deleteRule="Deny" db-relationship-path="ptfs"/>
 	<obj-relationship name="ptfs1" source="LocSystem" target="Ptf" deleteRule="Deny" db-relationship-path="ptfs1"/>
+	<obj-relationship name="ptfsBackup" source="LocSystem" target="Ptf" deleteRule="Deny" db-relationship-path="ptfsBackup"/>
 	<obj-relationship name="mapTypeNetworks" source="MapType" target="MapTypeNetwork" deleteRule="Deny" db-relationship-path="mapTypeNetworks"/>
 	<obj-relationship name="mapType" source="MapTypeNetwork" target="MapType" deleteRule="Nullify" db-relationship-path="mapType"/>
 	<obj-relationship name="network" source="MapTypeNetwork" target="Network" deleteRule="Nullify" db-relationship-path="network"/>

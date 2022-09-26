@@ -13,7 +13,7 @@ import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
 import org.apache.cayenne.value.Wkt;
-import org.oceanops.api.orm.Cruise;
+import org.oceanops.api.orm.CruiseLine;
 import org.oceanops.api.orm.LineDecadalStatus;
 import org.oceanops.api.orm.LineFamily;
 import org.oceanops.api.orm.LineProgram;
@@ -38,7 +38,7 @@ public abstract class _Line extends BaseDataObject {
     public static final BaseProperty<Wkt> GEOM = PropertyFactory.createBase("geom", Wkt.class);
     public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
-    public static final ListProperty<Cruise> CRUISES = PropertyFactory.createList("cruises", Cruise.class);
+    public static final ListProperty<CruiseLine> CRUISE_LINES = PropertyFactory.createList("cruiseLines", CruiseLine.class);
     public static final EntityProperty<LineDecadalStatus> LINE_DECADAL_STATUS = PropertyFactory.createEntity("lineDecadalStatus", LineDecadalStatus.class);
     public static final EntityProperty<LineFamily> LINE_FAMILY = PropertyFactory.createEntity("lineFamily", LineFamily.class);
     public static final ListProperty<LineProgram> LINE_PROGRAMS = PropertyFactory.createList("linePrograms", LineProgram.class);
@@ -52,7 +52,7 @@ public abstract class _Line extends BaseDataObject {
     protected Integer id;
     protected String name;
 
-    protected Object cruises;
+    protected Object cruiseLines;
     protected Object lineDecadalStatus;
     protected Object lineFamily;
     protected Object linePrograms;
@@ -101,17 +101,17 @@ public abstract class _Line extends BaseDataObject {
         return this.name;
     }
 
-    public void addToCruises(Cruise obj) {
-        addToManyTarget("cruises", obj, true);
+    public void addToCruiseLines(CruiseLine obj) {
+        addToManyTarget("cruiseLines", obj, true);
     }
 
-    public void removeFromCruises(Cruise obj) {
-        removeToManyTarget("cruises", obj, true);
+    public void removeFromCruiseLines(CruiseLine obj) {
+        removeToManyTarget("cruiseLines", obj, true);
     }
 
     @SuppressWarnings("unchecked")
-    public List<Cruise> getCruises() {
-        return (List<Cruise>)readProperty("cruises");
+    public List<CruiseLine> getCruiseLines() {
+        return (List<CruiseLine>)readProperty("cruiseLines");
     }
 
     public void setLineDecadalStatus(LineDecadalStatus lineDecadalStatus) {
@@ -205,8 +205,8 @@ public abstract class _Line extends BaseDataObject {
                 return this.id;
             case "name":
                 return this.name;
-            case "cruises":
-                return this.cruises;
+            case "cruiseLines":
+                return this.cruiseLines;
             case "lineDecadalStatus":
                 return this.lineDecadalStatus;
             case "lineFamily":
@@ -245,8 +245,8 @@ public abstract class _Line extends BaseDataObject {
             case "name":
                 this.name = (String)val;
                 break;
-            case "cruises":
-                this.cruises = val;
+            case "cruiseLines":
+                this.cruiseLines = val;
                 break;
             case "lineDecadalStatus":
                 this.lineDecadalStatus = val;
@@ -289,7 +289,7 @@ public abstract class _Line extends BaseDataObject {
         out.writeObject(this.geom);
         out.writeObject(this.id);
         out.writeObject(this.name);
-        out.writeObject(this.cruises);
+        out.writeObject(this.cruiseLines);
         out.writeObject(this.lineDecadalStatus);
         out.writeObject(this.lineFamily);
         out.writeObject(this.linePrograms);
@@ -306,7 +306,7 @@ public abstract class _Line extends BaseDataObject {
         this.geom = (Wkt)in.readObject();
         this.id = (Integer)in.readObject();
         this.name = (String)in.readObject();
-        this.cruises = in.readObject();
+        this.cruiseLines = in.readObject();
         this.lineDecadalStatus = in.readObject();
         this.lineFamily = in.readObject();
         this.linePrograms = in.readObject();

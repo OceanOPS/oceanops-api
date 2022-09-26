@@ -19,6 +19,7 @@ import org.oceanops.api.orm.Agency;
 import org.oceanops.api.orm.CruiseClass;
 import org.oceanops.api.orm.CruiseContact;
 import org.oceanops.api.orm.CruiseCountry;
+import org.oceanops.api.orm.CruiseLine;
 import org.oceanops.api.orm.CruiseProgram;
 import org.oceanops.api.orm.CruiseSensorModel;
 import org.oceanops.api.orm.CruiseStatus;
@@ -26,7 +27,6 @@ import org.oceanops.api.orm.CruiseType;
 import org.oceanops.api.orm.CruiseVariable;
 import org.oceanops.api.orm.Frequency;
 import org.oceanops.api.orm.Image;
-import org.oceanops.api.orm.Line;
 import org.oceanops.api.orm.PtfCruise;
 import org.oceanops.api.orm.PtfDeployment;
 import org.oceanops.api.orm.Retrieval;
@@ -83,6 +83,7 @@ public abstract class _Cruise extends BaseDataObject {
     public static final EntityProperty<CruiseClass> CRUISE_CLASS = PropertyFactory.createEntity("cruiseClass", CruiseClass.class);
     public static final ListProperty<CruiseContact> CRUISE_CONTACTS = PropertyFactory.createList("cruiseContacts", CruiseContact.class);
     public static final ListProperty<CruiseCountry> CRUISE_COUNTRIES = PropertyFactory.createList("cruiseCountries", CruiseCountry.class);
+    public static final ListProperty<CruiseLine> CRUISE_LINES = PropertyFactory.createList("cruiseLines", CruiseLine.class);
     public static final ListProperty<CruiseProgram> CRUISE_PROGRAMS = PropertyFactory.createList("cruisePrograms", CruiseProgram.class);
     public static final ListProperty<CruiseSensorModel> CRUISE_SENSOR_MODELS = PropertyFactory.createList("cruiseSensorModels", CruiseSensorModel.class);
     public static final EntityProperty<CruiseStatus> CRUISE_STATUS = PropertyFactory.createEntity("cruiseStatus", CruiseStatus.class);
@@ -90,7 +91,6 @@ public abstract class _Cruise extends BaseDataObject {
     public static final ListProperty<CruiseVariable> CRUISE_VARIABLES = PropertyFactory.createList("cruiseVariables", CruiseVariable.class);
     public static final EntityProperty<Frequency> FREQUENCY = PropertyFactory.createEntity("frequency", Frequency.class);
     public static final EntityProperty<Image> IMAGE = PropertyFactory.createEntity("image", Image.class);
-    public static final EntityProperty<Line> LINE = PropertyFactory.createEntity("line", Line.class);
     public static final ListProperty<PtfCruise> PTF_CRUISES = PropertyFactory.createList("ptfCruises", PtfCruise.class);
     public static final ListProperty<PtfDeployment> PTF_DEPLOYMENTS = PropertyFactory.createList("ptfDeployments", PtfDeployment.class);
     public static final ListProperty<Retrieval> RETRIEVALS = PropertyFactory.createList("retrievals", Retrieval.class);
@@ -136,6 +136,7 @@ public abstract class _Cruise extends BaseDataObject {
     protected Object cruiseClass;
     protected Object cruiseContacts;
     protected Object cruiseCountries;
+    protected Object cruiseLines;
     protected Object cruisePrograms;
     protected Object cruiseSensorModels;
     protected Object cruiseStatus;
@@ -143,7 +144,6 @@ public abstract class _Cruise extends BaseDataObject {
     protected Object cruiseVariables;
     protected Object frequency;
     protected Object image;
-    protected Object line;
     protected Object ptfCruises;
     protected Object ptfDeployments;
     protected Object retrievals;
@@ -505,6 +505,19 @@ public abstract class _Cruise extends BaseDataObject {
         return (List<CruiseCountry>)readProperty("cruiseCountries");
     }
 
+    public void addToCruiseLines(CruiseLine obj) {
+        addToManyTarget("cruiseLines", obj, true);
+    }
+
+    public void removeFromCruiseLines(CruiseLine obj) {
+        removeToManyTarget("cruiseLines", obj, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<CruiseLine> getCruiseLines() {
+        return (List<CruiseLine>)readProperty("cruiseLines");
+    }
+
     public void addToCruisePrograms(CruiseProgram obj) {
         addToManyTarget("cruisePrograms", obj, true);
     }
@@ -574,14 +587,6 @@ public abstract class _Cruise extends BaseDataObject {
 
     public Image getImage() {
         return (Image)readProperty("image");
-    }
-
-    public void setLine(Line line) {
-        setToOneTarget("line", line, true);
-    }
-
-    public Line getLine() {
-        return (Line)readProperty("line");
     }
 
     public void addToPtfCruises(PtfCruise obj) {
@@ -750,6 +755,8 @@ public abstract class _Cruise extends BaseDataObject {
                 return this.cruiseContacts;
             case "cruiseCountries":
                 return this.cruiseCountries;
+            case "cruiseLines":
+                return this.cruiseLines;
             case "cruisePrograms":
                 return this.cruisePrograms;
             case "cruiseSensorModels":
@@ -764,8 +771,6 @@ public abstract class _Cruise extends BaseDataObject {
                 return this.frequency;
             case "image":
                 return this.image;
-            case "line":
-                return this.line;
             case "ptfCruises":
                 return this.ptfCruises;
             case "ptfDeployments":
@@ -899,6 +904,9 @@ public abstract class _Cruise extends BaseDataObject {
             case "cruiseCountries":
                 this.cruiseCountries = val;
                 break;
+            case "cruiseLines":
+                this.cruiseLines = val;
+                break;
             case "cruisePrograms":
                 this.cruisePrograms = val;
                 break;
@@ -919,9 +927,6 @@ public abstract class _Cruise extends BaseDataObject {
                 break;
             case "image":
                 this.image = val;
-                break;
-            case "line":
-                this.line = val;
                 break;
             case "ptfCruises":
                 this.ptfCruises = val;
@@ -998,6 +1003,7 @@ public abstract class _Cruise extends BaseDataObject {
         out.writeObject(this.cruiseClass);
         out.writeObject(this.cruiseContacts);
         out.writeObject(this.cruiseCountries);
+        out.writeObject(this.cruiseLines);
         out.writeObject(this.cruisePrograms);
         out.writeObject(this.cruiseSensorModels);
         out.writeObject(this.cruiseStatus);
@@ -1005,7 +1011,6 @@ public abstract class _Cruise extends BaseDataObject {
         out.writeObject(this.cruiseVariables);
         out.writeObject(this.frequency);
         out.writeObject(this.image);
-        out.writeObject(this.line);
         out.writeObject(this.ptfCruises);
         out.writeObject(this.ptfDeployments);
         out.writeObject(this.retrievals);
@@ -1054,6 +1059,7 @@ public abstract class _Cruise extends BaseDataObject {
         this.cruiseClass = in.readObject();
         this.cruiseContacts = in.readObject();
         this.cruiseCountries = in.readObject();
+        this.cruiseLines = in.readObject();
         this.cruisePrograms = in.readObject();
         this.cruiseSensorModels = in.readObject();
         this.cruiseStatus = in.readObject();
@@ -1061,7 +1067,6 @@ public abstract class _Cruise extends BaseDataObject {
         this.cruiseVariables = in.readObject();
         this.frequency = in.readObject();
         this.image = in.readObject();
-        this.line = in.readObject();
         this.ptfCruises = in.readObject();
         this.ptfDeployments = in.readObject();
         this.retrievals = in.readObject();

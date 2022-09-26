@@ -28,16 +28,16 @@ public abstract class _LocSystem extends BaseDataObject {
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> NAME_SHORT = PropertyFactory.createString("nameShort", String.class);
     public static final StringProperty<String> WIGOS_CODE = PropertyFactory.createString("wigosCode", String.class);
-    public static final ListProperty<Ptf> PTFS = PropertyFactory.createList("ptfs", Ptf.class);
     public static final ListProperty<Ptf> PTFS1 = PropertyFactory.createList("ptfs1", Ptf.class);
+    public static final ListProperty<Ptf> PTFS_BACKUP = PropertyFactory.createList("ptfsBackup", Ptf.class);
 
     protected Integer id;
     protected String name;
     protected String nameShort;
     protected String wigosCode;
 
-    protected Object ptfs;
     protected Object ptfs1;
+    protected Object ptfsBackup;
 
     public void setId(Integer id) {
         beforePropertyWrite("id", this.id, id);
@@ -79,19 +79,6 @@ public abstract class _LocSystem extends BaseDataObject {
         return this.wigosCode;
     }
 
-    public void addToPtfs(Ptf obj) {
-        addToManyTarget("ptfs", obj, true);
-    }
-
-    public void removeFromPtfs(Ptf obj) {
-        removeToManyTarget("ptfs", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<Ptf> getPtfs() {
-        return (List<Ptf>)readProperty("ptfs");
-    }
-
     public void addToPtfs1(Ptf obj) {
         addToManyTarget("ptfs1", obj, true);
     }
@@ -103,6 +90,19 @@ public abstract class _LocSystem extends BaseDataObject {
     @SuppressWarnings("unchecked")
     public List<Ptf> getPtfs1() {
         return (List<Ptf>)readProperty("ptfs1");
+    }
+
+    public void addToPtfsBackup(Ptf obj) {
+        addToManyTarget("ptfsBackup", obj, true);
+    }
+
+    public void removeFromPtfsBackup(Ptf obj) {
+        removeToManyTarget("ptfsBackup", obj, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Ptf> getPtfsBackup() {
+        return (List<Ptf>)readProperty("ptfsBackup");
     }
 
     @Override
@@ -120,10 +120,10 @@ public abstract class _LocSystem extends BaseDataObject {
                 return this.nameShort;
             case "wigosCode":
                 return this.wigosCode;
-            case "ptfs":
-                return this.ptfs;
             case "ptfs1":
                 return this.ptfs1;
+            case "ptfsBackup":
+                return this.ptfsBackup;
             default:
                 return super.readPropertyDirectly(propName);
         }
@@ -148,11 +148,11 @@ public abstract class _LocSystem extends BaseDataObject {
             case "wigosCode":
                 this.wigosCode = (String)val;
                 break;
-            case "ptfs":
-                this.ptfs = val;
-                break;
             case "ptfs1":
                 this.ptfs1 = val;
+                break;
+            case "ptfsBackup":
+                this.ptfsBackup = val;
                 break;
             default:
                 super.writePropertyDirectly(propName, val);
@@ -174,8 +174,8 @@ public abstract class _LocSystem extends BaseDataObject {
         out.writeObject(this.name);
         out.writeObject(this.nameShort);
         out.writeObject(this.wigosCode);
-        out.writeObject(this.ptfs);
         out.writeObject(this.ptfs1);
+        out.writeObject(this.ptfsBackup);
     }
 
     @Override
@@ -185,8 +185,8 @@ public abstract class _LocSystem extends BaseDataObject {
         this.name = (String)in.readObject();
         this.nameShort = (String)in.readObject();
         this.wigosCode = (String)in.readObject();
-        this.ptfs = in.readObject();
         this.ptfs1 = in.readObject();
+        this.ptfsBackup = in.readObject();
     }
 
 }
