@@ -21,7 +21,7 @@ URL endpoint: <code>/<%=entityPath%>/platform</code>
 <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#listAllPtfExample" aria-expanded="false"	aria-controls="listAllPtfExample">Example</button>
 <div class="collapse" id="listAllPtfExample">
 	<div class="card card-body bg-light">
-		URL to generate the global platforms list in JSON format:<br> <i><%=rootUrl%><%=entityPath%>/platforms</i> <br>
+		URL to generate the global platforms list in JSON format:<br> <i><%=rootUrl%><%=entityPath%>/platform</i> <br>
 		Below is a truncated output:
 		<pre>
 		<code>
