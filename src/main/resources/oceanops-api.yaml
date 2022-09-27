@@ -492,8 +492,6 @@ components:
         insertDate:
           format: date-time
           type: string
-        line:
-          $ref: '#/components/schemas/Line'
         mobDate:
           format: date-time
           type: string
@@ -742,8 +740,6 @@ components:
           type: string
         nameShort:
           type: string
-        trackingSystems:
-          $ref: '#/components/schemas/TrackingSystem'
       type: object
     GtsCccc:
       properties:
@@ -994,8 +990,6 @@ components:
       type: object
     Line:
       properties:
-        cruises:
-          $ref: '#/components/schemas/Cruise'
         fromTo:
           type: string
         geom:
@@ -1172,9 +1166,9 @@ components:
           type: string
         nameShort:
           type: string
-        ptfs:
-          $ref: '#/components/schemas/Ptf'
         ptfs1:
+          $ref: '#/components/schemas/Ptf'
+        ptfsBackup:
           $ref: '#/components/schemas/Ptf'
         wigosCode:
           type: string
@@ -1192,6 +1186,8 @@ components:
         nameLong:
           type: string
         nameShort:
+          type: string
+        urlPath:
           type: string
       type: object
     MapTypeNetwork:
@@ -1388,6 +1384,48 @@ components:
         originTable:
           type: string
       type: object
+    Parameter:
+      properties:
+        altLabel:
+          type: string
+        definition:
+          type: string
+        identifier:
+          type: string
+        parameterPtfs:
+          $ref: '#/components/schemas/ParameterPtf'
+        parameterVariables:
+          $ref: '#/components/schemas/ParameterVariable'
+        prefLabel:
+          type: string
+        updateDate:
+          format: date-time
+          type: string
+        uri:
+          type: string
+      type: object
+    ParameterPtf:
+      properties:
+        firstMeasured:
+          format: date-time
+          type: string
+        lastMeasured:
+          format: date-time
+          type: string
+        nbObs:
+          type: string
+        parameter:
+          $ref: '#/components/schemas/Parameter'
+        ptf:
+          $ref: '#/components/schemas/Ptf'
+      type: object
+    ParameterVariable:
+      properties:
+        parameter:
+          $ref: '#/components/schemas/Parameter'
+        variable:
+          $ref: '#/components/schemas/Variable'
+      type: object
     PostRetrievalStatus:
       properties:
         description:
@@ -1495,6 +1533,8 @@ components:
         insertDate:
           format: date-time
           type: string
+        lastLocId:
+          type: string
         lastUpdate:
           format: date-time
           type: string
@@ -1512,6 +1552,8 @@ components:
           $ref: '#/components/schemas/NetworkPtf'
         nokReason:
           type: string
+        parameterPtfs:
+          $ref: '#/components/schemas/ParameterPtf'
         program:
           $ref: '#/components/schemas/Program'
         ptfAncillaryDevices:
@@ -1522,12 +1564,16 @@ components:
           $ref: '#/components/schemas/PtfBatchStatus'
         ptfConfigs:
           $ref: '#/components/schemas/PtfConfig'
+        ptfCruises:
+          $ref: '#/components/schemas/PtfCruise'
         ptfDepl:
           $ref: '#/components/schemas/PtfDeployment'
         ptfHardware:
           $ref: '#/components/schemas/PtfHardware'
         ptfIdentifiers:
           $ref: '#/components/schemas/PtfIdentifiers'
+        ptfInspectionId:
+          type: string
         ptfLocStatuses:
           $ref: '#/components/schemas/PtfLocStatus'
         ptfModel:
@@ -1536,6 +1582,8 @@ components:
           $ref: '#/components/schemas/PtfPtfStatus'
         ptfSoftware:
           $ref: '#/components/schemas/PtfSoftware'
+        ptfStatistics:
+          $ref: '#/components/schemas/PtfStatistics'
         ptfStatus:
           $ref: '#/components/schemas/PtfStatus'
         ptfVariables:
@@ -1562,6 +1610,8 @@ components:
         validated:
           type: number
         weblinks:
+          $ref: '#/components/schemas/Weblink'
+        weblinks1:
           $ref: '#/components/schemas/Weblink'
         wigosSynchronised:
           type: number
@@ -2886,17 +2936,6 @@ components:
         weblinks:
           $ref: '#/components/schemas/Weblink'
       type: object
-    TrackingSystem:
-      properties:
-        frequency:
-          $ref: '#/components/schemas/Frequency'
-        id:
-          type: number
-        name:
-          type: string
-        nameShort:
-          type: string
-      type: object
     UserGroup:
       properties:
         description:
@@ -2972,6 +3011,8 @@ components:
           type: string
         p01Ref:
           type: string
+        parameterVariables:
+          $ref: '#/components/schemas/ParameterVariable'
         ptfVariables:
           $ref: '#/components/schemas/PtfVariable'
         qcFeedbackVariables:

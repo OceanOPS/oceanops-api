@@ -10,7 +10,6 @@ import org.apache.cayenne.exp.property.ListProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
-import org.oceanops.api.orm.Variable;
 import org.oceanops.api.orm.VariableVariableFamily;
 
 /**
@@ -32,7 +31,6 @@ public abstract class _VariableFamily extends BaseDataObject {
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> NAME_SHORT = PropertyFactory.createString("nameShort", String.class);
     public static final ListProperty<VariableVariableFamily> VARIABLE_VARIABLE_FAMILIES = PropertyFactory.createList("variableVariableFamilies", VariableVariableFamily.class);
-    public static final ListProperty<Variable> VARIABLES = PropertyFactory.createList("variables", Variable.class);
 
     protected String description;
     protected Integer ecv;
@@ -42,7 +40,6 @@ public abstract class _VariableFamily extends BaseDataObject {
     protected String nameShort;
 
     protected Object variableVariableFamilies;
-    protected Object variables;
 
     public void setDescription(String description) {
         beforePropertyWrite("description", this.description, description);
@@ -117,19 +114,6 @@ public abstract class _VariableFamily extends BaseDataObject {
         return (List<VariableVariableFamily>)readProperty("variableVariableFamilies");
     }
 
-    public void addToVariables(Variable obj) {
-        addToManyTarget("variables", obj, true);
-    }
-
-    public void removeFromVariables(Variable obj) {
-        removeToManyTarget("variables", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<Variable> getVariables() {
-        return (List<Variable>)readProperty("variables");
-    }
-
     @Override
     public Object readPropertyDirectly(String propName) {
         if(propName == null) {
@@ -151,8 +135,6 @@ public abstract class _VariableFamily extends BaseDataObject {
                 return this.nameShort;
             case "variableVariableFamilies":
                 return this.variableVariableFamilies;
-            case "variables":
-                return this.variables;
             default:
                 return super.readPropertyDirectly(propName);
         }
@@ -186,9 +168,6 @@ public abstract class _VariableFamily extends BaseDataObject {
             case "variableVariableFamilies":
                 this.variableVariableFamilies = val;
                 break;
-            case "variables":
-                this.variables = val;
-                break;
             default:
                 super.writePropertyDirectly(propName, val);
         }
@@ -212,7 +191,6 @@ public abstract class _VariableFamily extends BaseDataObject {
         out.writeObject(this.name);
         out.writeObject(this.nameShort);
         out.writeObject(this.variableVariableFamilies);
-        out.writeObject(this.variables);
     }
 
     @Override
@@ -225,7 +203,6 @@ public abstract class _VariableFamily extends BaseDataObject {
         this.name = (String)in.readObject();
         this.nameShort = (String)in.readObject();
         this.variableVariableFamilies = in.readObject();
-        this.variables = in.readObject();
     }
 
 }

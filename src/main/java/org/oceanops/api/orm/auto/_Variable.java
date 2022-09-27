@@ -6,19 +6,23 @@ import java.io.ObjectOutputStream;
 import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
-import org.apache.cayenne.exp.property.EntityProperty;
 import org.apache.cayenne.exp.property.ListProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
 import org.oceanops.api.orm.CruiseVariable;
 import org.oceanops.api.orm.Indicator;
+import org.oceanops.api.orm.ObsArgoGdacVariable;
 import org.oceanops.api.orm.ObsFishingvesselFishydata;
+import org.oceanops.api.orm.ObsGlidersGdacVariable;
+import org.oceanops.api.orm.ObsGlidersGtsOsmcVariable;
+import org.oceanops.api.orm.ObsTsunaGtsOsmcVariable;
+import org.oceanops.api.orm.ObsVariable;
+import org.oceanops.api.orm.ParameterVariable;
 import org.oceanops.api.orm.PtfVariable;
 import org.oceanops.api.orm.QcFeedback;
 import org.oceanops.api.orm.QcFeedbackVariable;
 import org.oceanops.api.orm.SensorType;
-import org.oceanops.api.orm.VariableFamily;
 import org.oceanops.api.orm.VariableVariableFamily;
 
 /**
@@ -33,9 +37,8 @@ public abstract class _Variable extends BaseDataObject {
 
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final StringProperty<String> ARGO_REF = PropertyFactory.createString("argoRef", String.class);
+    public static final StringProperty<String> CANONICAL_NAME = PropertyFactory.createString("canonicalName", String.class);
     public static final StringProperty<String> CANONICAL_UNIT = PropertyFactory.createString("canonicalUnit", String.class);
-    public static final StringProperty<String> CF_REF = PropertyFactory.createString("cfRef", String.class);
     public static final StringProperty<String> DATA_SOURCE = PropertyFactory.createString("dataSource", String.class);
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
     public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
@@ -43,22 +46,26 @@ public abstract class _Variable extends BaseDataObject {
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> NAME_ALTER = PropertyFactory.createString("nameAlter", String.class);
     public static final StringProperty<String> NAME_SHORT = PropertyFactory.createString("nameShort", String.class);
-    public static final StringProperty<String> P01REF = PropertyFactory.createString("p01Ref", String.class);
+    public static final StringProperty<String> P02REF = PropertyFactory.createString("p02Ref", String.class);
     public static final StringProperty<String> QC_REF = PropertyFactory.createString("qcRef", String.class);
     public static final StringProperty<String> WIGOS_CODE = PropertyFactory.createString("wigosCode", String.class);
     public static final ListProperty<CruiseVariable> CRUISE_VARIABLES = PropertyFactory.createList("cruiseVariables", CruiseVariable.class);
     public static final ListProperty<Indicator> INDICATORS = PropertyFactory.createList("indicators", Indicator.class);
+    public static final ListProperty<ObsArgoGdacVariable> OBS_ARGO_GDAC_VARIABLES = PropertyFactory.createList("obsArgoGdacVariables", ObsArgoGdacVariable.class);
     public static final ListProperty<ObsFishingvesselFishydata> OBS_FISHINGVESSEL_FISHYDATAS = PropertyFactory.createList("obsFishingvesselFishydatas", ObsFishingvesselFishydata.class);
+    public static final ListProperty<ObsGlidersGdacVariable> OBS_GLIDERS_GDAC_VARIABLES = PropertyFactory.createList("obsGlidersGdacVariables", ObsGlidersGdacVariable.class);
+    public static final ListProperty<ObsGlidersGtsOsmcVariable> OBS_GLIDERS_GTS_OSMC_VARIABLES = PropertyFactory.createList("obsGlidersGtsOsmcVariables", ObsGlidersGtsOsmcVariable.class);
+    public static final ListProperty<ObsTsunaGtsOsmcVariable> OBS_TSUNA_GTS_OSMC_VARIABLES = PropertyFactory.createList("obsTsunaGtsOsmcVariables", ObsTsunaGtsOsmcVariable.class);
+    public static final ListProperty<ObsVariable> OBS_VARIABLES = PropertyFactory.createList("obsVariables", ObsVariable.class);
+    public static final ListProperty<ParameterVariable> PARAMETER_VARIABLES = PropertyFactory.createList("parameterVariables", ParameterVariable.class);
     public static final ListProperty<PtfVariable> PTF_VARIABLES = PropertyFactory.createList("ptfVariables", PtfVariable.class);
     public static final ListProperty<QcFeedbackVariable> QC_FEEDBACK_VARIABLES = PropertyFactory.createList("qcFeedbackVariables", QcFeedbackVariable.class);
     public static final ListProperty<QcFeedback> QC_FEEDBACKS = PropertyFactory.createList("qcFeedbacks", QcFeedback.class);
     public static final ListProperty<SensorType> SENSOR_TYPES = PropertyFactory.createList("sensorTypes", SensorType.class);
-    public static final EntityProperty<VariableFamily> VARIABLE_FAMILY = PropertyFactory.createEntity("variableFamily", VariableFamily.class);
     public static final ListProperty<VariableVariableFamily> VARIABLE_VARIABLE_FAMILIES = PropertyFactory.createList("variableVariableFamilies", VariableVariableFamily.class);
 
-    protected String argoRef;
+    protected String canonicalName;
     protected String canonicalUnit;
-    protected String cfRef;
     protected String dataSource;
     protected String description;
     protected Integer id;
@@ -66,28 +73,33 @@ public abstract class _Variable extends BaseDataObject {
     protected String name;
     protected String nameAlter;
     protected String nameShort;
-    protected String p01Ref;
+    protected String p02Ref;
     protected String qcRef;
     protected String wigosCode;
 
     protected Object cruiseVariables;
     protected Object indicators;
+    protected Object obsArgoGdacVariables;
     protected Object obsFishingvesselFishydatas;
+    protected Object obsGlidersGdacVariables;
+    protected Object obsGlidersGtsOsmcVariables;
+    protected Object obsTsunaGtsOsmcVariables;
+    protected Object obsVariables;
+    protected Object parameterVariables;
     protected Object ptfVariables;
     protected Object qcFeedbackVariables;
     protected Object qcFeedbacks;
     protected Object sensorTypes;
-    protected Object variableFamily;
     protected Object variableVariableFamilies;
 
-    public void setArgoRef(String argoRef) {
-        beforePropertyWrite("argoRef", this.argoRef, argoRef);
-        this.argoRef = argoRef;
+    public void setCanonicalName(String canonicalName) {
+        beforePropertyWrite("canonicalName", this.canonicalName, canonicalName);
+        this.canonicalName = canonicalName;
     }
 
-    public String getArgoRef() {
-        beforePropertyRead("argoRef");
-        return this.argoRef;
+    public String getCanonicalName() {
+        beforePropertyRead("canonicalName");
+        return this.canonicalName;
     }
 
     public void setCanonicalUnit(String canonicalUnit) {
@@ -98,16 +110,6 @@ public abstract class _Variable extends BaseDataObject {
     public String getCanonicalUnit() {
         beforePropertyRead("canonicalUnit");
         return this.canonicalUnit;
-    }
-
-    public void setCfRef(String cfRef) {
-        beforePropertyWrite("cfRef", this.cfRef, cfRef);
-        this.cfRef = cfRef;
-    }
-
-    public String getCfRef() {
-        beforePropertyRead("cfRef");
-        return this.cfRef;
     }
 
     public void setDataSource(String dataSource) {
@@ -180,14 +182,14 @@ public abstract class _Variable extends BaseDataObject {
         return this.nameShort;
     }
 
-    public void setP01Ref(String p01Ref) {
-        beforePropertyWrite("p01Ref", this.p01Ref, p01Ref);
-        this.p01Ref = p01Ref;
+    public void setP02Ref(String p02Ref) {
+        beforePropertyWrite("p02Ref", this.p02Ref, p02Ref);
+        this.p02Ref = p02Ref;
     }
 
-    public String getP01Ref() {
-        beforePropertyRead("p01Ref");
-        return this.p01Ref;
+    public String getP02Ref() {
+        beforePropertyRead("p02Ref");
+        return this.p02Ref;
     }
 
     public void setQcRef(String qcRef) {
@@ -236,6 +238,19 @@ public abstract class _Variable extends BaseDataObject {
         return (List<Indicator>)readProperty("indicators");
     }
 
+    public void addToObsArgoGdacVariables(ObsArgoGdacVariable obj) {
+        addToManyTarget("obsArgoGdacVariables", obj, true);
+    }
+
+    public void removeFromObsArgoGdacVariables(ObsArgoGdacVariable obj) {
+        removeToManyTarget("obsArgoGdacVariables", obj, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<ObsArgoGdacVariable> getObsArgoGdacVariables() {
+        return (List<ObsArgoGdacVariable>)readProperty("obsArgoGdacVariables");
+    }
+
     public void addToObsFishingvesselFishydatas(ObsFishingvesselFishydata obj) {
         addToManyTarget("obsFishingvesselFishydatas", obj, true);
     }
@@ -247,6 +262,71 @@ public abstract class _Variable extends BaseDataObject {
     @SuppressWarnings("unchecked")
     public List<ObsFishingvesselFishydata> getObsFishingvesselFishydatas() {
         return (List<ObsFishingvesselFishydata>)readProperty("obsFishingvesselFishydatas");
+    }
+
+    public void addToObsGlidersGdacVariables(ObsGlidersGdacVariable obj) {
+        addToManyTarget("obsGlidersGdacVariables", obj, true);
+    }
+
+    public void removeFromObsGlidersGdacVariables(ObsGlidersGdacVariable obj) {
+        removeToManyTarget("obsGlidersGdacVariables", obj, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<ObsGlidersGdacVariable> getObsGlidersGdacVariables() {
+        return (List<ObsGlidersGdacVariable>)readProperty("obsGlidersGdacVariables");
+    }
+
+    public void addToObsGlidersGtsOsmcVariables(ObsGlidersGtsOsmcVariable obj) {
+        addToManyTarget("obsGlidersGtsOsmcVariables", obj, true);
+    }
+
+    public void removeFromObsGlidersGtsOsmcVariables(ObsGlidersGtsOsmcVariable obj) {
+        removeToManyTarget("obsGlidersGtsOsmcVariables", obj, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<ObsGlidersGtsOsmcVariable> getObsGlidersGtsOsmcVariables() {
+        return (List<ObsGlidersGtsOsmcVariable>)readProperty("obsGlidersGtsOsmcVariables");
+    }
+
+    public void addToObsTsunaGtsOsmcVariables(ObsTsunaGtsOsmcVariable obj) {
+        addToManyTarget("obsTsunaGtsOsmcVariables", obj, true);
+    }
+
+    public void removeFromObsTsunaGtsOsmcVariables(ObsTsunaGtsOsmcVariable obj) {
+        removeToManyTarget("obsTsunaGtsOsmcVariables", obj, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<ObsTsunaGtsOsmcVariable> getObsTsunaGtsOsmcVariables() {
+        return (List<ObsTsunaGtsOsmcVariable>)readProperty("obsTsunaGtsOsmcVariables");
+    }
+
+    public void addToObsVariables(ObsVariable obj) {
+        addToManyTarget("obsVariables", obj, true);
+    }
+
+    public void removeFromObsVariables(ObsVariable obj) {
+        removeToManyTarget("obsVariables", obj, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<ObsVariable> getObsVariables() {
+        return (List<ObsVariable>)readProperty("obsVariables");
+    }
+
+    public void addToParameterVariables(ParameterVariable obj) {
+        addToManyTarget("parameterVariables", obj, true);
+    }
+
+    public void removeFromParameterVariables(ParameterVariable obj) {
+        removeToManyTarget("parameterVariables", obj, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<ParameterVariable> getParameterVariables() {
+        return (List<ParameterVariable>)readProperty("parameterVariables");
     }
 
     public void addToPtfVariables(PtfVariable obj) {
@@ -301,14 +381,6 @@ public abstract class _Variable extends BaseDataObject {
         return (List<SensorType>)readProperty("sensorTypes");
     }
 
-    public void setVariableFamily(VariableFamily variableFamily) {
-        setToOneTarget("variableFamily", variableFamily, true);
-    }
-
-    public VariableFamily getVariableFamily() {
-        return (VariableFamily)readProperty("variableFamily");
-    }
-
     public void addToVariableVariableFamilies(VariableVariableFamily obj) {
         addToManyTarget("variableVariableFamilies", obj, true);
     }
@@ -329,12 +401,10 @@ public abstract class _Variable extends BaseDataObject {
         }
 
         switch(propName) {
-            case "argoRef":
-                return this.argoRef;
+            case "canonicalName":
+                return this.canonicalName;
             case "canonicalUnit":
                 return this.canonicalUnit;
-            case "cfRef":
-                return this.cfRef;
             case "dataSource":
                 return this.dataSource;
             case "description":
@@ -349,8 +419,8 @@ public abstract class _Variable extends BaseDataObject {
                 return this.nameAlter;
             case "nameShort":
                 return this.nameShort;
-            case "p01Ref":
-                return this.p01Ref;
+            case "p02Ref":
+                return this.p02Ref;
             case "qcRef":
                 return this.qcRef;
             case "wigosCode":
@@ -359,8 +429,20 @@ public abstract class _Variable extends BaseDataObject {
                 return this.cruiseVariables;
             case "indicators":
                 return this.indicators;
+            case "obsArgoGdacVariables":
+                return this.obsArgoGdacVariables;
             case "obsFishingvesselFishydatas":
                 return this.obsFishingvesselFishydatas;
+            case "obsGlidersGdacVariables":
+                return this.obsGlidersGdacVariables;
+            case "obsGlidersGtsOsmcVariables":
+                return this.obsGlidersGtsOsmcVariables;
+            case "obsTsunaGtsOsmcVariables":
+                return this.obsTsunaGtsOsmcVariables;
+            case "obsVariables":
+                return this.obsVariables;
+            case "parameterVariables":
+                return this.parameterVariables;
             case "ptfVariables":
                 return this.ptfVariables;
             case "qcFeedbackVariables":
@@ -369,8 +451,6 @@ public abstract class _Variable extends BaseDataObject {
                 return this.qcFeedbacks;
             case "sensorTypes":
                 return this.sensorTypes;
-            case "variableFamily":
-                return this.variableFamily;
             case "variableVariableFamilies":
                 return this.variableVariableFamilies;
             default:
@@ -385,14 +465,11 @@ public abstract class _Variable extends BaseDataObject {
         }
 
         switch (propName) {
-            case "argoRef":
-                this.argoRef = (String)val;
+            case "canonicalName":
+                this.canonicalName = (String)val;
                 break;
             case "canonicalUnit":
                 this.canonicalUnit = (String)val;
-                break;
-            case "cfRef":
-                this.cfRef = (String)val;
                 break;
             case "dataSource":
                 this.dataSource = (String)val;
@@ -415,8 +492,8 @@ public abstract class _Variable extends BaseDataObject {
             case "nameShort":
                 this.nameShort = (String)val;
                 break;
-            case "p01Ref":
-                this.p01Ref = (String)val;
+            case "p02Ref":
+                this.p02Ref = (String)val;
                 break;
             case "qcRef":
                 this.qcRef = (String)val;
@@ -430,8 +507,26 @@ public abstract class _Variable extends BaseDataObject {
             case "indicators":
                 this.indicators = val;
                 break;
+            case "obsArgoGdacVariables":
+                this.obsArgoGdacVariables = val;
+                break;
             case "obsFishingvesselFishydatas":
                 this.obsFishingvesselFishydatas = val;
+                break;
+            case "obsGlidersGdacVariables":
+                this.obsGlidersGdacVariables = val;
+                break;
+            case "obsGlidersGtsOsmcVariables":
+                this.obsGlidersGtsOsmcVariables = val;
+                break;
+            case "obsTsunaGtsOsmcVariables":
+                this.obsTsunaGtsOsmcVariables = val;
+                break;
+            case "obsVariables":
+                this.obsVariables = val;
+                break;
+            case "parameterVariables":
+                this.parameterVariables = val;
                 break;
             case "ptfVariables":
                 this.ptfVariables = val;
@@ -444,9 +539,6 @@ public abstract class _Variable extends BaseDataObject {
                 break;
             case "sensorTypes":
                 this.sensorTypes = val;
-                break;
-            case "variableFamily":
-                this.variableFamily = val;
                 break;
             case "variableVariableFamilies":
                 this.variableVariableFamilies = val;
@@ -467,9 +559,8 @@ public abstract class _Variable extends BaseDataObject {
     @Override
     protected void writeState(ObjectOutputStream out) throws IOException {
         super.writeState(out);
-        out.writeObject(this.argoRef);
+        out.writeObject(this.canonicalName);
         out.writeObject(this.canonicalUnit);
-        out.writeObject(this.cfRef);
         out.writeObject(this.dataSource);
         out.writeObject(this.description);
         out.writeObject(this.id);
@@ -477,26 +568,30 @@ public abstract class _Variable extends BaseDataObject {
         out.writeObject(this.name);
         out.writeObject(this.nameAlter);
         out.writeObject(this.nameShort);
-        out.writeObject(this.p01Ref);
+        out.writeObject(this.p02Ref);
         out.writeObject(this.qcRef);
         out.writeObject(this.wigosCode);
         out.writeObject(this.cruiseVariables);
         out.writeObject(this.indicators);
+        out.writeObject(this.obsArgoGdacVariables);
         out.writeObject(this.obsFishingvesselFishydatas);
+        out.writeObject(this.obsGlidersGdacVariables);
+        out.writeObject(this.obsGlidersGtsOsmcVariables);
+        out.writeObject(this.obsTsunaGtsOsmcVariables);
+        out.writeObject(this.obsVariables);
+        out.writeObject(this.parameterVariables);
         out.writeObject(this.ptfVariables);
         out.writeObject(this.qcFeedbackVariables);
         out.writeObject(this.qcFeedbacks);
         out.writeObject(this.sensorTypes);
-        out.writeObject(this.variableFamily);
         out.writeObject(this.variableVariableFamilies);
     }
 
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.argoRef = (String)in.readObject();
+        this.canonicalName = (String)in.readObject();
         this.canonicalUnit = (String)in.readObject();
-        this.cfRef = (String)in.readObject();
         this.dataSource = (String)in.readObject();
         this.description = (String)in.readObject();
         this.id = (Integer)in.readObject();
@@ -504,17 +599,22 @@ public abstract class _Variable extends BaseDataObject {
         this.name = (String)in.readObject();
         this.nameAlter = (String)in.readObject();
         this.nameShort = (String)in.readObject();
-        this.p01Ref = (String)in.readObject();
+        this.p02Ref = (String)in.readObject();
         this.qcRef = (String)in.readObject();
         this.wigosCode = (String)in.readObject();
         this.cruiseVariables = in.readObject();
         this.indicators = in.readObject();
+        this.obsArgoGdacVariables = in.readObject();
         this.obsFishingvesselFishydatas = in.readObject();
+        this.obsGlidersGdacVariables = in.readObject();
+        this.obsGlidersGtsOsmcVariables = in.readObject();
+        this.obsTsunaGtsOsmcVariables = in.readObject();
+        this.obsVariables = in.readObject();
+        this.parameterVariables = in.readObject();
         this.ptfVariables = in.readObject();
         this.qcFeedbackVariables = in.readObject();
         this.qcFeedbacks = in.readObject();
         this.sensorTypes = in.readObject();
-        this.variableFamily = in.readObject();
         this.variableVariableFamilies = in.readObject();
     }
 

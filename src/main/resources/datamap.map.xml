@@ -886,6 +886,28 @@
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" isMandatory="true" length="30"/>
 	</db-entity>
+	<db-entity name="PARAMETER" schema="JCOMMOPS_B">
+		<db-attribute name="ALT_LABEL" type="VARCHAR" isMandatory="true" length="100"/>
+		<db-attribute name="DEFINITION" type="VARCHAR" length="500"/>
+		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="5"/>
+		<db-attribute name="IDENTIFIER" type="VARCHAR" isMandatory="true" length="100"/>
+		<db-attribute name="PREF_LABEL" type="VARCHAR" isMandatory="true" length="255"/>
+		<db-attribute name="UPDATE_DATE" type="TIMESTAMP"/>
+		<db-attribute name="URI" type="VARCHAR" isMandatory="true" length="255"/>
+	</db-entity>
+	<db-entity name="PARAMETER_PTF" schema="JCOMMOPS_B">
+		<db-attribute name="FIRST_MEASURED" type="TIMESTAMP"/>
+		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
+		<db-attribute name="LAST_MEASURED" type="TIMESTAMP"/>
+		<db-attribute name="NB_OBS" type="INTEGER" length="10"/>
+		<db-attribute name="PARAMETER_ID" type="INTEGER" isMandatory="true" length="10"/>
+		<db-attribute name="PTF_ID" type="INTEGER" isMandatory="true" length="10"/>
+	</db-entity>
+	<db-entity name="PARAMETER_VARIABLE" schema="JCOMMOPS_B">
+		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
+		<db-attribute name="PARAMETER_ID" type="INTEGER" isMandatory="true" length="10"/>
+		<db-attribute name="VARIABLE_ID" type="INTEGER" isMandatory="true" length="10"/>
+	</db-entity>
 	<db-entity name="POST_RETRIEVAL_STATUS" schema="JCOMMOPS_B">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="1000"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="2"/>
@@ -1637,9 +1659,8 @@
 		<db-attribute name="USER_GROUP_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 	</db-entity>
 	<db-entity name="VARIABLE" schema="JCOMMOPS_B">
-		<db-attribute name="ARGO_REF" type="VARCHAR" length="50"/>
+		<db-attribute name="CANONICAL_NAME" type="VARCHAR" length="200"/>
 		<db-attribute name="CANONICAL_UNIT" type="VARCHAR" length="50"/>
-		<db-attribute name="CF_REF" type="VARCHAR" length="200"/>
 		<db-attribute name="DATA_SOURCE" type="VARCHAR" length="20"/>
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="4000"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
@@ -1647,9 +1668,8 @@
 		<db-attribute name="NAME" type="VARCHAR" length="200"/>
 		<db-attribute name="NAME_ALTER" type="VARCHAR" length="50"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="20"/>
-		<db-attribute name="P01_REF" type="VARCHAR" length="30"/>
+		<db-attribute name="P02_REF" type="VARCHAR" length="200"/>
 		<db-attribute name="QC_REF" type="VARCHAR" length="10"/>
-		<db-attribute name="VARIABLE_FAMILY_ID" type="INTEGER"/>
 		<db-attribute name="WIGOS_CODE" type="VARCHAR" length="200"/>
 	</db-entity>
 	<db-entity name="VARIABLE_FAMILY" schema="JCOMMOPS_B">
@@ -2550,6 +2570,20 @@
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 	</obj-entity>
+	<obj-entity name="Parameter" className="org.oceanops.api.orm.Parameter" dbEntityName="PARAMETER">
+		<obj-attribute name="altLabel" type="java.lang.String" db-attribute-path="ALT_LABEL"/>
+		<obj-attribute name="definition" type="java.lang.String" db-attribute-path="DEFINITION"/>
+		<obj-attribute name="identifier" type="java.lang.String" db-attribute-path="IDENTIFIER"/>
+		<obj-attribute name="prefLabel" type="java.lang.String" db-attribute-path="PREF_LABEL"/>
+		<obj-attribute name="updateDate" type="java.time.LocalDateTime" db-attribute-path="UPDATE_DATE"/>
+		<obj-attribute name="uri" type="java.lang.String" db-attribute-path="URI"/>
+	</obj-entity>
+	<obj-entity name="ParameterPtf" className="org.oceanops.api.orm.ParameterPtf" dbEntityName="PARAMETER_PTF">
+		<obj-attribute name="firstMeasured" type="java.time.LocalDateTime" db-attribute-path="FIRST_MEASURED"/>
+		<obj-attribute name="lastMeasured" type="java.time.LocalDateTime" db-attribute-path="LAST_MEASURED"/>
+		<obj-attribute name="nbObs" type="int" db-attribute-path="NB_OBS"/>
+	</obj-entity>
+	<obj-entity name="ParameterVariable" className="org.oceanops.api.orm.ParameterVariable" dbEntityName="PARAMETER_VARIABLE"/>
 	<obj-entity name="PostRetrievalStatus" className="org.oceanops.api.orm.PostRetrievalStatus" dbEntityName="POST_RETRIEVAL_STATUS">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
@@ -2581,10 +2615,12 @@
 		<obj-attribute name="endingDate" type="java.time.LocalDateTime" db-attribute-path="ENDING_DATE"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="insertDate" type="java.time.LocalDateTime" db-attribute-path="INSERT_DATE"/>
+		<obj-attribute name="lastLocId" type="int" db-attribute-path="LAST_LOC_ID"/>
 		<obj-attribute name="lastUpdate" type="java.time.LocalDateTime" db-attribute-path="LAST_UPDATE"/>
 		<obj-attribute name="metadataAvailable" type="java.lang.Integer" db-attribute-path="METADATA_AVAILABLE"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nokReason" type="java.lang.String" db-attribute-path="NOK_REASON"/>
+		<obj-attribute name="ptfInspectionId" type="int" db-attribute-path="PTF_INSPECTION_ID"/>
 		<obj-attribute name="ref" type="java.lang.String" db-attribute-path="REF"/>
 		<obj-attribute name="refParent" type="java.lang.String" db-attribute-path="REF_PARENT"/>
 		<obj-attribute name="updateDate" type="java.time.LocalDateTime" db-attribute-path="UPDATE_DATE"/>
@@ -3166,9 +3202,8 @@
 		<obj-attribute name="userGroupId" type="java.lang.Integer" db-attribute-path="USER_GROUP_ID"/>
 	</obj-entity>
 	<obj-entity name="Variable" className="org.oceanops.api.orm.Variable" dbEntityName="VARIABLE">
-		<obj-attribute name="argoRef" type="java.lang.String" db-attribute-path="ARGO_REF"/>
+		<obj-attribute name="canonicalName" type="java.lang.String" db-attribute-path="CANONICAL_NAME"/>
 		<obj-attribute name="canonicalUnit" type="java.lang.String" db-attribute-path="CANONICAL_UNIT"/>
-		<obj-attribute name="cfRef" type="java.lang.String" db-attribute-path="CF_REF"/>
 		<obj-attribute name="dataSource" type="java.lang.String" db-attribute-path="DATA_SOURCE"/>
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
@@ -3176,7 +3211,7 @@
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameAlter" type="java.lang.String" db-attribute-path="NAME_ALTER"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
-		<obj-attribute name="p01Ref" type="java.lang.String" db-attribute-path="P01_REF"/>
+		<obj-attribute name="p02Ref" type="java.lang.String" db-attribute-path="P02_REF"/>
 		<obj-attribute name="qcRef" type="java.lang.String" db-attribute-path="QC_REF"/>
 		<obj-attribute name="wigosCode" type="java.lang.String" db-attribute-path="WIGOS_CODE"/>
 	</obj-entity>
@@ -4271,6 +4306,24 @@
 	<db-relationship name="ptfDeployments" source="PACKAGE_TYPE" target="PTF_DEPLOYMENT" toMany="true">
 		<db-attribute-pair source="ID" target="PACK_TYPE_ID"/>
 	</db-relationship>
+	<db-relationship name="parameterPtfs" source="PARAMETER" target="PARAMETER_PTF" toMany="true">
+		<db-attribute-pair source="ID" target="PARAMETER_ID"/>
+	</db-relationship>
+	<db-relationship name="parameterVariables" source="PARAMETER" target="PARAMETER_VARIABLE" toMany="true">
+		<db-attribute-pair source="ID" target="PARAMETER_ID"/>
+	</db-relationship>
+	<db-relationship name="parameter" source="PARAMETER_PTF" target="PARAMETER">
+		<db-attribute-pair source="PARAMETER_ID" target="ID"/>
+	</db-relationship>
+	<db-relationship name="ptf" source="PARAMETER_PTF" target="PTF">
+		<db-attribute-pair source="PTF_ID" target="ID"/>
+	</db-relationship>
+	<db-relationship name="parameter" source="PARAMETER_VARIABLE" target="PARAMETER">
+		<db-attribute-pair source="PARAMETER_ID" target="ID"/>
+	</db-relationship>
+	<db-relationship name="variable" source="PARAMETER_VARIABLE" target="VARIABLE">
+		<db-attribute-pair source="VARIABLE_ID" target="ID"/>
+	</db-relationship>
 	<db-relationship name="retrievals" source="POST_RETRIEVAL_STATUS" target="RETRIEVAL" toMany="true">
 		<db-attribute-pair source="ID" target="POST_RETRIEVAL_STATUS_ID"/>
 	</db-relationship>
@@ -4389,6 +4442,9 @@
 		<db-attribute-pair source="ID" target="PTF_ID"/>
 	</db-relationship>
 	<db-relationship name="obss" source="PTF" target="OBS" toMany="true">
+		<db-attribute-pair source="ID" target="PTF_ID"/>
+	</db-relationship>
+	<db-relationship name="parameterPtfs" source="PTF" target="PARAMETER_PTF" toMany="true">
 		<db-attribute-pair source="ID" target="PTF_ID"/>
 	</db-relationship>
 	<db-relationship name="program" source="PTF" target="PROGRAM">
@@ -5075,6 +5131,9 @@
 	<db-relationship name="obsVariables" source="VARIABLE" target="OBS_VARIABLE" toDependentPK="true" toMany="true">
 		<db-attribute-pair source="ID" target="VARIABLE_ID"/>
 	</db-relationship>
+	<db-relationship name="parameterVariables" source="VARIABLE" target="PARAMETER_VARIABLE" toMany="true">
+		<db-attribute-pair source="ID" target="VARIABLE_ID"/>
+	</db-relationship>
 	<db-relationship name="ptfVariables" source="VARIABLE" target="PTF_VARIABLE" toMany="true">
 		<db-attribute-pair source="ID" target="VARIABLE_ID"/>
 	</db-relationship>
@@ -5087,16 +5146,10 @@
 	<db-relationship name="sensorTypes" source="VARIABLE" target="SENSOR_TYPE" toMany="true">
 		<db-attribute-pair source="ID" target="VARIABLE_ID"/>
 	</db-relationship>
-	<db-relationship name="variableFamily" source="VARIABLE" target="VARIABLE_FAMILY">
-		<db-attribute-pair source="VARIABLE_FAMILY_ID" target="ID"/>
-	</db-relationship>
 	<db-relationship name="variableVariableFamilies" source="VARIABLE" target="VARIABLE_VARIABLE_FAMILY" toDependentPK="true" toMany="true">
 		<db-attribute-pair source="ID" target="VARIABLE_ID"/>
 	</db-relationship>
 	<db-relationship name="variableVariableFamilies" source="VARIABLE_FAMILY" target="VARIABLE_VARIABLE_FAMILY" toDependentPK="true" toMany="true">
-		<db-attribute-pair source="ID" target="VARIABLE_FAMILY_ID"/>
-	</db-relationship>
-	<db-relationship name="variables" source="VARIABLE_FAMILY" target="VARIABLE" toMany="true">
 		<db-attribute-pair source="ID" target="VARIABLE_FAMILY_ID"/>
 	</db-relationship>
 	<db-relationship name="variable" source="VARIABLE_VARIABLE_FAMILY" target="VARIABLE">
@@ -5535,6 +5588,12 @@
 	<obj-relationship name="obs" source="ObsVariable" target="Obs" deleteRule="Nullify" db-relationship-path="obs"/>
 	<obj-relationship name="variable" source="ObsVariable" target="Variable" deleteRule="Nullify" db-relationship-path="variable"/>
 	<obj-relationship name="ptfDeployments" source="PackageType" target="PtfDeployment" deleteRule="Deny" db-relationship-path="ptfDeployments"/>
+	<obj-relationship name="parameterPtfs" source="Parameter" target="ParameterPtf" deleteRule="Deny" db-relationship-path="parameterPtfs"/>
+	<obj-relationship name="parameterVariables" source="Parameter" target="ParameterVariable" deleteRule="Deny" db-relationship-path="parameterVariables"/>
+	<obj-relationship name="parameter" source="ParameterPtf" target="Parameter" deleteRule="Nullify" db-relationship-path="parameter"/>
+	<obj-relationship name="ptf" source="ParameterPtf" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
+	<obj-relationship name="parameter" source="ParameterVariable" target="Parameter" deleteRule="Nullify" db-relationship-path="parameter"/>
+	<obj-relationship name="variable" source="ParameterVariable" target="Variable" deleteRule="Nullify" db-relationship-path="variable"/>
 	<obj-relationship name="retrievals" source="PostRetrievalStatus" target="Retrieval" deleteRule="Deny" db-relationship-path="retrievals"/>
 	<obj-relationship name="country" source="Program" target="Country" deleteRule="Nullify" db-relationship-path="country"/>
 	<obj-relationship name="cruisePrograms" source="Program" target="CruiseProgram" deleteRule="Deny" db-relationship-path="cruisePrograms"/>
@@ -5566,13 +5625,21 @@
 	<obj-relationship name="latestObs" source="Ptf" target="ObsLatest" deleteRule="Nullify" db-relationship-path="latestObs"/>
 	<obj-relationship name="lines" source="Ptf" target="Line" deleteRule="Nullify" db-relationship-path="linePtfs.line"/>
 	<obj-relationship name="mzmsPtfCountries" source="Ptf" target="MzmsPtfCountry" deleteRule="Deny" db-relationship-path="mzmsPtfCountries"/>
+	<obj-relationship name="ncNotifications" source="Ptf" target="NcNotification" deleteRule="Deny" db-relationship-path="ncNotifications"/>
+	<obj-relationship name="ncSubscriptions" source="Ptf" target="NcSubscription" deleteRule="Deny" db-relationship-path="ncSubscriptions"/>
 	<obj-relationship name="networkPtfs" source="Ptf" target="NetworkPtf" deleteRule="Deny" db-relationship-path="networkPtfs"/>
+	<obj-relationship name="obsArgoGdacs" source="Ptf" target="ObsArgoGdac" deleteRule="Deny" db-relationship-path="obsArgoGdacs"/>
 	<obj-relationship name="obsFishingvesselFishydatas" source="Ptf" target="ObsFishingvesselFishydata" deleteRule="Deny" db-relationship-path="obsFishingvesselFishydatas"/>
+	<obj-relationship name="obsGlidersGtsOsmcs" source="Ptf" target="ObsGlidersGtsOsmc" deleteRule="Deny" db-relationship-path="obsGlidersGtsOsmcs"/>
+	<obj-relationship name="obsTsunaGtsOsmcs" source="Ptf" target="ObsTsunaGtsOsmc" deleteRule="Deny" db-relationship-path="obsTsunaGtsOsmcs"/>
+	<obj-relationship name="obss" source="Ptf" target="Obs" deleteRule="Deny" db-relationship-path="obss"/>
+	<obj-relationship name="parameterPtfs" source="Ptf" target="ParameterPtf" deleteRule="Deny" db-relationship-path="parameterPtfs"/>
 	<obj-relationship name="program" source="Ptf" target="Program" deleteRule="Nullify" db-relationship-path="program"/>
 	<obj-relationship name="ptfAncillaryDevices" source="Ptf" target="PtfAncillaryDevice" deleteRule="Nullify" db-relationship-path="ptfAncillaryDevices"/>
 	<obj-relationship name="ptfAutomation" source="Ptf" target="PtfAutomation" deleteRule="Nullify" db-relationship-path="ptfAutomation"/>
 	<obj-relationship name="ptfBatchStatus" source="Ptf" target="PtfBatchStatus" deleteRule="Nullify" db-relationship-path="ptfBatchStatus"/>
 	<obj-relationship name="ptfConfigs" source="Ptf" target="PtfConfig" deleteRule="Deny" db-relationship-path="ptfConfigs"/>
+	<obj-relationship name="ptfCruises" source="Ptf" target="PtfCruise" deleteRule="Deny" db-relationship-path="ptfCruises"/>
 	<obj-relationship name="ptfDepl" source="Ptf" target="PtfDeployment" deleteRule="Nullify" db-relationship-path="ptfDepl"/>
 	<obj-relationship name="ptfHardware" source="Ptf" target="PtfHardware" deleteRule="Nullify" db-relationship-path="ptfHardware"/>
 	<obj-relationship name="ptfIdentifiers" source="Ptf" target="PtfIdentifiers" deleteRule="Nullify" db-relationship-path="ptfIdentifiers"/>
@@ -5580,6 +5647,7 @@
 	<obj-relationship name="ptfModel" source="Ptf" target="PtfModel" deleteRule="Nullify" db-relationship-path="ptfModel"/>
 	<obj-relationship name="ptfPtfStatuses" source="Ptf" target="PtfPtfStatus" deleteRule="Deny" db-relationship-path="ptfPtfStatuses"/>
 	<obj-relationship name="ptfSoftware" source="Ptf" target="PtfSoftware" deleteRule="Nullify" db-relationship-path="ptfSoftware"/>
+	<obj-relationship name="ptfStatistics" source="Ptf" target="PtfStatistics" deleteRule="Nullify" db-relationship-path="ptfStatistics"/>
 	<obj-relationship name="ptfStatus" source="Ptf" target="PtfStatus" deleteRule="Nullify" db-relationship-path="ptfStatus"/>
 	<obj-relationship name="ptfVariables" source="Ptf" target="PtfVariable" deleteRule="Deny" db-relationship-path="ptfVariables"/>
 	<obj-relationship name="qcFeedbacks" source="Ptf" target="QcFeedback" deleteRule="Deny" db-relationship-path="qcFeedbacks"/>
@@ -5589,7 +5657,9 @@
 	<obj-relationship name="sitePtfs" source="Ptf" target="SitePtf" deleteRule="Deny" db-relationship-path="sitePtfs"/>
 	<obj-relationship name="telecom" source="Ptf" target="Telecom" deleteRule="Nullify" db-relationship-path="telecom"/>
 	<obj-relationship name="trackingSystem" source="Ptf" target="LocSystem" deleteRule="Nullify" db-relationship-path="trackingSystem"/>
+	<obj-relationship name="webFrequentations" source="Ptf" target="WebFrequentation" deleteRule="Deny" db-relationship-path="webFrequentations"/>
 	<obj-relationship name="weblinks" source="Ptf" target="Weblink" deleteRule="Nullify" db-relationship-path="weblinkPtfs.weblink"/>
+	<obj-relationship name="weblinks1" source="Ptf" target="Weblink" deleteRule="Deny" db-relationship-path="weblinks"/>
 	<obj-relationship name="wmos" source="Ptf" target="Wmo" deleteRule="Deny" db-relationship-path="wmos"/>
 	<obj-relationship name="ptf" source="PtfAncillaryDevice" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
 	<obj-relationship name="ptfAncillaryDeviceName" source="PtfAncillaryDevice" target="PtfAncillaryDeviceName" deleteRule="Nullify" db-relationship-path="ptfAncillaryDeviceName"/>
@@ -5780,15 +5850,19 @@
 	<obj-relationship name="userGroup" source="UserGroupContact" target="UserGroup" deleteRule="Nullify" db-relationship-path="userGroup"/>
 	<obj-relationship name="cruiseVariables" source="Variable" target="CruiseVariable" deleteRule="Deny" db-relationship-path="cruiseVariables"/>
 	<obj-relationship name="indicators" source="Variable" target="Indicator" deleteRule="Deny" db-relationship-path="indicators"/>
+	<obj-relationship name="obsArgoGdacVariables" source="Variable" target="ObsArgoGdacVariable" deleteRule="Deny" db-relationship-path="obsArgoGdacVariables"/>
 	<obj-relationship name="obsFishingvesselFishydatas" source="Variable" target="ObsFishingvesselFishydata" db-relationship-path="obsFishingvesselFdVariables.obs"/>
+	<obj-relationship name="obsGlidersGdacVariables" source="Variable" target="ObsGlidersGdacVariable" deleteRule="Deny" db-relationship-path="obsGlidersGdacVariables"/>
+	<obj-relationship name="obsGlidersGtsOsmcVariables" source="Variable" target="ObsGlidersGtsOsmcVariable" deleteRule="Deny" db-relationship-path="obsGlidersGtsOsmcVariables"/>
+	<obj-relationship name="obsTsunaGtsOsmcVariables" source="Variable" target="ObsTsunaGtsOsmcVariable" deleteRule="Deny" db-relationship-path="obsTsunaGtsOsmcVariables"/>
+	<obj-relationship name="obsVariables" source="Variable" target="ObsVariable" deleteRule="Deny" db-relationship-path="obsVariables"/>
+	<obj-relationship name="parameterVariables" source="Variable" target="ParameterVariable" deleteRule="Deny" db-relationship-path="parameterVariables"/>
 	<obj-relationship name="ptfVariables" source="Variable" target="PtfVariable" deleteRule="Deny" db-relationship-path="ptfVariables"/>
 	<obj-relationship name="qcFeedbackVariables" source="Variable" target="QcFeedbackVariable" deleteRule="Deny" db-relationship-path="qcFeedbackVariables"/>
 	<obj-relationship name="qcFeedbacks" source="Variable" target="QcFeedback" deleteRule="Deny" db-relationship-path="qcFeedbacks"/>
 	<obj-relationship name="sensorTypes" source="Variable" target="SensorType" deleteRule="Deny" db-relationship-path="sensorTypes"/>
-	<obj-relationship name="variableFamily" source="Variable" target="VariableFamily" deleteRule="Nullify" db-relationship-path="variableFamily"/>
 	<obj-relationship name="variableVariableFamilies" source="Variable" target="VariableVariableFamily" deleteRule="Deny" db-relationship-path="variableVariableFamilies"/>
 	<obj-relationship name="variableVariableFamilies" source="VariableFamily" target="VariableVariableFamily" deleteRule="Deny" db-relationship-path="variableVariableFamilies"/>
-	<obj-relationship name="variables" source="VariableFamily" target="Variable" deleteRule="Deny" db-relationship-path="variables"/>
 	<obj-relationship name="variable" source="VariableVariableFamily" target="Variable" deleteRule="Nullify" db-relationship-path="variable"/>
 	<obj-relationship name="variableFamily" source="VariableVariableFamily" target="VariableFamily" deleteRule="Nullify" db-relationship-path="variableFamily"/>
 	<obj-relationship name="contact" source="WebConnection" target="Contact" deleteRule="Nullify" db-relationship-path="contact"/>
