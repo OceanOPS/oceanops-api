@@ -28,13 +28,13 @@
 	The latest version of the API can be reached at that URL (the link will redirect to the numbered version of the URL): 
 	<div class="text-center"><span class="url"><%=rootUrlNoVersion%></span></div>
 	<br>
-	On top of the latest version, two previous versions (major or minor) will be kept for backward compatibility.
+	On top of the latest version, two previous major versions will be kept for backward compatibility.
 	<br><br>
-	Should you wish to follow our latest improvements, check out our latest preview version by going there:
+	Should you wish to follow our latest improvements, check out our latest preview (if available) version by going there:
 	<div class="text-center"><span class="url"><%=rootUrlNoVersion%>preview/</span></div>
 </p>
 <h3>Release notes</h3>
-<p>Release notes can be consulted <a href="https://trello.com/c/eI7YS3wp" target="_blank">here</a>.</p>
+<p>Release notes can be consulted for each release on the <a href="https://github.com/OceanOPS/oceanops-api/releases" target="_blank">GitHub repository</a>.</p>
 <h3>Development progress</h3>
 <p>A public <a href="https://trello.com" target="_blank">Trello</a> board is available <a href="https://trello.com/b/d5BstHHd" target="_blank">here</a> to follow our progress in improving this API.</p>
 <p>The source code of this project is available in the following GitHub repository <a href="https://github.com/OceanOPS/oceanops-api/" target="_blank">https://github.com/OceanOPS/oceanops-api/</a>.</p>
