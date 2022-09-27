@@ -274,7 +274,7 @@
 		<jersey.version>2.35</jersey.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.scm.id>oceanops-scm-server</project.scm.id>
-		<java.version>14</java.version>
+		<java.version>17</java.version>
 		<agrest.version>5.0.M6</agrest.version>
 		<cayenne.version>4.2.RC1</cayenne.version>
 		<xmlbeans.version>5.1.1</xmlbeans.version>
