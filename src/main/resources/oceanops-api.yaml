@@ -2985,11 +2985,9 @@ components:
       type: object
     Variable:
       properties:
-        argoRef:
+        canonicalName:
           type: string
         canonicalUnit:
-          type: string
-        cfRef:
           type: string
         cruiseVariables:
           $ref: '#/components/schemas/CruiseVariable'
@@ -3009,7 +3007,7 @@ components:
           type: string
         nameShort:
           type: string
-        p01Ref:
+        p02Ref:
           type: string
         parameterVariables:
           $ref: '#/components/schemas/ParameterVariable'
@@ -3023,8 +3021,6 @@ components:
           type: string
         sensorTypes:
           $ref: '#/components/schemas/SensorType'
-        variableFamily:
-          $ref: '#/components/schemas/VariableFamily'
         variableVariableFamilies:
           $ref: '#/components/schemas/VariableVariableFamily'
         wigosCode:
@@ -3046,8 +3042,6 @@ components:
           type: string
         variableVariableFamilies:
           $ref: '#/components/schemas/VariableVariableFamily'
-        variables:
-          $ref: '#/components/schemas/Variable'
       type: object
     VariableVariableFamily:
       properties:
