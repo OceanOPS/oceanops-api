@@ -135,7 +135,7 @@ public class Platform {
 
 		cursor.insertAttributeWithValue("schemaLocation", "http://www.w3.org/2001/XMLSchema-instance", 
 			"http://def.wmo.int/wmdr/2017 http://schemas.wmo.int/wmdr/1.0RC9/wmdr.xsd");
-        cursor.dispose();
+        cursor.close();
 
 		CodeWithAuthorityType identifier = rootElementType.addNewIdentifier();
 		identifier.setStringValue(wigosRef);

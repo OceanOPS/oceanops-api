@@ -110,7 +110,7 @@ public class Authorization {
         // If the user is not authenticated as an administrator
         if(!(Authentication.isAuthenticated() && Authentication.getContact().getAdmin().intValue() == 1)){
             // Overlaying PtfDeployment
-            sBuilder.entityOverlay(new AgEntityOverlay<PtfDeployment>(PtfDeployment.class).redefineToOne(
+            sBuilder.entityOverlay(new AgEntityOverlay<PtfDeployment>(PtfDeployment.class).toOne(
                     PtfDeployment.SHIP.getName(), Ship.class,
                     eo -> {
                         if(eo.getShip() != null){
@@ -135,7 +135,7 @@ public class Authorization {
                 .property(Ship.CONTACT_SEA_EMAIL3.getName(), false)
                 .property(Ship.CONTACT_SHORE_EMAIL3.getName(), false)
                 .property(Ship.CONTACT_SHORE_NAME.getName(), false)
-            ).redefineToMany(
+            ).toMany(
                 Ship.PTF_DEPLOYMENTS.getName(), PtfDeployment.class,
                 eo -> {
                     if(eo.getHideMetadata().intValue() == 1){
@@ -144,7 +144,7 @@ public class Authorization {
                     else
                         return eo.getPtfDeployments();     
                 }             
-            ).redefineToMany(
+            ).toMany(
                 Ship.CRUISES.getName(), Cruise.class,
                 eo -> {
                     if(eo.getHideMetadata().intValue() == 1){
@@ -157,12 +157,12 @@ public class Authorization {
 
             // Contact overlaying
             sBuilder.entityOverlay(new AgEntityOverlay<Contact>(Contact.class)
-                .redefineAttribute(Contact.EMAIL.getName(), String.class, ea -> ea.getIsPrivate().intValue() == 0 ? ea.getEmail(): null)
-                .redefineAttribute(Contact.EMAIL2.getName(), String.class, ea -> ea.getIsPrivate().intValue() == 0 ? ea.getEmail2(): null)
-                .redefineAttribute(Contact.TEL.getName(), String.class, ea -> ea.getIsPrivate().intValue() == 0 ? ea.getTel(): null)
-                .redefineAttribute(Contact.TEL2.getName(), String.class, ea -> ea.getIsPrivate().intValue() == 0 ? ea.getTel2(): null)
-                .redefineAttribute(Contact.ADDRESS.getName(), String.class, ea -> ea.getIsPrivate().intValue() == 0 ? ea.getAddress(): null)
-                .redefineAttribute(Contact.FAX.getName(), String.class, ea -> ea.getIsPrivate().intValue() == 0 ? ea.getFax(): null)
+                .attribute(Contact.EMAIL.getName(), String.class, ea -> ea.getIsPrivate().intValue() == 0 ? ea.getEmail(): null)
+                .attribute(Contact.EMAIL2.getName(), String.class, ea -> ea.getIsPrivate().intValue() == 0 ? ea.getEmail2(): null)
+                .attribute(Contact.TEL.getName(), String.class, ea -> ea.getIsPrivate().intValue() == 0 ? ea.getTel(): null)
+                .attribute(Contact.TEL2.getName(), String.class, ea -> ea.getIsPrivate().intValue() == 0 ? ea.getTel2(): null)
+                .attribute(Contact.ADDRESS.getName(), String.class, ea -> ea.getIsPrivate().intValue() == 0 ? ea.getAddress(): null)
+                .attribute(Contact.FAX.getName(), String.class, ea -> ea.getIsPrivate().intValue() == 0 ? ea.getFax(): null)
                 .readablePropFilter(
                     b -> b.property(Contact.NC_NOTIFICATIONS.getName(), false)
                     .property(Contact.NC_SUBSCRIPTIONS.getName(), false)
