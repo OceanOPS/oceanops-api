@@ -269,6 +269,8 @@ components:
           type: number
         nLevels:
           type: number
+        obsSchedule:
+          type: string
         pnp:
           type: number
         profilePress:

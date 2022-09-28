@@ -119,7 +119,7 @@
 		<db-attribute name="ICE_DETECTION" type="NUMERIC" length="1"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="N_LEVELS" type="NUMERIC" length="5"/>
-		<db-attribute name="OBS_SCHEDULE_ID" type="INTEGER" length="2"/>
+		<db-attribute name="OBS_SCHEDULE" type="VARCHAR" length="50"/>
 		<db-attribute name="PNP" type="NUMERIC" length="1"/>
 		<db-attribute name="PROFILE_PRESS" type="NUMERIC" length="9" scale="4"/>
 		<db-attribute name="SURFACE_TIME" type="NUMERIC" length="10" scale="4"/>
@@ -1908,6 +1908,7 @@
 		<obj-attribute name="iceDetection" type="java.lang.Integer" db-attribute-path="ICE_DETECTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="nLevels" type="java.lang.Integer" db-attribute-path="N_LEVELS"/>
+		<obj-attribute name="obsSchedule" type="java.lang.String" db-attribute-path="OBS_SCHEDULE"/>
 		<obj-attribute name="pnp" type="java.lang.Integer" db-attribute-path="PNP"/>
 		<obj-attribute name="profilePress" type="java.lang.Double" db-attribute-path="PROFILE_PRESS"/>
 		<obj-attribute name="surfaceTime" type="java.lang.Double" db-attribute-path="SURFACE_TIME"/>
@@ -3441,9 +3442,6 @@
 	</db-relationship>
 	<db-relationship name="basins" source="BASIN_TYPE" target="BASIN" toMany="true">
 		<db-attribute-pair source="ID" target="BASIN_TYPE_ID"/>
-	</db-relationship>
-	<db-relationship name="obsSchedule" source="CONFIG" target="TIME_PERIOD">
-		<db-attribute-pair source="OBS_SCHEDULE_ID" target="ID"/>
 	</db-relationship>
 	<db-relationship name="ptfConfigs" source="CONFIG" target="PTF_CONFIG" toMany="true">
 		<db-attribute-pair source="ID" target="CONFIG_ID"/>
@@ -5056,9 +5054,6 @@
 	<db-relationship name="telecoms" source="TELECOM_TYPE" target="TELECOM" toMany="true">
 		<db-attribute-pair source="ID" target="TELECOM_TYPE_ID"/>
 	</db-relationship>
-	<db-relationship name="configs" source="TIME_PERIOD" target="CONFIG" toMany="true">
-		<db-attribute-pair source="ID" target="OBS_SCHEDULE_ID"/>
-	</db-relationship>
 	<db-relationship name="ptfVariables" source="TIME_PERIOD" target="PTF_VARIABLE" toMany="true">
 		<db-attribute-pair source="ID" target="SERVICE_SCHEDULE_ID"/>
 	</db-relationship>
@@ -5310,7 +5305,6 @@
 	<obj-relationship name="basinType" source="Basin" target="BasinType" deleteRule="Nullify" db-relationship-path="basinType"/>
 	<obj-relationship name="countryCommitments" source="Basin" target="CountryCommitment" deleteRule="Deny" db-relationship-path="countryCommitments"/>
 	<obj-relationship name="basins" source="BasinType" target="Basin" deleteRule="Deny" db-relationship-path="basins"/>
-	<obj-relationship name="obsSchedule" source="Config" target="TimePeriod" deleteRule="Nullify" db-relationship-path="obsSchedule"/>
 	<obj-relationship name="ptfConfigs" source="Config" target="PtfConfig" deleteRule="Deny" db-relationship-path="ptfConfigs"/>
 	<obj-relationship name="agency" source="Contact" target="Agency" deleteRule="Nullify" db-relationship-path="agency"/>
 	<obj-relationship name="contactPtfRoles" source="Contact" target="ContactPtfRole" deleteRule="Deny" db-relationship-path="contactPtfRoles"/>
@@ -5831,7 +5825,6 @@
 	<obj-relationship name="telecomFormat" source="TelecomFormatDoc" target="TelecomFormat" deleteRule="Nullify" db-relationship-path="telecomFormat"/>
 	<obj-relationship name="telecoms" source="TelecomService" target="Telecom" deleteRule="Deny" db-relationship-path="telecoms"/>
 	<obj-relationship name="telecoms" source="TelecomType" target="Telecom" deleteRule="Deny" db-relationship-path="telecoms"/>
-	<obj-relationship name="configs" source="TimePeriod" target="Config" deleteRule="Deny" db-relationship-path="configs"/>
 	<obj-relationship name="ptfVariables" source="TimePeriod" target="PtfVariable" deleteRule="Deny" db-relationship-path="ptfVariables"/>
 	<obj-relationship name="ptfs" source="TimePeriod" target="Ptf" deleteRule="Deny" db-relationship-path="ptfs"/>
 	<obj-relationship name="docs" source="Topic" target="Doc" deleteRule="Deny" db-relationship-path="docs"/>

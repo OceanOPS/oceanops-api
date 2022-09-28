@@ -10,7 +10,6 @@ import org.apache.cayenne.exp.property.ListProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
-import org.oceanops.api.orm.Config;
 import org.oceanops.api.orm.Ptf;
 import org.oceanops.api.orm.PtfVariable;
 
@@ -30,7 +29,6 @@ public abstract class _TimePeriod extends BaseDataObject {
     public static final NumericProperty<Integer> FREQUENCY = PropertyFactory.createNumeric("frequency", Integer.class);
     public static final StringProperty<String> ISO = PropertyFactory.createString("iso", String.class);
     public static final StringProperty<String> REF = PropertyFactory.createString("ref", String.class);
-    public static final ListProperty<Config> CONFIGS = PropertyFactory.createList("configs", Config.class);
     public static final ListProperty<PtfVariable> PTF_VARIABLES = PropertyFactory.createList("ptfVariables", PtfVariable.class);
     public static final ListProperty<Ptf> PTFS = PropertyFactory.createList("ptfs", Ptf.class);
 
@@ -39,7 +37,6 @@ public abstract class _TimePeriod extends BaseDataObject {
     protected String iso;
     protected String ref;
 
-    protected Object configs;
     protected Object ptfVariables;
     protected Object ptfs;
 
@@ -83,19 +80,6 @@ public abstract class _TimePeriod extends BaseDataObject {
         return this.ref;
     }
 
-    public void addToConfigs(Config obj) {
-        addToManyTarget("configs", obj, true);
-    }
-
-    public void removeFromConfigs(Config obj) {
-        removeToManyTarget("configs", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<Config> getConfigs() {
-        return (List<Config>)readProperty("configs");
-    }
-
     public void addToPtfVariables(PtfVariable obj) {
         addToManyTarget("ptfVariables", obj, true);
     }
@@ -137,8 +121,6 @@ public abstract class _TimePeriod extends BaseDataObject {
                 return this.iso;
             case "ref":
                 return this.ref;
-            case "configs":
-                return this.configs;
             case "ptfVariables":
                 return this.ptfVariables;
             case "ptfs":
@@ -167,9 +149,6 @@ public abstract class _TimePeriod extends BaseDataObject {
             case "ref":
                 this.ref = (String)val;
                 break;
-            case "configs":
-                this.configs = val;
-                break;
             case "ptfVariables":
                 this.ptfVariables = val;
                 break;
@@ -196,7 +175,6 @@ public abstract class _TimePeriod extends BaseDataObject {
         out.writeObject(this.frequency);
         out.writeObject(this.iso);
         out.writeObject(this.ref);
-        out.writeObject(this.configs);
         out.writeObject(this.ptfVariables);
         out.writeObject(this.ptfs);
     }
@@ -208,7 +186,6 @@ public abstract class _TimePeriod extends BaseDataObject {
         this.frequency = (Integer)in.readObject();
         this.iso = (String)in.readObject();
         this.ref = (String)in.readObject();
-        this.configs = in.readObject();
         this.ptfVariables = in.readObject();
         this.ptfs = in.readObject();
     }
