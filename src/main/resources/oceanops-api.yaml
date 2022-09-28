@@ -1574,8 +1574,6 @@ components:
           $ref: '#/components/schemas/PtfHardware'
         ptfIdentifiers:
           $ref: '#/components/schemas/PtfIdentifiers'
-        ptfInspectionId:
-          type: string
         ptfLocStatuses:
           $ref: '#/components/schemas/PtfLocStatus'
         ptfModel:

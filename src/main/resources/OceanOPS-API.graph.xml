@@ -87,7 +87,7 @@
 		<entity name="PtfBatchStatus" x="10.0" y="10.0" width="86.0" height="66.0"/>
 		<entity name="PtfRefLock" x="793.0" y="35.0" width="80.0" height="98.0"/>
 		<entity name="ShipType" x="10.0" y="10.0" width="81.0" height="114.0"/>
-		<entity name="Ptf" x="10.0" y="10.0" width="104.0" height="370.0"/>
+		<entity name="Ptf" x="10.0" y="10.0" width="104.0" height="354.0"/>
 		<entity name="SiteStatus" x="10.0" y="10.0" width="61.0" height="98.0"/>
 		<entity name="VariableFamily" x="10.0" y="10.0" width="82.0" height="130.0"/>
 		<entity name="SensorModelNetwork" x="10.0" y="10.0" width="125.0" height="66.0"/>
@@ -266,7 +266,7 @@
 		<entity name="DOC_CONTACT" x="2135.8" y="1259.92" width="86.0" height="66.0"/>
 		<entity name="OBS_GLIDERS_GDAC_VARIABLE" x="2031.66" y="1299.2" width="179.0" height="66.0"/>
 		<entity name="INDICATOR_VALUE" x="1368.73" y="1157.26" width="109.0" height="130.0"/>
-		<entity name="PTF" x="1865.33" y="1056.85" width="171.0" height="674.0"/>
+		<entity name="PTF" x="1865.33" y="1056.85" width="171.0" height="658.0"/>
 		<entity name="PTF_ANCILLARY_DEVICE" x="2422.46" y="1260.96" width="186.0" height="114.0"/>
 		<entity name="VARIABLE_FAMILY" x="2192.3" y="1142.56" width="105.0" height="130.0"/>
 		<entity name="PTF_STATUS" x="2393.77" y="1330.23" width="78.0" height="130.0"/>

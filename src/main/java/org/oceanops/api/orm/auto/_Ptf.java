@@ -84,7 +84,6 @@ public abstract class _Ptf extends BaseDataObject {
     public static final NumericProperty<Integer> METADATA_AVAILABLE = PropertyFactory.createNumeric("metadataAvailable", Integer.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> NOK_REASON = PropertyFactory.createString("nokReason", String.class);
-    public static final NumericProperty<Integer> PTF_INSPECTION_ID = PropertyFactory.createNumeric("ptfInspectionId", Integer.class);
     public static final StringProperty<String> REF = PropertyFactory.createString("ref", String.class);
     public static final StringProperty<String> REF_PARENT = PropertyFactory.createString("refParent", String.class);
     public static final DateProperty<LocalDateTime> UPDATE_DATE = PropertyFactory.createDate("updateDate", LocalDateTime.class);
@@ -153,7 +152,6 @@ public abstract class _Ptf extends BaseDataObject {
     protected Integer metadataAvailable;
     protected String name;
     protected String nokReason;
-    protected Integer ptfInspectionId;
     protected String ref;
     protected String refParent;
     protected LocalDateTime updateDate;
@@ -359,19 +357,6 @@ public abstract class _Ptf extends BaseDataObject {
     public String getNokReason() {
         beforePropertyRead("nokReason");
         return this.nokReason;
-    }
-
-    public void setPtfInspectionId(int ptfInspectionId) {
-        beforePropertyWrite("ptfInspectionId", this.ptfInspectionId, ptfInspectionId);
-        this.ptfInspectionId = ptfInspectionId;
-    }
-
-    public int getPtfInspectionId() {
-        beforePropertyRead("ptfInspectionId");
-        if(this.ptfInspectionId == null) {
-            return 0;
-        }
-        return this.ptfInspectionId;
     }
 
     public void setRef(String ref) {
@@ -972,8 +957,6 @@ public abstract class _Ptf extends BaseDataObject {
                 return this.name;
             case "nokReason":
                 return this.nokReason;
-            case "ptfInspectionId":
-                return this.ptfInspectionId;
             case "ref":
                 return this.ref;
             case "refParent":
@@ -1134,9 +1117,6 @@ public abstract class _Ptf extends BaseDataObject {
                 break;
             case "nokReason":
                 this.nokReason = (String)val;
-                break;
-            case "ptfInspectionId":
-                this.ptfInspectionId = (Integer)val;
                 break;
             case "ref":
                 this.ref = (String)val;
@@ -1325,7 +1305,6 @@ public abstract class _Ptf extends BaseDataObject {
         out.writeObject(this.metadataAvailable);
         out.writeObject(this.name);
         out.writeObject(this.nokReason);
-        out.writeObject(this.ptfInspectionId);
         out.writeObject(this.ref);
         out.writeObject(this.refParent);
         out.writeObject(this.updateDate);
@@ -1398,7 +1377,6 @@ public abstract class _Ptf extends BaseDataObject {
         this.metadataAvailable = (Integer)in.readObject();
         this.name = (String)in.readObject();
         this.nokReason = (String)in.readObject();
-        this.ptfInspectionId = (Integer)in.readObject();
         this.ref = (String)in.readObject();
         this.refParent = (String)in.readObject();
         this.updateDate = (LocalDateTime)in.readObject();
