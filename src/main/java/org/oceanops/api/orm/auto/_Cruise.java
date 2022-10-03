@@ -27,7 +27,6 @@ import org.oceanops.api.orm.CruiseType;
 import org.oceanops.api.orm.CruiseVariable;
 import org.oceanops.api.orm.Frequency;
 import org.oceanops.api.orm.Image;
-import org.oceanops.api.orm.PtfCruise;
 import org.oceanops.api.orm.PtfDeployment;
 import org.oceanops.api.orm.Retrieval;
 import org.oceanops.api.orm.Service;
@@ -91,7 +90,6 @@ public abstract class _Cruise extends BaseDataObject {
     public static final ListProperty<CruiseVariable> CRUISE_VARIABLES = PropertyFactory.createList("cruiseVariables", CruiseVariable.class);
     public static final EntityProperty<Frequency> FREQUENCY = PropertyFactory.createEntity("frequency", Frequency.class);
     public static final EntityProperty<Image> IMAGE = PropertyFactory.createEntity("image", Image.class);
-    public static final ListProperty<PtfCruise> PTF_CRUISES = PropertyFactory.createList("ptfCruises", PtfCruise.class);
     public static final ListProperty<PtfDeployment> PTF_DEPLOYMENTS = PropertyFactory.createList("ptfDeployments", PtfDeployment.class);
     public static final ListProperty<Retrieval> RETRIEVALS = PropertyFactory.createList("retrievals", Retrieval.class);
     public static final ListProperty<Service> SERVICES = PropertyFactory.createList("services", Service.class);
@@ -144,7 +142,6 @@ public abstract class _Cruise extends BaseDataObject {
     protected Object cruiseVariables;
     protected Object frequency;
     protected Object image;
-    protected Object ptfCruises;
     protected Object ptfDeployments;
     protected Object retrievals;
     protected Object services;
@@ -589,19 +586,6 @@ public abstract class _Cruise extends BaseDataObject {
         return (Image)readProperty("image");
     }
 
-    public void addToPtfCruises(PtfCruise obj) {
-        addToManyTarget("ptfCruises", obj, true);
-    }
-
-    public void removeFromPtfCruises(PtfCruise obj) {
-        removeToManyTarget("ptfCruises", obj, true);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<PtfCruise> getPtfCruises() {
-        return (List<PtfCruise>)readProperty("ptfCruises");
-    }
-
     public void addToPtfDeployments(PtfDeployment obj) {
         addToManyTarget("ptfDeployments", obj, true);
     }
@@ -771,8 +755,6 @@ public abstract class _Cruise extends BaseDataObject {
                 return this.frequency;
             case "image":
                 return this.image;
-            case "ptfCruises":
-                return this.ptfCruises;
             case "ptfDeployments":
                 return this.ptfDeployments;
             case "retrievals":
@@ -928,9 +910,6 @@ public abstract class _Cruise extends BaseDataObject {
             case "image":
                 this.image = val;
                 break;
-            case "ptfCruises":
-                this.ptfCruises = val;
-                break;
             case "ptfDeployments":
                 this.ptfDeployments = val;
                 break;
@@ -1011,7 +990,6 @@ public abstract class _Cruise extends BaseDataObject {
         out.writeObject(this.cruiseVariables);
         out.writeObject(this.frequency);
         out.writeObject(this.image);
-        out.writeObject(this.ptfCruises);
         out.writeObject(this.ptfDeployments);
         out.writeObject(this.retrievals);
         out.writeObject(this.services);
@@ -1067,7 +1045,6 @@ public abstract class _Cruise extends BaseDataObject {
         this.cruiseVariables = in.readObject();
         this.frequency = in.readObject();
         this.image = in.readObject();
-        this.ptfCruises = in.readObject();
         this.ptfDeployments = in.readObject();
         this.retrievals = in.readObject();
         this.services = in.readObject();

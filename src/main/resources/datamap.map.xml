@@ -1022,10 +1022,6 @@
 		<db-attribute name="CYCLE" type="NUMERIC" isPrimaryKey="true" isMandatory="true" length="5"/>
 		<db-attribute name="PTF_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="PTF_CRUISE" schema="JCOMMOPS_B">
-		<db-attribute name="CRUISE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
-		<db-attribute name="PTF_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
-	</db-entity>
 	<db-entity name="PTF_DEPLOYMENT" schema="JCOMMOPS_B">
 		<db-attribute name="CONTACT_ID" type="INTEGER" length="10"/>
 		<db-attribute name="COUNTRY_ID" type="INTEGER" length="10"/>
@@ -2647,10 +2643,6 @@
 		<obj-attribute name="cycle" type="java.lang.Integer" db-attribute-path="CYCLE"/>
 		<obj-attribute name="ptfId" type="java.lang.Integer" db-attribute-path="PTF_ID"/>
 	</obj-entity>
-	<obj-entity name="PtfCruise" className="org.oceanops.api.orm.PtfCruise" dbEntityName="PTF_CRUISE">
-		<obj-attribute name="cruiseId" type="java.lang.Integer" db-attribute-path="CRUISE_ID"/>
-		<obj-attribute name="ptfId" type="java.lang.Integer" db-attribute-path="PTF_ID"/>
-	</obj-entity>
 	<obj-entity name="PtfDeployment" className="org.oceanops.api.orm.PtfDeployment" dbEntityName="PTF_DEPLOYMENT">
 		<obj-attribute name="cruiseName" type="java.lang.String" db-attribute-path="CRUISE_NAME"/>
 		<obj-attribute name="ctd" type="java.lang.Integer" db-attribute-path="CTD"/>
@@ -3619,9 +3611,6 @@
 	<db-relationship name="image" source="CRUISE" target="IMAGE">
 		<db-attribute-pair source="IMAGE_ID" target="ID"/>
 	</db-relationship>
-	<db-relationship name="ptfCruises" source="CRUISE" target="PTF_CRUISE" toDependentPK="true" toMany="true">
-		<db-attribute-pair source="ID" target="CRUISE_ID"/>
-	</db-relationship>
 	<db-relationship name="ptfDeployments" source="CRUISE" target="PTF_DEPLOYMENT" toMany="true">
 		<db-attribute-pair source="ID" target="CRUISE_ID"/>
 	</db-relationship>
@@ -4438,9 +4427,6 @@
 	<db-relationship name="ptfConfigs" source="PTF" target="PTF_CONFIG" toDependentPK="true" toMany="true">
 		<db-attribute-pair source="ID" target="PTF_ID"/>
 	</db-relationship>
-	<db-relationship name="ptfCruises" source="PTF" target="PTF_CRUISE" toDependentPK="true" toMany="true">
-		<db-attribute-pair source="ID" target="PTF_ID"/>
-	</db-relationship>
 	<db-relationship name="ptfDepl" source="PTF" target="PTF_DEPLOYMENT">
 		<db-attribute-pair source="PTF_DEPL_ID" target="ID"/>
 	</db-relationship>
@@ -4535,12 +4521,6 @@
 		<db-attribute-pair source="CONFIG_ID" target="ID"/>
 	</db-relationship>
 	<db-relationship name="ptf" source="PTF_CONFIG" target="PTF">
-		<db-attribute-pair source="PTF_ID" target="ID"/>
-	</db-relationship>
-	<db-relationship name="cruise" source="PTF_CRUISE" target="CRUISE">
-		<db-attribute-pair source="CRUISE_ID" target="ID"/>
-	</db-relationship>
-	<db-relationship name="ptf" source="PTF_CRUISE" target="PTF">
 		<db-attribute-pair source="PTF_ID" target="ID"/>
 	</db-relationship>
 	<db-relationship name="contact" source="PTF_DEPLOYMENT" target="CONTACT">
@@ -5345,7 +5325,6 @@
 	<obj-relationship name="cruiseVariables" source="Cruise" target="CruiseVariable" deleteRule="Deny" db-relationship-path="cruiseVariables"/>
 	<obj-relationship name="frequency" source="Cruise" target="Frequency" deleteRule="Nullify" db-relationship-path="frequency"/>
 	<obj-relationship name="image" source="Cruise" target="Image" deleteRule="Nullify" db-relationship-path="image"/>
-	<obj-relationship name="ptfCruises" source="Cruise" target="PtfCruise" deleteRule="Deny" db-relationship-path="ptfCruises"/>
 	<obj-relationship name="ptfDeployments" source="Cruise" target="PtfDeployment" deleteRule="Deny" db-relationship-path="ptfDeployments"/>
 	<obj-relationship name="retrievals" source="Cruise" target="Retrieval" deleteRule="Deny" db-relationship-path="retrievals"/>
 	<obj-relationship name="services" source="Cruise" target="Service" deleteRule="Deny" db-relationship-path="services"/>
@@ -5597,21 +5576,13 @@
 	<obj-relationship name="latestObs" source="Ptf" target="ObsLatest" deleteRule="Nullify" db-relationship-path="latestObs"/>
 	<obj-relationship name="lines" source="Ptf" target="Line" deleteRule="Nullify" db-relationship-path="linePtfs.line"/>
 	<obj-relationship name="mzmsPtfCountries" source="Ptf" target="MzmsPtfCountry" deleteRule="Deny" db-relationship-path="mzmsPtfCountries"/>
-	<obj-relationship name="ncNotifications" source="Ptf" target="NcNotification" deleteRule="Deny" db-relationship-path="ncNotifications"/>
-	<obj-relationship name="ncSubscriptions" source="Ptf" target="NcSubscription" deleteRule="Deny" db-relationship-path="ncSubscriptions"/>
 	<obj-relationship name="networkPtfs" source="Ptf" target="NetworkPtf" deleteRule="Deny" db-relationship-path="networkPtfs"/>
-	<obj-relationship name="obsArgoGdacs" source="Ptf" target="ObsArgoGdac" deleteRule="Deny" db-relationship-path="obsArgoGdacs"/>
-	<obj-relationship name="obsFishingvesselFishydatas" source="Ptf" target="ObsFishingvesselFishydata" deleteRule="Deny" db-relationship-path="obsFishingvesselFishydatas"/>
-	<obj-relationship name="obsGlidersGtsOsmcs" source="Ptf" target="ObsGlidersGtsOsmc" deleteRule="Deny" db-relationship-path="obsGlidersGtsOsmcs"/>
-	<obj-relationship name="obsTsunaGtsOsmcs" source="Ptf" target="ObsTsunaGtsOsmc" deleteRule="Deny" db-relationship-path="obsTsunaGtsOsmcs"/>
-	<obj-relationship name="obss" source="Ptf" target="Obs" deleteRule="Deny" db-relationship-path="obss"/>
 	<obj-relationship name="parameterPtfs" source="Ptf" target="ParameterPtf" deleteRule="Deny" db-relationship-path="parameterPtfs"/>
 	<obj-relationship name="program" source="Ptf" target="Program" deleteRule="Nullify" db-relationship-path="program"/>
 	<obj-relationship name="ptfAncillaryDevices" source="Ptf" target="PtfAncillaryDevice" deleteRule="Nullify" db-relationship-path="ptfAncillaryDevices"/>
 	<obj-relationship name="ptfAutomation" source="Ptf" target="PtfAutomation" deleteRule="Nullify" db-relationship-path="ptfAutomation"/>
 	<obj-relationship name="ptfBatchStatus" source="Ptf" target="PtfBatchStatus" deleteRule="Nullify" db-relationship-path="ptfBatchStatus"/>
 	<obj-relationship name="ptfConfigs" source="Ptf" target="PtfConfig" deleteRule="Deny" db-relationship-path="ptfConfigs"/>
-	<obj-relationship name="ptfCruises" source="Ptf" target="PtfCruise" deleteRule="Deny" db-relationship-path="ptfCruises"/>
 	<obj-relationship name="ptfDepl" source="Ptf" target="PtfDeployment" deleteRule="Nullify" db-relationship-path="ptfDepl"/>
 	<obj-relationship name="ptfHardware" source="Ptf" target="PtfHardware" deleteRule="Nullify" db-relationship-path="ptfHardware"/>
 	<obj-relationship name="ptfIdentifiers" source="Ptf" target="PtfIdentifiers" deleteRule="Nullify" db-relationship-path="ptfIdentifiers"/>
@@ -5619,7 +5590,6 @@
 	<obj-relationship name="ptfModel" source="Ptf" target="PtfModel" deleteRule="Nullify" db-relationship-path="ptfModel"/>
 	<obj-relationship name="ptfPtfStatuses" source="Ptf" target="PtfPtfStatus" deleteRule="Deny" db-relationship-path="ptfPtfStatuses"/>
 	<obj-relationship name="ptfSoftware" source="Ptf" target="PtfSoftware" deleteRule="Nullify" db-relationship-path="ptfSoftware"/>
-	<obj-relationship name="ptfStatistics" source="Ptf" target="PtfStatistics" deleteRule="Nullify" db-relationship-path="ptfStatistics"/>
 	<obj-relationship name="ptfStatus" source="Ptf" target="PtfStatus" deleteRule="Nullify" db-relationship-path="ptfStatus"/>
 	<obj-relationship name="ptfVariables" source="Ptf" target="PtfVariable" deleteRule="Deny" db-relationship-path="ptfVariables"/>
 	<obj-relationship name="qcFeedbacks" source="Ptf" target="QcFeedback" deleteRule="Deny" db-relationship-path="qcFeedbacks"/>
@@ -5629,9 +5599,7 @@
 	<obj-relationship name="sitePtfs" source="Ptf" target="SitePtf" deleteRule="Deny" db-relationship-path="sitePtfs"/>
 	<obj-relationship name="telecom" source="Ptf" target="Telecom" deleteRule="Nullify" db-relationship-path="telecom"/>
 	<obj-relationship name="trackingSystem" source="Ptf" target="LocSystem" deleteRule="Nullify" db-relationship-path="trackingSystem"/>
-	<obj-relationship name="webFrequentations" source="Ptf" target="WebFrequentation" deleteRule="Deny" db-relationship-path="webFrequentations"/>
 	<obj-relationship name="weblinks" source="Ptf" target="Weblink" deleteRule="Nullify" db-relationship-path="weblinkPtfs.weblink"/>
-	<obj-relationship name="weblinks1" source="Ptf" target="Weblink" deleteRule="Deny" db-relationship-path="weblinks"/>
 	<obj-relationship name="wmos" source="Ptf" target="Wmo" deleteRule="Deny" db-relationship-path="wmos"/>
 	<obj-relationship name="ptf" source="PtfAncillaryDevice" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
 	<obj-relationship name="ptfAncillaryDeviceName" source="PtfAncillaryDevice" target="PtfAncillaryDeviceName" deleteRule="Nullify" db-relationship-path="ptfAncillaryDeviceName"/>
@@ -5642,8 +5610,6 @@
 	<obj-relationship name="ptfHardwares" source="PtfBattery" target="PtfHardware" deleteRule="Deny" db-relationship-path="ptfHardwares"/>
 	<obj-relationship name="config" source="PtfConfig" target="Config" deleteRule="Nullify" db-relationship-path="config"/>
 	<obj-relationship name="ptf" source="PtfConfig" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
-	<obj-relationship name="cruise" source="PtfCruise" target="Cruise" deleteRule="Nullify" db-relationship-path="cruise"/>
-	<obj-relationship name="ptf" source="PtfCruise" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
 	<obj-relationship name="contact" source="PtfDeployment" target="Contact" deleteRule="Nullify" db-relationship-path="contact"/>
 	<obj-relationship name="country" source="PtfDeployment" target="Country" deleteRule="Nullify" db-relationship-path="country"/>
 	<obj-relationship name="cruise" source="PtfDeployment" target="Cruise" deleteRule="Nullify" db-relationship-path="cruise"/>

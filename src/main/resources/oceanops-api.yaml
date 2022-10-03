@@ -511,8 +511,6 @@ components:
           type: number
         projectName:
           type: string
-        ptfCruises:
-          $ref: '#/components/schemas/PtfCruise'
         ptfDeployments:
           $ref: '#/components/schemas/PtfDeployment'
         ref:
@@ -1566,8 +1564,6 @@ components:
           $ref: '#/components/schemas/PtfBatchStatus'
         ptfConfigs:
           $ref: '#/components/schemas/PtfConfig'
-        ptfCruises:
-          $ref: '#/components/schemas/PtfCruise'
         ptfDepl:
           $ref: '#/components/schemas/PtfDeployment'
         ptfHardware:
@@ -1582,8 +1578,6 @@ components:
           $ref: '#/components/schemas/PtfPtfStatus'
         ptfSoftware:
           $ref: '#/components/schemas/PtfSoftware'
-        ptfStatistics:
-          $ref: '#/components/schemas/PtfStatistics'
         ptfStatus:
           $ref: '#/components/schemas/PtfStatus'
         ptfVariables:
@@ -1610,8 +1604,6 @@ components:
         validated:
           type: number
         weblinks:
-          $ref: '#/components/schemas/Weblink'
-        weblinks1:
           $ref: '#/components/schemas/Weblink'
         wigosSynchronised:
           type: number
@@ -1685,17 +1677,6 @@ components:
         config:
           $ref: '#/components/schemas/Config'
         cycle:
-          type: number
-        ptf:
-          $ref: '#/components/schemas/Ptf'
-        ptfId:
-          type: number
-      type: object
-    PtfCruise:
-      properties:
-        cruise:
-          $ref: '#/components/schemas/Cruise'
-        cruiseId:
           type: number
         ptf:
           $ref: '#/components/schemas/Ptf'

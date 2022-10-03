@@ -180,7 +180,6 @@
 		<entity name="GtsInstrumentType" x="10.0" y="10.0" width="111.0" height="130.0"/>
 		<entity name="NetworkSite" x="10.0" y="10.0" width="74.0" height="66.0"/>
 		<entity name="PtfBattery" x="10.0" y="10.0" width="61.0" height="114.0"/>
-		<entity name="PtfCruise" x="10.0" y="10.0" width="53.0" height="66.0"/>
 		<entity name="ProgramAgency" x="10.0" y="10.0" width="91.0" height="50.0"/>
 		<entity name="Basin" x="10.0" y="10.0" width="60.0" height="162.0"/>
 		<entity name="NetworkType" x="10.0" y="10.0" width="79.0" height="66.0"/>
@@ -355,7 +354,6 @@
 		<entity name="COUNTRY_COMMITMENT" x="1673.9" y="1311.61" width="145.0" height="146.0"/>
 		<entity name="CRUISE_PROGRAM" x="1514.02" y="1542.76" width="108.0" height="82.0"/>
 		<entity name="PTF_AUTOMATION" x="1067.01" y="1517.03" width="108.0" height="98.0"/>
-		<entity name="PTF_CRUISE" x="1159.87" y="1354.48" width="68.0" height="66.0"/>
 		<entity name="QC_FEEDBACK_VARIABLE" x="1257.72" y="1671.34" width="142.0" height="66.0"/>
 		<entity name="SERVICE" x="941.86" y="1465.63" width="106.0" height="226.0"/>
 		<entity name="SCHEDULE" x="2703.0" y="1755.0" width="78.0" height="82.0"/>
