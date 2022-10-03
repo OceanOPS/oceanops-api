@@ -33,10 +33,8 @@ public abstract class _Service extends BaseDataObject {
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
     public static final DateProperty<LocalDateTime> END_DATE = PropertyFactory.createDate("endDate", LocalDateTime.class);
     public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
-    public static final StringProperty<String> LOCATION = PropertyFactory.createString("location", String.class);
     public static final NumericProperty<Integer> LOCATION_ID = PropertyFactory.createNumeric("locationId", Integer.class);
     public static final DateProperty<LocalDateTime> START_DATE = PropertyFactory.createDate("startDate", LocalDateTime.class);
-    public static final StringProperty<String> TYPE = PropertyFactory.createString("type", String.class);
     public static final NumericProperty<Integer> TYPE_ID = PropertyFactory.createNumeric("typeId", Integer.class);
     public static final EntityProperty<Agency> AGENCY = PropertyFactory.createEntity("agency", Agency.class);
     public static final EntityProperty<Contact> CONTACT = PropertyFactory.createEntity("contact", Contact.class);
@@ -48,10 +46,8 @@ public abstract class _Service extends BaseDataObject {
     protected String description;
     protected LocalDateTime endDate;
     protected Integer id;
-    protected String location;
     protected Integer locationId;
     protected LocalDateTime startDate;
-    protected String type;
     protected Integer typeId;
 
     protected Object agency;
@@ -91,16 +87,6 @@ public abstract class _Service extends BaseDataObject {
         return this.id;
     }
 
-    public void setLocation(String location) {
-        beforePropertyWrite("location", this.location, location);
-        this.location = location;
-    }
-
-    public String getLocation() {
-        beforePropertyRead("location");
-        return this.location;
-    }
-
     public void setLocationId(Integer locationId) {
         beforePropertyWrite("locationId", this.locationId, locationId);
         this.locationId = locationId;
@@ -119,16 +105,6 @@ public abstract class _Service extends BaseDataObject {
     public LocalDateTime getStartDate() {
         beforePropertyRead("startDate");
         return this.startDate;
-    }
-
-    public void setType(String type) {
-        beforePropertyWrite("type", this.type, type);
-        this.type = type;
-    }
-
-    public String getType() {
-        beforePropertyRead("type");
-        return this.type;
     }
 
     public void setTypeId(Integer typeId) {
@@ -202,14 +178,10 @@ public abstract class _Service extends BaseDataObject {
                 return this.endDate;
             case "id":
                 return this.id;
-            case "location":
-                return this.location;
             case "locationId":
                 return this.locationId;
             case "startDate":
                 return this.startDate;
-            case "type":
-                return this.type;
             case "typeId":
                 return this.typeId;
             case "agency":
@@ -245,17 +217,11 @@ public abstract class _Service extends BaseDataObject {
             case "id":
                 this.id = (Integer)val;
                 break;
-            case "location":
-                this.location = (String)val;
-                break;
             case "locationId":
                 this.locationId = (Integer)val;
                 break;
             case "startDate":
                 this.startDate = (LocalDateTime)val;
-                break;
-            case "type":
-                this.type = (String)val;
                 break;
             case "typeId":
                 this.typeId = (Integer)val;
@@ -297,10 +263,8 @@ public abstract class _Service extends BaseDataObject {
         out.writeObject(this.description);
         out.writeObject(this.endDate);
         out.writeObject(this.id);
-        out.writeObject(this.location);
         out.writeObject(this.locationId);
         out.writeObject(this.startDate);
-        out.writeObject(this.type);
         out.writeObject(this.typeId);
         out.writeObject(this.agency);
         out.writeObject(this.contact);
@@ -316,10 +280,8 @@ public abstract class _Service extends BaseDataObject {
         this.description = (String)in.readObject();
         this.endDate = (LocalDateTime)in.readObject();
         this.id = (Integer)in.readObject();
-        this.location = (String)in.readObject();
         this.locationId = (Integer)in.readObject();
         this.startDate = (LocalDateTime)in.readObject();
-        this.type = (String)in.readObject();
         this.typeId = (Integer)in.readObject();
         this.agency = in.readObject();
         this.contact = in.readObject();

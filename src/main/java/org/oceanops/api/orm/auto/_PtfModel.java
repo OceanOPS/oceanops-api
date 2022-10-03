@@ -39,10 +39,6 @@ public abstract class _PtfModel extends BaseDataObject {
     public static final NumericProperty<Integer> API_WMO_ID_TYPE_ID = PropertyFactory.createNumeric("apiWmoIdTypeId", Integer.class);
     public static final NumericProperty<Integer> COMMERCIAL = PropertyFactory.createNumeric("commercial", Integer.class);
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
-    public static final NumericProperty<Double> DIAMETER = PropertyFactory.createNumeric("diameter", Double.class);
-    public static final NumericProperty<Integer> DROGUE = PropertyFactory.createNumeric("drogue", Integer.class);
-    public static final NumericProperty<Double> DROGUE_DEPTH = PropertyFactory.createNumeric("drogueDepth", Double.class);
-    public static final StringProperty<String> DROGUE_TYPE = PropertyFactory.createString("drogueType", String.class);
     public static final NumericProperty<Double> HEIGHT = PropertyFactory.createNumeric("height", Double.class);
     public static final NumericProperty<Double> HEIGHT_ABOVE = PropertyFactory.createNumeric("heightAbove", Double.class);
     public static final NumericProperty<Double> HULL_DEPTH = PropertyFactory.createNumeric("hullDepth", Double.class);
@@ -71,10 +67,6 @@ public abstract class _PtfModel extends BaseDataObject {
     protected Integer apiWmoIdTypeId;
     protected Integer commercial;
     protected String description;
-    protected Double diameter;
-    protected Integer drogue;
-    protected Double drogueDepth;
-    protected String drogueType;
     protected Double height;
     protected Double heightAbove;
     protected Double hullDepth;
@@ -138,46 +130,6 @@ public abstract class _PtfModel extends BaseDataObject {
     public String getDescription() {
         beforePropertyRead("description");
         return this.description;
-    }
-
-    public void setDiameter(Double diameter) {
-        beforePropertyWrite("diameter", this.diameter, diameter);
-        this.diameter = diameter;
-    }
-
-    public Double getDiameter() {
-        beforePropertyRead("diameter");
-        return this.diameter;
-    }
-
-    public void setDrogue(Integer drogue) {
-        beforePropertyWrite("drogue", this.drogue, drogue);
-        this.drogue = drogue;
-    }
-
-    public Integer getDrogue() {
-        beforePropertyRead("drogue");
-        return this.drogue;
-    }
-
-    public void setDrogueDepth(Double drogueDepth) {
-        beforePropertyWrite("drogueDepth", this.drogueDepth, drogueDepth);
-        this.drogueDepth = drogueDepth;
-    }
-
-    public Double getDrogueDepth() {
-        beforePropertyRead("drogueDepth");
-        return this.drogueDepth;
-    }
-
-    public void setDrogueType(String drogueType) {
-        beforePropertyWrite("drogueType", this.drogueType, drogueType);
-        this.drogueType = drogueType;
-    }
-
-    public String getDrogueType() {
-        beforePropertyRead("drogueType");
-        return this.drogueType;
     }
 
     public void setHeight(Double height) {
@@ -413,14 +365,6 @@ public abstract class _PtfModel extends BaseDataObject {
                 return this.commercial;
             case "description":
                 return this.description;
-            case "diameter":
-                return this.diameter;
-            case "drogue":
-                return this.drogue;
-            case "drogueDepth":
-                return this.drogueDepth;
-            case "drogueType":
-                return this.drogueType;
             case "height":
                 return this.height;
             case "heightAbove":
@@ -490,18 +434,6 @@ public abstract class _PtfModel extends BaseDataObject {
                 break;
             case "description":
                 this.description = (String)val;
-                break;
-            case "diameter":
-                this.diameter = (Double)val;
-                break;
-            case "drogue":
-                this.drogue = (Integer)val;
-                break;
-            case "drogueDepth":
-                this.drogueDepth = (Double)val;
-                break;
-            case "drogueType":
-                this.drogueType = (String)val;
                 break;
             case "height":
                 this.height = (Double)val;
@@ -592,10 +524,6 @@ public abstract class _PtfModel extends BaseDataObject {
         out.writeObject(this.apiWmoIdTypeId);
         out.writeObject(this.commercial);
         out.writeObject(this.description);
-        out.writeObject(this.diameter);
-        out.writeObject(this.drogue);
-        out.writeObject(this.drogueDepth);
-        out.writeObject(this.drogueType);
         out.writeObject(this.height);
         out.writeObject(this.heightAbove);
         out.writeObject(this.hullDepth);
@@ -628,10 +556,6 @@ public abstract class _PtfModel extends BaseDataObject {
         this.apiWmoIdTypeId = (Integer)in.readObject();
         this.commercial = (Integer)in.readObject();
         this.description = (String)in.readObject();
-        this.diameter = (Double)in.readObject();
-        this.drogue = (Integer)in.readObject();
-        this.drogueDepth = (Double)in.readObject();
-        this.drogueType = (String)in.readObject();
         this.height = (Double)in.readObject();
         this.heightAbove = (Double)in.readObject();
         this.hullDepth = (Double)in.readObject();

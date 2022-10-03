@@ -37,7 +37,7 @@
 		<entity name="WebFrequentation" x="10.0" y="10.0" width="107.0" height="82.0"/>
 		<entity name="ObsStats" x="627.0" y="38.0" width="51.0" height="130.0"/>
 		<entity name="PtfStatistics" x="10.0" y="10.0" width="127.0" height="306.0"/>
-		<entity name="PtfVariable" x="10.0" y="10.0" width="135.0" height="498.0"/>
+		<entity name="PtfVariable" x="10.0" y="10.0" width="135.0" height="466.0"/>
 		<entity name="CountryCommitment" x="10.0" y="10.0" width="120.0" height="98.0"/>
 		<entity name="ParameterVariable" x="0.0" y="0.0" width="106.0" height="18.0"/>
 		<entity name="AgencyDacType" x="10.0" y="10.0" width="94.0" height="194.0"/>
@@ -81,7 +81,7 @@
 		<entity name="Latency" x="10.0" y="10.0" width="60.0" height="82.0"/>
 		<entity name="Role" x="10.0" y="10.0" width="61.0" height="130.0"/>
 		<entity name="PtfType" x="10.0" y="10.0" width="61.0" height="114.0"/>
-		<entity name="PtfModel" x="10.0" y="10.0" width="92.0" height="354.0"/>
+		<entity name="PtfModel" x="10.0" y="10.0" width="92.0" height="290.0"/>
 		<entity name="EndingCause" x="10.0" y="10.0" width="71.0" height="82.0"/>
 		<entity name="DataStatus" x="10.0" y="10.0" width="63.0" height="98.0"/>
 		<entity name="PtfBatchStatus" x="10.0" y="10.0" width="86.0" height="66.0"/>
@@ -149,7 +149,7 @@
 		<entity name="SensorModelSensorType" x="10.0" y="10.0" width="140.0" height="146.0"/>
 		<entity name="WebDailyVisits" x="959.0" y="36.0" width="84.0" height="82.0"/>
 		<entity name="PtfConfig" x="10.0" y="10.0" width="55.0" height="66.0"/>
-		<entity name="Telecom" x="10.0" y="10.0" width="55.0" height="178.0"/>
+		<entity name="Telecom" x="10.0" y="10.0" width="55.0" height="146.0"/>
 		<entity name="CruiseLine" x="0.0" y="0.0" width="99.0" height="66.0"/>
 		<entity name="QcFeedbackVariable" x="10.0" y="10.0" width="115.0" height="66.0"/>
 		<entity name="QcFeedbackType" x="10.0" y="10.0" width="97.0" height="114.0"/>
@@ -190,7 +190,7 @@
 		<entity name="Topic" x="10.0" y="10.0" width="32.0" height="66.0"/>
 		<entity name="LineType" x="10.0" y="10.0" width="87.0" height="418.0"/>
 		<entity name="CruiseContact" x="10.0" y="10.0" width="79.0" height="82.0"/>
-		<entity name="Service" x="10.0" y="10.0" width="61.0" height="162.0"/>
+		<entity name="Service" x="10.0" y="10.0" width="61.0" height="130.0"/>
 		<entity name="GtsCcccHeader" x="10.0" y="10.0" width="87.0" height="66.0"/>
 		<entity name="LinePtf" x="10.0" y="10.0" width="42.0" height="18.0"/>
 		<entity name="Contact" x="10.0" y="10.0" width="79.0" height="338.0"/>
@@ -295,7 +295,7 @@
 		<entity name="MEETING" x="609.2" y="822.36" width="88.0" height="226.0"/>
 		<entity name="WEBLINK" x="1118.04" y="913.91" width="89.0" height="226.0"/>
 		<entity name="OBS_LATEST" x="434.53" y="452.85" width="79.0" height="130.0"/>
-		<entity name="TELECOM" x="1216.04" y="369.67" width="122.0" height="242.0"/>
+		<entity name="TELECOM" x="1216.04" y="369.67" width="122.0" height="210.0"/>
 		<entity name="AGENCY" x="1262.77" y="1017.5" width="88.0" height="322.0"/>
 		<entity name="TELECOM_TYPE" x="144.07" y="303.14" width="86.0" height="98.0"/>
 		<entity name="NETWORK_CONTACT" x="1474.94" y="124.78" width="120.0" height="82.0"/>
@@ -342,7 +342,7 @@
 		<entity name="PTF_HARDWARE" x="1393.47" y="1619.33" width="177.0" height="322.0"/>
 		<entity name="CONTACT_LOGIN" x="1756.42" y="1761.84" width="98.0" height="146.0"/>
 		<entity name="OBS_GLIDERS_GTS_OSMC_VARIABLE" x="1249.61" y="1859.59" width="208.0" height="66.0"/>
-		<entity name="PTF_VARIABLE" x="1343.51" y="1507.67" width="176.0" height="658.0"/>
+		<entity name="PTF_VARIABLE" x="1343.51" y="1507.67" width="176.0" height="626.0"/>
 		<entity name="PTF_SOFTWARE_TYPE" x="1874.64" y="2051.06" width="122.0" height="66.0"/>
 		<entity name="OBS_OBS_DATA_STATUS" x="1768.43" y="1908.13" width="142.0" height="82.0"/>
 		<entity name="CRUISE_TYPE" x="732.84" y="1635.17" width="78.0" height="114.0"/>
@@ -357,7 +357,7 @@
 		<entity name="PTF_AUTOMATION" x="1067.01" y="1517.03" width="108.0" height="98.0"/>
 		<entity name="PTF_CRUISE" x="1159.87" y="1354.48" width="68.0" height="66.0"/>
 		<entity name="QC_FEEDBACK_VARIABLE" x="1257.72" y="1671.34" width="142.0" height="66.0"/>
-		<entity name="SERVICE" x="941.86" y="1465.63" width="106.0" height="258.0"/>
+		<entity name="SERVICE" x="941.86" y="1465.63" width="106.0" height="226.0"/>
 		<entity name="SCHEDULE" x="2703.0" y="1755.0" width="78.0" height="82.0"/>
 		<entity name="NC_SUBSCRIPTION" x="1133.77" y="1642.08" width="114.0" height="162.0"/>
 		<entity name="GTS_CCCC" x="989.11" y="1660.64" width="88.0" height="194.0"/>
@@ -395,7 +395,7 @@
 		<entity name="OBS_FISHINGVESSEL_FD_VARIABLE" x="598.46" y="618.21" width="200.0" height="66.0"/>
 		<entity name="LINE_FAMILY" x="1245.24" y="0.0" width="78.0" height="98.0"/>
 		<entity name="USER_GROUP_AGENCY" x="1034.74" y="63.6" width="130.0" height="66.0"/>
-		<entity name="PTF_MODEL" x="1872.02" y="375.69" width="145.0" height="482.0"/>
+		<entity name="PTF_MODEL" x="1872.02" y="375.69" width="145.0" height="418.0"/>
 		<entity name="PROGRAM_CONTACT" x="1713.68" y="1.71" width="152.0" height="130.0"/>
 		<entity name="SERVICE_TYPE" x="2703.0" y="1610.0" width="80.0" height="82.0"/>
 		<entity name="SENSOR_STATUS" x="0.0" y="1333.82" width="98.0" height="98.0"/>

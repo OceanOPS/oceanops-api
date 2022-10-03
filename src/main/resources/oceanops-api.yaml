@@ -1926,14 +1926,6 @@ components:
           $ref: '#/components/schemas/Contact'
         description:
           type: string
-        diameter:
-          type: number
-        drogue:
-          type: number
-        drogueDepth:
-          type: number
-        drogueType:
-          type: string
         gtsInstrumentType:
           $ref: '#/components/schemas/GtsInstrumentType'
         height:
@@ -2089,10 +2081,6 @@ components:
       properties:
         accuracy:
           type: string
-        averagingMethod:
-          type: string
-        averagingPeriod:
-          type: number
         calibDate:
           format: date-time
           type: string
@@ -2542,8 +2530,6 @@ components:
           type: string
         id:
           type: number
-        location:
-          type: string
         locationId:
           type: number
         program:
@@ -2554,8 +2540,6 @@ components:
           $ref: '#/components/schemas/SensorModel'
         startDate:
           format: date-time
-          type: string
-        type:
           type: string
         typeId:
           type: number
@@ -2837,15 +2821,11 @@ components:
           type: string
         latency:
           $ref: '#/components/schemas/Latency'
-        latency1:
-          type: number
         num:
           type: string
-        ptfId:
-          type: number
-        ptfs:
+        ptf:
           $ref: '#/components/schemas/Ptf'
-        ptfs1:
+        ptfBackup:
           $ref: '#/components/schemas/Ptf'
         refProg:
           type: string

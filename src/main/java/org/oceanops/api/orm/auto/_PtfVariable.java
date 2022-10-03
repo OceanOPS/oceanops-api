@@ -35,8 +35,6 @@ public abstract class _PtfVariable extends BaseDataObject {
     public static final String ID_PK_COLUMN = "ID";
 
     public static final StringProperty<String> ACCURACY = PropertyFactory.createString("accuracy", String.class);
-    public static final StringProperty<String> AVERAGING_METHOD = PropertyFactory.createString("averagingMethod", String.class);
-    public static final NumericProperty<Double> AVERAGING_PERIOD = PropertyFactory.createNumeric("averagingPeriod", Double.class);
     public static final DateProperty<LocalDateTime> CALIB_DATE = PropertyFactory.createDate("calibDate", LocalDateTime.class);
     public static final DateProperty<LocalDateTime> CALIB_DATE_NEXT = PropertyFactory.createDate("calibDateNext", LocalDateTime.class);
     public static final StringProperty<String> COMMENTS = PropertyFactory.createString("comments", String.class);
@@ -76,8 +74,6 @@ public abstract class _PtfVariable extends BaseDataObject {
     public static final EntityProperty<Weblink> WEBLINK = PropertyFactory.createEntity("weblink", Weblink.class);
 
     protected String accuracy;
-    protected String averagingMethod;
-    protected Double averagingPeriod;
     protected LocalDateTime calibDate;
     protected LocalDateTime calibDateNext;
     protected String comments;
@@ -125,26 +121,6 @@ public abstract class _PtfVariable extends BaseDataObject {
     public String getAccuracy() {
         beforePropertyRead("accuracy");
         return this.accuracy;
-    }
-
-    public void setAveragingMethod(String averagingMethod) {
-        beforePropertyWrite("averagingMethod", this.averagingMethod, averagingMethod);
-        this.averagingMethod = averagingMethod;
-    }
-
-    public String getAveragingMethod() {
-        beforePropertyRead("averagingMethod");
-        return this.averagingMethod;
-    }
-
-    public void setAveragingPeriod(Double averagingPeriod) {
-        beforePropertyWrite("averagingPeriod", this.averagingPeriod, averagingPeriod);
-        this.averagingPeriod = averagingPeriod;
-    }
-
-    public Double getAveragingPeriod() {
-        beforePropertyRead("averagingPeriod");
-        return this.averagingPeriod;
     }
 
     public void setCalibDate(LocalDateTime calibDate) {
@@ -504,10 +480,6 @@ public abstract class _PtfVariable extends BaseDataObject {
         switch(propName) {
             case "accuracy":
                 return this.accuracy;
-            case "averagingMethod":
-                return this.averagingMethod;
-            case "averagingPeriod":
-                return this.averagingPeriod;
             case "calibDate":
                 return this.calibDate;
             case "calibDateNext":
@@ -596,12 +568,6 @@ public abstract class _PtfVariable extends BaseDataObject {
         switch (propName) {
             case "accuracy":
                 this.accuracy = (String)val;
-                break;
-            case "averagingMethod":
-                this.averagingMethod = (String)val;
-                break;
-            case "averagingPeriod":
-                this.averagingPeriod = (Double)val;
                 break;
             case "calibDate":
                 this.calibDate = (LocalDateTime)val;
@@ -731,8 +697,6 @@ public abstract class _PtfVariable extends BaseDataObject {
     protected void writeState(ObjectOutputStream out) throws IOException {
         super.writeState(out);
         out.writeObject(this.accuracy);
-        out.writeObject(this.averagingMethod);
-        out.writeObject(this.averagingPeriod);
         out.writeObject(this.calibDate);
         out.writeObject(this.calibDateNext);
         out.writeObject(this.comments);
@@ -776,8 +740,6 @@ public abstract class _PtfVariable extends BaseDataObject {
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
         this.accuracy = (String)in.readObject();
-        this.averagingMethod = (String)in.readObject();
-        this.averagingPeriod = (Double)in.readObject();
         this.calibDate = (LocalDateTime)in.readObject();
         this.calibDateNext = (LocalDateTime)in.readObject();
         this.comments = (String)in.readObject();

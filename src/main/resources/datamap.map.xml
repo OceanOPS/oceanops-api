@@ -1131,10 +1131,6 @@
 		<db-attribute name="COMMERCIAL" type="NUMERIC" length="1"/>
 		<db-attribute name="CONTACT_ID" type="INTEGER" length="10"/>
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="2050"/>
-		<db-attribute name="DIAMETER" type="NUMERIC"/>
-		<db-attribute name="DROGUE" type="NUMERIC" length="1"/>
-		<db-attribute name="DROGUE_DEPTH" type="NUMERIC" length="5" scale="1"/>
-		<db-attribute name="DROGUE_TYPE" type="VARCHAR" length="20"/>
 		<db-attribute name="GTS_INSTRUMENT_TYPE_ID" type="INTEGER" length="10"/>
 		<db-attribute name="HEIGHT" type="NUMERIC" length="38"/>
 		<db-attribute name="HEIGHT_ABOVE" type="NUMERIC" length="5" scale="2"/>
@@ -1215,8 +1211,6 @@
 	</db-entity>
 	<db-entity name="PTF_VARIABLE" schema="JCOMMOPS_B">
 		<db-attribute name="ACCURACY" type="VARCHAR" length="50"/>
-		<db-attribute name="AVERAGING_METHOD" type="VARCHAR" length="15"/>
-		<db-attribute name="AVERAGING_PERIOD" type="NUMERIC" length="7" scale="2"/>
 		<db-attribute name="CALIB_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="CALIB_DATE_NEXT" type="TIMESTAMP" length="7"/>
 		<db-attribute name="COMMENTS" type="VARCHAR" length="500"/>
@@ -1431,13 +1425,11 @@
 		<db-attribute name="DESCRIPTION" type="CLOB" length="4000"/>
 		<db-attribute name="END_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
-		<db-attribute name="LOCATION" type="VARCHAR" length="100"/>
 		<db-attribute name="LOCATION_ID" type="INTEGER" length="10"/>
 		<db-attribute name="PROGRAM_ID" type="INTEGER" length="10"/>
 		<db-attribute name="PTF_ID" type="INTEGER" length="10"/>
 		<db-attribute name="SENSOR_MODEL_ID" type="INTEGER" length="10"/>
 		<db-attribute name="START_DATE" type="TIMESTAMP" length="7"/>
-		<db-attribute name="TYPE" type="VARCHAR" length="100"/>
 		<db-attribute name="TYPE_ID" type="INTEGER" length="10"/>
 	</db-entity>
 	<db-entity name="SERVICE_LOCATION" schema="JCOMMOPS_B">
@@ -1576,10 +1568,8 @@
 		<db-attribute name="FREQUENCY" type="VARCHAR" length="20"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="IMEI" type="VARCHAR" length="30"/>
-		<db-attribute name="LATENCY" type="NUMERIC" length="6" scale="2"/>
 		<db-attribute name="LATENCY_ID" type="INTEGER" length="10"/>
 		<db-attribute name="NUM" type="VARCHAR" length="30"/>
-		<db-attribute name="PTF_ID" type="INTEGER"/>
 		<db-attribute name="REF_PROG" type="VARCHAR" length="30"/>
 		<db-attribute name="START_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="TELECOM_FORMAT_ID" type="INTEGER" length="10"/>
@@ -2748,10 +2738,6 @@
 		<obj-attribute name="apiWmoIdTypeId" type="java.lang.Integer" db-attribute-path="API_WMO_ID_TYPE_ID"/>
 		<obj-attribute name="commercial" type="java.lang.Integer" db-attribute-path="COMMERCIAL"/>
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
-		<obj-attribute name="diameter" type="java.lang.Double" db-attribute-path="DIAMETER"/>
-		<obj-attribute name="drogue" type="java.lang.Integer" db-attribute-path="DROGUE"/>
-		<obj-attribute name="drogueDepth" type="java.lang.Double" db-attribute-path="DROGUE_DEPTH"/>
-		<obj-attribute name="drogueType" type="java.lang.String" db-attribute-path="DROGUE_TYPE"/>
 		<obj-attribute name="height" type="java.lang.Double" db-attribute-path="HEIGHT"/>
 		<obj-attribute name="heightAbove" type="java.lang.Double" db-attribute-path="HEIGHT_ABOVE"/>
 		<obj-attribute name="hullDepth" type="java.lang.Double" db-attribute-path="HULL_DEPTH"/>
@@ -2821,8 +2807,6 @@
 	</obj-entity>
 	<obj-entity name="PtfVariable" className="org.oceanops.api.orm.PtfVariable" dbEntityName="PTF_VARIABLE">
 		<obj-attribute name="accuracy" type="java.lang.String" db-attribute-path="ACCURACY"/>
-		<obj-attribute name="averagingMethod" type="java.lang.String" db-attribute-path="AVERAGING_METHOD"/>
-		<obj-attribute name="averagingPeriod" type="java.lang.Double" db-attribute-path="AVERAGING_PERIOD"/>
 		<obj-attribute name="calibDate" type="java.time.LocalDateTime" db-attribute-path="CALIB_DATE"/>
 		<obj-attribute name="calibDateNext" type="java.time.LocalDateTime" db-attribute-path="CALIB_DATE_NEXT"/>
 		<obj-attribute name="comments" type="java.lang.String" db-attribute-path="COMMENTS"/>
@@ -2998,10 +2982,8 @@
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="endDate" type="java.time.LocalDateTime" db-attribute-path="END_DATE"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
-		<obj-attribute name="location" type="java.lang.String" db-attribute-path="LOCATION"/>
 		<obj-attribute name="locationId" type="java.lang.Integer" db-attribute-path="LOCATION_ID"/>
 		<obj-attribute name="startDate" type="java.time.LocalDateTime" db-attribute-path="START_DATE"/>
-		<obj-attribute name="type" type="java.lang.String" db-attribute-path="TYPE"/>
 		<obj-attribute name="typeId" type="java.lang.Integer" db-attribute-path="TYPE_ID"/>
 	</obj-entity>
 	<obj-entity name="ServiceLocation" className="org.oceanops.api.orm.ServiceLocation" dbEntityName="SERVICE_LOCATION">
@@ -3129,9 +3111,7 @@
 		<obj-attribute name="frequency" type="java.lang.String" db-attribute-path="FREQUENCY"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="imei" type="java.lang.String" db-attribute-path="IMEI"/>
-		<obj-attribute name="latency1" type="java.lang.Double" db-attribute-path="LATENCY"/>
 		<obj-attribute name="num" type="java.lang.String" db-attribute-path="NUM"/>
-		<obj-attribute name="ptfId" type="java.lang.Integer" db-attribute-path="PTF_ID"/>
 		<obj-attribute name="refProg" type="java.lang.String" db-attribute-path="REF_PROG"/>
 		<obj-attribute name="startDate" type="java.time.LocalDateTime" db-attribute-path="START_DATE"/>
 	</obj-entity>
@@ -5013,11 +4993,11 @@
 	<db-relationship name="latency" source="TELECOM" target="LATENCY">
 		<db-attribute-pair source="LATENCY_ID" target="ID"/>
 	</db-relationship>
-	<db-relationship name="ptfs" source="TELECOM" target="PTF" toMany="true">
-		<db-attribute-pair source="ID" target="BACKUP_TELECOM_ID"/>
-	</db-relationship>
-	<db-relationship name="ptfs1" source="TELECOM" target="PTF" toMany="true">
+	<db-relationship name="ptf" source="TELECOM" target="PTF" toMany="true">
 		<db-attribute-pair source="ID" target="TELECOM_ID"/>
+	</db-relationship>
+	<db-relationship name="ptfBackup" source="TELECOM" target="PTF" toMany="true">
+		<db-attribute-pair source="ID" target="BACKUP_TELECOM_ID"/>
 	</db-relationship>
 	<db-relationship name="telecomFormat" source="TELECOM" target="TELECOM_FORMAT">
 		<db-attribute-pair source="TELECOM_FORMAT_ID" target="ID"/>
@@ -5810,8 +5790,8 @@
 	<obj-relationship name="lineSurveys" source="Survey" target="LineSurvey" deleteRule="Deny" db-relationship-path="lineSurveys"/>
 	<obj-relationship name="network" source="Survey" target="Network" deleteRule="Nullify" db-relationship-path="network"/>
 	<obj-relationship name="latency" source="Telecom" target="Latency" deleteRule="Nullify" db-relationship-path="latency"/>
-	<obj-relationship name="ptfs" source="Telecom" target="Ptf" deleteRule="Deny" db-relationship-path="ptfs1"/>
-	<obj-relationship name="ptfs1" source="Telecom" target="Ptf" deleteRule="Deny" db-relationship-path="ptfs"/>
+	<obj-relationship name="ptf" source="Telecom" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
+	<obj-relationship name="ptfBackup" source="Telecom" target="Ptf" deleteRule="Deny" db-relationship-path="ptfBackup"/>
 	<obj-relationship name="telecomFormat" source="Telecom" target="TelecomFormat" deleteRule="Nullify" db-relationship-path="telecomFormat"/>
 	<obj-relationship name="telecomService" source="Telecom" target="TelecomService" deleteRule="Nullify" db-relationship-path="telecomService"/>
 	<obj-relationship name="telecomType" source="Telecom" target="TelecomType" deleteRule="Nullify" db-relationship-path="telecomType"/>
