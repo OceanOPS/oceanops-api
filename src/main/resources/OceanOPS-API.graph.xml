@@ -74,7 +74,7 @@
 		<entity name="ParameterPtf" x="0.0" y="0.0" width="78.0" height="82.0"/>
 		<entity name="Program" x="10.0" y="10.0" width="61.0" height="114.0"/>
 		<entity name="WebDailyQueries" x="959.0" y="35.0" width="98.0" height="66.0"/>
-		<entity name="PtfIdentifiers" x="10.0" y="10.0" width="77.0" height="210.0"/>
+		<entity name="PtfIdentifiers" x="10.0" y="10.0" width="77.0" height="226.0"/>
 		<entity name="GtsCccc" x="10.0" y="10.0" width="68.0" height="162.0"/>
 		<entity name="CruiseProgram" x="10.0" y="10.0" width="84.0" height="82.0"/>
 		<entity name="WebPtfVisits" x="876.0" y="35.0" width="74.0" height="66.0"/>
@@ -141,6 +141,7 @@
 		<entity name="Meeting" x="10.0" y="10.0" width="68.0" height="178.0"/>
 		<entity name="PostRetrievalStatus" x="10.0" y="10.0" width="112.0" height="98.0"/>
 		<entity name="CruiseSensorModel" x="10.0" y="10.0" width="109.0" height="66.0"/>
+		<entity name="QrCode" x="0.0" y="0.0" width="69.0" height="82.0"/>
 		<entity name="AgencyPtf" x="10.0" y="10.0" width="86.0" height="50.0"/>
 		<entity name="CruiseClass" x="10.0" y="10.0" width="62.0" height="82.0"/>
 		<entity name="CruiseStatus" x="10.0" y="10.0" width="71.0" height="114.0"/>
@@ -323,7 +324,7 @@
 		<entity name="SENSOR_EXPOSURE" x="1540.88" y="914.19" width="113.0" height="98.0"/>
 		<entity name="SURVEY" x="1654.01" y="1516.53" width="78.0" height="146.0"/>
 		<entity name="SITE_PTF" x="1377.62" y="1774.26" width="51.0" height="66.0"/>
-		<entity name="PTF_IDENTIFIERS" x="964.82" y="1048.23" width="98.0" height="210.0"/>
+		<entity name="PTF_IDENTIFIERS" x="964.82" y="1048.23" width="98.0" height="226.0"/>
 		<entity name="WEB_DAILY_QUERIES" x="2468.0" y="1901.0" width="121.0" height="66.0"/>
 		<entity name="SDN_PTF_CLASS" x="941.54" y="502.8" width="92.0" height="146.0"/>
 		<entity name="SENSOR_FAMILY" x="2168.86" y="1489.04" width="95.0" height="82.0"/>
@@ -342,6 +343,7 @@
 		<entity name="CONTACT_LOGIN" x="1756.42" y="1761.84" width="98.0" height="146.0"/>
 		<entity name="OBS_GLIDERS_GTS_OSMC_VARIABLE" x="1249.61" y="1859.59" width="208.0" height="66.0"/>
 		<entity name="PTF_VARIABLE" x="1343.51" y="1507.67" width="176.0" height="626.0"/>
+		<entity name="QR_CODE" x="0.0" y="0.0" width="91.0" height="98.0"/>
 		<entity name="PTF_SOFTWARE_TYPE" x="1874.64" y="2051.06" width="122.0" height="66.0"/>
 		<entity name="OBS_OBS_DATA_STATUS" x="1768.43" y="1908.13" width="142.0" height="82.0"/>
 		<entity name="CRUISE_TYPE" x="732.84" y="1635.17" width="78.0" height="114.0"/>

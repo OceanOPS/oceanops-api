@@ -27,6 +27,7 @@ import org.oceanops.api.orm.NetworkContact;
 import org.oceanops.api.orm.ProgramContact;
 import org.oceanops.api.orm.PtfDeployment;
 import org.oceanops.api.orm.PtfModel;
+import org.oceanops.api.orm.QrCode;
 import org.oceanops.api.orm.Service;
 import org.oceanops.api.orm.TelecomFormat;
 import org.oceanops.api.orm.UserGroupContact;
@@ -83,6 +84,7 @@ public abstract class _Contact extends BaseDataObject {
     public static final ListProperty<ProgramContact> PROGRAM_CONTACTS = PropertyFactory.createList("programContacts", ProgramContact.class);
     public static final ListProperty<PtfDeployment> PTF_DEPLOYMENTS = PropertyFactory.createList("ptfDeployments", PtfDeployment.class);
     public static final ListProperty<PtfModel> PTF_MODELS = PropertyFactory.createList("ptfModels", PtfModel.class);
+    public static final ListProperty<QrCode> QR_CODES = PropertyFactory.createList("qrCodes", QrCode.class);
     public static final ListProperty<Service> SERVICES = PropertyFactory.createList("services", Service.class);
     public static final ListProperty<TelecomFormat> TELECOM_FORMATS = PropertyFactory.createList("telecomFormats", TelecomFormat.class);
     public static final ListProperty<UserGroupContact> USER_GROUP_CONTACTS = PropertyFactory.createList("userGroupContacts", UserGroupContact.class);
@@ -128,6 +130,7 @@ public abstract class _Contact extends BaseDataObject {
     protected Object programContacts;
     protected Object ptfDeployments;
     protected Object ptfModels;
+    protected Object qrCodes;
     protected Object services;
     protected Object telecomFormats;
     protected Object userGroupContacts;
@@ -496,6 +499,19 @@ public abstract class _Contact extends BaseDataObject {
         return (List<PtfModel>)readProperty("ptfModels");
     }
 
+    public void addToQrCodes(QrCode obj) {
+        addToManyTarget("qrCodes", obj, true);
+    }
+
+    public void removeFromQrCodes(QrCode obj) {
+        removeToManyTarget("qrCodes", obj, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<QrCode> getQrCodes() {
+        return (List<QrCode>)readProperty("qrCodes");
+    }
+
     public void addToServices(Service obj) {
         addToManyTarget("services", obj, true);
     }
@@ -689,6 +705,8 @@ public abstract class _Contact extends BaseDataObject {
                 return this.ptfDeployments;
             case "ptfModels":
                 return this.ptfModels;
+            case "qrCodes":
+                return this.qrCodes;
             case "services":
                 return this.services;
             case "telecomFormats":
@@ -820,6 +838,9 @@ public abstract class _Contact extends BaseDataObject {
             case "ptfModels":
                 this.ptfModels = val;
                 break;
+            case "qrCodes":
+                this.qrCodes = val;
+                break;
             case "services":
                 this.services = val;
                 break;
@@ -899,6 +920,7 @@ public abstract class _Contact extends BaseDataObject {
         out.writeObject(this.programContacts);
         out.writeObject(this.ptfDeployments);
         out.writeObject(this.ptfModels);
+        out.writeObject(this.qrCodes);
         out.writeObject(this.services);
         out.writeObject(this.telecomFormats);
         out.writeObject(this.userGroupContacts);
@@ -947,6 +969,7 @@ public abstract class _Contact extends BaseDataObject {
         this.programContacts = in.readObject();
         this.ptfDeployments = in.readObject();
         this.ptfModels = in.readObject();
+        this.qrCodes = in.readObject();
         this.services = in.readObject();
         this.telecomFormats = in.readObject();
         this.userGroupContacts = in.readObject();

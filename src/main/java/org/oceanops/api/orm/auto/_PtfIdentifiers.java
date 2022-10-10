@@ -33,6 +33,7 @@ public abstract class _PtfIdentifiers extends BaseDataObject {
     public static final StringProperty<String> OCEANSITES_REF = PropertyFactory.createString("oceansitesRef", String.class);
     public static final StringProperty<String> ODAS_REF = PropertyFactory.createString("odasRef", String.class);
     public static final StringProperty<String> OPERATOR_REF = PropertyFactory.createString("operatorRef", String.class);
+    public static final StringProperty<String> QR_CODE = PropertyFactory.createString("qrCode", String.class);
     public static final StringProperty<String> SEADATANET_REF = PropertyFactory.createString("seadatanetRef", String.class);
     public static final StringProperty<String> WIGOS_REF = PropertyFactory.createString("wigosRef", String.class);
     public static final ListProperty<Ptf> PTFS = PropertyFactory.createList("ptfs", Ptf.class);
@@ -46,6 +47,7 @@ public abstract class _PtfIdentifiers extends BaseDataObject {
     protected String oceansitesRef;
     protected String odasRef;
     protected String operatorRef;
+    protected String qrCode;
     protected String seadatanetRef;
     protected String wigosRef;
 
@@ -141,6 +143,16 @@ public abstract class _PtfIdentifiers extends BaseDataObject {
         return this.operatorRef;
     }
 
+    public void setQrCode(String qrCode) {
+        beforePropertyWrite("qrCode", this.qrCode, qrCode);
+        this.qrCode = qrCode;
+    }
+
+    public String getQrCode() {
+        beforePropertyRead("qrCode");
+        return this.qrCode;
+    }
+
     public void setSeadatanetRef(String seadatanetRef) {
         beforePropertyWrite("seadatanetRef", this.seadatanetRef, seadatanetRef);
         this.seadatanetRef = seadatanetRef;
@@ -199,6 +211,8 @@ public abstract class _PtfIdentifiers extends BaseDataObject {
                 return this.odasRef;
             case "operatorRef":
                 return this.operatorRef;
+            case "qrCode":
+                return this.qrCode;
             case "seadatanetRef":
                 return this.seadatanetRef;
             case "wigosRef":
@@ -244,6 +258,9 @@ public abstract class _PtfIdentifiers extends BaseDataObject {
             case "operatorRef":
                 this.operatorRef = (String)val;
                 break;
+            case "qrCode":
+                this.qrCode = (String)val;
+                break;
             case "seadatanetRef":
                 this.seadatanetRef = (String)val;
                 break;
@@ -278,6 +295,7 @@ public abstract class _PtfIdentifiers extends BaseDataObject {
         out.writeObject(this.oceansitesRef);
         out.writeObject(this.odasRef);
         out.writeObject(this.operatorRef);
+        out.writeObject(this.qrCode);
         out.writeObject(this.seadatanetRef);
         out.writeObject(this.wigosRef);
         out.writeObject(this.ptfs);
@@ -295,6 +313,7 @@ public abstract class _PtfIdentifiers extends BaseDataObject {
         this.oceansitesRef = (String)in.readObject();
         this.odasRef = (String)in.readObject();
         this.operatorRef = (String)in.readObject();
+        this.qrCode = (String)in.readObject();
         this.seadatanetRef = (String)in.readObject();
         this.wigosRef = (String)in.readObject();
         this.ptfs = in.readObject();

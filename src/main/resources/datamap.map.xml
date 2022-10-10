@@ -1105,6 +1105,7 @@
 		<db-attribute name="OCEANSITES_REF" type="VARCHAR" length="40"/>
 		<db-attribute name="ODAS_REF" type="VARCHAR" length="30"/>
 		<db-attribute name="OPERATOR_REF" type="VARCHAR" length="30"/>
+		<db-attribute name="QR_CODE" type="VARCHAR" length="30"/>
 		<db-attribute name="SEADATANET_REF" type="VARCHAR" length="30"/>
 		<db-attribute name="WIGOS_REF" type="VARCHAR" length="30"/>
 	</db-entity>
@@ -1303,6 +1304,12 @@
 	<db-entity name="QC_FEEDBACK_VARIABLE" schema="JCOMMOPS_B">
 		<db-attribute name="QC_FEEDBACK_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 		<db-attribute name="VARIABLE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="QR_CODE" schema="JCOMMOPS_B">
+		<db-attribute name="CODE" type="VARCHAR" isPrimaryKey="true" isMandatory="true" length="30"/>
+		<db-attribute name="CONTACT_ID" type="INTEGER" isMandatory="true" length="10"/>
+		<db-attribute name="CREATION_DATE" type="TIMESTAMP" isMandatory="true"/>
+		<db-attribute name="REQUEST_ID" type="VARCHAR" isMandatory="true" length="10"/>
 	</db-entity>
 	<db-entity name="RETRIEVAL" schema="JCOMMOPS_B">
 		<db-attribute name="CONTACT" type="VARCHAR" length="100"/>
@@ -2710,6 +2717,7 @@
 		<obj-attribute name="oceansitesRef" type="java.lang.String" db-attribute-path="OCEANSITES_REF"/>
 		<obj-attribute name="odasRef" type="java.lang.String" db-attribute-path="ODAS_REF"/>
 		<obj-attribute name="operatorRef" type="java.lang.String" db-attribute-path="OPERATOR_REF"/>
+		<obj-attribute name="qrCode" type="java.lang.String" db-attribute-path="QR_CODE"/>
 		<obj-attribute name="seadatanetRef" type="java.lang.String" db-attribute-path="SEADATANET_REF"/>
 		<obj-attribute name="wigosRef" type="java.lang.String" db-attribute-path="WIGOS_REF"/>
 	</obj-entity>
@@ -2873,6 +2881,11 @@
 	<obj-entity name="QcFeedbackVariable" className="org.oceanops.api.orm.QcFeedbackVariable" dbEntityName="QC_FEEDBACK_VARIABLE">
 		<obj-attribute name="qcFeedbackId" type="java.lang.Integer" db-attribute-path="QC_FEEDBACK_ID"/>
 		<obj-attribute name="variableId" type="java.lang.Integer" db-attribute-path="VARIABLE_ID"/>
+	</obj-entity>
+	<obj-entity name="QrCode" className="org.oceanops.api.orm.QrCode" dbEntityName="QR_CODE">
+		<obj-attribute name="code" type="java.lang.String" db-attribute-path="CODE"/>
+		<obj-attribute name="creationDate" type="java.time.LocalDateTime" db-attribute-path="CREATION_DATE"/>
+		<obj-attribute name="requestId" type="java.lang.String" db-attribute-path="REQUEST_ID"/>
 	</obj-entity>
 	<obj-entity name="Retrieval" className="org.oceanops.api.orm.Retrieval" dbEntityName="RETRIEVAL">
 		<obj-attribute name="contact" type="java.lang.String" db-attribute-path="CONTACT"/>
@@ -3419,6 +3432,12 @@
 	<db-relationship name="agency" source="CONTACT" target="AGENCY">
 		<db-attribute-pair source="AGENCY_ID" target="ID"/>
 	</db-relationship>
+	<db-relationship name="apiTokens" source="CONTACT" target="API_TOKEN" toMany="true">
+		<db-attribute-pair source="ID" target="CONTACT_ID"/>
+	</db-relationship>
+	<db-relationship name="contactLogins" source="CONTACT" target="CONTACT_LOGIN" toDependentPK="true" toMany="true">
+		<db-attribute-pair source="ID" target="CONTACT_ID"/>
+	</db-relationship>
 	<db-relationship name="contactPtfRoles" source="CONTACT" target="CONTACT_PTF_ROLE" toMany="true">
 		<db-attribute-pair source="ID" target="CONTACT_ID"/>
 	</db-relationship>
@@ -3464,16 +3483,13 @@
 	<db-relationship name="qcFeedbacks1" source="CONTACT" target="QC_FEEDBACK" toMany="true">
 		<db-attribute-pair source="ID" target="ANSWER_CONTACT_ID"/>
 	</db-relationship>
+	<db-relationship name="qrCodes" source="CONTACT" target="QR_CODE" toMany="true">
+		<db-attribute-pair source="ID" target="CONTACT_ID"/>
+	</db-relationship>
 	<db-relationship name="services" source="CONTACT" target="SERVICE" toMany="true">
 		<db-attribute-pair source="ID" target="CONTACT_ID"/>
 	</db-relationship>
 	<db-relationship name="telecomFormats" source="CONTACT" target="TELECOM_FORMAT" toMany="true">
-		<db-attribute-pair source="ID" target="CONTACT_ID"/>
-	</db-relationship>
-	<db-relationship name="untitledRel" source="CONTACT" target="API_TOKEN" toMany="true">
-		<db-attribute-pair source="ID" target="CONTACT_ID"/>
-	</db-relationship>
-	<db-relationship name="untitledRel1" source="CONTACT" target="CONTACT_LOGIN" toDependentPK="true" toMany="true">
 		<db-attribute-pair source="ID" target="CONTACT_ID"/>
 	</db-relationship>
 	<db-relationship name="userGroupContacts" source="CONTACT" target="USER_GROUP_CONTACT" toDependentPK="true" toMany="true">
@@ -4772,6 +4788,9 @@
 	<db-relationship name="variable" source="QC_FEEDBACK_VARIABLE" target="VARIABLE">
 		<db-attribute-pair source="VARIABLE_ID" target="ID"/>
 	</db-relationship>
+	<db-relationship name="contact" source="QR_CODE" target="CONTACT">
+		<db-attribute-pair source="CONTACT_ID" target="ID"/>
+	</db-relationship>
 	<db-relationship name="country" source="RETRIEVAL" target="COUNTRY">
 		<db-attribute-pair source="COUNTRY_ID" target="ID"/>
 	</db-relationship>
@@ -5278,6 +5297,7 @@
 	<obj-relationship name="programContacts" source="Contact" target="ProgramContact" deleteRule="Deny" db-relationship-path="programContacts"/>
 	<obj-relationship name="ptfDeployments" source="Contact" target="PtfDeployment" deleteRule="Deny" db-relationship-path="ptfDeployments"/>
 	<obj-relationship name="ptfModels" source="Contact" target="PtfModel" deleteRule="Deny" db-relationship-path="ptfModels"/>
+	<obj-relationship name="qrCodes" source="Contact" target="QrCode" deleteRule="Deny" db-relationship-path="qrCodes"/>
 	<obj-relationship name="services" source="Contact" target="Service" deleteRule="Deny" db-relationship-path="services"/>
 	<obj-relationship name="telecomFormats" source="Contact" target="TelecomFormat" deleteRule="Deny" db-relationship-path="telecomFormats"/>
 	<obj-relationship name="userGroupContacts" source="Contact" target="UserGroupContact" deleteRule="Deny" db-relationship-path="userGroupContacts"/>
@@ -5689,6 +5709,7 @@
 	<obj-relationship name="qcFeedbacks" source="QcFeedbackType" target="QcFeedback" deleteRule="Deny" db-relationship-path="qcFeedbacks"/>
 	<obj-relationship name="qcFeedback" source="QcFeedbackVariable" target="QcFeedback" deleteRule="Nullify" db-relationship-path="qcFeedback"/>
 	<obj-relationship name="variable" source="QcFeedbackVariable" target="Variable" deleteRule="Nullify" db-relationship-path="variable"/>
+	<obj-relationship name="contact" source="QrCode" target="Contact" deleteRule="Nullify" db-relationship-path="contact"/>
 	<obj-relationship name="country" source="Retrieval" target="Country" deleteRule="Nullify" db-relationship-path="country"/>
 	<obj-relationship name="cruise" source="Retrieval" target="Cruise" deleteRule="Nullify" db-relationship-path="cruise"/>
 	<obj-relationship name="postRetrievalStatus" source="Retrieval" target="PostRetrievalStatus" deleteRule="Nullify" db-relationship-path="postRetrievalStatus"/>
@@ -5910,6 +5931,7 @@
 		<usePrimitives>true</usePrimitives>
 	</dbImport>
 	<cgen xmlns="http://cayenne.apache.org/schema/10/cgen">
+		<excludeEntities>QrCode</excludeEntities>
 		<destDir>../java</destDir>
 		<mode>all</mode>
 		<template>templates/v4_1/subclass.vm</template>
