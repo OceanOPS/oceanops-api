@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.query.ObjectSelect;
+import org.oceanops.api.orm.ApiToken;
 import org.oceanops.api.orm.Contact;
+import org.oceanops.api.orm.ContactLogin;
 import org.oceanops.api.orm.Cruise;
 import org.oceanops.api.orm.ProgramContact;
 import org.oceanops.api.orm.PtfDeployment;
@@ -182,6 +184,11 @@ public class Authorization {
                     .property(ProgramContact.MZMS_WARNING_ENABLED.getName(), false)
                 )
             );
+
+            // API Tokens
+            sBuilder.entityOverlay(new AgEntityOverlay<ApiToken>(ApiToken.class).readablePropFilter(b -> b.empty()).writablePropFilter(b -> b.empty()));
+            // ContactLogin
+            sBuilder.entityOverlay(new AgEntityOverlay<ContactLogin>(ContactLogin.class).readablePropFilter(b -> b.empty()).writablePropFilter(b -> b.empty()));
         }
 
         if(!(Authentication.isAuthenticated())){
