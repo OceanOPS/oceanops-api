@@ -226,7 +226,7 @@
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
-    		<version>20220320</version>
+    		<version>20220924</version>
 		</dependency>
 
 		<dependency>
@@ -275,7 +275,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.scm.id>oceanops-scm-server</project.scm.id>
 		<java.version>17</java.version>
-		<agrest.version>5.0.M6</agrest.version>
+		<agrest.version>5.0.M7</agrest.version>
 		<cayenne.version>4.2.RC1</cayenne.version>
 		<xmlbeans.version>5.1.1</xmlbeans.version>
 		<wmdr.version>1.0RC9</wmdr.version>
