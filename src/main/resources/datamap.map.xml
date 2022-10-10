@@ -1683,7 +1683,6 @@
 		<db-attribute name="NAME" type="VARCHAR" isMandatory="true" length="500"/>
 		<db-attribute name="NETWORK_ID" type="INTEGER" length="10"/>
 		<db-attribute name="PROGRAM_ID" type="INTEGER" length="10"/>
-		<db-attribute name="PTF_ID" type="INTEGER" length="10"/>
 		<db-attribute name="RANK" type="NUMERIC" length="10"/>
 		<db-attribute name="STORY_ID" type="INTEGER" length="38"/>
 		<db-attribute name="TOPIC_ID" type="INTEGER" length="10"/>
@@ -4500,9 +4499,6 @@
 	<db-relationship name="weblinkPtfs" source="PTF" target="WEBLINK_PTF" toDependentPK="true" toMany="true">
 		<db-attribute-pair source="ID" target="PTF_ID"/>
 	</db-relationship>
-	<db-relationship name="weblinks" source="PTF" target="WEBLINK" toMany="true">
-		<db-attribute-pair source="ID" target="PTF_ID"/>
-	</db-relationship>
 	<db-relationship name="wmos" source="PTF" target="WMO" toMany="true">
 		<db-attribute-pair source="ID" target="PTF_ID"/>
 	</db-relationship>
@@ -5159,9 +5155,6 @@
 	</db-relationship>
 	<db-relationship name="program" source="WEBLINK" target="PROGRAM">
 		<db-attribute-pair source="PROGRAM_ID" target="ID"/>
-	</db-relationship>
-	<db-relationship name="ptf" source="WEBLINK" target="PTF">
-		<db-attribute-pair source="PTF_ID" target="ID"/>
 	</db-relationship>
 	<db-relationship name="ptfModels" source="WEBLINK" target="PTF_MODEL" toMany="true">
 		<db-attribute-pair source="ID" target="WEBLINK_ID"/>
@@ -5849,7 +5842,6 @@
 	<obj-relationship name="meetings" source="Weblink" target="Meeting" deleteRule="Deny" db-relationship-path="meetings"/>
 	<obj-relationship name="network" source="Weblink" target="Network" deleteRule="Nullify" db-relationship-path="network"/>
 	<obj-relationship name="program" source="Weblink" target="Program" deleteRule="Nullify" db-relationship-path="program"/>
-	<obj-relationship name="ptf" source="Weblink" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
 	<obj-relationship name="ptfModels" source="Weblink" target="PtfModel" deleteRule="Deny" db-relationship-path="ptfModels"/>
 	<obj-relationship name="ptfVariables" source="Weblink" target="PtfVariable" deleteRule="Deny" db-relationship-path="ptfVariables"/>
 	<obj-relationship name="qcFeedbacks" source="Weblink" target="QcFeedback" deleteRule="Deny" db-relationship-path="qcFeedbacks"/>
@@ -5931,7 +5923,6 @@
 		<usePrimitives>true</usePrimitives>
 	</dbImport>
 	<cgen xmlns="http://cayenne.apache.org/schema/10/cgen">
-		<excludeEntities>QrCode</excludeEntities>
 		<destDir>../java</destDir>
 		<mode>all</mode>
 		<template>templates/v4_1/subclass.vm</template>

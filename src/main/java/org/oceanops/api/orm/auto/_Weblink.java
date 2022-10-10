@@ -21,7 +21,6 @@ import org.oceanops.api.orm.Line;
 import org.oceanops.api.orm.Meeting;
 import org.oceanops.api.orm.Network;
 import org.oceanops.api.orm.Program;
-import org.oceanops.api.orm.Ptf;
 import org.oceanops.api.orm.PtfModel;
 import org.oceanops.api.orm.PtfVariable;
 import org.oceanops.api.orm.QcFeedback;
@@ -59,7 +58,6 @@ public abstract class _Weblink extends BaseDataObject {
     public static final ListProperty<Meeting> MEETINGS = PropertyFactory.createList("meetings", Meeting.class);
     public static final EntityProperty<Network> NETWORK = PropertyFactory.createEntity("network", Network.class);
     public static final EntityProperty<Program> PROGRAM = PropertyFactory.createEntity("program", Program.class);
-    public static final EntityProperty<Ptf> PTF = PropertyFactory.createEntity("ptf", Ptf.class);
     public static final ListProperty<PtfModel> PTF_MODELS = PropertyFactory.createList("ptfModels", PtfModel.class);
     public static final ListProperty<PtfVariable> PTF_VARIABLES = PropertyFactory.createList("ptfVariables", PtfVariable.class);
     public static final ListProperty<QcFeedback> QC_FEEDBACKS = PropertyFactory.createList("qcFeedbacks", QcFeedback.class);
@@ -86,7 +84,6 @@ public abstract class _Weblink extends BaseDataObject {
     protected Object meetings;
     protected Object network;
     protected Object program;
-    protected Object ptf;
     protected Object ptfModels;
     protected Object ptfVariables;
     protected Object qcFeedbacks;
@@ -271,14 +268,6 @@ public abstract class _Weblink extends BaseDataObject {
         return (Program)readProperty("program");
     }
 
-    public void setPtf(Ptf ptf) {
-        setToOneTarget("ptf", ptf, true);
-    }
-
-    public Ptf getPtf() {
-        return (Ptf)readProperty("ptf");
-    }
-
     public void addToPtfModels(PtfModel obj) {
         addToManyTarget("ptfModels", obj, true);
     }
@@ -412,8 +401,6 @@ public abstract class _Weblink extends BaseDataObject {
                 return this.network;
             case "program":
                 return this.program;
-            case "ptf":
-                return this.ptf;
             case "ptfModels":
                 return this.ptfModels;
             case "ptfVariables":
@@ -490,9 +477,6 @@ public abstract class _Weblink extends BaseDataObject {
             case "program":
                 this.program = val;
                 break;
-            case "ptf":
-                this.ptf = val;
-                break;
             case "ptfModels":
                 this.ptfModels = val;
                 break;
@@ -549,7 +533,6 @@ public abstract class _Weblink extends BaseDataObject {
         out.writeObject(this.meetings);
         out.writeObject(this.network);
         out.writeObject(this.program);
-        out.writeObject(this.ptf);
         out.writeObject(this.ptfModels);
         out.writeObject(this.ptfVariables);
         out.writeObject(this.qcFeedbacks);
@@ -579,7 +562,6 @@ public abstract class _Weblink extends BaseDataObject {
         this.meetings = in.readObject();
         this.network = in.readObject();
         this.program = in.readObject();
-        this.ptf = in.readObject();
         this.ptfModels = in.readObject();
         this.ptfVariables = in.readObject();
         this.qcFeedbacks = in.readObject();

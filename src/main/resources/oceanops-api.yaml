@@ -3055,8 +3055,6 @@ components:
           $ref: '#/components/schemas/Network'
         program:
           $ref: '#/components/schemas/Program'
-        ptf:
-          $ref: '#/components/schemas/Ptf'
         ptfModels:
           $ref: '#/components/schemas/PtfModel'
         ptfVariables:
