@@ -99,6 +99,7 @@
 		<entity name="TELECOM" x="1216.04" y="369.67" width="122.0" height="210.0"/>
 		<entity name="AGENCY" x="1262.77" y="1017.5" width="88.0" height="322.0"/>
 		<entity name="TELECOM_TYPE" x="144.07" y="303.14" width="86.0" height="98.0"/>
+		<entity name="TAG_PTF" x="0.0" y="0.0" width="51.0" height="66.0"/>
 		<entity name="NETWORK_CONTACT" x="1474.94" y="124.78" width="120.0" height="82.0"/>
 		<entity name="PUMP_TYPE" x="994.79" y="259.06" width="74.0" height="82.0"/>
 		<entity name="OBS_GLIDERS_GDAC" x="2090.53" y="212.61" width="139.0" height="338.0"/>
@@ -149,6 +150,7 @@
 		<entity name="OBS_OBS_DATA_STATUS" x="1768.43" y="1908.13" width="142.0" height="82.0"/>
 		<entity name="CRUISE_TYPE" x="732.84" y="1635.17" width="78.0" height="114.0"/>
 		<entity name="NETWORK_ENDING_CAUSE" x="737.27" y="1761.16" width="154.0" height="66.0"/>
+		<entity name="TAG" x="0.0" y="0.0" width="74.0" height="98.0"/>
 		<entity name="CONTACT" x="1237.81" y="885.97" width="96.0" height="402.0"/>
 		<entity name="DAC_TYPE" x="805.74" y="819.32" width="78.0" height="98.0"/>
 		<entity name="CONFIG" x="1954.45" y="1235.64" width="87.0" height="194.0"/>
@@ -355,6 +357,7 @@
 		<entity name="CruiseLine" x="0.0" y="0.0" width="99.0" height="66.0"/>
 		<entity name="QcFeedbackVariable" x="10.0" y="10.0" width="115.0" height="66.0"/>
 		<entity name="QcFeedbackType" x="10.0" y="10.0" width="97.0" height="114.0"/>
+		<entity name="Tag" x="0.0" y="0.0" width="61.0" height="82.0"/>
 		<entity name="ObsLatest" x="10.0" y="10.0" width="61.0" height="130.0"/>
 		<entity name="Retrieval" x="10.0" y="10.0" width="90.0" height="242.0"/>
 		<entity name="DacType" x="10.0" y="10.0" width="61.0" height="98.0"/>
@@ -385,6 +388,7 @@
 		<entity name="ProgramAgency" x="10.0" y="10.0" width="91.0" height="50.0"/>
 		<entity name="Basin" x="10.0" y="10.0" width="60.0" height="162.0"/>
 		<entity name="NetworkType" x="10.0" y="10.0" width="79.0" height="66.0"/>
+		<entity name="TagPtf" x="0.0" y="0.0" width="39.0" height="18.0"/>
 		<entity name="LineProgram" x="10.0" y="10.0" width="73.0" height="82.0"/>
 		<entity name="NcLevel" x="10.0" y="10.0" width="61.0" height="82.0"/>
 		<entity name="PtfDeployment" x="10.0" y="10.0" width="103.0" height="354.0"/>

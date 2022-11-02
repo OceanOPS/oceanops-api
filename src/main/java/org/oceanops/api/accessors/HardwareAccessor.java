@@ -10,21 +10,21 @@ import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.core.MediaType;
 
 import org.oceanops.api.Authorization;
-import org.oceanops.api.orm.DataProcessingMethod;
-import org.oceanops.api.orm.Latency;
-import org.oceanops.api.orm.PtfAutomation;
-import org.oceanops.api.orm.PtfBattery;
-import org.oceanops.api.orm.PtfSoftwareType;
-import org.oceanops.api.orm.SensorExposure;
-import org.oceanops.api.orm.SensorLocation;
-import org.oceanops.api.orm.SensorModel;
-import org.oceanops.api.orm.SensorStatus;
-import org.oceanops.api.orm.SensorType;
-import org.oceanops.api.orm.ServiceType;
-import org.oceanops.api.orm.TelecomFormat;
-import org.oceanops.api.orm.TelecomService;
-import org.oceanops.api.orm.TelecomType;
-import org.oceanops.api.orm.TrackingSystem;
+import org.oceanops.orm.DataProcessingMethod;
+import org.oceanops.orm.Latency;
+import org.oceanops.orm.PtfAutomation;
+import org.oceanops.orm.PtfBattery;
+import org.oceanops.orm.PtfSoftwareType;
+import org.oceanops.orm.SensorExposure;
+import org.oceanops.orm.SensorLocation;
+import org.oceanops.orm.SensorModel;
+import org.oceanops.orm.SensorStatus;
+import org.oceanops.orm.SensorType;
+import org.oceanops.orm.ServiceType;
+import org.oceanops.orm.TelecomFormat;
+import org.oceanops.orm.TelecomService;
+import org.oceanops.orm.TelecomType;
+import org.oceanops.orm.LocSystem;
 
 import io.agrest.DataResponse;
 import io.agrest.SelectBuilder;
@@ -289,18 +289,18 @@ public class HardwareAccessor {
 		return sBuilder.clientParams(uriInfo.getQueryParameters()).getOne();
 	}
 	@GET
-	@Path("trackingsystem")
-    public DataResponse<TrackingSystem> getTrackingSystems(@Context UriInfo uriInfo) {
-		SelectBuilder<TrackingSystem> sBuilder = AgJaxrs.select(TrackingSystem.class, config);
+	@Path("locsystem")
+    public DataResponse<LocSystem> getLocSystems(@Context UriInfo uriInfo) {
+		SelectBuilder<LocSystem> sBuilder = AgJaxrs.select(LocSystem.class, config);
 
 		Authorization.applySelectAuthorization(sBuilder);
 
 		return sBuilder.clientParams(uriInfo.getQueryParameters()).get();
 	}
 	@GET
-	@Path("trackingsystem/{id}")
-    public DataResponse<TrackingSystem> getTrackingSystem(@PathParam("id") int id, @Context UriInfo uriInfo) {
-		SelectBuilder<TrackingSystem> sBuilder = AgJaxrs.select(TrackingSystem.class, config).byId(id);
+	@Path("locsystem/{id}")
+    public DataResponse<LocSystem> getLocSystem(@PathParam("id") int id, @Context UriInfo uriInfo) {
+		SelectBuilder<LocSystem> sBuilder = AgJaxrs.select(LocSystem.class, config).byId(id);
 		
 		Authorization.applySelectAuthorization(sBuilder);
 

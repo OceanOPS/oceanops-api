@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.query.ObjectSelect;
-import org.oceanops.api.orm.ApiToken;
-import org.oceanops.api.orm.Contact;
-import org.oceanops.api.orm.ContactLogin;
-import org.oceanops.api.orm.Cruise;
-import org.oceanops.api.orm.ProgramContact;
-import org.oceanops.api.orm.PtfDeployment;
-import org.oceanops.api.orm.Ship;
-import org.oceanops.api.orm.Telecom;
+import org.oceanops.orm.ApiToken;
+import org.oceanops.orm.Contact;
+import org.oceanops.orm.ContactLogin;
+import org.oceanops.orm.Cruise;
+import org.oceanops.orm.ProgramContact;
+import org.oceanops.orm.PtfDeployment;
+import org.oceanops.orm.Ship;
+import org.oceanops.orm.Telecom;
 
 import io.agrest.SelectBuilder;
 import io.agrest.meta.AgEntityOverlay;

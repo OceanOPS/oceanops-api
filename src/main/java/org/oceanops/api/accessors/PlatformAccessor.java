@@ -15,8 +15,8 @@ import org.apache.cayenne.query.ObjectSelect;
 import org.apache.cayenne.query.SelectById;
 import org.oceanops.api.Authorization;
 import org.oceanops.api.Utils;
-import org.oceanops.api.orm.Ptf;
-import org.oceanops.api.orm.PtfIdentifiers;
+import org.oceanops.orm.Ptf;
+import org.oceanops.orm.PtfIdentifiers;
 
 import io.agrest.jaxrs2.AgJaxrs;
 import io.agrest.AgRequest;

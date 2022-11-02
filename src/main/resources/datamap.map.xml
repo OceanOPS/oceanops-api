@@ -3,7 +3,7 @@
 	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	 xsi:schemaLocation="http://cayenne.apache.org/schema/10/modelMap https://cayenne.apache.org/schema/10/modelMap.xsd"
 	 project-version="10">
-	<property name="defaultPackage" value="org.oceanops.api.orm"/>
+	<property name="defaultPackage" value="org.oceanops.orm"/>
 	<property name="defaultSchema" value="JCOMMOPS_B"/>
 	<procedure name="PTF_INFO.GET_PTF_AGE" schema="JCOMMOPS_B" returningValue="true">
 		<procedure-parameter name="AGE" type="DOUBLE" direction="out"/>
@@ -1566,6 +1566,16 @@
 		<db-attribute name="NETWORK_ID" type="INTEGER" length="10"/>
 		<db-attribute name="START_DATE" type="TIMESTAMP" length="7"/>
 	</db-entity>
+	<db-entity name="TAG" schema="JCOMMOPS_B">
+		<db-attribute name="COLOUR" type="VARCHAR" length="7"/>
+		<db-attribute name="DESCRIPTION" type="VARCHAR" length="100"/>
+		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
+		<db-attribute name="NAME" type="VARCHAR" isMandatory="true" length="50"/>
+	</db-entity>
+	<db-entity name="TAG_PTF" schema="JCOMMOPS_B">
+		<db-attribute name="PTF_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
+		<db-attribute name="TAG_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
+	</db-entity>
 	<db-entity name="TELECOM" schema="JCOMMOPS_B">
 		<db-attribute name="END_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="FREQUENCY" type="VARCHAR" length="20"/>
@@ -1807,7 +1817,7 @@
 		<db-attribute name="WMO_END" type="VARCHAR" length="7"/>
 		<db-attribute name="WMO_START" type="VARCHAR" length="7"/>
 	</db-entity>
-	<obj-entity name="Adoption" className="org.oceanops.api.orm.Adoption" dbEntityName="ADOPTION">
+	<obj-entity name="Adoption" className="org.oceanops.orm.Adoption" dbEntityName="ADOPTION">
 		<obj-attribute name="adopterAddress" type="java.lang.String" db-attribute-path="ADOPTER_ADDRESS"/>
 		<obj-attribute name="adopterEmail" type="java.lang.String" db-attribute-path="ADOPTER_EMAIL"/>
 		<obj-attribute name="adopterName" type="java.lang.String" db-attribute-path="ADOPTER_NAME"/>
@@ -1820,7 +1830,7 @@
 		<obj-attribute name="title" type="java.lang.String" db-attribute-path="TITLE"/>
 		<obj-attribute name="url" type="java.lang.String" db-attribute-path="URL"/>
 	</obj-entity>
-	<obj-entity name="Agency" className="org.oceanops.api.orm.Agency" dbEntityName="AGENCY">
+	<obj-entity name="Agency" className="org.oceanops.orm.Agency" dbEntityName="AGENCY">
 		<obj-attribute name="address" type="java.lang.String" db-attribute-path="ADDRESS"/>
 		<obj-attribute name="deployer" type="java.lang.Integer" db-attribute-path="DEPLOYER"/>
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
@@ -1837,7 +1847,7 @@
 		<obj-attribute name="ref" type="java.lang.String" db-attribute-path="REF"/>
 		<obj-attribute name="tel" type="java.lang.String" db-attribute-path="TEL"/>
 	</obj-entity>
-	<obj-entity name="AgencyDacType" className="org.oceanops.api.orm.AgencyDacType" dbEntityName="AGENCY_DAC_TYPE">
+	<obj-entity name="AgencyDacType" className="org.oceanops.orm.AgencyDacType" dbEntityName="AGENCY_DAC_TYPE">
 		<obj-attribute name="agencyId" type="java.lang.Integer" db-attribute-path="AGENCY_ID"/>
 		<obj-attribute name="dacTypeId" type="java.lang.Integer" db-attribute-path="DAC_TYPE_ID"/>
 		<obj-attribute name="dataPath" type="java.lang.String" db-attribute-path="DATA_PATH"/>
@@ -1849,20 +1859,20 @@
 		<obj-attribute name="oldDacId" type="java.lang.Integer" db-attribute-path="OLD_DAC_ID"/>
 		<obj-attribute name="opMail" type="java.lang.String" db-attribute-path="OP_MAIL"/>
 	</obj-entity>
-	<obj-entity name="AgencyPtf" className="org.oceanops.api.orm.AgencyPtf" dbEntityName="AGENCY_PTF">
+	<obj-entity name="AgencyPtf" className="org.oceanops.orm.AgencyPtf" dbEntityName="AGENCY_PTF">
 		<obj-attribute name="assemblyTypeId" type="java.lang.Integer" db-attribute-path="ASSEMBLY_TYPE_ID"/>
 	</obj-entity>
-	<obj-entity name="AgencyRole" className="org.oceanops.api.orm.AgencyRole" dbEntityName="AGENCY_ROLE">
+	<obj-entity name="AgencyRole" className="org.oceanops.orm.AgencyRole" dbEntityName="AGENCY_ROLE">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="AgencySiteRole" className="org.oceanops.api.orm.AgencySiteRole" dbEntityName="AGENCY_SITE_ROLE">
+	<obj-entity name="AgencySiteRole" className="org.oceanops.orm.AgencySiteRole" dbEntityName="AGENCY_SITE_ROLE">
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="siteId" type="java.lang.Integer" db-attribute-path="SITE_ID"/>
 	</obj-entity>
-	<obj-entity name="ApiToken" className="org.oceanops.api.orm.ApiToken" dbEntityName="API_TOKEN">
+	<obj-entity name="ApiToken" className="org.oceanops.orm.ApiToken" dbEntityName="API_TOKEN">
 		<obj-attribute name="contactId" type="java.lang.Integer" db-attribute-path="CONTACT_ID"/>
 		<obj-attribute name="creationDate" type="java.time.LocalDateTime" db-attribute-path="CREATION_DATE"/>
 		<obj-attribute name="endValidity" type="java.time.LocalDateTime" db-attribute-path="END_VALIDITY"/>
@@ -1871,12 +1881,12 @@
 		<obj-attribute name="token" type="java.lang.String" db-attribute-path="TOKEN"/>
 		<obj-attribute name="type" type="java.lang.String" db-attribute-path="TYPE"/>
 	</obj-entity>
-	<obj-entity name="ApiWmoIdType" className="org.oceanops.api.orm.ApiWmoIdType" dbEntityName="API_WMO_ID_TYPE">
+	<obj-entity name="ApiWmoIdType" className="org.oceanops.orm.ApiWmoIdType" dbEntityName="API_WMO_ID_TYPE">
 		<obj-attribute name="code" type="java.lang.String" db-attribute-path="CODE"/>
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 	</obj-entity>
-	<obj-entity name="Basin" className="org.oceanops.api.orm.Basin" dbEntityName="BASIN">
+	<obj-entity name="Basin" className="org.oceanops.orm.Basin" dbEntityName="BASIN">
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameLong" type="java.lang.String" db-attribute-path="NAME_LONG"/>
@@ -1886,14 +1896,14 @@
 		<obj-attribute name="subocean" type="java.lang.String" db-attribute-path="SUBOCEAN"/>
 		<obj-attribute name="wkt" type="java.lang.String" db-attribute-path="WKT"/>
 	</obj-entity>
-	<obj-entity name="BasinType" className="org.oceanops.api.orm.BasinType" dbEntityName="BASIN_TYPE">
+	<obj-entity name="BasinType" className="org.oceanops.orm.BasinType" dbEntityName="BASIN_TYPE">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameLong" type="java.lang.String" db-attribute-path="NAME_LONG"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="Config" className="org.oceanops.api.orm.Config" dbEntityName="CONFIG">
+	<obj-entity name="Config" className="org.oceanops.orm.Config" dbEntityName="CONFIG">
 		<obj-attribute name="cycleTime" type="java.lang.Double" db-attribute-path="CYCLE_TIME"/>
 		<obj-attribute name="driftPress" type="java.lang.Double" db-attribute-path="DRIFT_PRESS"/>
 		<obj-attribute name="iceDetection" type="java.lang.Integer" db-attribute-path="ICE_DETECTION"/>
@@ -1905,7 +1915,7 @@
 		<obj-attribute name="surfaceTime" type="java.lang.Double" db-attribute-path="SURFACE_TIME"/>
 		<obj-attribute name="watchCircle" type="java.lang.Double" db-attribute-path="WATCH_CIRCLE"/>
 	</obj-entity>
-	<obj-entity name="Contact" className="org.oceanops.api.orm.Contact" dbEntityName="CONTACT">
+	<obj-entity name="Contact" className="org.oceanops.orm.Contact" dbEntityName="CONTACT">
 		<obj-attribute name="address" type="java.lang.String" db-attribute-path="ADDRESS"/>
 		<obj-attribute name="admin" type="java.lang.Integer" db-attribute-path="ADMIN"/>
 		<obj-attribute name="email" type="java.lang.String" db-attribute-path="EMAIL"/>
@@ -1926,7 +1936,7 @@
 		<obj-attribute name="tel2" type="java.lang.String" db-attribute-path="TEL2"/>
 		<obj-attribute name="title" type="java.lang.String" db-attribute-path="TITLE"/>
 	</obj-entity>
-	<obj-entity name="ContactLogin" className="org.oceanops.api.orm.ContactLogin" dbEntityName="CONTACT_LOGIN">
+	<obj-entity name="ContactLogin" className="org.oceanops.orm.ContactLogin" dbEntityName="CONTACT_LOGIN">
 		<obj-attribute name="creationDate" type="java.time.LocalDateTime" db-attribute-path="CREATION_DATE"/>
 		<obj-attribute name="endValidity" type="java.time.LocalDateTime" db-attribute-path="END_VALIDITY"/>
 		<obj-attribute name="isValid" type="java.lang.Integer" db-attribute-path="IS_VALID"/>
@@ -1934,13 +1944,13 @@
 		<obj-attribute name="login" type="java.lang.String" db-attribute-path="LOGIN"/>
 		<obj-attribute name="passcode" type="java.lang.String" db-attribute-path="PASSCODE"/>
 	</obj-entity>
-	<obj-entity name="ContactPtfRole" className="org.oceanops.api.orm.ContactPtfRole" dbEntityName="CONTACT_PTF_ROLE">
+	<obj-entity name="ContactPtfRole" className="org.oceanops.orm.ContactPtfRole" dbEntityName="CONTACT_PTF_ROLE">
 		<obj-attribute name="sensorModelId" type="java.lang.Integer" db-attribute-path="SENSOR_MODEL_ID"/>
 	</obj-entity>
-	<obj-entity name="ContactSiteRole" className="org.oceanops.api.orm.ContactSiteRole" dbEntityName="CONTACT_SITE_ROLE">
+	<obj-entity name="ContactSiteRole" className="org.oceanops.orm.ContactSiteRole" dbEntityName="CONTACT_SITE_ROLE">
 		<obj-attribute name="siteId" type="java.lang.Integer" db-attribute-path="SITE_ID"/>
 	</obj-entity>
-	<obj-entity name="Country" className="org.oceanops.api.orm.Country" dbEntityName="COUNTRY">
+	<obj-entity name="Country" className="org.oceanops.orm.Country" dbEntityName="COUNTRY">
 		<obj-attribute name="active" type="java.lang.Integer" db-attribute-path="ACTIVE"/>
 		<obj-attribute name="code2" type="java.lang.String" db-attribute-path="CODE2"/>
 		<obj-attribute name="code3" type="java.lang.String" db-attribute-path="CODE3"/>
@@ -1955,13 +1965,13 @@
 		<obj-attribute name="toNotify" type="java.lang.Integer" db-attribute-path="TO_NOTIFY"/>
 		<obj-attribute name="wmoMember" type="java.lang.Integer" db-attribute-path="WMO_MEMBER"/>
 	</obj-entity>
-	<obj-entity name="CountryCommitment" className="org.oceanops.api.orm.CountryCommitment" dbEntityName="COUNTRY_COMMITMENT">
+	<obj-entity name="CountryCommitment" className="org.oceanops.orm.CountryCommitment" dbEntityName="COUNTRY_COMMITMENT">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="nbFunded" type="java.lang.Integer" db-attribute-path="NB_FUNDED"/>
 		<obj-attribute name="year" type="java.lang.Integer" db-attribute-path="YEAR"/>
 	</obj-entity>
-	<obj-entity name="Cruise" className="org.oceanops.api.orm.Cruise" dbEntityName="CRUISE">
+	<obj-entity name="Cruise" className="org.oceanops.orm.Cruise" dbEntityName="CRUISE">
 		<obj-attribute name="arrivalDate" type="java.time.LocalDateTime" db-attribute-path="ARRIVAL_DATE"/>
 		<obj-attribute name="autonomy" type="java.lang.Integer" db-attribute-path="AUTONOMY"/>
 		<obj-attribute name="cooperations" type="java.lang.Integer" db-attribute-path="COOPERATIONS"/>
@@ -1994,86 +2004,86 @@
 		<obj-attribute name="updateDate" type="java.time.LocalDateTime" db-attribute-path="UPDATE_DATE"/>
 		<obj-attribute name="validated" type="java.lang.Integer" db-attribute-path="VALIDATED"/>
 	</obj-entity>
-	<obj-entity name="CruiseClass" className="org.oceanops.api.orm.CruiseClass" dbEntityName="CRUISE_CLASS">
+	<obj-entity name="CruiseClass" className="org.oceanops.orm.CruiseClass" dbEntityName="CRUISE_CLASS">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 	</obj-entity>
-	<obj-entity name="CruiseContact" className="org.oceanops.api.orm.CruiseContact" dbEntityName="CRUISE_CONTACT">
+	<obj-entity name="CruiseContact" className="org.oceanops.orm.CruiseContact" dbEntityName="CRUISE_CONTACT">
 		<obj-attribute name="contactId" type="java.lang.Integer" db-attribute-path="CONTACT_ID"/>
 		<obj-attribute name="cruiseId" type="java.lang.Integer" db-attribute-path="CRUISE_ID"/>
 		<obj-attribute name="roleId" type="java.lang.Integer" db-attribute-path="ROLE_ID"/>
 	</obj-entity>
-	<obj-entity name="CruiseCountry" className="org.oceanops.api.orm.CruiseCountry" dbEntityName="CRUISE_COUNTRY">
+	<obj-entity name="CruiseCountry" className="org.oceanops.orm.CruiseCountry" dbEntityName="CRUISE_COUNTRY">
 		<obj-attribute name="countryId" type="java.lang.Integer" db-attribute-path="COUNTRY_ID"/>
 		<obj-attribute name="cruiseId" type="java.lang.Integer" db-attribute-path="CRUISE_ID"/>
 	</obj-entity>
-	<obj-entity name="CruiseLine" className="org.oceanops.api.orm.CruiseLine" dbEntityName="CRUISE_LINE">
+	<obj-entity name="CruiseLine" className="org.oceanops.orm.CruiseLine" dbEntityName="CRUISE_LINE">
 		<obj-attribute name="performanceIndex" type="java.math.BigDecimal" db-attribute-path="PERFORMANCE_INDEX"/>
 		<obj-attribute name="rank" type="java.math.BigDecimal" db-attribute-path="RANK"/>
 	</obj-entity>
-	<obj-entity name="CruiseProgram" className="org.oceanops.api.orm.CruiseProgram" dbEntityName="CRUISE_PROGRAM">
+	<obj-entity name="CruiseProgram" className="org.oceanops.orm.CruiseProgram" dbEntityName="CRUISE_PROGRAM">
 		<obj-attribute name="cruiseId" type="java.lang.Integer" db-attribute-path="CRUISE_ID"/>
 		<obj-attribute name="lead" type="java.lang.Integer" db-attribute-path="LEAD"/>
 		<obj-attribute name="programId" type="java.lang.Integer" db-attribute-path="PROGRAM_ID"/>
 	</obj-entity>
-	<obj-entity name="CruiseSensorModel" className="org.oceanops.api.orm.CruiseSensorModel" dbEntityName="CRUISE_SENSOR_MODEL">
+	<obj-entity name="CruiseSensorModel" className="org.oceanops.orm.CruiseSensorModel" dbEntityName="CRUISE_SENSOR_MODEL">
 		<obj-attribute name="cruiseId" type="java.lang.Integer" db-attribute-path="CRUISE_ID"/>
 		<obj-attribute name="sensorModelId" type="java.lang.Integer" db-attribute-path="SENSOR_MODEL_ID"/>
 	</obj-entity>
-	<obj-entity name="CruiseStatus" className="org.oceanops.api.orm.CruiseStatus" dbEntityName="CRUISE_STATUS">
+	<obj-entity name="CruiseStatus" className="org.oceanops.orm.CruiseStatus" dbEntityName="CRUISE_STATUS">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameLong" type="java.lang.String" db-attribute-path="NAME_LONG"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="CruiseType" className="org.oceanops.api.orm.CruiseType" dbEntityName="CRUISE_TYPE">
+	<obj-entity name="CruiseType" className="org.oceanops.orm.CruiseType" dbEntityName="CRUISE_TYPE">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameLong" type="java.lang.String" db-attribute-path="NAME_LONG"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="CruiseVariable" className="org.oceanops.api.orm.CruiseVariable" dbEntityName="CRUISE_VARIABLE">
+	<obj-entity name="CruiseVariable" className="org.oceanops.orm.CruiseVariable" dbEntityName="CRUISE_VARIABLE">
 		<obj-attribute name="cruiseId" type="java.lang.Integer" db-attribute-path="CRUISE_ID"/>
 		<obj-attribute name="variableId" type="java.lang.Integer" db-attribute-path="VARIABLE_ID"/>
 	</obj-entity>
-	<obj-entity name="DacType" className="org.oceanops.api.orm.DacType" dbEntityName="DAC_TYPE">
+	<obj-entity name="DacType" className="org.oceanops.orm.DacType" dbEntityName="DAC_TYPE">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="DataFormat" className="org.oceanops.api.orm.DataFormat" dbEntityName="DATA_FORMAT">
+	<obj-entity name="DataFormat" className="org.oceanops.orm.DataFormat" dbEntityName="DATA_FORMAT">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="DataProcessingMethod" className="org.oceanops.api.orm.DataProcessingMethod" dbEntityName="DATA_PROCESSING_METHOD">
+	<obj-entity name="DataProcessingMethod" className="org.oceanops.orm.DataProcessingMethod" dbEntityName="DATA_PROCESSING_METHOD">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="ref" type="java.lang.String" db-attribute-path="REF"/>
 	</obj-entity>
-	<obj-entity name="DataStatus" className="org.oceanops.api.orm.DataStatus" dbEntityName="DATA_STATUS">
+	<obj-entity name="DataStatus" className="org.oceanops.orm.DataStatus" dbEntityName="DATA_STATUS">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="DeplMethod" className="org.oceanops.api.orm.DeplMethod" dbEntityName="DEPL_METHOD">
+	<obj-entity name="DeplMethod" className="org.oceanops.orm.DeplMethod" dbEntityName="DEPL_METHOD">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 	</obj-entity>
-	<obj-entity name="DeplType" className="org.oceanops.api.orm.DeplType" dbEntityName="DEPL_TYPE">
+	<obj-entity name="DeplType" className="org.oceanops.orm.DeplType" dbEntityName="DEPL_TYPE">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="Doc" className="org.oceanops.api.orm.Doc" dbEntityName="DOC">
+	<obj-entity name="Doc" className="org.oceanops.orm.Doc" dbEntityName="DOC">
 		<obj-attribute name="agendaItem" type="java.lang.String" db-attribute-path="AGENDA_ITEM"/>
 		<obj-attribute name="author" type="java.lang.String" db-attribute-path="AUTHOR"/>
 		<obj-attribute name="body" type="java.lang.String" db-attribute-path="BODY"/>
@@ -2088,32 +2098,32 @@
 		<obj-attribute name="validated" type="java.lang.Integer" db-attribute-path="VALIDATED"/>
 		<obj-attribute name="version" type="java.lang.Double" db-attribute-path="VERSION"/>
 	</obj-entity>
-	<obj-entity name="DocContact" className="org.oceanops.api.orm.DocContact" dbEntityName="DOC_CONTACT">
+	<obj-entity name="DocContact" className="org.oceanops.orm.DocContact" dbEntityName="DOC_CONTACT">
 		<obj-attribute name="contactId" type="java.lang.Integer" db-attribute-path="CONTACT_ID"/>
 		<obj-attribute name="docId" type="java.lang.Integer" db-attribute-path="DOC_ID"/>
 	</obj-entity>
-	<obj-entity name="DocLanguage" className="org.oceanops.api.orm.DocLanguage" dbEntityName="DOC_LANGUAGE">
+	<obj-entity name="DocLanguage" className="org.oceanops.orm.DocLanguage" dbEntityName="DOC_LANGUAGE">
 		<obj-attribute name="docId" type="java.lang.Integer" db-attribute-path="DOC_ID"/>
 		<obj-attribute name="languageId" type="java.lang.Integer" db-attribute-path="LANGUAGE_ID"/>
 	</obj-entity>
-	<obj-entity name="DocType" className="org.oceanops.api.orm.DocType" dbEntityName="DOC_TYPE">
+	<obj-entity name="DocType" className="org.oceanops.orm.DocType" dbEntityName="DOC_TYPE">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameLong" type="java.lang.String" db-attribute-path="NAME_LONG"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="EndingCause" className="org.oceanops.api.orm.EndingCause" dbEntityName="ENDING_CAUSE">
+	<obj-entity name="EndingCause" className="org.oceanops.orm.EndingCause" dbEntityName="ENDING_CAUSE">
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="Frequency" className="org.oceanops.api.orm.Frequency" dbEntityName="FREQUENCY">
+	<obj-entity name="Frequency" className="org.oceanops.orm.Frequency" dbEntityName="FREQUENCY">
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="GtsCccc" className="org.oceanops.api.orm.GtsCccc" dbEntityName="GTS_CCCC">
+	<obj-entity name="GtsCccc" className="org.oceanops.orm.GtsCccc" dbEntityName="GTS_CCCC">
 		<obj-attribute name="cccc" type="java.lang.String" db-attribute-path="CCCC"/>
 		<obj-attribute name="center" type="java.lang.String" db-attribute-path="CENTER"/>
 		<obj-attribute name="city" type="java.lang.String" db-attribute-path="CITY"/>
@@ -2123,11 +2133,11 @@
 		<obj-attribute name="tag" type="java.lang.String" db-attribute-path="TAG"/>
 		<obj-attribute name="tmp" type="java.lang.String" db-attribute-path="TMP"/>
 	</obj-entity>
-	<obj-entity name="GtsCcccHeader" className="org.oceanops.api.orm.GtsCcccHeader" dbEntityName="GTS_CCCC_HEADER">
+	<obj-entity name="GtsCcccHeader" className="org.oceanops.orm.GtsCcccHeader" dbEntityName="GTS_CCCC_HEADER">
 		<obj-attribute name="gtsCcccId" type="java.lang.Integer" db-attribute-path="GTS_CCCC_ID"/>
 		<obj-attribute name="gtsHeaderId" type="java.lang.Integer" db-attribute-path="GTS_HEADER_ID"/>
 	</obj-entity>
-	<obj-entity name="GtsCode" className="org.oceanops.api.orm.GtsCode" dbEntityName="GTS_CODE">
+	<obj-entity name="GtsCode" className="org.oceanops.orm.GtsCode" dbEntityName="GTS_CODE">
 		<obj-attribute name="active" type="java.lang.Integer" db-attribute-path="ACTIVE"/>
 		<obj-attribute name="codeLetters" type="java.lang.String" db-attribute-path="CODE_LETTERS"/>
 		<obj-attribute name="codeName" type="java.lang.String" db-attribute-path="CODE_NAME"/>
@@ -2138,14 +2148,14 @@
 		<obj-attribute name="mainPtfType" type="java.lang.String" db-attribute-path="MAIN_PTF_TYPE"/>
 		<obj-attribute name="tag" type="java.lang.String" db-attribute-path="TAG"/>
 	</obj-entity>
-	<obj-entity name="GtsHeader" className="org.oceanops.api.orm.GtsHeader" dbEntityName="GTS_HEADER">
+	<obj-entity name="GtsHeader" className="org.oceanops.orm.GtsHeader" dbEntityName="GTS_HEADER">
 		<obj-attribute name="endDate" type="java.time.LocalDateTime" db-attribute-path="END_DATE"/>
 		<obj-attribute name="header" type="java.lang.String" db-attribute-path="HEADER"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="startDate" type="java.time.LocalDateTime" db-attribute-path="START_DATE"/>
 		<obj-attribute name="text" type="java.lang.String" db-attribute-path="TEXT"/>
 	</obj-entity>
-	<obj-entity name="GtsInstrumentType" className="org.oceanops.api.orm.GtsInstrumentType" dbEntityName="GTS_INSTRUMENT_TYPE">
+	<obj-entity name="GtsInstrumentType" className="org.oceanops.orm.GtsInstrumentType" dbEntityName="GTS_INSTRUMENT_TYPE">
 		<obj-attribute name="code" type="java.lang.String" db-attribute-path="CODE"/>
 		<obj-attribute name="details" type="java.lang.String" db-attribute-path="DETAILS"/>
 		<obj-attribute name="fallrateA" type="java.lang.Double" db-attribute-path="FALLRATE_A"/>
@@ -2153,13 +2163,13 @@
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="type" type="java.lang.String" db-attribute-path="TYPE"/>
 	</obj-entity>
-	<obj-entity name="GtsRecorderType" className="org.oceanops.api.orm.GtsRecorderType" dbEntityName="GTS_RECORDER_TYPE">
+	<obj-entity name="GtsRecorderType" className="org.oceanops.orm.GtsRecorderType" dbEntityName="GTS_RECORDER_TYPE">
 		<obj-attribute name="code" type="java.lang.String" db-attribute-path="CODE"/>
 		<obj-attribute name="details" type="java.lang.String" db-attribute-path="DETAILS"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="type" type="java.lang.String" db-attribute-path="TYPE"/>
 	</obj-entity>
-	<obj-entity name="Image" className="org.oceanops.api.orm.Image" dbEntityName="IMAGE">
+	<obj-entity name="Image" className="org.oceanops.orm.Image" dbEntityName="IMAGE">
 		<obj-attribute name="creationDate" type="java.time.LocalDateTime" db-attribute-path="CREATION_DATE"/>
 		<obj-attribute name="credits" type="java.lang.String" db-attribute-path="CREDITS"/>
 		<obj-attribute name="data" type="byte[]" db-attribute-path="DATA"/>
@@ -2172,14 +2182,14 @@
 		<obj-attribute name="tags" type="java.lang.String" db-attribute-path="TAGS"/>
 		<obj-attribute name="url" type="java.lang.String" db-attribute-path="URL"/>
 	</obj-entity>
-	<obj-entity name="ImageType" className="org.oceanops.api.orm.ImageType" dbEntityName="IMAGE_TYPE">
+	<obj-entity name="ImageType" className="org.oceanops.orm.ImageType" dbEntityName="IMAGE_TYPE">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameLong" type="java.lang.String" db-attribute-path="NAME_LONG"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="Indicator" className="org.oceanops.api.orm.Indicator" dbEntityName="INDICATOR">
+	<obj-entity name="Indicator" className="org.oceanops.orm.Indicator" dbEntityName="INDICATOR">
 		<obj-attribute name="basinId" type="java.lang.Integer" db-attribute-path="BASIN_ID"/>
 		<obj-attribute name="core" type="java.lang.Integer" db-attribute-path="CORE"/>
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
@@ -2194,67 +2204,67 @@
 		<obj-attribute name="targetText" type="java.lang.String" db-attribute-path="TARGET_TEXT"/>
 		<obj-attribute name="targetValue" type="java.lang.Double" db-attribute-path="TARGET_VALUE"/>
 	</obj-entity>
-	<obj-entity name="IndicatorCategory" className="org.oceanops.api.orm.IndicatorCategory" dbEntityName="INDICATOR_CATEGORY">
+	<obj-entity name="IndicatorCategory" className="org.oceanops.orm.IndicatorCategory" dbEntityName="INDICATOR_CATEGORY">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="rank" type="java.lang.Integer" db-attribute-path="RANK"/>
 	</obj-entity>
-	<obj-entity name="IndicatorValue" className="org.oceanops.api.orm.IndicatorValue" dbEntityName="INDICATOR_VALUE">
+	<obj-entity name="IndicatorValue" className="org.oceanops.orm.IndicatorValue" dbEntityName="INDICATOR_VALUE">
 		<obj-attribute name="endDate" type="java.time.LocalDateTime" db-attribute-path="END_DATE"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="startDate" type="java.time.LocalDateTime" db-attribute-path="START_DATE"/>
 		<obj-attribute name="value" type="java.lang.Double" db-attribute-path="VALUE"/>
 		<obj-attribute name="valueRaw" type="java.lang.Double" db-attribute-path="VALUE_RAW"/>
 	</obj-entity>
-	<obj-entity name="Language" className="org.oceanops.api.orm.Language" dbEntityName="LANGUAGE">
+	<obj-entity name="Language" className="org.oceanops.orm.Language" dbEntityName="LANGUAGE">
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="Latency" className="org.oceanops.api.orm.Latency" dbEntityName="LATENCY">
+	<obj-entity name="Latency" className="org.oceanops.orm.Latency" dbEntityName="LATENCY">
 		<obj-attribute name="minutes" type="java.lang.Double" db-attribute-path="MINUTES"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="Line" className="org.oceanops.api.orm.Line" dbEntityName="LINE">
+	<obj-entity name="Line" className="org.oceanops.orm.Line" dbEntityName="LINE">
 		<obj-attribute name="fromTo" type="java.lang.String" db-attribute-path="FROM_TO"/>
 		<obj-attribute name="geom" type="org.apache.cayenne.value.Wkt" db-attribute-path="WKB"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 	</obj-entity>
-	<obj-entity name="LineDecadalStatus" className="org.oceanops.api.orm.LineDecadalStatus" dbEntityName="LINE_DECADAL_STATUS">
+	<obj-entity name="LineDecadalStatus" className="org.oceanops.orm.LineDecadalStatus" dbEntityName="LINE_DECADAL_STATUS">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 	</obj-entity>
-	<obj-entity name="LineFamily" className="org.oceanops.api.orm.LineFamily" dbEntityName="LINE_FAMILY">
+	<obj-entity name="LineFamily" className="org.oceanops.orm.LineFamily" dbEntityName="LINE_FAMILY">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="LinePerformance" className="org.oceanops.api.orm.LinePerformance" dbEntityName="LINE_PERFORMANCE">
+	<obj-entity name="LinePerformance" className="org.oceanops.orm.LinePerformance" dbEntityName="LINE_PERFORMANCE">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 	</obj-entity>
-	<obj-entity name="LineProgram" className="org.oceanops.api.orm.LineProgram" dbEntityName="LINE_PROGRAM">
+	<obj-entity name="LineProgram" className="org.oceanops.orm.LineProgram" dbEntityName="LINE_PROGRAM">
 		<obj-attribute name="lead" type="java.lang.Integer" db-attribute-path="LEAD"/>
 		<obj-attribute name="lineId" type="java.lang.Integer" db-attribute-path="LINE_ID"/>
 		<obj-attribute name="programId" type="java.lang.Integer" db-attribute-path="PROGRAM_ID"/>
 	</obj-entity>
-	<obj-entity name="LinePtf" className="org.oceanops.api.orm.LinePtf" dbEntityName="LINE_PTF"/>
-	<obj-entity name="LineStatus" className="org.oceanops.api.orm.LineStatus" dbEntityName="LINE_STATUS">
+	<obj-entity name="LinePtf" className="org.oceanops.orm.LinePtf" dbEntityName="LINE_PTF"/>
+	<obj-entity name="LineStatus" className="org.oceanops.orm.LineStatus" dbEntityName="LINE_STATUS">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 	</obj-entity>
-	<obj-entity name="LineSurvey" className="org.oceanops.api.orm.LineSurvey" dbEntityName="LINE_SURVEY">
+	<obj-entity name="LineSurvey" className="org.oceanops.orm.LineSurvey" dbEntityName="LINE_SURVEY">
 		<obj-attribute name="lineId" type="java.lang.Integer" db-attribute-path="LINE_ID"/>
 		<obj-attribute name="surveyId" type="java.lang.Integer" db-attribute-path="SURVEY_ID"/>
 	</obj-entity>
-	<obj-entity name="LineType" className="org.oceanops.api.orm.LineType" dbEntityName="LINE_TYPE">
+	<obj-entity name="LineType" className="org.oceanops.orm.LineType" dbEntityName="LINE_TYPE">
 		<obj-attribute name="comments" type="java.lang.String" db-attribute-path="COMMENTS"/>
 		<obj-attribute name="drops" type="java.lang.Integer" db-attribute-path="DROPS"/>
 		<obj-attribute name="horizResBoxes" type="java.lang.Integer" db-attribute-path="HORIZ_RES_BOXES"/>
@@ -2280,18 +2290,18 @@
 		<obj-attribute name="periodTolerance" type="java.lang.Integer" db-attribute-path="PERIOD_TOLERANCE"/>
 		<obj-attribute name="transects" type="java.lang.Integer" db-attribute-path="TRANSECTS"/>
 	</obj-entity>
-	<obj-entity name="LocStatus" className="org.oceanops.api.orm.LocStatus" dbEntityName="LOC_STATUS">
+	<obj-entity name="LocStatus" className="org.oceanops.orm.LocStatus" dbEntityName="LOC_STATUS">
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="LocSystem" className="org.oceanops.api.orm.LocSystem" dbEntityName="LOC_SYSTEM">
+	<obj-entity name="LocSystem" className="org.oceanops.orm.LocSystem" dbEntityName="LOC_SYSTEM">
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 		<obj-attribute name="wigosCode" type="java.lang.String" db-attribute-path="WIGOS_CODE"/>
 	</obj-entity>
-	<obj-entity name="MapType" className="org.oceanops.api.orm.MapType" dbEntityName="MAP_TYPE">
+	<obj-entity name="MapType" className="org.oceanops.orm.MapType" dbEntityName="MAP_TYPE">
 		<obj-attribute name="freq" type="java.lang.Integer" db-attribute-path="FREQ"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
@@ -2299,10 +2309,10 @@
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 		<obj-attribute name="urlPath" type="java.lang.String" db-attribute-path="URL_PATH"/>
 	</obj-entity>
-	<obj-entity name="MapTypeNetwork" className="org.oceanops.api.orm.MapTypeNetwork" dbEntityName="MAP_TYPE_NETWORK">
+	<obj-entity name="MapTypeNetwork" className="org.oceanops.orm.MapTypeNetwork" dbEntityName="MAP_TYPE_NETWORK">
 		<obj-attribute name="rank" type="java.lang.Integer" db-attribute-path="RANK"/>
 	</obj-entity>
-	<obj-entity name="Meeting" className="org.oceanops.api.orm.Meeting" dbEntityName="MEETING">
+	<obj-entity name="Meeting" className="org.oceanops.orm.Meeting" dbEntityName="MEETING">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="endDate" type="java.time.LocalDateTime" db-attribute-path="END_DATE"/>
 		<obj-attribute name="geoLocation" type="java.lang.String" db-attribute-path="GEO_LOCATION"/>
@@ -2313,13 +2323,13 @@
 		<obj-attribute name="place" type="java.lang.String" db-attribute-path="PLACE"/>
 		<obj-attribute name="startDate" type="java.time.LocalDateTime" db-attribute-path="START_DATE"/>
 	</obj-entity>
-	<obj-entity name="MooringType" className="org.oceanops.api.orm.MooringType" dbEntityName="MOORING_TYPE">
+	<obj-entity name="MooringType" className="org.oceanops.orm.MooringType" dbEntityName="MOORING_TYPE">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="MzmsPtfCountry" className="org.oceanops.api.orm.MzmsPtfCountry" dbEntityName="MZMS_PTF_COUNTRY">
+	<obj-entity name="MzmsPtfCountry" className="org.oceanops.orm.MzmsPtfCountry" dbEntityName="MZMS_PTF_COUNTRY">
 		<obj-attribute name="checked" type="java.lang.Integer" db-attribute-path="CHECKED"/>
 		<obj-attribute name="comments" type="java.lang.String" db-attribute-path="COMMENTS"/>
 		<obj-attribute name="countryId" type="java.lang.Integer" db-attribute-path="COUNTRY_ID"/>
@@ -2328,12 +2338,12 @@
 		<obj-attribute name="ptfId" type="java.lang.Integer" db-attribute-path="PTF_ID"/>
 		<obj-attribute name="warningDate" type="java.time.LocalDateTime" db-attribute-path="WARNING_DATE"/>
 	</obj-entity>
-	<obj-entity name="NcLevel" className="org.oceanops.api.orm.NcLevel" dbEntityName="NC_LEVEL">
+	<obj-entity name="NcLevel" className="org.oceanops.orm.NcLevel" dbEntityName="NC_LEVEL">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 	</obj-entity>
-	<obj-entity name="NcNotification" className="org.oceanops.api.orm.NcNotification" dbEntityName="NC_NOTIFICATION">
+	<obj-entity name="NcNotification" className="org.oceanops.orm.NcNotification" dbEntityName="NC_NOTIFICATION">
 		<obj-attribute name="cruiseId" type="java.lang.Integer" db-attribute-path="CRUISE_ID"/>
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
@@ -2342,20 +2352,20 @@
 		<obj-attribute name="notificationDate" type="java.time.LocalDateTime" db-attribute-path="NOTIFICATION_DATE"/>
 		<obj-attribute name="sent" type="java.lang.Integer" db-attribute-path="SENT"/>
 	</obj-entity>
-	<obj-entity name="NcSubscription" className="org.oceanops.api.orm.NcSubscription" dbEntityName="NC_SUBSCRIPTION">
+	<obj-entity name="NcSubscription" className="org.oceanops.orm.NcSubscription" dbEntityName="NC_SUBSCRIPTION">
 		<obj-attribute name="emailed" type="java.lang.Integer" db-attribute-path="EMAILED"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="preferredEmail" type="java.lang.String" db-attribute-path="PREFERRED_EMAIL"/>
 		<obj-attribute name="subscriptionDate" type="java.time.LocalDateTime" db-attribute-path="SUBSCRIPTION_DATE"/>
 	</obj-entity>
-	<obj-entity name="NcTopic" className="org.oceanops.api.orm.NcTopic" dbEntityName="NC_TOPIC">
+	<obj-entity name="NcTopic" className="org.oceanops.orm.NcTopic" dbEntityName="NC_TOPIC">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="isPrivate" type="java.lang.Integer" db-attribute-path="IS_PRIVATE"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="parentTopicId" type="java.lang.Integer" db-attribute-path="PARENT_TOPIC_ID"/>
 	</obj-entity>
-	<obj-entity name="Network" className="org.oceanops.api.orm.Network" dbEntityName="NETWORK">
+	<obj-entity name="Network" className="org.oceanops.orm.Network" dbEntityName="NETWORK">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
@@ -2364,20 +2374,20 @@
 		<obj-attribute name="rank" type="java.lang.Integer" db-attribute-path="RANK"/>
 		<obj-attribute name="wigosCode" type="java.lang.String" db-attribute-path="WIGOS_CODE"/>
 	</obj-entity>
-	<obj-entity name="NetworkContact" className="org.oceanops.api.orm.NetworkContact" dbEntityName="NETWORK_CONTACT">
+	<obj-entity name="NetworkContact" className="org.oceanops.orm.NetworkContact" dbEntityName="NETWORK_CONTACT">
 		<obj-attribute name="contactId" type="java.lang.Integer" db-attribute-path="CONTACT_ID"/>
 		<obj-attribute name="networkId" type="java.lang.Integer" db-attribute-path="NETWORK_ID"/>
 		<obj-attribute name="roleId" type="java.lang.Integer" db-attribute-path="ROLE_ID"/>
 	</obj-entity>
-	<obj-entity name="NetworkCountry" className="org.oceanops.api.orm.NetworkCountry" dbEntityName="NETWORK_COUNTRY">
+	<obj-entity name="NetworkCountry" className="org.oceanops.orm.NetworkCountry" dbEntityName="NETWORK_COUNTRY">
 		<obj-attribute name="countryId" type="java.lang.Integer" db-attribute-path="COUNTRY_ID"/>
 		<obj-attribute name="networkId" type="java.lang.Integer" db-attribute-path="NETWORK_ID"/>
 	</obj-entity>
-	<obj-entity name="NetworkEndingCause" className="org.oceanops.api.orm.NetworkEndingCause" dbEntityName="NETWORK_ENDING_CAUSE">
+	<obj-entity name="NetworkEndingCause" className="org.oceanops.orm.NetworkEndingCause" dbEntityName="NETWORK_ENDING_CAUSE">
 		<obj-attribute name="endingCauseId" type="java.lang.Integer" db-attribute-path="ENDING_CAUSE_ID"/>
 		<obj-attribute name="networkId" type="java.lang.Integer" db-attribute-path="NETWORK_ID"/>
 	</obj-entity>
-	<obj-entity name="NetworkInformation" className="org.oceanops.api.orm.NetworkInformation" dbEntityName="NETWORK_INFORMATION">
+	<obj-entity name="NetworkInformation" className="org.oceanops.orm.NetworkInformation" dbEntityName="NETWORK_INFORMATION">
 		<obj-attribute name="data" type="java.lang.String" db-attribute-path="DATA"/>
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
@@ -2390,19 +2400,19 @@
 		<obj-attribute name="people" type="java.lang.String" db-attribute-path="PEOPLE"/>
 		<obj-attribute name="tech" type="java.lang.String" db-attribute-path="TECH"/>
 	</obj-entity>
-	<obj-entity name="NetworkPtf" className="org.oceanops.api.orm.NetworkPtf" dbEntityName="NETWORK_PTF">
+	<obj-entity name="NetworkPtf" className="org.oceanops.orm.NetworkPtf" dbEntityName="NETWORK_PTF">
 		<obj-attribute name="networkId" type="java.lang.Integer" db-attribute-path="NETWORK_ID"/>
 		<obj-attribute name="ptfId" type="java.lang.Integer" db-attribute-path="PTF_ID"/>
 	</obj-entity>
-	<obj-entity name="NetworkSite" className="org.oceanops.api.orm.NetworkSite" dbEntityName="NETWORK_SITE">
+	<obj-entity name="NetworkSite" className="org.oceanops.orm.NetworkSite" dbEntityName="NETWORK_SITE">
 		<obj-attribute name="networkId" type="java.lang.Integer" db-attribute-path="NETWORK_ID"/>
 		<obj-attribute name="siteId" type="java.lang.Integer" db-attribute-path="SITE_ID"/>
 	</obj-entity>
-	<obj-entity name="NetworkType" className="org.oceanops.api.orm.NetworkType" dbEntityName="NETWORK_TYPE">
+	<obj-entity name="NetworkType" className="org.oceanops.orm.NetworkType" dbEntityName="NETWORK_TYPE">
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="Obs" className="org.oceanops.api.orm.Obs" dbEntityName="OBS">
+	<obj-entity name="Obs" className="org.oceanops.orm.Obs" dbEntityName="OBS">
 		<obj-attribute name="delay" type="java.lang.Double" db-attribute-path="DELAY"/>
 		<obj-attribute name="depth" type="java.lang.Double" db-attribute-path="DEPTH"/>
 		<obj-attribute name="distributionDate" type="java.time.LocalDateTime" db-attribute-path="DISTRIBUTION_DATE"/>
@@ -2415,7 +2425,7 @@
 		<obj-attribute name="updateDate" type="java.time.LocalDateTime" db-attribute-path="UPDATE_DATE"/>
 		<obj-attribute name="wmo" type="java.lang.String" db-attribute-path="WMO"/>
 	</obj-entity>
-	<obj-entity name="ObsArgoGdac" className="org.oceanops.api.orm.ObsArgoGdac" dbEntityName="OBS_ARGO_GDAC">
+	<obj-entity name="ObsArgoGdac" className="org.oceanops.orm.ObsArgoGdac" dbEntityName="OBS_ARGO_GDAC">
 		<obj-attribute name="assemblyDate" type="java.time.LocalDateTime" db-attribute-path="ASSEMBLY_DATE"/>
 		<obj-attribute name="assemblyDateBgc" type="java.time.LocalDateTime" db-attribute-path="ASSEMBLY_DATE_BGC"/>
 		<obj-attribute name="cycleNb" type="java.lang.Integer" db-attribute-path="CYCLE_NB"/>
@@ -2437,12 +2447,12 @@
 		<obj-attribute name="updateDate" type="java.time.LocalDateTime" db-attribute-path="UPDATE_DATE"/>
 		<obj-attribute name="wmo" type="java.lang.String" db-attribute-path="WMO"/>
 	</obj-entity>
-	<obj-entity name="ObsArgoGdacDs" className="org.oceanops.api.orm.ObsArgoGdacDs" dbEntityName="OBS_ARGO_GDAC_DS">
+	<obj-entity name="ObsArgoGdacDs" className="org.oceanops.orm.ObsArgoGdacDs" dbEntityName="OBS_ARGO_GDAC_DS">
 		<obj-attribute name="obsDataStatusId" type="java.lang.Integer" db-attribute-path="OBS_DATA_STATUS_ID"/>
 		<obj-attribute name="obsId" type="java.lang.Integer" db-attribute-path="OBS_ID"/>
 		<obj-attribute name="statusDate" type="java.time.LocalDateTime" db-attribute-path="STATUS_DATE"/>
 	</obj-entity>
-	<obj-entity name="ObsArgoGdacVariable" className="org.oceanops.api.orm.ObsArgoGdacVariable" dbEntityName="OBS_ARGO_GDAC_VARIABLE">
+	<obj-entity name="ObsArgoGdacVariable" className="org.oceanops.orm.ObsArgoGdacVariable" dbEntityName="OBS_ARGO_GDAC_VARIABLE">
 		<obj-attribute name="adjustmentDeviation" type="java.lang.Double" db-attribute-path="ADJUSTMENT_DEVIATION"/>
 		<obj-attribute name="adjustmentMean" type="java.lang.Double" db-attribute-path="ADJUSTMENT_MEAN"/>
 		<obj-attribute name="levelsNb" type="java.lang.Integer" db-attribute-path="LEVELS_NB"/>
@@ -2450,11 +2460,11 @@
 		<obj-attribute name="qc" type="java.lang.String" db-attribute-path="QC"/>
 		<obj-attribute name="variableId" type="java.lang.Integer" db-attribute-path="VARIABLE_ID"/>
 	</obj-entity>
-	<obj-entity name="ObsDataStatus" className="org.oceanops.api.orm.ObsDataStatus" dbEntityName="OBS_DATA_STATUS">
+	<obj-entity name="ObsDataStatus" className="org.oceanops.orm.ObsDataStatus" dbEntityName="OBS_DATA_STATUS">
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 	</obj-entity>
-	<obj-entity name="ObsFishingvesselFdVariable" className="org.oceanops.api.orm.ObsFishingvesselFdVariable" dbEntityName="OBS_FISHINGVESSEL_FD_VARIABLE"/>
-	<obj-entity name="ObsFishingvesselFishydata" className="org.oceanops.api.orm.ObsFishingvesselFishydata" dbEntityName="OBS_FISHINGVESSEL_FISHYDATA">
+	<obj-entity name="ObsFishingvesselFdVariable" className="org.oceanops.orm.ObsFishingvesselFdVariable" dbEntityName="OBS_FISHINGVESSEL_FD_VARIABLE"/>
+	<obj-entity name="ObsFishingvesselFishydata" className="org.oceanops.orm.ObsFishingvesselFishydata" dbEntityName="OBS_FISHINGVESSEL_FISHYDATA">
 		<obj-attribute name="descending" type="java.lang.Integer" db-attribute-path="DESCENDING"/>
 		<obj-attribute name="distributionDate" type="java.time.LocalDateTime" db-attribute-path="DISTRIBUTION_DATE"/>
 		<obj-attribute name="insertDate" type="java.time.LocalDateTime" db-attribute-path="INSERT_DATE"/>
@@ -2466,7 +2476,7 @@
 		<obj-attribute name="updateDate" type="java.time.LocalDateTime" db-attribute-path="UPDATE_DATE"/>
 		<obj-attribute name="wmo" type="java.lang.String" db-attribute-path="WMO"/>
 	</obj-entity>
-	<obj-entity name="ObsGlidersGdac" className="org.oceanops.api.orm.ObsGlidersGdac" dbEntityName="OBS_GLIDERS_GDAC">
+	<obj-entity name="ObsGlidersGdac" className="org.oceanops.orm.ObsGlidersGdac" dbEntityName="OBS_GLIDERS_GDAC">
 		<obj-attribute name="assemblyDate" type="java.time.LocalDateTime" db-attribute-path="ASSEMBLY_DATE"/>
 		<obj-attribute name="cycleNb" type="java.lang.Integer" db-attribute-path="CYCLE_NB"/>
 		<obj-attribute name="dataPath" type="java.lang.String" db-attribute-path="DATA_PATH"/>
@@ -2487,16 +2497,16 @@
 		<obj-attribute name="updateDate" type="java.time.LocalDateTime" db-attribute-path="UPDATE_DATE"/>
 		<obj-attribute name="wmo" type="java.lang.String" db-attribute-path="WMO"/>
 	</obj-entity>
-	<obj-entity name="ObsGlidersGdacDs" className="org.oceanops.api.orm.ObsGlidersGdacDs" dbEntityName="OBS_GLIDERS_GDAC_DS">
+	<obj-entity name="ObsGlidersGdacDs" className="org.oceanops.orm.ObsGlidersGdacDs" dbEntityName="OBS_GLIDERS_GDAC_DS">
 		<obj-attribute name="obsDataStatusId" type="java.lang.Integer" db-attribute-path="OBS_DATA_STATUS_ID"/>
 		<obj-attribute name="obsId" type="java.lang.Integer" db-attribute-path="OBS_ID"/>
 		<obj-attribute name="statusDate" type="java.time.LocalDateTime" db-attribute-path="STATUS_DATE"/>
 	</obj-entity>
-	<obj-entity name="ObsGlidersGdacVariable" className="org.oceanops.api.orm.ObsGlidersGdacVariable" dbEntityName="OBS_GLIDERS_GDAC_VARIABLE">
+	<obj-entity name="ObsGlidersGdacVariable" className="org.oceanops.orm.ObsGlidersGdacVariable" dbEntityName="OBS_GLIDERS_GDAC_VARIABLE">
 		<obj-attribute name="obsId" type="java.lang.Integer" db-attribute-path="OBS_ID"/>
 		<obj-attribute name="variableId" type="java.lang.Integer" db-attribute-path="VARIABLE_ID"/>
 	</obj-entity>
-	<obj-entity name="ObsGlidersGtsOsmc" className="org.oceanops.api.orm.ObsGlidersGtsOsmc" dbEntityName="OBS_GLIDERS_GTS_OSMC">
+	<obj-entity name="ObsGlidersGtsOsmc" className="org.oceanops.orm.ObsGlidersGtsOsmc" dbEntityName="OBS_GLIDERS_GTS_OSMC">
 		<obj-attribute name="distributionDate" type="java.time.LocalDateTime" db-attribute-path="DISTRIBUTION_DATE"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="insertDate" type="java.time.LocalDateTime" db-attribute-path="INSERT_DATE"/>
@@ -2507,11 +2517,11 @@
 		<obj-attribute name="updateDate" type="java.time.LocalDateTime" db-attribute-path="UPDATE_DATE"/>
 		<obj-attribute name="wmo" type="java.lang.String" db-attribute-path="WMO"/>
 	</obj-entity>
-	<obj-entity name="ObsGlidersGtsOsmcVariable" className="org.oceanops.api.orm.ObsGlidersGtsOsmcVariable" dbEntityName="OBS_GLIDERS_GTS_OSMC_VARIABLE">
+	<obj-entity name="ObsGlidersGtsOsmcVariable" className="org.oceanops.orm.ObsGlidersGtsOsmcVariable" dbEntityName="OBS_GLIDERS_GTS_OSMC_VARIABLE">
 		<obj-attribute name="obsId" type="java.lang.Integer" db-attribute-path="OBS_ID"/>
 		<obj-attribute name="variableId" type="java.lang.Integer" db-attribute-path="VARIABLE_ID"/>
 	</obj-entity>
-	<obj-entity name="ObsLatest" className="org.oceanops.api.orm.ObsLatest" dbEntityName="OBS_LATEST">
+	<obj-entity name="ObsLatest" className="org.oceanops.orm.ObsLatest" dbEntityName="OBS_LATEST">
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="lat" type="java.lang.Double" db-attribute-path="LAT"/>
 		<obj-attribute name="lon" type="java.lang.Double" db-attribute-path="LON"/>
@@ -2519,12 +2529,12 @@
 		<obj-attribute name="originId" type="java.lang.Integer" db-attribute-path="ORIGIN_ID"/>
 		<obj-attribute name="originTable" type="java.lang.String" db-attribute-path="ORIGIN_TABLE"/>
 	</obj-entity>
-	<obj-entity name="ObsObsDataStatus" className="org.oceanops.api.orm.ObsObsDataStatus" dbEntityName="OBS_OBS_DATA_STATUS">
+	<obj-entity name="ObsObsDataStatus" className="org.oceanops.orm.ObsObsDataStatus" dbEntityName="OBS_OBS_DATA_STATUS">
 		<obj-attribute name="obsDataStatusId" type="java.lang.Integer" db-attribute-path="OBS_DATA_STATUS_ID"/>
 		<obj-attribute name="obsId" type="java.lang.Integer" db-attribute-path="OBS_ID"/>
 		<obj-attribute name="statusDate" type="java.time.LocalDateTime" db-attribute-path="STATUS_DATE"/>
 	</obj-entity>
-	<obj-entity name="ObsStats" className="org.oceanops.api.orm.ObsStats" dbEntityName="OBS_STATS">
+	<obj-entity name="ObsStats" className="org.oceanops.orm.ObsStats" dbEntityName="OBS_STATS">
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="obsDay" type="java.time.LocalDateTime" db-attribute-path="OBS_DAY"/>
@@ -2532,7 +2542,7 @@
 		<obj-attribute name="type" type="java.lang.String" db-attribute-path="TYPE"/>
 		<obj-attribute name="value" type="java.lang.Double" db-attribute-path="VALUE"/>
 	</obj-entity>
-	<obj-entity name="ObsTsunaGtsOsmc" className="org.oceanops.api.orm.ObsTsunaGtsOsmc" dbEntityName="OBS_TSUNA_GTS_OSMC">
+	<obj-entity name="ObsTsunaGtsOsmc" className="org.oceanops.orm.ObsTsunaGtsOsmc" dbEntityName="OBS_TSUNA_GTS_OSMC">
 		<obj-attribute name="depth" type="java.lang.Double" db-attribute-path="DEPTH"/>
 		<obj-attribute name="distributionDate" type="java.time.LocalDateTime" db-attribute-path="DISTRIBUTION_DATE"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
@@ -2544,11 +2554,11 @@
 		<obj-attribute name="updateDate" type="java.time.LocalDateTime" db-attribute-path="UPDATE_DATE"/>
 		<obj-attribute name="wmo" type="java.lang.String" db-attribute-path="WMO"/>
 	</obj-entity>
-	<obj-entity name="ObsTsunaGtsOsmcVariable" className="org.oceanops.api.orm.ObsTsunaGtsOsmcVariable" dbEntityName="OBS_TSUNA_GTS_OSMC_VARIABLE">
+	<obj-entity name="ObsTsunaGtsOsmcVariable" className="org.oceanops.orm.ObsTsunaGtsOsmcVariable" dbEntityName="OBS_TSUNA_GTS_OSMC_VARIABLE">
 		<obj-attribute name="obsId" type="java.lang.Integer" db-attribute-path="OBS_ID"/>
 		<obj-attribute name="variableId" type="java.lang.Integer" db-attribute-path="VARIABLE_ID"/>
 	</obj-entity>
-	<obj-entity name="ObsVariable" className="org.oceanops.api.orm.ObsVariable" dbEntityName="OBS_VARIABLE">
+	<obj-entity name="ObsVariable" className="org.oceanops.orm.ObsVariable" dbEntityName="OBS_VARIABLE">
 		<obj-attribute name="adjustmentDeviation" type="java.lang.Double" db-attribute-path="ADJUSTMENT_DEVIATION"/>
 		<obj-attribute name="adjustmentMean" type="java.lang.Double" db-attribute-path="ADJUSTMENT_MEAN"/>
 		<obj-attribute name="depth" type="java.lang.Double" db-attribute-path="DEPTH"/>
@@ -2557,12 +2567,12 @@
 		<obj-attribute name="qc" type="java.lang.String" db-attribute-path="QC"/>
 		<obj-attribute name="variableId" type="java.lang.Integer" db-attribute-path="VARIABLE_ID"/>
 	</obj-entity>
-	<obj-entity name="PackageType" className="org.oceanops.api.orm.PackageType" dbEntityName="PACKAGE_TYPE">
+	<obj-entity name="PackageType" className="org.oceanops.orm.PackageType" dbEntityName="PACKAGE_TYPE">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 	</obj-entity>
-	<obj-entity name="Parameter" className="org.oceanops.api.orm.Parameter" dbEntityName="PARAMETER">
+	<obj-entity name="Parameter" className="org.oceanops.orm.Parameter" dbEntityName="PARAMETER">
 		<obj-attribute name="altLabel" type="java.lang.String" db-attribute-path="ALT_LABEL"/>
 		<obj-attribute name="definition" type="java.lang.String" db-attribute-path="DEFINITION"/>
 		<obj-attribute name="identifier" type="java.lang.String" db-attribute-path="IDENTIFIER"/>
@@ -2570,33 +2580,33 @@
 		<obj-attribute name="updateDate" type="java.time.LocalDateTime" db-attribute-path="UPDATE_DATE"/>
 		<obj-attribute name="uri" type="java.lang.String" db-attribute-path="URI"/>
 	</obj-entity>
-	<obj-entity name="ParameterPtf" className="org.oceanops.api.orm.ParameterPtf" dbEntityName="PARAMETER_PTF">
+	<obj-entity name="ParameterPtf" className="org.oceanops.orm.ParameterPtf" dbEntityName="PARAMETER_PTF">
 		<obj-attribute name="firstMeasured" type="java.time.LocalDateTime" db-attribute-path="FIRST_MEASURED"/>
 		<obj-attribute name="lastMeasured" type="java.time.LocalDateTime" db-attribute-path="LAST_MEASURED"/>
 		<obj-attribute name="nbObs" type="int" db-attribute-path="NB_OBS"/>
 	</obj-entity>
-	<obj-entity name="ParameterVariable" className="org.oceanops.api.orm.ParameterVariable" dbEntityName="PARAMETER_VARIABLE"/>
-	<obj-entity name="PostRetrievalStatus" className="org.oceanops.api.orm.PostRetrievalStatus" dbEntityName="POST_RETRIEVAL_STATUS">
+	<obj-entity name="ParameterVariable" className="org.oceanops.orm.ParameterVariable" dbEntityName="PARAMETER_VARIABLE"/>
+	<obj-entity name="PostRetrievalStatus" className="org.oceanops.orm.PostRetrievalStatus" dbEntityName="POST_RETRIEVAL_STATUS">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="Program" className="org.oceanops.api.orm.Program" dbEntityName="PROGRAM">
+	<obj-entity name="Program" className="org.oceanops.orm.Program" dbEntityName="PROGRAM">
 		<obj-attribute name="active" type="java.lang.Integer" db-attribute-path="ACTIVE"/>
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 		<obj-attribute name="wigosCode" type="java.lang.String" db-attribute-path="WIGOS_CODE"/>
 	</obj-entity>
-	<obj-entity name="ProgramAgency" className="org.oceanops.api.orm.ProgramAgency" dbEntityName="PROGRAM_AGENCY">
+	<obj-entity name="ProgramAgency" className="org.oceanops.orm.ProgramAgency" dbEntityName="PROGRAM_AGENCY">
 		<obj-attribute name="lead" type="java.lang.Integer" db-attribute-path="LEAD"/>
 	</obj-entity>
-	<obj-entity name="ProgramContact" className="org.oceanops.api.orm.ProgramContact" dbEntityName="PROGRAM_CONTACT">
+	<obj-entity name="ProgramContact" className="org.oceanops.orm.ProgramContact" dbEntityName="PROGRAM_CONTACT">
 		<obj-attribute name="mzmsAutoCheck" type="java.lang.Integer" db-attribute-path="MZMS_AUTO_CHECK"/>
 		<obj-attribute name="mzmsWarningEnabled" type="java.lang.Integer" db-attribute-path="MZMS_WARNING_ENABLED"/>
 	</obj-entity>
-	<obj-entity name="Ptf" className="org.oceanops.api.orm.Ptf" dbEntityName="PTF">
+	<obj-entity name="Ptf" className="org.oceanops.orm.Ptf" dbEntityName="PTF">
 		<obj-attribute name="activityCriterion" type="java.lang.Integer" db-attribute-path="ACTIVITY_CRITERION"/>
 		<obj-attribute name="batchRequestRef" type="java.lang.String" db-attribute-path="BATCH_REQUEST_REF"/>
 		<obj-attribute name="closureCriterion" type="java.lang.Integer" db-attribute-path="CLOSURE_CRITERION"/>
@@ -2618,38 +2628,38 @@
 		<obj-attribute name="validated" type="java.lang.Integer" db-attribute-path="VALIDATED"/>
 		<obj-attribute name="wigosSynchronised" type="java.lang.Integer" db-attribute-path="WIGOS_SYNCHRONISED"/>
 	</obj-entity>
-	<obj-entity name="PtfAncillaryDevice" className="org.oceanops.api.orm.PtfAncillaryDevice" dbEntityName="PTF_ANCILLARY_DEVICE">
+	<obj-entity name="PtfAncillaryDevice" className="org.oceanops.orm.PtfAncillaryDevice" dbEntityName="PTF_ANCILLARY_DEVICE">
 		<obj-attribute name="serialRef" type="java.lang.String" db-attribute-path="SERIAL_REF"/>
 	</obj-entity>
-	<obj-entity name="PtfAncillaryDeviceName" className="org.oceanops.api.orm.PtfAncillaryDeviceName" dbEntityName="PTF_ANCILLARY_DEVICE_NAME">
+	<obj-entity name="PtfAncillaryDeviceName" className="org.oceanops.orm.PtfAncillaryDeviceName" dbEntityName="PTF_ANCILLARY_DEVICE_NAME">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 	</obj-entity>
-	<obj-entity name="PtfAncillaryDeviceVersion" className="org.oceanops.api.orm.PtfAncillaryDeviceVersion" dbEntityName="PTF_ANCILLARY_DEVICE_VERSION">
+	<obj-entity name="PtfAncillaryDeviceVersion" className="org.oceanops.orm.PtfAncillaryDeviceVersion" dbEntityName="PTF_ANCILLARY_DEVICE_VERSION">
 		<obj-attribute name="version" type="java.lang.String" db-attribute-path="VERSION"/>
 	</obj-entity>
-	<obj-entity name="PtfAutomation" className="org.oceanops.api.orm.PtfAutomation" dbEntityName="PTF_AUTOMATION">
+	<obj-entity name="PtfAutomation" className="org.oceanops.orm.PtfAutomation" dbEntityName="PTF_AUTOMATION">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="pub47Ref" type="java.lang.String" db-attribute-path="PUB47_REF"/>
 		<obj-attribute name="ref" type="java.lang.String" db-attribute-path="REF"/>
 	</obj-entity>
-	<obj-entity name="PtfBatchStatus" className="org.oceanops.api.orm.PtfBatchStatus" dbEntityName="PTF_BATCH_STATUS">
+	<obj-entity name="PtfBatchStatus" className="org.oceanops.orm.PtfBatchStatus" dbEntityName="PTF_BATCH_STATUS">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 	</obj-entity>
-	<obj-entity name="PtfBattery" className="org.oceanops.api.orm.PtfBattery" dbEntityName="PTF_BATTERY">
+	<obj-entity name="PtfBattery" className="org.oceanops.orm.PtfBattery" dbEntityName="PTF_BATTERY">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="iniVoltage" type="java.lang.Double" db-attribute-path="INI_VOLTAGE"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="PtfConfig" className="org.oceanops.api.orm.PtfConfig" dbEntityName="PTF_CONFIG">
+	<obj-entity name="PtfConfig" className="org.oceanops.orm.PtfConfig" dbEntityName="PTF_CONFIG">
 		<obj-attribute name="cycle" type="java.lang.Integer" db-attribute-path="CYCLE"/>
 		<obj-attribute name="ptfId" type="java.lang.Integer" db-attribute-path="PTF_ID"/>
 	</obj-entity>
-	<obj-entity name="PtfDeployment" className="org.oceanops.api.orm.PtfDeployment" dbEntityName="PTF_DEPLOYMENT">
+	<obj-entity name="PtfDeployment" className="org.oceanops.orm.PtfDeployment" dbEntityName="PTF_DEPLOYMENT">
 		<obj-attribute name="cruiseName" type="java.lang.String" db-attribute-path="CRUISE_NAME"/>
 		<obj-attribute name="ctd" type="java.lang.Integer" db-attribute-path="CTD"/>
 		<obj-attribute name="ctdRef" type="java.lang.String" db-attribute-path="CTD_REF"/>
@@ -2671,13 +2681,13 @@
 		<obj-attribute name="weatherId" type="java.lang.Integer" db-attribute-path="WEATHER_ID"/>
 		<obj-attribute name="windSpeed" type="java.lang.Double" db-attribute-path="WIND_SPEED"/>
 	</obj-entity>
-	<obj-entity name="PtfFamily" className="org.oceanops.api.orm.PtfFamily" dbEntityName="PTF_FAMILY">
+	<obj-entity name="PtfFamily" className="org.oceanops.orm.PtfFamily" dbEntityName="PTF_FAMILY">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="PtfFirmware" className="org.oceanops.api.orm.PtfFirmware" dbEntityName="PTF_FIRMWARE">
+	<obj-entity name="PtfFirmware" className="org.oceanops.orm.PtfFirmware" dbEntityName="PTF_FIRMWARE">
 		<obj-attribute name="bluetoothId" type="java.lang.String" db-attribute-path="BLUETOOTH_ID"/>
 		<obj-attribute name="formatRef" type="java.lang.String" db-attribute-path="FORMAT_REF"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
@@ -2687,7 +2697,7 @@
 		<obj-attribute name="softwareName" type="java.lang.String" db-attribute-path="SOFTWARE_NAME"/>
 		<obj-attribute name="softwareVersion" type="java.lang.String" db-attribute-path="SOFTWARE_VERSION"/>
 	</obj-entity>
-	<obj-entity name="PtfHardware" className="org.oceanops.api.orm.PtfHardware" dbEntityName="PTF_HARDWARE">
+	<obj-entity name="PtfHardware" className="org.oceanops.orm.PtfHardware" dbEntityName="PTF_HARDWARE">
 		<obj-attribute name="balloonSize" type="java.lang.Double" db-attribute-path="BALLOON_SIZE"/>
 		<obj-attribute name="batchRef" type="java.lang.String" db-attribute-path="BATCH_REF"/>
 		<obj-attribute name="batteryPack" type="java.lang.String" db-attribute-path="BATTERY_PACK"/>
@@ -2700,13 +2710,13 @@
 		<obj-attribute name="spec" type="byte[]" db-attribute-path="SPEC"/>
 		<obj-attribute name="specialFeature" type="java.lang.String" db-attribute-path="SPECIAL_FEATURE"/>
 	</obj-entity>
-	<obj-entity name="PtfHullType" className="org.oceanops.api.orm.PtfHullType" dbEntityName="PTF_HULL_TYPE">
+	<obj-entity name="PtfHullType" className="org.oceanops.orm.PtfHullType" dbEntityName="PTF_HULL_TYPE">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="manufDate" type="java.time.LocalDateTime" db-attribute-path="MANUF_DATE"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 	</obj-entity>
-	<obj-entity name="PtfIdentifiers" className="org.oceanops.api.orm.PtfIdentifiers" dbEntityName="PTF_IDENTIFIERS">
+	<obj-entity name="PtfIdentifiers" className="org.oceanops.orm.PtfIdentifiers" dbEntityName="PTF_IDENTIFIERS">
 		<obj-attribute name="datacenterRef" type="java.lang.String" db-attribute-path="DATACENTER_REF"/>
 		<obj-attribute name="esurfmarRef" type="java.lang.String" db-attribute-path="ESURFMAR_REF"/>
 		<obj-attribute name="glossRef" type="java.lang.String" db-attribute-path="GLOSS_REF"/>
@@ -2720,19 +2730,19 @@
 		<obj-attribute name="seadatanetRef" type="java.lang.String" db-attribute-path="SEADATANET_REF"/>
 		<obj-attribute name="wigosRef" type="java.lang.String" db-attribute-path="WIGOS_REF"/>
 	</obj-entity>
-	<obj-entity name="PtfInspection" className="org.oceanops.api.orm.PtfInspection" dbEntityName="PTF_INSPECTION">
+	<obj-entity name="PtfInspection" className="org.oceanops.orm.PtfInspection" dbEntityName="PTF_INSPECTION">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="frequency" type="java.lang.Double" db-attribute-path="FREQUENCY"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 	</obj-entity>
-	<obj-entity name="PtfLocStatus" className="org.oceanops.api.orm.PtfLocStatus" dbEntityName="PTF_LOC_STATUS">
+	<obj-entity name="PtfLocStatus" className="org.oceanops.orm.PtfLocStatus" dbEntityName="PTF_LOC_STATUS">
 		<obj-attribute name="endDate" type="java.time.LocalDateTime" db-attribute-path="END_DATE"/>
 		<obj-attribute name="locStatusId" type="java.lang.Integer" db-attribute-path="LOC_STATUS_ID"/>
 		<obj-attribute name="ptfId" type="java.lang.Integer" db-attribute-path="PTF_ID"/>
 		<obj-attribute name="source" type="java.lang.String" db-attribute-path="SOURCE"/>
 		<obj-attribute name="startDate" type="java.time.LocalDateTime" db-attribute-path="START_DATE"/>
 	</obj-entity>
-	<obj-entity name="PtfModel" className="org.oceanops.api.orm.PtfModel" dbEntityName="PTF_MODEL">
+	<obj-entity name="PtfModel" className="org.oceanops.orm.PtfModel" dbEntityName="PTF_MODEL">
 		<obj-attribute name="airDeplCertif" type="java.lang.Integer" db-attribute-path="AIR_DEPL_CERTIF"/>
 		<obj-attribute name="apiWmoIdTypeId" type="java.lang.Integer" db-attribute-path="API_WMO_ID_TYPE_ID"/>
 		<obj-attribute name="commercial" type="java.lang.Integer" db-attribute-path="COMMERCIAL"/>
@@ -2750,27 +2760,27 @@
 		<obj-attribute name="weight" type="java.lang.Double" db-attribute-path="WEIGHT"/>
 		<obj-attribute name="width" type="java.lang.Double" db-attribute-path="WIDTH"/>
 	</obj-entity>
-	<obj-entity name="PtfPtfStatus" className="org.oceanops.api.orm.PtfPtfStatus" dbEntityName="PTF_PTF_STATUS">
+	<obj-entity name="PtfPtfStatus" className="org.oceanops.orm.PtfPtfStatus" dbEntityName="PTF_PTF_STATUS">
 		<obj-attribute name="changingDate" type="java.time.LocalDateTime" db-attribute-path="CHANGING_DATE"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="insertDate" type="java.time.LocalDateTime" db-attribute-path="INSERT_DATE"/>
 	</obj-entity>
-	<obj-entity name="PtfRefLock" className="org.oceanops.api.orm.PtfRefLock" dbEntityName="PTF_REF_LOCK">
+	<obj-entity name="PtfRefLock" className="org.oceanops.orm.PtfRefLock" dbEntityName="PTF_REF_LOCK">
 		<obj-attribute name="dateRequested" type="java.time.LocalDateTime" db-attribute-path="DATE_REQUESTED"/>
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="ref" type="java.lang.String" db-attribute-path="REF"/>
 		<obj-attribute name="wmo" type="java.lang.String" db-attribute-path="WMO"/>
 	</obj-entity>
-	<obj-entity name="PtfSoftware" className="org.oceanops.api.orm.PtfSoftware" dbEntityName="PTF_SOFTWARE">
+	<obj-entity name="PtfSoftware" className="org.oceanops.orm.PtfSoftware" dbEntityName="PTF_SOFTWARE">
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="version" type="java.lang.String" db-attribute-path="VERSION"/>
 	</obj-entity>
-	<obj-entity name="PtfSoftwareType" className="org.oceanops.api.orm.PtfSoftwareType" dbEntityName="PTF_SOFTWARE_TYPE">
+	<obj-entity name="PtfSoftwareType" className="org.oceanops.orm.PtfSoftwareType" dbEntityName="PTF_SOFTWARE_TYPE">
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 	</obj-entity>
-	<obj-entity name="PtfStatistics" className="org.oceanops.api.orm.PtfStatistics" dbEntityName="PTF_STATISTICS">
+	<obj-entity name="PtfStatistics" className="org.oceanops.orm.PtfStatistics" dbEntityName="PTF_STATISTICS">
 		<obj-attribute name="delayAvg" type="java.lang.Double" db-attribute-path="DELAY_AVG"/>
 		<obj-attribute name="delayAvgGdac1" type="java.lang.Double" db-attribute-path="DELAY_AVG_GDAC1"/>
 		<obj-attribute name="delayAvgGdac2" type="java.lang.Double" db-attribute-path="DELAY_AVG_GDAC2"/>
@@ -2789,7 +2799,7 @@
 		<obj-attribute name="nbObsGts" type="java.lang.Integer" db-attribute-path="NB_OBS_GTS"/>
 		<obj-attribute name="ptfId" type="java.lang.Integer" db-attribute-path="PTF_ID"/>
 	</obj-entity>
-	<obj-entity name="PtfStatus" className="org.oceanops.api.orm.PtfStatus" dbEntityName="PTF_STATUS">
+	<obj-entity name="PtfStatus" className="org.oceanops.orm.PtfStatus" dbEntityName="PTF_STATUS">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
@@ -2797,14 +2807,14 @@
 		<obj-attribute name="rank" type="java.lang.Integer" db-attribute-path="RANK"/>
 		<obj-attribute name="wigosCode" type="java.lang.String" db-attribute-path="WIGOS_CODE"/>
 	</obj-entity>
-	<obj-entity name="PtfType" className="org.oceanops.api.orm.PtfType" dbEntityName="PTF_TYPE">
+	<obj-entity name="PtfType" className="org.oceanops.orm.PtfType" dbEntityName="PTF_TYPE">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 		<obj-attribute name="wigosCode" type="java.lang.String" db-attribute-path="WIGOS_CODE"/>
 	</obj-entity>
-	<obj-entity name="PtfVariable" className="org.oceanops.api.orm.PtfVariable" dbEntityName="PTF_VARIABLE">
+	<obj-entity name="PtfVariable" className="org.oceanops.orm.PtfVariable" dbEntityName="PTF_VARIABLE">
 		<obj-attribute name="accuracy" type="java.lang.String" db-attribute-path="ACCURACY"/>
 		<obj-attribute name="calibDate" type="java.time.LocalDateTime" db-attribute-path="CALIB_DATE"/>
 		<obj-attribute name="calibDateNext" type="java.time.LocalDateTime" db-attribute-path="CALIB_DATE_NEXT"/>
@@ -2833,12 +2843,12 @@
 		<obj-attribute name="timeOffset" type="java.lang.Double" db-attribute-path="TIME_OFFSET"/>
 		<obj-attribute name="variableId" type="java.lang.Integer" db-attribute-path="VARIABLE_ID"/>
 	</obj-entity>
-	<obj-entity name="PumpType" className="org.oceanops.api.orm.PumpType" dbEntityName="PUMP_TYPE">
+	<obj-entity name="PumpType" className="org.oceanops.orm.PumpType" dbEntityName="PUMP_TYPE">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 	</obj-entity>
-	<obj-entity name="QcFeedback" className="org.oceanops.api.orm.QcFeedback" dbEntityName="QC_FEEDBACK">
+	<obj-entity name="QcFeedback" className="org.oceanops.orm.QcFeedback" dbEntityName="QC_FEEDBACK">
 		<obj-attribute name="answer" type="java.lang.String" db-attribute-path="ANSWER"/>
 		<obj-attribute name="correctionType" type="java.lang.String" db-attribute-path="CORRECTION_TYPE"/>
 		<obj-attribute name="correctionValue" type="java.lang.Double" db-attribute-path="CORRECTION_VALUE"/>
@@ -2854,39 +2864,39 @@
 		<obj-attribute name="subject" type="java.lang.String" db-attribute-path="SUBJECT"/>
 		<obj-attribute name="wmo" type="java.lang.String" db-attribute-path="WMO"/>
 	</obj-entity>
-	<obj-entity name="QcFeedbackAction" className="org.oceanops.api.orm.QcFeedbackAction" dbEntityName="QC_FEEDBACK_ACTION">
+	<obj-entity name="QcFeedbackAction" className="org.oceanops.orm.QcFeedbackAction" dbEntityName="QC_FEEDBACK_ACTION">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="QcFeedbackErrorType" className="org.oceanops.api.orm.QcFeedbackErrorType" dbEntityName="QC_FEEDBACK_ERROR_TYPE">
+	<obj-entity name="QcFeedbackErrorType" className="org.oceanops.orm.QcFeedbackErrorType" dbEntityName="QC_FEEDBACK_ERROR_TYPE">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="QcFeedbackObs" className="org.oceanops.api.orm.QcFeedbackObs" dbEntityName="QC_FEEDBACK_OBS">
+	<obj-entity name="QcFeedbackObs" className="org.oceanops.orm.QcFeedbackObs" dbEntityName="QC_FEEDBACK_OBS">
 		<obj-attribute name="obsId" type="java.lang.Integer" db-attribute-path="OBS_ID"/>
 		<obj-attribute name="qcFeedbackId" type="java.lang.Integer" db-attribute-path="QC_FEEDBACK_ID"/>
 	</obj-entity>
-	<obj-entity name="QcFeedbackType" className="org.oceanops.api.orm.QcFeedbackType" dbEntityName="QC_FEEDBACK_TYPE">
+	<obj-entity name="QcFeedbackType" className="org.oceanops.orm.QcFeedbackType" dbEntityName="QC_FEEDBACK_TYPE">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameLong" type="java.lang.String" db-attribute-path="NAME_LONG"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="QcFeedbackVariable" className="org.oceanops.api.orm.QcFeedbackVariable" dbEntityName="QC_FEEDBACK_VARIABLE">
+	<obj-entity name="QcFeedbackVariable" className="org.oceanops.orm.QcFeedbackVariable" dbEntityName="QC_FEEDBACK_VARIABLE">
 		<obj-attribute name="qcFeedbackId" type="java.lang.Integer" db-attribute-path="QC_FEEDBACK_ID"/>
 		<obj-attribute name="variableId" type="java.lang.Integer" db-attribute-path="VARIABLE_ID"/>
 	</obj-entity>
-	<obj-entity name="QrCode" className="org.oceanops.api.orm.QrCode" dbEntityName="QR_CODE">
+	<obj-entity name="QrCode" className="org.oceanops.orm.QrCode" dbEntityName="QR_CODE">
 		<obj-attribute name="code" type="java.lang.String" db-attribute-path="CODE"/>
 		<obj-attribute name="creationDate" type="java.time.LocalDateTime" db-attribute-path="CREATION_DATE"/>
 		<obj-attribute name="requestId" type="java.lang.String" db-attribute-path="REQUEST_ID"/>
 	</obj-entity>
-	<obj-entity name="Retrieval" className="org.oceanops.api.orm.Retrieval" dbEntityName="RETRIEVAL">
+	<obj-entity name="Retrieval" className="org.oceanops.orm.Retrieval" dbEntityName="RETRIEVAL">
 		<obj-attribute name="contact" type="java.lang.String" db-attribute-path="CONTACT"/>
 		<obj-attribute name="cruiseName" type="java.lang.String" db-attribute-path="CRUISE_NAME"/>
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
@@ -2901,13 +2911,13 @@
 		<obj-attribute name="startDate" type="java.time.LocalDateTime" db-attribute-path="START_DATE"/>
 		<obj-attribute name="tel" type="java.lang.String" db-attribute-path="TEL"/>
 	</obj-entity>
-	<obj-entity name="RetrievalStatus" className="org.oceanops.api.orm.RetrievalStatus" dbEntityName="RETRIEVAL_STATUS">
+	<obj-entity name="RetrievalStatus" className="org.oceanops.orm.RetrievalStatus" dbEntityName="RETRIEVAL_STATUS">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="Role" className="org.oceanops.api.orm.Role" dbEntityName="ROLE">
+	<obj-entity name="Role" className="org.oceanops.orm.Role" dbEntityName="ROLE">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
@@ -2915,35 +2925,35 @@
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 		<obj-attribute name="rank" type="java.lang.Integer" db-attribute-path="RANK"/>
 	</obj-entity>
-	<obj-entity name="Schedule" className="org.oceanops.api.orm.Schedule" dbEntityName="SCHEDULE">
+	<obj-entity name="Schedule" className="org.oceanops.orm.Schedule" dbEntityName="SCHEDULE">
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="SdnPtfClass" className="org.oceanops.api.orm.SdnPtfClass" dbEntityName="SDN_PTF_CLASS">
+	<obj-entity name="SdnPtfClass" className="org.oceanops.orm.SdnPtfClass" dbEntityName="SDN_PTF_CLASS">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.String" db-attribute-path="ID"/>
 		<obj-attribute name="lastUpdate" type="java.time.LocalDateTime" db-attribute-path="LAST_UPDATE"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="SensorExposure" className="org.oceanops.api.orm.SensorExposure" dbEntityName="SENSOR_EXPOSURE">
+	<obj-entity name="SensorExposure" className="org.oceanops.orm.SensorExposure" dbEntityName="SENSOR_EXPOSURE">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="pub47Ref" type="java.lang.String" db-attribute-path="PUB47_REF"/>
 		<obj-attribute name="ref" type="java.lang.String" db-attribute-path="REF"/>
 	</obj-entity>
-	<obj-entity name="SensorFamily" className="org.oceanops.api.orm.SensorFamily" dbEntityName="SENSOR_FAMILY">
+	<obj-entity name="SensorFamily" className="org.oceanops.orm.SensorFamily" dbEntityName="SENSOR_FAMILY">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 	</obj-entity>
-	<obj-entity name="SensorLocation" className="org.oceanops.api.orm.SensorLocation" dbEntityName="SENSOR_LOCATION">
+	<obj-entity name="SensorLocation" className="org.oceanops.orm.SensorLocation" dbEntityName="SENSOR_LOCATION">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="pub47Ref" type="java.lang.String" db-attribute-path="PUB47_REF"/>
 		<obj-attribute name="ref" type="java.lang.String" db-attribute-path="REF"/>
 	</obj-entity>
-	<obj-entity name="SensorModel" className="org.oceanops.api.orm.SensorModel" dbEntityName="SENSOR_MODEL">
+	<obj-entity name="SensorModel" className="org.oceanops.orm.SensorModel" dbEntityName="SENSOR_MODEL">
 		<obj-attribute name="axesNo" type="java.lang.Integer" db-attribute-path="AXES_NO"/>
 		<obj-attribute name="bodcId" type="java.lang.String" db-attribute-path="BODC_ID"/>
 		<obj-attribute name="calibFrequency" type="java.lang.Integer" db-attribute-path="CALIB_FREQUENCY"/>
@@ -2956,11 +2966,11 @@
 		<obj-attribute name="spec" type="byte[]" db-attribute-path="SPEC"/>
 		<obj-attribute name="yearlyDrift" type="java.lang.Integer" db-attribute-path="YEARLY_DRIFT"/>
 	</obj-entity>
-	<obj-entity name="SensorModelNetwork" className="org.oceanops.api.orm.SensorModelNetwork" dbEntityName="SENSOR_MODEL_NETWORK">
+	<obj-entity name="SensorModelNetwork" className="org.oceanops.orm.SensorModelNetwork" dbEntityName="SENSOR_MODEL_NETWORK">
 		<obj-attribute name="networkId" type="java.lang.Integer" db-attribute-path="NETWORK_ID"/>
 		<obj-attribute name="sensorModelId" type="java.lang.Integer" db-attribute-path="SENSOR_MODEL_ID"/>
 	</obj-entity>
-	<obj-entity name="SensorModelSensorType" className="org.oceanops.api.orm.SensorModelSensorType" dbEntityName="SENSOR_MODEL_SENSOR_TYPE">
+	<obj-entity name="SensorModelSensorType" className="org.oceanops.orm.SensorModelSensorType" dbEntityName="SENSOR_MODEL_SENSOR_TYPE">
 		<obj-attribute name="accuracy" type="java.lang.String" db-attribute-path="ACCURACY"/>
 		<obj-attribute name="precision" type="java.lang.String" db-attribute-path="PRECISION"/>
 		<obj-attribute name="range" type="java.lang.String" db-attribute-path="RANGE"/>
@@ -2969,12 +2979,12 @@
 		<obj-attribute name="sensorTypeId" type="java.lang.Integer" db-attribute-path="SENSOR_TYPE_ID"/>
 		<obj-attribute name="unit" type="java.lang.String" db-attribute-path="UNIT"/>
 	</obj-entity>
-	<obj-entity name="SensorStatus" className="org.oceanops.api.orm.SensorStatus" dbEntityName="SENSOR_STATUS">
+	<obj-entity name="SensorStatus" className="org.oceanops.orm.SensorStatus" dbEntityName="SENSOR_STATUS">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="ref" type="java.lang.String" db-attribute-path="REF"/>
 	</obj-entity>
-	<obj-entity name="SensorType" className="org.oceanops.api.orm.SensorType" dbEntityName="SENSOR_TYPE">
+	<obj-entity name="SensorType" className="org.oceanops.orm.SensorType" dbEntityName="SENSOR_TYPE">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
@@ -2982,7 +2992,7 @@
 		<obj-attribute name="pub47Ref" type="java.lang.String" db-attribute-path="PUB47_REF"/>
 		<obj-attribute name="wigosCode" type="java.lang.String" db-attribute-path="WIGOS_CODE"/>
 	</obj-entity>
-	<obj-entity name="Service" className="org.oceanops.api.orm.Service" dbEntityName="SERVICE">
+	<obj-entity name="Service" className="org.oceanops.orm.Service" dbEntityName="SERVICE">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="endDate" type="java.time.LocalDateTime" db-attribute-path="END_DATE"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
@@ -2990,16 +3000,16 @@
 		<obj-attribute name="startDate" type="java.time.LocalDateTime" db-attribute-path="START_DATE"/>
 		<obj-attribute name="typeId" type="java.lang.Integer" db-attribute-path="TYPE_ID"/>
 	</obj-entity>
-	<obj-entity name="ServiceLocation" className="org.oceanops.api.orm.ServiceLocation" dbEntityName="SERVICE_LOCATION">
+	<obj-entity name="ServiceLocation" className="org.oceanops.orm.ServiceLocation" dbEntityName="SERVICE_LOCATION">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="ServiceType" className="org.oceanops.api.orm.ServiceType" dbEntityName="SERVICE_TYPE">
+	<obj-entity name="ServiceType" className="org.oceanops.orm.ServiceType" dbEntityName="SERVICE_TYPE">
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="Ship" className="org.oceanops.api.orm.Ship" dbEntityName="SHIP">
+	<obj-entity name="Ship" className="org.oceanops.orm.Ship" dbEntityName="SHIP">
 		<obj-attribute name="autonomy" type="java.lang.Integer" db-attribute-path="AUTONOMY"/>
 		<obj-attribute name="breadth" type="java.lang.Double" db-attribute-path="BREADTH"/>
 		<obj-attribute name="bridge" type="java.lang.Double" db-attribute-path="BRIDGE"/>
@@ -3039,7 +3049,7 @@
 		<obj-attribute name="updateDate" type="java.time.LocalDateTime" db-attribute-path="UPDATE_DATE"/>
 		<obj-attribute name="validated" type="java.lang.Integer" db-attribute-path="VALIDATED"/>
 	</obj-entity>
-	<obj-entity name="ShipHistory" className="org.oceanops.api.orm.ShipHistory" dbEntityName="SHIP_HISTORY">
+	<obj-entity name="ShipHistory" className="org.oceanops.orm.ShipHistory" dbEntityName="SHIP_HISTORY">
 		<obj-attribute name="callSign" type="java.lang.String" db-attribute-path="CALL_SIGN"/>
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="endDate" type="java.time.LocalDateTime" db-attribute-path="END_DATE"/>
@@ -3052,21 +3062,21 @@
 		<obj-attribute name="startDate" type="java.time.LocalDateTime" db-attribute-path="START_DATE"/>
 		<obj-attribute name="updateDate" type="java.time.LocalDateTime" db-attribute-path="UPDATE_DATE"/>
 	</obj-entity>
-	<obj-entity name="ShipStatus" className="org.oceanops.api.orm.ShipStatus" dbEntityName="SHIP_STATUS">
+	<obj-entity name="ShipStatus" className="org.oceanops.orm.ShipStatus" dbEntityName="SHIP_STATUS">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameLong" type="java.lang.String" db-attribute-path="NAME_LONG"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="ShipType" className="org.oceanops.api.orm.ShipType" dbEntityName="SHIP_TYPE">
+	<obj-entity name="ShipType" className="org.oceanops.orm.ShipType" dbEntityName="SHIP_TYPE">
 		<obj-attribute name="code" type="java.lang.String" db-attribute-path="CODE"/>
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="originalDataset" type="java.lang.String" db-attribute-path="ORIGINAL_DATASET"/>
 	</obj-entity>
-	<obj-entity name="Site" className="org.oceanops.api.orm.Site" dbEntityName="SITE">
+	<obj-entity name="Site" className="org.oceanops.orm.Site" dbEntityName="SITE">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="geom" type="org.apache.cayenne.value.Wkt" db-attribute-path="WKB"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
@@ -3074,23 +3084,23 @@
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 		<obj-attribute name="targetedOccupation" type="java.lang.Integer" db-attribute-path="TARGETED_OCCUPATION"/>
 	</obj-entity>
-	<obj-entity name="SiteFamily" className="org.oceanops.api.orm.SiteFamily" dbEntityName="SITE_FAMILY">
+	<obj-entity name="SiteFamily" className="org.oceanops.orm.SiteFamily" dbEntityName="SITE_FAMILY">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="SitePtf" className="org.oceanops.api.orm.SitePtf" dbEntityName="SITE_PTF">
+	<obj-entity name="SitePtf" className="org.oceanops.orm.SitePtf" dbEntityName="SITE_PTF">
 		<obj-attribute name="ptfId" type="java.lang.Integer" db-attribute-path="PTF_ID"/>
 		<obj-attribute name="siteId" type="java.lang.Integer" db-attribute-path="SITE_ID"/>
 	</obj-entity>
-	<obj-entity name="SiteStatus" className="org.oceanops.api.orm.SiteStatus" dbEntityName="SITE_STATUS">
+	<obj-entity name="SiteStatus" className="org.oceanops.orm.SiteStatus" dbEntityName="SITE_STATUS">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="Story" className="org.oceanops.api.orm.Story" dbEntityName="STORY">
+	<obj-entity name="Story" className="org.oceanops.orm.Story" dbEntityName="STORY">
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="imageId" type="java.lang.Integer" db-attribute-path="IMAGE_ID"/>
 		<obj-attribute name="keywords" type="java.lang.String" db-attribute-path="KEYWORDS"/>
@@ -3102,7 +3112,7 @@
 		<obj-attribute name="text" type="java.lang.String" db-attribute-path="TEXT"/>
 		<obj-attribute name="title" type="java.lang.String" db-attribute-path="TITLE"/>
 	</obj-entity>
-	<obj-entity name="Survey" className="org.oceanops.api.orm.Survey" dbEntityName="SURVEY">
+	<obj-entity name="Survey" className="org.oceanops.orm.Survey" dbEntityName="SURVEY">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="endDate" type="java.time.LocalDateTime" db-attribute-path="END_DATE"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
@@ -3110,7 +3120,13 @@
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 		<obj-attribute name="startDate" type="java.time.LocalDateTime" db-attribute-path="START_DATE"/>
 	</obj-entity>
-	<obj-entity name="Telecom" className="org.oceanops.api.orm.Telecom" dbEntityName="TELECOM">
+	<obj-entity name="Tag" className="org.oceanops.orm.Tag" dbEntityName="TAG">
+		<obj-attribute name="colour" type="java.lang.String" db-attribute-path="COLOUR"/>
+		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
+	</obj-entity>
+	<obj-entity name="TagPtf" className="org.oceanops.orm.TagPtf" dbEntityName="TAG_PTF"/>
+	<obj-entity name="Telecom" className="org.oceanops.orm.Telecom" dbEntityName="TELECOM">
 		<obj-attribute name="endDate" type="java.time.LocalDateTime" db-attribute-path="END_DATE"/>
 		<obj-attribute name="frequency" type="java.lang.String" db-attribute-path="FREQUENCY"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
@@ -3119,7 +3135,7 @@
 		<obj-attribute name="refProg" type="java.lang.String" db-attribute-path="REF_PROG"/>
 		<obj-attribute name="startDate" type="java.time.LocalDateTime" db-attribute-path="START_DATE"/>
 	</obj-entity>
-	<obj-entity name="TelecomFormat" className="org.oceanops.api.orm.TelecomFormat" dbEntityName="TELECOM_FORMAT">
+	<obj-entity name="TelecomFormat" className="org.oceanops.orm.TelecomFormat" dbEntityName="TELECOM_FORMAT">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="endDate" type="java.time.LocalDateTime" db-attribute-path="END_DATE"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
@@ -3131,60 +3147,60 @@
 		<obj-attribute name="startDate" type="java.time.LocalDateTime" db-attribute-path="START_DATE"/>
 		<obj-attribute name="version" type="java.lang.String" db-attribute-path="VERSION"/>
 	</obj-entity>
-	<obj-entity name="TelecomFormatDoc" className="org.oceanops.api.orm.TelecomFormatDoc" dbEntityName="TELECOM_FORMAT_DOC">
+	<obj-entity name="TelecomFormatDoc" className="org.oceanops.orm.TelecomFormatDoc" dbEntityName="TELECOM_FORMAT_DOC">
 		<obj-attribute name="docId" type="java.lang.Integer" db-attribute-path="DOC_ID"/>
 		<obj-attribute name="telecomFormatId" type="java.lang.Integer" db-attribute-path="TELECOM_FORMAT_ID"/>
 	</obj-entity>
-	<obj-entity name="TelecomService" className="org.oceanops.api.orm.TelecomService" dbEntityName="TELECOM_SERVICE">
+	<obj-entity name="TelecomService" className="org.oceanops.orm.TelecomService" dbEntityName="TELECOM_SERVICE">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 	</obj-entity>
-	<obj-entity name="TelecomType" className="org.oceanops.api.orm.TelecomType" dbEntityName="TELECOM_TYPE">
+	<obj-entity name="TelecomType" className="org.oceanops.orm.TelecomType" dbEntityName="TELECOM_TYPE">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="pub47Ref" type="java.lang.String" db-attribute-path="PUB47_REF"/>
 	</obj-entity>
-	<obj-entity name="TimeInterval" className="org.oceanops.api.orm.TimeInterval" dbEntityName="TIME_INTERVAL">
+	<obj-entity name="TimeInterval" className="org.oceanops.orm.TimeInterval" dbEntityName="TIME_INTERVAL">
 		<obj-attribute name="endDate" type="java.time.LocalDateTime" db-attribute-path="END_DATE"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nbYears" type="java.lang.Integer" db-attribute-path="NB_YEARS"/>
 		<obj-attribute name="startDate" type="java.time.LocalDateTime" db-attribute-path="START_DATE"/>
 	</obj-entity>
-	<obj-entity name="TimePeriod" className="org.oceanops.api.orm.TimePeriod" dbEntityName="TIME_PERIOD">
+	<obj-entity name="TimePeriod" className="org.oceanops.orm.TimePeriod" dbEntityName="TIME_PERIOD">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="frequency" type="java.lang.Integer" db-attribute-path="FREQUENCY"/>
 		<obj-attribute name="iso" type="java.lang.String" db-attribute-path="ISO"/>
 		<obj-attribute name="ref" type="java.lang.String" db-attribute-path="REF"/>
 	</obj-entity>
-	<obj-entity name="Topic" className="org.oceanops.api.orm.Topic" dbEntityName="TOPIC">
+	<obj-entity name="Topic" className="org.oceanops.orm.Topic" dbEntityName="TOPIC">
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 	</obj-entity>
-	<obj-entity name="UpdateTimestamp" className="org.oceanops.api.orm.UpdateTimestamp" dbEntityName="UPDATE_TIMESTAMP">
+	<obj-entity name="UpdateTimestamp" className="org.oceanops.orm.UpdateTimestamp" dbEntityName="UPDATE_TIMESTAMP">
 		<obj-attribute name="completed" type="java.lang.Integer" db-attribute-path="COMPLETED"/>
 		<obj-attribute name="lastUpdate" type="java.time.LocalDateTime" db-attribute-path="LAST_UPDATE"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="running" type="java.lang.Integer" db-attribute-path="RUNNING"/>
 	</obj-entity>
-	<obj-entity name="UserGroup" className="org.oceanops.api.orm.UserGroup" dbEntityName="USER_GROUP">
+	<obj-entity name="UserGroup" className="org.oceanops.orm.UserGroup" dbEntityName="USER_GROUP">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="email" type="java.lang.String" db-attribute-path="EMAIL"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="UserGroupAgency" className="org.oceanops.api.orm.UserGroupAgency" dbEntityName="USER_GROUP_AGENCY">
+	<obj-entity name="UserGroupAgency" className="org.oceanops.orm.UserGroupAgency" dbEntityName="USER_GROUP_AGENCY">
 		<obj-attribute name="agencyId" type="java.lang.Integer" db-attribute-path="AGENCY_ID"/>
 		<obj-attribute name="userGroupId" type="java.lang.Integer" db-attribute-path="USER_GROUP_ID"/>
 	</obj-entity>
-	<obj-entity name="UserGroupContact" className="org.oceanops.api.orm.UserGroupContact" dbEntityName="USER_GROUP_CONTACT">
+	<obj-entity name="UserGroupContact" className="org.oceanops.orm.UserGroupContact" dbEntityName="USER_GROUP_CONTACT">
 		<obj-attribute name="contactId" type="java.lang.Integer" db-attribute-path="CONTACT_ID"/>
 		<obj-attribute name="userGroupId" type="java.lang.Integer" db-attribute-path="USER_GROUP_ID"/>
 	</obj-entity>
-	<obj-entity name="Variable" className="org.oceanops.api.orm.Variable" dbEntityName="VARIABLE">
+	<obj-entity name="Variable" className="org.oceanops.orm.Variable" dbEntityName="VARIABLE">
 		<obj-attribute name="canonicalName" type="java.lang.String" db-attribute-path="CANONICAL_NAME"/>
 		<obj-attribute name="canonicalUnit" type="java.lang.String" db-attribute-path="CANONICAL_UNIT"/>
 		<obj-attribute name="dataSource" type="java.lang.String" db-attribute-path="DATA_SOURCE"/>
@@ -3198,7 +3214,7 @@
 		<obj-attribute name="qcRef" type="java.lang.String" db-attribute-path="QC_REF"/>
 		<obj-attribute name="wigosCode" type="java.lang.String" db-attribute-path="WIGOS_CODE"/>
 	</obj-entity>
-	<obj-entity name="VariableFamily" className="org.oceanops.api.orm.VariableFamily" dbEntityName="VARIABLE_FAMILY">
+	<obj-entity name="VariableFamily" className="org.oceanops.orm.VariableFamily" dbEntityName="VARIABLE_FAMILY">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="ecv" type="java.lang.Integer" db-attribute-path="ECV"/>
 		<obj-attribute name="eov" type="java.lang.Integer" db-attribute-path="EOV"/>
@@ -3206,52 +3222,52 @@
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
-	<obj-entity name="VariableVariableFamily" className="org.oceanops.api.orm.VariableVariableFamily" dbEntityName="VARIABLE_VARIABLE_FAMILY">
+	<obj-entity name="VariableVariableFamily" className="org.oceanops.orm.VariableVariableFamily" dbEntityName="VARIABLE_VARIABLE_FAMILY">
 		<obj-attribute name="variableFamilyId" type="java.lang.Integer" db-attribute-path="VARIABLE_FAMILY_ID"/>
 		<obj-attribute name="variableId" type="java.lang.Integer" db-attribute-path="VARIABLE_ID"/>
 	</obj-entity>
-	<obj-entity name="WebConnection" className="org.oceanops.api.orm.WebConnection" dbEntityName="WEB_CONNECTION">
+	<obj-entity name="WebConnection" className="org.oceanops.orm.WebConnection" dbEntityName="WEB_CONNECTION">
 		<obj-attribute name="identifier" type="java.lang.String" db-attribute-path="IDENTIFIER"/>
 		<obj-attribute name="lastLogDate" type="java.time.LocalDateTime" db-attribute-path="LAST_LOG_DATE"/>
 		<obj-attribute name="token" type="java.lang.String" db-attribute-path="TOKEN"/>
 	</obj-entity>
-	<obj-entity name="WebContactModule" className="org.oceanops.api.orm.WebContactModule" dbEntityName="WEB_CONTACT_MODULE">
+	<obj-entity name="WebContactModule" className="org.oceanops.orm.WebContactModule" dbEntityName="WEB_CONTACT_MODULE">
 		<obj-attribute name="contactId" type="java.lang.Integer" db-attribute-path="CONTACT_ID"/>
 		<obj-attribute name="moduleId" type="java.lang.Integer" db-attribute-path="MODULE_ID"/>
 	</obj-entity>
-	<obj-entity name="WebContactPreferences" className="org.oceanops.api.orm.WebContactPreferences" dbEntityName="WEB_CONTACT_PREFERENCES">
+	<obj-entity name="WebContactPreferences" className="org.oceanops.orm.WebContactPreferences" dbEntityName="WEB_CONTACT_PREFERENCES">
 		<obj-attribute name="contactId" type="java.lang.Integer" db-attribute-path="CONTACT_ID"/>
 		<obj-attribute name="liteGis" type="java.lang.Integer" db-attribute-path="LITE_GIS"/>
 	</obj-entity>
-	<obj-entity name="WebDailyQueries" className="org.oceanops.api.orm.WebDailyQueries" dbEntityName="WEB_DAILY_QUERIES">
+	<obj-entity name="WebDailyQueries" className="org.oceanops.orm.WebDailyQueries" dbEntityName="WEB_DAILY_QUERIES">
 		<obj-attribute name="day" type="java.time.LocalDateTime" db-attribute-path="DAY"/>
 		<obj-attribute name="nbQueries" type="java.lang.Integer" db-attribute-path="NB_QUERIES"/>
 	</obj-entity>
-	<obj-entity name="WebDailyVisits" className="org.oceanops.api.orm.WebDailyVisits" dbEntityName="WEB_DAILY_VISITS">
+	<obj-entity name="WebDailyVisits" className="org.oceanops.orm.WebDailyVisits" dbEntityName="WEB_DAILY_VISITS">
 		<obj-attribute name="day" type="java.time.LocalDateTime" db-attribute-path="DAY"/>
 		<obj-attribute name="nbVisits" type="java.lang.Integer" db-attribute-path="NB_VISITS"/>
 		<obj-attribute name="theme" type="java.lang.String" db-attribute-path="THEME"/>
 	</obj-entity>
-	<obj-entity name="WebFrequentation" className="org.oceanops.api.orm.WebFrequentation" dbEntityName="WEB_FREQUENTATION">
+	<obj-entity name="WebFrequentation" className="org.oceanops.orm.WebFrequentation" dbEntityName="WEB_FREQUENTATION">
 		<obj-attribute name="count" type="java.lang.Integer" db-attribute-path="COUNT"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="latestDate" type="java.time.LocalDateTime" db-attribute-path="LATEST_DATE"/>
 	</obj-entity>
-	<obj-entity name="WebMessage" className="org.oceanops.api.orm.WebMessage" dbEntityName="WEB_MESSAGE">
+	<obj-entity name="WebMessage" className="org.oceanops.orm.WebMessage" dbEntityName="WEB_MESSAGE">
 		<obj-attribute name="enabled" type="java.lang.Integer" db-attribute-path="ENABLED"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="text" type="java.lang.String" db-attribute-path="TEXT"/>
 	</obj-entity>
-	<obj-entity name="WebMetric" className="org.oceanops.api.orm.WebMetric" dbEntityName="WEB_METRIC">
+	<obj-entity name="WebMetric" className="org.oceanops.orm.WebMetric" dbEntityName="WEB_METRIC">
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="method" type="java.lang.String" db-attribute-path="METHOD"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 	</obj-entity>
-	<obj-entity name="WebMetricNetwork" className="org.oceanops.api.orm.WebMetricNetwork" dbEntityName="WEB_METRIC_NETWORK">
+	<obj-entity name="WebMetricNetwork" className="org.oceanops.orm.WebMetricNetwork" dbEntityName="WEB_METRIC_NETWORK">
 		<obj-attribute name="networkId" type="java.lang.Integer" db-attribute-path="NETWORK_ID"/>
 		<obj-attribute name="target" type="java.lang.Double" db-attribute-path="TARGET"/>
 	</obj-entity>
-	<obj-entity name="WebModule" className="org.oceanops.api.orm.WebModule" dbEntityName="WEB_MODULE">
+	<obj-entity name="WebModule" className="org.oceanops.orm.WebModule" dbEntityName="WEB_MODULE">
 		<obj-attribute name="admin" type="java.lang.Integer" db-attribute-path="ADMIN"/>
 		<obj-attribute name="dashboard" type="java.lang.Integer" db-attribute-path="DASHBOARD"/>
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
@@ -3264,17 +3280,17 @@
 		<obj-attribute name="topic" type="java.lang.String" db-attribute-path="TOPIC"/>
 		<obj-attribute name="type" type="java.lang.String" db-attribute-path="TYPE"/>
 	</obj-entity>
-	<obj-entity name="WebPtfFilter" className="org.oceanops.api.orm.WebPtfFilter" dbEntityName="WEB_PTF_FILTER">
+	<obj-entity name="WebPtfFilter" className="org.oceanops.orm.WebPtfFilter" dbEntityName="WEB_PTF_FILTER">
 		<obj-attribute name="filterId" type="java.lang.String" db-attribute-path="FILTER_ID"/>
 		<obj-attribute name="filterName" type="java.lang.String" db-attribute-path="FILTER_NAME"/>
 		<obj-attribute name="valueId" type="java.lang.Integer" db-attribute-path="VALUE_ID"/>
 		<obj-attribute name="valueName" type="java.lang.String" db-attribute-path="VALUE_NAME"/>
 	</obj-entity>
-	<obj-entity name="WebPtfVisits" className="org.oceanops.api.orm.WebPtfVisits" dbEntityName="WEB_PTF_VISITS">
+	<obj-entity name="WebPtfVisits" className="org.oceanops.orm.WebPtfVisits" dbEntityName="WEB_PTF_VISITS">
 		<obj-attribute name="ptfRef" type="java.lang.String" db-attribute-path="PTF_REF"/>
 		<obj-attribute name="visitCount" type="java.lang.Integer" db-attribute-path="VISIT_COUNT"/>
 	</obj-entity>
-	<obj-entity name="WebQuery" className="org.oceanops.api.orm.WebQuery" dbEntityName="WEB_QUERY">
+	<obj-entity name="WebQuery" className="org.oceanops.orm.WebQuery" dbEntityName="WEB_QUERY">
 		<obj-attribute name="dateCreation" type="java.time.LocalDateTime" db-attribute-path="DATE_CREATION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="isDefault" type="java.lang.Integer" db-attribute-path="IS_DEFAULT"/>
@@ -3288,13 +3304,13 @@
 		<obj-attribute name="preference" type="java.lang.Integer" db-attribute-path="PREFERENCE"/>
 		<obj-attribute name="sql" type="java.lang.String" db-attribute-path="SQL"/>
 	</obj-entity>
-	<obj-entity name="WebWorkspace" className="org.oceanops.api.orm.WebWorkspace" dbEntityName="WEB_WORKSPACE">
+	<obj-entity name="WebWorkspace" className="org.oceanops.orm.WebWorkspace" dbEntityName="WEB_WORKSPACE">
 		<obj-attribute name="contactId" type="java.lang.Integer" db-attribute-path="CONTACT_ID"/>
 		<obj-attribute name="id" type="java.lang.String" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="url" type="java.lang.String" db-attribute-path="URL"/>
 	</obj-entity>
-	<obj-entity name="Weblink" className="org.oceanops.api.orm.Weblink" dbEntityName="WEBLINK">
+	<obj-entity name="Weblink" className="org.oceanops.orm.Weblink" dbEntityName="WEBLINK">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
@@ -3302,11 +3318,11 @@
 		<obj-attribute name="storyId" type="java.lang.Integer" db-attribute-path="STORY_ID"/>
 		<obj-attribute name="url" type="java.lang.String" db-attribute-path="URL"/>
 	</obj-entity>
-	<obj-entity name="WeblinkPtf" className="org.oceanops.api.orm.WeblinkPtf" dbEntityName="WEBLINK_PTF">
+	<obj-entity name="WeblinkPtf" className="org.oceanops.orm.WeblinkPtf" dbEntityName="WEBLINK_PTF">
 		<obj-attribute name="ptfId" type="java.lang.Integer" db-attribute-path="PTF_ID"/>
 		<obj-attribute name="weblinkId" type="java.lang.Integer" db-attribute-path="WEBLINK_ID"/>
 	</obj-entity>
-	<obj-entity name="Wmo" className="org.oceanops.api.orm.Wmo" dbEntityName="WMO">
+	<obj-entity name="Wmo" className="org.oceanops.orm.Wmo" dbEntityName="WMO">
 		<obj-attribute name="endDate" type="java.time.LocalDateTime" db-attribute-path="END_DATE"/>
 		<obj-attribute name="fivedigitDuplExists" type="java.lang.Integer" db-attribute-path="FIVEDIGIT_DUPL_EXISTS"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
@@ -4487,6 +4503,9 @@
 	<db-relationship name="sitePtfs" source="PTF" target="SITE_PTF" toDependentPK="true" toMany="true">
 		<db-attribute-pair source="ID" target="PTF_ID"/>
 	</db-relationship>
+	<db-relationship name="tagPtfs" source="PTF" target="TAG_PTF" toMany="true">
+		<db-attribute-pair source="ID" target="PTF_ID"/>
+	</db-relationship>
 	<db-relationship name="telecom" source="PTF" target="TELECOM">
 		<db-attribute-pair source="TELECOM_ID" target="ID"/>
 	</db-relationship>
@@ -4984,6 +5003,15 @@
 	</db-relationship>
 	<db-relationship name="network" source="SURVEY" target="NETWORK">
 		<db-attribute-pair source="NETWORK_ID" target="ID"/>
+	</db-relationship>
+	<db-relationship name="tagPtfs" source="TAG" target="TAG_PTF" toMany="true">
+		<db-attribute-pair source="ID" target="TAG_ID"/>
+	</db-relationship>
+	<db-relationship name="ptf" source="TAG_PTF" target="PTF">
+		<db-attribute-pair source="PTF_ID" target="ID"/>
+	</db-relationship>
+	<db-relationship name="tag" source="TAG_PTF" target="TAG">
+		<db-attribute-pair source="TAG_ID" target="ID"/>
 	</db-relationship>
 	<db-relationship name="latency" source="TELECOM" target="LATENCY">
 		<db-attribute-pair source="LATENCY_ID" target="ID"/>
@@ -5610,6 +5638,7 @@
 	<obj-relationship name="serviceSchedule" source="Ptf" target="TimePeriod" deleteRule="Nullify" db-relationship-path="serviceSchedule"/>
 	<obj-relationship name="services" source="Ptf" target="Service" deleteRule="Deny" db-relationship-path="services"/>
 	<obj-relationship name="sitePtfs" source="Ptf" target="SitePtf" deleteRule="Deny" db-relationship-path="sitePtfs"/>
+	<obj-relationship name="tags" source="Ptf" target="Tag" deleteRule="Nullify" db-relationship-path="tagPtfs.tag"/>
 	<obj-relationship name="telecom" source="Ptf" target="Telecom" deleteRule="Nullify" db-relationship-path="telecom"/>
 	<obj-relationship name="trackingSystem" source="Ptf" target="LocSystem" deleteRule="Nullify" db-relationship-path="trackingSystem"/>
 	<obj-relationship name="weblinks" source="Ptf" target="Weblink" deleteRule="Nullify" db-relationship-path="weblinkPtfs.weblink"/>
@@ -5769,6 +5798,9 @@
 	<obj-relationship name="cruises" source="Survey" target="Cruise" deleteRule="Deny" db-relationship-path="cruises"/>
 	<obj-relationship name="lineSurveys" source="Survey" target="LineSurvey" deleteRule="Deny" db-relationship-path="lineSurveys"/>
 	<obj-relationship name="network" source="Survey" target="Network" deleteRule="Nullify" db-relationship-path="network"/>
+	<obj-relationship name="tagPtfs" source="Tag" target="TagPtf" deleteRule="Deny" db-relationship-path="tagPtfs"/>
+	<obj-relationship name="ptf" source="TagPtf" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
+	<obj-relationship name="tag" source="TagPtf" target="Tag" deleteRule="Nullify" db-relationship-path="tag"/>
 	<obj-relationship name="latency" source="Telecom" target="Latency" deleteRule="Nullify" db-relationship-path="latency"/>
 	<obj-relationship name="ptf" source="Telecom" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
 	<obj-relationship name="ptfBackup" source="Telecom" target="Ptf" deleteRule="Deny" db-relationship-path="ptfBackup"/>

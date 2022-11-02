@@ -169,9 +169,9 @@ public class Help extends HttpServlet {
 		concept.put("jsonUrl", "topic");
 		concepts.add(concept);
 		concept = new HashMap<String, String>();
-		concept.put("name", "Tracking system");
-		concept.put("urlParam", "trackingsystem");
-		concept.put("jsonUrl", "trackingsystem");
+		concept.put("name", "Location system");
+		concept.put("urlParam", "locsystem");
+		concept.put("jsonUrl", "locsystem");
 		concepts.add(concept);
 		concept = new HashMap<String, String>();
 		concept.put("name", "Batch status");

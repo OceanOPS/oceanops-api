@@ -12,7 +12,7 @@ import javax.ws.rs.core.UriInfo;
 import org.oceanops.api.Authorization;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
-import org.oceanops.api.orm.MapType;
+import org.oceanops.orm.MapType;
 
 import io.agrest.jaxrs2.AgJaxrs;
 import io.agrest.DataResponse;

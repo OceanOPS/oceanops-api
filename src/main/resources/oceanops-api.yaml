@@ -1596,6 +1596,8 @@ components:
           $ref: '#/components/schemas/Service'
         sitePtfs:
           $ref: '#/components/schemas/SitePtf'
+        tags:
+          $ref: '#/components/schemas/Tag'
         telecom:
           $ref: '#/components/schemas/Telecom'
         trackingSystem:
@@ -2804,6 +2806,24 @@ components:
         startDate:
           format: date-time
           type: string
+      type: object
+    Tag:
+      properties:
+        colour:
+          type: string
+        description:
+          type: string
+        name:
+          type: string
+        tagPtfs:
+          $ref: '#/components/schemas/TagPtf'
+      type: object
+    TagPtf:
+      properties:
+        ptf:
+          $ref: '#/components/schemas/Ptf'
+        tag:
+          $ref: '#/components/schemas/Tag'
       type: object
     Telecom:
       properties:

@@ -10,8 +10,8 @@ import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.core.MediaType;
 
 import org.oceanops.api.Authorization;
-import org.oceanops.api.orm.Agency;
-import org.oceanops.api.orm.AgencyRole;
+import org.oceanops.orm.Agency;
+import org.oceanops.orm.AgencyRole;
 
 import io.agrest.DataResponse;
 import io.agrest.SelectBuilder;

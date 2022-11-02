@@ -10,8 +10,8 @@ import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.core.MediaType;
 
 import org.oceanops.api.Authorization;
-import org.oceanops.api.orm.Ship;
-import org.oceanops.api.orm.ShipType;
+import org.oceanops.orm.Ship;
+import org.oceanops.orm.ShipType;
 
 import io.agrest.DataResponse;
 import io.agrest.SelectBuilder;
