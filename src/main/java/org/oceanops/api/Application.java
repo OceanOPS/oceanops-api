@@ -12,6 +12,7 @@ import org.apache.cayenne.configuration.server.ServerRuntime;
 import org.apache.cayenne.dba.PkGenerator;
 import org.apache.cayenne.map.EntitySorter;
 import org.glassfish.jersey.server.ResourceConfig;
+import org.oceanops.api.db.OraclePkGeneratorCustom;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

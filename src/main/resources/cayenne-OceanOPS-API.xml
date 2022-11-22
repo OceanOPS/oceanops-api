@@ -5,7 +5,7 @@
 	 project-version="10">
 	<map name="datamap"/>
 	<node name="prod"
-		 adapter="org.oceanops.api.OracleDbAdapterCustom"
+		 adapter="org.oceanops.api.db.OracleDbAdapterCustom"
 		 factory="org.apache.cayenne.configuration.server.JNDIDataSourceFactory" parameters="jdbc/OceanOPSDB"
 		 schema-update-strategy="org.apache.cayenne.access.dbsync.SkipSchemaUpdateStrategy">
 		<map-ref name="datamap"/>

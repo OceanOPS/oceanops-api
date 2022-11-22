@@ -1,4 +1,4 @@
-package org.oceanops.api;
+package org.oceanops.api.db;
 
 import org.apache.cayenne.dba.JdbcAdapter;
 import org.apache.cayenne.dba.oracle.OraclePkGenerator;

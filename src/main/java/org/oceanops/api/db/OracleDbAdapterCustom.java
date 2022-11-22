@@ -1,4 +1,4 @@
-package org.oceanops.api;
+package org.oceanops.api.db;
 
 import java.util.List;
 
