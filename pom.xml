@@ -84,13 +84,13 @@
 				<plugin>
 					<groupId>org.eclipse.jetty</groupId>
 					<artifactId>jetty-maven-plugin</artifactId>
-					<version>10.0.7</version>
+					<version>11.0.12</version>
 					<configuration>
 						<scan>10</scan>
 						<webApp>
 							<contextPath>/${project.build.finalName}</contextPath>
 						</webApp>
-						<jettyXmls>C:/Users/alize/Workspace/dev/jetty.xml</jettyXmls>
+						<jettyXmls>C:/Users/alize/Documents/Workspace/dev/jetty.xml</jettyXmls>
 					</configuration>
 					<dependencies>
 						<dependency>
@@ -134,7 +134,7 @@
 	</build>
 
 	<dependencyManagement>
-		<dependencies>
+		<dependencies>	
 			<dependency>
 				<groupId>org.glassfish.jersey</groupId>
 				<artifactId>jersey-bom</artifactId>
@@ -153,6 +153,36 @@
 	</dependencyManagement>
 
 	<dependencies>
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-servlet-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.inject</groupId>
+            <artifactId>jersey-hk2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.activation</groupId>
+            <artifactId>jakarta.activation</artifactId>
+			<version>1.2.2</version>
+        </dependency>
+		<dependency>
+			<groupId>io.agrest</groupId>
+			<artifactId>agrest-engine</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.agrest</groupId>
+			<artifactId>agrest-cayenne</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.agrest</groupId>
+			<artifactId>agrest-annotations</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.agrest</groupId>
+			<artifactId>agrest-jaxrs3</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-crypto</artifactId>
@@ -162,12 +192,18 @@
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
 			<version>1.2</version>
-		</dependency>	
+		</dependency>
 		<dependency>
 			<groupId>org.bouncycastle</groupId>
 			<artifactId>bcpkix-jdk15on</artifactId>
 			<version>1.70</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.15</version>
+		</dependency>	
 
 		<dependency>
 			<groupId>org.apache.xmlbeans</groupId>
@@ -183,7 +219,7 @@
 		<dependency>
 			<groupId>jakarta.servlet</groupId>
 			<artifactId>jakarta.servlet-api</artifactId>
-			<version>4.0.4</version>
+			<version>6.0.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency> 
@@ -200,28 +236,7 @@
 			<groupId>org.apache.logging.log4j</groupId> 
 			<artifactId>log4j-slf4j-impl</artifactId> 
 			<version>2.19.0</version> 
-		</dependency>
-		<dependency>
-			<groupId>commons-codec</groupId>
-			<artifactId>commons-codec</artifactId>
-			<version>1.15</version>
-		</dependency>		
-		<dependency>
-			<groupId>org.glassfish.jersey.containers</groupId>
-			<artifactId>jersey-container-servlet</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.glassfish.jersey.core</groupId>
-			<artifactId>jersey-server</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.glassfish.jersey.inject</groupId>
-			<artifactId>jersey-hk2</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.glassfish.jersey.media</groupId>
-			<artifactId>jersey-media-moxy</artifactId>
-		</dependency>
+		</dependency>	
 
 		<dependency>
 			<groupId>org.json</groupId>
@@ -238,44 +253,23 @@
 		<dependency>
 			<groupId>jakarta.xml.bind</groupId>
 			<artifactId>jakarta.xml.bind-api</artifactId>
-			<version>2.3.3</version>
+			<version>4.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sun.xml.bind</groupId>
 			<artifactId>jaxb-impl</artifactId>
-			<version>2.3.3</version>
+			<version>4.0.0</version>
 			<scope>runtime</scope>
 		</dependency>
-		<dependency>
-			<groupId>io.agrest</groupId>
-			<artifactId>agrest-engine</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.agrest</groupId>
-			<artifactId>agrest-cayenne</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.agrest</groupId>
-			<artifactId>agrest-annotations</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.agrest</groupId>
-			<artifactId>agrest-jaxrs2</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.cayenne</groupId>
-			<artifactId>cayenne-web</artifactId>
-			<version>${cayenne.version}</version>
-		</dependency>	
 	</dependencies>
 	<properties>
 		<maven.build.timestamp.format>yyyyMMdd-HHmm</maven.build.timestamp.format>
 		<timestamp>${maven.build.timestamp}</timestamp>
-		<jersey.version>2.35</jersey.version>
+		<jersey.version>3.1.0</jersey.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.scm.id>oceanops-scm-server</project.scm.id>
 		<java.version>17</java.version>
-		<agrest.version>5.0.M7</agrest.version>
+		<agrest.version>5.0.M9</agrest.version>
 		<cayenne.version>4.2.RC1</cayenne.version>
 		<xmlbeans.version>5.1.1</xmlbeans.version>
 		<wmdr.version>1.0RC9</wmdr.version>

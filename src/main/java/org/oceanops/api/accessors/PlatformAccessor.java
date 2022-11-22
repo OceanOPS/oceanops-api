@@ -1,24 +1,24 @@
 package org.oceanops.api.accessors;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.NotFoundException;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Configuration;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.UriInfo;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.NotFoundException;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.Configuration;
+import jakarta.ws.rs.core.Context;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.UriInfo;
+import jakarta.xml.bind.JAXBException;
 
-import org.apache.cayenne.ObjectContext;
-import org.apache.cayenne.query.ObjectSelect;
-import org.apache.cayenne.query.SelectById;
+import javax.xml.datatype.DatatypeConfigurationException;
+
 import org.oceanops.api.Authorization;
-import org.oceanops.api.Utils;
+import org.oceanops.api.entities.wmdr.Platform;
 import org.oceanops.orm.Ptf;
 import org.oceanops.orm.PtfIdentifiers;
 
-import io.agrest.jaxrs2.AgJaxrs;
+import io.agrest.jaxrs3.AgJaxrs;
 import io.agrest.AgRequest;
 import io.agrest.DataResponse;
 import io.agrest.SelectBuilder;
@@ -29,12 +29,11 @@ import io.agrest.SelectBuilder;
 public class PlatformAccessor {
 	// private final Logger logger =
 	// LoggerFactory.getLogger(PlatformAccessor.class);
-	private ObjectContext context;
 	@Context
 	private Configuration config;
 
 	public PlatformAccessor() {
-		this.context = Utils.getCayenneContext();
+		//this.context = Utils.getCayenneContext();
 	}
 
 	@GET
@@ -90,52 +89,47 @@ public class PlatformAccessor {
 		return sBuilder.clientParams(uriInfo.getQueryParameters()).getOne();
 	}
 
-	/**
-	 * Query the database to retrieve a platform's details, based on its database
-	 * ID.
-	 * 
-	 * @param id long The database identifier
-	 * @return A ORM Ptf object
-	 * @throws NotFoundException
-	 */
-	public Ptf getPtfbyID(long id) throws NotFoundException {
-		// Find the platform
-		Ptf ptf = SelectById.query(Ptf.class, id).selectOne(this.context);
+	@GET
+	@Path("platform/wmdr/{id}")
+	@Produces(MediaType.APPLICATION_XML)
+	public String getPlatformWmdrById(@PathParam("id") int id)
+			throws JAXBException, NumberFormatException, DatatypeConfigurationException {
+		Ptf ptf = AgJaxrs.select(Ptf.class, config).byId(id).getOne().getData().get(0);
 		if (ptf == null)
 			throw new NotFoundException("No platform found for ID = " + String.valueOf(id));
-		return ptf;
-	}
-	
-	/**
-	 * Query the database to retrieve a platform's details, based on its database
-	 * ID.
-	 * 
-	 * @param id long The database identifier
-	 * @return A ORM Ptf object
-	 * @throws NotFoundException
-	 */
-	public Ptf getPtfbyRef(String ref) throws NotFoundException {
-		// Find the platform
-		Ptf ptf = ObjectSelect.query(Ptf.class, Ptf.REF.eq(ref)).selectOne(this.context);
-		if (ptf == null)
-			throw new NotFoundException("No platform found for ref = " + ref);
-		return ptf;
+		Platform wmdr = new Platform(ptf);
+
+		return wmdr.toString();
 	}
 
-	/**
-	 * Query the database to retrieve a platform's details, based on its WIGOS ID
-	 * 
-	 * @param wigosid the WIGOS identifier
-	 * @return A ORM Ptf object
-	 * @throws NotFoundException
-	 */
-	public Ptf getPtfbyWigosID(String wigosid) throws NotFoundException {
-		// Find the platform
-		Ptf ptf = ObjectSelect.query(Ptf.class, Ptf.PTF_IDENTIFIERS.dot(PtfIdentifiers.WIGOS_REF).eq(wigosid)).selectOne(this.context);
+	@GET
+	@Path("platform/wmdr/ref/{ref}")
+	@Produces(MediaType.APPLICATION_XML)
+	public String getPlatformWmdrByRef(@PathParam("ref") String ref)
+			throws JAXBException, NumberFormatException, DatatypeConfigurationException {
+		AgRequest agRequest = AgJaxrs.request(config).andExp(Ptf.REF.eq(ref).toString()).build();
+		Ptf ptf = AgJaxrs.select(Ptf.class, config).request(agRequest).getOne().getData().get(0);
+		if (ptf == null)
+			throw new NotFoundException("No platform found for ref = " + ref);
+		Platform wmdr = new Platform(ptf);
+
+		return wmdr.toString();
+	}
+
+	@GET
+	@Path("platform/wmdr/wigosid/{wigosid}")
+	@Produces(MediaType.APPLICATION_XML)
+	public String getPlatformWmdrByWIGOSID(@PathParam("wigosid") String wigosid)
+			throws JAXBException, NumberFormatException, DatatypeConfigurationException {
+		AgRequest agRequest = AgJaxrs.request(config).andExp(
+			Ptf.PTF_IDENTIFIERS.dot(PtfIdentifiers.WIGOS_REF).eq(wigosid).toString()
+		).build(); 
+		Ptf ptf = AgJaxrs.select(Ptf.class, config).request(agRequest).getOne().getData().get(0);
 
 		if (ptf == null)
 			throw new NotFoundException("No platform found for WIGOS ID = " + wigosid);
+		Platform wmdr = new Platform(ptf);
 		
-		return ptf;
+		return wmdr.toString();
 	}
 }

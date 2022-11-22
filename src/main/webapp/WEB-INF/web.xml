@@ -4,17 +4,12 @@
 	    <welcome-file>index.jsp</welcome-file>        
 	</welcome-file-list>
 	<servlet>
-		<servlet-name>JerseyWebApplication</servlet-name>
+		<servlet-name>api</servlet-name>
 		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
-		<init-param>
-			<param-name>jersey.config.server.provider.packages</param-name>
-			<param-value>org.oceanops.api</param-value>
-		</init-param>
         <init-param>
-            <param-name>javax.ws.rs.Application</param-name>
+            <param-name>jakarta.ws.rs.Application</param-name>
             <param-value>org.oceanops.api.Application</param-value>
         </init-param>
-		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet>
 		<servlet-name>OpenApiDefinition</servlet-name>
@@ -38,30 +33,14 @@
 		<url-pattern>/help/*</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>JerseyWebApplication</servlet-name>
+		<servlet-name>api</servlet-name>
 		<url-pattern>/data/*</url-pattern>
 	</servlet-mapping>
 
 	<filter>
-		<filter-name>CayenneFilter</filter-name>
-		<filter-class>org.apache.cayenne.configuration.web.CayenneFilter</filter-class>
-		<init-param>
-			<param-name>configuration-location</param-name>
-			<param-value>cayenne-OceanOPS-API.xml</param-value>
-		</init-param>
-		<init-param>
-		   <param-name>extra-modules</param-name>
-		   <param-value>org.oceanops.api.filters.CayenneContextModule</param-value>
-		</init-param> 
-	</filter>
-	<filter>
 		<filter-name>AuthFilter</filter-name>
 		<filter-class>org.oceanops.api.filters.AuthFilter</filter-class>
 	</filter>
-	<filter-mapping>
-		<filter-name>CayenneFilter</filter-name>
-		<url-pattern>/data/*</url-pattern>
-	</filter-mapping>
 	<filter-mapping>
 		<filter-name>AuthFilter</filter-name>
 		<url-pattern>/data/*</url-pattern>

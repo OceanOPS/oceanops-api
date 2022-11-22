@@ -111,7 +111,7 @@ public class Platform {
 	 * 
 	 */
 	public Platform(Ptf ptf) {
-		this.cayenneContext = Utils.getCayenneContext();
+		this.cayenneContext = ptf.getObjectContext();
 		logger.debug("Instanciating Platform WMDR record for ptf_id = " + String.valueOf(ptf.getId()));
 		String wigosRef = this.getWIGOSIdentifier(ptf);
         

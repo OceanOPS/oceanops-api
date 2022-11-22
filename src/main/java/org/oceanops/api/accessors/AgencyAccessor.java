@@ -1,13 +1,13 @@
 package org.oceanops.api.accessors;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Configuration;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.core.MediaType;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.Configuration;
+import jakarta.ws.rs.core.Context;
+import jakarta.ws.rs.core.UriInfo;
+import jakarta.ws.rs.core.MediaType;
 
 import org.oceanops.api.Authorization;
 import org.oceanops.orm.Agency;
@@ -15,7 +15,7 @@ import org.oceanops.orm.AgencyRole;
 
 import io.agrest.DataResponse;
 import io.agrest.SelectBuilder;
-import io.agrest.jaxrs2.AgJaxrs;
+import io.agrest.jaxrs3.AgJaxrs;
 
 @Path("/")
 @Produces(MediaType.APPLICATION_JSON + ";" + MediaType.CHARSET_PARAMETER + "=utf-8")
