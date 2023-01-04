@@ -148,7 +148,7 @@ URL endpoint: <code>/<%=entityPath%>/platform</code>
 	</div>
 </div>
 <p>
-	More details on the <a href="https://agrest.io/protocol/#shaping-collection-with-include-exclude" target="_blank">AgRest documentation</a>.
+	More details on the <a href="https://agrest.io/docs/5.x/protocol/#include-exclude" target="_blank">AgRest documentation</a>.
 </p>
 <br>
 <p>
@@ -249,7 +249,7 @@ URL endpoint: <code>/<%=entityPath%>/platform</code>
 	</div>
 </div>
 <p>
-	More details on the <a href="https://agrest.io/protocol/#structuring-collection-with-mapby" target="_blank">AgRest documentation</a>.
+	More details on the <a href="https://agrest.io/docs/5.x/protocol/#mapby" target="_blank">AgRest documentation</a>.
 </p>
 <br>
 
