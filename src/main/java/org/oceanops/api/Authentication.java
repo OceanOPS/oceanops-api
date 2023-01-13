@@ -71,7 +71,7 @@ public class Authentication {
         if (id != null && rawToken != null) {
             Authentication.useToken = true;
             ObjectContext context = Utils.getCayenneContext();
-            Argon2PasswordEncoder encoder = new Argon2PasswordEncoder();
+            Argon2PasswordEncoder encoder = Argon2PasswordEncoder.defaultsForSpringSecurity_v5_8();
             ApiToken apiToken = SelectById.query(ApiToken.class, id).selectOne(context);
 
             // If record found in the database

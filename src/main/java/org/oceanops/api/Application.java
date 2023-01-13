@@ -24,13 +24,14 @@ import io.agrest.jaxrs3.AgJaxrsFeature;
 @ApplicationPath("/")
 public class Application extends ResourceConfig  {	
 	Logger logger = LoggerFactory.getLogger(Application.class);
+	public static ServerRuntime CAYENNE_RUNTIME;
 
 	public Application(@Context ServletContext servletContext) throws IOException {
 		//ServerRuntime cayenneRuntime = (ServerRuntime)WebUtil.getCayenneRuntime(servletContext);
 		OraclePkGeneratorCustom pkgen = new OraclePkGeneratorCustom();
 		pkgen.setPkCacheSize(1);
 
-        ServerRuntime cayenneRuntime = ServerRuntime.builder()
+        Application.CAYENNE_RUNTIME = ServerRuntime.builder()
                 .addConfig("cayenne-OceanOPS-API.xml")
 				.addModule(b -> b
 					.bind(PkGenerator.class).toInstance(pkgen)
@@ -39,14 +40,14 @@ public class Application extends ResourceConfig  {
 					.bind(EntitySorter.class).to(WeightedAshwoodEntitySorter.class))
                 .build();
 		// Controlling that modules are applied
-		PkGenerator pk = cayenneRuntime.getDataDomain().getDataNode("prod").getAdapter().getPkGenerator();
+		PkGenerator pk = Application.CAYENNE_RUNTIME.getDataDomain().getDataNode("prod").getAdapter().getPkGenerator();
 		if(!(pk instanceof OraclePkGeneratorCustom)){
 			logger.warn("PkGenerator is not an instance of OraclePkGeneratorCustom");
 			logger.debug(pk.toString());
-			logger.debug(cayenneRuntime.getDataDomain().getDataNode("prod").getAdapter().toString());
+			logger.debug(Application.CAYENNE_RUNTIME.getDataDomain().getDataNode("prod").getAdapter().toString());
 		}
 		// Adding Cayenne to AgRest
-		AgCayenneModule cayenneModule = AgCayenneModule.build(cayenneRuntime);	
+		AgCayenneModule cayenneModule = AgCayenneModule.build(Application.CAYENNE_RUNTIME);	
 		AgRuntimeBuilder agBuilder = AgRuntime.builder().module(cayenneModule);
 		// Adding global authorization filter
 		Authorization.applyGlobalAuthorization(agBuilder);
@@ -55,13 +56,7 @@ public class Application extends ResourceConfig  {
 		AgJaxrsFeature feature = AgJaxrsFeature.build(runtime);
         register(feature);
 		// Registering API endpoints
-		//packages("org.oceanops.api");
-		register(org.oceanops.api.accessors.PlatformAccessor.class);
-		register(org.oceanops.api.accessors.AgencyAccessor.class);
-		register(org.oceanops.api.accessors.HardwareAccessor.class);
-		register(org.oceanops.api.accessors.OtherAccessor.class);
-		register(org.oceanops.api.accessors.ShipAccessor.class);
-		register(org.oceanops.api.accessors.VocabAccessor.class);
+		packages("org.oceanops.api.accessors");
 	}
 
 }
