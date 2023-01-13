@@ -90,13 +90,13 @@
 						<webApp>
 							<contextPath>/${project.build.finalName}</contextPath>
 						</webApp>
-						<jettyXmls>C:/Users/alize/Documents/Workspace/dev/jetty.xml</jettyXmls>
+						<jettyXmls>C:/Users/alize.GROUPCLS/Workspace/dev/jetty.xml</jettyXmls>
 					</configuration>
 					<dependencies>
 						<dependency>
 							<groupId>com.oracle.database.jdbc</groupId>
 							<artifactId>ojdbc8</artifactId>
-							<version>21.7.0.0</version>
+							<version>21.8.0.0</version>
 						</dependency>
 					</dependencies>
 				</plugin>
@@ -164,7 +164,7 @@
         <dependency>
             <groupId>com.sun.activation</groupId>
             <artifactId>jakarta.activation</artifactId>
-			<version>1.2.2</version>
+			<version>2.0.1</version>
         </dependency>
 		<dependency>
 			<groupId>io.agrest</groupId>
@@ -186,7 +186,7 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-crypto</artifactId>
-			<version>5.7.3</version>
+			<version>6.0.1</version>
 		</dependency>		
 		<dependency>
 			<groupId>commons-logging</groupId>
@@ -247,7 +247,7 @@
 		<dependency>
 			<groupId>com.oracle.database.jdbc</groupId>
 			<artifactId>ojdbc8</artifactId>
-			<version>21.7.0.0</version>
+			<version>21.8.0.0</version>
 		</dependency>
 
 		<dependency>
@@ -258,7 +258,7 @@
 		<dependency>
 			<groupId>com.sun.xml.bind</groupId>
 			<artifactId>jaxb-impl</artifactId>
-			<version>4.0.0</version>
+			<version>4.0.1</version>
 			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
@@ -270,7 +270,7 @@
 		<project.scm.id>oceanops-scm-server</project.scm.id>
 		<java.version>17</java.version>
 		<agrest.version>5.0.M9</agrest.version>
-		<cayenne.version>4.2.RC1</cayenne.version>
+		<cayenne.version>4.2.RC2</cayenne.version>
 		<xmlbeans.version>5.1.1</xmlbeans.version>
 		<wmdr.version>1.0RC9</wmdr.version>
 		<entityPath>data</entityPath>
