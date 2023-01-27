@@ -64,7 +64,7 @@ URL endpoint: <code>/<%=entityPath%>/platform</code>
 			In the URL of the example above the parameter "<b>ptfStatus.name</b>" has the value of "<b>OPERATIONAL</b>" standing for an "<b>operational platform</b>" 
 			and the parameter "<b>ptfVariables.variable.nameShort</b>" has the value of "<b>DOXY</b>" standing for "<b>dissolved oxygen</b>". The previous URL is equivalent to:
 			<div class="text-center">
-				<span class="url"><%=rootUrl%><%=entityPath%>/platform?exp=["ptfStatus.id=6 and ptfVariables.variable.id=33"]</span>
+				<span class="url"><%=rootUrl%><%=entityPath%>/platform?exp=["ptfStatus=6 and ptfVariables.variable=33"]</span>
 			</div>
 			Where in this URL we replaced the short name value of the status ("OPERATIONAL") by its corresponding ID ("6") and the short name value 'DOXY' by its corresponding ID ("33").
 		</p>
