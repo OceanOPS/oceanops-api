@@ -11,11 +11,19 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.apache.cayenne.BaseContext;
 import org.apache.cayenne.ObjectContext;
+import org.apache.cayenne.ashwood.WeightedAshwoodEntitySorter;
+import org.apache.cayenne.configuration.server.ServerRuntime;
+import org.apache.cayenne.dba.PkGenerator;
+import org.apache.cayenne.map.EntitySorter;
+import org.oceanops.api.db.OraclePkGeneratorCustom;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Class defining utility/helper functions and access to properties
  */
 public class Utils {
+	private static Logger logger = LoggerFactory.getLogger(Utils.class); 
 	private static Properties properties;
 	private static String projectName, projectVersion, rootUrl, programUrl, inspectPtfUrl, helpEditionDate,
 			versionQualifier, entityPath;
@@ -174,5 +182,32 @@ public class Utils {
 	 */
 	public static ObjectContext getCayenneContext() {
 		return BaseContext.getThreadObjectContext();
+	}
+
+	/**
+	 * Generate and return a Cayenne Server Runtime
+	 * @return a {@link ServerRuntime} object
+	 */
+	public static ServerRuntime getCayenneServerRuntime(String pathToCayenneConfFile){
+		OraclePkGeneratorCustom pkgen = new OraclePkGeneratorCustom();
+		pkgen.setPkCacheSize(1);
+
+        ServerRuntime cayenneRuntime = ServerRuntime.builder()
+                .addConfig("cayenne-OceanOPS-API.xml")
+				.addModule(b -> b
+					.bind(PkGenerator.class).toInstance(pkgen)
+				)
+				.addModule(b -> b
+					.bind(EntitySorter.class).to(WeightedAshwoodEntitySorter.class))
+                .build();
+		// Controlling that modules are applied
+		PkGenerator pk = cayenneRuntime.getDataDomain().getDataNode("prod").getAdapter().getPkGenerator();
+		if(!(pk instanceof OraclePkGeneratorCustom)){
+			logger.warn("PkGenerator is not an instance of OraclePkGeneratorCustom");
+			logger.debug(pk.toString());
+			logger.debug(cayenneRuntime.getDataDomain().getDataNode("prod").getAdapter().toString());
+		}
+
+		return cayenneRuntime;
 	}
 }
