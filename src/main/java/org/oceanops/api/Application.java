@@ -7,12 +7,8 @@ import jakarta.servlet.ServletContext;
 import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.core.Context;
 
-import org.apache.cayenne.ashwood.WeightedAshwoodEntitySorter;
 import org.apache.cayenne.configuration.server.ServerRuntime;
-import org.apache.cayenne.dba.PkGenerator;
-import org.apache.cayenne.map.EntitySorter;
 import org.glassfish.jersey.server.ResourceConfig;
-import org.oceanops.api.db.OraclePkGeneratorCustom;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,25 +23,9 @@ public class Application extends ResourceConfig  {
 	public static ServerRuntime CAYENNE_RUNTIME;
 
 	public Application(@Context ServletContext servletContext) throws IOException {
-		//ServerRuntime cayenneRuntime = (ServerRuntime)WebUtil.getCayenneRuntime(servletContext);
-		OraclePkGeneratorCustom pkgen = new OraclePkGeneratorCustom();
-		pkgen.setPkCacheSize(1);
-
-        Application.CAYENNE_RUNTIME = ServerRuntime.builder()
-                .addConfig("cayenne-OceanOPS-API.xml")
-				.addModule(b -> b
-					.bind(PkGenerator.class).toInstance(pkgen)
-				)
-				.addModule(b -> b
-					.bind(EntitySorter.class).to(WeightedAshwoodEntitySorter.class))
-                .build();
-		// Controlling that modules are applied
-		PkGenerator pk = Application.CAYENNE_RUNTIME.getDataDomain().getDataNode("prod").getAdapter().getPkGenerator();
-		if(!(pk instanceof OraclePkGeneratorCustom)){
-			logger.warn("PkGenerator is not an instance of OraclePkGeneratorCustom");
-			logger.debug(pk.toString());
-			logger.debug(Application.CAYENNE_RUNTIME.getDataDomain().getDataNode("prod").getAdapter().toString());
-		}
+		// Creating Cayenne ServerRuntime
+        Application.CAYENNE_RUNTIME = Utils.getCayenneServerRuntime("cayenne-OceanOPS-API.xml");
+		
 		// Adding Cayenne to AgRest
 		AgCayenneModule cayenneModule = AgCayenneModule.build(Application.CAYENNE_RUNTIME);	
 		AgRuntimeBuilder agBuilder = AgRuntime.builder().module(cayenneModule);
