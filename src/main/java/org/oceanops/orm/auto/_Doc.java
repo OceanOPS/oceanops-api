@@ -15,6 +15,7 @@ import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
 import org.oceanops.orm.DocContact;
+import org.oceanops.orm.DocLanguage;
 import org.oceanops.orm.DocType;
 import org.oceanops.orm.Language;
 import org.oceanops.orm.Meeting;
@@ -47,11 +48,13 @@ public abstract class _Doc extends BaseDataObject {
     public static final StringProperty<String> DUE_DATE = PropertyFactory.createString("dueDate", String.class);
     public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final StringProperty<String> KEYWORDS = PropertyFactory.createString("keywords", String.class);
+    public static final NumericProperty<Integer> LOC_ID = PropertyFactory.createNumeric("locId", Integer.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> NAME_SHORT = PropertyFactory.createString("nameShort", String.class);
     public static final NumericProperty<Integer> VALIDATED = PropertyFactory.createNumeric("validated", Integer.class);
     public static final NumericProperty<Double> VERSION = PropertyFactory.createNumeric("version", Double.class);
     public static final ListProperty<DocContact> DOC_CONTACTS = PropertyFactory.createList("docContacts", DocContact.class);
+    public static final ListProperty<DocLanguage> DOC_LANGUAGES = PropertyFactory.createList("docLanguages", DocLanguage.class);
     public static final EntityProperty<DocType> DOC_TYPE = PropertyFactory.createEntity("docType", DocType.class);
     public static final EntityProperty<Language> LANGUAGE = PropertyFactory.createEntity("language", Language.class);
     public static final EntityProperty<Meeting> MEETING = PropertyFactory.createEntity("meeting", Meeting.class);
@@ -73,12 +76,14 @@ public abstract class _Doc extends BaseDataObject {
     protected String dueDate;
     protected Integer id;
     protected String keywords;
+    protected Integer locId;
     protected String name;
     protected String nameShort;
     protected Integer validated;
     protected Double version;
 
     protected Object docContacts;
+    protected Object docLanguages;
     protected Object docType;
     protected Object language;
     protected Object meeting;
@@ -181,6 +186,19 @@ public abstract class _Doc extends BaseDataObject {
         return this.keywords;
     }
 
+    public void setLocId(int locId) {
+        beforePropertyWrite("locId", this.locId, locId);
+        this.locId = locId;
+    }
+
+    public int getLocId() {
+        beforePropertyRead("locId");
+        if(this.locId == null) {
+            return 0;
+        }
+        return this.locId;
+    }
+
     public void setName(String name) {
         beforePropertyWrite("name", this.name, name);
         this.name = name;
@@ -232,6 +250,19 @@ public abstract class _Doc extends BaseDataObject {
     @SuppressWarnings("unchecked")
     public List<DocContact> getDocContacts() {
         return (List<DocContact>)readProperty("docContacts");
+    }
+
+    public void addToDocLanguages(DocLanguage obj) {
+        addToManyTarget("docLanguages", obj, true);
+    }
+
+    public void removeFromDocLanguages(DocLanguage obj) {
+        removeToManyTarget("docLanguages", obj, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<DocLanguage> getDocLanguages() {
+        return (List<DocLanguage>)readProperty("docLanguages");
     }
 
     public void setDocType(DocType docType) {
@@ -357,6 +388,8 @@ public abstract class _Doc extends BaseDataObject {
                 return this.id;
             case "keywords":
                 return this.keywords;
+            case "locId":
+                return this.locId;
             case "name":
                 return this.name;
             case "nameShort":
@@ -367,6 +400,8 @@ public abstract class _Doc extends BaseDataObject {
                 return this.version;
             case "docContacts":
                 return this.docContacts;
+            case "docLanguages":
+                return this.docLanguages;
             case "docType":
                 return this.docType;
             case "language":
@@ -428,6 +463,9 @@ public abstract class _Doc extends BaseDataObject {
             case "keywords":
                 this.keywords = (String)val;
                 break;
+            case "locId":
+                this.locId = (Integer)val;
+                break;
             case "name":
                 this.name = (String)val;
                 break;
@@ -442,6 +480,9 @@ public abstract class _Doc extends BaseDataObject {
                 break;
             case "docContacts":
                 this.docContacts = val;
+                break;
+            case "docLanguages":
+                this.docLanguages = val;
                 break;
             case "docType":
                 this.docType = val;
@@ -501,11 +542,13 @@ public abstract class _Doc extends BaseDataObject {
         out.writeObject(this.dueDate);
         out.writeObject(this.id);
         out.writeObject(this.keywords);
+        out.writeObject(this.locId);
         out.writeObject(this.name);
         out.writeObject(this.nameShort);
         out.writeObject(this.validated);
         out.writeObject(this.version);
         out.writeObject(this.docContacts);
+        out.writeObject(this.docLanguages);
         out.writeObject(this.docType);
         out.writeObject(this.language);
         out.writeObject(this.meeting);
@@ -531,11 +574,13 @@ public abstract class _Doc extends BaseDataObject {
         this.dueDate = (String)in.readObject();
         this.id = (Integer)in.readObject();
         this.keywords = (String)in.readObject();
+        this.locId = (Integer)in.readObject();
         this.name = (String)in.readObject();
         this.nameShort = (String)in.readObject();
         this.validated = (Integer)in.readObject();
         this.version = (Double)in.readObject();
         this.docContacts = in.readObject();
+        this.docLanguages = in.readObject();
         this.docType = in.readObject();
         this.language = in.readObject();
         this.meeting = in.readObject();

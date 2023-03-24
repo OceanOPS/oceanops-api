@@ -3,6 +3,7 @@ package org.oceanops.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.apache.cayenne.BaseDataObject;
@@ -19,6 +20,7 @@ import org.oceanops.orm.SensorLocation;
 import org.oceanops.orm.SensorModel;
 import org.oceanops.orm.SensorStatus;
 import org.oceanops.orm.TimePeriod;
+import org.oceanops.orm.Unit;
 import org.oceanops.orm.Variable;
 import org.oceanops.orm.Weblink;
 
@@ -53,14 +55,17 @@ public abstract class _PtfVariable extends BaseDataObject {
     public static final NumericProperty<Integer> PACKAGE_N = PropertyFactory.createNumeric("packageN", Integer.class);
     public static final StringProperty<String> PRECISION = PropertyFactory.createString("precision", String.class);
     public static final StringProperty<String> RANGE = PropertyFactory.createString("range", String.class);
+    public static final NumericProperty<BigDecimal> RANGE_MAX = PropertyFactory.createNumeric("rangeMax", BigDecimal.class);
+    public static final NumericProperty<BigDecimal> RANGE_MIN = PropertyFactory.createNumeric("rangeMin", BigDecimal.class);
     public static final StringProperty<String> RESOLUTION = PropertyFactory.createString("resolution", String.class);
     public static final StringProperty<String> SAMPLING_RATE = PropertyFactory.createString("samplingRate", String.class);
     public static final StringProperty<String> SAMPLING_RATE_TOTAL = PropertyFactory.createString("samplingRateTotal", String.class);
+    public static final StringProperty<String> SENSOR_GROUP = PropertyFactory.createString("sensorGroup", String.class);
     public static final StringProperty<String> SERIAL_NO = PropertyFactory.createString("serialNo", String.class);
     public static final StringProperty<String> SIDE_INDICATOR = PropertyFactory.createString("sideIndicator", String.class);
     public static final DateProperty<LocalDateTime> START_DATE = PropertyFactory.createDate("startDate", LocalDateTime.class);
     public static final NumericProperty<Double> TIME_OFFSET = PropertyFactory.createNumeric("timeOffset", Double.class);
-    public static final NumericProperty<Integer> VARIABLE_ID = PropertyFactory.createNumeric("variableId", Integer.class);
+    public static final StringProperty<String> UNCERTAINTY = PropertyFactory.createString("uncertainty", String.class);
     public static final EntityProperty<DataProcessingMethod> DATA_PROCESSING_METHOD = PropertyFactory.createEntity("dataProcessingMethod", DataProcessingMethod.class);
     public static final EntityProperty<Weblink> MANUF_WEBLINK = PropertyFactory.createEntity("manufWeblink", Weblink.class);
     public static final EntityProperty<Program> PROGRAM = PropertyFactory.createEntity("program", Program.class);
@@ -70,6 +75,7 @@ public abstract class _PtfVariable extends BaseDataObject {
     public static final EntityProperty<SensorModel> SENSOR_MODEL = PropertyFactory.createEntity("sensorModel", SensorModel.class);
     public static final EntityProperty<SensorStatus> SENSOR_STATUS = PropertyFactory.createEntity("sensorStatus", SensorStatus.class);
     public static final EntityProperty<TimePeriod> SERVICE_SCHEDULE = PropertyFactory.createEntity("serviceSchedule", TimePeriod.class);
+    public static final EntityProperty<Unit> UNIT = PropertyFactory.createEntity("unit", Unit.class);
     public static final EntityProperty<Variable> VARIABLE = PropertyFactory.createEntity("variable", Variable.class);
     public static final EntityProperty<Weblink> WEBLINK = PropertyFactory.createEntity("weblink", Weblink.class);
 
@@ -92,14 +98,17 @@ public abstract class _PtfVariable extends BaseDataObject {
     protected Integer packageN;
     protected String precision;
     protected String range;
+    protected BigDecimal rangeMax;
+    protected BigDecimal rangeMin;
     protected String resolution;
     protected String samplingRate;
     protected String samplingRateTotal;
+    protected String sensorGroup;
     protected String serialNo;
     protected String sideIndicator;
     protected LocalDateTime startDate;
     protected Double timeOffset;
-    protected Integer variableId;
+    protected String uncertainty;
 
     protected Object dataProcessingMethod;
     protected Object manufWeblink;
@@ -110,6 +119,7 @@ public abstract class _PtfVariable extends BaseDataObject {
     protected Object sensorModel;
     protected Object sensorStatus;
     protected Object serviceSchedule;
+    protected Object unit;
     protected Object variable;
     protected Object weblink;
 
@@ -303,6 +313,26 @@ public abstract class _PtfVariable extends BaseDataObject {
         return this.range;
     }
 
+    public void setRangeMax(BigDecimal rangeMax) {
+        beforePropertyWrite("rangeMax", this.rangeMax, rangeMax);
+        this.rangeMax = rangeMax;
+    }
+
+    public BigDecimal getRangeMax() {
+        beforePropertyRead("rangeMax");
+        return this.rangeMax;
+    }
+
+    public void setRangeMin(BigDecimal rangeMin) {
+        beforePropertyWrite("rangeMin", this.rangeMin, rangeMin);
+        this.rangeMin = rangeMin;
+    }
+
+    public BigDecimal getRangeMin() {
+        beforePropertyRead("rangeMin");
+        return this.rangeMin;
+    }
+
     public void setResolution(String resolution) {
         beforePropertyWrite("resolution", this.resolution, resolution);
         this.resolution = resolution;
@@ -331,6 +361,16 @@ public abstract class _PtfVariable extends BaseDataObject {
     public String getSamplingRateTotal() {
         beforePropertyRead("samplingRateTotal");
         return this.samplingRateTotal;
+    }
+
+    public void setSensorGroup(String sensorGroup) {
+        beforePropertyWrite("sensorGroup", this.sensorGroup, sensorGroup);
+        this.sensorGroup = sensorGroup;
+    }
+
+    public String getSensorGroup() {
+        beforePropertyRead("sensorGroup");
+        return this.sensorGroup;
     }
 
     public void setSerialNo(String serialNo) {
@@ -373,14 +413,14 @@ public abstract class _PtfVariable extends BaseDataObject {
         return this.timeOffset;
     }
 
-    public void setVariableId(Integer variableId) {
-        beforePropertyWrite("variableId", this.variableId, variableId);
-        this.variableId = variableId;
+    public void setUncertainty(String uncertainty) {
+        beforePropertyWrite("uncertainty", this.uncertainty, uncertainty);
+        this.uncertainty = uncertainty;
     }
 
-    public Integer getVariableId() {
-        beforePropertyRead("variableId");
-        return this.variableId;
+    public String getUncertainty() {
+        beforePropertyRead("uncertainty");
+        return this.uncertainty;
     }
 
     public void setDataProcessingMethod(DataProcessingMethod dataProcessingMethod) {
@@ -455,6 +495,14 @@ public abstract class _PtfVariable extends BaseDataObject {
         return (TimePeriod)readProperty("serviceSchedule");
     }
 
+    public void setUnit(Unit unit) {
+        setToOneTarget("unit", unit, true);
+    }
+
+    public Unit getUnit() {
+        return (Unit)readProperty("unit");
+    }
+
     public void setVariable(Variable variable) {
         setToOneTarget("variable", variable, true);
     }
@@ -516,12 +564,18 @@ public abstract class _PtfVariable extends BaseDataObject {
                 return this.precision;
             case "range":
                 return this.range;
+            case "rangeMax":
+                return this.rangeMax;
+            case "rangeMin":
+                return this.rangeMin;
             case "resolution":
                 return this.resolution;
             case "samplingRate":
                 return this.samplingRate;
             case "samplingRateTotal":
                 return this.samplingRateTotal;
+            case "sensorGroup":
+                return this.sensorGroup;
             case "serialNo":
                 return this.serialNo;
             case "sideIndicator":
@@ -530,8 +584,8 @@ public abstract class _PtfVariable extends BaseDataObject {
                 return this.startDate;
             case "timeOffset":
                 return this.timeOffset;
-            case "variableId":
-                return this.variableId;
+            case "uncertainty":
+                return this.uncertainty;
             case "dataProcessingMethod":
                 return this.dataProcessingMethod;
             case "manufWeblink":
@@ -550,6 +604,8 @@ public abstract class _PtfVariable extends BaseDataObject {
                 return this.sensorStatus;
             case "serviceSchedule":
                 return this.serviceSchedule;
+            case "unit":
+                return this.unit;
             case "variable":
                 return this.variable;
             case "weblink":
@@ -623,6 +679,12 @@ public abstract class _PtfVariable extends BaseDataObject {
             case "range":
                 this.range = (String)val;
                 break;
+            case "rangeMax":
+                this.rangeMax = (BigDecimal)val;
+                break;
+            case "rangeMin":
+                this.rangeMin = (BigDecimal)val;
+                break;
             case "resolution":
                 this.resolution = (String)val;
                 break;
@@ -631,6 +693,9 @@ public abstract class _PtfVariable extends BaseDataObject {
                 break;
             case "samplingRateTotal":
                 this.samplingRateTotal = (String)val;
+                break;
+            case "sensorGroup":
+                this.sensorGroup = (String)val;
                 break;
             case "serialNo":
                 this.serialNo = (String)val;
@@ -644,8 +709,8 @@ public abstract class _PtfVariable extends BaseDataObject {
             case "timeOffset":
                 this.timeOffset = (Double)val;
                 break;
-            case "variableId":
-                this.variableId = (Integer)val;
+            case "uncertainty":
+                this.uncertainty = (String)val;
                 break;
             case "dataProcessingMethod":
                 this.dataProcessingMethod = val;
@@ -673,6 +738,9 @@ public abstract class _PtfVariable extends BaseDataObject {
                 break;
             case "serviceSchedule":
                 this.serviceSchedule = val;
+                break;
+            case "unit":
+                this.unit = val;
                 break;
             case "variable":
                 this.variable = val;
@@ -715,14 +783,17 @@ public abstract class _PtfVariable extends BaseDataObject {
         out.writeObject(this.packageN);
         out.writeObject(this.precision);
         out.writeObject(this.range);
+        out.writeObject(this.rangeMax);
+        out.writeObject(this.rangeMin);
         out.writeObject(this.resolution);
         out.writeObject(this.samplingRate);
         out.writeObject(this.samplingRateTotal);
+        out.writeObject(this.sensorGroup);
         out.writeObject(this.serialNo);
         out.writeObject(this.sideIndicator);
         out.writeObject(this.startDate);
         out.writeObject(this.timeOffset);
-        out.writeObject(this.variableId);
+        out.writeObject(this.uncertainty);
         out.writeObject(this.dataProcessingMethod);
         out.writeObject(this.manufWeblink);
         out.writeObject(this.program);
@@ -732,6 +803,7 @@ public abstract class _PtfVariable extends BaseDataObject {
         out.writeObject(this.sensorModel);
         out.writeObject(this.sensorStatus);
         out.writeObject(this.serviceSchedule);
+        out.writeObject(this.unit);
         out.writeObject(this.variable);
         out.writeObject(this.weblink);
     }
@@ -758,14 +830,17 @@ public abstract class _PtfVariable extends BaseDataObject {
         this.packageN = (Integer)in.readObject();
         this.precision = (String)in.readObject();
         this.range = (String)in.readObject();
+        this.rangeMax = (BigDecimal)in.readObject();
+        this.rangeMin = (BigDecimal)in.readObject();
         this.resolution = (String)in.readObject();
         this.samplingRate = (String)in.readObject();
         this.samplingRateTotal = (String)in.readObject();
+        this.sensorGroup = (String)in.readObject();
         this.serialNo = (String)in.readObject();
         this.sideIndicator = (String)in.readObject();
         this.startDate = (LocalDateTime)in.readObject();
         this.timeOffset = (Double)in.readObject();
-        this.variableId = (Integer)in.readObject();
+        this.uncertainty = (String)in.readObject();
         this.dataProcessingMethod = in.readObject();
         this.manufWeblink = in.readObject();
         this.program = in.readObject();
@@ -775,6 +850,7 @@ public abstract class _PtfVariable extends BaseDataObject {
         this.sensorModel = in.readObject();
         this.sensorStatus = in.readObject();
         this.serviceSchedule = in.readObject();
+        this.unit = in.readObject();
         this.variable = in.readObject();
         this.weblink = in.readObject();
     }

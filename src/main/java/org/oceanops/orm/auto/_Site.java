@@ -13,6 +13,8 @@ import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
 import org.apache.cayenne.value.Wkt;
+import org.oceanops.orm.AgencySiteRole;
+import org.oceanops.orm.ContactSiteRole;
 import org.oceanops.orm.NetworkSite;
 import org.oceanops.orm.SiteFamily;
 import org.oceanops.orm.SitePtf;
@@ -36,6 +38,8 @@ public abstract class _Site extends BaseDataObject {
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> NAME_SHORT = PropertyFactory.createString("nameShort", String.class);
     public static final NumericProperty<Integer> TARGETED_OCCUPATION = PropertyFactory.createNumeric("targetedOccupation", Integer.class);
+    public static final ListProperty<AgencySiteRole> AGENCY_SITE_ROLES = PropertyFactory.createList("agencySiteRoles", AgencySiteRole.class);
+    public static final ListProperty<ContactSiteRole> CONTACT_SITE_ROLES = PropertyFactory.createList("contactSiteRoles", ContactSiteRole.class);
     public static final ListProperty<NetworkSite> NETWORK_SITES = PropertyFactory.createList("networkSites", NetworkSite.class);
     public static final EntityProperty<SiteFamily> SITE_FAMILY = PropertyFactory.createEntity("siteFamily", SiteFamily.class);
     public static final ListProperty<SitePtf> SITE_PTFS = PropertyFactory.createList("sitePtfs", SitePtf.class);
@@ -48,6 +52,8 @@ public abstract class _Site extends BaseDataObject {
     protected String nameShort;
     protected Integer targetedOccupation;
 
+    protected Object agencySiteRoles;
+    protected Object contactSiteRoles;
     protected Object networkSites;
     protected Object siteFamily;
     protected Object sitePtfs;
@@ -113,6 +119,32 @@ public abstract class _Site extends BaseDataObject {
         return this.targetedOccupation;
     }
 
+    public void addToAgencySiteRoles(AgencySiteRole obj) {
+        addToManyTarget("agencySiteRoles", obj, true);
+    }
+
+    public void removeFromAgencySiteRoles(AgencySiteRole obj) {
+        removeToManyTarget("agencySiteRoles", obj, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<AgencySiteRole> getAgencySiteRoles() {
+        return (List<AgencySiteRole>)readProperty("agencySiteRoles");
+    }
+
+    public void addToContactSiteRoles(ContactSiteRole obj) {
+        addToManyTarget("contactSiteRoles", obj, true);
+    }
+
+    public void removeFromContactSiteRoles(ContactSiteRole obj) {
+        removeToManyTarget("contactSiteRoles", obj, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<ContactSiteRole> getContactSiteRoles() {
+        return (List<ContactSiteRole>)readProperty("contactSiteRoles");
+    }
+
     public void addToNetworkSites(NetworkSite obj) {
         addToManyTarget("networkSites", obj, true);
     }
@@ -174,6 +206,10 @@ public abstract class _Site extends BaseDataObject {
                 return this.nameShort;
             case "targetedOccupation":
                 return this.targetedOccupation;
+            case "agencySiteRoles":
+                return this.agencySiteRoles;
+            case "contactSiteRoles":
+                return this.contactSiteRoles;
             case "networkSites":
                 return this.networkSites;
             case "siteFamily":
@@ -212,6 +248,12 @@ public abstract class _Site extends BaseDataObject {
             case "targetedOccupation":
                 this.targetedOccupation = (Integer)val;
                 break;
+            case "agencySiteRoles":
+                this.agencySiteRoles = val;
+                break;
+            case "contactSiteRoles":
+                this.contactSiteRoles = val;
+                break;
             case "networkSites":
                 this.networkSites = val;
                 break;
@@ -246,6 +288,8 @@ public abstract class _Site extends BaseDataObject {
         out.writeObject(this.name);
         out.writeObject(this.nameShort);
         out.writeObject(this.targetedOccupation);
+        out.writeObject(this.agencySiteRoles);
+        out.writeObject(this.contactSiteRoles);
         out.writeObject(this.networkSites);
         out.writeObject(this.siteFamily);
         out.writeObject(this.sitePtfs);
@@ -261,6 +305,8 @@ public abstract class _Site extends BaseDataObject {
         this.name = (String)in.readObject();
         this.nameShort = (String)in.readObject();
         this.targetedOccupation = (Integer)in.readObject();
+        this.agencySiteRoles = in.readObject();
+        this.contactSiteRoles = in.readObject();
         this.networkSites = in.readObject();
         this.siteFamily = in.readObject();
         this.sitePtfs = in.readObject();

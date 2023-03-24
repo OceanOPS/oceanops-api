@@ -16,6 +16,7 @@ import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
 import org.apache.cayenne.value.Wkt;
 import org.oceanops.orm.Agency;
+import org.oceanops.orm.Cruise;
 import org.oceanops.orm.CruiseClass;
 import org.oceanops.orm.CruiseContact;
 import org.oceanops.orm.CruiseCountry;
@@ -48,6 +49,7 @@ public abstract class _Cruise extends BaseDataObject {
     public static final String ID_PK_COLUMN = "ID";
 
     public static final DateProperty<LocalDateTime> ARRIVAL_DATE = PropertyFactory.createDate("arrivalDate", LocalDateTime.class);
+    public static final StringProperty<String> ARRIVAL_PORT = PropertyFactory.createString("arrivalPort", String.class);
     public static final NumericProperty<Integer> AUTONOMY = PropertyFactory.createNumeric("autonomy", Integer.class);
     public static final NumericProperty<Integer> COOPERATIONS = PropertyFactory.createNumeric("cooperations", Integer.class);
     public static final NumericProperty<Integer> COST_MONTH = PropertyFactory.createNumeric("costMonth", Integer.class);
@@ -55,13 +57,16 @@ public abstract class _Cruise extends BaseDataObject {
     public static final NumericProperty<Integer> DATES_PENDING = PropertyFactory.createNumeric("datesPending", Integer.class);
     public static final DateProperty<LocalDateTime> DEMOB_DATE = PropertyFactory.createDate("demobDate", LocalDateTime.class);
     public static final DateProperty<LocalDateTime> DEPARTURE_DATE = PropertyFactory.createDate("departureDate", LocalDateTime.class);
+    public static final StringProperty<String> DEPARTURE_PORT = PropertyFactory.createString("departurePort", String.class);
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
     public static final NumericProperty<Integer> EMBARK_CAPACITY = PropertyFactory.createNumeric("embarkCapacity", Integer.class);
+    public static final StringProperty<String> EXPOCODE = PropertyFactory.createString("expocode", String.class);
     public static final NumericProperty<Integer> FLEXIBLE_ROUTE = PropertyFactory.createNumeric("flexibleRoute", Integer.class);
     public static final BaseProperty<Wkt> GEOM = PropertyFactory.createBase("geom", Wkt.class);
     public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final StringProperty<String> IIOE2ID = PropertyFactory.createString("iioe2Id", String.class);
     public static final DateProperty<LocalDateTime> INSERT_DATE = PropertyFactory.createDate("insertDate", LocalDateTime.class);
+    public static final StringProperty<String> MFP_ID = PropertyFactory.createString("mfpId", String.class);
     public static final DateProperty<LocalDateTime> MOB_DATE = PropertyFactory.createDate("mobDate", LocalDateTime.class);
     public static final DateProperty<LocalDateTime> MODIF_DATE = PropertyFactory.createDate("modifDate", LocalDateTime.class);
     public static final StringProperty<String> NAME_LONG = PropertyFactory.createString("nameLong", String.class);
@@ -83,6 +88,7 @@ public abstract class _Cruise extends BaseDataObject {
     public static final ListProperty<CruiseContact> CRUISE_CONTACTS = PropertyFactory.createList("cruiseContacts", CruiseContact.class);
     public static final ListProperty<CruiseCountry> CRUISE_COUNTRIES = PropertyFactory.createList("cruiseCountries", CruiseCountry.class);
     public static final ListProperty<CruiseLine> CRUISE_LINES = PropertyFactory.createList("cruiseLines", CruiseLine.class);
+    public static final EntityProperty<Cruise> CRUISE_PARENT = PropertyFactory.createEntity("cruiseParent", Cruise.class);
     public static final ListProperty<CruiseProgram> CRUISE_PROGRAMS = PropertyFactory.createList("cruisePrograms", CruiseProgram.class);
     public static final ListProperty<CruiseSensorModel> CRUISE_SENSOR_MODELS = PropertyFactory.createList("cruiseSensorModels", CruiseSensorModel.class);
     public static final EntityProperty<CruiseStatus> CRUISE_STATUS = PropertyFactory.createEntity("cruiseStatus", CruiseStatus.class);
@@ -99,6 +105,7 @@ public abstract class _Cruise extends BaseDataObject {
     public static final EntityProperty<Weblink> WEBLINK = PropertyFactory.createEntity("weblink", Weblink.class);
 
     protected LocalDateTime arrivalDate;
+    protected String arrivalPort;
     protected Integer autonomy;
     protected Integer cooperations;
     protected Integer costMonth;
@@ -106,13 +113,16 @@ public abstract class _Cruise extends BaseDataObject {
     protected Integer datesPending;
     protected LocalDateTime demobDate;
     protected LocalDateTime departureDate;
+    protected String departurePort;
     protected String description;
     protected Integer embarkCapacity;
+    protected String expocode;
     protected Integer flexibleRoute;
     protected Wkt geom;
     protected Integer id;
     protected String iioe2Id;
     protected LocalDateTime insertDate;
+    protected String mfpId;
     protected LocalDateTime mobDate;
     protected LocalDateTime modifDate;
     protected String nameLong;
@@ -135,6 +145,7 @@ public abstract class _Cruise extends BaseDataObject {
     protected Object cruiseContacts;
     protected Object cruiseCountries;
     protected Object cruiseLines;
+    protected Object cruiseParent;
     protected Object cruisePrograms;
     protected Object cruiseSensorModels;
     protected Object cruiseStatus;
@@ -158,6 +169,16 @@ public abstract class _Cruise extends BaseDataObject {
     public LocalDateTime getArrivalDate() {
         beforePropertyRead("arrivalDate");
         return this.arrivalDate;
+    }
+
+    public void setArrivalPort(String arrivalPort) {
+        beforePropertyWrite("arrivalPort", this.arrivalPort, arrivalPort);
+        this.arrivalPort = arrivalPort;
+    }
+
+    public String getArrivalPort() {
+        beforePropertyRead("arrivalPort");
+        return this.arrivalPort;
     }
 
     public void setAutonomy(Integer autonomy) {
@@ -230,6 +251,16 @@ public abstract class _Cruise extends BaseDataObject {
         return this.departureDate;
     }
 
+    public void setDeparturePort(String departurePort) {
+        beforePropertyWrite("departurePort", this.departurePort, departurePort);
+        this.departurePort = departurePort;
+    }
+
+    public String getDeparturePort() {
+        beforePropertyRead("departurePort");
+        return this.departurePort;
+    }
+
     public void setDescription(String description) {
         beforePropertyWrite("description", this.description, description);
         this.description = description;
@@ -248,6 +279,16 @@ public abstract class _Cruise extends BaseDataObject {
     public Integer getEmbarkCapacity() {
         beforePropertyRead("embarkCapacity");
         return this.embarkCapacity;
+    }
+
+    public void setExpocode(String expocode) {
+        beforePropertyWrite("expocode", this.expocode, expocode);
+        this.expocode = expocode;
+    }
+
+    public String getExpocode() {
+        beforePropertyRead("expocode");
+        return this.expocode;
     }
 
     public void setFlexibleRoute(Integer flexibleRoute) {
@@ -298,6 +339,16 @@ public abstract class _Cruise extends BaseDataObject {
     public LocalDateTime getInsertDate() {
         beforePropertyRead("insertDate");
         return this.insertDate;
+    }
+
+    public void setMfpId(String mfpId) {
+        beforePropertyWrite("mfpId", this.mfpId, mfpId);
+        this.mfpId = mfpId;
+    }
+
+    public String getMfpId() {
+        beforePropertyRead("mfpId");
+        return this.mfpId;
     }
 
     public void setMobDate(LocalDateTime mobDate) {
@@ -515,6 +566,14 @@ public abstract class _Cruise extends BaseDataObject {
         return (List<CruiseLine>)readProperty("cruiseLines");
     }
 
+    public void setCruiseParent(Cruise cruiseParent) {
+        setToOneTarget("cruiseParent", cruiseParent, true);
+    }
+
+    public Cruise getCruiseParent() {
+        return (Cruise)readProperty("cruiseParent");
+    }
+
     public void addToCruisePrograms(CruiseProgram obj) {
         addToManyTarget("cruisePrograms", obj, true);
     }
@@ -671,6 +730,8 @@ public abstract class _Cruise extends BaseDataObject {
         switch(propName) {
             case "arrivalDate":
                 return this.arrivalDate;
+            case "arrivalPort":
+                return this.arrivalPort;
             case "autonomy":
                 return this.autonomy;
             case "cooperations":
@@ -685,10 +746,14 @@ public abstract class _Cruise extends BaseDataObject {
                 return this.demobDate;
             case "departureDate":
                 return this.departureDate;
+            case "departurePort":
+                return this.departurePort;
             case "description":
                 return this.description;
             case "embarkCapacity":
                 return this.embarkCapacity;
+            case "expocode":
+                return this.expocode;
             case "flexibleRoute":
                 return this.flexibleRoute;
             case "geom":
@@ -699,6 +764,8 @@ public abstract class _Cruise extends BaseDataObject {
                 return this.iioe2Id;
             case "insertDate":
                 return this.insertDate;
+            case "mfpId":
+                return this.mfpId;
             case "mobDate":
                 return this.mobDate;
             case "modifDate":
@@ -741,6 +808,8 @@ public abstract class _Cruise extends BaseDataObject {
                 return this.cruiseCountries;
             case "cruiseLines":
                 return this.cruiseLines;
+            case "cruiseParent":
+                return this.cruiseParent;
             case "cruisePrograms":
                 return this.cruisePrograms;
             case "cruiseSensorModels":
@@ -784,6 +853,9 @@ public abstract class _Cruise extends BaseDataObject {
             case "arrivalDate":
                 this.arrivalDate = (LocalDateTime)val;
                 break;
+            case "arrivalPort":
+                this.arrivalPort = (String)val;
+                break;
             case "autonomy":
                 this.autonomy = (Integer)val;
                 break;
@@ -805,11 +877,17 @@ public abstract class _Cruise extends BaseDataObject {
             case "departureDate":
                 this.departureDate = (LocalDateTime)val;
                 break;
+            case "departurePort":
+                this.departurePort = (String)val;
+                break;
             case "description":
                 this.description = (String)val;
                 break;
             case "embarkCapacity":
                 this.embarkCapacity = (Integer)val;
+                break;
+            case "expocode":
+                this.expocode = (String)val;
                 break;
             case "flexibleRoute":
                 this.flexibleRoute = (Integer)val;
@@ -825,6 +903,9 @@ public abstract class _Cruise extends BaseDataObject {
                 break;
             case "insertDate":
                 this.insertDate = (LocalDateTime)val;
+                break;
+            case "mfpId":
+                this.mfpId = (String)val;
                 break;
             case "mobDate":
                 this.mobDate = (LocalDateTime)val;
@@ -889,6 +970,9 @@ public abstract class _Cruise extends BaseDataObject {
             case "cruiseLines":
                 this.cruiseLines = val;
                 break;
+            case "cruiseParent":
+                this.cruiseParent = val;
+                break;
             case "cruisePrograms":
                 this.cruisePrograms = val;
                 break;
@@ -948,6 +1032,7 @@ public abstract class _Cruise extends BaseDataObject {
     protected void writeState(ObjectOutputStream out) throws IOException {
         super.writeState(out);
         out.writeObject(this.arrivalDate);
+        out.writeObject(this.arrivalPort);
         out.writeObject(this.autonomy);
         out.writeObject(this.cooperations);
         out.writeObject(this.costMonth);
@@ -955,13 +1040,16 @@ public abstract class _Cruise extends BaseDataObject {
         out.writeObject(this.datesPending);
         out.writeObject(this.demobDate);
         out.writeObject(this.departureDate);
+        out.writeObject(this.departurePort);
         out.writeObject(this.description);
         out.writeObject(this.embarkCapacity);
+        out.writeObject(this.expocode);
         out.writeObject(this.flexibleRoute);
         out.writeObject(this.geom);
         out.writeObject(this.id);
         out.writeObject(this.iioe2Id);
         out.writeObject(this.insertDate);
+        out.writeObject(this.mfpId);
         out.writeObject(this.mobDate);
         out.writeObject(this.modifDate);
         out.writeObject(this.nameLong);
@@ -983,6 +1071,7 @@ public abstract class _Cruise extends BaseDataObject {
         out.writeObject(this.cruiseContacts);
         out.writeObject(this.cruiseCountries);
         out.writeObject(this.cruiseLines);
+        out.writeObject(this.cruiseParent);
         out.writeObject(this.cruisePrograms);
         out.writeObject(this.cruiseSensorModels);
         out.writeObject(this.cruiseStatus);
@@ -1003,6 +1092,7 @@ public abstract class _Cruise extends BaseDataObject {
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
         this.arrivalDate = (LocalDateTime)in.readObject();
+        this.arrivalPort = (String)in.readObject();
         this.autonomy = (Integer)in.readObject();
         this.cooperations = (Integer)in.readObject();
         this.costMonth = (Integer)in.readObject();
@@ -1010,13 +1100,16 @@ public abstract class _Cruise extends BaseDataObject {
         this.datesPending = (Integer)in.readObject();
         this.demobDate = (LocalDateTime)in.readObject();
         this.departureDate = (LocalDateTime)in.readObject();
+        this.departurePort = (String)in.readObject();
         this.description = (String)in.readObject();
         this.embarkCapacity = (Integer)in.readObject();
+        this.expocode = (String)in.readObject();
         this.flexibleRoute = (Integer)in.readObject();
         this.geom = (Wkt)in.readObject();
         this.id = (Integer)in.readObject();
         this.iioe2Id = (String)in.readObject();
         this.insertDate = (LocalDateTime)in.readObject();
+        this.mfpId = (String)in.readObject();
         this.mobDate = (LocalDateTime)in.readObject();
         this.modifDate = (LocalDateTime)in.readObject();
         this.nameLong = (String)in.readObject();
@@ -1038,6 +1131,7 @@ public abstract class _Cruise extends BaseDataObject {
         this.cruiseContacts = in.readObject();
         this.cruiseCountries = in.readObject();
         this.cruiseLines = in.readObject();
+        this.cruiseParent = in.readObject();
         this.cruisePrograms = in.readObject();
         this.cruiseSensorModels = in.readObject();
         this.cruiseStatus = in.readObject();

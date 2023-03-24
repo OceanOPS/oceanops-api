@@ -6,16 +6,17 @@
 		<entity name="CRUISE_LINE" x="2468.0" y="2192.0" width="124.0" height="114.0"/>
 		<entity name="WEB_DAILY_VISITS" x="2233.0" y="2192.0" width="109.0" height="82.0"/>
 		<entity name="PTF_FAMILY" x="2525.66" y="585.88" width="78.0" height="98.0"/>
+		<entity name="PTF_MODEL_FIRMWARE" x="0.0" y="0.0" width="136.0" height="82.0"/>
 		<entity name="GTS_CCCC_HEADER" x="2241.99" y="553.49" width="109.0" height="66.0"/>
 		<entity name="SHIP" x="2652.7" y="705.1" width="143.0" height="706.0"/>
 		<entity name="CRUISE_CONTACT" x="2367.57" y="581.02" width="102.0" height="82.0"/>
 		<entity name="NETWORK_INFORMATION" x="1998.0" y="2192.0" width="150.0" height="210.0"/>
 		<entity name="PTF_DEPLOYMENT" x="1903.54" y="650.36" width="130.0" height="466.0"/>
 		<entity name="INDICATOR_CATEGORY" x="2623.19" y="776.36" width="133.0" height="98.0"/>
-		<entity name="SENSOR_MODEL_SENSOR_TYPE" x="2594.84" y="844.81" width="177.0" height="146.0"/>
+		<entity name="SENSOR_MODEL_SENSOR_TYPE" x="2594.84" y="844.81" width="177.0" height="178.0"/>
 		<entity name="WMO_BLOCKS" x="1763.0" y="2192.0" width="99.0" height="210.0"/>
 		<entity name="PTF_TYPE" x="1774.52" y="637.32" width="83.0" height="146.0"/>
-		<entity name="CRUISE" x="1775.92" y="946.16" width="151.0" height="674.0"/>
+		<entity name="CRUISE" x="1775.92" y="946.16" width="151.0" height="754.0"/>
 		<entity name="RETRIEVAL" x="2085.5" y="427.29" width="152.0" height="322.0"/>
 		<entity name="PARAMETER_PTF" x="0.0" y="0.0" width="96.0" height="130.0"/>
 		<entity name="WMO" x="2326.95" y="753.03" width="125.0" height="146.0"/>
@@ -87,7 +88,7 @@
 		<entity name="RETRIEVAL_STATUS" x="1533.09" y="1306.05" width="113.0" height="98.0"/>
 		<entity name="MOORING_TYPE" x="1537.2" y="1677.9" width="93.0" height="98.0"/>
 		<entity name="OBS" x="1221.48" y="1491.16" width="153.0" height="322.0"/>
-		<entity name="WEB_WORKSPACE" x="1089.6" y="2022.5" width="105.0" height="98.0"/>
+		<entity name="WEB_WORKSPACE" x="1089.6" y="2022.5" width="105.0" height="114.0"/>
 		<entity name="CRUISE_COUNTRY" x="1091.94" y="1855.46" width="104.0" height="66.0"/>
 		<entity name="SITE_STATUS" x="727.32" y="1344.6" width="78.0" height="98.0"/>
 		<entity name="WEB_METRIC_NETWORK" x="1107.82" y="1064.62" width="140.0" height="82.0"/>
@@ -97,7 +98,7 @@
 		<entity name="WEBLINK" x="1118.04" y="913.91" width="89.0" height="210.0"/>
 		<entity name="OBS_LATEST" x="434.53" y="452.85" width="79.0" height="130.0"/>
 		<entity name="TELECOM" x="1216.04" y="369.67" width="122.0" height="210.0"/>
-		<entity name="AGENCY" x="1262.77" y="1017.5" width="88.0" height="322.0"/>
+		<entity name="AGENCY" x="1262.77" y="1017.5" width="88.0" height="338.0"/>
 		<entity name="TELECOM_TYPE" x="144.07" y="303.14" width="86.0" height="98.0"/>
 		<entity name="TAG_PTF" x="0.0" y="0.0" width="51.0" height="66.0"/>
 		<entity name="NETWORK_CONTACT" x="1474.94" y="124.78" width="120.0" height="82.0"/>
@@ -134,7 +135,7 @@
 		<entity name="DATA_FORMAT" x="2088.99" y="1413.06" width="88.0" height="98.0"/>
 		<entity name="MAP_TYPE" x="2260.78" y="1651.29" width="78.0" height="130.0"/>
 		<entity name="TELECOM_FORMAT" x="1884.44" y="1650.39" width="108.0" height="226.0"/>
-		<entity name="AGENCY_PTF" x="2071.13" y="1597.23" width="106.0" height="130.0"/>
+		<entity name="AGENCY_PTF" x="2071.13" y="1597.23" width="97.0" height="114.0"/>
 		<entity name="CRUISE_STATUS" x="2227.69" y="1731.18" width="93.0" height="114.0"/>
 		<entity name="LOC_STATUS" x="2109.19" y="1717.75" width="78.0" height="82.0"/>
 		<entity name="TIME_PERIOD" x="1901.95" y="1893.61" width="78.0" height="114.0"/>
@@ -144,14 +145,14 @@
 		<entity name="PTF_HARDWARE" x="1393.47" y="1619.33" width="177.0" height="322.0"/>
 		<entity name="CONTACT_LOGIN" x="1756.42" y="1761.84" width="98.0" height="146.0"/>
 		<entity name="OBS_GLIDERS_GTS_OSMC_VARIABLE" x="1249.61" y="1859.59" width="208.0" height="66.0"/>
-		<entity name="PTF_VARIABLE" x="1343.51" y="1507.67" width="176.0" height="626.0"/>
+		<entity name="PTF_VARIABLE" x="1343.51" y="1507.67" width="176.0" height="706.0"/>
 		<entity name="QR_CODE" x="0.0" y="0.0" width="91.0" height="98.0"/>
 		<entity name="PTF_SOFTWARE_TYPE" x="1874.64" y="2051.06" width="122.0" height="66.0"/>
 		<entity name="OBS_OBS_DATA_STATUS" x="1768.43" y="1908.13" width="142.0" height="82.0"/>
 		<entity name="CRUISE_TYPE" x="732.84" y="1635.17" width="78.0" height="114.0"/>
 		<entity name="NETWORK_ENDING_CAUSE" x="737.27" y="1761.16" width="154.0" height="66.0"/>
 		<entity name="TAG" x="0.0" y="0.0" width="74.0" height="98.0"/>
-		<entity name="CONTACT" x="1237.81" y="885.97" width="96.0" height="402.0"/>
+		<entity name="CONTACT" x="1237.81" y="885.97" width="96.0" height="418.0"/>
 		<entity name="DAC_TYPE" x="805.74" y="819.32" width="78.0" height="98.0"/>
 		<entity name="CONFIG" x="1954.45" y="1235.64" width="87.0" height="194.0"/>
 		<entity name="CRUISE_POLYGON" x="1998.0" y="1901.0" width="104.0" height="50.0"/>
@@ -164,6 +165,7 @@
 		<entity name="SCHEDULE" x="2703.0" y="1755.0" width="78.0" height="82.0"/>
 		<entity name="NC_SUBSCRIPTION" x="1133.77" y="1642.08" width="114.0" height="162.0"/>
 		<entity name="GTS_CCCC" x="989.11" y="1660.64" width="88.0" height="194.0"/>
+		<entity name="UNIT" x="0.0" y="0.0" width="78.0" height="98.0"/>
 		<entity name="NETWORK_PTF" x="595.05" y="1184.35" width="86.0" height="82.0"/>
 		<entity name="LINE_STATUS" x="1298.01" y="1383.25" width="77.0" height="82.0"/>
 		<entity name="PACKAGE_TYPE" x="1482.96" y="2013.64" width="87.0" height="82.0"/>
@@ -173,6 +175,7 @@
 		<entity name="WEB_CONTACT_PREFERENCES" x="1057.66" y="2158.79" width="168.0" height="66.0"/>
 		<entity name="DATA_PROCESSING_METHOD" x="829.43" y="2052.11" width="168.0" height="98.0"/>
 		<entity name="NC_TOPIC" x="1418.4" y="2217.96" width="99.0" height="114.0"/>
+		<entity name="PTF_UPDATE_HISTORY" x="0.0" y="0.0" width="129.0" height="162.0"/>
 		<entity name="UPDATE_TIMESTAMP" x="2468.0" y="1755.0" width="121.0" height="98.0"/>
 		<entity name="USER_GROUP_CONTACT" x="1302.38" y="2029.49" width="138.0" height="98.0"/>
 		<entity name="WEB_CONNECTION" x="213.35" y="1733.49" width="109.0" height="98.0"/>
@@ -213,20 +216,20 @@
 		<entity name="CruiseCountry" x="10.0" y="10.0" width="80.0" height="66.0"/>
 		<entity name="ImageType" x="10.0" y="10.0" width="64.0" height="114.0"/>
 		<entity name="SensorModel" x="10.0" y="10.0" width="82.0" height="210.0"/>
-		<entity name="SensorStatus" x="10.0" y="10.0" width="75.0" height="82.0"/>
+		<entity name="SensorStatus" x="10.0" y="10.0" width="75.0" height="98.0"/>
 		<entity name="SiteFamily" x="10.0" y="10.0" width="61.0" height="98.0"/>
 		<entity name="DataFormat" x="10.0" y="10.0" width="68.0" height="98.0"/>
 		<entity name="PtfInspection" x="876.0" y="38.0" width="77.0" height="82.0"/>
-		<entity name="Story" x="793.0" y="38.0" width="52.0" height="194.0"/>
+		<entity name="Story" x="793.0" y="38.0" width="52.0" height="162.0"/>
 		<entity name="ObsArgoGdacVariable" x="10.0" y="10.0" width="123.0" height="130.0"/>
 		<entity name="PtfHardware" x="10.0" y="10.0" width="86.0" height="210.0"/>
 		<entity name="TelecomFormat" x="10.0" y="10.0" width="90.0" height="194.0"/>
-		<entity name="Cruise" x="10.0" y="10.0" width="124.0" height="530.0"/>
+		<entity name="Cruise" x="10.0" y="10.0" width="124.0" height="594.0"/>
 		<entity name="PtfLocStatus" x="10.0" y="10.0" width="73.0" height="114.0"/>
-		<entity name="DocLanguage" x="10.0" y="10.0" width="77.0" height="66.0"/>
+		<entity name="DocLanguage" x="10.0" y="10.0" width="77.0" height="18.0"/>
 		<entity name="WebModule" x="10.0" y="10.0" width="70.0" height="210.0"/>
 		<entity name="SdnPtfClass" x="10.0" y="10.0" width="66.0" height="114.0"/>
-		<entity name="DataProcessingMethod" x="10.0" y="10.0" width="131.0" height="82.0"/>
+		<entity name="DataProcessingMethod" x="10.0" y="10.0" width="131.0" height="98.0"/>
 		<entity name="CruiseVariable" x="10.0" y="10.0" width="81.0" height="66.0"/>
 		<entity name="ObsGlidersGdac" x="10.0" y="10.0" width="105.0" height="338.0"/>
 		<entity name="NetworkInformation" x="710.0" y="38.0" width="119.0" height="210.0"/>
@@ -240,14 +243,14 @@
 		<entity name="WebFrequentation" x="10.0" y="10.0" width="107.0" height="82.0"/>
 		<entity name="ObsStats" x="627.0" y="38.0" width="51.0" height="130.0"/>
 		<entity name="PtfStatistics" x="10.0" y="10.0" width="127.0" height="306.0"/>
-		<entity name="PtfVariable" x="10.0" y="10.0" width="135.0" height="466.0"/>
+		<entity name="PtfVariable" x="10.0" y="10.0" width="135.0" height="514.0"/>
 		<entity name="CountryCommitment" x="10.0" y="10.0" width="120.0" height="98.0"/>
 		<entity name="ParameterVariable" x="0.0" y="0.0" width="106.0" height="18.0"/>
 		<entity name="AgencyDacType" x="10.0" y="10.0" width="94.0" height="194.0"/>
 		<entity name="ObsGlidersGdacVariable" x="10.0" y="10.0" width="135.0" height="66.0"/>
 		<entity name="GtsCode" x="10.0" y="10.0" width="69.0" height="178.0"/>
-		<entity name="PtfAncillaryDeviceName" x="0.0" y="0.0" width="138.0" height="66.0"/>
-		<entity name="ServiceLocation" x="544.0" y="38.0" width="91.0" height="82.0"/>
+		<entity name="PtfAncillaryDeviceName" x="0.0" y="0.0" width="138.0" height="82.0"/>
+		<entity name="ServiceLocation" x="544.0" y="38.0" width="91.0" height="98.0"/>
 		<entity name="GtsRecorderType" x="10.0" y="10.0" width="100.0" height="98.0"/>
 		<entity name="DocType" x="10.0" y="10.0" width="61.0" height="114.0"/>
 		<entity name="PtfFirmware" x="10.0" y="10.0" width="86.0" height="162.0"/>
@@ -263,7 +266,7 @@
 		<entity name="NetworkCountry" x="10.0" y="10.0" width="96.0" height="66.0"/>
 		<entity name="Ship" x="10.0" y="10.0" width="117.0" height="642.0"/>
 		<entity name="WebMessage" x="793.0" y="36.0" width="76.0" height="82.0"/>
-		<entity name="WebWorkspace" x="10.0" y="10.0" width="90.0" height="98.0"/>
+		<entity name="WebWorkspace" x="10.0" y="10.0" width="90.0" height="114.0"/>
 		<entity name="AgencyRole" x="10.0" y="10.0" width="68.0" height="98.0"/>
 		<entity name="SensorLocation" x="10.0" y="10.0" width="87.0" height="98.0"/>
 		<entity name="ObsGlidersGtsOsmc" x="10.0" y="10.0" width="116.0" height="178.0"/>
@@ -275,16 +278,16 @@
 		<entity name="SensorFamily" x="10.0" y="10.0" width="75.0" height="82.0"/>
 		<entity name="PtfAutomation" x="10.0" y="10.0" width="85.0" height="98.0"/>
 		<entity name="ParameterPtf" x="0.0" y="0.0" width="78.0" height="82.0"/>
-		<entity name="Program" x="10.0" y="10.0" width="61.0" height="114.0"/>
+		<entity name="Program" x="10.0" y="10.0" width="61.0" height="130.0"/>
 		<entity name="WebDailyQueries" x="959.0" y="35.0" width="98.0" height="66.0"/>
 		<entity name="PtfIdentifiers" x="10.0" y="10.0" width="77.0" height="226.0"/>
 		<entity name="GtsCccc" x="10.0" y="10.0" width="68.0" height="162.0"/>
 		<entity name="CruiseProgram" x="10.0" y="10.0" width="84.0" height="82.0"/>
 		<entity name="WebPtfVisits" x="876.0" y="35.0" width="74.0" height="66.0"/>
-		<entity name="Latency" x="10.0" y="10.0" width="60.0" height="82.0"/>
+		<entity name="Latency" x="10.0" y="10.0" width="60.0" height="98.0"/>
 		<entity name="Role" x="10.0" y="10.0" width="61.0" height="130.0"/>
 		<entity name="PtfType" x="10.0" y="10.0" width="61.0" height="114.0"/>
-		<entity name="PtfModel" x="10.0" y="10.0" width="92.0" height="290.0"/>
+		<entity name="PtfModel" x="10.0" y="10.0" width="70.0" height="274.0"/>
 		<entity name="EndingCause" x="10.0" y="10.0" width="71.0" height="82.0"/>
 		<entity name="DataStatus" x="10.0" y="10.0" width="63.0" height="98.0"/>
 		<entity name="PtfBatchStatus" x="10.0" y="10.0" width="86.0" height="66.0"/>
@@ -298,9 +301,10 @@
 		<entity name="Language" x="10.0" y="10.0" width="60.0" height="82.0"/>
 		<entity name="LinePerformance" x="10.0" y="10.0" width="98.0" height="82.0"/>
 		<entity name="DocContact" x="10.0" y="10.0" width="67.0" height="66.0"/>
+		<entity name="PtfModelFirmware" x="0.0" y="0.0" width="107.0" height="18.0"/>
 		<entity name="Obs" x="10.0" y="10.0" width="116.0" height="210.0"/>
 		<entity name="SensorType" x="10.0" y="10.0" width="67.0" height="130.0"/>
-		<entity name="Agency" x="10.0" y="10.0" width="75.0" height="274.0"/>
+		<entity name="Agency" x="10.0" y="10.0" width="75.0" height="290.0"/>
 		<entity name="NcNotification" x="10.0" y="10.0" width="87.0" height="146.0"/>
 		<entity name="TimeInterval" x="710.0" y="35.0" width="74.0" height="114.0"/>
 		<entity name="PtfFamily" x="10.0" y="10.0" width="61.0" height="98.0"/>
@@ -313,23 +317,24 @@
 		<entity name="Schedule" x="959.0" y="33.0" width="60.0" height="66.0"/>
 		<entity name="ApiToken" x="10.0" y="10.0" width="69.0" height="146.0"/>
 		<entity name="UserGroupAgency" x="10.0" y="10.0" width="104.0" height="66.0"/>
+		<entity name="PtfUpdateHistory" x="0.0" y="0.0" width="100.0" height="114.0"/>
 		<entity name="Weblink" x="10.0" y="10.0" width="61.0" height="130.0"/>
 		<entity name="Image" x="10.0" y="10.0" width="69.0" height="210.0"/>
 		<entity name="MapTypeNetwork" x="10.0" y="10.0" width="103.0" height="50.0"/>
 		<entity name="UserGroup" x="10.0" y="10.0" width="63.0" height="114.0"/>
 		<entity name="LocSystem" x="10.0" y="10.0" width="62.0" height="98.0"/>
 		<entity name="PtfPtfStatus" x="10.0" y="10.0" width="76.0" height="82.0"/>
-		<entity name="ServiceType" x="959.0" y="38.0" width="71.0" height="66.0"/>
+		<entity name="ServiceType" x="959.0" y="38.0" width="71.0" height="82.0"/>
 		<entity name="Network" x="10.0" y="10.0" width="91.0" height="146.0"/>
 		<entity name="PackageType" x="10.0" y="10.0" width="75.0" height="82.0"/>
 		<entity name="PtfSoftwareType" x="10.0" y="10.0" width="98.0" height="66.0"/>
-		<entity name="Doc" x="10.0" y="10.0" width="69.0" height="242.0"/>
+		<entity name="Doc" x="10.0" y="10.0" width="69.0" height="258.0"/>
 		<entity name="ObsArgoGdac" x="10.0" y="10.0" width="125.0" height="354.0"/>
 		<entity name="LocStatus" x="10.0" y="10.0" width="60.0" height="82.0"/>
 		<entity name="RetrievalStatus" x="10.0" y="10.0" width="88.0" height="98.0"/>
-		<entity name="TimePeriod" x="10.0" y="10.0" width="66.0" height="98.0"/>
+		<entity name="TimePeriod" x="10.0" y="10.0" width="66.0" height="114.0"/>
 		<entity name="ObsDataStatus" x="10.0" y="10.0" width="84.0" height="50.0"/>
-		<entity name="PtfAncillaryDeviceVersion" x="0.0" y="0.0" width="147.0" height="50.0"/>
+		<entity name="PtfAncillaryDeviceVersion" x="0.0" y="0.0" width="147.0" height="66.0"/>
 		<entity name="TelecomService" x="10.0" y="10.0" width="92.0" height="82.0"/>
 		<entity name="LineSurvey" x="10.0" y="10.0" width="64.0" height="66.0"/>
 		<entity name="Survey" x="10.0" y="10.0" width="61.0" height="130.0"/>
@@ -345,12 +350,12 @@
 		<entity name="PostRetrievalStatus" x="10.0" y="10.0" width="112.0" height="98.0"/>
 		<entity name="CruiseSensorModel" x="10.0" y="10.0" width="109.0" height="66.0"/>
 		<entity name="QrCode" x="0.0" y="0.0" width="69.0" height="82.0"/>
-		<entity name="AgencyPtf" x="10.0" y="10.0" width="86.0" height="50.0"/>
+		<entity name="AgencyPtf" x="10.0" y="10.0" width="60.0" height="50.0"/>
 		<entity name="CruiseClass" x="10.0" y="10.0" width="62.0" height="82.0"/>
 		<entity name="CruiseStatus" x="10.0" y="10.0" width="71.0" height="114.0"/>
 		<entity name="MzmsPtfCountry" x="10.0" y="10.0" width="124.0" height="146.0"/>
 		<entity name="ObsArgoGdacDs" x="10.0" y="10.0" width="92.0" height="82.0"/>
-		<entity name="SensorModelSensorType" x="10.0" y="10.0" width="140.0" height="146.0"/>
+		<entity name="SensorModelSensorType" x="10.0" y="10.0" width="140.0" height="130.0"/>
 		<entity name="WebDailyVisits" x="959.0" y="36.0" width="84.0" height="82.0"/>
 		<entity name="PtfConfig" x="10.0" y="10.0" width="55.0" height="66.0"/>
 		<entity name="Telecom" x="10.0" y="10.0" width="55.0" height="146.0"/>
@@ -361,6 +366,7 @@
 		<entity name="ObsLatest" x="10.0" y="10.0" width="61.0" height="130.0"/>
 		<entity name="Retrieval" x="10.0" y="10.0" width="90.0" height="242.0"/>
 		<entity name="DacType" x="10.0" y="10.0" width="61.0" height="98.0"/>
+		<entity name="Unit" x="0.0" y="0.0" width="61.0" height="98.0"/>
 		<entity name="MapType" x="10.0" y="10.0" width="60.0" height="130.0"/>
 		<entity name="ShipHistory" x="10.0" y="10.0" width="66.0" height="210.0"/>
 		<entity name="ContactPtfRole" x="10.0" y="10.0" width="87.0" height="50.0"/>
@@ -368,7 +374,7 @@
 		<entity name="SitePtf" x="10.0" y="10.0" width="41.0" height="66.0"/>
 		<entity name="VariableVariableFamily" x="10.0" y="10.0" width="127.0" height="66.0"/>
 		<entity name="UpdateTimestamp" x="710.0" y="36.0" width="105.0" height="98.0"/>
-		<entity name="Adoption" x="627.0" y="36.0" width="85.0" height="210.0"/>
+		<entity name="Adoption" x="627.0" y="36.0" width="85.0" height="178.0"/>
 		<entity name="ContactLogin" x="10.0" y="10.0" width="75.0" height="130.0"/>
 		<entity name="IndicatorValue" x="10.0" y="10.0" width="83.0" height="114.0"/>
 		<entity name="NetworkPtf" x="10.0" y="10.0" width="69.0" height="66.0"/>
@@ -395,10 +401,10 @@
 		<entity name="Topic" x="10.0" y="10.0" width="32.0" height="66.0"/>
 		<entity name="LineType" x="10.0" y="10.0" width="87.0" height="418.0"/>
 		<entity name="CruiseContact" x="10.0" y="10.0" width="79.0" height="82.0"/>
-		<entity name="Service" x="10.0" y="10.0" width="61.0" height="130.0"/>
+		<entity name="Service" x="10.0" y="10.0" width="61.0" height="98.0"/>
 		<entity name="GtsCcccHeader" x="10.0" y="10.0" width="87.0" height="66.0"/>
 		<entity name="LinePtf" x="10.0" y="10.0" width="42.0" height="18.0"/>
-		<entity name="Contact" x="10.0" y="10.0" width="79.0" height="338.0"/>
+		<entity name="Contact" x="10.0" y="10.0" width="79.0" height="354.0"/>
 		<entity name="NcSubscription" x="10.0" y="10.0" width="91.0" height="98.0"/>
 		<entity name="QcFeedback" x="10.0" y="10.0" width="85.0" height="258.0"/>
 		<entity name="MooringType" x="10.0" y="10.0" width="76.0" height="98.0"/>

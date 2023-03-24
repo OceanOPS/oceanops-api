@@ -27,6 +27,7 @@ public abstract class _TimePeriod extends BaseDataObject {
 
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
     public static final NumericProperty<Integer> FREQUENCY = PropertyFactory.createNumeric("frequency", Integer.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final StringProperty<String> ISO = PropertyFactory.createString("iso", String.class);
     public static final StringProperty<String> REF = PropertyFactory.createString("ref", String.class);
     public static final ListProperty<PtfVariable> PTF_VARIABLES = PropertyFactory.createList("ptfVariables", PtfVariable.class);
@@ -34,6 +35,7 @@ public abstract class _TimePeriod extends BaseDataObject {
 
     protected String description;
     protected Integer frequency;
+    protected Integer id;
     protected String iso;
     protected String ref;
 
@@ -58,6 +60,16 @@ public abstract class _TimePeriod extends BaseDataObject {
     public Integer getFrequency() {
         beforePropertyRead("frequency");
         return this.frequency;
+    }
+
+    public void setId(Integer id) {
+        beforePropertyWrite("id", this.id, id);
+        this.id = id;
+    }
+
+    public Integer getId() {
+        beforePropertyRead("id");
+        return this.id;
     }
 
     public void setIso(String iso) {
@@ -117,6 +129,8 @@ public abstract class _TimePeriod extends BaseDataObject {
                 return this.description;
             case "frequency":
                 return this.frequency;
+            case "id":
+                return this.id;
             case "iso":
                 return this.iso;
             case "ref":
@@ -142,6 +156,9 @@ public abstract class _TimePeriod extends BaseDataObject {
                 break;
             case "frequency":
                 this.frequency = (Integer)val;
+                break;
+            case "id":
+                this.id = (Integer)val;
                 break;
             case "iso":
                 this.iso = (String)val;
@@ -173,6 +190,7 @@ public abstract class _TimePeriod extends BaseDataObject {
         super.writeState(out);
         out.writeObject(this.description);
         out.writeObject(this.frequency);
+        out.writeObject(this.id);
         out.writeObject(this.iso);
         out.writeObject(this.ref);
         out.writeObject(this.ptfVariables);
@@ -184,6 +202,7 @@ public abstract class _TimePeriod extends BaseDataObject {
         super.readState(in);
         this.description = (String)in.readObject();
         this.frequency = (Integer)in.readObject();
+        this.id = (Integer)in.readObject();
         this.iso = (String)in.readObject();
         this.ref = (String)in.readObject();
         this.ptfVariables = in.readObject();

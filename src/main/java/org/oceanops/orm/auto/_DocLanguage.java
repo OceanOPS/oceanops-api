@@ -6,8 +6,8 @@ import java.io.ObjectOutputStream;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
-import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
+import org.oceanops.orm.Doc;
 import org.oceanops.orm.Language;
 
 /**
@@ -23,33 +23,19 @@ public abstract class _DocLanguage extends BaseDataObject {
     public static final String DOC_ID_PK_COLUMN = "DOC_ID";
     public static final String LANGUAGE_ID_PK_COLUMN = "LANGUAGE_ID";
 
-    public static final NumericProperty<Integer> DOC_ID = PropertyFactory.createNumeric("docId", Integer.class);
-    public static final NumericProperty<Integer> LANGUAGE_ID = PropertyFactory.createNumeric("languageId", Integer.class);
+    public static final EntityProperty<Doc> DOC = PropertyFactory.createEntity("doc", Doc.class);
     public static final EntityProperty<Language> LANGUAGE = PropertyFactory.createEntity("language", Language.class);
 
-    protected Integer docId;
-    protected Integer languageId;
 
+    protected Object doc;
     protected Object language;
 
-    public void setDocId(Integer docId) {
-        beforePropertyWrite("docId", this.docId, docId);
-        this.docId = docId;
+    public void setDoc(Doc doc) {
+        setToOneTarget("doc", doc, true);
     }
 
-    public Integer getDocId() {
-        beforePropertyRead("docId");
-        return this.docId;
-    }
-
-    public void setLanguageId(Integer languageId) {
-        beforePropertyWrite("languageId", this.languageId, languageId);
-        this.languageId = languageId;
-    }
-
-    public Integer getLanguageId() {
-        beforePropertyRead("languageId");
-        return this.languageId;
+    public Doc getDoc() {
+        return (Doc)readProperty("doc");
     }
 
     public void setLanguage(Language language) {
@@ -67,10 +53,8 @@ public abstract class _DocLanguage extends BaseDataObject {
         }
 
         switch(propName) {
-            case "docId":
-                return this.docId;
-            case "languageId":
-                return this.languageId;
+            case "doc":
+                return this.doc;
             case "language":
                 return this.language;
             default:
@@ -85,11 +69,8 @@ public abstract class _DocLanguage extends BaseDataObject {
         }
 
         switch (propName) {
-            case "docId":
-                this.docId = (Integer)val;
-                break;
-            case "languageId":
-                this.languageId = (Integer)val;
+            case "doc":
+                this.doc = val;
                 break;
             case "language":
                 this.language = val;
@@ -110,16 +91,14 @@ public abstract class _DocLanguage extends BaseDataObject {
     @Override
     protected void writeState(ObjectOutputStream out) throws IOException {
         super.writeState(out);
-        out.writeObject(this.docId);
-        out.writeObject(this.languageId);
+        out.writeObject(this.doc);
         out.writeObject(this.language);
     }
 
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.docId = (Integer)in.readObject();
-        this.languageId = (Integer)in.readObject();
+        this.doc = in.readObject();
         this.language = in.readObject();
     }
 

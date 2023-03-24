@@ -17,8 +17,11 @@ import org.oceanops.orm.Contact;
 import org.oceanops.orm.GtsInstrumentType;
 import org.oceanops.orm.Image;
 import org.oceanops.orm.Network;
+import org.oceanops.orm.Program;
 import org.oceanops.orm.Ptf;
+import org.oceanops.orm.PtfAncillaryDeviceVersion;
 import org.oceanops.orm.PtfHullType;
+import org.oceanops.orm.PtfModelFirmware;
 import org.oceanops.orm.PtfType;
 import org.oceanops.orm.TelecomFormat;
 import org.oceanops.orm.Weblink;
@@ -36,7 +39,6 @@ public abstract class _PtfModel extends BaseDataObject {
     public static final String ID_PK_COLUMN = "ID";
 
     public static final NumericProperty<Integer> AIR_DEPL_CERTIF = PropertyFactory.createNumeric("airDeplCertif", Integer.class);
-    public static final NumericProperty<Integer> API_WMO_ID_TYPE_ID = PropertyFactory.createNumeric("apiWmoIdTypeId", Integer.class);
     public static final NumericProperty<Integer> COMMERCIAL = PropertyFactory.createNumeric("commercial", Integer.class);
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
     public static final NumericProperty<Double> HEIGHT = PropertyFactory.createNumeric("height", Double.class);
@@ -58,13 +60,15 @@ public abstract class _PtfModel extends BaseDataObject {
     public static final EntityProperty<PtfHullType> HULL_TYPE = PropertyFactory.createEntity("hullType", PtfHullType.class);
     public static final EntityProperty<Image> IMAGE = PropertyFactory.createEntity("image", Image.class);
     public static final EntityProperty<Network> NETWORK = PropertyFactory.createEntity("network", Network.class);
+    public static final ListProperty<Program> PROGRAMS = PropertyFactory.createList("programs", Program.class);
+    public static final ListProperty<PtfAncillaryDeviceVersion> PTF_ANCILLARY_DEVICE_VERSIONS = PropertyFactory.createList("ptfAncillaryDeviceVersions", PtfAncillaryDeviceVersion.class);
+    public static final ListProperty<PtfModelFirmware> PTF_MODEL_FIRMWARES = PropertyFactory.createList("ptfModelFirmwares", PtfModelFirmware.class);
     public static final EntityProperty<PtfType> PTF_TYPE = PropertyFactory.createEntity("ptfType", PtfType.class);
     public static final ListProperty<Ptf> PTFS = PropertyFactory.createList("ptfs", Ptf.class);
     public static final ListProperty<TelecomFormat> TELECOM_FORMATS = PropertyFactory.createList("telecomFormats", TelecomFormat.class);
     public static final EntityProperty<Weblink> WEBLINK = PropertyFactory.createEntity("weblink", Weblink.class);
 
     protected Integer airDeplCertif;
-    protected Integer apiWmoIdTypeId;
     protected Integer commercial;
     protected String description;
     protected Double height;
@@ -87,6 +91,9 @@ public abstract class _PtfModel extends BaseDataObject {
     protected Object hullType;
     protected Object image;
     protected Object network;
+    protected Object programs;
+    protected Object ptfAncillaryDeviceVersions;
+    protected Object ptfModelFirmwares;
     protected Object ptfType;
     protected Object ptfs;
     protected Object telecomFormats;
@@ -100,16 +107,6 @@ public abstract class _PtfModel extends BaseDataObject {
     public Integer getAirDeplCertif() {
         beforePropertyRead("airDeplCertif");
         return this.airDeplCertif;
-    }
-
-    public void setApiWmoIdTypeId(Integer apiWmoIdTypeId) {
-        beforePropertyWrite("apiWmoIdTypeId", this.apiWmoIdTypeId, apiWmoIdTypeId);
-        this.apiWmoIdTypeId = apiWmoIdTypeId;
-    }
-
-    public Integer getApiWmoIdTypeId() {
-        beforePropertyRead("apiWmoIdTypeId");
-        return this.apiWmoIdTypeId;
     }
 
     public void setCommercial(Integer commercial) {
@@ -308,6 +305,45 @@ public abstract class _PtfModel extends BaseDataObject {
         return (Network)readProperty("network");
     }
 
+    public void addToPrograms(Program obj) {
+        addToManyTarget("programs", obj, true);
+    }
+
+    public void removeFromPrograms(Program obj) {
+        removeToManyTarget("programs", obj, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Program> getPrograms() {
+        return (List<Program>)readProperty("programs");
+    }
+
+    public void addToPtfAncillaryDeviceVersions(PtfAncillaryDeviceVersion obj) {
+        addToManyTarget("ptfAncillaryDeviceVersions", obj, true);
+    }
+
+    public void removeFromPtfAncillaryDeviceVersions(PtfAncillaryDeviceVersion obj) {
+        removeToManyTarget("ptfAncillaryDeviceVersions", obj, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<PtfAncillaryDeviceVersion> getPtfAncillaryDeviceVersions() {
+        return (List<PtfAncillaryDeviceVersion>)readProperty("ptfAncillaryDeviceVersions");
+    }
+
+    public void addToPtfModelFirmwares(PtfModelFirmware obj) {
+        addToManyTarget("ptfModelFirmwares", obj, true);
+    }
+
+    public void removeFromPtfModelFirmwares(PtfModelFirmware obj) {
+        removeToManyTarget("ptfModelFirmwares", obj, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<PtfModelFirmware> getPtfModelFirmwares() {
+        return (List<PtfModelFirmware>)readProperty("ptfModelFirmwares");
+    }
+
     public void setPtfType(PtfType ptfType) {
         setToOneTarget("ptfType", ptfType, true);
     }
@@ -359,8 +395,6 @@ public abstract class _PtfModel extends BaseDataObject {
         switch(propName) {
             case "airDeplCertif":
                 return this.airDeplCertif;
-            case "apiWmoIdTypeId":
-                return this.apiWmoIdTypeId;
             case "commercial":
                 return this.commercial;
             case "description":
@@ -403,6 +437,12 @@ public abstract class _PtfModel extends BaseDataObject {
                 return this.image;
             case "network":
                 return this.network;
+            case "programs":
+                return this.programs;
+            case "ptfAncillaryDeviceVersions":
+                return this.ptfAncillaryDeviceVersions;
+            case "ptfModelFirmwares":
+                return this.ptfModelFirmwares;
             case "ptfType":
                 return this.ptfType;
             case "ptfs":
@@ -425,9 +465,6 @@ public abstract class _PtfModel extends BaseDataObject {
         switch (propName) {
             case "airDeplCertif":
                 this.airDeplCertif = (Integer)val;
-                break;
-            case "apiWmoIdTypeId":
-                this.apiWmoIdTypeId = (Integer)val;
                 break;
             case "commercial":
                 this.commercial = (Integer)val;
@@ -492,6 +529,15 @@ public abstract class _PtfModel extends BaseDataObject {
             case "network":
                 this.network = val;
                 break;
+            case "programs":
+                this.programs = val;
+                break;
+            case "ptfAncillaryDeviceVersions":
+                this.ptfAncillaryDeviceVersions = val;
+                break;
+            case "ptfModelFirmwares":
+                this.ptfModelFirmwares = val;
+                break;
             case "ptfType":
                 this.ptfType = val;
                 break;
@@ -521,7 +567,6 @@ public abstract class _PtfModel extends BaseDataObject {
     protected void writeState(ObjectOutputStream out) throws IOException {
         super.writeState(out);
         out.writeObject(this.airDeplCertif);
-        out.writeObject(this.apiWmoIdTypeId);
         out.writeObject(this.commercial);
         out.writeObject(this.description);
         out.writeObject(this.height);
@@ -543,6 +588,9 @@ public abstract class _PtfModel extends BaseDataObject {
         out.writeObject(this.hullType);
         out.writeObject(this.image);
         out.writeObject(this.network);
+        out.writeObject(this.programs);
+        out.writeObject(this.ptfAncillaryDeviceVersions);
+        out.writeObject(this.ptfModelFirmwares);
         out.writeObject(this.ptfType);
         out.writeObject(this.ptfs);
         out.writeObject(this.telecomFormats);
@@ -553,7 +601,6 @@ public abstract class _PtfModel extends BaseDataObject {
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
         this.airDeplCertif = (Integer)in.readObject();
-        this.apiWmoIdTypeId = (Integer)in.readObject();
         this.commercial = (Integer)in.readObject();
         this.description = (String)in.readObject();
         this.height = (Double)in.readObject();
@@ -575,6 +622,9 @@ public abstract class _PtfModel extends BaseDataObject {
         this.hullType = in.readObject();
         this.image = in.readObject();
         this.network = in.readObject();
+        this.programs = in.readObject();
+        this.ptfAncillaryDeviceVersions = in.readObject();
+        this.ptfModelFirmwares = in.readObject();
         this.ptfType = in.readObject();
         this.ptfs = in.readObject();
         this.telecomFormats = in.readObject();

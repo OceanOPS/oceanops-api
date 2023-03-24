@@ -14,6 +14,7 @@ import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
 import org.oceanops.orm.Agency;
+import org.oceanops.orm.ContactLogin;
 import org.oceanops.orm.ContactPtfRole;
 import org.oceanops.orm.ContactSiteRole;
 import org.oceanops.orm.Country;
@@ -27,6 +28,7 @@ import org.oceanops.orm.NetworkContact;
 import org.oceanops.orm.ProgramContact;
 import org.oceanops.orm.PtfDeployment;
 import org.oceanops.orm.PtfModel;
+import org.oceanops.orm.PtfUpdateHistory;
 import org.oceanops.orm.QrCode;
 import org.oceanops.orm.Service;
 import org.oceanops.orm.TelecomFormat;
@@ -53,6 +55,7 @@ public abstract class _Contact extends BaseDataObject {
 
     public static final StringProperty<String> ADDRESS = PropertyFactory.createString("address", String.class);
     public static final NumericProperty<Integer> ADMIN = PropertyFactory.createNumeric("admin", Integer.class);
+    public static final NumericProperty<Integer> BETA_TESTER = PropertyFactory.createNumeric("betaTester", Integer.class);
     public static final StringProperty<String> EMAIL = PropertyFactory.createString("email", String.class);
     public static final StringProperty<String> EMAIL2 = PropertyFactory.createString("email2", String.class);
     public static final StringProperty<String> EMAIL_PUBLIC = PropertyFactory.createString("emailPublic", String.class);
@@ -71,6 +74,7 @@ public abstract class _Contact extends BaseDataObject {
     public static final StringProperty<String> TEL2 = PropertyFactory.createString("tel2", String.class);
     public static final StringProperty<String> TITLE = PropertyFactory.createString("title", String.class);
     public static final EntityProperty<Agency> AGENCY = PropertyFactory.createEntity("agency", Agency.class);
+    public static final EntityProperty<ContactLogin> CONTACT_LOGIN = PropertyFactory.createEntity("contactLogin", ContactLogin.class);
     public static final ListProperty<ContactPtfRole> CONTACT_PTF_ROLES = PropertyFactory.createList("contactPtfRoles", ContactPtfRole.class);
     public static final ListProperty<ContactSiteRole> CONTACT_SITE_ROLES = PropertyFactory.createList("contactSiteRoles", ContactSiteRole.class);
     public static final EntityProperty<Country> COUNTRY = PropertyFactory.createEntity("country", Country.class);
@@ -83,6 +87,7 @@ public abstract class _Contact extends BaseDataObject {
     public static final ListProperty<NetworkContact> NETWORK_CONTACTS = PropertyFactory.createList("networkContacts", NetworkContact.class);
     public static final ListProperty<ProgramContact> PROGRAM_CONTACTS = PropertyFactory.createList("programContacts", ProgramContact.class);
     public static final ListProperty<PtfDeployment> PTF_DEPLOYMENTS = PropertyFactory.createList("ptfDeployments", PtfDeployment.class);
+    public static final ListProperty<PtfUpdateHistory> PTF_HISTORIES = PropertyFactory.createList("ptfHistories", PtfUpdateHistory.class);
     public static final ListProperty<PtfModel> PTF_MODELS = PropertyFactory.createList("ptfModels", PtfModel.class);
     public static final ListProperty<QrCode> QR_CODES = PropertyFactory.createList("qrCodes", QrCode.class);
     public static final ListProperty<Service> SERVICES = PropertyFactory.createList("services", Service.class);
@@ -98,6 +103,7 @@ public abstract class _Contact extends BaseDataObject {
 
     protected String address;
     protected Integer admin;
+    protected Integer betaTester;
     protected String email;
     protected String email2;
     protected String emailPublic;
@@ -117,6 +123,7 @@ public abstract class _Contact extends BaseDataObject {
     protected String title;
 
     protected Object agency;
+    protected Object contactLogin;
     protected Object contactPtfRoles;
     protected Object contactSiteRoles;
     protected Object country;
@@ -129,6 +136,7 @@ public abstract class _Contact extends BaseDataObject {
     protected Object networkContacts;
     protected Object programContacts;
     protected Object ptfDeployments;
+    protected Object ptfHistories;
     protected Object ptfModels;
     protected Object qrCodes;
     protected Object services;
@@ -160,6 +168,16 @@ public abstract class _Contact extends BaseDataObject {
     public Integer getAdmin() {
         beforePropertyRead("admin");
         return this.admin;
+    }
+
+    public void setBetaTester(Integer betaTester) {
+        beforePropertyWrite("betaTester", this.betaTester, betaTester);
+        this.betaTester = betaTester;
+    }
+
+    public Integer getBetaTester() {
+        beforePropertyRead("betaTester");
+        return this.betaTester;
     }
 
     public void setEmail(String email) {
@@ -340,6 +358,14 @@ public abstract class _Contact extends BaseDataObject {
         return (Agency)readProperty("agency");
     }
 
+    public void setContactLogin(ContactLogin contactLogin) {
+        setToOneTarget("contactLogin", contactLogin, true);
+    }
+
+    public ContactLogin getContactLogin() {
+        return (ContactLogin)readProperty("contactLogin");
+    }
+
     public void addToContactPtfRoles(ContactPtfRole obj) {
         addToManyTarget("contactPtfRoles", obj, true);
     }
@@ -484,6 +510,19 @@ public abstract class _Contact extends BaseDataObject {
     @SuppressWarnings("unchecked")
     public List<PtfDeployment> getPtfDeployments() {
         return (List<PtfDeployment>)readProperty("ptfDeployments");
+    }
+
+    public void addToPtfHistories(PtfUpdateHistory obj) {
+        addToManyTarget("ptfHistories", obj, true);
+    }
+
+    public void removeFromPtfHistories(PtfUpdateHistory obj) {
+        removeToManyTarget("ptfHistories", obj, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<PtfUpdateHistory> getPtfHistories() {
+        return (List<PtfUpdateHistory>)readProperty("ptfHistories");
     }
 
     public void addToPtfModels(PtfModel obj) {
@@ -643,6 +682,8 @@ public abstract class _Contact extends BaseDataObject {
                 return this.address;
             case "admin":
                 return this.admin;
+            case "betaTester":
+                return this.betaTester;
             case "email":
                 return this.email;
             case "email2":
@@ -679,6 +720,8 @@ public abstract class _Contact extends BaseDataObject {
                 return this.title;
             case "agency":
                 return this.agency;
+            case "contactLogin":
+                return this.contactLogin;
             case "contactPtfRoles":
                 return this.contactPtfRoles;
             case "contactSiteRoles":
@@ -703,6 +746,8 @@ public abstract class _Contact extends BaseDataObject {
                 return this.programContacts;
             case "ptfDeployments":
                 return this.ptfDeployments;
+            case "ptfHistories":
+                return this.ptfHistories;
             case "ptfModels":
                 return this.ptfModels;
             case "qrCodes":
@@ -744,6 +789,9 @@ public abstract class _Contact extends BaseDataObject {
                 break;
             case "admin":
                 this.admin = (Integer)val;
+                break;
+            case "betaTester":
+                this.betaTester = (Integer)val;
                 break;
             case "email":
                 this.email = (String)val;
@@ -799,6 +847,9 @@ public abstract class _Contact extends BaseDataObject {
             case "agency":
                 this.agency = val;
                 break;
+            case "contactLogin":
+                this.contactLogin = val;
+                break;
             case "contactPtfRoles":
                 this.contactPtfRoles = val;
                 break;
@@ -834,6 +885,9 @@ public abstract class _Contact extends BaseDataObject {
                 break;
             case "ptfDeployments":
                 this.ptfDeployments = val;
+                break;
+            case "ptfHistories":
+                this.ptfHistories = val;
                 break;
             case "ptfModels":
                 this.ptfModels = val;
@@ -889,6 +943,7 @@ public abstract class _Contact extends BaseDataObject {
         super.writeState(out);
         out.writeObject(this.address);
         out.writeObject(this.admin);
+        out.writeObject(this.betaTester);
         out.writeObject(this.email);
         out.writeObject(this.email2);
         out.writeObject(this.emailPublic);
@@ -907,6 +962,7 @@ public abstract class _Contact extends BaseDataObject {
         out.writeObject(this.tel2);
         out.writeObject(this.title);
         out.writeObject(this.agency);
+        out.writeObject(this.contactLogin);
         out.writeObject(this.contactPtfRoles);
         out.writeObject(this.contactSiteRoles);
         out.writeObject(this.country);
@@ -919,6 +975,7 @@ public abstract class _Contact extends BaseDataObject {
         out.writeObject(this.networkContacts);
         out.writeObject(this.programContacts);
         out.writeObject(this.ptfDeployments);
+        out.writeObject(this.ptfHistories);
         out.writeObject(this.ptfModels);
         out.writeObject(this.qrCodes);
         out.writeObject(this.services);
@@ -938,6 +995,7 @@ public abstract class _Contact extends BaseDataObject {
         super.readState(in);
         this.address = (String)in.readObject();
         this.admin = (Integer)in.readObject();
+        this.betaTester = (Integer)in.readObject();
         this.email = (String)in.readObject();
         this.email2 = (String)in.readObject();
         this.emailPublic = (String)in.readObject();
@@ -956,6 +1014,7 @@ public abstract class _Contact extends BaseDataObject {
         this.tel2 = (String)in.readObject();
         this.title = (String)in.readObject();
         this.agency = in.readObject();
+        this.contactLogin = in.readObject();
         this.contactPtfRoles = in.readObject();
         this.contactSiteRoles = in.readObject();
         this.country = in.readObject();
@@ -968,6 +1027,7 @@ public abstract class _Contact extends BaseDataObject {
         this.networkContacts = in.readObject();
         this.programContacts = in.readObject();
         this.ptfDeployments = in.readObject();
+        this.ptfHistories = in.readObject();
         this.ptfModels = in.readObject();
         this.qrCodes = in.readObject();
         this.services = in.readObject();
