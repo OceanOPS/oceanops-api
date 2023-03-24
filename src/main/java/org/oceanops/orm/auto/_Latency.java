@@ -21,14 +21,26 @@ public abstract class _Latency extends BaseDataObject {
 
     public static final String ID_PK_COLUMN = "ID";
 
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final NumericProperty<Double> MINUTES = PropertyFactory.createNumeric("minutes", Double.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> NAME_SHORT = PropertyFactory.createString("nameShort", String.class);
 
+    protected Integer id;
     protected Double minutes;
     protected String name;
     protected String nameShort;
 
+
+    public void setId(Integer id) {
+        beforePropertyWrite("id", this.id, id);
+        this.id = id;
+    }
+
+    public Integer getId() {
+        beforePropertyRead("id");
+        return this.id;
+    }
 
     public void setMinutes(Double minutes) {
         beforePropertyWrite("minutes", this.minutes, minutes);
@@ -67,6 +79,8 @@ public abstract class _Latency extends BaseDataObject {
         }
 
         switch(propName) {
+            case "id":
+                return this.id;
             case "minutes":
                 return this.minutes;
             case "name":
@@ -85,6 +99,9 @@ public abstract class _Latency extends BaseDataObject {
         }
 
         switch (propName) {
+            case "id":
+                this.id = (Integer)val;
+                break;
             case "minutes":
                 this.minutes = (Double)val;
                 break;
@@ -110,6 +127,7 @@ public abstract class _Latency extends BaseDataObject {
     @Override
     protected void writeState(ObjectOutputStream out) throws IOException {
         super.writeState(out);
+        out.writeObject(this.id);
         out.writeObject(this.minutes);
         out.writeObject(this.name);
         out.writeObject(this.nameShort);
@@ -118,6 +136,7 @@ public abstract class _Latency extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
+        this.id = (Integer)in.readObject();
         this.minutes = (Double)in.readObject();
         this.name = (String)in.readObject();
         this.nameShort = (String)in.readObject();

@@ -33,6 +33,7 @@
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="4000"/>
 		<db-attribute name="EMAIL" type="VARCHAR" length="50"/>
 		<db-attribute name="FAX" type="VARCHAR" length="30"/>
+		<db-attribute name="GRID" type="VARCHAR" length="20"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="IMAGE_ID" type="INTEGER" length="10"/>
 		<db-attribute name="LAT" type="NUMERIC" length="9" scale="4"/>
@@ -62,7 +63,6 @@
 	<db-entity name="AGENCY_PTF" schema="JCOMMOPS_B">
 		<db-attribute name="AGENCY_ID" type="INTEGER" isMandatory="true" length="10"/>
 		<db-attribute name="AGENCY_ROLE_ID" type="INTEGER" length="10"/>
-		<db-attribute name="ASSEMBLY_TYPE_ID" type="INTEGER" length="10"/>
 		<db-attribute name="DAC_TYPE_ID" type="INTEGER" length="10"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="PTF_ID" type="INTEGER" isMandatory="true" length="10"/>
@@ -129,6 +129,7 @@
 		<db-attribute name="ADDRESS" type="VARCHAR" length="500"/>
 		<db-attribute name="ADMIN" type="NUMERIC" length="1"/>
 		<db-attribute name="AGENCY_ID" type="INTEGER" length="10"/>
+		<db-attribute name="BETA_TESTER" type="INTEGER" length="1"/>
 		<db-attribute name="COUNTRY_ID" type="INTEGER" length="10"/>
 		<db-attribute name="EMAIL" type="VARCHAR" length="150"/>
 		<db-attribute name="EMAIL2" type="VARCHAR" length="150"/>
@@ -199,24 +200,29 @@
 	<db-entity name="CRUISE" schema="JCOMMOPS_B">
 		<db-attribute name="AGENCY_ID" type="INTEGER" length="10"/>
 		<db-attribute name="ARRIVAL_DATE" type="TIMESTAMP" length="7"/>
+		<db-attribute name="ARRIVAL_PORT" type="VARCHAR" length="5"/>
 		<db-attribute name="AUTONOMY" type="NUMERIC" length="38"/>
 		<db-attribute name="COOPERATIONS" type="NUMERIC" length="1"/>
 		<db-attribute name="COST_MONTH" type="NUMERIC" length="38"/>
 		<db-attribute name="COST_UNIT" type="NUMERIC" length="38"/>
 		<db-attribute name="CRUISE_CLASS_ID" type="INTEGER" length="10"/>
+		<db-attribute name="CRUISE_PARENT_ID" type="INTEGER" length="10"/>
 		<db-attribute name="CRUISE_STATUS_ID" type="INTEGER" length="10"/>
 		<db-attribute name="CRUISE_TYPE_ID" type="INTEGER" length="10"/>
 		<db-attribute name="DATES_PENDING" type="NUMERIC" length="1"/>
 		<db-attribute name="DEMOB_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="DEPARTURE_DATE" type="TIMESTAMP" length="7"/>
+		<db-attribute name="DEPARTURE_PORT" type="VARCHAR" length="5"/>
 		<db-attribute name="DESCRIPTION" type="CLOB" length="4000"/>
 		<db-attribute name="EMBARK_CAPACITY" type="NUMERIC" length="38"/>
+		<db-attribute name="EXPOCODE" type="VARCHAR" length="14"/>
 		<db-attribute name="FLEXIBLE_ROUTE" type="NUMERIC" length="1"/>
 		<db-attribute name="FREQUENCY_ID" type="INTEGER" length="10"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="IIOE2_ID" type="VARCHAR" length="20"/>
 		<db-attribute name="IMAGE_ID" type="INTEGER" length="10"/>
 		<db-attribute name="INSERT_DATE" type="TIMESTAMP" length="7"/>
+		<db-attribute name="MFP_ID" type="VARCHAR" length="10"/>
 		<db-attribute name="MOB_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="MODIF_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="NAME_LONG" type="VARCHAR" length="150"/>
@@ -257,7 +263,7 @@
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="LINE_ID" type="INTEGER" length="10"/>
 		<db-attribute name="PERFORMANCE_INDEX" type="NUMERIC" length="3" scale="2"/>
-		<db-attribute name="RANK" type="NUMERIC" length="2"/>
+		<db-attribute name="RANK" type="INTEGER" length="2"/>
 	</db-entity>
 	<db-entity name="CRUISE_POLYGON" schema="JCOMMOPS_B">
 		<db-attribute name="CRUISE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
@@ -1147,6 +1153,11 @@
 		<db-attribute name="WEIGHT" type="NUMERIC" length="6" scale="1"/>
 		<db-attribute name="WIDTH" type="NUMERIC" length="5" scale="2"/>
 	</db-entity>
+	<db-entity name="PTF_MODEL_FIRMWARE" schema="JCOMMOPS_B">
+		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
+		<db-attribute name="PTF_FIRMWARE_ID" type="INTEGER" length="10"/>
+		<db-attribute name="PTF_MODEL_ID" type="INTEGER" length="10"/>
+	</db-entity>
 	<db-entity name="PTF_PTF_STATUS" schema="JCOMMOPS_B">
 		<db-attribute name="CHANGING_DATE" type="TIMESTAMP" isMandatory="true" length="7"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
@@ -1206,6 +1217,16 @@
 		<db-attribute name="PTF_FAMILY_ID" type="INTEGER" length="10"/>
 		<db-attribute name="WIGOS_CODE" type="VARCHAR" length="20"/>
 	</db-entity>
+	<db-entity name="PTF_UPDATE_HISTORY" schema="JCOMMOPS_B">
+		<db-attribute name="CONTACT_ID" type="INTEGER" length="10"/>
+		<db-attribute name="FIELD_NAME" type="VARCHAR" isMandatory="true" length="50"/>
+		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="NEW_VALUE" type="VARCHAR" length="2000"/>
+		<db-attribute name="PREV_VALUE" type="VARCHAR" length="2000"/>
+		<db-attribute name="PTF_ID" type="INTEGER" isMandatory="true" length="10"/>
+		<db-attribute name="THEME_VIEW" type="VARCHAR" isMandatory="true" length="30"/>
+		<db-attribute name="UPDATE_DATE" type="TIMESTAMP" isMandatory="true"/>
+	</db-entity>
 	<db-entity name="PTF_VARIABLE" schema="JCOMMOPS_B">
 		<db-attribute name="ACCURACY" type="VARCHAR" length="50"/>
 		<db-attribute name="CALIB_DATE" type="TIMESTAMP" length="7"/>
@@ -1230,10 +1251,13 @@
 		<db-attribute name="PROGRAM_ID" type="INTEGER" length="10"/>
 		<db-attribute name="PTF_ID" type="INTEGER" isMandatory="true"/>
 		<db-attribute name="RANGE" type="VARCHAR" length="50"/>
+		<db-attribute name="RANGE_MAX" type="NUMERIC" length="10" scale="4"/>
+		<db-attribute name="RANGE_MIN" type="NUMERIC" length="10" scale="4"/>
 		<db-attribute name="RESOLUTION" type="VARCHAR" length="50"/>
 		<db-attribute name="SAMPLING_RATE" type="VARCHAR" length="50"/>
 		<db-attribute name="SAMPLING_RATE_TOTAL" type="VARCHAR" length="50"/>
 		<db-attribute name="SENSOR_EXPOSURE_ID" type="INTEGER" length="10"/>
+		<db-attribute name="SENSOR_GROUP" type="VARCHAR" length="50"/>
 		<db-attribute name="SENSOR_LOCATION_ID" type="INTEGER" length="10"/>
 		<db-attribute name="SENSOR_MODEL_ID" type="INTEGER" length="10"/>
 		<db-attribute name="SENSOR_STATUS_ID" type="INTEGER" length="2"/>
@@ -1242,6 +1266,8 @@
 		<db-attribute name="SIDE_INDICATOR" type="VARCHAR" length="15"/>
 		<db-attribute name="START_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="TIME_OFFSET" type="NUMERIC" length="6" scale="1"/>
+		<db-attribute name="UNCERTAINTY" type="VARCHAR" length="50"/>
+		<db-attribute name="UNIT_ID" type="INTEGER" length="10"/>
 		<db-attribute name="VARIABLE_ID" type="INTEGER" isMandatory="true"/>
 		<db-attribute name="WEBLINK_ID" type="INTEGER" length="10"/>
 	</db-entity>
@@ -1400,10 +1426,12 @@
 		<db-attribute name="ACCURACY" type="VARCHAR" length="50"/>
 		<db-attribute name="PRECISION" type="VARCHAR" length="50"/>
 		<db-attribute name="RANGE" type="VARCHAR" length="50"/>
+		<db-attribute name="RANGE_MAX" type="NUMERIC" length="10" scale="4"/>
+		<db-attribute name="RANGE_MIN" type="NUMERIC" length="10" scale="4"/>
 		<db-attribute name="RESOLUTION" type="VARCHAR" length="50"/>
 		<db-attribute name="SENSOR_MODEL_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="SENSOR_TYPE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
-		<db-attribute name="UNIT" type="VARCHAR" length="20"/>
+		<db-attribute name="UNIT_ID" type="INTEGER" length="10"/>
 	</db-entity>
 	<db-entity name="SENSOR_STATUS" schema="JCOMMOPS_B">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="100"/>
@@ -1636,6 +1664,12 @@
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" isMandatory="true" length="50"/>
 	</db-entity>
+	<db-entity name="UNIT" schema="JCOMMOPS_B">
+		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
+		<db-attribute name="NAME" type="VARCHAR" length="100"/>
+		<db-attribute name="NAME_SHORT" type="VARCHAR" length="20"/>
+		<db-attribute name="WIGOS_CODE" type="VARCHAR" length="200"/>
+	</db-entity>
 	<db-entity name="UPDATE_TIMESTAMP" schema="JCOMMOPS_B">
 		<db-attribute name="COMPLETED" type="NUMERIC" length="1"/>
 		<db-attribute name="LAST_UPDATE" type="TIMESTAMP" isMandatory="true" length="7"/>
@@ -1792,6 +1826,7 @@
 	<db-entity name="WEB_WORKSPACE" schema="JCOMMOPS_B">
 		<db-attribute name="CONTACT_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="ID" type="VARCHAR" length="20"/>
+		<db-attribute name="LAST_USED" type="TIMESTAMP"/>
 		<db-attribute name="NAME" type="VARCHAR" isPrimaryKey="true" isMandatory="true" length="500"/>
 		<db-attribute name="URL" type="VARCHAR" length="4000"/>
 	</db-entity>
@@ -1823,8 +1858,6 @@
 		<obj-attribute name="adopterName" type="java.lang.String" db-attribute-path="ADOPTER_NAME"/>
 		<obj-attribute name="adoptionDate" type="java.time.LocalDateTime" db-attribute-path="ADOPTION_DATE"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
-		<obj-attribute name="imageId" type="java.lang.Integer" db-attribute-path="IMAGE_ID"/>
-		<obj-attribute name="ptfId" type="java.lang.Integer" db-attribute-path="PTF_ID"/>
 		<obj-attribute name="ptfName" type="java.lang.String" db-attribute-path="PTF_NAME"/>
 		<obj-attribute name="text" type="java.lang.String" db-attribute-path="TEXT"/>
 		<obj-attribute name="title" type="java.lang.String" db-attribute-path="TITLE"/>
@@ -1836,6 +1869,7 @@
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="email" type="java.lang.String" db-attribute-path="EMAIL"/>
 		<obj-attribute name="fax" type="java.lang.String" db-attribute-path="FAX"/>
+		<obj-attribute name="grid" type="java.lang.String" db-attribute-path="GRID"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="lat" type="java.lang.Double" db-attribute-path="LAT"/>
 		<obj-attribute name="lon" type="java.lang.Double" db-attribute-path="LON"/>
@@ -1860,7 +1894,7 @@
 		<obj-attribute name="opMail" type="java.lang.String" db-attribute-path="OP_MAIL"/>
 	</obj-entity>
 	<obj-entity name="AgencyPtf" className="org.oceanops.orm.AgencyPtf" dbEntityName="AGENCY_PTF">
-		<obj-attribute name="assemblyTypeId" type="java.lang.Integer" db-attribute-path="ASSEMBLY_TYPE_ID"/>
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 	</obj-entity>
 	<obj-entity name="AgencyRole" className="org.oceanops.orm.AgencyRole" dbEntityName="AGENCY_ROLE">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
@@ -1918,6 +1952,7 @@
 	<obj-entity name="Contact" className="org.oceanops.orm.Contact" dbEntityName="CONTACT">
 		<obj-attribute name="address" type="java.lang.String" db-attribute-path="ADDRESS"/>
 		<obj-attribute name="admin" type="java.lang.Integer" db-attribute-path="ADMIN"/>
+		<obj-attribute name="betaTester" type="java.lang.Integer" db-attribute-path="BETA_TESTER"/>
 		<obj-attribute name="email" type="java.lang.String" db-attribute-path="EMAIL"/>
 		<obj-attribute name="email2" type="java.lang.String" db-attribute-path="EMAIL2"/>
 		<obj-attribute name="emailPublic" type="java.lang.String" db-attribute-path="EMAIL_PUBLIC"/>
@@ -1945,7 +1980,7 @@
 		<obj-attribute name="passcode" type="java.lang.String" db-attribute-path="PASSCODE"/>
 	</obj-entity>
 	<obj-entity name="ContactPtfRole" className="org.oceanops.orm.ContactPtfRole" dbEntityName="CONTACT_PTF_ROLE">
-		<obj-attribute name="sensorModelId" type="java.lang.Integer" db-attribute-path="SENSOR_MODEL_ID"/>
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 	</obj-entity>
 	<obj-entity name="ContactSiteRole" className="org.oceanops.orm.ContactSiteRole" dbEntityName="CONTACT_SITE_ROLE">
 		<obj-attribute name="siteId" type="java.lang.Integer" db-attribute-path="SITE_ID"/>
@@ -1973,6 +2008,7 @@
 	</obj-entity>
 	<obj-entity name="Cruise" className="org.oceanops.orm.Cruise" dbEntityName="CRUISE">
 		<obj-attribute name="arrivalDate" type="java.time.LocalDateTime" db-attribute-path="ARRIVAL_DATE"/>
+		<obj-attribute name="arrivalPort" type="java.lang.String" db-attribute-path="ARRIVAL_PORT"/>
 		<obj-attribute name="autonomy" type="java.lang.Integer" db-attribute-path="AUTONOMY"/>
 		<obj-attribute name="cooperations" type="java.lang.Integer" db-attribute-path="COOPERATIONS"/>
 		<obj-attribute name="costMonth" type="java.lang.Integer" db-attribute-path="COST_MONTH"/>
@@ -1980,13 +2016,16 @@
 		<obj-attribute name="datesPending" type="java.lang.Integer" db-attribute-path="DATES_PENDING"/>
 		<obj-attribute name="demobDate" type="java.time.LocalDateTime" db-attribute-path="DEMOB_DATE"/>
 		<obj-attribute name="departureDate" type="java.time.LocalDateTime" db-attribute-path="DEPARTURE_DATE"/>
+		<obj-attribute name="departurePort" type="java.lang.String" db-attribute-path="DEPARTURE_PORT"/>
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="embarkCapacity" type="java.lang.Integer" db-attribute-path="EMBARK_CAPACITY"/>
+		<obj-attribute name="expocode" type="java.lang.String" db-attribute-path="EXPOCODE"/>
 		<obj-attribute name="flexibleRoute" type="java.lang.Integer" db-attribute-path="FLEXIBLE_ROUTE"/>
 		<obj-attribute name="geom" type="org.apache.cayenne.value.Wkt" db-attribute-path="WKB"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="iioe2Id" type="java.lang.String" db-attribute-path="IIOE2_ID"/>
 		<obj-attribute name="insertDate" type="java.time.LocalDateTime" db-attribute-path="INSERT_DATE"/>
+		<obj-attribute name="mfpId" type="java.lang.String" db-attribute-path="MFP_ID"/>
 		<obj-attribute name="mobDate" type="java.time.LocalDateTime" db-attribute-path="MOB_DATE"/>
 		<obj-attribute name="modifDate" type="java.time.LocalDateTime" db-attribute-path="MODIF_DATE"/>
 		<obj-attribute name="nameLong" type="java.lang.String" db-attribute-path="NAME_LONG"/>
@@ -2019,8 +2058,8 @@
 		<obj-attribute name="cruiseId" type="java.lang.Integer" db-attribute-path="CRUISE_ID"/>
 	</obj-entity>
 	<obj-entity name="CruiseLine" className="org.oceanops.orm.CruiseLine" dbEntityName="CRUISE_LINE">
-		<obj-attribute name="performanceIndex" type="java.math.BigDecimal" db-attribute-path="PERFORMANCE_INDEX"/>
-		<obj-attribute name="rank" type="java.math.BigDecimal" db-attribute-path="RANK"/>
+		<obj-attribute name="performanceIndex" type="java.lang.Double" db-attribute-path="PERFORMANCE_INDEX"/>
+		<obj-attribute name="rank" type="java.lang.Integer" db-attribute-path="RANK"/>
 	</obj-entity>
 	<obj-entity name="CruiseProgram" className="org.oceanops.orm.CruiseProgram" dbEntityName="CRUISE_PROGRAM">
 		<obj-attribute name="cruiseId" type="java.lang.Integer" db-attribute-path="CRUISE_ID"/>
@@ -2063,6 +2102,7 @@
 	</obj-entity>
 	<obj-entity name="DataProcessingMethod" className="org.oceanops.orm.DataProcessingMethod" dbEntityName="DATA_PROCESSING_METHOD">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="ref" type="java.lang.String" db-attribute-path="REF"/>
 	</obj-entity>
@@ -2093,6 +2133,7 @@
 		<obj-attribute name="dueDate" type="java.lang.String" db-attribute-path="DUE_DATE"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="keywords" type="java.lang.String" db-attribute-path="KEYWORDS"/>
+		<obj-attribute name="locId" type="int" db-attribute-path="LOC_ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 		<obj-attribute name="validated" type="java.lang.Integer" db-attribute-path="VALIDATED"/>
@@ -2102,10 +2143,7 @@
 		<obj-attribute name="contactId" type="java.lang.Integer" db-attribute-path="CONTACT_ID"/>
 		<obj-attribute name="docId" type="java.lang.Integer" db-attribute-path="DOC_ID"/>
 	</obj-entity>
-	<obj-entity name="DocLanguage" className="org.oceanops.orm.DocLanguage" dbEntityName="DOC_LANGUAGE">
-		<obj-attribute name="docId" type="java.lang.Integer" db-attribute-path="DOC_ID"/>
-		<obj-attribute name="languageId" type="java.lang.Integer" db-attribute-path="LANGUAGE_ID"/>
-	</obj-entity>
+	<obj-entity name="DocLanguage" className="org.oceanops.orm.DocLanguage" dbEntityName="DOC_LANGUAGE"/>
 	<obj-entity name="DocType" className="org.oceanops.orm.DocType" dbEntityName="DOC_TYPE">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
@@ -2223,6 +2261,7 @@
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
 	<obj-entity name="Latency" className="org.oceanops.orm.Latency" dbEntityName="LATENCY">
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="minutes" type="java.lang.Double" db-attribute-path="MINUTES"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
@@ -2595,6 +2634,7 @@
 	<obj-entity name="Program" className="org.oceanops.orm.Program" dbEntityName="PROGRAM">
 		<obj-attribute name="active" type="java.lang.Integer" db-attribute-path="ACTIVE"/>
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 		<obj-attribute name="wigosCode" type="java.lang.String" db-attribute-path="WIGOS_CODE"/>
@@ -2633,9 +2673,11 @@
 	</obj-entity>
 	<obj-entity name="PtfAncillaryDeviceName" className="org.oceanops.orm.PtfAncillaryDeviceName" dbEntityName="PTF_ANCILLARY_DEVICE_NAME">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 	</obj-entity>
 	<obj-entity name="PtfAncillaryDeviceVersion" className="org.oceanops.orm.PtfAncillaryDeviceVersion" dbEntityName="PTF_ANCILLARY_DEVICE_VERSION">
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="version" type="java.lang.String" db-attribute-path="VERSION"/>
 	</obj-entity>
 	<obj-entity name="PtfAutomation" className="org.oceanops.orm.PtfAutomation" dbEntityName="PTF_AUTOMATION">
@@ -2744,7 +2786,6 @@
 	</obj-entity>
 	<obj-entity name="PtfModel" className="org.oceanops.orm.PtfModel" dbEntityName="PTF_MODEL">
 		<obj-attribute name="airDeplCertif" type="java.lang.Integer" db-attribute-path="AIR_DEPL_CERTIF"/>
-		<obj-attribute name="apiWmoIdTypeId" type="java.lang.Integer" db-attribute-path="API_WMO_ID_TYPE_ID"/>
 		<obj-attribute name="commercial" type="java.lang.Integer" db-attribute-path="COMMERCIAL"/>
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="height" type="java.lang.Double" db-attribute-path="HEIGHT"/>
@@ -2760,6 +2801,7 @@
 		<obj-attribute name="weight" type="java.lang.Double" db-attribute-path="WEIGHT"/>
 		<obj-attribute name="width" type="java.lang.Double" db-attribute-path="WIDTH"/>
 	</obj-entity>
+	<obj-entity name="PtfModelFirmware" className="org.oceanops.orm.PtfModelFirmware" dbEntityName="PTF_MODEL_FIRMWARE"/>
 	<obj-entity name="PtfPtfStatus" className="org.oceanops.orm.PtfPtfStatus" dbEntityName="PTF_PTF_STATUS">
 		<obj-attribute name="changingDate" type="java.time.LocalDateTime" db-attribute-path="CHANGING_DATE"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
@@ -2814,6 +2856,13 @@
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 		<obj-attribute name="wigosCode" type="java.lang.String" db-attribute-path="WIGOS_CODE"/>
 	</obj-entity>
+	<obj-entity name="PtfUpdateHistory" className="org.oceanops.orm.PtfUpdateHistory" dbEntityName="PTF_UPDATE_HISTORY">
+		<obj-attribute name="fieldName" type="java.lang.String" db-attribute-path="FIELD_NAME"/>
+		<obj-attribute name="newValue" type="java.lang.String" db-attribute-path="NEW_VALUE"/>
+		<obj-attribute name="prevValue" type="java.lang.String" db-attribute-path="PREV_VALUE"/>
+		<obj-attribute name="themeView" type="java.lang.String" db-attribute-path="THEME_VIEW"/>
+		<obj-attribute name="updateDate" type="java.time.LocalDateTime" db-attribute-path="UPDATE_DATE"/>
+	</obj-entity>
 	<obj-entity name="PtfVariable" className="org.oceanops.orm.PtfVariable" dbEntityName="PTF_VARIABLE">
 		<obj-attribute name="accuracy" type="java.lang.String" db-attribute-path="ACCURACY"/>
 		<obj-attribute name="calibDate" type="java.time.LocalDateTime" db-attribute-path="CALIB_DATE"/>
@@ -2834,14 +2883,17 @@
 		<obj-attribute name="packageN" type="java.lang.Integer" db-attribute-path="PACKAGE_N"/>
 		<obj-attribute name="precision" type="java.lang.String" db-attribute-path="PRECISION"/>
 		<obj-attribute name="range" type="java.lang.String" db-attribute-path="RANGE"/>
+		<obj-attribute name="rangeMax" type="java.math.BigDecimal" db-attribute-path="RANGE_MAX"/>
+		<obj-attribute name="rangeMin" type="java.math.BigDecimal" db-attribute-path="RANGE_MIN"/>
 		<obj-attribute name="resolution" type="java.lang.String" db-attribute-path="RESOLUTION"/>
 		<obj-attribute name="samplingRate" type="java.lang.String" db-attribute-path="SAMPLING_RATE"/>
 		<obj-attribute name="samplingRateTotal" type="java.lang.String" db-attribute-path="SAMPLING_RATE_TOTAL"/>
+		<obj-attribute name="sensorGroup" type="java.lang.String" db-attribute-path="SENSOR_GROUP"/>
 		<obj-attribute name="serialNo" type="java.lang.String" db-attribute-path="SERIAL_NO"/>
 		<obj-attribute name="sideIndicator" type="java.lang.String" db-attribute-path="SIDE_INDICATOR"/>
 		<obj-attribute name="startDate" type="java.time.LocalDateTime" db-attribute-path="START_DATE"/>
 		<obj-attribute name="timeOffset" type="java.lang.Double" db-attribute-path="TIME_OFFSET"/>
-		<obj-attribute name="variableId" type="java.lang.Integer" db-attribute-path="VARIABLE_ID"/>
+		<obj-attribute name="uncertainty" type="java.lang.String" db-attribute-path="UNCERTAINTY"/>
 	</obj-entity>
 	<obj-entity name="PumpType" className="org.oceanops.orm.PumpType" dbEntityName="PUMP_TYPE">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
@@ -2974,13 +3026,13 @@
 		<obj-attribute name="accuracy" type="java.lang.String" db-attribute-path="ACCURACY"/>
 		<obj-attribute name="precision" type="java.lang.String" db-attribute-path="PRECISION"/>
 		<obj-attribute name="range" type="java.lang.String" db-attribute-path="RANGE"/>
+		<obj-attribute name="rangeMax" type="java.math.BigDecimal" db-attribute-path="RANGE_MAX"/>
+		<obj-attribute name="rangeMin" type="java.math.BigDecimal" db-attribute-path="RANGE_MIN"/>
 		<obj-attribute name="resolution" type="java.lang.Integer" db-attribute-path="RESOLUTION"/>
-		<obj-attribute name="sensorModelId" type="java.lang.Integer" db-attribute-path="SENSOR_MODEL_ID"/>
-		<obj-attribute name="sensorTypeId" type="java.lang.Integer" db-attribute-path="SENSOR_TYPE_ID"/>
-		<obj-attribute name="unit" type="java.lang.String" db-attribute-path="UNIT"/>
 	</obj-entity>
 	<obj-entity name="SensorStatus" className="org.oceanops.orm.SensorStatus" dbEntityName="SENSOR_STATUS">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="ref" type="java.lang.String" db-attribute-path="REF"/>
 	</obj-entity>
@@ -2996,16 +3048,16 @@
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="endDate" type="java.time.LocalDateTime" db-attribute-path="END_DATE"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
-		<obj-attribute name="locationId" type="java.lang.Integer" db-attribute-path="LOCATION_ID"/>
 		<obj-attribute name="startDate" type="java.time.LocalDateTime" db-attribute-path="START_DATE"/>
-		<obj-attribute name="typeId" type="java.lang.Integer" db-attribute-path="TYPE_ID"/>
 	</obj-entity>
 	<obj-entity name="ServiceLocation" className="org.oceanops.orm.ServiceLocation" dbEntityName="SERVICE_LOCATION">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
 	<obj-entity name="ServiceType" className="org.oceanops.orm.ServiceType" dbEntityName="SERVICE_TYPE">
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
@@ -3102,11 +3154,9 @@
 	</obj-entity>
 	<obj-entity name="Story" className="org.oceanops.orm.Story" dbEntityName="STORY">
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
-		<obj-attribute name="imageId" type="java.lang.Integer" db-attribute-path="IMAGE_ID"/>
 		<obj-attribute name="keywords" type="java.lang.String" db-attribute-path="KEYWORDS"/>
 		<obj-attribute name="paperUrl" type="java.lang.String" db-attribute-path="PAPER_URL"/>
 		<obj-attribute name="postUrl" type="java.lang.String" db-attribute-path="POST_URL"/>
-		<obj-attribute name="ptfId" type="java.lang.Integer" db-attribute-path="PTF_ID"/>
 		<obj-attribute name="source" type="java.lang.String" db-attribute-path="SOURCE"/>
 		<obj-attribute name="storyDate" type="java.time.LocalDateTime" db-attribute-path="STORY_DATE"/>
 		<obj-attribute name="text" type="java.lang.String" db-attribute-path="TEXT"/>
@@ -3172,12 +3222,19 @@
 	<obj-entity name="TimePeriod" className="org.oceanops.orm.TimePeriod" dbEntityName="TIME_PERIOD">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="frequency" type="java.lang.Integer" db-attribute-path="FREQUENCY"/>
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="iso" type="java.lang.String" db-attribute-path="ISO"/>
 		<obj-attribute name="ref" type="java.lang.String" db-attribute-path="REF"/>
 	</obj-entity>
 	<obj-entity name="Topic" className="org.oceanops.orm.Topic" dbEntityName="TOPIC">
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
+	</obj-entity>
+	<obj-entity name="Unit" className="org.oceanops.orm.Unit" dbEntityName="UNIT">
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
+		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
+		<obj-attribute name="wigosCode" type="java.lang.String" db-attribute-path="WIGOS_CODE"/>
 	</obj-entity>
 	<obj-entity name="UpdateTimestamp" className="org.oceanops.orm.UpdateTimestamp" dbEntityName="UPDATE_TIMESTAMP">
 		<obj-attribute name="completed" type="java.lang.Integer" db-attribute-path="COMPLETED"/>
@@ -3307,6 +3364,7 @@
 	<obj-entity name="WebWorkspace" className="org.oceanops.orm.WebWorkspace" dbEntityName="WEB_WORKSPACE">
 		<obj-attribute name="contactId" type="java.lang.Integer" db-attribute-path="CONTACT_ID"/>
 		<obj-attribute name="id" type="java.lang.String" db-attribute-path="ID"/>
+		<obj-attribute name="lastUsed" type="java.time.LocalDateTime" db-attribute-path="LAST_USED"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="url" type="java.lang.String" db-attribute-path="URL"/>
 	</obj-entity>
@@ -3330,6 +3388,12 @@
 		<obj-attribute name="startDate" type="java.time.LocalDateTime" db-attribute-path="START_DATE"/>
 		<obj-attribute name="wmo" type="java.lang.String" db-attribute-path="WMO"/>
 	</obj-entity>
+	<db-relationship name="image" source="ADOPTION" target="IMAGE">
+		<db-attribute-pair source="IMAGE_ID" target="ID"/>
+	</db-relationship>
+	<db-relationship name="ptf" source="ADOPTION" target="PTF">
+		<db-attribute-pair source="PTF_ID" target="ID"/>
+	</db-relationship>
 	<db-relationship name="agencyDacTypes" source="AGENCY" target="AGENCY_DAC_TYPE" toDependentPK="true" toMany="true">
 		<db-attribute-pair source="ID" target="AGENCY_ID"/>
 	</db-relationship>
@@ -3426,6 +3490,9 @@
 	<db-relationship name="role" source="AGENCY_SITE_ROLE" target="AGENCY_ROLE">
 		<db-attribute-pair source="ROLE_ID" target="ID"/>
 	</db-relationship>
+	<db-relationship name="site" source="AGENCY_SITE_ROLE" target="SITE">
+		<db-attribute-pair source="SITE_ID" target="ID"/>
+	</db-relationship>
 	<db-relationship name="contact" source="API_TOKEN" target="CONTACT">
 		<db-attribute-pair source="CONTACT_ID" target="ID"/>
 	</db-relationship>
@@ -3450,7 +3517,7 @@
 	<db-relationship name="apiTokens" source="CONTACT" target="API_TOKEN" toMany="true">
 		<db-attribute-pair source="ID" target="CONTACT_ID"/>
 	</db-relationship>
-	<db-relationship name="contactLogins" source="CONTACT" target="CONTACT_LOGIN" toDependentPK="true" toMany="true">
+	<db-relationship name="contactLogin" source="CONTACT" target="CONTACT_LOGIN" toDependentPK="true">
 		<db-attribute-pair source="ID" target="CONTACT_ID"/>
 	</db-relationship>
 	<db-relationship name="contactPtfRoles" source="CONTACT" target="CONTACT_PTF_ROLE" toMany="true">
@@ -3490,6 +3557,9 @@
 		<db-attribute-pair source="ID" target="CONTACT_ID"/>
 	</db-relationship>
 	<db-relationship name="ptfModels" source="CONTACT" target="PTF_MODEL" toMany="true">
+		<db-attribute-pair source="ID" target="CONTACT_ID"/>
+	</db-relationship>
+	<db-relationship name="ptfUpdateHistories" source="CONTACT" target="PTF_UPDATE_HISTORY" toMany="true">
 		<db-attribute-pair source="ID" target="CONTACT_ID"/>
 	</db-relationship>
 	<db-relationship name="qcFeedbacks" source="CONTACT" target="QC_FEEDBACK" toMany="true">
@@ -3543,11 +3613,17 @@
 	<db-relationship name="role" source="CONTACT_PTF_ROLE" target="ROLE">
 		<db-attribute-pair source="ROLE_ID" target="ID"/>
 	</db-relationship>
+	<db-relationship name="sensorModel" source="CONTACT_PTF_ROLE" target="SENSOR_MODEL">
+		<db-attribute-pair source="SENSOR_MODEL_ID" target="ID"/>
+	</db-relationship>
 	<db-relationship name="contact" source="CONTACT_SITE_ROLE" target="CONTACT">
 		<db-attribute-pair source="CONTACT_ID" target="ID"/>
 	</db-relationship>
 	<db-relationship name="role" source="CONTACT_SITE_ROLE" target="ROLE">
 		<db-attribute-pair source="ROLE_ID" target="ID"/>
+	</db-relationship>
+	<db-relationship name="site" source="CONTACT_SITE_ROLE" target="SITE">
+		<db-attribute-pair source="SITE_ID" target="ID"/>
 	</db-relationship>
 	<db-relationship name="agencies" source="COUNTRY" target="AGENCY" toMany="true">
 		<db-attribute-pair source="ID" target="COUNTRY_ID"/>
@@ -3609,6 +3685,9 @@
 	<db-relationship name="agency" source="CRUISE" target="AGENCY">
 		<db-attribute-pair source="AGENCY_ID" target="ID"/>
 	</db-relationship>
+	<db-relationship name="cruiseChildren" source="CRUISE" target="CRUISE" toMany="true">
+		<db-attribute-pair source="ID" target="CRUISE_PARENT_ID"/>
+	</db-relationship>
 	<db-relationship name="cruiseClass" source="CRUISE" target="CRUISE_CLASS">
 		<db-attribute-pair source="CRUISE_CLASS_ID" target="ID"/>
 	</db-relationship>
@@ -3620,6 +3699,9 @@
 	</db-relationship>
 	<db-relationship name="cruiseLines" source="CRUISE" target="CRUISE_LINE" toMany="true">
 		<db-attribute-pair source="ID" target="CRUISE_ID"/>
+	</db-relationship>
+	<db-relationship name="cruiseParent" source="CRUISE" target="CRUISE">
+		<db-attribute-pair source="CRUISE_PARENT_ID" target="ID"/>
 	</db-relationship>
 	<db-relationship name="cruisePrograms" source="CRUISE" target="CRUISE_PROGRAM" toDependentPK="true" toMany="true">
 		<db-attribute-pair source="ID" target="CRUISE_ID"/>
@@ -3732,6 +3814,9 @@
 	<db-relationship name="docContacts" source="DOC" target="DOC_CONTACT" toDependentPK="true" toMany="true">
 		<db-attribute-pair source="ID" target="CONTACT_ID"/>
 	</db-relationship>
+	<db-relationship name="docLanguages" source="DOC" target="DOC_LANGUAGE" toDependentPK="true" toMany="true">
+		<db-attribute-pair source="ID" target="DOC_ID"/>
+	</db-relationship>
 	<db-relationship name="docType" source="DOC" target="DOC_TYPE">
 		<db-attribute-pair source="DOC_TYPE_ID" target="ID"/>
 	</db-relationship>
@@ -3769,6 +3854,9 @@
 		<db-attribute-pair source="CONTACT_ID" target="ID"/>
 	</db-relationship>
 	<db-relationship name="doc" source="DOC_CONTACT" target="CONTACT">
+		<db-attribute-pair source="DOC_ID" target="ID"/>
+	</db-relationship>
+	<db-relationship name="doc" source="DOC_LANGUAGE" target="DOC">
 		<db-attribute-pair source="DOC_ID" target="ID"/>
 	</db-relationship>
 	<db-relationship name="language" source="DOC_LANGUAGE" target="LANGUAGE">
@@ -3828,6 +3916,9 @@
 	<db-relationship name="obss" source="GTS_RECORDER_TYPE" target="OBS" toMany="true">
 		<db-attribute-pair source="ID" target="GTS_RECORDER_TYPE_ID"/>
 	</db-relationship>
+	<db-relationship name="adoptions" source="IMAGE" target="ADOPTION" toMany="true">
+		<db-attribute-pair source="ID" target="IMAGE_ID"/>
+	</db-relationship>
 	<db-relationship name="agencies" source="IMAGE" target="AGENCY" toMany="true">
 		<db-attribute-pair source="ID" target="IMAGE_ID"/>
 	</db-relationship>
@@ -3860,6 +3951,9 @@
 	</db-relationship>
 	<db-relationship name="ship" source="IMAGE" target="SHIP">
 		<db-attribute-pair source="SHIP_ID" target="ID"/>
+	</db-relationship>
+	<db-relationship name="stories" source="IMAGE" target="STORY" toMany="true">
+		<db-attribute-pair source="ID" target="IMAGE_ID"/>
 	</db-relationship>
 	<db-relationship name="images" source="IMAGE_TYPE" target="IMAGE" toMany="true">
 		<db-attribute-pair source="ID" target="IMAGE_TYPE_ID"/>
@@ -3963,7 +4057,7 @@
 	<db-relationship name="ptfLocStatuses" source="LOC_STATUS" target="PTF_LOC_STATUS" toDependentPK="true" toMany="true">
 		<db-attribute-pair source="ID" target="LOC_STATUS_ID"/>
 	</db-relationship>
-	<db-relationship name="ptfs1" source="LOC_SYSTEM" target="PTF" toMany="true">
+	<db-relationship name="ptfs" source="LOC_SYSTEM" target="PTF" toMany="true">
 		<db-attribute-pair source="ID" target="TRACKING_SYSTEM_ID"/>
 	</db-relationship>
 	<db-relationship name="ptfsBackup" source="LOC_SYSTEM" target="PTF" toMany="true">
@@ -4269,6 +4363,9 @@
 	<db-relationship name="variable" source="OBS_GLIDERS_GTS_OSMC_VARIABLE" target="VARIABLE">
 		<db-attribute-pair source="VARIABLE_ID" target="ID"/>
 	</db-relationship>
+	<db-relationship name="obsArgoGdac" source="OBS_LATEST" target="OBS_ARGO_GDAC">
+		<db-attribute-pair source="ORIGIN_ID" target="ID"/>
+	</db-relationship>
 	<db-relationship name="ptfs" source="OBS_LATEST" target="PTF" toMany="true">
 		<db-attribute-pair source="ID" target="LATEST_OBS_ID"/>
 	</db-relationship>
@@ -4383,6 +4480,9 @@
 	<db-relationship name="role" source="PROGRAM_CONTACT" target="ROLE">
 		<db-attribute-pair source="ROLE_ID" target="ID"/>
 	</db-relationship>
+	<db-relationship name="adoptions" source="PTF" target="ADOPTION" toMany="true">
+		<db-attribute-pair source="ID" target="PTF_ID"/>
+	</db-relationship>
 	<db-relationship name="agencyPtfs" source="PTF" target="AGENCY_PTF" toMany="true">
 		<db-attribute-pair source="ID" target="PTF_ID"/>
 	</db-relationship>
@@ -4412,6 +4512,9 @@
 	</db-relationship>
 	<db-relationship name="linePtfs" source="PTF" target="LINE_PTF" toDependentPK="true" toMany="true">
 		<db-attribute-pair source="ID" target="PTF_ID"/>
+	</db-relationship>
+	<db-relationship name="locSystem" source="PTF" target="LOC_SYSTEM">
+		<db-attribute-pair source="TRACKING_SYSTEM_ID" target="ID"/>
 	</db-relationship>
 	<db-relationship name="mzmsPtfCountries" source="PTF" target="MZMS_PTF_COUNTRY" toDependentPK="true" toMany="true">
 		<db-attribute-pair source="ID" target="PTF_ID"/>
@@ -4485,6 +4588,9 @@
 	<db-relationship name="ptfStatus" source="PTF" target="PTF_STATUS">
 		<db-attribute-pair source="PTF_STATUS_ID" target="ID"/>
 	</db-relationship>
+	<db-relationship name="ptfUpdateHistories" source="PTF" target="PTF_UPDATE_HISTORY" toMany="true">
+		<db-attribute-pair source="ID" target="PTF_ID"/>
+	</db-relationship>
 	<db-relationship name="ptfVariables" source="PTF" target="PTF_VARIABLE" toMany="true">
 		<db-attribute-pair source="ID" target="PTF_ID"/>
 	</db-relationship>
@@ -4503,14 +4609,14 @@
 	<db-relationship name="sitePtfs" source="PTF" target="SITE_PTF" toDependentPK="true" toMany="true">
 		<db-attribute-pair source="ID" target="PTF_ID"/>
 	</db-relationship>
+	<db-relationship name="stories" source="PTF" target="STORY" toMany="true">
+		<db-attribute-pair source="ID" target="PTF_ID"/>
+	</db-relationship>
 	<db-relationship name="tagPtfs" source="PTF" target="TAG_PTF" toMany="true">
 		<db-attribute-pair source="ID" target="PTF_ID"/>
 	</db-relationship>
 	<db-relationship name="telecom" source="PTF" target="TELECOM">
 		<db-attribute-pair source="TELECOM_ID" target="ID"/>
-	</db-relationship>
-	<db-relationship name="trackingSystem" source="PTF" target="LOC_SYSTEM">
-		<db-attribute-pair source="TRACKING_SYSTEM_ID" target="ID"/>
 	</db-relationship>
 	<db-relationship name="webFrequentations" source="PTF" target="WEB_FREQUENTATION" toMany="true">
 		<db-attribute-pair source="ID" target="PTF_ID"/>
@@ -4590,6 +4696,9 @@
 	<db-relationship name="ptfHardwares1" source="PTF_FIRMWARE" target="PTF_HARDWARE" toMany="true">
 		<db-attribute-pair source="ID" target="FIRMWARE_ADD_ID"/>
 	</db-relationship>
+	<db-relationship name="ptfModelFirmwares" source="PTF_FIRMWARE" target="PTF_MODEL_FIRMWARE" toMany="true">
+		<db-attribute-pair source="ID" target="PTF_FIRMWARE_ID"/>
+	</db-relationship>
 	<db-relationship name="battery" source="PTF_HARDWARE" target="PTF_BATTERY">
 		<db-attribute-pair source="BATTERY_ID" target="ID"/>
 	</db-relationship>
@@ -4656,6 +4765,9 @@
 	<db-relationship name="ptfAncillaryDeviceVersions" source="PTF_MODEL" target="PTF_ANCILLARY_DEVICE_VERSION" toMany="true">
 		<db-attribute-pair source="ID" target="PTF_MODEL_ID"/>
 	</db-relationship>
+	<db-relationship name="ptfModelFirmwares" source="PTF_MODEL" target="PTF_MODEL_FIRMWARE" toMany="true">
+		<db-attribute-pair source="ID" target="PTF_MODEL_ID"/>
+	</db-relationship>
 	<db-relationship name="ptfType" source="PTF_MODEL" target="PTF_TYPE">
 		<db-attribute-pair source="PTF_TYPE_ID" target="ID"/>
 	</db-relationship>
@@ -4670,6 +4782,12 @@
 	</db-relationship>
 	<db-relationship name="weblink" source="PTF_MODEL" target="WEBLINK">
 		<db-attribute-pair source="WEBLINK_ID" target="ID"/>
+	</db-relationship>
+	<db-relationship name="ptfFirmware" source="PTF_MODEL_FIRMWARE" target="PTF_FIRMWARE">
+		<db-attribute-pair source="PTF_FIRMWARE_ID" target="ID"/>
+	</db-relationship>
+	<db-relationship name="ptfModel" source="PTF_MODEL_FIRMWARE" target="PTF_MODEL">
+		<db-attribute-pair source="PTF_MODEL_ID" target="ID"/>
 	</db-relationship>
 	<db-relationship name="ptf" source="PTF_PTF_STATUS" target="PTF">
 		<db-attribute-pair source="PTF_ID" target="ID"/>
@@ -4707,6 +4825,12 @@
 	<db-relationship name="sdnPtfClasses" source="PTF_TYPE" target="SDN_PTF_CLASS" toMany="true">
 		<db-attribute-pair source="ID" target="PTF_TYPE_ID"/>
 	</db-relationship>
+	<db-relationship name="contact" source="PTF_UPDATE_HISTORY" target="CONTACT">
+		<db-attribute-pair source="CONTACT_ID" target="ID"/>
+	</db-relationship>
+	<db-relationship name="ptf" source="PTF_UPDATE_HISTORY" target="PTF">
+		<db-attribute-pair source="PTF_ID" target="ID"/>
+	</db-relationship>
 	<db-relationship name="dataProcessingMethod" source="PTF_VARIABLE" target="DATA_PROCESSING_METHOD">
 		<db-attribute-pair source="DATA_PROCESSING_METHOD_ID" target="ID"/>
 	</db-relationship>
@@ -4733,6 +4857,9 @@
 	</db-relationship>
 	<db-relationship name="serviceSchedule" source="PTF_VARIABLE" target="TIME_PERIOD">
 		<db-attribute-pair source="SERVICE_SCHEDULE_ID" target="ID"/>
+	</db-relationship>
+	<db-relationship name="unit" source="PTF_VARIABLE" target="UNIT">
+		<db-attribute-pair source="UNIT_ID" target="ID"/>
 	</db-relationship>
 	<db-relationship name="variable" source="PTF_VARIABLE" target="VARIABLE">
 		<db-attribute-pair source="VARIABLE_ID" target="ID"/>
@@ -4863,6 +4990,9 @@
 	<db-relationship name="agency" source="SENSOR_MODEL" target="AGENCY">
 		<db-attribute-pair source="AGENCY_ID" target="ID"/>
 	</db-relationship>
+	<db-relationship name="contactPtfRoles" source="SENSOR_MODEL" target="CONTACT_PTF_ROLE" toMany="true">
+		<db-attribute-pair source="ID" target="SENSOR_MODEL_ID"/>
+	</db-relationship>
 	<db-relationship name="cruiseSensorModels" source="SENSOR_MODEL" target="CRUISE_SENSOR_MODEL" toDependentPK="true" toMany="true">
 		<db-attribute-pair source="ID" target="SENSOR_MODEL_ID"/>
 	</db-relationship>
@@ -4896,6 +5026,9 @@
 	<db-relationship name="sensorType" source="SENSOR_MODEL_SENSOR_TYPE" target="SENSOR_TYPE">
 		<db-attribute-pair source="SENSOR_TYPE_ID" target="ID"/>
 	</db-relationship>
+	<db-relationship name="unit" source="SENSOR_MODEL_SENSOR_TYPE" target="UNIT">
+		<db-attribute-pair source="UNIT_ID" target="ID"/>
+	</db-relationship>
 	<db-relationship name="ptfVariables" source="SENSOR_STATUS" target="PTF_VARIABLE" toMany="true">
 		<db-attribute-pair source="ID" target="SENSOR_STATUS_ID"/>
 	</db-relationship>
@@ -4925,6 +5058,18 @@
 	</db-relationship>
 	<db-relationship name="sensorModel" source="SERVICE" target="SENSOR_MODEL">
 		<db-attribute-pair source="SENSOR_MODEL_ID" target="ID"/>
+	</db-relationship>
+	<db-relationship name="serviceLocation" source="SERVICE" target="SERVICE_LOCATION">
+		<db-attribute-pair source="LOCATION_ID" target="ID"/>
+	</db-relationship>
+	<db-relationship name="serviceType" source="SERVICE" target="SERVICE_TYPE">
+		<db-attribute-pair source="TYPE_ID" target="ID"/>
+	</db-relationship>
+	<db-relationship name="services" source="SERVICE_LOCATION" target="SERVICE" toMany="true">
+		<db-attribute-pair source="ID" target="LOCATION_ID"/>
+	</db-relationship>
+	<db-relationship name="services" source="SERVICE_TYPE" target="SERVICE" toMany="true">
+		<db-attribute-pair source="ID" target="TYPE_ID"/>
 	</db-relationship>
 	<db-relationship name="country" source="SHIP" target="COUNTRY">
 		<db-attribute-pair source="COUNTRY_ID" target="ID"/>
@@ -4971,6 +5116,12 @@
 	<db-relationship name="ships" source="SHIP_TYPE" target="SHIP" toMany="true">
 		<db-attribute-pair source="ID" target="SHIP_TYPE_ID"/>
 	</db-relationship>
+	<db-relationship name="agencySiteRoles" source="SITE" target="AGENCY_SITE_ROLE" toMany="true">
+		<db-attribute-pair source="ID" target="SITE_ID"/>
+	</db-relationship>
+	<db-relationship name="contactSiteRoles" source="SITE" target="CONTACT_SITE_ROLE" toMany="true">
+		<db-attribute-pair source="ID" target="SITE_ID"/>
+	</db-relationship>
 	<db-relationship name="networkSites" source="SITE" target="NETWORK_SITE" toDependentPK="true" toMany="true">
 		<db-attribute-pair source="ID" target="SITE_ID"/>
 	</db-relationship>
@@ -4994,6 +5145,12 @@
 	</db-relationship>
 	<db-relationship name="sites" source="SITE_STATUS" target="SITE" toMany="true">
 		<db-attribute-pair source="ID" target="STATUS_ID"/>
+	</db-relationship>
+	<db-relationship name="image" source="STORY" target="IMAGE">
+		<db-attribute-pair source="IMAGE_ID" target="ID"/>
+	</db-relationship>
+	<db-relationship name="ptf" source="STORY" target="PTF">
+		<db-attribute-pair source="PTF_ID" target="ID"/>
 	</db-relationship>
 	<db-relationship name="cruises" source="SURVEY" target="CRUISE" toMany="true">
 		<db-attribute-pair source="ID" target="SURVEY_ID"/>
@@ -5069,6 +5226,12 @@
 	</db-relationship>
 	<db-relationship name="weblinks" source="TOPIC" target="WEBLINK" toMany="true">
 		<db-attribute-pair source="ID" target="TOPIC_ID"/>
+	</db-relationship>
+	<db-relationship name="ptfVariables" source="UNIT" target="PTF_VARIABLE" toMany="true">
+		<db-attribute-pair source="ID" target="UNIT_ID"/>
+	</db-relationship>
+	<db-relationship name="sensorModelSensorTypes" source="UNIT" target="SENSOR_MODEL_SENSOR_TYPE" toMany="true">
+		<db-attribute-pair source="ID" target="UNIT_ID"/>
 	</db-relationship>
 	<db-relationship name="docs" source="USER_GROUP" target="DOC" toMany="true">
 		<db-attribute-pair source="ID" target="USER_GROUP_ID"/>
@@ -5268,15 +5431,18 @@
 	<db-relationship name="ptf" source="WMO" target="PTF">
 		<db-attribute-pair source="PTF_ID" target="ID"/>
 	</db-relationship>
+	<obj-relationship name="image" source="Adoption" target="Image" deleteRule="Deny" db-relationship-path="image"/>
+	<obj-relationship name="ptf" source="Adoption" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
 	<obj-relationship name="agencyDacTypes" source="Agency" target="AgencyDacType" deleteRule="Deny" db-relationship-path="agencyDacTypes"/>
 	<obj-relationship name="agencyPtfs" source="Agency" target="AgencyPtf" deleteRule="Deny" db-relationship-path="agencyPtfs"/>
 	<obj-relationship name="agencySiteRoles" source="Agency" target="AgencySiteRole" deleteRule="Deny" db-relationship-path="agencySiteRoles"/>
 	<obj-relationship name="contacts" source="Agency" target="Contact" deleteRule="Deny" db-relationship-path="contacts"/>
-	<obj-relationship name="country" source="Agency" target="Country" deleteRule="Nullify" db-relationship-path="country"/>
+	<obj-relationship name="country" source="Agency" target="Country" deleteRule="Deny" db-relationship-path="country"/>
 	<obj-relationship name="cruises" source="Agency" target="Cruise" deleteRule="Deny" db-relationship-path="cruises"/>
 	<obj-relationship name="gtsCcccs" source="Agency" target="GtsCccc" deleteRule="Deny" db-relationship-path="gtsCcccs"/>
-	<obj-relationship name="image" source="Agency" target="Image" deleteRule="Nullify" db-relationship-path="image"/>
+	<obj-relationship name="image" source="Agency" target="Image" deleteRule="Deny" db-relationship-path="image"/>
 	<obj-relationship name="images" source="Agency" target="Image" deleteRule="Deny" db-relationship-path="images"/>
+	<obj-relationship name="obsArgoGdacs" source="Agency" target="ObsArgoGdac" deleteRule="Deny" db-relationship-path="obsArgoGdacs"/>
 	<obj-relationship name="programAgencies" source="Agency" target="ProgramAgency" deleteRule="Deny" db-relationship-path="programAgencies"/>
 	<obj-relationship name="ptfFirmwares" source="Agency" target="PtfFirmware" deleteRule="Deny" db-relationship-path="ptfFirmwares"/>
 	<obj-relationship name="ptfHullTypes" source="Agency" target="PtfHullType" deleteRule="Deny" db-relationship-path="ptfHullTypes"/>
@@ -5285,38 +5451,41 @@
 	<obj-relationship name="sensorModels" source="Agency" target="SensorModel" deleteRule="Deny" db-relationship-path="sensorModels"/>
 	<obj-relationship name="services" source="Agency" target="Service" deleteRule="Deny" db-relationship-path="services"/>
 	<obj-relationship name="userGroupAgencies" source="Agency" target="UserGroupAgency" deleteRule="Deny" db-relationship-path="userGroupAgencies"/>
-	<obj-relationship name="weblink" source="Agency" target="Weblink" deleteRule="Nullify" db-relationship-path="weblink"/>
-	<obj-relationship name="agency" source="AgencyDacType" target="Agency" deleteRule="Nullify" db-relationship-path="agency"/>
-	<obj-relationship name="dacType" source="AgencyDacType" target="DacType" deleteRule="Nullify" db-relationship-path="dacType"/>
-	<obj-relationship name="network" source="AgencyDacType" target="Network" deleteRule="Nullify" db-relationship-path="network"/>
-	<obj-relationship name="weblink" source="AgencyDacType" target="Weblink" deleteRule="Nullify" db-relationship-path="weblink"/>
-	<obj-relationship name="agency" source="AgencyPtf" target="Agency" deleteRule="Nullify" db-relationship-path="agency"/>
-	<obj-relationship name="agencyRole" source="AgencyPtf" target="AgencyRole" deleteRule="Nullify" db-relationship-path="agencyRole"/>
-	<obj-relationship name="dacType" source="AgencyPtf" target="DacType" deleteRule="Nullify" db-relationship-path="dacType"/>
-	<obj-relationship name="ptf" source="AgencyPtf" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
+	<obj-relationship name="weblink" source="Agency" target="Weblink" deleteRule="Deny" db-relationship-path="weblink"/>
+	<obj-relationship name="agency" source="AgencyDacType" target="Agency" deleteRule="Deny" db-relationship-path="agency"/>
+	<obj-relationship name="dacType" source="AgencyDacType" target="DacType" deleteRule="Deny" db-relationship-path="dacType"/>
+	<obj-relationship name="network" source="AgencyDacType" target="Network" deleteRule="Deny" db-relationship-path="network"/>
+	<obj-relationship name="weblink" source="AgencyDacType" target="Weblink" deleteRule="Deny" db-relationship-path="weblink"/>
+	<obj-relationship name="agency" source="AgencyPtf" target="Agency" deleteRule="Deny" db-relationship-path="agency"/>
+	<obj-relationship name="agencyRole" source="AgencyPtf" target="AgencyRole" deleteRule="Deny" db-relationship-path="agencyRole"/>
+	<obj-relationship name="dacType" source="AgencyPtf" target="DacType" deleteRule="Deny" db-relationship-path="dacType"/>
+	<obj-relationship name="ptf" source="AgencyPtf" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
 	<obj-relationship name="agencyPtfs" source="AgencyRole" target="AgencyPtf" deleteRule="Deny" db-relationship-path="agencyPtfs"/>
 	<obj-relationship name="agencySiteRoles" source="AgencyRole" target="AgencySiteRole" deleteRule="Deny" db-relationship-path="agencySiteRoles"/>
 	<obj-relationship name="programAgencies" source="AgencyRole" target="ProgramAgency" deleteRule="Deny" db-relationship-path="programAgencies"/>
-	<obj-relationship name="agency" source="AgencySiteRole" target="Agency" deleteRule="Nullify" db-relationship-path="agency"/>
-	<obj-relationship name="role" source="AgencySiteRole" target="AgencyRole" deleteRule="Nullify" db-relationship-path="role"/>
-	<obj-relationship name="contact" source="ApiToken" target="Contact" deleteRule="Nullify" db-relationship-path="contact"/>
-	<obj-relationship name="basinType" source="Basin" target="BasinType" deleteRule="Nullify" db-relationship-path="basinType"/>
+	<obj-relationship name="agency" source="AgencySiteRole" target="Agency" deleteRule="Deny" db-relationship-path="agency"/>
+	<obj-relationship name="role" source="AgencySiteRole" target="AgencyRole" deleteRule="Deny" db-relationship-path="role"/>
+	<obj-relationship name="site" source="AgencySiteRole" target="Site" deleteRule="Deny" db-relationship-path="site"/>
+	<obj-relationship name="contact" source="ApiToken" target="Contact" deleteRule="Deny" db-relationship-path="contact"/>
+	<obj-relationship name="basinType" source="Basin" target="BasinType" deleteRule="Deny" db-relationship-path="basinType"/>
 	<obj-relationship name="countryCommitments" source="Basin" target="CountryCommitment" deleteRule="Deny" db-relationship-path="countryCommitments"/>
 	<obj-relationship name="basins" source="BasinType" target="Basin" deleteRule="Deny" db-relationship-path="basins"/>
 	<obj-relationship name="ptfConfigs" source="Config" target="PtfConfig" deleteRule="Deny" db-relationship-path="ptfConfigs"/>
-	<obj-relationship name="agency" source="Contact" target="Agency" deleteRule="Nullify" db-relationship-path="agency"/>
+	<obj-relationship name="agency" source="Contact" target="Agency" deleteRule="Deny" db-relationship-path="agency"/>
+	<obj-relationship name="contactLogin" source="Contact" target="ContactLogin" deleteRule="Deny" db-relationship-path="contactLogin"/>
 	<obj-relationship name="contactPtfRoles" source="Contact" target="ContactPtfRole" deleteRule="Deny" db-relationship-path="contactPtfRoles"/>
 	<obj-relationship name="contactSiteRoles" source="Contact" target="ContactSiteRole" deleteRule="Deny" db-relationship-path="contactSiteRoles"/>
-	<obj-relationship name="country" source="Contact" target="Country" deleteRule="Nullify" db-relationship-path="country"/>
+	<obj-relationship name="country" source="Contact" target="Country" deleteRule="Deny" db-relationship-path="country"/>
 	<obj-relationship name="cruiseContacts" source="Contact" target="CruiseContact" deleteRule="Deny" db-relationship-path="cruiseContacts"/>
 	<obj-relationship name="docContacts" source="Contact" target="DocContact" deleteRule="Deny" db-relationship-path="docContacts"/>
-	<obj-relationship name="image" source="Contact" target="Image" deleteRule="Nullify" db-relationship-path="image"/>
+	<obj-relationship name="image" source="Contact" target="Image" deleteRule="Deny" db-relationship-path="image"/>
 	<obj-relationship name="meetings" source="Contact" target="Meeting" deleteRule="Deny" db-relationship-path="meetings"/>
 	<obj-relationship name="ncNotifications" source="Contact" target="NcNotification" deleteRule="Deny" db-relationship-path="ncNotifications"/>
 	<obj-relationship name="ncSubscriptions" source="Contact" target="NcSubscription" deleteRule="Deny" db-relationship-path="ncSubscriptions"/>
 	<obj-relationship name="networkContacts" source="Contact" target="NetworkContact" deleteRule="Deny" db-relationship-path="networkContacts"/>
 	<obj-relationship name="programContacts" source="Contact" target="ProgramContact" deleteRule="Deny" db-relationship-path="programContacts"/>
 	<obj-relationship name="ptfDeployments" source="Contact" target="PtfDeployment" deleteRule="Deny" db-relationship-path="ptfDeployments"/>
+	<obj-relationship name="ptfHistories" source="Contact" target="PtfUpdateHistory" deleteRule="Deny" db-relationship-path="ptfUpdateHistories"/>
 	<obj-relationship name="ptfModels" source="Contact" target="PtfModel" deleteRule="Deny" db-relationship-path="ptfModels"/>
 	<obj-relationship name="qrCodes" source="Contact" target="QrCode" deleteRule="Deny" db-relationship-path="qrCodes"/>
 	<obj-relationship name="services" source="Contact" target="Service" deleteRule="Deny" db-relationship-path="services"/>
@@ -5324,17 +5493,19 @@
 	<obj-relationship name="userGroupContacts" source="Contact" target="UserGroupContact" deleteRule="Deny" db-relationship-path="userGroupContacts"/>
 	<obj-relationship name="webConnections" source="Contact" target="WebConnection" deleteRule="Deny" db-relationship-path="webConnections"/>
 	<obj-relationship name="webContactModules" source="Contact" target="WebContactModule" deleteRule="Deny" db-relationship-path="webContactModules"/>
-	<obj-relationship name="webContactPreferences" source="Contact" target="WebContactPreferences" deleteRule="Nullify" db-relationship-path="webContactPreferences"/>
+	<obj-relationship name="webContactPreferences" source="Contact" target="WebContactPreferences" deleteRule="Deny" db-relationship-path="webContactPreferences"/>
 	<obj-relationship name="webFrequentations" source="Contact" target="WebFrequentation" deleteRule="Deny" db-relationship-path="webFrequentations"/>
 	<obj-relationship name="webQueries" source="Contact" target="WebQuery" deleteRule="Deny" db-relationship-path="webQueries"/>
 	<obj-relationship name="webWorkspaces" source="Contact" target="WebWorkspace" deleteRule="Deny" db-relationship-path="webWorkspaces"/>
-	<obj-relationship name="weblink" source="Contact" target="Weblink" deleteRule="Nullify" db-relationship-path="weblink"/>
-	<obj-relationship name="contact" source="ContactLogin" target="Contact" deleteRule="Nullify" db-relationship-path="contact"/>
-	<obj-relationship name="contact" source="ContactPtfRole" target="Contact" deleteRule="Nullify" db-relationship-path="contact"/>
-	<obj-relationship name="ptf" source="ContactPtfRole" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
-	<obj-relationship name="role" source="ContactPtfRole" target="Role" deleteRule="Nullify" db-relationship-path="role"/>
-	<obj-relationship name="contact" source="ContactSiteRole" target="Contact" deleteRule="Nullify" db-relationship-path="contact"/>
-	<obj-relationship name="role" source="ContactSiteRole" target="Role" deleteRule="Nullify" db-relationship-path="role"/>
+	<obj-relationship name="weblink" source="Contact" target="Weblink" deleteRule="Deny" db-relationship-path="weblink"/>
+	<obj-relationship name="contact" source="ContactLogin" target="Contact" deleteRule="Deny" db-relationship-path="contact"/>
+	<obj-relationship name="contact" source="ContactPtfRole" target="Contact" deleteRule="Deny" db-relationship-path="contact"/>
+	<obj-relationship name="ptf" source="ContactPtfRole" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
+	<obj-relationship name="role" source="ContactPtfRole" target="Role" deleteRule="Deny" db-relationship-path="role"/>
+	<obj-relationship name="sensorModel" source="ContactPtfRole" target="SensorModel" deleteRule="Nullify" db-relationship-path="sensorModel"/>
+	<obj-relationship name="contact" source="ContactSiteRole" target="Contact" deleteRule="Deny" db-relationship-path="contact"/>
+	<obj-relationship name="role" source="ContactSiteRole" target="Role" deleteRule="Deny" db-relationship-path="role"/>
+	<obj-relationship name="site" source="ContactSiteRole" target="Site" deleteRule="Deny" db-relationship-path="site"/>
 	<obj-relationship name="agencies" source="Country" target="Agency" deleteRule="Deny" db-relationship-path="agencies"/>
 	<obj-relationship name="contacts" source="Country" target="Contact" deleteRule="Deny" db-relationship-path="contacts"/>
 	<obj-relationship name="countryCommitments" source="Country" target="CountryCommitment" deleteRule="Deny" db-relationship-path="countryCommitments"/>
@@ -5351,75 +5522,78 @@
 	<obj-relationship name="ships" source="Country" target="Ship" deleteRule="Deny" db-relationship-path="ships"/>
 	<obj-relationship name="userGroupContacts" source="Country" target="UserGroupContact" deleteRule="Deny" db-relationship-path="userGroupContacts"/>
 	<obj-relationship name="weblinks" source="Country" target="Weblink" deleteRule="Deny" db-relationship-path="weblinks"/>
-	<obj-relationship name="basin" source="CountryCommitment" target="Basin" deleteRule="Nullify" db-relationship-path="basin"/>
-	<obj-relationship name="country" source="CountryCommitment" target="Country" deleteRule="Nullify" db-relationship-path="country"/>
-	<obj-relationship name="network" source="CountryCommitment" target="Network" deleteRule="Nullify" db-relationship-path="network"/>
-	<obj-relationship name="agency" source="Cruise" target="Agency" deleteRule="Nullify" db-relationship-path="agency"/>
-	<obj-relationship name="cruiseClass" source="Cruise" target="CruiseClass" deleteRule="Nullify" db-relationship-path="cruiseClass"/>
+	<obj-relationship name="basin" source="CountryCommitment" target="Basin" deleteRule="Deny" db-relationship-path="basin"/>
+	<obj-relationship name="country" source="CountryCommitment" target="Country" deleteRule="Deny" db-relationship-path="country"/>
+	<obj-relationship name="network" source="CountryCommitment" target="Network" deleteRule="Deny" db-relationship-path="network"/>
+	<obj-relationship name="agency" source="Cruise" target="Agency" deleteRule="Deny" db-relationship-path="agency"/>
+	<obj-relationship name="cruiseClass" source="Cruise" target="CruiseClass" deleteRule="Deny" db-relationship-path="cruiseClass"/>
 	<obj-relationship name="cruiseContacts" source="Cruise" target="CruiseContact" deleteRule="Deny" db-relationship-path="cruiseContacts"/>
 	<obj-relationship name="cruiseCountries" source="Cruise" target="CruiseCountry" deleteRule="Deny" db-relationship-path="cruiseCountries"/>
-	<obj-relationship name="cruiseLines" source="Cruise" target="CruiseLine" deleteRule="Nullify" db-relationship-path="cruiseLines"/>
+	<obj-relationship name="cruiseLines" source="Cruise" target="CruiseLine" deleteRule="Deny" db-relationship-path="cruiseLines"/>
+	<obj-relationship name="cruiseParent" source="Cruise" target="Cruise" deleteRule="Deny" db-relationship-path="cruiseParent"/>
 	<obj-relationship name="cruisePrograms" source="Cruise" target="CruiseProgram" deleteRule="Deny" db-relationship-path="cruisePrograms"/>
 	<obj-relationship name="cruiseSensorModels" source="Cruise" target="CruiseSensorModel" deleteRule="Deny" db-relationship-path="cruiseSensorModels"/>
-	<obj-relationship name="cruiseStatus" source="Cruise" target="CruiseStatus" deleteRule="Nullify" db-relationship-path="cruiseStatus"/>
-	<obj-relationship name="cruiseType" source="Cruise" target="CruiseType" deleteRule="Nullify" db-relationship-path="cruiseType"/>
+	<obj-relationship name="cruiseStatus" source="Cruise" target="CruiseStatus" deleteRule="Deny" db-relationship-path="cruiseStatus"/>
+	<obj-relationship name="cruiseType" source="Cruise" target="CruiseType" deleteRule="Deny" db-relationship-path="cruiseType"/>
 	<obj-relationship name="cruiseVariables" source="Cruise" target="CruiseVariable" deleteRule="Deny" db-relationship-path="cruiseVariables"/>
-	<obj-relationship name="frequency" source="Cruise" target="Frequency" deleteRule="Nullify" db-relationship-path="frequency"/>
-	<obj-relationship name="image" source="Cruise" target="Image" deleteRule="Nullify" db-relationship-path="image"/>
+	<obj-relationship name="frequency" source="Cruise" target="Frequency" deleteRule="Deny" db-relationship-path="frequency"/>
+	<obj-relationship name="image" source="Cruise" target="Image" deleteRule="Deny" db-relationship-path="image"/>
 	<obj-relationship name="ptfDeployments" source="Cruise" target="PtfDeployment" deleteRule="Deny" db-relationship-path="ptfDeployments"/>
 	<obj-relationship name="retrievals" source="Cruise" target="Retrieval" deleteRule="Deny" db-relationship-path="retrievals"/>
 	<obj-relationship name="services" source="Cruise" target="Service" deleteRule="Deny" db-relationship-path="services"/>
-	<obj-relationship name="ship" source="Cruise" target="Ship" deleteRule="Nullify" db-relationship-path="ship"/>
-	<obj-relationship name="survey" source="Cruise" target="Survey" deleteRule="Nullify" db-relationship-path="survey"/>
+	<obj-relationship name="ship" source="Cruise" target="Ship" deleteRule="Deny" db-relationship-path="ship"/>
+	<obj-relationship name="survey" source="Cruise" target="Survey" deleteRule="Deny" db-relationship-path="survey"/>
 	<obj-relationship name="webFrequentations" source="Cruise" target="WebFrequentation" deleteRule="Deny" db-relationship-path="webFrequentations"/>
-	<obj-relationship name="weblink" source="Cruise" target="Weblink" deleteRule="Nullify" db-relationship-path="weblink"/>
+	<obj-relationship name="weblink" source="Cruise" target="Weblink" deleteRule="Deny" db-relationship-path="weblink"/>
 	<obj-relationship name="cruises" source="CruiseClass" target="Cruise" deleteRule="Deny" db-relationship-path="cruises"/>
-	<obj-relationship name="contact" source="CruiseContact" target="Contact" deleteRule="Nullify" db-relationship-path="contact"/>
-	<obj-relationship name="cruise" source="CruiseContact" target="Cruise" deleteRule="Nullify" db-relationship-path="cruise"/>
-	<obj-relationship name="role" source="CruiseContact" target="Role" deleteRule="Nullify" db-relationship-path="role"/>
-	<obj-relationship name="country" source="CruiseCountry" target="Country" deleteRule="Nullify" db-relationship-path="country"/>
-	<obj-relationship name="cruise" source="CruiseCountry" target="Cruise" deleteRule="Nullify" db-relationship-path="cruise"/>
-	<obj-relationship name="cruise" source="CruiseLine" target="Cruise" deleteRule="Nullify" db-relationship-path="cruise"/>
-	<obj-relationship name="line" source="CruiseLine" target="Line" deleteRule="Nullify" db-relationship-path="line"/>
-	<obj-relationship name="cruise" source="CruiseProgram" target="Cruise" deleteRule="Nullify" db-relationship-path="cruise"/>
-	<obj-relationship name="program" source="CruiseProgram" target="Program" deleteRule="Nullify" db-relationship-path="program"/>
-	<obj-relationship name="cruise" source="CruiseSensorModel" target="Cruise" deleteRule="Nullify" db-relationship-path="cruise"/>
-	<obj-relationship name="sensorModel" source="CruiseSensorModel" target="SensorModel" deleteRule="Nullify" db-relationship-path="sensorModel"/>
+	<obj-relationship name="contact" source="CruiseContact" target="Contact" deleteRule="Deny" db-relationship-path="contact"/>
+	<obj-relationship name="cruise" source="CruiseContact" target="Cruise" deleteRule="Deny" db-relationship-path="cruise"/>
+	<obj-relationship name="role" source="CruiseContact" target="Role" deleteRule="Deny" db-relationship-path="role"/>
+	<obj-relationship name="country" source="CruiseCountry" target="Country" deleteRule="Deny" db-relationship-path="country"/>
+	<obj-relationship name="cruise" source="CruiseCountry" target="Cruise" deleteRule="Deny" db-relationship-path="cruise"/>
+	<obj-relationship name="cruise" source="CruiseLine" target="Cruise" deleteRule="Deny" db-relationship-path="cruise"/>
+	<obj-relationship name="line" source="CruiseLine" target="Line" deleteRule="Deny" db-relationship-path="line"/>
+	<obj-relationship name="cruise" source="CruiseProgram" target="Cruise" deleteRule="Deny" db-relationship-path="cruise"/>
+	<obj-relationship name="program" source="CruiseProgram" target="Program" deleteRule="Deny" db-relationship-path="program"/>
+	<obj-relationship name="cruise" source="CruiseSensorModel" target="Cruise" deleteRule="Deny" db-relationship-path="cruise"/>
+	<obj-relationship name="sensorModel" source="CruiseSensorModel" target="SensorModel" deleteRule="Deny" db-relationship-path="sensorModel"/>
 	<obj-relationship name="cruises" source="CruiseStatus" target="Cruise" deleteRule="Deny" db-relationship-path="cruises"/>
 	<obj-relationship name="cruises" source="CruiseType" target="Cruise" deleteRule="Deny" db-relationship-path="cruises"/>
-	<obj-relationship name="cruise" source="CruiseVariable" target="Cruise" deleteRule="Nullify" db-relationship-path="cruise"/>
-	<obj-relationship name="variable" source="CruiseVariable" target="Variable" deleteRule="Nullify" db-relationship-path="variable"/>
+	<obj-relationship name="cruise" source="CruiseVariable" target="Cruise" deleteRule="Deny" db-relationship-path="cruise"/>
+	<obj-relationship name="variable" source="CruiseVariable" target="Variable" deleteRule="Deny" db-relationship-path="variable"/>
 	<obj-relationship name="agencyDacTypes" source="DacType" target="AgencyDacType" deleteRule="Deny" db-relationship-path="agencyDacTypes"/>
 	<obj-relationship name="agencyPtfs" source="DacType" target="AgencyPtf" deleteRule="Deny" db-relationship-path="agencyPtfs"/>
 	<obj-relationship name="ptfs" source="DataStatus" target="Ptf" deleteRule="Deny" db-relationship-path="ptfs"/>
 	<obj-relationship name="ptfDeployments" source="DeplMethod" target="PtfDeployment" deleteRule="Deny" db-relationship-path="ptfDeployments"/>
 	<obj-relationship name="ptfDeployments" source="DeplType" target="PtfDeployment" deleteRule="Deny" db-relationship-path="ptfDeployments"/>
 	<obj-relationship name="docContacts" source="Doc" target="DocContact" deleteRule="Deny" db-relationship-path="docContacts"/>
-	<obj-relationship name="docType" source="Doc" target="DocType" deleteRule="Nullify" db-relationship-path="docType"/>
-	<obj-relationship name="language" source="Doc" target="Language" deleteRule="Nullify" db-relationship-path="language"/>
-	<obj-relationship name="meeting" source="Doc" target="Meeting" deleteRule="Nullify" db-relationship-path="meeting"/>
-	<obj-relationship name="network" source="Doc" target="Network" deleteRule="Nullify" db-relationship-path="network"/>
-	<obj-relationship name="ptf" source="Doc" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
+	<obj-relationship name="docLanguages" source="Doc" target="DocLanguage" deleteRule="Deny" db-relationship-path="docLanguages"/>
+	<obj-relationship name="docType" source="Doc" target="DocType" deleteRule="Deny" db-relationship-path="docType"/>
+	<obj-relationship name="language" source="Doc" target="Language" deleteRule="Deny" db-relationship-path="language"/>
+	<obj-relationship name="meeting" source="Doc" target="Meeting" deleteRule="Deny" db-relationship-path="meeting"/>
+	<obj-relationship name="network" source="Doc" target="Network" deleteRule="Deny" db-relationship-path="network"/>
+	<obj-relationship name="ptf" source="Doc" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
 	<obj-relationship name="ptfs" source="Doc" target="Ptf" deleteRule="Deny" db-relationship-path="ptfs"/>
-	<obj-relationship name="ship" source="Doc" target="Ship" deleteRule="Nullify" db-relationship-path="ship"/>
+	<obj-relationship name="ship" source="Doc" target="Ship" deleteRule="Deny" db-relationship-path="ship"/>
 	<obj-relationship name="telecomFormatDocs" source="Doc" target="TelecomFormatDoc" deleteRule="Deny" db-relationship-path="telecomFormatDocs"/>
-	<obj-relationship name="topic" source="Doc" target="Topic" deleteRule="Nullify" db-relationship-path="topic"/>
-	<obj-relationship name="userGroup" source="Doc" target="UserGroup" deleteRule="Nullify" db-relationship-path="userGroup"/>
-	<obj-relationship name="weblink" source="Doc" target="Weblink" deleteRule="Nullify" db-relationship-path="weblink"/>
-	<obj-relationship name="contact" source="DocContact" target="Doc" deleteRule="Nullify" db-relationship-path="contact"/>
-	<obj-relationship name="doc" source="DocContact" target="Contact" deleteRule="Nullify" db-relationship-path="doc"/>
-	<obj-relationship name="language" source="DocLanguage" target="Language" deleteRule="Nullify" db-relationship-path="language"/>
+	<obj-relationship name="topic" source="Doc" target="Topic" deleteRule="Deny" db-relationship-path="topic"/>
+	<obj-relationship name="userGroup" source="Doc" target="UserGroup" deleteRule="Deny" db-relationship-path="userGroup"/>
+	<obj-relationship name="weblink" source="Doc" target="Weblink" deleteRule="Deny" db-relationship-path="weblink"/>
+	<obj-relationship name="contact" source="DocContact" target="Doc" deleteRule="Deny" db-relationship-path="contact"/>
+	<obj-relationship name="doc" source="DocContact" target="Contact" deleteRule="Deny" db-relationship-path="doc"/>
+	<obj-relationship name="doc" source="DocLanguage" target="Doc" deleteRule="Deny" db-relationship-path="doc"/>
+	<obj-relationship name="language" source="DocLanguage" target="Language" deleteRule="Deny" db-relationship-path="language"/>
 	<obj-relationship name="docs" source="DocType" target="Doc" deleteRule="Deny" db-relationship-path="docs"/>
 	<obj-relationship name="networkEndingCauses" source="EndingCause" target="NetworkEndingCause" deleteRule="Deny" db-relationship-path="networkEndingCauses"/>
 	<obj-relationship name="ptfs" source="EndingCause" target="Ptf" deleteRule="Deny" db-relationship-path="ptfs"/>
 	<obj-relationship name="cruises" source="Frequency" target="Cruise" deleteRule="Deny" db-relationship-path="cruises"/>
-	<obj-relationship name="agency" source="GtsCccc" target="Agency" deleteRule="Nullify" db-relationship-path="agency"/>
-	<obj-relationship name="country" source="GtsCccc" target="Country" deleteRule="Nullify" db-relationship-path="country"/>
+	<obj-relationship name="agency" source="GtsCccc" target="Agency" deleteRule="Deny" db-relationship-path="agency"/>
+	<obj-relationship name="country" source="GtsCccc" target="Country" deleteRule="Deny" db-relationship-path="country"/>
 	<obj-relationship name="gtsCcccHeaders" source="GtsCccc" target="GtsCcccHeader" deleteRule="Deny" db-relationship-path="gtsCcccHeaders"/>
 	<obj-relationship name="obss" source="GtsCccc" target="Obs" deleteRule="Deny" db-relationship-path="obss"/>
 	<obj-relationship name="qcFeedbacks" source="GtsCccc" target="QcFeedback" deleteRule="Deny" db-relationship-path="qcFeedbacks"/>
-	<obj-relationship name="gtsCccc" source="GtsCcccHeader" target="GtsCccc" deleteRule="Nullify" db-relationship-path="gtsCccc"/>
-	<obj-relationship name="gtsHeader" source="GtsCcccHeader" target="GtsHeader" deleteRule="Nullify" db-relationship-path="gtsHeader"/>
+	<obj-relationship name="gtsCccc" source="GtsCcccHeader" target="GtsCccc" deleteRule="Deny" db-relationship-path="gtsCccc"/>
+	<obj-relationship name="gtsHeader" source="GtsCcccHeader" target="GtsHeader" deleteRule="Deny" db-relationship-path="gtsHeader"/>
 	<obj-relationship name="obss" source="GtsCode" target="Obs" deleteRule="Deny" db-relationship-path="obss"/>
 	<obj-relationship name="gtsCcccHeaders" source="GtsHeader" target="GtsCcccHeader" deleteRule="Deny" db-relationship-path="gtsCcccHeaders"/>
 	<obj-relationship name="obss" source="GtsHeader" target="Obs" deleteRule="Deny" db-relationship-path="obss"/>
@@ -5427,72 +5601,74 @@
 	<obj-relationship name="obss" source="GtsInstrumentType" target="Obs" deleteRule="Deny" db-relationship-path="obss"/>
 	<obj-relationship name="ptfModels" source="GtsInstrumentType" target="PtfModel" deleteRule="Deny" db-relationship-path="ptfModels"/>
 	<obj-relationship name="obss" source="GtsRecorderType" target="Obs" deleteRule="Deny" db-relationship-path="obss"/>
+	<obj-relationship name="adoptions" source="Image" target="Adoption" deleteRule="Deny" db-relationship-path="adoptions"/>
 	<obj-relationship name="agencies" source="Image" target="Agency" deleteRule="Deny" db-relationship-path="agencies"/>
-	<obj-relationship name="agency" source="Image" target="Agency" deleteRule="Nullify" db-relationship-path="agency"/>
+	<obj-relationship name="agency" source="Image" target="Agency" deleteRule="Deny" db-relationship-path="agency"/>
 	<obj-relationship name="contacts" source="Image" target="Contact" deleteRule="Deny" db-relationship-path="contacts"/>
 	<obj-relationship name="cruises" source="Image" target="Cruise" deleteRule="Deny" db-relationship-path="cruises"/>
-	<obj-relationship name="imageType" source="Image" target="ImageType" deleteRule="Nullify" db-relationship-path="imageType"/>
-	<obj-relationship name="network" source="Image" target="Network" deleteRule="Nullify" db-relationship-path="network"/>
-	<obj-relationship name="program" source="Image" target="Program" deleteRule="Nullify" db-relationship-path="program"/>
+	<obj-relationship name="imageType" source="Image" target="ImageType" deleteRule="Deny" db-relationship-path="imageType"/>
+	<obj-relationship name="network" source="Image" target="Network" deleteRule="Deny" db-relationship-path="network"/>
+	<obj-relationship name="program" source="Image" target="Program" deleteRule="Deny" db-relationship-path="program"/>
 	<obj-relationship name="ptfModels" source="Image" target="PtfModel" deleteRule="Deny" db-relationship-path="ptfModels"/>
 	<obj-relationship name="ptfTypes" source="Image" target="PtfType" deleteRule="Deny" db-relationship-path="ptfTypes"/>
 	<obj-relationship name="sensorModels" source="Image" target="SensorModel" deleteRule="Deny" db-relationship-path="sensorModels"/>
-	<obj-relationship name="ship" source="Image" target="Ship" deleteRule="Nullify" db-relationship-path="ship"/>
+	<obj-relationship name="ship" source="Image" target="Ship" deleteRule="Deny" db-relationship-path="ship"/>
+	<obj-relationship name="stories" source="Image" target="Story" deleteRule="Deny" db-relationship-path="stories"/>
 	<obj-relationship name="images" source="ImageType" target="Image" deleteRule="Deny" db-relationship-path="images"/>
-	<obj-relationship name="indicatorCategory" source="Indicator" target="IndicatorCategory" deleteRule="Nullify" db-relationship-path="indicatorCategory"/>
+	<obj-relationship name="indicatorCategory" source="Indicator" target="IndicatorCategory" deleteRule="Deny" db-relationship-path="indicatorCategory"/>
 	<obj-relationship name="indicatorValues" source="Indicator" target="IndicatorValue" deleteRule="Deny" db-relationship-path="indicatorValues"/>
-	<obj-relationship name="masterNetwork" source="Indicator" target="Network" deleteRule="Nullify" db-relationship-path="masterNetwork"/>
-	<obj-relationship name="network" source="Indicator" target="Network" deleteRule="Nullify" db-relationship-path="network"/>
-	<obj-relationship name="variable" source="Indicator" target="Variable" deleteRule="Nullify" db-relationship-path="variable"/>
+	<obj-relationship name="masterNetwork" source="Indicator" target="Network" deleteRule="Deny" db-relationship-path="masterNetwork"/>
+	<obj-relationship name="network" source="Indicator" target="Network" deleteRule="Deny" db-relationship-path="network"/>
+	<obj-relationship name="variable" source="Indicator" target="Variable" deleteRule="Deny" db-relationship-path="variable"/>
 	<obj-relationship name="indicators" source="IndicatorCategory" target="Indicator" deleteRule="Deny" db-relationship-path="indicators"/>
-	<obj-relationship name="indicator" source="IndicatorValue" target="Indicator" deleteRule="Nullify" db-relationship-path="indicator"/>
+	<obj-relationship name="indicator" source="IndicatorValue" target="Indicator" deleteRule="Deny" db-relationship-path="indicator"/>
 	<obj-relationship name="docLanguages" source="Language" target="DocLanguage" deleteRule="Deny" db-relationship-path="docLanguages"/>
 	<obj-relationship name="docs" source="Language" target="Doc" deleteRule="Deny" db-relationship-path="docs"/>
-	<obj-relationship name="cruiseLines" source="Line" target="CruiseLine" deleteRule="Nullify" db-relationship-path="cruiseLines"/>
-	<obj-relationship name="lineDecadalStatus" source="Line" target="LineDecadalStatus" deleteRule="Nullify" db-relationship-path="lineDecadalStatus"/>
-	<obj-relationship name="lineFamily" source="Line" target="LineFamily" deleteRule="Nullify" db-relationship-path="lineFamily"/>
+	<obj-relationship name="cruiseLines" source="Line" target="CruiseLine" deleteRule="Deny" db-relationship-path="cruiseLines"/>
+	<obj-relationship name="lineDecadalStatus" source="Line" target="LineDecadalStatus" deleteRule="Deny" db-relationship-path="lineDecadalStatus"/>
+	<obj-relationship name="lineFamily" source="Line" target="LineFamily" deleteRule="Deny" db-relationship-path="lineFamily"/>
 	<obj-relationship name="linePrograms" source="Line" target="LineProgram" deleteRule="Deny" db-relationship-path="linePrograms"/>
 	<obj-relationship name="lineSurveys" source="Line" target="LineSurvey" deleteRule="Deny" db-relationship-path="lineSurveys"/>
-	<obj-relationship name="ptfs" source="Line" target="Ptf" deleteRule="Nullify" db-relationship-path="linePtfs.ptf"/>
+	<obj-relationship name="ptfs" source="Line" target="Ptf" deleteRule="Deny" db-relationship-path="linePtfs.ptf"/>
 	<obj-relationship name="webFrequentations" source="Line" target="WebFrequentation" deleteRule="Deny" db-relationship-path="webFrequentations"/>
-	<obj-relationship name="weblink" source="Line" target="Weblink" deleteRule="Nullify" db-relationship-path="weblink"/>
+	<obj-relationship name="weblink" source="Line" target="Weblink" deleteRule="Deny" db-relationship-path="weblink"/>
 	<obj-relationship name="lines" source="LineDecadalStatus" target="Line" deleteRule="Deny" db-relationship-path="lines"/>
 	<obj-relationship name="lines" source="LineFamily" target="Line" deleteRule="Deny" db-relationship-path="lines"/>
 	<obj-relationship name="lineSurveys" source="LinePerformance" target="LineSurvey" deleteRule="Deny" db-relationship-path="lineSurveys"/>
-	<obj-relationship name="line" source="LineProgram" target="Line" deleteRule="Nullify" db-relationship-path="line"/>
-	<obj-relationship name="program" source="LineProgram" target="Program" deleteRule="Nullify" db-relationship-path="program"/>
-	<obj-relationship name="line" source="LinePtf" target="Line" deleteRule="Nullify" db-relationship-path="line"/>
-	<obj-relationship name="ptf" source="LinePtf" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
+	<obj-relationship name="line" source="LineProgram" target="Line" deleteRule="Deny" db-relationship-path="line"/>
+	<obj-relationship name="program" source="LineProgram" target="Program" deleteRule="Deny" db-relationship-path="program"/>
+	<obj-relationship name="line" source="LinePtf" target="Line" deleteRule="Deny" db-relationship-path="line"/>
+	<obj-relationship name="ptf" source="LinePtf" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
 	<obj-relationship name="lineSurveys" source="LineStatus" target="LineSurvey" deleteRule="Deny" db-relationship-path="lineSurveys"/>
-	<obj-relationship name="line" source="LineSurvey" target="Line" deleteRule="Nullify" db-relationship-path="line"/>
-	<obj-relationship name="linePerformance" source="LineSurvey" target="LinePerformance" deleteRule="Nullify" db-relationship-path="linePerformance"/>
-	<obj-relationship name="lineStatus" source="LineSurvey" target="LineStatus" deleteRule="Nullify" db-relationship-path="lineStatus"/>
-	<obj-relationship name="lineType" source="LineSurvey" target="LineType" deleteRule="Nullify" db-relationship-path="lineType"/>
-	<obj-relationship name="survey" source="LineSurvey" target="Survey" deleteRule="Nullify" db-relationship-path="survey"/>
+	<obj-relationship name="line" source="LineSurvey" target="Line" deleteRule="Deny" db-relationship-path="line"/>
+	<obj-relationship name="linePerformance" source="LineSurvey" target="LinePerformance" deleteRule="Deny" db-relationship-path="linePerformance"/>
+	<obj-relationship name="lineStatus" source="LineSurvey" target="LineStatus" deleteRule="Deny" db-relationship-path="lineStatus"/>
+	<obj-relationship name="lineType" source="LineSurvey" target="LineType" deleteRule="Deny" db-relationship-path="lineType"/>
+	<obj-relationship name="survey" source="LineSurvey" target="Survey" deleteRule="Deny" db-relationship-path="survey"/>
 	<obj-relationship name="lineSurveys" source="LineType" target="LineSurvey" deleteRule="Deny" db-relationship-path="lineSurveys"/>
 	<obj-relationship name="ptfLocStatuses" source="LocStatus" target="PtfLocStatus" deleteRule="Deny" db-relationship-path="ptfLocStatuses"/>
-	<obj-relationship name="ptfs1" source="LocSystem" target="Ptf" deleteRule="Deny" db-relationship-path="ptfs1"/>
+	<obj-relationship name="ptfs" source="LocSystem" target="Ptf" deleteRule="Deny" db-relationship-path="ptfs"/>
 	<obj-relationship name="ptfsBackup" source="LocSystem" target="Ptf" deleteRule="Deny" db-relationship-path="ptfsBackup"/>
 	<obj-relationship name="mapTypeNetworks" source="MapType" target="MapTypeNetwork" deleteRule="Deny" db-relationship-path="mapTypeNetworks"/>
-	<obj-relationship name="mapType" source="MapTypeNetwork" target="MapType" deleteRule="Nullify" db-relationship-path="mapType"/>
-	<obj-relationship name="network" source="MapTypeNetwork" target="Network" deleteRule="Nullify" db-relationship-path="network"/>
-	<obj-relationship name="contact" source="Meeting" target="Contact" deleteRule="Nullify" db-relationship-path="contact"/>
-	<obj-relationship name="country" source="Meeting" target="Country" deleteRule="Nullify" db-relationship-path="country"/>
+	<obj-relationship name="mapType" source="MapTypeNetwork" target="MapType" deleteRule="Deny" db-relationship-path="mapType"/>
+	<obj-relationship name="network" source="MapTypeNetwork" target="Network" deleteRule="Deny" db-relationship-path="network"/>
+	<obj-relationship name="contact" source="Meeting" target="Contact" deleteRule="Deny" db-relationship-path="contact"/>
+	<obj-relationship name="country" source="Meeting" target="Country" deleteRule="Deny" db-relationship-path="country"/>
 	<obj-relationship name="docs" source="Meeting" target="Doc" deleteRule="Deny" db-relationship-path="docs"/>
-	<obj-relationship name="weblink" source="Meeting" target="Weblink" deleteRule="Nullify" db-relationship-path="weblink"/>
+	<obj-relationship name="weblink" source="Meeting" target="Weblink" deleteRule="Deny" db-relationship-path="weblink"/>
 	<obj-relationship name="ptfHardwares" source="MooringType" target="PtfHardware" deleteRule="Deny" db-relationship-path="ptfHardwares"/>
-	<obj-relationship name="country" source="MzmsPtfCountry" target="Country" deleteRule="Nullify" db-relationship-path="country"/>
-	<obj-relationship name="ptf" source="MzmsPtfCountry" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
+	<obj-relationship name="country" source="MzmsPtfCountry" target="Country" deleteRule="Deny" db-relationship-path="country"/>
+	<obj-relationship name="ptf" source="MzmsPtfCountry" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
 	<obj-relationship name="ncNotifications" source="NcLevel" target="NcNotification" deleteRule="Deny" db-relationship-path="ncNotifications"/>
-	<obj-relationship name="contact" source="NcNotification" target="Contact" deleteRule="Nullify" db-relationship-path="contact"/>
-	<obj-relationship name="ncLevel" source="NcNotification" target="NcLevel" deleteRule="Nullify" db-relationship-path="ncLevel"/>
-	<obj-relationship name="ncTopic" source="NcNotification" target="NcTopic" deleteRule="Nullify" db-relationship-path="ncTopic"/>
-	<obj-relationship name="program" source="NcNotification" target="Program" deleteRule="Nullify" db-relationship-path="program"/>
-	<obj-relationship name="ptf" source="NcNotification" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
-	<obj-relationship name="contact" source="NcSubscription" target="Contact" deleteRule="Nullify" db-relationship-path="contact"/>
-	<obj-relationship name="ncTopic" source="NcSubscription" target="NcTopic" deleteRule="Nullify" db-relationship-path="ncTopic"/>
-	<obj-relationship name="program" source="NcSubscription" target="Program" deleteRule="Nullify" db-relationship-path="program"/>
-	<obj-relationship name="ptf" source="NcSubscription" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
+	<obj-relationship name="contact" source="NcNotification" target="Contact" deleteRule="Deny" db-relationship-path="contact"/>
+	<obj-relationship name="ncLevel" source="NcNotification" target="NcLevel" deleteRule="Deny" db-relationship-path="ncLevel"/>
+	<obj-relationship name="ncTopic" source="NcNotification" target="NcTopic" deleteRule="Deny" db-relationship-path="ncTopic"/>
+	<obj-relationship name="program" source="NcNotification" target="Program" deleteRule="Deny" db-relationship-path="program"/>
+	<obj-relationship name="ptf" source="NcNotification" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
+	<obj-relationship name="contact" source="NcSubscription" target="Contact" deleteRule="Deny" db-relationship-path="contact"/>
+	<obj-relationship name="ncTopic" source="NcSubscription" target="NcTopic" deleteRule="Deny" db-relationship-path="ncTopic"/>
+	<obj-relationship name="program" source="NcSubscription" target="Program" deleteRule="Deny" db-relationship-path="program"/>
+	<obj-relationship name="ptf" source="NcSubscription" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
 	<obj-relationship name="ncNotifications" source="NcTopic" target="NcNotification" deleteRule="Deny" db-relationship-path="ncNotifications"/>
 	<obj-relationship name="ncSubscriptions" source="NcTopic" target="NcSubscription" deleteRule="Deny" db-relationship-path="ncSubscriptions"/>
 	<obj-relationship name="agencyDacTypes" source="Network" target="AgencyDacType" deleteRule="Deny" db-relationship-path="agencyDacTypes"/>
@@ -5505,45 +5681,45 @@
 	<obj-relationship name="networkEndingCauses" source="Network" target="NetworkEndingCause" deleteRule="Deny" db-relationship-path="networkEndingCauses"/>
 	<obj-relationship name="networkPtfs" source="Network" target="NetworkPtf" deleteRule="Deny" db-relationship-path="networkPtfs"/>
 	<obj-relationship name="networkSites" source="Network" target="NetworkSite" deleteRule="Deny" db-relationship-path="networkSites"/>
-	<obj-relationship name="networkType" source="Network" target="NetworkType" deleteRule="Nullify" db-relationship-path="networkType"/>
+	<obj-relationship name="networkType" source="Network" target="NetworkType" deleteRule="Deny" db-relationship-path="networkType"/>
 	<obj-relationship name="programs" source="Network" target="Program" deleteRule="Deny" db-relationship-path="programs"/>
 	<obj-relationship name="ptfModels" source="Network" target="PtfModel" deleteRule="Deny" db-relationship-path="ptfModels"/>
 	<obj-relationship name="sensorModelNetworks" source="Network" target="SensorModelNetwork" deleteRule="Deny" db-relationship-path="sensorModelNetworks"/>
 	<obj-relationship name="surveys" source="Network" target="Survey" deleteRule="Deny" db-relationship-path="surveys"/>
 	<obj-relationship name="userGroups" source="Network" target="UserGroup" deleteRule="Deny" db-relationship-path="userGroups"/>
-	<obj-relationship name="webMetricNetwork" source="Network" target="WebMetricNetwork" deleteRule="Nullify" db-relationship-path="webMetricNetwork"/>
+	<obj-relationship name="webMetricNetwork" source="Network" target="WebMetricNetwork" deleteRule="Deny" db-relationship-path="webMetricNetwork"/>
 	<obj-relationship name="weblinks" source="Network" target="Weblink" deleteRule="Deny" db-relationship-path="weblinks"/>
-	<obj-relationship name="contact" source="NetworkContact" target="Contact" deleteRule="Nullify" db-relationship-path="contact"/>
-	<obj-relationship name="network" source="NetworkContact" target="Network" deleteRule="Nullify" db-relationship-path="network"/>
-	<obj-relationship name="role" source="NetworkContact" target="Role" deleteRule="Nullify" db-relationship-path="role"/>
-	<obj-relationship name="country" source="NetworkCountry" target="Country" deleteRule="Nullify" db-relationship-path="country"/>
-	<obj-relationship name="network" source="NetworkCountry" target="Network" deleteRule="Nullify" db-relationship-path="network"/>
-	<obj-relationship name="endingCause" source="NetworkEndingCause" target="EndingCause" deleteRule="Nullify" db-relationship-path="endingCause"/>
-	<obj-relationship name="network" source="NetworkEndingCause" target="Network" deleteRule="Nullify" db-relationship-path="network"/>
-	<obj-relationship name="network" source="NetworkPtf" target="Network" deleteRule="Nullify" db-relationship-path="network"/>
-	<obj-relationship name="ptf" source="NetworkPtf" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
-	<obj-relationship name="network" source="NetworkSite" target="Network" deleteRule="Nullify" db-relationship-path="network"/>
-	<obj-relationship name="site" source="NetworkSite" target="Site" deleteRule="Nullify" db-relationship-path="site"/>
-	<obj-relationship name="gtsCccc" source="Obs" target="GtsCccc" deleteRule="Nullify" db-relationship-path="gtsCccc"/>
-	<obj-relationship name="gtsCode" source="Obs" target="GtsCode" deleteRule="Nullify" db-relationship-path="gtsCode"/>
-	<obj-relationship name="gtsHeader" source="Obs" target="GtsHeader" deleteRule="Nullify" db-relationship-path="gtsHeader"/>
-	<obj-relationship name="gtsInstrumentType" source="Obs" target="GtsInstrumentType" deleteRule="Nullify" db-relationship-path="gtsInstrumentType"/>
-	<obj-relationship name="gtsRecorderType" source="Obs" target="GtsRecorderType" deleteRule="Nullify" db-relationship-path="gtsRecorderType"/>
-	<obj-relationship name="obsDataStatus" source="Obs" target="ObsDataStatus" deleteRule="Nullify" db-relationship-path="obsDataStatus"/>
+	<obj-relationship name="contact" source="NetworkContact" target="Contact" deleteRule="Deny" db-relationship-path="contact"/>
+	<obj-relationship name="network" source="NetworkContact" target="Network" deleteRule="Deny" db-relationship-path="network"/>
+	<obj-relationship name="role" source="NetworkContact" target="Role" deleteRule="Deny" db-relationship-path="role"/>
+	<obj-relationship name="country" source="NetworkCountry" target="Country" deleteRule="Deny" db-relationship-path="country"/>
+	<obj-relationship name="network" source="NetworkCountry" target="Network" deleteRule="Deny" db-relationship-path="network"/>
+	<obj-relationship name="endingCause" source="NetworkEndingCause" target="EndingCause" deleteRule="Deny" db-relationship-path="endingCause"/>
+	<obj-relationship name="network" source="NetworkEndingCause" target="Network" deleteRule="Deny" db-relationship-path="network"/>
+	<obj-relationship name="network" source="NetworkPtf" target="Network" deleteRule="Deny" db-relationship-path="network"/>
+	<obj-relationship name="ptf" source="NetworkPtf" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
+	<obj-relationship name="network" source="NetworkSite" target="Network" deleteRule="Deny" db-relationship-path="network"/>
+	<obj-relationship name="site" source="NetworkSite" target="Site" deleteRule="Deny" db-relationship-path="site"/>
+	<obj-relationship name="gtsCccc" source="Obs" target="GtsCccc" deleteRule="Deny" db-relationship-path="gtsCccc"/>
+	<obj-relationship name="gtsCode" source="Obs" target="GtsCode" deleteRule="Deny" db-relationship-path="gtsCode"/>
+	<obj-relationship name="gtsHeader" source="Obs" target="GtsHeader" deleteRule="Deny" db-relationship-path="gtsHeader"/>
+	<obj-relationship name="gtsInstrumentType" source="Obs" target="GtsInstrumentType" deleteRule="Deny" db-relationship-path="gtsInstrumentType"/>
+	<obj-relationship name="gtsRecorderType" source="Obs" target="GtsRecorderType" deleteRule="Deny" db-relationship-path="gtsRecorderType"/>
+	<obj-relationship name="obsDataStatus" source="Obs" target="ObsDataStatus" deleteRule="Deny" db-relationship-path="obsDataStatus"/>
 	<obj-relationship name="obsObsDataStatuses" source="Obs" target="ObsObsDataStatus" deleteRule="Deny" db-relationship-path="obsObsDataStatuses"/>
 	<obj-relationship name="obsVariables" source="Obs" target="ObsVariable" deleteRule="Deny" db-relationship-path="obsVariables"/>
-	<obj-relationship name="ptf" source="Obs" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
-	<obj-relationship name="dac" source="ObsArgoGdac" target="Agency" deleteRule="Nullify" db-relationship-path="dac"/>
+	<obj-relationship name="ptf" source="Obs" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
+	<obj-relationship name="dac" source="ObsArgoGdac" target="Agency" deleteRule="Deny" db-relationship-path="dac"/>
 	<obj-relationship name="obsArgoGdacDss" source="ObsArgoGdac" target="ObsArgoGdacDs" deleteRule="Deny" db-relationship-path="obsArgoGdacDss"/>
 	<obj-relationship name="obsArgoGdacVariables" source="ObsArgoGdac" target="ObsArgoGdacVariable" deleteRule="Deny" db-relationship-path="obsArgoGdacVariables"/>
-	<obj-relationship name="obsDataStatus" source="ObsArgoGdac" target="ObsDataStatus" deleteRule="Nullify" db-relationship-path="obsDataStatus"/>
-	<obj-relationship name="obsDataStatusBgc" source="ObsArgoGdac" target="ObsDataStatus" deleteRule="Nullify" db-relationship-path="obsDataStatusBgc"/>
-	<obj-relationship name="ptf" source="ObsArgoGdac" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
-	<obj-relationship name="obs" source="ObsArgoGdacDs" target="ObsArgoGdac" deleteRule="Nullify" db-relationship-path="obs"/>
-	<obj-relationship name="obsDataStatus" source="ObsArgoGdacDs" target="ObsDataStatus" deleteRule="Nullify" db-relationship-path="obsDataStatus"/>
-	<obj-relationship name="obs" source="ObsArgoGdacVariable" target="ObsArgoGdac" deleteRule="Nullify" db-relationship-path="obs"/>
-	<obj-relationship name="obsDataStatus" source="ObsArgoGdacVariable" target="ObsDataStatus" deleteRule="Nullify" db-relationship-path="obsDataStatus"/>
-	<obj-relationship name="variable" source="ObsArgoGdacVariable" target="Variable" deleteRule="Nullify" db-relationship-path="variable"/>
+	<obj-relationship name="obsDataStatus" source="ObsArgoGdac" target="ObsDataStatus" deleteRule="Deny" db-relationship-path="obsDataStatus"/>
+	<obj-relationship name="obsDataStatusBgc" source="ObsArgoGdac" target="ObsDataStatus" deleteRule="Deny" db-relationship-path="obsDataStatusBgc"/>
+	<obj-relationship name="ptf" source="ObsArgoGdac" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
+	<obj-relationship name="obs" source="ObsArgoGdacDs" target="ObsArgoGdac" deleteRule="Deny" db-relationship-path="obs"/>
+	<obj-relationship name="obsDataStatus" source="ObsArgoGdacDs" target="ObsDataStatus" deleteRule="Deny" db-relationship-path="obsDataStatus"/>
+	<obj-relationship name="obs" source="ObsArgoGdacVariable" target="ObsArgoGdac" deleteRule="Deny" db-relationship-path="obs"/>
+	<obj-relationship name="obsDataStatus" source="ObsArgoGdacVariable" target="ObsDataStatus" deleteRule="Deny" db-relationship-path="obsDataStatus"/>
+	<obj-relationship name="variable" source="ObsArgoGdacVariable" target="Variable" deleteRule="Deny" db-relationship-path="variable"/>
 	<obj-relationship name="obsArgoGdacDss" source="ObsDataStatus" target="ObsArgoGdacDs" deleteRule="Deny" db-relationship-path="obsArgoGdacDss"/>
 	<obj-relationship name="obsArgoGdacVariables" source="ObsDataStatus" target="ObsArgoGdacVariable" deleteRule="Deny" db-relationship-path="obsArgoGdacVariables"/>
 	<obj-relationship name="obsArgoGdacs" source="ObsDataStatus" target="ObsArgoGdac" deleteRule="Deny" db-relationship-path="obsArgoGdacs"/>
@@ -5554,190 +5730,213 @@
 	<obj-relationship name="obsObsDataStatuses" source="ObsDataStatus" target="ObsObsDataStatus" deleteRule="Deny" db-relationship-path="obsObsDataStatuses"/>
 	<obj-relationship name="obsTsunaGtsOsmcs" source="ObsDataStatus" target="ObsTsunaGtsOsmc" deleteRule="Deny" db-relationship-path="obsTsunaGtsOsmcs"/>
 	<obj-relationship name="obss" source="ObsDataStatus" target="Obs" deleteRule="Deny" db-relationship-path="obss"/>
-	<obj-relationship name="obs" source="ObsFishingvesselFdVariable" target="ObsFishingvesselFishydata" deleteRule="Nullify" db-relationship-path="obs"/>
-	<obj-relationship name="variable" source="ObsFishingvesselFdVariable" target="Variable" deleteRule="Nullify" db-relationship-path="variable"/>
-	<obj-relationship name="obsDataStatus" source="ObsFishingvesselFishydata" target="ObsDataStatus" deleteRule="Nullify" db-relationship-path="obsDataStatus"/>
-	<obj-relationship name="ptf" source="ObsFishingvesselFishydata" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
+	<obj-relationship name="obs" source="ObsFishingvesselFdVariable" target="ObsFishingvesselFishydata" deleteRule="Deny" db-relationship-path="obs"/>
+	<obj-relationship name="variable" source="ObsFishingvesselFdVariable" target="Variable" deleteRule="Deny" db-relationship-path="variable"/>
+	<obj-relationship name="obsDataStatus" source="ObsFishingvesselFishydata" target="ObsDataStatus" deleteRule="Deny" db-relationship-path="obsDataStatus"/>
+	<obj-relationship name="ptf" source="ObsFishingvesselFishydata" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
 	<obj-relationship name="variables" source="ObsFishingvesselFishydata" target="Variable" db-relationship-path="obsFishingvesselFdVariables.variable"/>
 	<obj-relationship name="obsGlidersGdacDss" source="ObsGlidersGdac" target="ObsGlidersGdacDs" deleteRule="Deny" db-relationship-path="obsGlidersGdacDss"/>
 	<obj-relationship name="obsGlidersGdacVariables" source="ObsGlidersGdac" target="ObsGlidersGdacVariable" deleteRule="Deny" db-relationship-path="obsGlidersGdacVariables"/>
-	<obj-relationship name="obs" source="ObsGlidersGdacDs" target="ObsGlidersGdac" deleteRule="Nullify" db-relationship-path="obs"/>
-	<obj-relationship name="obsDataStatus" source="ObsGlidersGdacDs" target="ObsDataStatus" deleteRule="Nullify" db-relationship-path="obsDataStatus"/>
-	<obj-relationship name="obs" source="ObsGlidersGdacVariable" target="ObsGlidersGdac" deleteRule="Nullify" db-relationship-path="obs"/>
-	<obj-relationship name="variable" source="ObsGlidersGdacVariable" target="Variable" deleteRule="Nullify" db-relationship-path="variable"/>
-	<obj-relationship name="obsDataStatus" source="ObsGlidersGtsOsmc" target="ObsDataStatus" deleteRule="Nullify" db-relationship-path="obsDataStatus"/>
+	<obj-relationship name="obs" source="ObsGlidersGdacDs" target="ObsGlidersGdac" deleteRule="Deny" db-relationship-path="obs"/>
+	<obj-relationship name="obsDataStatus" source="ObsGlidersGdacDs" target="ObsDataStatus" deleteRule="Deny" db-relationship-path="obsDataStatus"/>
+	<obj-relationship name="obs" source="ObsGlidersGdacVariable" target="ObsGlidersGdac" deleteRule="Deny" db-relationship-path="obs"/>
+	<obj-relationship name="variable" source="ObsGlidersGdacVariable" target="Variable" deleteRule="Deny" db-relationship-path="variable"/>
+	<obj-relationship name="obsDataStatus" source="ObsGlidersGtsOsmc" target="ObsDataStatus" deleteRule="Deny" db-relationship-path="obsDataStatus"/>
 	<obj-relationship name="obsGlidersGtsOsmcVariables" source="ObsGlidersGtsOsmc" target="ObsGlidersGtsOsmcVariable" deleteRule="Deny" db-relationship-path="obsGlidersGtsOsmcVariables"/>
-	<obj-relationship name="ptf" source="ObsGlidersGtsOsmc" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
-	<obj-relationship name="obs" source="ObsGlidersGtsOsmcVariable" target="ObsGlidersGtsOsmc" deleteRule="Nullify" db-relationship-path="obs"/>
-	<obj-relationship name="variable" source="ObsGlidersGtsOsmcVariable" target="Variable" deleteRule="Nullify" db-relationship-path="variable"/>
-	<obj-relationship name="obs" source="ObsObsDataStatus" target="Obs" deleteRule="Nullify" db-relationship-path="obs"/>
-	<obj-relationship name="obsDataStatus" source="ObsObsDataStatus" target="ObsDataStatus" deleteRule="Nullify" db-relationship-path="obsDataStatus"/>
-	<obj-relationship name="obsDataStatus" source="ObsTsunaGtsOsmc" target="ObsDataStatus" deleteRule="Nullify" db-relationship-path="obsDataStatus"/>
+	<obj-relationship name="ptf" source="ObsGlidersGtsOsmc" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
+	<obj-relationship name="obs" source="ObsGlidersGtsOsmcVariable" target="ObsGlidersGtsOsmc" deleteRule="Deny" db-relationship-path="obs"/>
+	<obj-relationship name="variable" source="ObsGlidersGtsOsmcVariable" target="Variable" deleteRule="Deny" db-relationship-path="variable"/>
+	<obj-relationship name="obsArgoGdac" source="ObsLatest" target="ObsArgoGdac" deleteRule="Deny" db-relationship-path="obsArgoGdac"/>
+	<obj-relationship name="ptfs" source="ObsLatest" target="Ptf" deleteRule="Deny" db-relationship-path="ptfs"/>
+	<obj-relationship name="obs" source="ObsObsDataStatus" target="Obs" deleteRule="Deny" db-relationship-path="obs"/>
+	<obj-relationship name="obsDataStatus" source="ObsObsDataStatus" target="ObsDataStatus" deleteRule="Deny" db-relationship-path="obsDataStatus"/>
+	<obj-relationship name="obsDataStatus" source="ObsTsunaGtsOsmc" target="ObsDataStatus" deleteRule="Deny" db-relationship-path="obsDataStatus"/>
 	<obj-relationship name="obsTsunaGtsOsmcVariables" source="ObsTsunaGtsOsmc" target="ObsTsunaGtsOsmcVariable" deleteRule="Deny" db-relationship-path="obsTsunaGtsOsmcVariables"/>
-	<obj-relationship name="ptf" source="ObsTsunaGtsOsmc" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
-	<obj-relationship name="obs" source="ObsTsunaGtsOsmcVariable" target="ObsTsunaGtsOsmc" deleteRule="Nullify" db-relationship-path="obs"/>
-	<obj-relationship name="variable" source="ObsTsunaGtsOsmcVariable" target="Variable" deleteRule="Nullify" db-relationship-path="variable"/>
-	<obj-relationship name="obs" source="ObsVariable" target="Obs" deleteRule="Nullify" db-relationship-path="obs"/>
-	<obj-relationship name="variable" source="ObsVariable" target="Variable" deleteRule="Nullify" db-relationship-path="variable"/>
+	<obj-relationship name="ptf" source="ObsTsunaGtsOsmc" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
+	<obj-relationship name="obs" source="ObsTsunaGtsOsmcVariable" target="ObsTsunaGtsOsmc" deleteRule="Deny" db-relationship-path="obs"/>
+	<obj-relationship name="variable" source="ObsTsunaGtsOsmcVariable" target="Variable" deleteRule="Deny" db-relationship-path="variable"/>
+	<obj-relationship name="obs" source="ObsVariable" target="Obs" deleteRule="Deny" db-relationship-path="obs"/>
+	<obj-relationship name="variable" source="ObsVariable" target="Variable" deleteRule="Deny" db-relationship-path="variable"/>
 	<obj-relationship name="ptfDeployments" source="PackageType" target="PtfDeployment" deleteRule="Deny" db-relationship-path="ptfDeployments"/>
 	<obj-relationship name="parameterPtfs" source="Parameter" target="ParameterPtf" deleteRule="Deny" db-relationship-path="parameterPtfs"/>
 	<obj-relationship name="parameterVariables" source="Parameter" target="ParameterVariable" deleteRule="Deny" db-relationship-path="parameterVariables"/>
-	<obj-relationship name="parameter" source="ParameterPtf" target="Parameter" deleteRule="Nullify" db-relationship-path="parameter"/>
-	<obj-relationship name="ptf" source="ParameterPtf" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
-	<obj-relationship name="parameter" source="ParameterVariable" target="Parameter" deleteRule="Nullify" db-relationship-path="parameter"/>
-	<obj-relationship name="variable" source="ParameterVariable" target="Variable" deleteRule="Nullify" db-relationship-path="variable"/>
+	<obj-relationship name="parameter" source="ParameterPtf" target="Parameter" deleteRule="Deny" db-relationship-path="parameter"/>
+	<obj-relationship name="ptf" source="ParameterPtf" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
+	<obj-relationship name="parameter" source="ParameterVariable" target="Parameter" deleteRule="Deny" db-relationship-path="parameter"/>
+	<obj-relationship name="variable" source="ParameterVariable" target="Variable" deleteRule="Deny" db-relationship-path="variable"/>
 	<obj-relationship name="retrievals" source="PostRetrievalStatus" target="Retrieval" deleteRule="Deny" db-relationship-path="retrievals"/>
-	<obj-relationship name="country" source="Program" target="Country" deleteRule="Nullify" db-relationship-path="country"/>
+	<obj-relationship name="country" source="Program" target="Country" deleteRule="Deny" db-relationship-path="country"/>
 	<obj-relationship name="cruisePrograms" source="Program" target="CruiseProgram" deleteRule="Deny" db-relationship-path="cruisePrograms"/>
-	<obj-relationship name="defaultPtfModel" source="Program" target="PtfModel" deleteRule="Nullify" db-relationship-path="defaultPtfModel"/>
+	<obj-relationship name="defaultPtfModel" source="Program" target="PtfModel" deleteRule="Deny" db-relationship-path="defaultPtfModel"/>
 	<obj-relationship name="images" source="Program" target="Image" deleteRule="Deny" db-relationship-path="images"/>
 	<obj-relationship name="linePrograms" source="Program" target="LineProgram" deleteRule="Deny" db-relationship-path="linePrograms"/>
 	<obj-relationship name="ncNotifications" source="Program" target="NcNotification" deleteRule="Deny" db-relationship-path="ncNotifications"/>
-	<obj-relationship name="network" source="Program" target="Network" deleteRule="Nullify" db-relationship-path="network"/>
+	<obj-relationship name="network" source="Program" target="Network" deleteRule="Deny" db-relationship-path="network"/>
 	<obj-relationship name="programAgencies" source="Program" target="ProgramAgency" deleteRule="Deny" db-relationship-path="programAgencies"/>
 	<obj-relationship name="programContacts" source="Program" target="ProgramContact" deleteRule="Deny" db-relationship-path="programContacts"/>
 	<obj-relationship name="ptfVariables" source="Program" target="PtfVariable" deleteRule="Deny" db-relationship-path="ptfVariables"/>
 	<obj-relationship name="ptfs" source="Program" target="Ptf" deleteRule="Deny" db-relationship-path="ptfs"/>
 	<obj-relationship name="services" source="Program" target="Service" deleteRule="Deny" db-relationship-path="services"/>
 	<obj-relationship name="weblinks" source="Program" target="Weblink" deleteRule="Deny" db-relationship-path="weblinks"/>
-	<obj-relationship name="agency" source="ProgramAgency" target="Agency" deleteRule="Nullify" db-relationship-path="agency"/>
-	<obj-relationship name="program" source="ProgramAgency" target="Program" deleteRule="Nullify" db-relationship-path="program"/>
-	<obj-relationship name="role" source="ProgramAgency" target="AgencyRole" deleteRule="Nullify" db-relationship-path="role"/>
-	<obj-relationship name="contact" source="ProgramContact" target="Contact" deleteRule="Nullify" db-relationship-path="contact"/>
-	<obj-relationship name="program" source="ProgramContact" target="Program" deleteRule="Nullify" db-relationship-path="program"/>
-	<obj-relationship name="role" source="ProgramContact" target="Role" deleteRule="Nullify" db-relationship-path="role"/>
+	<obj-relationship name="agency" source="ProgramAgency" target="Agency" deleteRule="Deny" db-relationship-path="agency"/>
+	<obj-relationship name="program" source="ProgramAgency" target="Program" deleteRule="Deny" db-relationship-path="program"/>
+	<obj-relationship name="role" source="ProgramAgency" target="AgencyRole" deleteRule="Deny" db-relationship-path="role"/>
+	<obj-relationship name="contact" source="ProgramContact" target="Contact" deleteRule="Deny" db-relationship-path="contact"/>
+	<obj-relationship name="program" source="ProgramContact" target="Program" deleteRule="Deny" db-relationship-path="program"/>
+	<obj-relationship name="role" source="ProgramContact" target="Role" deleteRule="Deny" db-relationship-path="role"/>
+	<obj-relationship name="adoptions" source="Ptf" target="Adoption" deleteRule="Deny" db-relationship-path="adoptions"/>
 	<obj-relationship name="agencyPtfs" source="Ptf" target="AgencyPtf" deleteRule="Deny" db-relationship-path="agencyPtfs"/>
-	<obj-relationship name="backupTelecom" source="Ptf" target="Telecom" deleteRule="Nullify" db-relationship-path="backupTelecom"/>
-	<obj-relationship name="backupTrackingSystem" source="Ptf" target="LocSystem" deleteRule="Nullify" db-relationship-path="backupTrackingSystem"/>
+	<obj-relationship name="backupTelecom" source="Ptf" target="Telecom" deleteRule="Deny" db-relationship-path="backupTelecom"/>
+	<obj-relationship name="backupTrackingSystem" source="Ptf" target="LocSystem" deleteRule="Deny" db-relationship-path="backupTrackingSystem"/>
 	<obj-relationship name="contactPtfRoles" source="Ptf" target="ContactPtfRole" deleteRule="Deny" db-relationship-path="contactPtfRoles"/>
-	<obj-relationship name="dataStatus" source="Ptf" target="DataStatus" deleteRule="Nullify" db-relationship-path="dataStatus"/>
-	<obj-relationship name="doc" source="Ptf" target="Doc" deleteRule="Nullify" db-relationship-path="doc"/>
+	<obj-relationship name="dataStatus" source="Ptf" target="DataStatus" deleteRule="Deny" db-relationship-path="dataStatus"/>
+	<obj-relationship name="doc" source="Ptf" target="Doc" deleteRule="Deny" db-relationship-path="doc"/>
 	<obj-relationship name="docs" source="Ptf" target="Doc" deleteRule="Deny" db-relationship-path="docs"/>
-	<obj-relationship name="endingCause" source="Ptf" target="EndingCause" deleteRule="Nullify" db-relationship-path="endingCause"/>
-	<obj-relationship name="latestObs" source="Ptf" target="ObsLatest" deleteRule="Nullify" db-relationship-path="latestObs"/>
-	<obj-relationship name="lines" source="Ptf" target="Line" deleteRule="Nullify" db-relationship-path="linePtfs.line"/>
+	<obj-relationship name="endingCause" source="Ptf" target="EndingCause" deleteRule="Deny" db-relationship-path="endingCause"/>
+	<obj-relationship name="latestObs" source="Ptf" target="ObsLatest" deleteRule="Deny" db-relationship-path="latestObs"/>
+	<obj-relationship name="lines" source="Ptf" target="Line" deleteRule="Deny" db-relationship-path="linePtfs.line"/>
+	<obj-relationship name="locSystem" source="Ptf" target="LocSystem" deleteRule="Deny" db-relationship-path="locSystem"/>
 	<obj-relationship name="mzmsPtfCountries" source="Ptf" target="MzmsPtfCountry" deleteRule="Deny" db-relationship-path="mzmsPtfCountries"/>
+	<obj-relationship name="ncNotifications" source="Ptf" target="NcNotification" deleteRule="Deny" db-relationship-path="ncNotifications"/>
+	<obj-relationship name="ncSubscriptions" source="Ptf" target="NcSubscription" deleteRule="Deny" db-relationship-path="ncSubscriptions"/>
 	<obj-relationship name="networkPtfs" source="Ptf" target="NetworkPtf" deleteRule="Deny" db-relationship-path="networkPtfs"/>
+	<obj-relationship name="obsArgoGdacs" source="Ptf" target="ObsArgoGdac" deleteRule="Deny" db-relationship-path="obsArgoGdacs"/>
+	<obj-relationship name="obsFishingvesselFishydatas" source="Ptf" target="ObsFishingvesselFishydata" deleteRule="Deny" db-relationship-path="obsFishingvesselFishydatas"/>
+	<obj-relationship name="obsGlidersGtsOsmcs" source="Ptf" target="ObsGlidersGtsOsmc" deleteRule="Deny" db-relationship-path="obsGlidersGtsOsmcs"/>
+	<obj-relationship name="obsTsunaGtsOsmcs" source="Ptf" target="ObsTsunaGtsOsmc" deleteRule="Deny" db-relationship-path="obsTsunaGtsOsmcs"/>
+	<obj-relationship name="obss" source="Ptf" target="Obs" deleteRule="Deny" db-relationship-path="obss"/>
 	<obj-relationship name="parameterPtfs" source="Ptf" target="ParameterPtf" deleteRule="Deny" db-relationship-path="parameterPtfs"/>
-	<obj-relationship name="program" source="Ptf" target="Program" deleteRule="Nullify" db-relationship-path="program"/>
-	<obj-relationship name="ptfAncillaryDevices" source="Ptf" target="PtfAncillaryDevice" deleteRule="Nullify" db-relationship-path="ptfAncillaryDevices"/>
-	<obj-relationship name="ptfAutomation" source="Ptf" target="PtfAutomation" deleteRule="Nullify" db-relationship-path="ptfAutomation"/>
-	<obj-relationship name="ptfBatchStatus" source="Ptf" target="PtfBatchStatus" deleteRule="Nullify" db-relationship-path="ptfBatchStatus"/>
+	<obj-relationship name="program" source="Ptf" target="Program" deleteRule="Deny" db-relationship-path="program"/>
+	<obj-relationship name="ptfAncillaryDevices" source="Ptf" target="PtfAncillaryDevice" deleteRule="Deny" db-relationship-path="ptfAncillaryDevices"/>
+	<obj-relationship name="ptfAutomation" source="Ptf" target="PtfAutomation" deleteRule="Deny" db-relationship-path="ptfAutomation"/>
+	<obj-relationship name="ptfBatchStatus" source="Ptf" target="PtfBatchStatus" deleteRule="Deny" db-relationship-path="ptfBatchStatus"/>
 	<obj-relationship name="ptfConfigs" source="Ptf" target="PtfConfig" deleteRule="Deny" db-relationship-path="ptfConfigs"/>
-	<obj-relationship name="ptfDepl" source="Ptf" target="PtfDeployment" deleteRule="Nullify" db-relationship-path="ptfDepl"/>
-	<obj-relationship name="ptfHardware" source="Ptf" target="PtfHardware" deleteRule="Nullify" db-relationship-path="ptfHardware"/>
-	<obj-relationship name="ptfIdentifiers" source="Ptf" target="PtfIdentifiers" deleteRule="Nullify" db-relationship-path="ptfIdentifiers"/>
+	<obj-relationship name="ptfDepl" source="Ptf" target="PtfDeployment" deleteRule="Deny" db-relationship-path="ptfDepl"/>
+	<obj-relationship name="ptfHardware" source="Ptf" target="PtfHardware" deleteRule="Deny" db-relationship-path="ptfHardware"/>
+	<obj-relationship name="ptfIdentifiers" source="Ptf" target="PtfIdentifiers" deleteRule="Deny" db-relationship-path="ptfIdentifiers"/>
 	<obj-relationship name="ptfLocStatuses" source="Ptf" target="PtfLocStatus" deleteRule="Deny" db-relationship-path="ptfLocStatuses"/>
-	<obj-relationship name="ptfModel" source="Ptf" target="PtfModel" deleteRule="Nullify" db-relationship-path="ptfModel"/>
+	<obj-relationship name="ptfModel" source="Ptf" target="PtfModel" deleteRule="Deny" db-relationship-path="ptfModel"/>
 	<obj-relationship name="ptfPtfStatuses" source="Ptf" target="PtfPtfStatus" deleteRule="Deny" db-relationship-path="ptfPtfStatuses"/>
-	<obj-relationship name="ptfSoftware" source="Ptf" target="PtfSoftware" deleteRule="Nullify" db-relationship-path="ptfSoftware"/>
-	<obj-relationship name="ptfStatus" source="Ptf" target="PtfStatus" deleteRule="Nullify" db-relationship-path="ptfStatus"/>
+	<obj-relationship name="ptfSoftware" source="Ptf" target="PtfSoftware" deleteRule="Deny" db-relationship-path="ptfSoftware"/>
+	<obj-relationship name="ptfStatistics" source="Ptf" target="PtfStatistics" deleteRule="Deny" db-relationship-path="ptfStatistics"/>
+	<obj-relationship name="ptfStatus" source="Ptf" target="PtfStatus" deleteRule="Deny" db-relationship-path="ptfStatus"/>
+	<obj-relationship name="ptfUpdateHistories" source="Ptf" target="PtfUpdateHistory" deleteRule="Deny" db-relationship-path="ptfUpdateHistories"/>
 	<obj-relationship name="ptfVariables" source="Ptf" target="PtfVariable" deleteRule="Deny" db-relationship-path="ptfVariables"/>
 	<obj-relationship name="qcFeedbacks" source="Ptf" target="QcFeedback" deleteRule="Deny" db-relationship-path="qcFeedbacks"/>
-	<obj-relationship name="retrieval" source="Ptf" target="Retrieval" deleteRule="Nullify" db-relationship-path="retrieval"/>
-	<obj-relationship name="serviceSchedule" source="Ptf" target="TimePeriod" deleteRule="Nullify" db-relationship-path="serviceSchedule"/>
+	<obj-relationship name="retrieval" source="Ptf" target="Retrieval" deleteRule="Deny" db-relationship-path="retrieval"/>
+	<obj-relationship name="serviceSchedule" source="Ptf" target="TimePeriod" deleteRule="Deny" db-relationship-path="serviceSchedule"/>
 	<obj-relationship name="services" source="Ptf" target="Service" deleteRule="Deny" db-relationship-path="services"/>
 	<obj-relationship name="sitePtfs" source="Ptf" target="SitePtf" deleteRule="Deny" db-relationship-path="sitePtfs"/>
-	<obj-relationship name="tags" source="Ptf" target="Tag" deleteRule="Nullify" db-relationship-path="tagPtfs.tag"/>
-	<obj-relationship name="telecom" source="Ptf" target="Telecom" deleteRule="Nullify" db-relationship-path="telecom"/>
-	<obj-relationship name="trackingSystem" source="Ptf" target="LocSystem" deleteRule="Nullify" db-relationship-path="trackingSystem"/>
-	<obj-relationship name="weblinks" source="Ptf" target="Weblink" deleteRule="Nullify" db-relationship-path="weblinkPtfs.weblink"/>
+	<obj-relationship name="stories" source="Ptf" target="Story" deleteRule="Deny" db-relationship-path="stories"/>
+	<obj-relationship name="tags" source="Ptf" target="Tag" deleteRule="Deny" db-relationship-path="tagPtfs.tag"/>
+	<obj-relationship name="telecom" source="Ptf" target="Telecom" deleteRule="Deny" db-relationship-path="telecom"/>
+	<obj-relationship name="webFrequentations" source="Ptf" target="WebFrequentation" deleteRule="Deny" db-relationship-path="webFrequentations"/>
+	<obj-relationship name="weblinks" source="Ptf" target="Weblink" deleteRule="Deny" db-relationship-path="weblinkPtfs.weblink"/>
 	<obj-relationship name="wmos" source="Ptf" target="Wmo" deleteRule="Deny" db-relationship-path="wmos"/>
-	<obj-relationship name="ptf" source="PtfAncillaryDevice" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
-	<obj-relationship name="ptfAncillaryDeviceName" source="PtfAncillaryDevice" target="PtfAncillaryDeviceName" deleteRule="Nullify" db-relationship-path="ptfAncillaryDeviceName"/>
-	<obj-relationship name="ptfAncillaryDeviceVersion" source="PtfAncillaryDevice" target="PtfAncillaryDeviceVersion" deleteRule="Nullify" db-relationship-path="ptfAncillaryDeviceVersion"/>
+	<obj-relationship name="ptf" source="PtfAncillaryDevice" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
+	<obj-relationship name="ptfAncillaryDeviceName" source="PtfAncillaryDevice" target="PtfAncillaryDeviceName" deleteRule="Deny" db-relationship-path="ptfAncillaryDeviceName"/>
+	<obj-relationship name="ptfAncillaryDeviceVersion" source="PtfAncillaryDevice" target="PtfAncillaryDeviceVersion" deleteRule="Deny" db-relationship-path="ptfAncillaryDeviceVersion"/>
 	<obj-relationship name="ptfAncillaryDeviceVersions" source="PtfAncillaryDeviceName" target="PtfAncillaryDeviceVersion" deleteRule="Deny" db-relationship-path="ptfAncillaryDeviceVersions"/>
-	<obj-relationship name="ptfAncillaryDeviceName" source="PtfAncillaryDeviceVersion" target="PtfAncillaryDeviceName" deleteRule="Nullify" db-relationship-path="ptfAncillaryDeviceName"/>
-	<obj-relationship name="ptfModel" source="PtfAncillaryDeviceVersion" target="PtfModel" deleteRule="Nullify" db-relationship-path="ptfModel"/>
+	<obj-relationship name="ptfAncillaryDeviceName" source="PtfAncillaryDeviceVersion" target="PtfAncillaryDeviceName" deleteRule="Deny" db-relationship-path="ptfAncillaryDeviceName"/>
+	<obj-relationship name="ptfModel" source="PtfAncillaryDeviceVersion" target="PtfModel" deleteRule="Deny" db-relationship-path="ptfModel"/>
 	<obj-relationship name="ptfHardwares" source="PtfBattery" target="PtfHardware" deleteRule="Deny" db-relationship-path="ptfHardwares"/>
-	<obj-relationship name="config" source="PtfConfig" target="Config" deleteRule="Nullify" db-relationship-path="config"/>
-	<obj-relationship name="ptf" source="PtfConfig" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
-	<obj-relationship name="contact" source="PtfDeployment" target="Contact" deleteRule="Nullify" db-relationship-path="contact"/>
-	<obj-relationship name="country" source="PtfDeployment" target="Country" deleteRule="Nullify" db-relationship-path="country"/>
-	<obj-relationship name="cruise" source="PtfDeployment" target="Cruise" deleteRule="Nullify" db-relationship-path="cruise"/>
-	<obj-relationship name="deplMethod" source="PtfDeployment" target="DeplMethod" deleteRule="Nullify" db-relationship-path="deplMethod"/>
-	<obj-relationship name="deplType" source="PtfDeployment" target="DeplType" deleteRule="Nullify" db-relationship-path="deplType"/>
-	<obj-relationship name="packType" source="PtfDeployment" target="PackageType" deleteRule="Nullify" db-relationship-path="packType"/>
+	<obj-relationship name="config" source="PtfConfig" target="Config" deleteRule="Deny" db-relationship-path="config"/>
+	<obj-relationship name="ptf" source="PtfConfig" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
+	<obj-relationship name="contact" source="PtfDeployment" target="Contact" deleteRule="Deny" db-relationship-path="contact"/>
+	<obj-relationship name="country" source="PtfDeployment" target="Country" deleteRule="Deny" db-relationship-path="country"/>
+	<obj-relationship name="cruise" source="PtfDeployment" target="Cruise" deleteRule="Deny" db-relationship-path="cruise"/>
+	<obj-relationship name="deplMethod" source="PtfDeployment" target="DeplMethod" deleteRule="Deny" db-relationship-path="deplMethod"/>
+	<obj-relationship name="deplType" source="PtfDeployment" target="DeplType" deleteRule="Deny" db-relationship-path="deplType"/>
+	<obj-relationship name="packType" source="PtfDeployment" target="PackageType" deleteRule="Deny" db-relationship-path="packType"/>
 	<obj-relationship name="ptfs" source="PtfDeployment" target="Ptf" deleteRule="Deny" db-relationship-path="ptfs"/>
-	<obj-relationship name="ship" source="PtfDeployment" target="Ship" deleteRule="Nullify" db-relationship-path="ship"/>
+	<obj-relationship name="ship" source="PtfDeployment" target="Ship" deleteRule="Deny" db-relationship-path="ship"/>
 	<obj-relationship name="ptfTypes" source="PtfFamily" target="PtfType" deleteRule="Deny" db-relationship-path="ptfTypes"/>
-	<obj-relationship name="agency" source="PtfFirmware" target="Agency" deleteRule="Nullify" db-relationship-path="agency"/>
+	<obj-relationship name="agency" source="PtfFirmware" target="Agency" deleteRule="Deny" db-relationship-path="agency"/>
 	<obj-relationship name="ptfHardwares" source="PtfFirmware" target="PtfHardware" deleteRule="Deny" db-relationship-path="ptfHardwares"/>
 	<obj-relationship name="ptfHardwares1" source="PtfFirmware" target="PtfHardware" deleteRule="Deny" db-relationship-path="ptfHardwares1"/>
-	<obj-relationship name="battery" source="PtfHardware" target="PtfBattery" deleteRule="Nullify" db-relationship-path="battery"/>
-	<obj-relationship name="firmware" source="PtfHardware" target="PtfFirmware" deleteRule="Nullify" db-relationship-path="firmware"/>
-	<obj-relationship name="firmwareAdd" source="PtfHardware" target="PtfFirmware" deleteRule="Nullify" db-relationship-path="firmwareAdd"/>
-	<obj-relationship name="hullType" source="PtfHardware" target="PtfHullType" deleteRule="Nullify" db-relationship-path="hullType"/>
-	<obj-relationship name="mooringType" source="PtfHardware" target="MooringType" deleteRule="Nullify" db-relationship-path="mooringType"/>
+	<obj-relationship name="ptfModelFirmwares" source="PtfFirmware" target="PtfModelFirmware" deleteRule="Deny" db-relationship-path="ptfModelFirmwares"/>
+	<obj-relationship name="battery" source="PtfHardware" target="PtfBattery" deleteRule="Deny" db-relationship-path="battery"/>
+	<obj-relationship name="firmware" source="PtfHardware" target="PtfFirmware" deleteRule="Deny" db-relationship-path="firmware"/>
+	<obj-relationship name="firmwareAdd" source="PtfHardware" target="PtfFirmware" deleteRule="Deny" db-relationship-path="firmwareAdd"/>
+	<obj-relationship name="hullType" source="PtfHardware" target="PtfHullType" deleteRule="Deny" db-relationship-path="hullType"/>
+	<obj-relationship name="mooringType" source="PtfHardware" target="MooringType" deleteRule="Deny" db-relationship-path="mooringType"/>
 	<obj-relationship name="ptfs" source="PtfHardware" target="Ptf" deleteRule="Deny" db-relationship-path="ptfs"/>
-	<obj-relationship name="pumpType" source="PtfHardware" target="PumpType" deleteRule="Nullify" db-relationship-path="pumpType"/>
-	<obj-relationship name="sensorUpgradeCountry" source="PtfHardware" target="Country" deleteRule="Nullify" db-relationship-path="sensorUpgradeCountry"/>
-	<obj-relationship name="agency" source="PtfHullType" target="Agency" deleteRule="Nullify" db-relationship-path="agency"/>
+	<obj-relationship name="pumpType" source="PtfHardware" target="PumpType" deleteRule="Deny" db-relationship-path="pumpType"/>
+	<obj-relationship name="sensorUpgradeCountry" source="PtfHardware" target="Country" deleteRule="Deny" db-relationship-path="sensorUpgradeCountry"/>
+	<obj-relationship name="agency" source="PtfHullType" target="Agency" deleteRule="Deny" db-relationship-path="agency"/>
 	<obj-relationship name="ptfHardwares" source="PtfHullType" target="PtfHardware" deleteRule="Deny" db-relationship-path="ptfHardwares"/>
 	<obj-relationship name="ptfModels" source="PtfHullType" target="PtfModel" deleteRule="Deny" db-relationship-path="ptfModels"/>
 	<obj-relationship name="ptfs" source="PtfIdentifiers" target="Ptf" deleteRule="Deny" db-relationship-path="ptfs"/>
-	<obj-relationship name="locStatus" source="PtfLocStatus" target="LocStatus" deleteRule="Nullify" db-relationship-path="locStatus"/>
-	<obj-relationship name="ptf" source="PtfLocStatus" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
-	<obj-relationship name="agency" source="PtfModel" target="Agency" deleteRule="Nullify" db-relationship-path="agency"/>
-	<obj-relationship name="apiWmoIdType" source="PtfModel" target="ApiWmoIdType" deleteRule="Nullify" db-relationship-path="apiWmoIdType"/>
-	<obj-relationship name="contact" source="PtfModel" target="Contact" deleteRule="Nullify" db-relationship-path="contact"/>
-	<obj-relationship name="gtsInstrumentType" source="PtfModel" target="GtsInstrumentType" deleteRule="Nullify" db-relationship-path="gtsInstrumentType"/>
-	<obj-relationship name="hullType" source="PtfModel" target="PtfHullType" deleteRule="Nullify" db-relationship-path="hullType"/>
-	<obj-relationship name="image" source="PtfModel" target="Image" deleteRule="Nullify" db-relationship-path="image"/>
-	<obj-relationship name="network" source="PtfModel" target="Network" deleteRule="Nullify" db-relationship-path="network"/>
-	<obj-relationship name="ptfType" source="PtfModel" target="PtfType" deleteRule="Nullify" db-relationship-path="ptfType"/>
+	<obj-relationship name="locStatus" source="PtfLocStatus" target="LocStatus" deleteRule="Deny" db-relationship-path="locStatus"/>
+	<obj-relationship name="ptf" source="PtfLocStatus" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
+	<obj-relationship name="agency" source="PtfModel" target="Agency" deleteRule="Deny" db-relationship-path="agency"/>
+	<obj-relationship name="apiWmoIdType" source="PtfModel" target="ApiWmoIdType" deleteRule="Deny" db-relationship-path="apiWmoIdType"/>
+	<obj-relationship name="contact" source="PtfModel" target="Contact" deleteRule="Deny" db-relationship-path="contact"/>
+	<obj-relationship name="gtsInstrumentType" source="PtfModel" target="GtsInstrumentType" deleteRule="Deny" db-relationship-path="gtsInstrumentType"/>
+	<obj-relationship name="hullType" source="PtfModel" target="PtfHullType" deleteRule="Deny" db-relationship-path="hullType"/>
+	<obj-relationship name="image" source="PtfModel" target="Image" deleteRule="Deny" db-relationship-path="image"/>
+	<obj-relationship name="network" source="PtfModel" target="Network" deleteRule="Deny" db-relationship-path="network"/>
+	<obj-relationship name="programs" source="PtfModel" target="Program" deleteRule="Deny" db-relationship-path="untitledRel"/>
+	<obj-relationship name="ptfAncillaryDeviceVersions" source="PtfModel" target="PtfAncillaryDeviceVersion" deleteRule="Deny" db-relationship-path="ptfAncillaryDeviceVersions"/>
+	<obj-relationship name="ptfModelFirmwares" source="PtfModel" target="PtfModelFirmware" deleteRule="Deny" db-relationship-path="ptfModelFirmwares"/>
+	<obj-relationship name="ptfType" source="PtfModel" target="PtfType" deleteRule="Deny" db-relationship-path="ptfType"/>
 	<obj-relationship name="ptfs" source="PtfModel" target="Ptf" deleteRule="Deny" db-relationship-path="ptfs"/>
 	<obj-relationship name="telecomFormats" source="PtfModel" target="TelecomFormat" deleteRule="Deny" db-relationship-path="telecomFormats"/>
-	<obj-relationship name="weblink" source="PtfModel" target="Weblink" deleteRule="Nullify" db-relationship-path="weblink"/>
-	<obj-relationship name="ptf" source="PtfPtfStatus" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
-	<obj-relationship name="ptfStatus" source="PtfPtfStatus" target="PtfStatus" deleteRule="Nullify" db-relationship-path="ptfStatus"/>
-	<obj-relationship name="ptfSoftwareType" source="PtfSoftware" target="PtfSoftwareType" deleteRule="Nullify" db-relationship-path="ptfSoftwareType"/>
+	<obj-relationship name="weblink" source="PtfModel" target="Weblink" deleteRule="Deny" db-relationship-path="weblink"/>
+	<obj-relationship name="ptfFirmware" source="PtfModelFirmware" target="PtfFirmware" deleteRule="Nullify" db-relationship-path="ptfFirmware"/>
+	<obj-relationship name="ptfModel" source="PtfModelFirmware" target="PtfModel" deleteRule="Nullify" db-relationship-path="ptfModel"/>
+	<obj-relationship name="ptf" source="PtfPtfStatus" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
+	<obj-relationship name="ptfStatus" source="PtfPtfStatus" target="PtfStatus" deleteRule="Deny" db-relationship-path="ptfStatus"/>
+	<obj-relationship name="ptfSoftwareType" source="PtfSoftware" target="PtfSoftwareType" deleteRule="Deny" db-relationship-path="ptfSoftwareType"/>
 	<obj-relationship name="ptfSoftwares" source="PtfSoftwareType" target="PtfSoftware" deleteRule="Deny" db-relationship-path="ptfSoftwares"/>
-	<obj-relationship name="ptf" source="PtfStatistics" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
+	<obj-relationship name="ptf" source="PtfStatistics" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
 	<obj-relationship name="ptfs" source="PtfStatus" target="Ptf" deleteRule="Deny" db-relationship-path="untitledRel1"/>
-	<obj-relationship name="image" source="PtfType" target="Image" deleteRule="Nullify" db-relationship-path="image"/>
-	<obj-relationship name="ptfFamily" source="PtfType" target="PtfFamily" deleteRule="Nullify" db-relationship-path="ptfFamily"/>
+	<obj-relationship name="image" source="PtfType" target="Image" deleteRule="Deny" db-relationship-path="image"/>
+	<obj-relationship name="ptfFamily" source="PtfType" target="PtfFamily" deleteRule="Deny" db-relationship-path="ptfFamily"/>
 	<obj-relationship name="ptfModels" source="PtfType" target="PtfModel" deleteRule="Deny" db-relationship-path="ptfModels"/>
 	<obj-relationship name="sdnPtfClasses" source="PtfType" target="SdnPtfClass" deleteRule="Deny" db-relationship-path="sdnPtfClasses"/>
-	<obj-relationship name="dataProcessingMethod" source="PtfVariable" target="DataProcessingMethod" deleteRule="Nullify" db-relationship-path="dataProcessingMethod"/>
-	<obj-relationship name="manufWeblink" source="PtfVariable" target="Weblink" deleteRule="Nullify" db-relationship-path="manufWeblink"/>
-	<obj-relationship name="program" source="PtfVariable" target="Program" deleteRule="Nullify" db-relationship-path="program"/>
-	<obj-relationship name="ptf" source="PtfVariable" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
-	<obj-relationship name="sensorExposure" source="PtfVariable" target="SensorExposure" deleteRule="Nullify" db-relationship-path="sensorExposure"/>
-	<obj-relationship name="sensorLocation" source="PtfVariable" target="SensorLocation" deleteRule="Nullify" db-relationship-path="sensorLocation"/>
-	<obj-relationship name="sensorModel" source="PtfVariable" target="SensorModel" deleteRule="Nullify" db-relationship-path="sensorModel"/>
-	<obj-relationship name="sensorStatus" source="PtfVariable" target="SensorStatus" deleteRule="Nullify" db-relationship-path="sensorStatus"/>
-	<obj-relationship name="serviceSchedule" source="PtfVariable" target="TimePeriod" deleteRule="Nullify" db-relationship-path="serviceSchedule"/>
-	<obj-relationship name="variable" source="PtfVariable" target="Variable" deleteRule="Nullify" db-relationship-path="variable"/>
-	<obj-relationship name="weblink" source="PtfVariable" target="Weblink" deleteRule="Nullify" db-relationship-path="weblink"/>
+	<obj-relationship name="contact" source="PtfUpdateHistory" target="Contact" deleteRule="Deny" db-relationship-path="contact"/>
+	<obj-relationship name="ptf" source="PtfUpdateHistory" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
+	<obj-relationship name="dataProcessingMethod" source="PtfVariable" target="DataProcessingMethod" deleteRule="Deny" db-relationship-path="dataProcessingMethod"/>
+	<obj-relationship name="manufWeblink" source="PtfVariable" target="Weblink" deleteRule="Deny" db-relationship-path="manufWeblink"/>
+	<obj-relationship name="program" source="PtfVariable" target="Program" deleteRule="Deny" db-relationship-path="program"/>
+	<obj-relationship name="ptf" source="PtfVariable" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
+	<obj-relationship name="sensorExposure" source="PtfVariable" target="SensorExposure" deleteRule="Deny" db-relationship-path="sensorExposure"/>
+	<obj-relationship name="sensorLocation" source="PtfVariable" target="SensorLocation" deleteRule="Deny" db-relationship-path="sensorLocation"/>
+	<obj-relationship name="sensorModel" source="PtfVariable" target="SensorModel" deleteRule="Deny" db-relationship-path="sensorModel"/>
+	<obj-relationship name="sensorStatus" source="PtfVariable" target="SensorStatus" deleteRule="Deny" db-relationship-path="sensorStatus"/>
+	<obj-relationship name="serviceSchedule" source="PtfVariable" target="TimePeriod" deleteRule="Deny" db-relationship-path="serviceSchedule"/>
+	<obj-relationship name="unit" source="PtfVariable" target="Unit" deleteRule="Nullify" db-relationship-path="unit"/>
+	<obj-relationship name="variable" source="PtfVariable" target="Variable" deleteRule="Deny" db-relationship-path="variable"/>
+	<obj-relationship name="weblink" source="PtfVariable" target="Weblink" deleteRule="Deny" db-relationship-path="weblink"/>
 	<obj-relationship name="ptfHardwares" source="PumpType" target="PtfHardware" deleteRule="Deny" db-relationship-path="ptfHardwares"/>
-	<obj-relationship name="agency" source="QcFeedback" target="Agency" deleteRule="Nullify" db-relationship-path="agency"/>
-	<obj-relationship name="answerContact" source="QcFeedback" target="Contact" deleteRule="Nullify" db-relationship-path="answerContact"/>
-	<obj-relationship name="contact" source="QcFeedback" target="Contact" deleteRule="Nullify" db-relationship-path="contact"/>
-	<obj-relationship name="gtsCccc" source="QcFeedback" target="GtsCccc" deleteRule="Nullify" db-relationship-path="gtsCccc"/>
-	<obj-relationship name="gtsHeader" source="QcFeedback" target="GtsHeader" deleteRule="Nullify" db-relationship-path="gtsHeader"/>
-	<obj-relationship name="ptf" source="QcFeedback" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
-	<obj-relationship name="qcFeedbackAction" source="QcFeedback" target="QcFeedbackAction" deleteRule="Nullify" db-relationship-path="qcFeedbackAction"/>
-	<obj-relationship name="qcFeedbackErrorType" source="QcFeedback" target="QcFeedbackErrorType" deleteRule="Nullify" db-relationship-path="qcFeedbackErrorType"/>
+	<obj-relationship name="agency" source="QcFeedback" target="Agency" deleteRule="Deny" db-relationship-path="agency"/>
+	<obj-relationship name="answerContact" source="QcFeedback" target="Contact" deleteRule="Deny" db-relationship-path="answerContact"/>
+	<obj-relationship name="contact" source="QcFeedback" target="Contact" deleteRule="Deny" db-relationship-path="contact"/>
+	<obj-relationship name="gtsCccc" source="QcFeedback" target="GtsCccc" deleteRule="Deny" db-relationship-path="gtsCccc"/>
+	<obj-relationship name="gtsHeader" source="QcFeedback" target="GtsHeader" deleteRule="Deny" db-relationship-path="gtsHeader"/>
+	<obj-relationship name="ptf" source="QcFeedback" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
+	<obj-relationship name="qcFeedbackAction" source="QcFeedback" target="QcFeedbackAction" deleteRule="Deny" db-relationship-path="qcFeedbackAction"/>
+	<obj-relationship name="qcFeedbackErrorType" source="QcFeedback" target="QcFeedbackErrorType" deleteRule="Deny" db-relationship-path="qcFeedbackErrorType"/>
 	<obj-relationship name="qcFeedbackObss" source="QcFeedback" target="QcFeedbackObs" deleteRule="Deny" db-relationship-path="qcFeedbackObss"/>
-	<obj-relationship name="qcFeedbackType" source="QcFeedback" target="QcFeedbackType" deleteRule="Nullify" db-relationship-path="qcFeedbackType"/>
+	<obj-relationship name="qcFeedbackType" source="QcFeedback" target="QcFeedbackType" deleteRule="Deny" db-relationship-path="qcFeedbackType"/>
 	<obj-relationship name="qcFeedbackVariables" source="QcFeedback" target="QcFeedbackVariable" deleteRule="Deny" db-relationship-path="qcFeedbackVariables"/>
-	<obj-relationship name="topic" source="QcFeedback" target="Topic" deleteRule="Nullify" db-relationship-path="topic"/>
-	<obj-relationship name="variable" source="QcFeedback" target="Variable" deleteRule="Nullify" db-relationship-path="variable"/>
-	<obj-relationship name="weblink" source="QcFeedback" target="Weblink" deleteRule="Nullify" db-relationship-path="weblink"/>
+	<obj-relationship name="topic" source="QcFeedback" target="Topic" deleteRule="Deny" db-relationship-path="topic"/>
+	<obj-relationship name="variable" source="QcFeedback" target="Variable" deleteRule="Deny" db-relationship-path="variable"/>
+	<obj-relationship name="weblink" source="QcFeedback" target="Weblink" deleteRule="Deny" db-relationship-path="weblink"/>
 	<obj-relationship name="qcFeedbacks" source="QcFeedbackAction" target="QcFeedback" deleteRule="Deny" db-relationship-path="qcFeedbacks"/>
 	<obj-relationship name="qcFeedbacks" source="QcFeedbackErrorType" target="QcFeedback" deleteRule="Deny" db-relationship-path="qcFeedbacks"/>
-	<obj-relationship name="qcFeedback" source="QcFeedbackObs" target="QcFeedback" deleteRule="Nullify" db-relationship-path="qcFeedback"/>
+	<obj-relationship name="qcFeedback" source="QcFeedbackObs" target="QcFeedback" deleteRule="Deny" db-relationship-path="qcFeedback"/>
 	<obj-relationship name="qcFeedbacks" source="QcFeedbackType" target="QcFeedback" deleteRule="Deny" db-relationship-path="qcFeedbacks"/>
-	<obj-relationship name="qcFeedback" source="QcFeedbackVariable" target="QcFeedback" deleteRule="Nullify" db-relationship-path="qcFeedback"/>
-	<obj-relationship name="variable" source="QcFeedbackVariable" target="Variable" deleteRule="Nullify" db-relationship-path="variable"/>
-	<obj-relationship name="contact" source="QrCode" target="Contact" deleteRule="Nullify" db-relationship-path="contact"/>
-	<obj-relationship name="country" source="Retrieval" target="Country" deleteRule="Nullify" db-relationship-path="country"/>
-	<obj-relationship name="cruise" source="Retrieval" target="Cruise" deleteRule="Nullify" db-relationship-path="cruise"/>
-	<obj-relationship name="postRetrievalStatus" source="Retrieval" target="PostRetrievalStatus" deleteRule="Nullify" db-relationship-path="postRetrievalStatus"/>
+	<obj-relationship name="qcFeedback" source="QcFeedbackVariable" target="QcFeedback" deleteRule="Deny" db-relationship-path="qcFeedback"/>
+	<obj-relationship name="variable" source="QcFeedbackVariable" target="Variable" deleteRule="Deny" db-relationship-path="variable"/>
+	<obj-relationship name="contact" source="QrCode" target="Contact" deleteRule="Deny" db-relationship-path="contact"/>
+	<obj-relationship name="country" source="Retrieval" target="Country" deleteRule="Deny" db-relationship-path="country"/>
+	<obj-relationship name="cruise" source="Retrieval" target="Cruise" deleteRule="Deny" db-relationship-path="cruise"/>
+	<obj-relationship name="postRetrievalStatus" source="Retrieval" target="PostRetrievalStatus" deleteRule="Deny" db-relationship-path="postRetrievalStatus"/>
 	<obj-relationship name="ptfs" source="Retrieval" target="Ptf" deleteRule="Deny" db-relationship-path="ptfs"/>
-	<obj-relationship name="retrievalStatus" source="Retrieval" target="RetrievalStatus" deleteRule="Nullify" db-relationship-path="retrievalStatus"/>
-	<obj-relationship name="ship" source="Retrieval" target="Ship" deleteRule="Nullify" db-relationship-path="ship"/>
+	<obj-relationship name="retrievalStatus" source="Retrieval" target="RetrievalStatus" deleteRule="Deny" db-relationship-path="retrievalStatus"/>
+	<obj-relationship name="ship" source="Retrieval" target="Ship" deleteRule="Deny" db-relationship-path="ship"/>
 	<obj-relationship name="retrievals" source="RetrievalStatus" target="Retrieval" deleteRule="Deny" db-relationship-path="retrievals"/>
 	<obj-relationship name="contactPtfRoles" source="Role" target="ContactPtfRole" deleteRule="Deny" db-relationship-path="contactPtfRoles"/>
 	<obj-relationship name="contactSiteRoles" source="Role" target="ContactSiteRole" deleteRule="Deny" db-relationship-path="contactSiteRoles"/>
@@ -5745,74 +5944,83 @@
 	<obj-relationship name="networkContacts" source="Role" target="NetworkContact" deleteRule="Deny" db-relationship-path="networkContacts"/>
 	<obj-relationship name="programContacts" source="Role" target="ProgramContact" deleteRule="Deny" db-relationship-path="programContacts"/>
 	<obj-relationship name="userGroupContacts" source="Role" target="UserGroupContact" deleteRule="Deny" db-relationship-path="userGroupContacts"/>
-	<obj-relationship name="ptfType" source="SdnPtfClass" target="PtfType" deleteRule="Nullify" db-relationship-path="ptfType"/>
-	<obj-relationship name="shipType" source="SdnPtfClass" target="ShipType" deleteRule="Nullify" db-relationship-path="shipType"/>
+	<obj-relationship name="ptfType" source="SdnPtfClass" target="PtfType" deleteRule="Deny" db-relationship-path="ptfType"/>
+	<obj-relationship name="shipType" source="SdnPtfClass" target="ShipType" deleteRule="Deny" db-relationship-path="shipType"/>
 	<obj-relationship name="ptfVariables" source="SensorExposure" target="PtfVariable" deleteRule="Deny" db-relationship-path="ptfVariables"/>
 	<obj-relationship name="sensorTypes" source="SensorFamily" target="SensorType" deleteRule="Deny" db-relationship-path="sensorTypes"/>
 	<obj-relationship name="ptfVariables" source="SensorLocation" target="PtfVariable" deleteRule="Deny" db-relationship-path="ptfVariables"/>
-	<obj-relationship name="agency" source="SensorModel" target="Agency" deleteRule="Nullify" db-relationship-path="agency"/>
+	<obj-relationship name="agency" source="SensorModel" target="Agency" deleteRule="Deny" db-relationship-path="agency"/>
 	<obj-relationship name="cruiseSensorModels" source="SensorModel" target="CruiseSensorModel" deleteRule="Deny" db-relationship-path="cruiseSensorModels"/>
-	<obj-relationship name="image" source="SensorModel" target="Image" deleteRule="Nullify" db-relationship-path="image"/>
+	<obj-relationship name="image" source="SensorModel" target="Image" deleteRule="Deny" db-relationship-path="image"/>
 	<obj-relationship name="ptfVariables" source="SensorModel" target="PtfVariable" deleteRule="Deny" db-relationship-path="ptfVariables"/>
 	<obj-relationship name="sensorModelNetworks" source="SensorModel" target="SensorModelNetwork" deleteRule="Deny" db-relationship-path="sensorModelNetworks"/>
 	<obj-relationship name="sensorModelSensorTypes" source="SensorModel" target="SensorModelSensorType" deleteRule="Deny" db-relationship-path="sensorModelSensorTypes"/>
 	<obj-relationship name="services" source="SensorModel" target="Service" deleteRule="Deny" db-relationship-path="services"/>
-	<obj-relationship name="weblink" source="SensorModel" target="Weblink" deleteRule="Nullify" db-relationship-path="weblink"/>
-	<obj-relationship name="network" source="SensorModelNetwork" target="Network" deleteRule="Nullify" db-relationship-path="network"/>
-	<obj-relationship name="sensorModel" source="SensorModelNetwork" target="SensorModel" deleteRule="Nullify" db-relationship-path="sensorModel"/>
-	<obj-relationship name="sensorModel" source="SensorModelSensorType" target="SensorModel" deleteRule="Nullify" db-relationship-path="sensorModel"/>
-	<obj-relationship name="sensorType" source="SensorModelSensorType" target="SensorType" deleteRule="Nullify" db-relationship-path="sensorType"/>
+	<obj-relationship name="weblink" source="SensorModel" target="Weblink" deleteRule="Deny" db-relationship-path="weblink"/>
+	<obj-relationship name="network" source="SensorModelNetwork" target="Network" deleteRule="Deny" db-relationship-path="network"/>
+	<obj-relationship name="sensorModel" source="SensorModelNetwork" target="SensorModel" deleteRule="Deny" db-relationship-path="sensorModel"/>
+	<obj-relationship name="sensorModel" source="SensorModelSensorType" target="SensorModel" deleteRule="Deny" db-relationship-path="sensorModel"/>
+	<obj-relationship name="sensorType" source="SensorModelSensorType" target="SensorType" deleteRule="Deny" db-relationship-path="sensorType"/>
+	<obj-relationship name="unit" source="SensorModelSensorType" target="Unit" deleteRule="Deny" db-relationship-path="unit"/>
 	<obj-relationship name="ptfVariables" source="SensorStatus" target="PtfVariable" deleteRule="Deny" db-relationship-path="ptfVariables"/>
-	<obj-relationship name="sensorFamily" source="SensorType" target="SensorFamily" deleteRule="Nullify" db-relationship-path="sensorFamily"/>
+	<obj-relationship name="sensorFamily" source="SensorType" target="SensorFamily" deleteRule="Deny" db-relationship-path="sensorFamily"/>
 	<obj-relationship name="sensorModelSensorTypes" source="SensorType" target="SensorModelSensorType" deleteRule="Deny" db-relationship-path="sensorModelSensorTypes"/>
-	<obj-relationship name="variable" source="SensorType" target="Variable" deleteRule="Nullify" db-relationship-path="variable"/>
-	<obj-relationship name="agency" source="Service" target="Agency" deleteRule="Nullify" db-relationship-path="agency"/>
-	<obj-relationship name="contact" source="Service" target="Contact" deleteRule="Nullify" db-relationship-path="contact"/>
-	<obj-relationship name="cruise" source="Service" target="Cruise" deleteRule="Nullify" db-relationship-path="cruise"/>
-	<obj-relationship name="program" source="Service" target="Program" deleteRule="Nullify" db-relationship-path="program"/>
-	<obj-relationship name="ptf" source="Service" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
-	<obj-relationship name="sensorModel" source="Service" target="SensorModel" deleteRule="Nullify" db-relationship-path="sensorModel"/>
-	<obj-relationship name="country" source="Ship" target="Country" deleteRule="Nullify" db-relationship-path="country"/>
+	<obj-relationship name="variable" source="SensorType" target="Variable" deleteRule="Deny" db-relationship-path="variable"/>
+	<obj-relationship name="agency" source="Service" target="Agency" deleteRule="Deny" db-relationship-path="agency"/>
+	<obj-relationship name="contact" source="Service" target="Contact" deleteRule="Deny" db-relationship-path="contact"/>
+	<obj-relationship name="cruise" source="Service" target="Cruise" deleteRule="Deny" db-relationship-path="cruise"/>
+	<obj-relationship name="program" source="Service" target="Program" deleteRule="Deny" db-relationship-path="program"/>
+	<obj-relationship name="ptf" source="Service" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
+	<obj-relationship name="sensorModel" source="Service" target="SensorModel" deleteRule="Deny" db-relationship-path="sensorModel"/>
+	<obj-relationship name="serviceLocation" source="Service" target="ServiceLocation" deleteRule="Deny" db-relationship-path="serviceLocation"/>
+	<obj-relationship name="serviceType" source="Service" target="ServiceType" deleteRule="Deny" db-relationship-path="serviceType"/>
+	<obj-relationship name="services" source="ServiceLocation" target="Service" deleteRule="Deny" db-relationship-path="services"/>
+	<obj-relationship name="services" source="ServiceType" target="Service" deleteRule="Deny" db-relationship-path="services"/>
+	<obj-relationship name="country" source="Ship" target="Country" deleteRule="Deny" db-relationship-path="country"/>
 	<obj-relationship name="cruises" source="Ship" target="Cruise" deleteRule="Deny" db-relationship-path="cruises"/>
 	<obj-relationship name="docs" source="Ship" target="Doc" deleteRule="Deny" db-relationship-path="docs"/>
 	<obj-relationship name="images" source="Ship" target="Image" deleteRule="Deny" db-relationship-path="images"/>
 	<obj-relationship name="ptfDeployments" source="Ship" target="PtfDeployment" deleteRule="Deny" db-relationship-path="ptfDeployments"/>
 	<obj-relationship name="retrievals" source="Ship" target="Retrieval" deleteRule="Deny" db-relationship-path="retrievals"/>
 	<obj-relationship name="shipHistories" source="Ship" target="ShipHistory" deleteRule="Deny" db-relationship-path="shipHistories"/>
-	<obj-relationship name="shipStatus" source="Ship" target="ShipStatus" deleteRule="Nullify" db-relationship-path="shipStatus"/>
-	<obj-relationship name="shipType" source="Ship" target="ShipType" deleteRule="Nullify" db-relationship-path="shipType"/>
-	<obj-relationship name="weblink" source="Ship" target="Weblink" deleteRule="Nullify" db-relationship-path="weblink"/>
-	<obj-relationship name="country" source="ShipHistory" target="Country" deleteRule="Nullify" db-relationship-path="country"/>
-	<obj-relationship name="ship" source="ShipHistory" target="Ship" deleteRule="Nullify" db-relationship-path="ship"/>
+	<obj-relationship name="shipStatus" source="Ship" target="ShipStatus" deleteRule="Deny" db-relationship-path="shipStatus"/>
+	<obj-relationship name="shipType" source="Ship" target="ShipType" deleteRule="Deny" db-relationship-path="shipType"/>
+	<obj-relationship name="weblink" source="Ship" target="Weblink" deleteRule="Deny" db-relationship-path="weblink"/>
+	<obj-relationship name="country" source="ShipHistory" target="Country" deleteRule="Deny" db-relationship-path="country"/>
+	<obj-relationship name="ship" source="ShipHistory" target="Ship" deleteRule="Deny" db-relationship-path="ship"/>
 	<obj-relationship name="ships" source="ShipStatus" target="Ship" deleteRule="Deny" db-relationship-path="ships"/>
 	<obj-relationship name="sdnPtfClasses" source="ShipType" target="SdnPtfClass" deleteRule="Deny" db-relationship-path="sdnPtfClasses"/>
 	<obj-relationship name="ships" source="ShipType" target="Ship" deleteRule="Deny" db-relationship-path="ships"/>
+	<obj-relationship name="agencySiteRoles" source="Site" target="AgencySiteRole" deleteRule="Deny" db-relationship-path="agencySiteRoles"/>
+	<obj-relationship name="contactSiteRoles" source="Site" target="ContactSiteRole" deleteRule="Deny" db-relationship-path="contactSiteRoles"/>
 	<obj-relationship name="networkSites" source="Site" target="NetworkSite" deleteRule="Deny" db-relationship-path="networkSites"/>
-	<obj-relationship name="siteFamily" source="Site" target="SiteFamily" deleteRule="Nullify" db-relationship-path="siteFamily"/>
+	<obj-relationship name="siteFamily" source="Site" target="SiteFamily" deleteRule="Deny" db-relationship-path="siteFamily"/>
 	<obj-relationship name="sitePtfs" source="Site" target="SitePtf" deleteRule="Deny" db-relationship-path="sitePtfs"/>
-	<obj-relationship name="status" source="Site" target="SiteStatus" deleteRule="Nullify" db-relationship-path="status"/>
+	<obj-relationship name="status" source="Site" target="SiteStatus" deleteRule="Deny" db-relationship-path="status"/>
 	<obj-relationship name="sites" source="SiteFamily" target="Site" deleteRule="Deny" db-relationship-path="sites"/>
-	<obj-relationship name="ptf" source="SitePtf" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
-	<obj-relationship name="site" source="SitePtf" target="Site" deleteRule="Nullify" db-relationship-path="site"/>
+	<obj-relationship name="ptf" source="SitePtf" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
+	<obj-relationship name="site" source="SitePtf" target="Site" deleteRule="Deny" db-relationship-path="site"/>
 	<obj-relationship name="sites" source="SiteStatus" target="Site" deleteRule="Deny" db-relationship-path="sites"/>
+	<obj-relationship name="image" source="Story" target="Image" deleteRule="Deny" db-relationship-path="image"/>
+	<obj-relationship name="ptf" source="Story" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
 	<obj-relationship name="cruises" source="Survey" target="Cruise" deleteRule="Deny" db-relationship-path="cruises"/>
 	<obj-relationship name="lineSurveys" source="Survey" target="LineSurvey" deleteRule="Deny" db-relationship-path="lineSurveys"/>
-	<obj-relationship name="network" source="Survey" target="Network" deleteRule="Nullify" db-relationship-path="network"/>
+	<obj-relationship name="network" source="Survey" target="Network" deleteRule="Deny" db-relationship-path="network"/>
 	<obj-relationship name="tagPtfs" source="Tag" target="TagPtf" deleteRule="Deny" db-relationship-path="tagPtfs"/>
-	<obj-relationship name="ptf" source="TagPtf" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
-	<obj-relationship name="tag" source="TagPtf" target="Tag" deleteRule="Nullify" db-relationship-path="tag"/>
-	<obj-relationship name="latency" source="Telecom" target="Latency" deleteRule="Nullify" db-relationship-path="latency"/>
+	<obj-relationship name="ptf" source="TagPtf" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
+	<obj-relationship name="tag" source="TagPtf" target="Tag" deleteRule="Deny" db-relationship-path="tag"/>
+	<obj-relationship name="latency" source="Telecom" target="Latency" deleteRule="Deny" db-relationship-path="latency"/>
 	<obj-relationship name="ptf" source="Telecom" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
 	<obj-relationship name="ptfBackup" source="Telecom" target="Ptf" deleteRule="Deny" db-relationship-path="ptfBackup"/>
-	<obj-relationship name="telecomFormat" source="Telecom" target="TelecomFormat" deleteRule="Nullify" db-relationship-path="telecomFormat"/>
-	<obj-relationship name="telecomService" source="Telecom" target="TelecomService" deleteRule="Nullify" db-relationship-path="telecomService"/>
-	<obj-relationship name="telecomType" source="Telecom" target="TelecomType" deleteRule="Nullify" db-relationship-path="telecomType"/>
-	<obj-relationship name="contact" source="TelecomFormat" target="Contact" deleteRule="Nullify" db-relationship-path="contact"/>
-	<obj-relationship name="ptfModel" source="TelecomFormat" target="PtfModel" deleteRule="Nullify" db-relationship-path="ptfModel"/>
+	<obj-relationship name="telecomFormat" source="Telecom" target="TelecomFormat" deleteRule="Deny" db-relationship-path="telecomFormat"/>
+	<obj-relationship name="telecomService" source="Telecom" target="TelecomService" deleteRule="Deny" db-relationship-path="telecomService"/>
+	<obj-relationship name="telecomType" source="Telecom" target="TelecomType" deleteRule="Deny" db-relationship-path="telecomType"/>
+	<obj-relationship name="contact" source="TelecomFormat" target="Contact" deleteRule="Deny" db-relationship-path="contact"/>
+	<obj-relationship name="ptfModel" source="TelecomFormat" target="PtfModel" deleteRule="Deny" db-relationship-path="ptfModel"/>
 	<obj-relationship name="telecomFormatDocs" source="TelecomFormat" target="TelecomFormatDoc" deleteRule="Deny" db-relationship-path="telecomFormatDocs"/>
 	<obj-relationship name="telecoms" source="TelecomFormat" target="Telecom" deleteRule="Deny" db-relationship-path="telecoms"/>
-	<obj-relationship name="doc" source="TelecomFormatDoc" target="Doc" deleteRule="Nullify" db-relationship-path="doc"/>
-	<obj-relationship name="telecomFormat" source="TelecomFormatDoc" target="TelecomFormat" deleteRule="Nullify" db-relationship-path="telecomFormat"/>
+	<obj-relationship name="doc" source="TelecomFormatDoc" target="Doc" deleteRule="Deny" db-relationship-path="doc"/>
+	<obj-relationship name="telecomFormat" source="TelecomFormatDoc" target="TelecomFormat" deleteRule="Deny" db-relationship-path="telecomFormat"/>
 	<obj-relationship name="telecoms" source="TelecomService" target="Telecom" deleteRule="Deny" db-relationship-path="telecoms"/>
 	<obj-relationship name="telecoms" source="TelecomType" target="Telecom" deleteRule="Deny" db-relationship-path="telecoms"/>
 	<obj-relationship name="ptfVariables" source="TimePeriod" target="PtfVariable" deleteRule="Deny" db-relationship-path="ptfVariables"/>
@@ -5821,16 +6029,16 @@
 	<obj-relationship name="qcFeedbacks" source="Topic" target="QcFeedback" deleteRule="Deny" db-relationship-path="qcFeedbacks"/>
 	<obj-relationship name="weblinks" source="Topic" target="Weblink" deleteRule="Deny" db-relationship-path="weblinks"/>
 	<obj-relationship name="docs" source="UserGroup" target="Doc" deleteRule="Deny" db-relationship-path="docs"/>
-	<obj-relationship name="network" source="UserGroup" target="Network" deleteRule="Nullify" db-relationship-path="network"/>
+	<obj-relationship name="network" source="UserGroup" target="Network" deleteRule="Deny" db-relationship-path="network"/>
 	<obj-relationship name="userGroupAgencies" source="UserGroup" target="UserGroupAgency" deleteRule="Deny" db-relationship-path="userGroupAgencies"/>
 	<obj-relationship name="userGroupContacts" source="UserGroup" target="UserGroupContact" deleteRule="Deny" db-relationship-path="userGroupContacts"/>
 	<obj-relationship name="weblinks" source="UserGroup" target="Weblink" deleteRule="Deny" db-relationship-path="weblinks"/>
-	<obj-relationship name="agency" source="UserGroupAgency" target="Agency" deleteRule="Nullify" db-relationship-path="agency"/>
-	<obj-relationship name="userGroup" source="UserGroupAgency" target="UserGroup" deleteRule="Nullify" db-relationship-path="userGroup"/>
-	<obj-relationship name="contact" source="UserGroupContact" target="Contact" deleteRule="Nullify" db-relationship-path="contact"/>
-	<obj-relationship name="country" source="UserGroupContact" target="Country" deleteRule="Nullify" db-relationship-path="country"/>
-	<obj-relationship name="role" source="UserGroupContact" target="Role" deleteRule="Nullify" db-relationship-path="role"/>
-	<obj-relationship name="userGroup" source="UserGroupContact" target="UserGroup" deleteRule="Nullify" db-relationship-path="userGroup"/>
+	<obj-relationship name="agency" source="UserGroupAgency" target="Agency" deleteRule="Deny" db-relationship-path="agency"/>
+	<obj-relationship name="userGroup" source="UserGroupAgency" target="UserGroup" deleteRule="Deny" db-relationship-path="userGroup"/>
+	<obj-relationship name="contact" source="UserGroupContact" target="Contact" deleteRule="Deny" db-relationship-path="contact"/>
+	<obj-relationship name="country" source="UserGroupContact" target="Country" deleteRule="Deny" db-relationship-path="country"/>
+	<obj-relationship name="role" source="UserGroupContact" target="Role" deleteRule="Deny" db-relationship-path="role"/>
+	<obj-relationship name="userGroup" source="UserGroupContact" target="UserGroup" deleteRule="Deny" db-relationship-path="userGroup"/>
 	<obj-relationship name="cruiseVariables" source="Variable" target="CruiseVariable" deleteRule="Deny" db-relationship-path="cruiseVariables"/>
 	<obj-relationship name="indicators" source="Variable" target="Indicator" deleteRule="Deny" db-relationship-path="indicators"/>
 	<obj-relationship name="obsArgoGdacVariables" source="Variable" target="ObsArgoGdacVariable" deleteRule="Deny" db-relationship-path="obsArgoGdacVariables"/>
@@ -5846,45 +6054,45 @@
 	<obj-relationship name="sensorTypes" source="Variable" target="SensorType" deleteRule="Deny" db-relationship-path="sensorTypes"/>
 	<obj-relationship name="variableVariableFamilies" source="Variable" target="VariableVariableFamily" deleteRule="Deny" db-relationship-path="variableVariableFamilies"/>
 	<obj-relationship name="variableVariableFamilies" source="VariableFamily" target="VariableVariableFamily" deleteRule="Deny" db-relationship-path="variableVariableFamilies"/>
-	<obj-relationship name="variable" source="VariableVariableFamily" target="Variable" deleteRule="Nullify" db-relationship-path="variable"/>
-	<obj-relationship name="variableFamily" source="VariableVariableFamily" target="VariableFamily" deleteRule="Nullify" db-relationship-path="variableFamily"/>
-	<obj-relationship name="contact" source="WebConnection" target="Contact" deleteRule="Nullify" db-relationship-path="contact"/>
-	<obj-relationship name="contact" source="WebContactModule" target="Contact" deleteRule="Nullify" db-relationship-path="contact"/>
-	<obj-relationship name="module" source="WebContactModule" target="WebModule" deleteRule="Nullify" db-relationship-path="module"/>
-	<obj-relationship name="contact" source="WebContactPreferences" target="Contact" deleteRule="Nullify" db-relationship-path="contact"/>
-	<obj-relationship name="contact" source="WebFrequentation" target="Contact" deleteRule="Nullify" db-relationship-path="contact"/>
-	<obj-relationship name="cruise" source="WebFrequentation" target="Cruise" deleteRule="Nullify" db-relationship-path="cruise"/>
-	<obj-relationship name="line" source="WebFrequentation" target="Line" deleteRule="Nullify" db-relationship-path="line"/>
-	<obj-relationship name="ptf" source="WebFrequentation" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
-	<obj-relationship name="webModule" source="WebFrequentation" target="WebModule" deleteRule="Nullify" db-relationship-path="webModule"/>
+	<obj-relationship name="variable" source="VariableVariableFamily" target="Variable" deleteRule="Deny" db-relationship-path="variable"/>
+	<obj-relationship name="variableFamily" source="VariableVariableFamily" target="VariableFamily" deleteRule="Deny" db-relationship-path="variableFamily"/>
+	<obj-relationship name="contact" source="WebConnection" target="Contact" deleteRule="Deny" db-relationship-path="contact"/>
+	<obj-relationship name="contact" source="WebContactModule" target="Contact" deleteRule="Deny" db-relationship-path="contact"/>
+	<obj-relationship name="module" source="WebContactModule" target="WebModule" deleteRule="Deny" db-relationship-path="module"/>
+	<obj-relationship name="contact" source="WebContactPreferences" target="Contact" deleteRule="Deny" db-relationship-path="contact"/>
+	<obj-relationship name="contact" source="WebFrequentation" target="Contact" deleteRule="Deny" db-relationship-path="contact"/>
+	<obj-relationship name="cruise" source="WebFrequentation" target="Cruise" deleteRule="Deny" db-relationship-path="cruise"/>
+	<obj-relationship name="line" source="WebFrequentation" target="Line" deleteRule="Deny" db-relationship-path="line"/>
+	<obj-relationship name="ptf" source="WebFrequentation" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
+	<obj-relationship name="webModule" source="WebFrequentation" target="WebModule" deleteRule="Deny" db-relationship-path="webModule"/>
 	<obj-relationship name="webMetricNetworks" source="WebMetric" target="WebMetricNetwork" deleteRule="Deny" db-relationship-path="webMetricNetworks"/>
-	<obj-relationship name="network" source="WebMetricNetwork" target="Network" deleteRule="Nullify" db-relationship-path="network"/>
-	<obj-relationship name="webMetric" source="WebMetricNetwork" target="WebMetric" deleteRule="Nullify" db-relationship-path="webMetric"/>
+	<obj-relationship name="network" source="WebMetricNetwork" target="Network" deleteRule="Deny" db-relationship-path="network"/>
+	<obj-relationship name="webMetric" source="WebMetricNetwork" target="WebMetric" deleteRule="Deny" db-relationship-path="webMetric"/>
 	<obj-relationship name="webContactModules" source="WebModule" target="WebContactModule" deleteRule="Deny" db-relationship-path="webContactModules"/>
 	<obj-relationship name="webFrequentations" source="WebModule" target="WebFrequentation" deleteRule="Deny" db-relationship-path="webFrequentations"/>
-	<obj-relationship name="contact" source="WebQuery" target="Contact" deleteRule="Nullify" db-relationship-path="contact"/>
-	<obj-relationship name="contact" source="WebWorkspace" target="Contact" deleteRule="Nullify" db-relationship-path="contact"/>
+	<obj-relationship name="contact" source="WebQuery" target="Contact" deleteRule="Deny" db-relationship-path="contact"/>
+	<obj-relationship name="contact" source="WebWorkspace" target="Contact" deleteRule="Deny" db-relationship-path="contact"/>
 	<obj-relationship name="agencies" source="Weblink" target="Agency" deleteRule="Deny" db-relationship-path="agencies"/>
 	<obj-relationship name="agencyDacTypes" source="Weblink" target="AgencyDacType" deleteRule="Deny" db-relationship-path="agencyDacTypes"/>
 	<obj-relationship name="contacts" source="Weblink" target="Contact" deleteRule="Deny" db-relationship-path="contacts"/>
-	<obj-relationship name="country" source="Weblink" target="Country" deleteRule="Nullify" db-relationship-path="country"/>
+	<obj-relationship name="country" source="Weblink" target="Country" deleteRule="Deny" db-relationship-path="country"/>
 	<obj-relationship name="cruises" source="Weblink" target="Cruise" deleteRule="Deny" db-relationship-path="cruises"/>
 	<obj-relationship name="docs" source="Weblink" target="Doc" deleteRule="Deny" db-relationship-path="docs"/>
 	<obj-relationship name="lines" source="Weblink" target="Line" deleteRule="Deny" db-relationship-path="lines"/>
 	<obj-relationship name="meetings" source="Weblink" target="Meeting" deleteRule="Deny" db-relationship-path="meetings"/>
-	<obj-relationship name="network" source="Weblink" target="Network" deleteRule="Nullify" db-relationship-path="network"/>
-	<obj-relationship name="program" source="Weblink" target="Program" deleteRule="Nullify" db-relationship-path="program"/>
+	<obj-relationship name="network" source="Weblink" target="Network" deleteRule="Deny" db-relationship-path="network"/>
+	<obj-relationship name="program" source="Weblink" target="Program" deleteRule="Deny" db-relationship-path="program"/>
 	<obj-relationship name="ptfModels" source="Weblink" target="PtfModel" deleteRule="Deny" db-relationship-path="ptfModels"/>
 	<obj-relationship name="ptfVariables" source="Weblink" target="PtfVariable" deleteRule="Deny" db-relationship-path="ptfVariables"/>
 	<obj-relationship name="qcFeedbacks" source="Weblink" target="QcFeedback" deleteRule="Deny" db-relationship-path="qcFeedbacks"/>
 	<obj-relationship name="sensorModels" source="Weblink" target="SensorModel" deleteRule="Deny" db-relationship-path="sensorModels"/>
 	<obj-relationship name="ships" source="Weblink" target="Ship" deleteRule="Deny" db-relationship-path="ships"/>
-	<obj-relationship name="topic" source="Weblink" target="Topic" deleteRule="Nullify" db-relationship-path="topic"/>
-	<obj-relationship name="userGroup" source="Weblink" target="UserGroup" deleteRule="Nullify" db-relationship-path="userGroup"/>
+	<obj-relationship name="topic" source="Weblink" target="Topic" deleteRule="Deny" db-relationship-path="topic"/>
+	<obj-relationship name="userGroup" source="Weblink" target="UserGroup" deleteRule="Deny" db-relationship-path="userGroup"/>
 	<obj-relationship name="weblinkPtfs" source="Weblink" target="WeblinkPtf" deleteRule="Deny" db-relationship-path="weblinkPtfs"/>
-	<obj-relationship name="ptf" source="WeblinkPtf" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
-	<obj-relationship name="weblink" source="WeblinkPtf" target="Weblink" deleteRule="Nullify" db-relationship-path="weblink"/>
-	<obj-relationship name="ptf" source="Wmo" target="Ptf" deleteRule="Nullify" db-relationship-path="ptf"/>
+	<obj-relationship name="ptf" source="WeblinkPtf" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
+	<obj-relationship name="weblink" source="WeblinkPtf" target="Weblink" deleteRule="Deny" db-relationship-path="weblink"/>
+	<obj-relationship name="ptf" source="Wmo" target="Ptf" deleteRule="Deny" db-relationship-path="ptf"/>
 	<dbImport xmlns="http://cayenne.apache.org/schema/10/dbimport">
 		<schema>
 			<excludeTable>LOAD_AOML_GDP_LOG</excludeTable>

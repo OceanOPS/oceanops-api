@@ -3,7 +3,6 @@ package org.oceanops.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.EntityProperty;
@@ -24,33 +23,33 @@ public abstract class _CruiseLine extends BaseDataObject {
 
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final NumericProperty<BigDecimal> PERFORMANCE_INDEX = PropertyFactory.createNumeric("performanceIndex", BigDecimal.class);
-    public static final NumericProperty<BigDecimal> RANK = PropertyFactory.createNumeric("rank", BigDecimal.class);
+    public static final NumericProperty<Double> PERFORMANCE_INDEX = PropertyFactory.createNumeric("performanceIndex", Double.class);
+    public static final NumericProperty<Integer> RANK = PropertyFactory.createNumeric("rank", Integer.class);
     public static final EntityProperty<Cruise> CRUISE = PropertyFactory.createEntity("cruise", Cruise.class);
     public static final EntityProperty<Line> LINE = PropertyFactory.createEntity("line", Line.class);
 
-    protected BigDecimal performanceIndex;
-    protected BigDecimal rank;
+    protected Double performanceIndex;
+    protected Integer rank;
 
     protected Object cruise;
     protected Object line;
 
-    public void setPerformanceIndex(BigDecimal performanceIndex) {
+    public void setPerformanceIndex(Double performanceIndex) {
         beforePropertyWrite("performanceIndex", this.performanceIndex, performanceIndex);
         this.performanceIndex = performanceIndex;
     }
 
-    public BigDecimal getPerformanceIndex() {
+    public Double getPerformanceIndex() {
         beforePropertyRead("performanceIndex");
         return this.performanceIndex;
     }
 
-    public void setRank(BigDecimal rank) {
+    public void setRank(Integer rank) {
         beforePropertyWrite("rank", this.rank, rank);
         this.rank = rank;
     }
 
-    public BigDecimal getRank() {
+    public Integer getRank() {
         beforePropertyRead("rank");
         return this.rank;
     }
@@ -99,10 +98,10 @@ public abstract class _CruiseLine extends BaseDataObject {
 
         switch (propName) {
             case "performanceIndex":
-                this.performanceIndex = (BigDecimal)val;
+                this.performanceIndex = (Double)val;
                 break;
             case "rank":
-                this.rank = (BigDecimal)val;
+                this.rank = (Integer)val;
                 break;
             case "cruise":
                 this.cruise = val;
@@ -135,8 +134,8 @@ public abstract class _CruiseLine extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.performanceIndex = (BigDecimal)in.readObject();
-        this.rank = (BigDecimal)in.readObject();
+        this.performanceIndex = (Double)in.readObject();
+        this.rank = (Integer)in.readObject();
         this.cruise = in.readObject();
         this.line = in.readObject();
     }

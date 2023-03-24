@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.apache.cayenne.BaseDataObject;
 import org.apache.cayenne.exp.property.ListProperty;
+import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
 import org.apache.cayenne.exp.property.StringProperty;
 import org.oceanops.orm.PtfAncillaryDeviceVersion;
@@ -24,10 +25,12 @@ public abstract class _PtfAncillaryDeviceName extends BaseDataObject {
     public static final String ID_PK_COLUMN = "ID";
 
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final ListProperty<PtfAncillaryDeviceVersion> PTF_ANCILLARY_DEVICE_VERSIONS = PropertyFactory.createList("ptfAncillaryDeviceVersions", PtfAncillaryDeviceVersion.class);
 
     protected String description;
+    protected Integer id;
     protected String name;
 
     protected Object ptfAncillaryDeviceVersions;
@@ -40,6 +43,16 @@ public abstract class _PtfAncillaryDeviceName extends BaseDataObject {
     public String getDescription() {
         beforePropertyRead("description");
         return this.description;
+    }
+
+    public void setId(Integer id) {
+        beforePropertyWrite("id", this.id, id);
+        this.id = id;
+    }
+
+    public Integer getId() {
+        beforePropertyRead("id");
+        return this.id;
     }
 
     public void setName(String name) {
@@ -74,6 +87,8 @@ public abstract class _PtfAncillaryDeviceName extends BaseDataObject {
         switch(propName) {
             case "description":
                 return this.description;
+            case "id":
+                return this.id;
             case "name":
                 return this.name;
             case "ptfAncillaryDeviceVersions":
@@ -92,6 +107,9 @@ public abstract class _PtfAncillaryDeviceName extends BaseDataObject {
         switch (propName) {
             case "description":
                 this.description = (String)val;
+                break;
+            case "id":
+                this.id = (Integer)val;
                 break;
             case "name":
                 this.name = (String)val;
@@ -116,6 +134,7 @@ public abstract class _PtfAncillaryDeviceName extends BaseDataObject {
     protected void writeState(ObjectOutputStream out) throws IOException {
         super.writeState(out);
         out.writeObject(this.description);
+        out.writeObject(this.id);
         out.writeObject(this.name);
         out.writeObject(this.ptfAncillaryDeviceVersions);
     }
@@ -124,6 +143,7 @@ public abstract class _PtfAncillaryDeviceName extends BaseDataObject {
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
         this.description = (String)in.readObject();
+        this.id = (Integer)in.readObject();
         this.name = (String)in.readObject();
         this.ptfAncillaryDeviceVersions = in.readObject();
     }

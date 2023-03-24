@@ -39,6 +39,7 @@ public abstract class _Program extends BaseDataObject {
 
     public static final NumericProperty<Integer> ACTIVE = PropertyFactory.createNumeric("active", Integer.class);
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> NAME_SHORT = PropertyFactory.createString("nameShort", String.class);
     public static final StringProperty<String> WIGOS_CODE = PropertyFactory.createString("wigosCode", String.class);
@@ -58,6 +59,7 @@ public abstract class _Program extends BaseDataObject {
 
     protected Integer active;
     protected String description;
+    protected Integer id;
     protected String name;
     protected String nameShort;
     protected String wigosCode;
@@ -94,6 +96,16 @@ public abstract class _Program extends BaseDataObject {
     public String getDescription() {
         beforePropertyRead("description");
         return this.description;
+    }
+
+    public void setId(Integer id) {
+        beforePropertyWrite("id", this.id, id);
+        this.id = id;
+    }
+
+    public Integer getId() {
+        beforePropertyRead("id");
+        return this.id;
     }
 
     public void setName(String name) {
@@ -291,6 +303,8 @@ public abstract class _Program extends BaseDataObject {
                 return this.active;
             case "description":
                 return this.description;
+            case "id":
+                return this.id;
             case "name":
                 return this.name;
             case "nameShort":
@@ -340,6 +354,9 @@ public abstract class _Program extends BaseDataObject {
                 break;
             case "description":
                 this.description = (String)val;
+                break;
+            case "id":
+                this.id = (Integer)val;
                 break;
             case "name":
                 this.name = (String)val;
@@ -407,6 +424,7 @@ public abstract class _Program extends BaseDataObject {
         super.writeState(out);
         out.writeObject(this.active);
         out.writeObject(this.description);
+        out.writeObject(this.id);
         out.writeObject(this.name);
         out.writeObject(this.nameShort);
         out.writeObject(this.wigosCode);
@@ -430,6 +448,7 @@ public abstract class _Program extends BaseDataObject {
         super.readState(in);
         this.active = (Integer)in.readObject();
         this.description = (String)in.readObject();
+        this.id = (Integer)in.readObject();
         this.name = (String)in.readObject();
         this.nameShort = (String)in.readObject();
         this.wigosCode = (String)in.readObject();

@@ -25,27 +25,27 @@ public abstract class _AgencyPtf extends BaseDataObject {
 
     public static final String ID_PK_COLUMN = "ID";
 
-    public static final NumericProperty<Integer> ASSEMBLY_TYPE_ID = PropertyFactory.createNumeric("assemblyTypeId", Integer.class);
+    public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final EntityProperty<Agency> AGENCY = PropertyFactory.createEntity("agency", Agency.class);
     public static final EntityProperty<AgencyRole> AGENCY_ROLE = PropertyFactory.createEntity("agencyRole", AgencyRole.class);
     public static final EntityProperty<DacType> DAC_TYPE = PropertyFactory.createEntity("dacType", DacType.class);
     public static final EntityProperty<Ptf> PTF = PropertyFactory.createEntity("ptf", Ptf.class);
 
-    protected Integer assemblyTypeId;
+    protected Integer id;
 
     protected Object agency;
     protected Object agencyRole;
     protected Object dacType;
     protected Object ptf;
 
-    public void setAssemblyTypeId(Integer assemblyTypeId) {
-        beforePropertyWrite("assemblyTypeId", this.assemblyTypeId, assemblyTypeId);
-        this.assemblyTypeId = assemblyTypeId;
+    public void setId(Integer id) {
+        beforePropertyWrite("id", this.id, id);
+        this.id = id;
     }
 
-    public Integer getAssemblyTypeId() {
-        beforePropertyRead("assemblyTypeId");
-        return this.assemblyTypeId;
+    public Integer getId() {
+        beforePropertyRead("id");
+        return this.id;
     }
 
     public void setAgency(Agency agency) {
@@ -87,8 +87,8 @@ public abstract class _AgencyPtf extends BaseDataObject {
         }
 
         switch(propName) {
-            case "assemblyTypeId":
-                return this.assemblyTypeId;
+            case "id":
+                return this.id;
             case "agency":
                 return this.agency;
             case "agencyRole":
@@ -109,8 +109,8 @@ public abstract class _AgencyPtf extends BaseDataObject {
         }
 
         switch (propName) {
-            case "assemblyTypeId":
-                this.assemblyTypeId = (Integer)val;
+            case "id":
+                this.id = (Integer)val;
                 break;
             case "agency":
                 this.agency = val;
@@ -140,7 +140,7 @@ public abstract class _AgencyPtf extends BaseDataObject {
     @Override
     protected void writeState(ObjectOutputStream out) throws IOException {
         super.writeState(out);
-        out.writeObject(this.assemblyTypeId);
+        out.writeObject(this.id);
         out.writeObject(this.agency);
         out.writeObject(this.agencyRole);
         out.writeObject(this.dacType);
@@ -150,7 +150,7 @@ public abstract class _AgencyPtf extends BaseDataObject {
     @Override
     protected void readState(ObjectInputStream in) throws IOException, ClassNotFoundException {
         super.readState(in);
-        this.assemblyTypeId = (Integer)in.readObject();
+        this.id = (Integer)in.readObject();
         this.agency = in.readObject();
         this.agencyRole = in.readObject();
         this.dacType = in.readObject();

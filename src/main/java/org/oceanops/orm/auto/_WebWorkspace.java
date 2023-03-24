@@ -3,8 +3,10 @@ package org.oceanops.orm.auto;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.time.LocalDateTime;
 
 import org.apache.cayenne.BaseDataObject;
+import org.apache.cayenne.exp.property.DateProperty;
 import org.apache.cayenne.exp.property.EntityProperty;
 import org.apache.cayenne.exp.property.NumericProperty;
 import org.apache.cayenne.exp.property.PropertyFactory;
@@ -26,12 +28,14 @@ public abstract class _WebWorkspace extends BaseDataObject {
 
     public static final NumericProperty<Integer> CONTACT_ID = PropertyFactory.createNumeric("contactId", Integer.class);
     public static final StringProperty<String> ID = PropertyFactory.createString("id", String.class);
+    public static final DateProperty<LocalDateTime> LAST_USED = PropertyFactory.createDate("lastUsed", LocalDateTime.class);
     public static final StringProperty<String> NAME = PropertyFactory.createString("name", String.class);
     public static final StringProperty<String> URL = PropertyFactory.createString("url", String.class);
     public static final EntityProperty<Contact> CONTACT = PropertyFactory.createEntity("contact", Contact.class);
 
     protected Integer contactId;
     protected String id;
+    protected LocalDateTime lastUsed;
     protected String name;
     protected String url;
 
@@ -55,6 +59,16 @@ public abstract class _WebWorkspace extends BaseDataObject {
     public String getId() {
         beforePropertyRead("id");
         return this.id;
+    }
+
+    public void setLastUsed(LocalDateTime lastUsed) {
+        beforePropertyWrite("lastUsed", this.lastUsed, lastUsed);
+        this.lastUsed = lastUsed;
+    }
+
+    public LocalDateTime getLastUsed() {
+        beforePropertyRead("lastUsed");
+        return this.lastUsed;
     }
 
     public void setName(String name) {
@@ -96,6 +110,8 @@ public abstract class _WebWorkspace extends BaseDataObject {
                 return this.contactId;
             case "id":
                 return this.id;
+            case "lastUsed":
+                return this.lastUsed;
             case "name":
                 return this.name;
             case "url":
@@ -119,6 +135,9 @@ public abstract class _WebWorkspace extends BaseDataObject {
                 break;
             case "id":
                 this.id = (String)val;
+                break;
+            case "lastUsed":
+                this.lastUsed = (LocalDateTime)val;
                 break;
             case "name":
                 this.name = (String)val;
@@ -147,6 +166,7 @@ public abstract class _WebWorkspace extends BaseDataObject {
         super.writeState(out);
         out.writeObject(this.contactId);
         out.writeObject(this.id);
+        out.writeObject(this.lastUsed);
         out.writeObject(this.name);
         out.writeObject(this.url);
         out.writeObject(this.contact);
@@ -157,6 +177,7 @@ public abstract class _WebWorkspace extends BaseDataObject {
         super.readState(in);
         this.contactId = (Integer)in.readObject();
         this.id = (String)in.readObject();
+        this.lastUsed = (LocalDateTime)in.readObject();
         this.name = (String)in.readObject();
         this.url = (String)in.readObject();
         this.contact = in.readObject();

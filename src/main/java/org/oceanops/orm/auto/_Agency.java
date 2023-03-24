@@ -19,6 +19,7 @@ import org.oceanops.orm.Country;
 import org.oceanops.orm.Cruise;
 import org.oceanops.orm.GtsCccc;
 import org.oceanops.orm.Image;
+import org.oceanops.orm.ObsArgoGdac;
 import org.oceanops.orm.ProgramAgency;
 import org.oceanops.orm.PtfFirmware;
 import org.oceanops.orm.PtfHullType;
@@ -46,6 +47,7 @@ public abstract class _Agency extends BaseDataObject {
     public static final StringProperty<String> DESCRIPTION = PropertyFactory.createString("description", String.class);
     public static final StringProperty<String> EMAIL = PropertyFactory.createString("email", String.class);
     public static final StringProperty<String> FAX = PropertyFactory.createString("fax", String.class);
+    public static final StringProperty<String> GRID = PropertyFactory.createString("grid", String.class);
     public static final NumericProperty<Integer> ID = PropertyFactory.createNumeric("id", Integer.class);
     public static final NumericProperty<Double> LAT = PropertyFactory.createNumeric("lat", Double.class);
     public static final NumericProperty<Double> LON = PropertyFactory.createNumeric("lon", Double.class);
@@ -65,6 +67,7 @@ public abstract class _Agency extends BaseDataObject {
     public static final ListProperty<GtsCccc> GTS_CCCCS = PropertyFactory.createList("gtsCcccs", GtsCccc.class);
     public static final EntityProperty<Image> IMAGE = PropertyFactory.createEntity("image", Image.class);
     public static final ListProperty<Image> IMAGES = PropertyFactory.createList("images", Image.class);
+    public static final ListProperty<ObsArgoGdac> OBS_ARGO_GDACS = PropertyFactory.createList("obsArgoGdacs", ObsArgoGdac.class);
     public static final ListProperty<ProgramAgency> PROGRAM_AGENCIES = PropertyFactory.createList("programAgencies", ProgramAgency.class);
     public static final ListProperty<PtfFirmware> PTF_FIRMWARES = PropertyFactory.createList("ptfFirmwares", PtfFirmware.class);
     public static final ListProperty<PtfHullType> PTF_HULL_TYPES = PropertyFactory.createList("ptfHullTypes", PtfHullType.class);
@@ -80,6 +83,7 @@ public abstract class _Agency extends BaseDataObject {
     protected String description;
     protected String email;
     protected String fax;
+    protected String grid;
     protected Integer id;
     protected Double lat;
     protected Double lon;
@@ -100,6 +104,7 @@ public abstract class _Agency extends BaseDataObject {
     protected Object gtsCcccs;
     protected Object image;
     protected Object images;
+    protected Object obsArgoGdacs;
     protected Object programAgencies;
     protected Object ptfFirmwares;
     protected Object ptfHullTypes;
@@ -158,6 +163,16 @@ public abstract class _Agency extends BaseDataObject {
     public String getFax() {
         beforePropertyRead("fax");
         return this.fax;
+    }
+
+    public void setGrid(String grid) {
+        beforePropertyWrite("grid", this.grid, grid);
+        this.grid = grid;
+    }
+
+    public String getGrid() {
+        beforePropertyRead("grid");
+        return this.grid;
     }
 
     public void setId(Integer id) {
@@ -367,6 +382,19 @@ public abstract class _Agency extends BaseDataObject {
         return (List<Image>)readProperty("images");
     }
 
+    public void addToObsArgoGdacs(ObsArgoGdac obj) {
+        addToManyTarget("obsArgoGdacs", obj, true);
+    }
+
+    public void removeFromObsArgoGdacs(ObsArgoGdac obj) {
+        removeToManyTarget("obsArgoGdacs", obj, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<ObsArgoGdac> getObsArgoGdacs() {
+        return (List<ObsArgoGdac>)readProperty("obsArgoGdacs");
+    }
+
     public void addToProgramAgencies(ProgramAgency obj) {
         addToManyTarget("programAgencies", obj, true);
     }
@@ -496,6 +524,8 @@ public abstract class _Agency extends BaseDataObject {
                 return this.email;
             case "fax":
                 return this.fax;
+            case "grid":
+                return this.grid;
             case "id":
                 return this.id;
             case "lat":
@@ -534,6 +564,8 @@ public abstract class _Agency extends BaseDataObject {
                 return this.image;
             case "images":
                 return this.images;
+            case "obsArgoGdacs":
+                return this.obsArgoGdacs;
             case "programAgencies":
                 return this.programAgencies;
             case "ptfFirmwares":
@@ -578,6 +610,9 @@ public abstract class _Agency extends BaseDataObject {
                 break;
             case "fax":
                 this.fax = (String)val;
+                break;
+            case "grid":
+                this.grid = (String)val;
                 break;
             case "id":
                 this.id = (Integer)val;
@@ -636,6 +671,9 @@ public abstract class _Agency extends BaseDataObject {
             case "images":
                 this.images = val;
                 break;
+            case "obsArgoGdacs":
+                this.obsArgoGdacs = val;
+                break;
             case "programAgencies":
                 this.programAgencies = val;
                 break;
@@ -684,6 +722,7 @@ public abstract class _Agency extends BaseDataObject {
         out.writeObject(this.description);
         out.writeObject(this.email);
         out.writeObject(this.fax);
+        out.writeObject(this.grid);
         out.writeObject(this.id);
         out.writeObject(this.lat);
         out.writeObject(this.lon);
@@ -703,6 +742,7 @@ public abstract class _Agency extends BaseDataObject {
         out.writeObject(this.gtsCcccs);
         out.writeObject(this.image);
         out.writeObject(this.images);
+        out.writeObject(this.obsArgoGdacs);
         out.writeObject(this.programAgencies);
         out.writeObject(this.ptfFirmwares);
         out.writeObject(this.ptfHullTypes);
@@ -722,6 +762,7 @@ public abstract class _Agency extends BaseDataObject {
         this.description = (String)in.readObject();
         this.email = (String)in.readObject();
         this.fax = (String)in.readObject();
+        this.grid = (String)in.readObject();
         this.id = (Integer)in.readObject();
         this.lat = (Double)in.readObject();
         this.lon = (Double)in.readObject();
@@ -741,6 +782,7 @@ public abstract class _Agency extends BaseDataObject {
         this.gtsCcccs = in.readObject();
         this.image = in.readObject();
         this.images = in.readObject();
+        this.obsArgoGdacs = in.readObject();
         this.programAgencies = in.readObject();
         this.ptfFirmwares = in.readObject();
         this.ptfHullTypes = in.readObject();

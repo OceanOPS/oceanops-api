@@ -303,13 +303,13 @@ public class Platform {
 		// Find sensor type where same variable
 		// Observing Method in WIGOS is similar to SensorType
 		String obsMethod = null;
-		if(ptfV.getVariableId() != null){
+		if(ptfV.getVariable().getId() != null){
 			int i = 0;
 			SensorType st;
 			while(obsMethod == null && i < sm.getSensorModelSensorTypes().size()){
 				st = sm.getSensorModelSensorTypes().get(i).getSensorType();
 				if(st.getVariable() != null){
-					if(st.getVariable().getId().equals(ptfV.getVariableId()))
+					if(st.getVariable().getId().equals(ptfV.getVariable().getId()))
 						obsMethod = st.getWigosCode();
 				}
 				i++;
@@ -423,8 +423,8 @@ public class Platform {
 			geomProperty.setPoint(geom);
 		
 			refType = gsLocType.addNewGeopositioningMethod();
-			if(ptf.getTrackingSystem() != null)
-				refType.setHref("http://codes.wmo.int/wmdr/GeopositioningMethod/" + ptf.getTrackingSystem().getWigosCode());
+			if(ptf.getLocSystem() != null)
+				refType.setHref("http://codes.wmo.int/wmdr/GeopositioningMethod/" + ptf.getLocSystem().getWigosCode());
 			else
 				refType.setHref("http://codes.wmo.int/wmdr/GeopositioningMethod/unknown");
 			
@@ -684,9 +684,8 @@ public class Platform {
 	private ObservingCapabilityPropertyType[] getObservations(ObservingFacilityType o, Ptf ptf) {
 		ObservingCapabilityPropertyType ocp = null; 
 		ObservingCapabilityType oc = null;
-		Comparator<PtfVariable> ptfVariablesRanking = Comparator.comparing(PtfVariable::getVariableId);
 		List<PtfVariable> ptfVariables = ptf.getPtfVariables();
-		ptfVariables.sort(ptfVariablesRanking);
+		ptfVariables.sort((a,b) -> a.getVariable().getId().compareTo(b.getVariable().getId()));
 		Variable currentVar = null;
 		for (PtfVariable pv : ptfVariables) {
 			SensorModel sm = pv.getSensorModel();
