@@ -25,6 +25,19 @@ public class Authorization {
     }
 
     /**
+     * Checks if the authenticated user has administrative rights.
+     * @return true if authenticated user has admin rights, false otherwise
+     */
+    public static boolean hasAdminRights(){
+        if(Authentication.isAuthenticated() && Authentication.getContact() != null){
+            // If admin, has the rights
+            if(Authentication.getContact().getAdmin() == 1)
+                return true;
+        }
+        return false;
+    }
+
+    /**
      * Checks if a authenticated user can edit elements associated with a given program.
      * The method will check, by order of importance:
      * <ul>
