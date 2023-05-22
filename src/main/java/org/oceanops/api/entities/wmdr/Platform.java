@@ -81,7 +81,7 @@ import net.opengis.om.x20.OMProcessPropertyType;
 /**
  * @author Anthonin Lizé
  *
- *         Main class respresenting a XML WIGOS Metadata Record.
+ *         Main class representing a XML WIGOS Metadata Record.
  */
 public class Platform {
 	private ObjectContext cayenneContext;
