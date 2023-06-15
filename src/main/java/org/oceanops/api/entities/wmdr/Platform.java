@@ -73,6 +73,7 @@ import org.isotc211.x2005.gmd.CIOnlineResourceType;
 import org.isotc211.x2005.gmd.CIResponsiblePartyType;
 import org.isotc211.x2005.gmd.CIRoleCodePropertyType;
 import org.isotc211.x2005.gmd.CITelephoneType;
+import org.isotc211.x2005.gmd.MDMetadataType;
 import org.isotc211.x2005.gmd.URLPropertyType;
 import net.opengis.om.x20.OMObservationPropertyType;
 import net.opengis.om.x20.OMObservationType;
@@ -90,6 +91,7 @@ public class Platform {
 
 	private Integer ciResponsiblePartyCounter = 0;
 	private Integer sensorIncrement = 0;
+	private Ptf ptf;
 	private final Logger logger = LoggerFactory.getLogger(Platform.class);
 
 
@@ -113,6 +115,7 @@ public class Platform {
 	public Platform(Ptf ptf) {
 		this.cayenneContext = ptf.getObjectContext();
 		logger.debug("Instanciating Platform WMDR record for ptf_id = " + String.valueOf(ptf.getId()));
+		this.ptf = ptf;
 		String wigosRef = this.getWIGOSIdentifier(ptf);
         
         this.rootElement = WIGOSMetadataRecordDocument.Factory.newInstance(opts);
@@ -170,7 +173,7 @@ public class Platform {
 			agency = Cayenne.objectForPK(this.cayenneContext, Agency.class, Utils.OCEANOPS_AGENCY_ID);
 		}
 
-		responsibleParty.setId("responsibleparty-" + agencyId.toString() + "-" + ciResponsiblePartyCounter.toString());
+		responsibleParty.setId("responsibleparty-" + this.ptf.getId().toString() + "-" + agencyId.toString() + "-" + ciResponsiblePartyCounter.toString());
 		if (agency.getRef() != null)
 			responsibleParty.setUuid(agency.getRef());
 
@@ -289,16 +292,26 @@ public class Platform {
 			currentEquipmentType.setSpecificationLink("unknown");
 		}
 		
+		if (ptfV.getProgram() != null &&
+			ptfV.getProgram().getProgramAgencies().stream().anyMatch(i -> i.getLead() == 1)) {
+			AbstractEnvironmentalMonitoringFacilityType.ResponsibleParty responsibleParty = currentEquipmentType.addNewResponsibleParty();
+			ResponsiblePartyType responsiblePartyType = responsibleParty.addNewResponsibleParty();
+			ResponsiblePartyType.ResponsibleParty rp = responsiblePartyType.addNewResponsibleParty();
+			Agency sensorAgency = ptfV.getProgram().getProgramAgencies().stream().filter(i -> i.getLead() == 1).findFirst().get().getAgency();
+			rp.setCIResponsibleParty(this.getCIResponsibleParty(sensorAgency.getId(), "pointOfContact"));
 
-		AbstractEnvironmentalMonitoringFacilityType.ResponsibleParty responsibleParty = currentEquipmentType.addNewResponsibleParty();
-		ResponsiblePartyType responsiblePartyType = responsibleParty.addNewResponsibleParty();
-		ResponsiblePartyType.ResponsibleParty rp = responsiblePartyType.addNewResponsibleParty();
-		if (sm.getAgency() != null) {
-			rp.setCIResponsibleParty(this.getCIResponsibleParty(Integer.parseInt(sm.getAgency().getObjectId().getIdSnapshot().get("ID").toString()), "pointOfContact"));
+			TimePeriodPropertyType responsiblePartyTimePeriodPropType = responsiblePartyType.addNewValidPeriod();
+			TimePeriodType responsiblePartyTimePeriod = responsiblePartyTimePeriodPropType.addNewTimePeriod();
+			responsiblePartyTimePeriod.setId("instr-responsibleParty-timePeriod-" + ptfV.getId());
+			responsiblePartyTimePeriod.addNewBeginPosition().setStringValue(Utils.ISO_DATE_FORMAT.format(
+				ptfV.getStartDate() != null ? ptfV.getStartDate() : ptfV.getPtf().getPtfDepl().getDeplDate()
+				));
+			TimePositionType endTimePositionType = responsiblePartyTimePeriod.addNewEndPosition();
+			if(ptfV.getEndDate() != null)
+				endTimePositionType.setStringValue(Utils.ISO_DATE_FORMAT.format(ptfV.getEndDate()));
 
 			currentEquipmentType.setManufacturer(sm.getAgency().getNameShort());
-		} else
-			rp.setCIResponsibleParty(this.getCIResponsibleParty(null, null));
+		}
 
 		// Find sensor type where same variable
 		// Observing Method in WIGOS is similar to SensorType
@@ -454,6 +467,13 @@ public class Platform {
 		}
 		else
 			rp.setCIResponsibleParty(this.getCIResponsibleParty(null, null));
+		TimePeriodPropertyType responsiblePartyTimePeriodPropType = responsiblePartyType.addNewValidPeriod();
+		TimePeriodType responsiblePartyTimePeriod = responsiblePartyTimePeriodPropType.addNewTimePeriod();
+		responsiblePartyTimePeriod.setId("responsibleParty-timePeriod-" + ptf.getId());
+		responsiblePartyTimePeriod.addNewBeginPosition().setStringValue(Utils.ISO_DATE_FORMAT.format(ptf.getPtfDepl().getDeplDate()));
+		endTimePositionType = responsiblePartyTimePeriod.addNewEndPosition();
+		if(ptf.getPtfStatus().getId().intValue() == 5 && ptf.getEndingDate() != null)
+			endTimePositionType.setStringValue(Utils.ISO_DATE_FORMAT.format(ptf.getEndingDate()));
 
 		
 		XmlDate xdate = XmlDate.Factory.newInstance();
@@ -704,6 +724,10 @@ public class Platform {
 
 					refType = oc.addNewProgramAffiliation();
 					refType.setHref("http://codes.wmo.int/wmdr/ProgramAffiliation/" + ptf.getProgram().getWigosCode());
+					if(pv.getProgram() != null && pv.getProgram().getWigosCode() != null){
+						refType = oc.addNewProgramAffiliation();
+						refType.setHref("http://codes.wmo.int/wmdr/ProgramAffiliation/" + pv.getProgram().getWigosCode());
+					}
 				}
 				// Adding to the same ObservingCapability if same variable, otherwise a new one would have been created
 				OMObservationPropertyType omobsp = oc.addNewObservation();
@@ -726,7 +750,18 @@ public class Platform {
 				deplP.setDeployment(depl);
 				process.setDeployment(deplP);
 				// Overwriting OM:Process with wmdr:Process
-				omProcessType.set(processDocument);				
+				omProcessType.set(processDocument);		
+				
+				if(pv.getProgram() != null && pv.getProgram().getWigosCode() != null){
+					if(pv.getProgram().getProgramAgencies().stream().anyMatch(i -> i.getLead() == 1)){
+						Agency instrAgency = pv.getProgram().getProgramAgencies().stream().filter(pa -> pa.getLead() == 1).findFirst().get().getAgency();
+						// Organization
+						MDMetadataType omMetadata = omobs.addNewMetadata().addNewMDMetadata();
+						omMetadata.addNewContact().setCIResponsibleParty(this.getCIResponsibleParty(instrAgency.getId(), "owner"));
+						omMetadata.addNewDateStamp().setNilDate();
+						omMetadata.addNewIdentificationInfo().getAbstractMDIdentification();
+					}
+				}
 
 				omobs.addNewType().setHref("http://codes.wmo.int/wmdr/featureOfInterest/point");
 
