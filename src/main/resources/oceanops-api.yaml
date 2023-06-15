@@ -2551,7 +2551,7 @@ components:
         rangeMin:
           type: number
         resolution:
-          type: number
+          type: string
         sensorModel:
           $ref: '#/components/schemas/SensorModel'
         sensorType:

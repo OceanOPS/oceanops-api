@@ -32,7 +32,7 @@ public abstract class _SensorModelSensorType extends BaseDataObject {
     public static final StringProperty<String> RANGE = PropertyFactory.createString("range", String.class);
     public static final NumericProperty<BigDecimal> RANGE_MAX = PropertyFactory.createNumeric("rangeMax", BigDecimal.class);
     public static final NumericProperty<BigDecimal> RANGE_MIN = PropertyFactory.createNumeric("rangeMin", BigDecimal.class);
-    public static final NumericProperty<Integer> RESOLUTION = PropertyFactory.createNumeric("resolution", Integer.class);
+    public static final StringProperty<String> RESOLUTION = PropertyFactory.createString("resolution", String.class);
     public static final EntityProperty<SensorModel> SENSOR_MODEL = PropertyFactory.createEntity("sensorModel", SensorModel.class);
     public static final EntityProperty<SensorType> SENSOR_TYPE = PropertyFactory.createEntity("sensorType", SensorType.class);
     public static final EntityProperty<Unit> UNIT = PropertyFactory.createEntity("unit", Unit.class);
@@ -42,7 +42,7 @@ public abstract class _SensorModelSensorType extends BaseDataObject {
     protected String range;
     protected BigDecimal rangeMax;
     protected BigDecimal rangeMin;
-    protected Integer resolution;
+    protected String resolution;
 
     protected Object sensorModel;
     protected Object sensorType;
@@ -98,12 +98,12 @@ public abstract class _SensorModelSensorType extends BaseDataObject {
         return this.rangeMin;
     }
 
-    public void setResolution(Integer resolution) {
+    public void setResolution(String resolution) {
         beforePropertyWrite("resolution", this.resolution, resolution);
         this.resolution = resolution;
     }
 
-    public Integer getResolution() {
+    public String getResolution() {
         beforePropertyRead("resolution");
         return this.resolution;
     }
@@ -185,7 +185,7 @@ public abstract class _SensorModelSensorType extends BaseDataObject {
                 this.rangeMin = (BigDecimal)val;
                 break;
             case "resolution":
-                this.resolution = (Integer)val;
+                this.resolution = (String)val;
                 break;
             case "sensorModel":
                 this.sensorModel = val;
@@ -231,7 +231,7 @@ public abstract class _SensorModelSensorType extends BaseDataObject {
         this.range = (String)in.readObject();
         this.rangeMax = (BigDecimal)in.readObject();
         this.rangeMin = (BigDecimal)in.readObject();
-        this.resolution = (Integer)in.readObject();
+        this.resolution = (String)in.readObject();
         this.sensorModel = in.readObject();
         this.sensorType = in.readObject();
         this.unit = in.readObject();
