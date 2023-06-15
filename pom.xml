@@ -186,7 +186,7 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-crypto</artifactId>
-			<version>6.0.1</version>
+			<version>6.1.0</version>
 		</dependency>		
 		<dependency>
 			<groupId>commons-logging</groupId>
@@ -225,17 +225,17 @@
 		<dependency> 
 			<groupId>org.apache.logging.log4j</groupId> 
 			<artifactId>log4j-api</artifactId> 
-			<version>2.19.0</version> 
+			<version>2.20.0</version> 
 		</dependency> 
 		<dependency> 
 			<groupId>org.apache.logging.log4j</groupId> 
 			<artifactId>log4j-core</artifactId> 
-			<version>2.19.0</version> 
+			<version>2.20.0</version> 
 			</dependency> 
 		<dependency> 
 			<groupId>org.apache.logging.log4j</groupId> 
 			<artifactId>log4j-slf4j-impl</artifactId> 
-			<version>2.19.0</version> 
+			<version>2.20.0</version> 
 		</dependency>	
 
 		<dependency>
@@ -247,7 +247,7 @@
 		<dependency>
 			<groupId>com.oracle.database.jdbc</groupId>
 			<artifactId>ojdbc8</artifactId>
-			<version>21.8.0.0</version>
+			<version>23.2.0.0</version>
 		</dependency>
 
 		<dependency>
@@ -258,19 +258,19 @@
 		<dependency>
 			<groupId>com.sun.xml.bind</groupId>
 			<artifactId>jaxb-impl</artifactId>
-			<version>4.0.1</version>
+			<version>4.0.3</version>
 			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
 	<properties>
 		<maven.build.timestamp.format>yyyyMMdd-HHmm</maven.build.timestamp.format>
 		<timestamp>${maven.build.timestamp}</timestamp>
-		<jersey.version>3.1.0</jersey.version>
+		<jersey.version>3.1.2</jersey.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.scm.id>oceanops-scm-server</project.scm.id>
 		<java.version>17</java.version>
-		<agrest.version>5.0.M9</agrest.version>
-		<cayenne.version>4.2.RC2</cayenne.version>
+		<agrest.version>5.0.M16</agrest.version>
+		<cayenne.version>4.2</cayenne.version>
 		<xmlbeans.version>5.1.1</xmlbeans.version>
 		<wmdr.version>1.0RC9</wmdr.version>
 		<entityPath>data</entityPath>
