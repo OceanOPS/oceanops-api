@@ -4,16 +4,16 @@
 	 xsi:schemaLocation="http://cayenne.apache.org/schema/10/modelMap https://cayenne.apache.org/schema/10/modelMap.xsd"
 	 project-version="10">
 	<property name="defaultPackage" value="org.oceanops.orm"/>
-	<property name="defaultSchema" value="JCOMMOPS_B"/>
-	<procedure name="PTF_INFO.GET_PTF_AGE" schema="JCOMMOPS_B" returningValue="true">
+	<property name="defaultSchema" value="oceanops"/>
+	<procedure name="PTF_INFO.GET_PTF_AGE" schema="oceanops" returningValue="true">
 		<procedure-parameter name="AGE" type="DOUBLE" direction="out"/>
 		<procedure-parameter name="PTF_ID" type="INTEGER" direction="in"/>
 	</procedure>
-	<procedure name="PTF_INFO.GET_PTF_AGE_WEIGHT" schema="JCOMMOPS_B" returningValue="true">
+	<procedure name="PTF_INFO.GET_PTF_AGE_WEIGHT" schema="oceanops" returningValue="true">
 		<procedure-parameter name="AGE_WEIGHT" type="DOUBLE" direction="out"/>
 		<procedure-parameter name="PTF_ID" type="INTEGER" direction="in"/>
 	</procedure>
-	<db-entity name="ADOPTION" schema="JCOMMOPS_B">
+	<db-entity name="ADOPTION" schema="oceanops">
 		<db-attribute name="ADOPTER_ADDRESS" type="VARCHAR" length="300"/>
 		<db-attribute name="ADOPTER_EMAIL" type="VARCHAR" length="100"/>
 		<db-attribute name="ADOPTER_NAME" type="VARCHAR" length="150"/>
@@ -26,7 +26,7 @@
 		<db-attribute name="TITLE" type="VARCHAR" length="300"/>
 		<db-attribute name="URL" type="VARCHAR" length="200"/>
 	</db-entity>
-	<db-entity name="AGENCY" schema="JCOMMOPS_B">
+	<db-entity name="AGENCY" schema="oceanops">
 		<db-attribute name="ADDRESS" type="VARCHAR" length="500"/>
 		<db-attribute name="COUNTRY_ID" type="INTEGER" length="10"/>
 		<db-attribute name="DEPLOYER" type="NUMERIC" length="1"/>
@@ -47,7 +47,7 @@
 		<db-attribute name="TEL" type="VARCHAR" length="30"/>
 		<db-attribute name="WEBLINK_ID" type="INTEGER" length="10"/>
 	</db-entity>
-	<db-entity name="AGENCY_DAC_TYPE" schema="JCOMMOPS_B">
+	<db-entity name="AGENCY_DAC_TYPE" schema="oceanops">
 		<db-attribute name="AGENCY_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="DAC_TYPE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="DATA_PATH" type="VARCHAR" length="150"/>
@@ -60,26 +60,26 @@
 		<db-attribute name="OP_MAIL" type="VARCHAR" length="50"/>
 		<db-attribute name="WEBLINK_ID" type="INTEGER" length="10"/>
 	</db-entity>
-	<db-entity name="AGENCY_PTF" schema="JCOMMOPS_B">
+	<db-entity name="AGENCY_PTF" schema="oceanops">
 		<db-attribute name="AGENCY_ID" type="INTEGER" isMandatory="true" length="10"/>
 		<db-attribute name="AGENCY_ROLE_ID" type="INTEGER" length="10"/>
 		<db-attribute name="DAC_TYPE_ID" type="INTEGER" length="10"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="PTF_ID" type="INTEGER" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="AGENCY_ROLE" schema="JCOMMOPS_B">
+	<db-entity name="AGENCY_ROLE" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="2000"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" length="100"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="20"/>
 	</db-entity>
-	<db-entity name="AGENCY_SITE_ROLE" schema="JCOMMOPS_B">
+	<db-entity name="AGENCY_SITE_ROLE" schema="oceanops">
 		<db-attribute name="AGENCY_ID" type="INTEGER" isMandatory="true"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 		<db-attribute name="ROLE_ID" type="INTEGER"/>
 		<db-attribute name="SITE_ID" type="INTEGER" isMandatory="true"/>
 	</db-entity>
-	<db-entity name="API_TOKEN" schema="JCOMMOPS_B">
+	<db-entity name="API_TOKEN" schema="oceanops">
 		<db-attribute name="CONTACT_ID" type="INTEGER" length="10"/>
 		<db-attribute name="CREATION_DATE" type="TIMESTAMP" isMandatory="true" length="7"/>
 		<db-attribute name="END_VALIDITY" type="TIMESTAMP" length="7"/>
@@ -89,13 +89,13 @@
 		<db-attribute name="TOKEN" type="VARCHAR" isMandatory="true" length="500"/>
 		<db-attribute name="TYPE" type="VARCHAR" length="20"/>
 	</db-entity>
-	<db-entity name="API_WMO_ID_TYPE" schema="JCOMMOPS_B">
+	<db-entity name="API_WMO_ID_TYPE" schema="oceanops">
 		<db-attribute name="CODE" type="VARCHAR" length="100"/>
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="500"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="2"/>
 		<db-attribute name="NAME" type="VARCHAR" length="100"/>
 	</db-entity>
-	<db-entity name="BASIN" schema="JCOMMOPS_B">
+	<db-entity name="BASIN" schema="oceanops">
 		<db-attribute name="BASIN_TYPE_ID" type="INTEGER" length="2"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" length="50"/>
@@ -106,14 +106,14 @@
 		<db-attribute name="SUBOCEAN" type="VARCHAR" length="50"/>
 		<db-attribute name="WKT" type="VARCHAR" length="4000"/>
 	</db-entity>
-	<db-entity name="BASIN_TYPE" schema="JCOMMOPS_B">
+	<db-entity name="BASIN_TYPE" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="300"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="2"/>
 		<db-attribute name="NAME" type="VARCHAR" length="50"/>
 		<db-attribute name="NAME_LONG" type="VARCHAR" length="80"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="20"/>
 	</db-entity>
-	<db-entity name="CONFIG" schema="JCOMMOPS_B">
+	<db-entity name="CONFIG" schema="oceanops">
 		<db-attribute name="CYCLE_TIME" type="NUMERIC" length="10" scale="4"/>
 		<db-attribute name="DRIFT_PRESS" type="NUMERIC" length="9" scale="4"/>
 		<db-attribute name="ICE_DETECTION" type="NUMERIC" length="1"/>
@@ -125,7 +125,7 @@
 		<db-attribute name="SURFACE_TIME" type="NUMERIC" length="10" scale="4"/>
 		<db-attribute name="WATCH_CIRCLE" type="NUMERIC" length="6"/>
 	</db-entity>
-	<db-entity name="CONTACT" schema="JCOMMOPS_B">
+	<db-entity name="CONTACT" schema="oceanops">
 		<db-attribute name="ADDRESS" type="VARCHAR" length="500"/>
 		<db-attribute name="ADMIN" type="NUMERIC" length="1"/>
 		<db-attribute name="AGENCY_ID" type="INTEGER" length="10"/>
@@ -151,7 +151,7 @@
 		<db-attribute name="TITLE" type="VARCHAR" length="50"/>
 		<db-attribute name="WEBLINK_ID" type="INTEGER" length="10"/>
 	</db-entity>
-	<db-entity name="CONTACT_LOGIN" schema="JCOMMOPS_B">
+	<db-entity name="CONTACT_LOGIN" schema="oceanops">
 		<db-attribute name="CONTACT_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="CREATION_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="END_VALIDITY" type="TIMESTAMP" length="7"/>
@@ -160,20 +160,20 @@
 		<db-attribute name="LOGIN" type="VARCHAR" isMandatory="true" length="150"/>
 		<db-attribute name="PASSCODE" type="VARCHAR" isMandatory="true" length="500"/>
 	</db-entity>
-	<db-entity name="CONTACT_PTF_ROLE" schema="JCOMMOPS_B">
+	<db-entity name="CONTACT_PTF_ROLE" schema="oceanops">
 		<db-attribute name="CONTACT_ID" type="INTEGER" isMandatory="true" length="10"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="PTF_ID" type="INTEGER" isMandatory="true" length="10"/>
 		<db-attribute name="ROLE_ID" type="INTEGER" length="10"/>
 		<db-attribute name="SENSOR_MODEL_ID" type="INTEGER" length="10"/>
 	</db-entity>
-	<db-entity name="CONTACT_SITE_ROLE" schema="JCOMMOPS_B">
+	<db-entity name="CONTACT_SITE_ROLE" schema="oceanops">
 		<db-attribute name="CONTACT_ID" type="INTEGER" isMandatory="true"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 		<db-attribute name="ROLE_ID" type="INTEGER" isMandatory="true"/>
 		<db-attribute name="SITE_ID" type="INTEGER" isMandatory="true"/>
 	</db-entity>
-	<db-entity name="COUNTRY" schema="JCOMMOPS_B">
+	<db-entity name="COUNTRY" schema="oceanops">
 		<db-attribute name="ACTIVE" type="NUMERIC" isMandatory="true" length="38"/>
 		<db-attribute name="CODE2" type="VARCHAR" length="5"/>
 		<db-attribute name="CODE3" type="VARCHAR" length="5"/>
@@ -188,7 +188,7 @@
 		<db-attribute name="TO_NOTIFY" type="NUMERIC" isMandatory="true" length="1"/>
 		<db-attribute name="WMO_MEMBER" type="NUMERIC" isMandatory="true" length="1"/>
 	</db-entity>
-	<db-entity name="COUNTRY_COMMITMENT" schema="JCOMMOPS_B">
+	<db-entity name="COUNTRY_COMMITMENT" schema="oceanops">
 		<db-attribute name="BASIN_ID" type="INTEGER" length="10"/>
 		<db-attribute name="COUNTRY_ID" type="INTEGER" isMandatory="true" length="10"/>
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="4000"/>
@@ -197,7 +197,7 @@
 		<db-attribute name="NETWORK_ID" type="INTEGER" isMandatory="true" length="10"/>
 		<db-attribute name="YEAR" type="NUMERIC" isMandatory="true" length="4"/>
 	</db-entity>
-	<db-entity name="CRUISE" schema="JCOMMOPS_B">
+	<db-entity name="CRUISE" schema="oceanops">
 		<db-attribute name="AGENCY_ID" type="INTEGER" length="10"/>
 		<db-attribute name="ARRIVAL_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="ARRIVAL_PORT" type="VARCHAR" length="5"/>
@@ -244,93 +244,93 @@
 		<db-attribute name="WEBLINK_ID" type="INTEGER" length="10"/>
 		<db-attribute name="WKB" type="OTHER" length="4000"/>
 	</db-entity>
-	<db-entity name="CRUISE_CLASS" schema="JCOMMOPS_B">
+	<db-entity name="CRUISE_CLASS" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="255"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" length="30"/>
 	</db-entity>
-	<db-entity name="CRUISE_CONTACT" schema="JCOMMOPS_B">
+	<db-entity name="CRUISE_CONTACT" schema="oceanops">
 		<db-attribute name="CONTACT_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="CRUISE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="ROLE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="CRUISE_COUNTRY" schema="JCOMMOPS_B">
+	<db-entity name="CRUISE_COUNTRY" schema="oceanops">
 		<db-attribute name="COUNTRY_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="CRUISE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="CRUISE_LINE" schema="JCOMMOPS_B">
+	<db-entity name="CRUISE_LINE" schema="oceanops">
 		<db-attribute name="CRUISE_ID" type="INTEGER" length="10"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="LINE_ID" type="INTEGER" length="10"/>
 		<db-attribute name="PERFORMANCE_INDEX" type="NUMERIC" length="3" scale="2"/>
 		<db-attribute name="RANK" type="INTEGER" length="2"/>
 	</db-entity>
-	<db-entity name="CRUISE_POLYGON" schema="JCOMMOPS_B">
+	<db-entity name="CRUISE_POLYGON" schema="oceanops">
 		<db-attribute name="CRUISE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="CRUISE_PROGRAM" schema="JCOMMOPS_B">
+	<db-entity name="CRUISE_PROGRAM" schema="oceanops">
 		<db-attribute name="CRUISE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="LEAD" type="NUMERIC" length="1"/>
 		<db-attribute name="PROGRAM_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="CRUISE_SENSOR_MODEL" schema="JCOMMOPS_B">
+	<db-entity name="CRUISE_SENSOR_MODEL" schema="oceanops">
 		<db-attribute name="CRUISE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="SENSOR_MODEL_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="CRUISE_STATUS" schema="JCOMMOPS_B">
+	<db-entity name="CRUISE_STATUS" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="300"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" length="50"/>
 		<db-attribute name="NAME_LONG" type="VARCHAR" length="80"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="30"/>
 	</db-entity>
-	<db-entity name="CRUISE_TYPE" schema="JCOMMOPS_B">
+	<db-entity name="CRUISE_TYPE" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="300"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" length="50"/>
 		<db-attribute name="NAME_LONG" type="VARCHAR" length="80"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="30"/>
 	</db-entity>
-	<db-entity name="CRUISE_VARIABLE" schema="JCOMMOPS_B">
+	<db-entity name="CRUISE_VARIABLE" schema="oceanops">
 		<db-attribute name="CRUISE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="VARIABLE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="DAC_TYPE" schema="JCOMMOPS_B">
+	<db-entity name="DAC_TYPE" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="350"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" isMandatory="true" length="80"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="DATA_FORMAT" schema="JCOMMOPS_B">
+	<db-entity name="DATA_FORMAT" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="500"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" isMandatory="true" length="30"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" isMandatory="true" length="5"/>
 	</db-entity>
-	<db-entity name="DATA_PROCESSING_METHOD" schema="JCOMMOPS_B">
+	<db-entity name="DATA_PROCESSING_METHOD" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="100"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="2"/>
 		<db-attribute name="NAME" type="VARCHAR" length="30"/>
 		<db-attribute name="REF" type="VARCHAR" length="15"/>
 	</db-entity>
-	<db-entity name="DATA_STATUS" schema="JCOMMOPS_B">
+	<db-entity name="DATA_STATUS" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="150"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" length="50"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="30"/>
 	</db-entity>
-	<db-entity name="DEPL_METHOD" schema="JCOMMOPS_B">
+	<db-entity name="DEPL_METHOD" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="500"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" isMandatory="true" length="30"/>
 	</db-entity>
-	<db-entity name="DEPL_TYPE" schema="JCOMMOPS_B">
+	<db-entity name="DEPL_TYPE" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="500"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 		<db-attribute name="NAME" type="VARCHAR" isMandatory="true" length="50"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="20"/>
 	</db-entity>
-	<db-entity name="DOC" schema="JCOMMOPS_B">
+	<db-entity name="DOC" schema="oceanops">
 		<db-attribute name="AGENDA_ITEM" type="VARCHAR" length="10"/>
 		<db-attribute name="AUTHOR" type="VARCHAR" length="100"/>
 		<db-attribute name="BODY" type="VARCHAR" length="4000"/>
@@ -355,32 +355,32 @@
 		<db-attribute name="VERSION" type="NUMERIC" length="6" scale="2"/>
 		<db-attribute name="WEBLINK_ID" type="INTEGER" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="DOC_CONTACT" schema="JCOMMOPS_B">
+	<db-entity name="DOC_CONTACT" schema="oceanops">
 		<db-attribute name="CONTACT_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="DOC_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="DOC_LANGUAGE" schema="JCOMMOPS_B">
+	<db-entity name="DOC_LANGUAGE" schema="oceanops">
 		<db-attribute name="DOC_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="LANGUAGE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="DOC_TYPE" schema="JCOMMOPS_B">
+	<db-entity name="DOC_TYPE" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="500"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" length="50"/>
 		<db-attribute name="NAME_LONG" type="VARCHAR" length="80"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="30"/>
 	</db-entity>
-	<db-entity name="ENDING_CAUSE" schema="JCOMMOPS_B">
+	<db-entity name="ENDING_CAUSE" schema="oceanops">
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" isMandatory="true" length="80"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" isMandatory="true" length="20"/>
 	</db-entity>
-	<db-entity name="FREQUENCY" schema="JCOMMOPS_B">
+	<db-entity name="FREQUENCY" schema="oceanops">
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" length="80"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="50"/>
 	</db-entity>
-	<db-entity name="GTS_CCCC" schema="JCOMMOPS_B">
+	<db-entity name="GTS_CCCC" schema="oceanops">
 		<db-attribute name="AGENCY_ID" type="INTEGER" length="10"/>
 		<db-attribute name="CCCC" type="VARCHAR" isMandatory="true" length="4"/>
 		<db-attribute name="CENTER" type="VARCHAR" length="20"/>
@@ -392,11 +392,11 @@
 		<db-attribute name="TAG" type="VARCHAR" length="100"/>
 		<db-attribute name="TMP" type="VARCHAR" length="2"/>
 	</db-entity>
-	<db-entity name="GTS_CCCC_HEADER" schema="JCOMMOPS_B">
+	<db-entity name="GTS_CCCC_HEADER" schema="oceanops">
 		<db-attribute name="GTS_CCCC_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="GTS_HEADER_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="GTS_CODE" schema="JCOMMOPS_B">
+	<db-entity name="GTS_CODE" schema="oceanops">
 		<db-attribute name="ACTIVE" type="NUMERIC" isMandatory="true" length="1"/>
 		<db-attribute name="CODE_LETTERS" type="VARCHAR" isMandatory="true" length="30"/>
 		<db-attribute name="CODE_NAME" type="VARCHAR" length="10"/>
@@ -407,14 +407,14 @@
 		<db-attribute name="MAIN_PTF_TYPE" type="VARCHAR" length="50"/>
 		<db-attribute name="TAG" type="VARCHAR" length="100"/>
 	</db-entity>
-	<db-entity name="GTS_HEADER" schema="JCOMMOPS_B">
+	<db-entity name="GTS_HEADER" schema="oceanops">
 		<db-attribute name="END_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="HEADER" type="VARCHAR" isMandatory="true" length="6"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="START_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="TEXT" type="VARCHAR" length="80"/>
 	</db-entity>
-	<db-entity name="GTS_INSTRUMENT_TYPE" schema="JCOMMOPS_B">
+	<db-entity name="GTS_INSTRUMENT_TYPE" schema="oceanops">
 		<db-attribute name="CODE" type="VARCHAR" isMandatory="true" length="4"/>
 		<db-attribute name="DETAILS" type="VARCHAR" length="80"/>
 		<db-attribute name="FALLRATE_A" type="NUMERIC" length="9" scale="5"/>
@@ -422,13 +422,13 @@
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 		<db-attribute name="TYPE" type="VARCHAR" length="50"/>
 	</db-entity>
-	<db-entity name="GTS_RECORDER_TYPE" schema="JCOMMOPS_B">
+	<db-entity name="GTS_RECORDER_TYPE" schema="oceanops">
 		<db-attribute name="CODE" type="VARCHAR" isMandatory="true" length="3"/>
 		<db-attribute name="DETAILS" type="VARCHAR" length="200"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 		<db-attribute name="TYPE" type="VARCHAR" length="100"/>
 	</db-entity>
-	<db-entity name="IMAGE" schema="JCOMMOPS_B">
+	<db-entity name="IMAGE" schema="oceanops">
 		<db-attribute name="AGENCY_ID" type="INTEGER" length="10"/>
 		<db-attribute name="CREATION_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="CREDITS" type="VARCHAR" length="80"/>
@@ -446,14 +446,14 @@
 		<db-attribute name="TAGS" type="VARCHAR" length="100"/>
 		<db-attribute name="URL" type="VARCHAR" length="300"/>
 	</db-entity>
-	<db-entity name="IMAGE_TYPE" schema="JCOMMOPS_B">
+	<db-entity name="IMAGE_TYPE" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="300"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" isMandatory="true" length="100"/>
 		<db-attribute name="NAME_LONG" type="VARCHAR" length="150"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="30"/>
 	</db-entity>
-	<db-entity name="INDICATOR" schema="JCOMMOPS_B">
+	<db-entity name="INDICATOR" schema="oceanops">
 		<db-attribute name="BASIN_ID" type="INTEGER" length="10"/>
 		<db-attribute name="CORE" type="NUMERIC" length="1"/>
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="4000"/>
@@ -472,13 +472,13 @@
 		<db-attribute name="TARGET_VALUE" type="NUMERIC" length="12" scale="2"/>
 		<db-attribute name="VARIABLE_ID" type="INTEGER" length="10"/>
 	</db-entity>
-	<db-entity name="INDICATOR_CATEGORY" schema="JCOMMOPS_B">
+	<db-entity name="INDICATOR_CATEGORY" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="2000"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" isMandatory="true" length="20"/>
 		<db-attribute name="RANK" type="NUMERIC" length="2"/>
 	</db-entity>
-	<db-entity name="INDICATOR_VALUE" schema="JCOMMOPS_B">
+	<db-entity name="INDICATOR_VALUE" schema="oceanops">
 		<db-attribute name="END_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="INDICATOR_ID" type="INTEGER" length="10"/>
@@ -486,18 +486,18 @@
 		<db-attribute name="VALUE" type="NUMERIC" length="12" scale="4"/>
 		<db-attribute name="VALUE_RAW" type="NUMERIC" length="12" scale="4"/>
 	</db-entity>
-	<db-entity name="LANGUAGE" schema="JCOMMOPS_B">
+	<db-entity name="LANGUAGE" schema="oceanops">
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" length="30"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" isMandatory="true" length="5"/>
 	</db-entity>
-	<db-entity name="LATENCY" schema="JCOMMOPS_B">
+	<db-entity name="LATENCY" schema="oceanops">
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 		<db-attribute name="MINUTES" type="NUMERIC"/>
 		<db-attribute name="NAME" type="VARCHAR" length="50"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="20"/>
 	</db-entity>
-	<db-entity name="LINE" schema="JCOMMOPS_B">
+	<db-entity name="LINE" schema="oceanops">
 		<db-attribute name="FROM_TO" type="VARCHAR" length="500"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="LINE_DECADAL_STATUS_ID" type="INTEGER" length="1"/>
@@ -506,44 +506,44 @@
 		<db-attribute name="WEBLINK_ID" type="INTEGER" length="10"/>
 		<db-attribute name="WKB" type="OTHER" length="4000"/>
 	</db-entity>
-	<db-entity name="LINE_DECADAL_STATUS" schema="JCOMMOPS_B">
+	<db-entity name="LINE_DECADAL_STATUS" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="255"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="1"/>
 		<db-attribute name="NAME" type="VARCHAR" length="20"/>
 	</db-entity>
-	<db-entity name="LINE_FAMILY" schema="JCOMMOPS_B">
+	<db-entity name="LINE_FAMILY" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="255"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" length="40"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="20"/>
 	</db-entity>
-	<db-entity name="LINE_PERFORMANCE" schema="JCOMMOPS_B">
+	<db-entity name="LINE_PERFORMANCE" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="255"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" length="30"/>
 	</db-entity>
-	<db-entity name="LINE_PROGRAM" schema="JCOMMOPS_B">
+	<db-entity name="LINE_PROGRAM" schema="oceanops">
 		<db-attribute name="LEAD" type="NUMERIC" length="1"/>
 		<db-attribute name="LINE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 		<db-attribute name="PROGRAM_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 	</db-entity>
-	<db-entity name="LINE_PTF" schema="JCOMMOPS_B">
+	<db-entity name="LINE_PTF" schema="oceanops">
 		<db-attribute name="LINE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="PTF_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="LINE_STATUS" schema="JCOMMOPS_B">
+	<db-entity name="LINE_STATUS" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="200"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" length="30"/>
 	</db-entity>
-	<db-entity name="LINE_SURVEY" schema="JCOMMOPS_B">
+	<db-entity name="LINE_SURVEY" schema="oceanops">
 		<db-attribute name="LINE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="LINE_PERFORMANCE_ID" type="INTEGER" length="10"/>
 		<db-attribute name="LINE_STATUS_ID" type="INTEGER" length="10"/>
 		<db-attribute name="LINE_TYPE_ID" type="INTEGER" length="10"/>
 		<db-attribute name="SURVEY_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="LINE_TYPE" schema="JCOMMOPS_B">
+	<db-entity name="LINE_TYPE" schema="oceanops">
 		<db-attribute name="COMMENTS" type="VARCHAR" length="1000"/>
 		<db-attribute name="DROPS" type="NUMERIC" length="5"/>
 		<db-attribute name="HORIZ_RESOL_DEG" type="NUMERIC" length="6" scale="2"/>
@@ -569,18 +569,18 @@
 		<db-attribute name="PERIOD_TOLERANCE" type="NUMERIC" length="3"/>
 		<db-attribute name="TRANSECTS" type="NUMERIC" length="2"/>
 	</db-entity>
-	<db-entity name="LOC_STATUS" schema="JCOMMOPS_B">
+	<db-entity name="LOC_STATUS" schema="oceanops">
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" length="255"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="20"/>
 	</db-entity>
-	<db-entity name="LOC_SYSTEM" schema="JCOMMOPS_B">
+	<db-entity name="LOC_SYSTEM" schema="oceanops">
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" length="30"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" isMandatory="true" length="10"/>
 		<db-attribute name="WIGOS_CODE" type="VARCHAR" length="20"/>
 	</db-entity>
-	<db-entity name="MAP_TYPE" schema="JCOMMOPS_B">
+	<db-entity name="MAP_TYPE" schema="oceanops">
 		<db-attribute name="FREQ" type="NUMERIC" length="38"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" length="50"/>
@@ -588,13 +588,13 @@
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="30"/>
 		<db-attribute name="URL_PATH" type="VARCHAR" length="100"/>
 	</db-entity>
-	<db-entity name="MAP_TYPE_NETWORK" schema="JCOMMOPS_B">
+	<db-entity name="MAP_TYPE_NETWORK" schema="oceanops">
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="MAP_TYPE_ID" type="INTEGER" isMandatory="true" length="10"/>
 		<db-attribute name="NETWORK_ID" type="INTEGER" isMandatory="true" length="10"/>
 		<db-attribute name="RANK" type="INTEGER" length="10"/>
 	</db-entity>
-	<db-entity name="MEETING" schema="JCOMMOPS_B">
+	<db-entity name="MEETING" schema="oceanops">
 		<db-attribute name="CONTACT_ID" type="INTEGER" isMandatory="true" length="10"/>
 		<db-attribute name="COUNTRY_ID" type="INTEGER" length="10"/>
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="500"/>
@@ -608,13 +608,13 @@
 		<db-attribute name="START_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="WEBLINK_ID" type="INTEGER" length="10"/>
 	</db-entity>
-	<db-entity name="MOORING_TYPE" schema="JCOMMOPS_B">
+	<db-entity name="MOORING_TYPE" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="200"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" length="60"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" isMandatory="true" length="5"/>
 	</db-entity>
-	<db-entity name="MZMS_PTF_COUNTRY" schema="JCOMMOPS_B">
+	<db-entity name="MZMS_PTF_COUNTRY" schema="oceanops">
 		<db-attribute name="CHECKED" type="NUMERIC" length="1"/>
 		<db-attribute name="COMMENTS" type="VARCHAR" length="500"/>
 		<db-attribute name="COUNTRY_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
@@ -623,12 +623,12 @@
 		<db-attribute name="PTF_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 		<db-attribute name="WARNING_DATE" type="TIMESTAMP" isMandatory="true" length="7"/>
 	</db-entity>
-	<db-entity name="NC_LEVEL" schema="JCOMMOPS_B">
+	<db-entity name="NC_LEVEL" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="200"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 		<db-attribute name="NAME" type="VARCHAR" isMandatory="true" length="20"/>
 	</db-entity>
-	<db-entity name="NC_NOTIFICATION" schema="JCOMMOPS_B">
+	<db-entity name="NC_NOTIFICATION" schema="oceanops">
 		<db-attribute name="CONTACT_ID" type="INTEGER" length="10"/>
 		<db-attribute name="CRUISE_ID" type="INTEGER" length="10"/>
 		<db-attribute name="DESCRIPTION" type="CLOB" length="4000"/>
@@ -642,7 +642,7 @@
 		<db-attribute name="PTF_ID" type="INTEGER"/>
 		<db-attribute name="SENT" type="NUMERIC" length="1"/>
 	</db-entity>
-	<db-entity name="NC_SUBSCRIPTION" schema="JCOMMOPS_B">
+	<db-entity name="NC_SUBSCRIPTION" schema="oceanops">
 		<db-attribute name="CONTACT_ID" type="INTEGER" isMandatory="true" length="10"/>
 		<db-attribute name="EMAILED" type="NUMERIC" length="1"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
@@ -652,14 +652,14 @@
 		<db-attribute name="PTF_ID" type="INTEGER"/>
 		<db-attribute name="SUBSCRIPTION_DATE" type="TIMESTAMP" isMandatory="true" length="7"/>
 	</db-entity>
-	<db-entity name="NC_TOPIC" schema="JCOMMOPS_B">
+	<db-entity name="NC_TOPIC" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="150"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 		<db-attribute name="IS_PRIVATE" type="NUMERIC" length="1"/>
 		<db-attribute name="NAME" type="VARCHAR" length="40"/>
 		<db-attribute name="PARENT_TOPIC_ID" type="INTEGER"/>
 	</db-entity>
-	<db-entity name="NETWORK" schema="JCOMMOPS_B">
+	<db-entity name="NETWORK" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="500"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" isMandatory="true" length="80"/>
@@ -669,20 +669,20 @@
 		<db-attribute name="RANK" type="NUMERIC" isMandatory="true" length="2"/>
 		<db-attribute name="WIGOS_CODE" type="VARCHAR" length="20"/>
 	</db-entity>
-	<db-entity name="NETWORK_CONTACT" schema="JCOMMOPS_B">
+	<db-entity name="NETWORK_CONTACT" schema="oceanops">
 		<db-attribute name="CONTACT_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NETWORK_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="ROLE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="NETWORK_COUNTRY" schema="JCOMMOPS_B">
+	<db-entity name="NETWORK_COUNTRY" schema="oceanops">
 		<db-attribute name="COUNTRY_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 		<db-attribute name="NETWORK_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 	</db-entity>
-	<db-entity name="NETWORK_ENDING_CAUSE" schema="JCOMMOPS_B">
+	<db-entity name="NETWORK_ENDING_CAUSE" schema="oceanops">
 		<db-attribute name="ENDING_CAUSE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NETWORK_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="NETWORK_INFORMATION" schema="JCOMMOPS_B">
+	<db-entity name="NETWORK_INFORMATION" schema="oceanops">
 		<db-attribute name="DATA" type="CLOB" length="4000"/>
 		<db-attribute name="DESCRIPTION" type="CLOB" length="4000"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
@@ -695,22 +695,21 @@
 		<db-attribute name="PEOPLE" type="CLOB" length="4000"/>
 		<db-attribute name="TECH" type="CLOB" length="4000"/>
 	</db-entity>
-	<db-entity name="NETWORK_PTF" schema="JCOMMOPS_B">
+	<db-entity name="NETWORK_PTF" schema="oceanops">
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NETWORK_ID" type="INTEGER" isMandatory="true" length="10"/>
 		<db-attribute name="PTF_ID" type="INTEGER" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="NETWORK_SITE" schema="JCOMMOPS_B">
+	<db-entity name="NETWORK_SITE" schema="oceanops">
 		<db-attribute name="NETWORK_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="SITE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="NETWORK_TYPE" schema="JCOMMOPS_B">
+	<db-entity name="NETWORK_TYPE" schema="oceanops">
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" isMandatory="true" length="100"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="50"/>
 	</db-entity>
-	<db-entity name="OBS" schema="JCOMMOPS_B">
-		<db-attribute name="DELAY" type="NUMERIC"/>
+	<db-entity name="OBS" schema="oceanops">
 		<db-attribute name="DEPTH" type="NUMERIC" length="20" scale="4"/>
 		<db-attribute name="DISTRIBUTION_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="GTS_CCCC_ID" type="INTEGER" isMandatory="true" length="10"/>
@@ -729,7 +728,7 @@
 		<db-attribute name="UPDATE_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="WMO" type="VARCHAR" length="20"/>
 	</db-entity>
-	<db-entity name="OBS_ARGO_GDAC" schema="JCOMMOPS_B">
+	<db-entity name="OBS_ARGO_GDAC" schema="oceanops">
 		<db-attribute name="ASSEMBLY_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="ASSEMBLY_DATE_BGC" type="TIMESTAMP" length="7"/>
 		<db-attribute name="CYCLE_NB" type="NUMERIC" length="10"/>
@@ -755,12 +754,12 @@
 		<db-attribute name="UPDATE_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="WMO" type="VARCHAR" length="20"/>
 	</db-entity>
-	<db-entity name="OBS_ARGO_GDAC_DS" schema="JCOMMOPS_B">
+	<db-entity name="OBS_ARGO_GDAC_DS" schema="oceanops">
 		<db-attribute name="OBS_DATA_STATUS_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 		<db-attribute name="OBS_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 		<db-attribute name="STATUS_DATE" type="TIMESTAMP" isMandatory="true" length="7"/>
 	</db-entity>
-	<db-entity name="OBS_ARGO_GDAC_VARIABLE" schema="JCOMMOPS_B">
+	<db-entity name="OBS_ARGO_GDAC_VARIABLE" schema="oceanops">
 		<db-attribute name="ADJUSTMENT_DEVIATION" type="NUMERIC" length="20" scale="10"/>
 		<db-attribute name="ADJUSTMENT_MEAN" type="NUMERIC" length="20" scale="10"/>
 		<db-attribute name="LEVELS_NB" type="NUMERIC" length="10"/>
@@ -769,15 +768,15 @@
 		<db-attribute name="QC" type="VARCHAR" length="10"/>
 		<db-attribute name="VARIABLE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="OBS_DATA_STATUS" schema="JCOMMOPS_B">
+	<db-entity name="OBS_DATA_STATUS" schema="oceanops">
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="38"/>
 		<db-attribute name="NAME" type="VARCHAR" length="20"/>
 	</db-entity>
-	<db-entity name="OBS_FISHINGVESSEL_FD_VARIABLE" schema="JCOMMOPS_B">
+	<db-entity name="OBS_FISHINGVESSEL_FD_VARIABLE" schema="oceanops">
 		<db-attribute name="OBS_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="38"/>
 		<db-attribute name="VARIABLE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="OBS_FISHINGVESSEL_FISHYDATA" schema="JCOMMOPS_B">
+	<db-entity name="OBS_FISHINGVESSEL_FISHYDATA" schema="oceanops">
 		<db-attribute name="DESCENDING" type="NUMERIC" length="1"/>
 		<db-attribute name="DISTRIBUTION_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="38"/>
@@ -792,7 +791,7 @@
 		<db-attribute name="UPDATE_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="WMO" type="VARCHAR" length="20"/>
 	</db-entity>
-	<db-entity name="OBS_GLIDERS_GDAC" schema="JCOMMOPS_B">
+	<db-entity name="OBS_GLIDERS_GDAC" schema="oceanops">
 		<db-attribute name="ASSEMBLY_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="CYCLE_NB" type="NUMERIC" length="10"/>
 		<db-attribute name="DATA_PATH" type="VARCHAR" length="4000"/>
@@ -813,16 +812,16 @@
 		<db-attribute name="UPDATE_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="WMO" type="VARCHAR" length="20"/>
 	</db-entity>
-	<db-entity name="OBS_GLIDERS_GDAC_DS" schema="JCOMMOPS_B">
+	<db-entity name="OBS_GLIDERS_GDAC_DS" schema="oceanops">
 		<db-attribute name="OBS_DATA_STATUS_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 		<db-attribute name="OBS_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 		<db-attribute name="STATUS_DATE" type="TIMESTAMP" isMandatory="true" length="7"/>
 	</db-entity>
-	<db-entity name="OBS_GLIDERS_GDAC_VARIABLE" schema="JCOMMOPS_B">
+	<db-entity name="OBS_GLIDERS_GDAC_VARIABLE" schema="oceanops">
 		<db-attribute name="OBS_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="38"/>
 		<db-attribute name="VARIABLE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="OBS_GLIDERS_GTS_OSMC" schema="JCOMMOPS_B">
+	<db-entity name="OBS_GLIDERS_GTS_OSMC" schema="oceanops">
 		<db-attribute name="DISTRIBUTION_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="38"/>
 		<db-attribute name="INSERT_DATE" type="TIMESTAMP" length="7"/>
@@ -835,11 +834,11 @@
 		<db-attribute name="UPDATE_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="WMO" type="VARCHAR" length="20"/>
 	</db-entity>
-	<db-entity name="OBS_GLIDERS_GTS_OSMC_VARIABLE" schema="JCOMMOPS_B">
+	<db-entity name="OBS_GLIDERS_GTS_OSMC_VARIABLE" schema="oceanops">
 		<db-attribute name="OBS_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="38"/>
 		<db-attribute name="VARIABLE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="OBS_LATEST" schema="JCOMMOPS_B">
+	<db-entity name="OBS_LATEST" schema="oceanops">
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 		<db-attribute name="LAT" type="NUMERIC" length="10" scale="4"/>
 		<db-attribute name="LON" type="NUMERIC" length="10" scale="4"/>
@@ -847,12 +846,12 @@
 		<db-attribute name="ORIGIN_ID" type="INTEGER"/>
 		<db-attribute name="ORIGIN_TABLE" type="VARCHAR" length="255"/>
 	</db-entity>
-	<db-entity name="OBS_OBS_DATA_STATUS" schema="JCOMMOPS_B">
+	<db-entity name="OBS_OBS_DATA_STATUS" schema="oceanops">
 		<db-attribute name="OBS_DATA_STATUS_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 		<db-attribute name="OBS_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 		<db-attribute name="STATUS_DATE" type="TIMESTAMP" isMandatory="true" length="7"/>
 	</db-entity>
-	<db-entity name="OBS_STATS" schema="JCOMMOPS_B">
+	<db-entity name="OBS_STATS" schema="oceanops">
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 		<db-attribute name="NAME" type="VARCHAR" isMandatory="true" length="70"/>
 		<db-attribute name="OBS_DAY" type="TIMESTAMP" isMandatory="true" length="7"/>
@@ -860,7 +859,7 @@
 		<db-attribute name="TYPE" type="VARCHAR" isMandatory="true" length="20"/>
 		<db-attribute name="VALUE" type="NUMERIC" isMandatory="true" length="12" scale="4"/>
 	</db-entity>
-	<db-entity name="OBS_TSUNA_GTS_OSMC" schema="JCOMMOPS_B">
+	<db-entity name="OBS_TSUNA_GTS_OSMC" schema="oceanops">
 		<db-attribute name="DEPTH" type="NUMERIC" length="20" scale="4"/>
 		<db-attribute name="DISTRIBUTION_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="38"/>
@@ -874,11 +873,11 @@
 		<db-attribute name="UPDATE_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="WMO" type="VARCHAR" length="20"/>
 	</db-entity>
-	<db-entity name="OBS_TSUNA_GTS_OSMC_VARIABLE" schema="JCOMMOPS_B">
+	<db-entity name="OBS_TSUNA_GTS_OSMC_VARIABLE" schema="oceanops">
 		<db-attribute name="OBS_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="38"/>
 		<db-attribute name="VARIABLE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="OBS_VARIABLE" schema="JCOMMOPS_B">
+	<db-entity name="OBS_VARIABLE" schema="oceanops">
 		<db-attribute name="ADJUSTMENT_DEVIATION" type="NUMERIC" length="20" scale="10"/>
 		<db-attribute name="ADJUSTMENT_MEAN" type="NUMERIC" length="20" scale="10"/>
 		<db-attribute name="DEPTH" type="NUMERIC" length="10" scale="3"/>
@@ -887,12 +886,12 @@
 		<db-attribute name="QC" type="VARCHAR" length="10"/>
 		<db-attribute name="VARIABLE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="PACKAGE_TYPE" schema="JCOMMOPS_B">
+	<db-entity name="PACKAGE_TYPE" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="500"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" isMandatory="true" length="30"/>
 	</db-entity>
-	<db-entity name="PARAMETER" schema="JCOMMOPS_B">
+	<db-entity name="PARAMETER" schema="oceanops">
 		<db-attribute name="ALT_LABEL" type="VARCHAR" isMandatory="true" length="100"/>
 		<db-attribute name="DEFINITION" type="VARCHAR" length="500"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="5"/>
@@ -901,7 +900,7 @@
 		<db-attribute name="UPDATE_DATE" type="TIMESTAMP"/>
 		<db-attribute name="URI" type="VARCHAR" isMandatory="true" length="255"/>
 	</db-entity>
-	<db-entity name="PARAMETER_PTF" schema="JCOMMOPS_B">
+	<db-entity name="PARAMETER_PTF" schema="oceanops">
 		<db-attribute name="FIRST_MEASURED" type="TIMESTAMP"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="LAST_MEASURED" type="TIMESTAMP"/>
@@ -909,18 +908,18 @@
 		<db-attribute name="PARAMETER_ID" type="INTEGER" isMandatory="true" length="10"/>
 		<db-attribute name="PTF_ID" type="INTEGER" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="PARAMETER_VARIABLE" schema="JCOMMOPS_B">
+	<db-entity name="PARAMETER_VARIABLE" schema="oceanops">
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="PARAMETER_ID" type="INTEGER" isMandatory="true" length="10"/>
 		<db-attribute name="VARIABLE_ID" type="INTEGER" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="POST_RETRIEVAL_STATUS" schema="JCOMMOPS_B">
+	<db-entity name="POST_RETRIEVAL_STATUS" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="1000"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="2"/>
 		<db-attribute name="NAME" type="VARCHAR" length="100"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="40"/>
 	</db-entity>
-	<db-entity name="PROGRAM" schema="JCOMMOPS_B">
+	<db-entity name="PROGRAM" schema="oceanops">
 		<db-attribute name="ACTIVE" type="NUMERIC" length="1"/>
 		<db-attribute name="COUNTRY_ID" type="INTEGER" length="10"/>
 		<db-attribute name="DEFAULT_PTF_MODEL_ID" type="INTEGER" length="10"/>
@@ -931,14 +930,14 @@
 		<db-attribute name="NETWORK_ID" type="INTEGER" length="10"/>
 		<db-attribute name="WIGOS_CODE" type="VARCHAR" length="50"/>
 	</db-entity>
-	<db-entity name="PROGRAM_AGENCY" schema="JCOMMOPS_B">
+	<db-entity name="PROGRAM_AGENCY" schema="oceanops">
 		<db-attribute name="AGENCY_ID" type="INTEGER" isMandatory="true" length="10"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="LEAD" type="NUMERIC" length="1"/>
 		<db-attribute name="PROGRAM_ID" type="INTEGER" isMandatory="true" length="10"/>
 		<db-attribute name="ROLE_ID" type="INTEGER" length="10"/>
 	</db-entity>
-	<db-entity name="PROGRAM_CONTACT" schema="JCOMMOPS_B">
+	<db-entity name="PROGRAM_CONTACT" schema="oceanops">
 		<db-attribute name="CONTACT_ID" type="INTEGER" isMandatory="true" length="10"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="MZMS_AUTO_CHECK" type="NUMERIC" length="1"/>
@@ -946,7 +945,7 @@
 		<db-attribute name="PROGRAM_ID" type="INTEGER" isMandatory="true" length="10"/>
 		<db-attribute name="ROLE_ID" type="INTEGER" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="PTF" schema="JCOMMOPS_B">
+	<db-entity name="PTF" schema="oceanops">
 		<db-attribute name="ACTIVITY_CRITERION" type="NUMERIC" length="5"/>
 		<db-attribute name="BACKUP_TELECOM_ID" type="INTEGER" length="10"/>
 		<db-attribute name="BACKUP_TRACKING_SYSTEM_ID" type="INTEGER" length="10"/>
@@ -987,48 +986,48 @@
 		<db-attribute name="VALIDATED" type="NUMERIC" length="1"/>
 		<db-attribute name="WIGOS_SYNCHRONISED" type="NUMERIC" length="1"/>
 	</db-entity>
-	<db-entity name="PTF_ANCILLARY_DEVICE" schema="JCOMMOPS_B">
+	<db-entity name="PTF_ANCILLARY_DEVICE" schema="oceanops">
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="PTF_ANCILLARY_DEVICE_NAME_ID" type="INTEGER" length="10"/>
 		<db-attribute name="PTF_ID" type="INTEGER" length="10"/>
 		<db-attribute name="SERIAL_REF" type="VARCHAR" length="20"/>
 		<db-attribute name="VERSION_ID" type="INTEGER" length="10"/>
 	</db-entity>
-	<db-entity name="PTF_ANCILLARY_DEVICE_NAME" schema="JCOMMOPS_B">
+	<db-entity name="PTF_ANCILLARY_DEVICE_NAME" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="200"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" length="50"/>
 	</db-entity>
-	<db-entity name="PTF_ANCILLARY_DEVICE_VERSION" schema="JCOMMOPS_B">
+	<db-entity name="PTF_ANCILLARY_DEVICE_VERSION" schema="oceanops">
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="PTF_ANCILLARY_DEVICE_NAME_ID" type="INTEGER" length="10"/>
 		<db-attribute name="PTF_MODEL_ID" type="INTEGER" length="10"/>
 		<db-attribute name="VERSION" type="VARCHAR" length="50"/>
 	</db-entity>
-	<db-entity name="PTF_AUTOMATION" schema="JCOMMOPS_B">
+	<db-entity name="PTF_AUTOMATION" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="200"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="PUB47_REF" type="VARCHAR" length="20"/>
 		<db-attribute name="REF" type="VARCHAR" length="50"/>
 	</db-entity>
-	<db-entity name="PTF_BATCH_STATUS" schema="JCOMMOPS_B">
+	<db-entity name="PTF_BATCH_STATUS" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="500"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="2"/>
 		<db-attribute name="NAME" type="VARCHAR" length="100"/>
 	</db-entity>
-	<db-entity name="PTF_BATTERY" schema="JCOMMOPS_B">
+	<db-entity name="PTF_BATTERY" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="500"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="INI_VOLTAGE" type="NUMERIC" length="4" scale="1"/>
 		<db-attribute name="NAME" type="VARCHAR" isMandatory="true" length="30"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="5"/>
 	</db-entity>
-	<db-entity name="PTF_CONFIG" schema="JCOMMOPS_B">
+	<db-entity name="PTF_CONFIG" schema="oceanops">
 		<db-attribute name="CONFIG_ID" type="INTEGER" isMandatory="true" length="10"/>
 		<db-attribute name="CYCLE" type="NUMERIC" isPrimaryKey="true" isMandatory="true" length="5"/>
 		<db-attribute name="PTF_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="PTF_DEPLOYMENT" schema="JCOMMOPS_B">
+	<db-entity name="PTF_DEPLOYMENT" schema="oceanops">
 		<db-attribute name="CONTACT_ID" type="INTEGER" length="10"/>
 		<db-attribute name="COUNTRY_ID" type="INTEGER" length="10"/>
 		<db-attribute name="CRUISE_ID" type="INTEGER" length="10"/>
@@ -1057,13 +1056,13 @@
 		<db-attribute name="WEATHER_ID" type="INTEGER" length="10"/>
 		<db-attribute name="WIND_SPEED" type="NUMERIC" length="10" scale="4"/>
 	</db-entity>
-	<db-entity name="PTF_FAMILY" schema="JCOMMOPS_B">
+	<db-entity name="PTF_FAMILY" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="500"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" length="100"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="30"/>
 	</db-entity>
-	<db-entity name="PTF_FIRMWARE" schema="JCOMMOPS_B">
+	<db-entity name="PTF_FIRMWARE" schema="oceanops">
 		<db-attribute name="AGENCY_ID" type="INTEGER" length="10"/>
 		<db-attribute name="BLUETOOTH_ID" type="VARCHAR" length="50"/>
 		<db-attribute name="FORMAT_REF" type="VARCHAR" length="50"/>
@@ -1074,7 +1073,7 @@
 		<db-attribute name="SOFTWARE_NAME" type="VARCHAR" length="50"/>
 		<db-attribute name="SOFTWARE_VERSION" type="VARCHAR" length="50"/>
 	</db-entity>
-	<db-entity name="PTF_HARDWARE" schema="JCOMMOPS_B">
+	<db-entity name="PTF_HARDWARE" schema="oceanops">
 		<db-attribute name="BALLOON_SIZE" type="NUMERIC" length="10" scale="4"/>
 		<db-attribute name="BATCH_REF" type="VARCHAR" length="30"/>
 		<db-attribute name="BATTERY_ID" type="INTEGER" length="10"/>
@@ -1094,14 +1093,14 @@
 		<db-attribute name="SPEC" type="BLOB" length="4000"/>
 		<db-attribute name="SPECIAL_FEATURE" type="VARCHAR" length="150"/>
 	</db-entity>
-	<db-entity name="PTF_HULL_TYPE" schema="JCOMMOPS_B">
+	<db-entity name="PTF_HULL_TYPE" schema="oceanops">
 		<db-attribute name="AGENCY_ID" type="INTEGER" isMandatory="true" length="10"/>
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="500"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="MANUF_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="NAME" type="VARCHAR" isMandatory="true" length="30"/>
 	</db-entity>
-	<db-entity name="PTF_IDENTIFIERS" schema="JCOMMOPS_B">
+	<db-entity name="PTF_IDENTIFIERS" schema="oceanops">
 		<db-attribute name="DATACENTER_REF" type="VARCHAR" length="30"/>
 		<db-attribute name="ESURFMAR_REF" type="VARCHAR" length="30"/>
 		<db-attribute name="GLOSS_REF" type="VARCHAR" length="30"/>
@@ -1115,19 +1114,19 @@
 		<db-attribute name="SEADATANET_REF" type="VARCHAR" length="30"/>
 		<db-attribute name="WIGOS_REF" type="VARCHAR" length="30"/>
 	</db-entity>
-	<db-entity name="PTF_INSPECTION" schema="JCOMMOPS_B">
+	<db-entity name="PTF_INSPECTION" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="200"/>
 		<db-attribute name="FREQUENCY" type="NUMERIC" length="5"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="PTF_LOC_STATUS" schema="JCOMMOPS_B">
+	<db-entity name="PTF_LOC_STATUS" schema="oceanops">
 		<db-attribute name="END_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="LOC_STATUS_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="PTF_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 		<db-attribute name="SOURCE" type="VARCHAR" length="20"/>
 		<db-attribute name="START_DATE" type="TIMESTAMP" isPrimaryKey="true" isMandatory="true" length="7"/>
 	</db-entity>
-	<db-entity name="PTF_MODEL" schema="JCOMMOPS_B">
+	<db-entity name="PTF_MODEL" schema="oceanops">
 		<db-attribute name="AGENCY_ID" type="INTEGER" length="10"/>
 		<db-attribute name="AIR_DEPL_CERTIF" type="NUMERIC" length="1"/>
 		<db-attribute name="API_WMO_ID_TYPE_ID" type="INTEGER" length="2"/>
@@ -1153,35 +1152,35 @@
 		<db-attribute name="WEIGHT" type="NUMERIC" length="6" scale="1"/>
 		<db-attribute name="WIDTH" type="NUMERIC" length="5" scale="2"/>
 	</db-entity>
-	<db-entity name="PTF_MODEL_FIRMWARE" schema="JCOMMOPS_B">
+	<db-entity name="PTF_MODEL_FIRMWARE" schema="oceanops">
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="PTF_FIRMWARE_ID" type="INTEGER" length="10"/>
 		<db-attribute name="PTF_MODEL_ID" type="INTEGER" length="10"/>
 	</db-entity>
-	<db-entity name="PTF_PTF_STATUS" schema="JCOMMOPS_B">
+	<db-entity name="PTF_PTF_STATUS" schema="oceanops">
 		<db-attribute name="CHANGING_DATE" type="TIMESTAMP" isMandatory="true" length="7"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 		<db-attribute name="INSERT_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="PTF_ID" type="INTEGER" isMandatory="true"/>
 		<db-attribute name="PTF_STATUS_ID" type="INTEGER" isMandatory="true"/>
 	</db-entity>
-	<db-entity name="PTF_REF_LOCK" schema="JCOMMOPS_B">
+	<db-entity name="PTF_REF_LOCK" schema="oceanops">
 		<db-attribute name="DATE_REQUESTED" type="TIMESTAMP" isMandatory="true" length="7"/>
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="100"/>
 		<db-attribute name="REF" type="VARCHAR" isPrimaryKey="true" isMandatory="true" length="30"/>
 		<db-attribute name="WMO" type="VARCHAR" length="30"/>
 	</db-entity>
-	<db-entity name="PTF_SOFTWARE" schema="JCOMMOPS_B">
+	<db-entity name="PTF_SOFTWARE" schema="oceanops">
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" length="100"/>
 		<db-attribute name="PTF_SOFTWARE_TYPE_ID" type="INTEGER" length="10"/>
 		<db-attribute name="VERSION" type="VARCHAR" length="40"/>
 	</db-entity>
-	<db-entity name="PTF_SOFTWARE_TYPE" schema="JCOMMOPS_B">
+	<db-entity name="PTF_SOFTWARE_TYPE" schema="oceanops">
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" length="100"/>
 	</db-entity>
-	<db-entity name="PTF_STATISTICS" schema="JCOMMOPS_B">
+	<db-entity name="PTF_STATISTICS" schema="oceanops">
 		<db-attribute name="DELAY_AVG" type="NUMERIC" length="12" scale="4"/>
 		<db-attribute name="DELAY_AVG_GDAC1" type="NUMERIC" length="12" scale="4"/>
 		<db-attribute name="DELAY_AVG_GDAC2" type="NUMERIC" length="12" scale="4"/>
@@ -1200,7 +1199,7 @@
 		<db-attribute name="NB_OBS_GTS" type="NUMERIC" length="38"/>
 		<db-attribute name="PTF_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 	</db-entity>
-	<db-entity name="PTF_STATUS" schema="JCOMMOPS_B">
+	<db-entity name="PTF_STATUS" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="700"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" length="80"/>
@@ -1208,7 +1207,7 @@
 		<db-attribute name="RANK" type="NUMERIC" length="2"/>
 		<db-attribute name="WIGOS_CODE" type="VARCHAR" length="20"/>
 	</db-entity>
-	<db-entity name="PTF_TYPE" schema="JCOMMOPS_B">
+	<db-entity name="PTF_TYPE" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="500"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="IMAGE_ID" type="INTEGER" length="10"/>
@@ -1217,7 +1216,7 @@
 		<db-attribute name="PTF_FAMILY_ID" type="INTEGER" length="10"/>
 		<db-attribute name="WIGOS_CODE" type="VARCHAR" length="20"/>
 	</db-entity>
-	<db-entity name="PTF_UPDATE_HISTORY" schema="JCOMMOPS_B">
+	<db-entity name="PTF_UPDATE_HISTORY" schema="oceanops">
 		<db-attribute name="CONTACT_ID" type="INTEGER" length="10"/>
 		<db-attribute name="FIELD_NAME" type="VARCHAR" isMandatory="true" length="50"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
@@ -1227,7 +1226,7 @@
 		<db-attribute name="THEME_VIEW" type="VARCHAR" isMandatory="true" length="30"/>
 		<db-attribute name="UPDATE_DATE" type="TIMESTAMP" isMandatory="true"/>
 	</db-entity>
-	<db-entity name="PTF_VARIABLE" schema="JCOMMOPS_B">
+	<db-entity name="PTF_VARIABLE" schema="oceanops">
 		<db-attribute name="ACCURACY" type="VARCHAR" length="50"/>
 		<db-attribute name="CALIB_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="CALIB_DATE_NEXT" type="TIMESTAMP" length="7"/>
@@ -1271,12 +1270,12 @@
 		<db-attribute name="VARIABLE_ID" type="INTEGER" isMandatory="true"/>
 		<db-attribute name="WEBLINK_ID" type="INTEGER" length="10"/>
 	</db-entity>
-	<db-entity name="PUMP_TYPE" schema="JCOMMOPS_B">
+	<db-entity name="PUMP_TYPE" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="500"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" isMandatory="true" length="30"/>
 	</db-entity>
-	<db-entity name="QC_FEEDBACK" schema="JCOMMOPS_B">
+	<db-entity name="QC_FEEDBACK" schema="oceanops">
 		<db-attribute name="AGENCY_ID" type="INTEGER" length="10"/>
 		<db-attribute name="ANSWER" type="VARCHAR" length="4000"/>
 		<db-attribute name="ANSWER_CONTACT_ID" type="INTEGER" length="10"/>
@@ -1304,40 +1303,40 @@
 		<db-attribute name="WEBLINK_ID" type="INTEGER" length="10"/>
 		<db-attribute name="WMO" type="VARCHAR" length="10"/>
 	</db-entity>
-	<db-entity name="QC_FEEDBACK_ACTION" schema="JCOMMOPS_B">
+	<db-entity name="QC_FEEDBACK_ACTION" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="255"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="2"/>
 		<db-attribute name="NAME" type="VARCHAR" length="50"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="20"/>
 	</db-entity>
-	<db-entity name="QC_FEEDBACK_ERROR_TYPE" schema="JCOMMOPS_B">
+	<db-entity name="QC_FEEDBACK_ERROR_TYPE" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="255"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="2"/>
 		<db-attribute name="NAME" type="VARCHAR" length="50"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="20"/>
 	</db-entity>
-	<db-entity name="QC_FEEDBACK_OBS" schema="JCOMMOPS_B">
+	<db-entity name="QC_FEEDBACK_OBS" schema="oceanops">
 		<db-attribute name="OBS_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="QC_FEEDBACK_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="QC_FEEDBACK_TYPE" schema="JCOMMOPS_B">
+	<db-entity name="QC_FEEDBACK_TYPE" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="255"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" length="50"/>
 		<db-attribute name="NAME_LONG" type="VARCHAR" length="80"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="30"/>
 	</db-entity>
-	<db-entity name="QC_FEEDBACK_VARIABLE" schema="JCOMMOPS_B">
+	<db-entity name="QC_FEEDBACK_VARIABLE" schema="oceanops">
 		<db-attribute name="QC_FEEDBACK_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 		<db-attribute name="VARIABLE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 	</db-entity>
-	<db-entity name="QR_CODE" schema="JCOMMOPS_B">
+	<db-entity name="QR_CODE" schema="oceanops">
 		<db-attribute name="CODE" type="VARCHAR" isPrimaryKey="true" isMandatory="true" length="30"/>
 		<db-attribute name="CONTACT_ID" type="INTEGER" isMandatory="true" length="10"/>
 		<db-attribute name="CREATION_DATE" type="TIMESTAMP" isMandatory="true"/>
 		<db-attribute name="REQUEST_ID" type="VARCHAR" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="RETRIEVAL" schema="JCOMMOPS_B">
+	<db-entity name="RETRIEVAL" schema="oceanops">
 		<db-attribute name="CONTACT" type="VARCHAR" length="100"/>
 		<db-attribute name="COUNTRY_ID" type="INTEGER" length="10"/>
 		<db-attribute name="CRUISE_ID" type="INTEGER" length="10"/>
@@ -1357,13 +1356,13 @@
 		<db-attribute name="START_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="TEL" type="VARCHAR" length="30"/>
 	</db-entity>
-	<db-entity name="RETRIEVAL_STATUS" schema="JCOMMOPS_B">
+	<db-entity name="RETRIEVAL_STATUS" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="700"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" length="80"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="50"/>
 	</db-entity>
-	<db-entity name="ROLE" schema="JCOMMOPS_B">
+	<db-entity name="ROLE" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="500"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" length="80"/>
@@ -1371,12 +1370,12 @@
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="50"/>
 		<db-attribute name="RANK" type="NUMERIC" length="5"/>
 	</db-entity>
-	<db-entity name="SCHEDULE" schema="JCOMMOPS_B">
+	<db-entity name="SCHEDULE" schema="oceanops">
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 		<db-attribute name="NAME" type="VARCHAR" length="60"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="20"/>
 	</db-entity>
-	<db-entity name="SDN_PTF_CLASS" schema="JCOMMOPS_B">
+	<db-entity name="SDN_PTF_CLASS" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="250"/>
 		<db-attribute name="ID" type="VARCHAR" isPrimaryKey="true" isMandatory="true" length="4"/>
 		<db-attribute name="LAST_UPDATE" type="TIMESTAMP" length="7"/>
@@ -1385,24 +1384,24 @@
 		<db-attribute name="PTF_TYPE_ID" type="INTEGER" length="10"/>
 		<db-attribute name="SHIP_TYPE_ID" type="INTEGER" length="10"/>
 	</db-entity>
-	<db-entity name="SENSOR_EXPOSURE" schema="JCOMMOPS_B">
+	<db-entity name="SENSOR_EXPOSURE" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="200"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="PUB47_REF" type="VARCHAR" length="20"/>
 		<db-attribute name="REF" type="VARCHAR" length="30"/>
 	</db-entity>
-	<db-entity name="SENSOR_FAMILY" schema="JCOMMOPS_B">
+	<db-entity name="SENSOR_FAMILY" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="500"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" length="50"/>
 	</db-entity>
-	<db-entity name="SENSOR_LOCATION" schema="JCOMMOPS_B">
+	<db-entity name="SENSOR_LOCATION" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="200"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="PUB47_REF" type="VARCHAR" length="20"/>
 		<db-attribute name="REF" type="VARCHAR" length="30"/>
 	</db-entity>
-	<db-entity name="SENSOR_MODEL" schema="JCOMMOPS_B">
+	<db-entity name="SENSOR_MODEL" schema="oceanops">
 		<db-attribute name="AGENCY_ID" type="INTEGER" length="10"/>
 		<db-attribute name="AXES_NO" type="NUMERIC" length="38"/>
 		<db-attribute name="BODC_ID" type="VARCHAR" length="30"/>
@@ -1418,11 +1417,11 @@
 		<db-attribute name="WEBLINK_ID" type="INTEGER" length="10"/>
 		<db-attribute name="YEARLY_DRIFT" type="NUMERIC" length="38"/>
 	</db-entity>
-	<db-entity name="SENSOR_MODEL_NETWORK" schema="JCOMMOPS_B">
+	<db-entity name="SENSOR_MODEL_NETWORK" schema="oceanops">
 		<db-attribute name="NETWORK_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="SENSOR_MODEL_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="SENSOR_MODEL_SENSOR_TYPE" schema="JCOMMOPS_B">
+	<db-entity name="SENSOR_MODEL_SENSOR_TYPE" schema="oceanops">
 		<db-attribute name="ACCURACY" type="VARCHAR" length="50"/>
 		<db-attribute name="PRECISION" type="VARCHAR" length="50"/>
 		<db-attribute name="RANGE" type="VARCHAR" length="50"/>
@@ -1433,13 +1432,13 @@
 		<db-attribute name="SENSOR_TYPE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="UNIT_ID" type="INTEGER" length="10"/>
 	</db-entity>
-	<db-entity name="SENSOR_STATUS" schema="JCOMMOPS_B">
+	<db-entity name="SENSOR_STATUS" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="100"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="2"/>
 		<db-attribute name="NAME" type="VARCHAR" length="30"/>
 		<db-attribute name="REF" type="VARCHAR" length="15"/>
 	</db-entity>
-	<db-entity name="SENSOR_TYPE" schema="JCOMMOPS_B">
+	<db-entity name="SENSOR_TYPE" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="250"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" length="100"/>
@@ -1449,7 +1448,7 @@
 		<db-attribute name="VARIABLE_ID" type="INTEGER" length="10"/>
 		<db-attribute name="WIGOS_CODE" type="VARCHAR" length="200"/>
 	</db-entity>
-	<db-entity name="SERVICE" schema="JCOMMOPS_B">
+	<db-entity name="SERVICE" schema="oceanops">
 		<db-attribute name="AGENCY_ID" type="INTEGER" length="10"/>
 		<db-attribute name="CONTACT_ID" type="INTEGER" length="10"/>
 		<db-attribute name="CRUISE_ID" type="INTEGER" length="10"/>
@@ -1463,18 +1462,18 @@
 		<db-attribute name="START_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="TYPE_ID" type="INTEGER" length="10"/>
 	</db-entity>
-	<db-entity name="SERVICE_LOCATION" schema="JCOMMOPS_B">
+	<db-entity name="SERVICE_LOCATION" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="100"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 		<db-attribute name="NAME" type="VARCHAR" length="50"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="30"/>
 	</db-entity>
-	<db-entity name="SERVICE_TYPE" schema="JCOMMOPS_B">
+	<db-entity name="SERVICE_TYPE" schema="oceanops">
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 		<db-attribute name="NAME" type="VARCHAR" length="50"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="20"/>
 	</db-entity>
-	<db-entity name="SHIP" schema="JCOMMOPS_B">
+	<db-entity name="SHIP" schema="oceanops">
 		<db-attribute name="AUTONOMY" type="NUMERIC" length="38"/>
 		<db-attribute name="BREADTH" type="NUMERIC"/>
 		<db-attribute name="BRIDGE" type="NUMERIC"/>
@@ -1518,7 +1517,7 @@
 		<db-attribute name="VALIDATED" type="NUMERIC" length="1"/>
 		<db-attribute name="WEBLINK_ID" type="INTEGER" length="10"/>
 	</db-entity>
-	<db-entity name="SHIP_HISTORY" schema="JCOMMOPS_B">
+	<db-entity name="SHIP_HISTORY" schema="oceanops">
 		<db-attribute name="CALL_SIGN" type="VARCHAR" length="30"/>
 		<db-attribute name="COUNTRY_ID" type="INTEGER" length="10"/>
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="500"/>
@@ -1533,21 +1532,21 @@
 		<db-attribute name="START_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="UPDATE_DATE" type="TIMESTAMP" length="7"/>
 	</db-entity>
-	<db-entity name="SHIP_STATUS" schema="JCOMMOPS_B">
+	<db-entity name="SHIP_STATUS" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="300"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="38"/>
 		<db-attribute name="NAME" type="VARCHAR" length="50"/>
 		<db-attribute name="NAME_LONG" type="VARCHAR" length="80"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="30"/>
 	</db-entity>
-	<db-entity name="SHIP_TYPE" schema="JCOMMOPS_B">
+	<db-entity name="SHIP_TYPE" schema="oceanops">
 		<db-attribute name="CODE" type="VARCHAR" length="5"/>
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="300"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" length="80"/>
 		<db-attribute name="ORIGINAL_DATASET" type="VARCHAR" length="50"/>
 	</db-entity>
-	<db-entity name="SITE" schema="JCOMMOPS_B">
+	<db-entity name="SITE" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="500"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" isMandatory="true" length="50"/>
@@ -1557,23 +1556,23 @@
 		<db-attribute name="TARGETED_OCCUPATION" type="NUMERIC"/>
 		<db-attribute name="WKB" type="OTHER" length="4000"/>
 	</db-entity>
-	<db-entity name="SITE_FAMILY" schema="JCOMMOPS_B">
+	<db-entity name="SITE_FAMILY" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="255"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" length="40"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="20"/>
 	</db-entity>
-	<db-entity name="SITE_PTF" schema="JCOMMOPS_B">
+	<db-entity name="SITE_PTF" schema="oceanops">
 		<db-attribute name="PTF_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 		<db-attribute name="SITE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 	</db-entity>
-	<db-entity name="SITE_STATUS" schema="JCOMMOPS_B">
+	<db-entity name="SITE_STATUS" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="100"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" length="50"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="20"/>
 	</db-entity>
-	<db-entity name="STORY" schema="JCOMMOPS_B">
+	<db-entity name="STORY" schema="oceanops">
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="IMAGE_ID" type="INTEGER" length="10"/>
 		<db-attribute name="KEYWORDS" type="VARCHAR" length="300"/>
@@ -1585,7 +1584,7 @@
 		<db-attribute name="TEXT" type="VARCHAR" length="4000"/>
 		<db-attribute name="TITLE" type="VARCHAR" length="200"/>
 	</db-entity>
-	<db-entity name="SURVEY" schema="JCOMMOPS_B">
+	<db-entity name="SURVEY" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="255"/>
 		<db-attribute name="END_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
@@ -1594,17 +1593,17 @@
 		<db-attribute name="NETWORK_ID" type="INTEGER" length="10"/>
 		<db-attribute name="START_DATE" type="TIMESTAMP" length="7"/>
 	</db-entity>
-	<db-entity name="TAG" schema="JCOMMOPS_B">
+	<db-entity name="TAG" schema="oceanops">
 		<db-attribute name="COLOUR" type="VARCHAR" length="7"/>
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="100"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" isMandatory="true" length="50"/>
 	</db-entity>
-	<db-entity name="TAG_PTF" schema="JCOMMOPS_B">
+	<db-entity name="TAG_PTF" schema="oceanops">
 		<db-attribute name="PTF_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="TAG_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="TELECOM" schema="JCOMMOPS_B">
+	<db-entity name="TELECOM" schema="oceanops">
 		<db-attribute name="END_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="FREQUENCY" type="VARCHAR" length="20"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
@@ -1617,7 +1616,7 @@
 		<db-attribute name="TELECOM_SERVICE_ID" type="INTEGER" length="10"/>
 		<db-attribute name="TELECOM_TYPE_ID" type="INTEGER" length="10"/>
 	</db-entity>
-	<db-entity name="TELECOM_FORMAT" schema="JCOMMOPS_B">
+	<db-entity name="TELECOM_FORMAT" schema="oceanops">
 		<db-attribute name="CONTACT_ID" type="INTEGER" length="10"/>
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="1000"/>
 		<db-attribute name="END_DATE" type="TIMESTAMP" length="7"/>
@@ -1631,52 +1630,52 @@
 		<db-attribute name="START_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="VERSION" type="VARCHAR" length="10"/>
 	</db-entity>
-	<db-entity name="TELECOM_FORMAT_DOC" schema="JCOMMOPS_B">
+	<db-entity name="TELECOM_FORMAT_DOC" schema="oceanops">
 		<db-attribute name="DOC_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="TELECOM_FORMAT_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="TELECOM_SERVICE" schema="JCOMMOPS_B">
+	<db-entity name="TELECOM_SERVICE" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="40"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" length="20"/>
 	</db-entity>
-	<db-entity name="TELECOM_TYPE" schema="JCOMMOPS_B">
+	<db-entity name="TELECOM_TYPE" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="500"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" isMandatory="true" length="30"/>
 		<db-attribute name="PUB47_REF" type="VARCHAR" length="10"/>
 	</db-entity>
-	<db-entity name="TIME_INTERVAL" schema="JCOMMOPS_B">
+	<db-entity name="TIME_INTERVAL" schema="oceanops">
 		<db-attribute name="END_DATE" type="TIMESTAMP" isMandatory="true" length="7"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" isMandatory="true" length="20"/>
 		<db-attribute name="NB_YEARS" type="NUMERIC" length="10"/>
 		<db-attribute name="START_DATE" type="TIMESTAMP" isMandatory="true" length="7"/>
 	</db-entity>
-	<db-entity name="TIME_PERIOD" schema="JCOMMOPS_B">
+	<db-entity name="TIME_PERIOD" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="200"/>
 		<db-attribute name="FREQUENCY" type="NUMERIC" length="5"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="ISO" type="VARCHAR" length="50"/>
 		<db-attribute name="REF" type="VARCHAR" length="15"/>
 	</db-entity>
-	<db-entity name="TOPIC" schema="JCOMMOPS_B">
+	<db-entity name="TOPIC" schema="oceanops">
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" isMandatory="true" length="50"/>
 	</db-entity>
-	<db-entity name="UNIT" schema="JCOMMOPS_B">
+	<db-entity name="UNIT" schema="oceanops">
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="NAME" type="VARCHAR" length="100"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="20"/>
 		<db-attribute name="WIGOS_CODE" type="VARCHAR" length="200"/>
 	</db-entity>
-	<db-entity name="UPDATE_TIMESTAMP" schema="JCOMMOPS_B">
+	<db-entity name="UPDATE_TIMESTAMP" schema="oceanops">
 		<db-attribute name="COMPLETED" type="NUMERIC" length="1"/>
 		<db-attribute name="LAST_UPDATE" type="TIMESTAMP" isMandatory="true" length="7"/>
 		<db-attribute name="NAME" type="VARCHAR" isPrimaryKey="true" isMandatory="true" length="50"/>
 		<db-attribute name="RUNNING" type="NUMERIC" length="1"/>
 	</db-entity>
-	<db-entity name="USER_GROUP" schema="JCOMMOPS_B">
+	<db-entity name="USER_GROUP" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="1600"/>
 		<db-attribute name="EMAIL" type="VARCHAR" length="70"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
@@ -1684,17 +1683,17 @@
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="15"/>
 		<db-attribute name="NETWORK_ID" type="INTEGER" length="10"/>
 	</db-entity>
-	<db-entity name="USER_GROUP_AGENCY" schema="JCOMMOPS_B">
+	<db-entity name="USER_GROUP_AGENCY" schema="oceanops">
 		<db-attribute name="AGENCY_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="USER_GROUP_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="USER_GROUP_CONTACT" schema="JCOMMOPS_B">
+	<db-entity name="USER_GROUP_CONTACT" schema="oceanops">
 		<db-attribute name="CONTACT_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="COUNTRY_ID" type="INTEGER" length="10"/>
 		<db-attribute name="ROLE_ID" type="INTEGER" length="10"/>
 		<db-attribute name="USER_GROUP_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="VARIABLE" schema="JCOMMOPS_B">
+	<db-entity name="VARIABLE" schema="oceanops">
 		<db-attribute name="CANONICAL_NAME" type="VARCHAR" length="200"/>
 		<db-attribute name="CANONICAL_UNIT" type="VARCHAR" length="50"/>
 		<db-attribute name="DATA_SOURCE" type="VARCHAR" length="20"/>
@@ -1708,7 +1707,7 @@
 		<db-attribute name="QC_REF" type="VARCHAR" length="10"/>
 		<db-attribute name="WIGOS_CODE" type="VARCHAR" length="200"/>
 	</db-entity>
-	<db-entity name="VARIABLE_FAMILY" schema="JCOMMOPS_B">
+	<db-entity name="VARIABLE_FAMILY" schema="oceanops">
 		<db-attribute name="DESCRIPTION" type="CLOB" length="4000"/>
 		<db-attribute name="ECV" type="NUMERIC" length="1"/>
 		<db-attribute name="EOV" type="NUMERIC" length="1"/>
@@ -1716,11 +1715,11 @@
 		<db-attribute name="NAME" type="VARCHAR" length="100"/>
 		<db-attribute name="NAME_SHORT" type="VARCHAR" length="20"/>
 	</db-entity>
-	<db-entity name="VARIABLE_VARIABLE_FAMILY" schema="JCOMMOPS_B">
+	<db-entity name="VARIABLE_VARIABLE_FAMILY" schema="oceanops">
 		<db-attribute name="VARIABLE_FAMILY_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="VARIABLE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 	</db-entity>
-	<db-entity name="WEBLINK" schema="JCOMMOPS_B">
+	<db-entity name="WEBLINK" schema="oceanops">
 		<db-attribute name="COUNTRY_ID" type="INTEGER" length="10"/>
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="3000"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
@@ -1733,34 +1732,34 @@
 		<db-attribute name="URL" type="VARCHAR" isMandatory="true" length="4000"/>
 		<db-attribute name="USER_GROUP_ID" type="INTEGER" length="10"/>
 	</db-entity>
-	<db-entity name="WEBLINK_PTF" schema="JCOMMOPS_B">
+	<db-entity name="WEBLINK_PTF" schema="oceanops">
 		<db-attribute name="PTF_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 		<db-attribute name="WEBLINK_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 	</db-entity>
-	<db-entity name="WEB_CONNECTION" schema="JCOMMOPS_B">
+	<db-entity name="WEB_CONNECTION" schema="oceanops">
 		<db-attribute name="CONTACT_ID" type="INTEGER" isMandatory="true" length="10"/>
 		<db-attribute name="IDENTIFIER" type="VARCHAR" isPrimaryKey="true" isMandatory="true" length="150"/>
 		<db-attribute name="LAST_LOG_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="TOKEN" type="VARCHAR" isMandatory="true" length="150"/>
 	</db-entity>
-	<db-entity name="WEB_CONTACT_MODULE" schema="JCOMMOPS_B">
+	<db-entity name="WEB_CONTACT_MODULE" schema="oceanops">
 		<db-attribute name="CONTACT_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="MODULE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="WEB_CONTACT_PREFERENCES" schema="JCOMMOPS_B">
+	<db-entity name="WEB_CONTACT_PREFERENCES" schema="oceanops">
 		<db-attribute name="CONTACT_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="LITE_GIS" type="NUMERIC" length="1"/>
 	</db-entity>
-	<db-entity name="WEB_DAILY_QUERIES" schema="JCOMMOPS_B">
+	<db-entity name="WEB_DAILY_QUERIES" schema="oceanops">
 		<db-attribute name="DAY" type="TIMESTAMP" isPrimaryKey="true" isMandatory="true" length="7"/>
 		<db-attribute name="NB_QUERIES" type="NUMERIC" length="10"/>
 	</db-entity>
-	<db-entity name="WEB_DAILY_VISITS" schema="JCOMMOPS_B">
+	<db-entity name="WEB_DAILY_VISITS" schema="oceanops">
 		<db-attribute name="DAY" type="TIMESTAMP" isPrimaryKey="true" isMandatory="true" length="7"/>
 		<db-attribute name="NB_VISITS" type="NUMERIC" isMandatory="true" length="10"/>
 		<db-attribute name="THEME" type="VARCHAR" isPrimaryKey="true" isMandatory="true" length="20"/>
 	</db-entity>
-	<db-entity name="WEB_FREQUENTATION" schema="JCOMMOPS_B">
+	<db-entity name="WEB_FREQUENTATION" schema="oceanops">
 		<db-attribute name="CONTACT_ID" type="INTEGER" length="10"/>
 		<db-attribute name="COUNT" type="NUMERIC" length="10"/>
 		<db-attribute name="CRUISE_ID" type="INTEGER" length="10"/>
@@ -1770,22 +1769,22 @@
 		<db-attribute name="PTF_ID" type="INTEGER" length="10"/>
 		<db-attribute name="WEB_MODULE_ID" type="INTEGER" length="10"/>
 	</db-entity>
-	<db-entity name="WEB_MESSAGE" schema="JCOMMOPS_B">
+	<db-entity name="WEB_MESSAGE" schema="oceanops">
 		<db-attribute name="ENABLED" type="NUMERIC" length="22" scale="1"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="22" scale="10"/>
 		<db-attribute name="TEXT" type="VARCHAR" length="500"/>
 	</db-entity>
-	<db-entity name="WEB_METRIC" schema="JCOMMOPS_B">
+	<db-entity name="WEB_METRIC" schema="oceanops">
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="METHOD" type="VARCHAR" length="300"/>
 		<db-attribute name="NAME" type="VARCHAR" length="30"/>
 	</db-entity>
-	<db-entity name="WEB_METRIC_NETWORK" schema="JCOMMOPS_B">
+	<db-entity name="WEB_METRIC_NETWORK" schema="oceanops">
 		<db-attribute name="NETWORK_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="TARGET" type="NUMERIC" length="10"/>
 		<db-attribute name="WEB_METRIC_ID" type="INTEGER" length="10"/>
 	</db-entity>
-	<db-entity name="WEB_MODULE" schema="JCOMMOPS_B">
+	<db-entity name="WEB_MODULE" schema="oceanops">
 		<db-attribute name="ADMIN" type="NUMERIC" length="1"/>
 		<db-attribute name="DASHBOARD" type="NUMERIC" length="38"/>
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="500"/>
@@ -1798,17 +1797,17 @@
 		<db-attribute name="TOPIC" type="VARCHAR" length="30"/>
 		<db-attribute name="TYPE" type="VARCHAR" length="15"/>
 	</db-entity>
-	<db-entity name="WEB_PTF_FILTER" schema="JCOMMOPS_B">
+	<db-entity name="WEB_PTF_FILTER" schema="oceanops">
 		<db-attribute name="FILTER_ID" type="VARCHAR" isPrimaryKey="true" isMandatory="true" length="20"/>
 		<db-attribute name="FILTER_NAME" type="CHAR" isPrimaryKey="true" isMandatory="true" length="30"/>
 		<db-attribute name="VALUE_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="VALUE_NAME" type="VARCHAR" isPrimaryKey="true" isMandatory="true" length="60"/>
 	</db-entity>
-	<db-entity name="WEB_PTF_VISITS" schema="JCOMMOPS_B">
+	<db-entity name="WEB_PTF_VISITS" schema="oceanops">
 		<db-attribute name="PTF_REF" type="VARCHAR" isPrimaryKey="true" isMandatory="true" length="1"/>
 		<db-attribute name="VISIT_COUNT" type="NUMERIC" isPrimaryKey="true" isMandatory="true" length="22" scale="10"/>
 	</db-entity>
-	<db-entity name="WEB_QUERY" schema="JCOMMOPS_B">
+	<db-entity name="WEB_QUERY" schema="oceanops">
 		<db-attribute name="CONTACT_ID" type="INTEGER" length="10"/>
 		<db-attribute name="DATE_CREATION" type="TIMESTAMP" length="7"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
@@ -1823,14 +1822,14 @@
 		<db-attribute name="PREFERENCE" type="NUMERIC" length="1"/>
 		<db-attribute name="SQL" type="VARCHAR" length="4000"/>
 	</db-entity>
-	<db-entity name="WEB_WORKSPACE" schema="JCOMMOPS_B">
+	<db-entity name="WEB_WORKSPACE" schema="oceanops">
 		<db-attribute name="CONTACT_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="ID" type="VARCHAR" length="20"/>
 		<db-attribute name="LAST_USED" type="TIMESTAMP"/>
 		<db-attribute name="NAME" type="VARCHAR" isPrimaryKey="true" isMandatory="true" length="500"/>
 		<db-attribute name="URL" type="VARCHAR" length="4000"/>
 	</db-entity>
-	<db-entity name="WMO" schema="JCOMMOPS_B">
+	<db-entity name="WMO" schema="oceanops">
 		<db-attribute name="END_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="FIVEDIGIT_DUPL_EXISTS" type="NUMERIC" length="1"/>
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
@@ -1839,7 +1838,7 @@
 		<db-attribute name="START_DATE" type="TIMESTAMP" isMandatory="true" length="7"/>
 		<db-attribute name="WMO" type="VARCHAR" isMandatory="true" length="30"/>
 	</db-entity>
-	<db-entity name="WMO_BLOCKS" schema="JCOMMOPS_B">
+	<db-entity name="WMO_BLOCKS" schema="oceanops">
 		<db-attribute name="ALLOC_DATE" type="TIMESTAMP" length="7"/>
 		<db-attribute name="ARGO" type="NUMERIC" length="1"/>
 		<db-attribute name="COUNTRY_ID" type="INTEGER"/>
@@ -2452,7 +2451,6 @@
 		<obj-attribute name="nameShort" type="java.lang.String" db-attribute-path="NAME_SHORT"/>
 	</obj-entity>
 	<obj-entity name="Obs" className="org.oceanops.orm.Obs" dbEntityName="OBS">
-		<obj-attribute name="delay" type="java.lang.Double" db-attribute-path="DELAY"/>
 		<obj-attribute name="depth" type="java.lang.Double" db-attribute-path="DEPTH"/>
 		<obj-attribute name="distributionDate" type="java.time.LocalDateTime" db-attribute-path="DISTRIBUTION_DATE"/>
 		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
@@ -6149,7 +6147,7 @@
 			<excludeTable>LOAD_CORIOLIS_MINMAX</excludeTable>
 			<excludeTable>PUB47_OBS_SYSTEM</excludeTable>
 			<excludeTable>PUB47_PRST</excludeTable>
-			<name>JCOMMOPS_B</name>
+			<name>oceanops</name>
 		</schema>
 		<tableTypes>
 			<tableType>TABLE</tableType>

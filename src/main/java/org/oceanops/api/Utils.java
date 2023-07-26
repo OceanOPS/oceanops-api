@@ -189,24 +189,24 @@ public class Utils {
 	 * @return a {@link ServerRuntime} object
 	 */
 	public static ServerRuntime getCayenneServerRuntime(String pathToCayenneConfFile){
-		OraclePkGeneratorCustom pkgen = new OraclePkGeneratorCustom();
-		pkgen.setPkCacheSize(1);
+		/*OraclePkGeneratorCustom pkgen = new OraclePkGeneratorCustom();
+		pkgen.setPkCacheSize(1);*/
 
         ServerRuntime cayenneRuntime = ServerRuntime.builder()
                 .addConfig("cayenne-OceanOPS-API.xml")
-				.addModule(b -> b
+				/*.addModule(b -> b
 					.bind(PkGenerator.class).toInstance(pkgen)
-				)
+				)*/
 				.addModule(b -> b
 					.bind(EntitySorter.class).to(WeightedAshwoodEntitySorter.class))
                 .build();
 		// Controlling that modules are applied
-		PkGenerator pk = cayenneRuntime.getDataDomain().getDataNode("prod").getAdapter().getPkGenerator();
+		/*PkGenerator pk = cayenneRuntime.getDataDomain().getDataNode("prod").getAdapter().getPkGenerator();
 		if(!(pk instanceof OraclePkGeneratorCustom)){
 			logger.warn("PkGenerator is not an instance of OraclePkGeneratorCustom");
 			logger.debug(pk.toString());
 			logger.debug(cayenneRuntime.getDataDomain().getDataNode("prod").getAdapter().toString());
-		}
+		}*/
 
 		return cayenneRuntime;
 	}
