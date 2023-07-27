@@ -8,14 +8,14 @@ import org.apache.cayenne.access.types.ExtendedTypeFactory;
 import org.apache.cayenne.access.types.ValueObjectTypeRegistry;
 import org.apache.cayenne.configuration.Constants;
 import org.apache.cayenne.configuration.RuntimeProperties;
-import org.apache.cayenne.dba.JdbcAdapter;
+import org.apache.cayenne.dba.postgres.PostgresAdapter;
 import org.apache.cayenne.di.Inject;
 import org.apache.cayenne.resource.ResourceLocator;
 
-public class OracleDbAdapterCustom extends JdbcAdapter{
+public class PGDbAdapterCustom extends PostgresAdapter{
 
     @SuppressWarnings("all")
-    public OracleDbAdapterCustom(@Inject RuntimeProperties runtimeProperties,
+    public PGDbAdapterCustom(@Inject RuntimeProperties runtimeProperties,
             @Inject(Constants.SERVER_DEFAULT_TYPES_LIST) List<ExtendedType> defaultExtendedTypes,
             @Inject(Constants.SERVER_USER_TYPES_LIST) List<ExtendedType> userExtendedTypes,
             @Inject(Constants.SERVER_TYPE_FACTORIES_LIST) List<ExtendedTypeFactory> extendedTypeFactories,
@@ -28,6 +28,6 @@ public class OracleDbAdapterCustom extends JdbcAdapter{
     
     @Override
 	public SQLTreeProcessor getSqlTreeProcessor() {
-		return new OracleSQLTreeProcessorCustom();
+		return new PGSQLTreeProcessorCustom();
 	}
 }

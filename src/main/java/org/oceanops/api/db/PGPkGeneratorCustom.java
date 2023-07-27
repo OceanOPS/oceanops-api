@@ -1,19 +1,19 @@
 package org.oceanops.api.db;
 
 import org.apache.cayenne.dba.JdbcAdapter;
-import org.apache.cayenne.dba.oracle.OraclePkGenerator;
+import org.apache.cayenne.dba.postgres.PostgresPkGenerator;
 import org.apache.cayenne.map.DbEntity;
 import org.apache.cayenne.map.DbKeyGenerator;
 
-public class OraclePkGeneratorCustom extends OraclePkGenerator{
+public class PGPkGeneratorCustom extends PostgresPkGenerator{
     
-    private static final String _SEQUENCE_SUFFIX = "_SEQ";
+    private static final String _SEQUENCE_SUFFIX = "_seq";
 
-    public OraclePkGeneratorCustom() {
+    public PGPkGeneratorCustom() {
         super();
     }
 
-    public OraclePkGeneratorCustom(JdbcAdapter adapter) {
+    public PGPkGeneratorCustom(JdbcAdapter adapter) {
         super(adapter);
     }
 

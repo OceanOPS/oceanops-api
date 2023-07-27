@@ -15,7 +15,7 @@ import org.apache.cayenne.ashwood.WeightedAshwoodEntitySorter;
 import org.apache.cayenne.configuration.server.ServerRuntime;
 import org.apache.cayenne.dba.PkGenerator;
 import org.apache.cayenne.map.EntitySorter;
-import org.oceanops.api.db.OraclePkGeneratorCustom;
+import org.oceanops.api.db.PGPkGeneratorCustom;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -189,24 +189,24 @@ public class Utils {
 	 * @return a {@link ServerRuntime} object
 	 */
 	public static ServerRuntime getCayenneServerRuntime(String pathToCayenneConfFile){
-		/*OraclePkGeneratorCustom pkgen = new OraclePkGeneratorCustom();
-		pkgen.setPkCacheSize(1);*/
+		PGPkGeneratorCustom pkgen = new PGPkGeneratorCustom();
+		pkgen.setPkCacheSize(1);
 
         ServerRuntime cayenneRuntime = ServerRuntime.builder()
                 .addConfig("cayenne-OceanOPS-API.xml")
-				/*.addModule(b -> b
+				.addModule(b -> b
 					.bind(PkGenerator.class).toInstance(pkgen)
-				)*/
+				)
 				.addModule(b -> b
 					.bind(EntitySorter.class).to(WeightedAshwoodEntitySorter.class))
                 .build();
 		// Controlling that modules are applied
-		/*PkGenerator pk = cayenneRuntime.getDataDomain().getDataNode("prod").getAdapter().getPkGenerator();
-		if(!(pk instanceof OraclePkGeneratorCustom)){
-			logger.warn("PkGenerator is not an instance of OraclePkGeneratorCustom");
+		PkGenerator pk = cayenneRuntime.getDataDomain().getDataNode("prod").getAdapter().getPkGenerator();
+		if(!(pk instanceof PGPkGeneratorCustom)){
+			logger.warn("PkGenerator is not an instance of PGPkGeneratorCustom");
 			logger.debug(pk.toString());
 			logger.debug(cayenneRuntime.getDataDomain().getDataNode("prod").getAdapter().toString());
-		}*/
+		}
 
 		return cayenneRuntime;
 	}
