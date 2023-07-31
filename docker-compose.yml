@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+    dashboard:
+        container_name: oceanops-api
+        image: oceanops-api
+        build:
+            context: .
+            dockerfile: Dockerfile
+        restart: always
+        ports:
+            - "8080:8080"
+            - "5432:5432"
+        environment:
+            JAVA_OPTIONS: "--add-exports java.base/sun.security.action=ALL-UNNAMED -Duser.timezone=UTC -Dcayenne.jdbc.driver=${DB_DRIVER} -Dcayenne.jdbc.url=${DB_URL} -Dcayenne.jdbc.username=${DB_USERNAME} -Dcayenne.jdbc.password=${DB_PASSWORD}"
