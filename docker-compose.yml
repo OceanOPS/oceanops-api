@@ -1,8 +1,8 @@
 version: "3.9"
 
 services:
-    dashboard:
-        oceanops-api: oceanops-api
+    oceanops-api:
+        container_name: oceanops-api
         image: oceanops-api
         build:
             context: .
