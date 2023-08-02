@@ -18,4 +18,5 @@ services:
 networks:
   oceanops-network:
     name: oceanops-network
+    driver: bridge
  
