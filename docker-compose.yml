@@ -13,10 +13,10 @@ services:
         environment:
             JAVA_OPTIONS: "--add-exports java.base/sun.security.action=ALL-UNNAMED -Duser.timezone=UTC -Dcayenne.jdbc.driver=${DB_DRIVER} -Dcayenne.jdbc.url=${DB_URL} -Dcayenne.jdbc.username=${DB_USERNAME} -Dcayenne.jdbc.password=${DB_PASSWORD}"
         networks:
-            - oceanops-network
+            - oceanops-bridge-network
 
 networks:
-  oceanops-network:
-    name: oceanops-network
-    driver: bridge
+    oceanops-bridge-network: 
+        name: oceanops-bridge-network
+        external: true
  
