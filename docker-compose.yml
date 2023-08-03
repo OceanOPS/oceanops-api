@@ -1,9 +1,9 @@
 version: "3.9"
 
 services:
-    oceanops-api:
-        container_name: oceanops-api
-        image: oceanops-api
+    oceanops-api-main:
+        container_name: oceanops-api-main
+        image: oceanops-api-main
         build:
             context: .
             dockerfile: Dockerfile
