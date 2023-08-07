@@ -1,4 +1,5 @@
-target
+target/*
+!target/oceanops-api.war
 build
 bin
 doc
