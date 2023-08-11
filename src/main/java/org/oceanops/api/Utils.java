@@ -210,4 +210,14 @@ public class Utils {
 
 		return cayenneRuntime;
 	}
+
+	public static boolean isInteger(String str) {  
+		try {  
+			Integer i = Integer.parseInt(str);  
+		}  
+		catch(NumberFormatException nfe) {  
+			return false;  
+		}  
+		return true;  
+	}
 }
