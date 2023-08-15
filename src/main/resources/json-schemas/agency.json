@@ -1,0 +1,89 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Agency",
+    "description": "An OceanOPS agency",
+    "type": "object",
+    "properties": {
+        "id": {
+            "description": "The unique identifier for the agency, if not provided a new agency will be created",
+            "type": "integer"
+        },
+        "name": {
+            "description": "Name for the agency",
+            "type": "string"
+        },
+        "nameShort": {
+            "description": "Short name for the agency",
+            "type": "string"
+        },
+        "lat": {
+            "description": "Latitude coordinate the agency",
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+        },
+        "lon": {
+            "description": "Longitude coordinate the agency",
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+        },
+        "fax": {
+            "description": "Description of the agency",
+            "type": "string"
+        },
+        "address": {
+            "description": "Postal address of the agency",
+            "type": "string"
+        },
+        "country": {
+            "type": "object",
+            "description": "The agency's country",
+            "properties": {
+                "id": {
+                    "description": "The unique identifier for the country",
+                    "type": "integer"
+                }
+            }
+        },
+        "weblink":{
+            "type": "object",
+            "description": "The agency's weblink",
+            "properties": {
+                "id": {
+                    "description": "The unique identifier for the weblink, if not provided a new weblink will be created",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "Name for the weblink",
+                    "type": "string"
+                },
+                "url": {
+                    "description": "URL for the weblink",
+                    "type": "string"
+                },
+                "topic": {
+                    "type": "object",
+                    "description": "The weblink's topic",
+                    "properties": {
+                        "id": {
+                            "description": "The unique identifier for the topic",
+                            "type": "integer"
+                        }
+                    }
+                },
+                "program": {
+                    "type": "object",
+                    "description": "The weblink's program",
+                    "properties": {
+                        "id": {
+                            "description": "The unique identifier for the program",
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "required": ["name", "nameShort"]
+}

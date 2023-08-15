@@ -64,6 +64,25 @@ public class Authorization {
         return result;
     }
 
+     /**
+     * Checks if a authenticated user has admin rights.
+     * The method will check, by order of importance:
+     * <ul>
+     *  <li>if the user is authenticated: return false if not</li>
+     *  <li>if the user is administrator: return true if yes</li>
+     * </ul>
+     * @return A boolean resulting of the algorythm described above.
+     */
+    public static boolean hasAdminRights(){
+        boolean result = false;
+        if(Authentication.isAuthenticated() && Authentication.getContact() != null){
+            // If admin, has the rights
+            if(Authentication.getContact().getAdmin() == 1)
+                result = true;
+        }
+        return result;
+    }
+
     /**
      * When then AgRest engine starts, aplying global authorization.
      * @param agBuilder The AgRuntimeBuilder used for the request engine.

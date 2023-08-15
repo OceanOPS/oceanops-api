@@ -26,7 +26,7 @@ public class Weblink extends _Weblink {
         }
 
         setTopicIfPresent(weblink, json, context);     
-
+        setProgramIfPresent(weblink, json, context);     
         // set other relationships... (network, program, country, usergroup)
 
         context.registerNewObject(weblink);
@@ -41,6 +41,19 @@ public class Weblink extends _Weblink {
                 Topic topic = SelectById.query(Topic.class, topicId).selectOne(context);
                 if(topic != null){
                     weblink.setTopic(topic);
+                }
+            }
+        }
+    }
+
+    private static void setProgramIfPresent(Weblink weblink, JSONObject fullJson, ObjectContext context){
+        if(fullJson.has("program")){
+			JSONObject json = fullJson.getJSONObject("program");
+            if(json.has("id") && Utils.isInteger(json.get("id").toString())){
+                Integer id = json.getInt("id");
+                Program program = SelectById.query(Program.class, id).selectOne(context);
+                if(program != null){
+                    weblink.setProgram(program);
                 }
             }
         }

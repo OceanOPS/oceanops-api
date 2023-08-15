@@ -1,9 +1,11 @@
 package org.oceanops.api;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Properties;
+import java.util.Set;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
@@ -15,9 +17,24 @@ import org.apache.cayenne.ashwood.WeightedAshwoodEntitySorter;
 import org.apache.cayenne.configuration.server.ServerRuntime;
 import org.apache.cayenne.dba.PkGenerator;
 import org.apache.cayenne.map.EntitySorter;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.oceanops.api.db.PGPkGeneratorCustom;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.networknt.schema.JsonSchemaFactory;
+import com.networknt.schema.JsonSchema;
+import com.networknt.schema.SpecVersion;
+import com.networknt.schema.ValidationMessage;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.Status;
 
 /**
  * Class defining utility/helper functions and access to properties
@@ -211,6 +228,11 @@ public class Utils {
 		return cayenneRuntime;
 	}
 
+	/**
+	 * Determines wether a string could be parsed into an Integer (true) or not (false)
+	 * @param str string of a potential Integer
+	 * @return
+	 */
 	public static boolean isInteger(String str) {  
 		try {  
 			Integer i = Integer.parseInt(str);  
@@ -219,5 +241,76 @@ public class Utils {
 			return false;  
 		}  
 		return true;  
+	}
+
+	/**
+	 * Builds a response with formatted JSON including a data array with only one entity
+	 * @param o The single formatted JSON object to include in the data array
+	 * @return
+	 */
+	public static Response buildDataResponseForOneObject(JSONObject o){
+		JSONObject r = new JSONObject();
+		JSONArray a = new JSONArray();
+		a.put(o);
+		r.put("success", true);
+		r.put("data", a);
+		r.put("total", 1);
+		return Response.status(Status.OK).entity(r.toString()).type(MediaType.APPLICATION_JSON).build();
+	}
+
+	/**
+	 * Builds an error response with formatted JSON  
+	 * @param status response status (includes statusCode and reasonPhrase)
+	 * @param msg error message for user
+	 * @return
+	 */
+	public static Response buildErrorResponse(Status status, String msg){
+		JSONObject r = new JSONObject();
+			r.put("success", false);
+			r.put("errorMessage", msg);
+		return Response.status(status).entity(r.toString()).type(MediaType.APPLICATION_JSON).build();
+	}
+
+	/**
+	 * Loads file with schema into JSONSchema object
+	 * @param name name of file (without extension) where schema is kept within src/main/schemas
+	 * @return
+	 */
+	public static JsonSchema getJsonSchemaFromClasspath(String name) {
+        JsonSchemaFactory factory = JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V4);
+        InputStream is = Thread.currentThread().getContextClassLoader()
+                .getResourceAsStream("json-schemas/" + name + ".json");
+        return factory.getSchema(is);
+    }
+	
+
+	/**
+	 * 
+	 * @param jsonContentObject JSON data object to test
+	 * @param schemaFileName Name of Schema file without it's .json extension
+	 * @return
+	 */
+	public static String validateJson(JSONObject jsonContentObject, String schemaName){ 
+		Set<ValidationMessage> errors = null;
+		JsonSchema schema = Utils.getJsonSchemaFromClasspath(schemaName);
+		try{
+			ObjectMapper objectMapper = new ObjectMapper();
+			JsonNode node =  objectMapper.readTree(jsonContentObject.toString());
+			errors = schema.validate(node);
+		}catch(Exception e){
+
+		}
+		String msg = "";
+		if(errors == null){
+			msg = "Unable to validate JSON data.";
+		}else if(errors.size() > 0){
+			msg = "The provided " + schemaName + " JSON data is not valid: ";
+			for (ValidationMessage error : errors) {
+				msg += " - " + error.getMessage() ;
+			}
+		}else{
+			msg = "NONE";
+		}
+		return msg;
 	}
 }
