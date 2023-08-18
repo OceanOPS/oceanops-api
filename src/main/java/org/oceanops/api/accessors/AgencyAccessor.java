@@ -17,8 +17,6 @@ import org.json.JSONObject;
 import org.oceanops.api.Authorization;
 import org.oceanops.orm.Agency;
 import org.oceanops.orm.AgencyRole;
-import org.oceanops.orm.Country;
-import org.oceanops.orm.Weblink;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -113,92 +111,10 @@ public class AgencyAccessor {
 				Integer id = providedData.getInt("id");
 				agency = SelectById.query(Agency.class, id).selectOne(context);
 			}
-			setAgencyPropertiesWithRecievedValues(providedData, agency, context);
+			agency.setAgencyPropertiesWithRecievedValues(providedData, context);
 			context.commitChanges();
 			return Utils.buildDataResponseForOneObject(agency.buildJSON());
 		}
 	}
-	
-	/**
-	 * Set's the agency's properties by calling all the set methods
-	 * @param receivedData provided JSON to parse to get the properties
-	 * @param agency entity
-	 * @param context
-	 */
-	private void setAgencyPropertiesWithRecievedValues(JSONObject receivedData, Agency agency, ObjectContext context){
-			setTheNonNestedProperties(receivedData, agency, context);
-			setCountryIfPresent(receivedData, agency, context);
-			setWeblinkIfPresent(receivedData, agency, context);
 
-			// Other update methods ...
-    }
-
-
-	/**
-	 * Set's the agency's properties, all except the nested properties/relationships
-	 * @param jsonData provided JSON to parse to get the properties
-	 * @param agency entity
-	 * @param context
-	 */
-	private void setTheNonNestedProperties(JSONObject jsonData, Agency agency, ObjectContext context){
-		if(jsonData.has("name")){
-        	agency.setName(jsonData.get("name").toString());
-		}
-		if(jsonData.has("nameShort")){
-        	agency.setNameShort(jsonData.get("nameShort").toString());
-		}
-		if(jsonData.has("lat")){
-        	agency.setLat(Double.parseDouble(jsonData.get("lat").toString()));
-		}
-		if(jsonData.has("lon")){
-        	agency.setLon(Double.parseDouble(jsonData.get("lon").toString()));
-		}
-		if(jsonData.has("fax")){
-        	agency.setFax(jsonData.get("fax").toString());
-		}
-		if(jsonData.has("address")){
-        	agency.setAddress(jsonData.get("address").toString());
-		}
-    }
-
-
-	/**
-	 * Set's the agency's country from a provided id
-	 * @param jsonData provided JSON to parse to get the country id
-	 * @param agency entity
-	 * @param context
-	 */
-	private void setCountryIfPresent(JSONObject jsonData, Agency agency, ObjectContext context) {
-		if (jsonData.has("country")) {
-			JSONObject countryJson = jsonData.getJSONObject("country");
-			if (countryJson.has("id") && Utils.isInteger(countryJson.get("id").toString())) {
-				int countryId = countryJson.getInt("id");
-				Country country = SelectById.query(Country.class, countryId).selectOne(context);
-				if(country != null){
-					agency.setCountry(country);
-				}
-			}
-		}
-	}
-
-
-	/**
-	 * Set's the agency's weblink (an existing weblink if provided an id, or create a weblink from other params)
-	 * @param jsonData provided JSON to parse
-	 * @param agency entity
-	 * @param context
-	 */
-	private void setWeblinkIfPresent(JSONObject jsonData, Agency agency, ObjectContext context) {
-		if (jsonData.has("weblink")) {
-			JSONObject weblinkJson = jsonData.getJSONObject("weblink");
-			if (weblinkJson.has("id")) {
-				int weblinkId = weblinkJson.getInt("id");
-				Weblink weblink = SelectById.query(Weblink.class, weblinkId).selectOne(context);
-				agency.setWeblink(weblink);
-			}else{
-				Weblink weblink = Weblink.createWeblinkFromJson(weblinkJson, context);
-				agency.setWeblink(weblink);
-			}
-		}
-	}
 }
